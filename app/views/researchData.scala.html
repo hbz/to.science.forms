@@ -1,0 +1,32 @@
+@* Copyright 2015 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
+@(myForm: Form[ResearchData])
+
+
+@main("Katalog") {
+	<h1>Research Data</h1>
+	@helper.form(action = routes.KatalogController.getRdf("researchData")) {
+		@tags.singlefieldTemplate(myForm,"title")
+		@tags.multifieldTemplate(myForm,"author")
+		@tags.singlefieldTemplate(myForm,"yearOfCopyright")
+		@tags.singlefieldTemplate(myForm,"license")
+		@tags.multifieldTemplate(myForm,"doi")
+		@tags.singlefieldTemplate(myForm,"abstractText")
+		@tags.singlefieldTemplate(myForm,"professionalGroup")
+		@tags.singlefieldTemplate(myForm,"embargo")
+		@tags.multifieldTemplate(myForm,"ddc")
+		<input type="submit" value="Save" />
+	}
+	<script>
+$('.multi-field-wrapper').each(function() {
+    var $wrapper = $('.multi-fields', this);
+    $(".add-field", $(this)).click(function(e) {
+        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').focus();
+    });
+    $('.multi-field .remove-field', $wrapper).click(function() {
+        if ($('.multi-field', $wrapper).length > 1)
+            $(this).parent('.multi-field').remove();
+    });
+});
+</script>
+}
+

@@ -1,0 +1,15 @@
+@* Copyright 2014 Jan Schnasse, hbz. Licensed under the Apache License 2.0 *@ 
+@(myForm: Form[ResearchData],fieldName:String)
+
+<div class="form-group row">
+<div class="multi-field-wrapper">
+	<div class="multi-fields ">
+		@helper.repeat(myForm(fieldName), min = 1) { n =>
+		<div class="multi-field">
+			 @tags.repeatedfieldTemplate(myForm,fieldName)
+		</div>
+		}
+	</div>
+	
+</div>
+</div>

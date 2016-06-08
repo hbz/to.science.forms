@@ -1,0 +1,13 @@
+@* Copyright 2015 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
+@(forms : List[String])
+
+@import play.api.Play.current;
+@import play.data.Form;
+@import java.util.List;
+
+@main("Katalog") {
+<h1>Available Form Models</h1>
+	@for(f <- forms){
+	<a href="@f">@f</a>
+	}
+}
