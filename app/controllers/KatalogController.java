@@ -30,10 +30,6 @@ public class KatalogController extends Controller {
 	}
 
 	public CompletionStage<Result> getForms(String id) {
-		return getForm(id);
-	}
-
-	public CompletionStage<Result> getForm(String id) {
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
 		if (id == null)
@@ -67,16 +63,19 @@ public class KatalogController extends Controller {
 	}
 
 	public CompletionStage<Result> getRdf(String id) {
-		play.Logger.debug("POST " + id);
+
 		Result result = null;
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Form<ResearchData> form =
 				formFactory.form(ResearchData.class).bindFromRequest();
 		if (form.hasErrors()) {
+			play.Logger.debug("POST " + id + " form has errors.");
 			result = badRequest(researchData.render(form));
 		} else {
 			ResearchData u = form.get();
-			result = redirect(routes.KatalogController.index());
+			play.Logger.debug("POST " + id + " load form data to model.");
+			play.Logger.debug("Print model: " + u.toString());
+			result = redirect(routes.KatalogController.getForms(null));
 		}
 
 		future.complete(result);

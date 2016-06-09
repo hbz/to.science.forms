@@ -4,6 +4,11 @@
 
 @main("Katalog") {
 	<h1>Research Data</h1>
+	@if(myForm.hasGlobalErrors) {
+    <p class="error">
+        @myForm.globalError.message
+    </p>
+}
 	@helper.form(action = routes.KatalogController.getRdf("researchData")) {
 		@tags.singlefieldTemplate(myForm,"title")
 		@tags.multifieldTemplate(myForm,"author")
@@ -14,6 +19,7 @@
 		@tags.singlefieldTemplate(myForm,"professionalGroup")
 		@tags.singlefieldTemplate(myForm,"embargo")
 		@tags.multifieldTemplate(myForm,"ddc")
+		@tags.singlefieldTemplate(myForm,"language")
 		<input type="submit" value="Save" />
 	}
 	<script>

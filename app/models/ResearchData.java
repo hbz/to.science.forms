@@ -2,6 +2,8 @@ package models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import play.data.validation.Constraints.Required;
 
 public class ResearchData {
@@ -106,4 +108,11 @@ public class ResearchData {
 		this.language = language;
 	}
 
+	public String toString() {
+		try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (Exception e) {
+			return "To String failed " + e.getMessage();
+		}
+	}
 }
