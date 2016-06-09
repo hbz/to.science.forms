@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -10,8 +9,9 @@ import javax.inject.Inject;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.FormRegister;
+import services.KatalogForm;
 import views.html.*;
-import models.*;
 
 /**
  * @author Jan Schnasse
@@ -21,7 +21,7 @@ public class KatalogController extends Controller {
 	@Inject
 	play.data.FormFactory formFactory;
 
-	private static final String RESEARCH_DATA = "researchData";
+	private static final FormRegister katalogForms = new FormRegister();
 
 	public CompletionStage<Result> index() {
 		CompletableFuture<Result> future = new CompletableFuture<>();
@@ -35,50 +35,46 @@ public class KatalogController extends Controller {
 		if (id == null)
 			result = listForms();
 		else {
-			switch (id) {
-			case RESEARCH_DATA:
-				result = getResearchDataForm();
-				break;
-			default:
-				result = listForms();
-			}
+			KatalogForm myKatalogForm = katalogForms.get(id);
+			result = renderForm(myKatalogForm);
 		}
 		future.complete(result);
 		return future;
 	}
 
 	private Result listForms() {
-		List<String> formList = new ArrayList();
-		formList.add("/forms?id=" + RESEARCH_DATA);
+		List<String> formList = katalogForms.getIds();
 		return ok(forms.render(formList));
 	}
 
-	private Result getResearchDataForm() {
-		Form<ResearchData> form = formFactory.form(ResearchData.class);
+	private Result renderForm(KatalogForm katalogForm) {
+		Form<?> form = formFactory.form(katalogForm.getModel().getClass());
 		if (form.hasErrors()) {
-			return badRequest(researchData.render(form));
-		} else {
-			return ok(researchData.render(form));
+			return badRequest(katalogForm.render(form));
 		}
+		return ok(katalogForm.render(form));
 	}
 
 	public CompletionStage<Result> getRdf(String id) {
-
-		Result result = null;
 		CompletableFuture<Result> future = new CompletableFuture<>();
-		Form<ResearchData> form =
-				formFactory.form(ResearchData.class).bindFromRequest();
-		if (form.hasErrors()) {
-			play.Logger.debug("POST " + id + " form has errors.");
-			result = badRequest(researchData.render(form));
-		} else {
-			ResearchData u = form.get();
-			play.Logger.debug("POST " + id + " load form data to model.");
-			play.Logger.debug("Print model: " + u.toString());
-			result = redirect(routes.KatalogController.getForms(null));
-		}
-
+		Result result = null;
+		KatalogForm myKatalogForm = katalogForms.get(id);
+		result = convertKatalogForm(myKatalogForm);
 		future.complete(result);
 		return future;
+	}
+
+	private Result convertKatalogForm(KatalogForm katalogForm) {
+		Result result = null;
+		Form<?> form =
+				formFactory.form(katalogForm.getModel().getClass()).bindFromRequest();
+		if (form.hasErrors()) {
+			play.Logger.debug("POST " + katalogForm.getId() + " form has errors.");
+			result = badRequest(katalogForm.render(form));
+		} else {
+			response().setHeader("Content-Type", "application/json");
+			result = ok(form.get().toString());
+		}
+		return result;
 	}
 }

@@ -1,0 +1,35 @@
+@* Copyright 2015 Jan Schnasse, hbz. Licensed under the GNU Affero
+General Public License *@ 
+@(title: String)(content: Html) 
+@import play.api.Play.current
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="/public/images/favicon.ico"
+	type="image/x-icon" />
+<link rel="stylesheet" media="screen"
+	href="@controllers.routes.Assets.versioned("stylesheets/main.css")">
+<link rel="stylesheet" media="screen"
+	href="@controllers.routes.Assets.versioned("stylesheets/bootstrap.min.css")">
+<link rel="stylesheet" media="screen"
+	href="@controllers.routes.Assets.versioned("stylesheets/octicons.css")">
+<link rel="shortcut icon" type="image/png"
+	href="@controllers.routes.Assets.versioned("images/favicon.png")">
+<link rel="stylesheet" href="@controllers.routes.Assets.versioned("stylesheets/font-awesome.min.css")">
+<link rel="stylesheet" href="@controllers.routes.Assets.versioned("stylesheets/jquery-ui.css")">
+<script src="@controllers.routes.Assets.versioned("javascripts/jquery-1.10.2.min.js")"></script>
+<script src="@controllers.routes.Assets.versioned("javascripts/jquery-ui.min.js")"></script>
+<script src="@controllers.routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
+
+
+</head>
+<body>
+	<h1>@title</h1>
+	
+	<div class="container">
+		<div class="starter-template">@content</div>
+	</div>
+</body>
+</html>

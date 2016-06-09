@@ -2,13 +2,12 @@
 @(myForm: Form[ResearchData])
 
 
-@main("Katalog") {
-	<h1>Research Data</h1>
+@katalogForm("Research Data") {
 	@if(myForm.hasGlobalErrors) {
     <p class="error">
         @myForm.globalError.message
     </p>
-}
+	}
 	@helper.form(action = routes.KatalogController.getRdf("researchData")) {
 		@tags.singlefieldTemplate(myForm,"title")
 		@tags.multifieldTemplate(myForm,"author")
@@ -23,16 +22,16 @@
 		<input type="submit" value="Save" />
 	}
 	<script>
-$('.multi-field-wrapper').each(function() {
-    var $wrapper = $('.multi-fields', this);
-    $(".add-field", $(this)).click(function(e) {
-        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').focus();
-    });
-    $('.multi-field .remove-field', $wrapper).click(function() {
-        if ($('.multi-field', $wrapper).length > 1)
-            $(this).parent('.multi-field').remove();
-    });
-});
-</script>
+		$('.multi-field-wrapper').each(function() {
+		    var $wrapper = $('.multi-fields', this);
+		    $(".add-field", $(this)).click(function(e) {
+		        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').focus();
+		    });
+		    $('.multi-field .remove-field', $wrapper).click(function() {
+		        if ($('.multi-field', $wrapper).length > 1)
+		            $(this).parent('.multi-field').remove();
+		    });
+		});
+	</script>
 }
 
