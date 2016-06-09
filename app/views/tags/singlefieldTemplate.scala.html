@@ -1,7 +1,7 @@
 @* Copyright 2014 Jan Schnasse, hbz. Licensed under the Apache License 2.0 *@ 
-@(myForm:Form[ResearchData],fieldName:String)
+@(myForm:Form[ResearchData],fieldName:String,fieldLabel:String)
 @import helper._
 
 @implicitField = @{ FieldConstructor(inputTextConstructor.f) }
 
-@inputText(myForm(fieldName))
+@inputText(myForm(fieldName), '_label -> fieldLabel)

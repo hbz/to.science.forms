@@ -56,6 +56,8 @@ public class KatalogController extends Controller {
 	}
 
 	public CompletionStage<Result> getRdf(String id) {
+		play.Logger.debug(
+				"\n" + request().toString() + "\n\t" + request().body().toString());
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
 		KatalogForm myKatalogForm = katalogForms.get(id);

@@ -1,11 +1,20 @@
 @(elements: helper.FieldElements)
-<div class="form-group row">
-	<label class="col-sm-2 form-control-label" for="@elements.id">@elements.label</label>
-	<div class="col-sm-10">
+<div class="form-group row @if(elements.hasErrors) {error}">
+<div class="col-sm-12">
+	<div class="col-sm-4">
+		<label class=" form-control-label" for="@elements.id">@elements.label</label>
+	</div>
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-8">
 		<div class="input">
     		@elements.input
-    		<span class="errors">@elements.errors.mkString(", ")</span>
     	@*	<span class="help">@elements.infos.mkString(", ")</span>*@
+			<span class="help">*</span>
 		</div>
+	</div>
+	<div class="col-sm-offset-4 col-sm-4">
+    		<span class="errors">@elements.errors.mkString(", ")</span>
+    </div>
 	</div>
 </div>

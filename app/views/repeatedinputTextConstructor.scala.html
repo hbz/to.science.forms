@@ -1,11 +1,23 @@
 @(elements: helper.FieldElements)
-	<label class="col-sm-1 form-control-label" for="@elements.id">@elements.label</label>
-	<button type="button" class="btn add-field col-sm-1">+</button>
-	<div class="col-sm-9">
-		<div class="input">
-    		@elements.input
-    		<span class="errors">@elements.errors.mkString(", ")</span>
-    	@*	<span class="help">@elements.infos.mkString(", ")</span>*@
-		</div>
-	</div>
-	<button type="button" class="btn remove-field col-sm-1">-</button>
+			<div class="first-child-of-multi-field col-sm-12">
+				<div class="col-sm-4">
+					<label class="form-control-label" for="@elements.id">@elements.label</label>
+				</div>
+				
+				<div class="col-sm-offset-4 col-sm-8">
+					@elements.input 
+					@*<span class="help">
+					@elements.infos.mkString(", ")
+					</span>*@
+					<span class="help">*</span>
+				</div>
+				
+				<div class="col-sm-offset-4 col-sm-2">
+					<button type="button" class="add-field col-sm-1" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-plus-circle"/></button>
+					<button type="button" class="remove-field col-sm-1" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-minus-circle"/></button>
+				</div>
+				<div class="col-sm-offset-4 col-sm-4">
+    				<span class="errors">@elements.errors.mkString(", ")</span>
+   				 </div>
+			</div>
+

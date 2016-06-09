@@ -9,29 +9,21 @@
     </p>
 	}
 	@helper.form(action = routes.KatalogController.getRdf("researchData")) {
-		@tags.singlefieldTemplate(myForm,"title")
-		@tags.multifieldTemplate(myForm,"author")
-		@tags.singlefieldTemplate(myForm,"yearOfCopyright")
-		@tags.singlefieldTemplate(myForm,"license")
-		@tags.multifieldTemplate(myForm,"doi")
-		@tags.singlefieldTemplate(myForm,"abstractText")
-		@tags.singlefieldTemplate(myForm,"professionalGroup")
-		@tags.singlefieldTemplate(myForm,"embargo")
-		@tags.multifieldTemplate(myForm,"ddc")
-		@tags.singlefieldTemplate(myForm,"language")
-		<input type="submit" value="Save" />
+		@tags.singlefieldTemplate(myForm,"title","Titel")
+		@tags.multifieldTemplate(myForm,"author","Author")
+		@tags.singlefieldTemplate(myForm,"yearOfCopyright","Copyright Jahr")
+		@tags.singlefieldTemplate(myForm,"license","Lizenz")
+		@tags.multifieldTemplate(myForm,"doi","Doi")
+		@tags.singlefieldTemplate(myForm,"abstractText","Abstract")
+		@tags.singlefieldTemplate(myForm,"professionalGroup","Fachgruppe")
+		@tags.singlefieldTemplate(myForm,"embargo","Embargo")
+		@tags.multifieldTemplate(myForm,"ddc","DDC")
+		@tags.singlefieldTemplate(myForm,"language","Sprache")
+		
+		<div class="col-md-offset-10 col-md-2">
+		<input type="submit" value="Save" class="btn btn-success"/>
+		</div>
 	}
-	<script>
-		$('.multi-field-wrapper').each(function() {
-		    var $wrapper = $('.multi-fields', this);
-		    $(".add-field", $(this)).click(function(e) {
-		        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').focus();
-		    });
-		    $('.multi-field .remove-field', $wrapper).click(function() {
-		        if ($('.multi-field', $wrapper).length > 1)
-		            $(this).parent('.multi-field').remove();
-		    });
-		});
-	</script>
+
 }
 
