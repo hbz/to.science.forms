@@ -1,0 +1,19 @@
+@* Copyright 2014 Jan Schnasse, hbz. Licensed under the Apache License 2.0 *@ 
+@(myForm:Form[ResearchData],fieldName:String,fieldLabel:String,classString:String,list:Array[String])
+
+	<div class="first-child-of-multi-field col-sm-12">
+				<div class="col-sm-4">
+					   <label class="form-control-label" for="@classString">@fieldLabel</label>
+				</div>		
+				<div class="col-sm-offset-4 col-sm-8">
+				 	<fieldset>
+					    <select name="@fieldName" id="@classString">
+					    @for(i <-list){
+					      <option>@i</option>
+					    }
+					    </select>
+				    </fieldset>
+				</div>
+  </div>	
+
+ 

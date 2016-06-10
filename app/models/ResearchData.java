@@ -15,8 +15,7 @@ public class ResearchData {
 	private String yearOfCopyright;
 	@Required
 	private String license;
-	@Required
-	private List<String> doi;
+
 	@Required
 	private String abstractText;
 	@Required
@@ -28,7 +27,12 @@ public class ResearchData {
 	@Required
 	String language;
 	@Required
+	String medium;
+	@Required
+	String dataOrigin;
+
 	private List<String> subject;
+	private List<String> doi;
 
 	public String getTitle() {
 		return title;
@@ -116,6 +120,22 @@ public class ResearchData {
 
 	public void setSubject(List<String> subject) {
 		this.subject = subject;
+	}
+
+	public String getMedium() {
+		return medium;
+	}
+
+	public void setMedium(String medium) {
+		this.medium = medium;
+	}
+
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+
+	public void setDataOrigin(String dataOrigin) {
+		this.dataOrigin = dataOrigin;
 	}
 
 	public String toString() {

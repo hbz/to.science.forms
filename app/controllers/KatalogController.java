@@ -50,6 +50,8 @@ public class KatalogController extends Controller {
 	private Result renderForm(KatalogForm katalogForm) {
 		Form<?> form = formFactory.form(katalogForm.getModel().getClass());
 		if (form.hasErrors()) {
+			play.Logger.debug(form.globalErrors() + "");
+			play.Logger.debug(form.errors() + "");
 			return badRequest(katalogForm.render(form));
 		}
 		return ok(katalogForm.render(form));
@@ -72,6 +74,8 @@ public class KatalogController extends Controller {
 				formFactory.form(katalogForm.getModel().getClass()).bindFromRequest();
 		if (form.hasErrors()) {
 			play.Logger.debug("POST " + katalogForm.getId() + " form has errors.");
+			play.Logger.debug(form.globalErrors() + "");
+			play.Logger.debug(form.errors() + "");
 			result = badRequest(katalogForm.render(form));
 		} else {
 			response().setHeader("Content-Type", "application/json");

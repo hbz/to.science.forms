@@ -19,29 +19,39 @@
 			@tags.inputField(myForm,"abstractText","Abstract","abstract")
 		}
 		@singlefield{
-			@tags.inputField(myForm,"professionalGroup","Fachgruppe","")
+			@tags.select(myForm,"professionalGroup","Fachgruppe","select-pg",Array("Medizin","Gesundheitswesen","Ernährungswissenschaften","Agrarwissenschaften","Umweltwissenschaften","Biologie"))
 		}
 		@multifield{
-			@tags.inputField(myForm,"ddc","DDC","")
+			@tags.select(myForm,"ddc","DDC","select-ddc",Array("333.7 Natürliche Ressourcen,Energie & Umwelt","570 Biowissenschaften, Biologie","610 Medizin & Gesundheit","630 Landwirtschaft","640 Hauswirtschaft & Familie","660 Chemische Verfahrenstechnik"))
 		}
 		@multifield{
 			@tags.inputField(myForm,"subject","Sacherschließung","gnd-subject-search")
 		}
 		@singlefield{
-			@tags.inputField(myForm,"yearOfCopyright","Copyright Jahr","")
+			@tags.select(myForm,"medium","Medium","select-medium",Array("Audio","Video","Bild","Text","Software","Anderes"))
 		}
 		@singlefield{
-			@tags.inputField(myForm,"license","Lizenz","")
+			@tags.select(myForm,"dataOrigin","Erhebungsform","select-dataOrigin",Array("Interview","Umfrage","Anamnese","Exploration","Probe","Gewebeprobe","Flächenmischprobe","Bodenbohrung","Experiment","apparative Untersuchung","körperliche Untersuchung","Feldbeobachtung","Laborbeobachtung","Analyse","Genomsequenzierung","Messung","Berechnung","Evaluation","Querschnittstudie","Langzeitstudie","Interventionsstudie","Kohortenstudie","Simulation","Andere"))
 		}
 		@singlefield{
-			@tags.inputField(myForm,"embargo","Embargo","")
+			@tags.inputField(myForm,"yearOfCopyright","Copyright Jahr","datepicker")
 		}
 		@singlefield{
-			@tags.inputField(myForm,"language","Sprache","")
+			@tags.select(myForm,"license","Lizenz","select-license",Array("PDDL","CC 0","CC BY","CC PDM","GNU GPL","Andere"))
 		}
-		
-		<div class="col-md-offset-10 col-md-2">
-		<input type="submit" value="Save" class="btn btn-success"/>
+		@singlefield{
+			@tags.inputField(myForm,"embargo","Embargo","datepicker")
+		}
+		@singlefield{
+			@tags.select(myForm,"language","Sprache","select-language",Array("Deutsch","Englisch","Französisch","Spanisch","Italienisch"))
+		}
+		@multifield{
+			@tags.inputField(myForm,"doi","Doi","")
+		}
+		<div class="form-group row">
+			<div class="col-sm-offset-8 col-sm-4">
+			<input type="submit" value="Save" class="btn btn-success"/>
+			</div>
 		</div>
 	}
 
