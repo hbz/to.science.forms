@@ -9,17 +9,36 @@
     </p>
 	}
 	@helper.form(action = routes.KatalogController.getRdf("researchData")) {
-	
-		@tags.singlefieldTemplate(myForm,"title","Titel")
-		@tags.multifieldGndTemplate(myForm,"author","Author")
-		@tags.singlefieldTemplate(myForm,"yearOfCopyright","Copyright Jahr")
-		@tags.singlefieldTemplate(myForm,"license","Lizenz")
-		@tags.multifieldTemplate(myForm,"doi","Doi")
-		@tags.singlefieldTemplate(myForm,"abstractText","Abstract")
-		@tags.singlefieldTemplate(myForm,"professionalGroup","Fachgruppe")
-		@tags.singlefieldTemplate(myForm,"embargo","Embargo")
-		@tags.multifieldTemplate(myForm,"ddc","DDC")
-		@tags.singlefieldTemplate(myForm,"language","Sprache")
+		@singlefield{
+			@tags.inputField(myForm,"title","Titel","title")
+		}
+		@multifield{
+			@tags.inputField(myForm,"author","Author", "gnd-person-search")
+		}
+		@singlefield{
+			@tags.inputField(myForm,"abstractText","Abstract","abstract")
+		}
+		@singlefield{
+			@tags.inputField(myForm,"professionalGroup","Fachgruppe","")
+		}
+		@multifield{
+			@tags.inputField(myForm,"ddc","DDC","")
+		}
+		@multifield{
+			@tags.inputField(myForm,"subject","Sacherschließung","gnd-subject-search")
+		}
+		@singlefield{
+			@tags.inputField(myForm,"yearOfCopyright","Copyright Jahr","")
+		}
+		@singlefield{
+			@tags.inputField(myForm,"license","Lizenz","")
+		}
+		@singlefield{
+			@tags.inputField(myForm,"embargo","Embargo","")
+		}
+		@singlefield{
+			@tags.inputField(myForm,"language","Sprache","")
+		}
 		
 		<div class="col-md-offset-10 col-md-2">
 		<input type="submit" value="Save" class="btn btn-success"/>

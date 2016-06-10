@@ -27,6 +27,8 @@ public class ResearchData {
 	List<String> ddc;
 	@Required
 	String language;
+	@Required
+	private List<String> subject;
 
 	public String getTitle() {
 		return title;
@@ -106,6 +108,14 @@ public class ResearchData {
 
 	public void setLanguage(String language) {
 		this.language = language;
+	}
+
+	public List<String> getSubject() {
+		return subject;
+	}
+
+	public void setSubject(List<String> subject) {
+		this.subject = subject;
 	}
 
 	public String toString() {

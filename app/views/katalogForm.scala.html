@@ -37,11 +37,14 @@
 		addActionsToRemoveAndAddButtons();
 		
 		function enableAllGndAutocompletion(){
-			$('input.gnd-search').each(function() {
-				enableGndAutocompletion($(this));
+			$('input.gnd-person-search').each(function() {
+				enableGndPersonAutocompletion($(this));
+		    });
+			$('input.gnd-subject-search').each(function() {
+				enableGndSubjectAutocompletion($(this));
 		    });
 		}
-		function enableGndAutocompletion(inputElement){
+		function enableGndPersonAutocompletion(inputElement){
 			inputElement.autocomplete({
 	            source : function(request, response) {
 	                $.ajax({
@@ -58,8 +61,29 @@
 	            }		        	
 	        });
 		}
+		function enableGndSubjectAutocompletion(inputElement){
+			inputElement.autocomplete({
+	            source : function(request, response) {
+	                $.ajax({
+	                    url : "http://api.lobid.org/subject",
+	                    dataType : "jsonp",
+	                    data : {
+	                        name : request.term,
+	                        format : "ids"
+	                    },
+	                    success : function(data) {
+	                        response(data);
+	                    }
+	                });
+	            }		        	
+	        });
+		}
 		function destroyGndAutocompletion(){
-			$('input.gnd-search').each(function() {
+			$('input.gnd-person-search').each(function() {
+		        $(this).autocomplete('destroy');
+		        $(this).removeData('autocomplete');
+			});
+			$('input.gnd-subject-search').each(function() {
 		        $(this).autocomplete('destroy');
 		        $(this).removeData('autocomplete');
 			});
