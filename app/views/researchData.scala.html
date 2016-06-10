@@ -1,13 +1,13 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
 @(myForm: Form[ResearchData])
 
-@katalogForm("Research Data") {
+@zettel("Research Data") {
 	@if(myForm.hasGlobalErrors) {
     <p class="error">
         @myForm.globalError.message
     </p>
 	}
-	@helper.form(action = routes.KatalogController.getRdf(ResearchData.id)) {
+	@helper.form(action = routes.ZettelController.getRdf(ResearchData.id)) {
 		@singlefield{
 			@tags.inputField(myForm,"title","Titel","title")
 		}

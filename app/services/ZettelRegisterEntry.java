@@ -24,7 +24,7 @@ import play.twirl.api.Content;
  * @author Jan Schnasse
  *
  */
-public interface KatalogForm {
+public interface ZettelRegisterEntry {
 
 	String getId();
 

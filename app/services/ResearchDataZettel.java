@@ -26,7 +26,7 @@ import views.html.researchData;
  * @author Jan Schnasse
  *
  */
-public class ResearchDataKatalogForm implements KatalogForm {
+public class ResearchDataZettel implements ZettelRegisterEntry {
 
 	ResearchData model = new ResearchData();
 

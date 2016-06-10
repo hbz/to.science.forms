@@ -26,23 +26,23 @@ import javax.inject.Inject;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import services.FormRegister;
-import services.KatalogForm;
+import services.ZettelRegister;
+import services.ZettelRegisterEntry;
 import views.html.*;
 
 /**
  * @author Jan Schnasse
  *
  */
-public class KatalogController extends Controller {
+public class ZettelController extends Controller {
 	@Inject
 	play.data.FormFactory formFactory;
 
-	private static final FormRegister katalogForms = new FormRegister();
+	private static final ZettelRegister zettelRegister = new ZettelRegister();
 
 	public CompletionStage<Result> index() {
 		CompletableFuture<Result> future = new CompletableFuture<>();
-		future.complete(ok(index.render("Katalog")));
+		future.complete(ok(index.render("Zettel")));
 		return future;
 	}
 
@@ -52,26 +52,26 @@ public class KatalogController extends Controller {
 		if (id == null)
 			result = listForms();
 		else {
-			KatalogForm myKatalogForm = katalogForms.get(id);
-			result = renderForm(myKatalogForm);
+			ZettelRegisterEntry zettel = zettelRegister.get(id);
+			result = renderForm(zettel);
 		}
 		future.complete(result);
 		return future;
 	}
 
 	private Result listForms() {
-		List<String> formList = katalogForms.getIds();
+		List<String> formList = zettelRegister.getIds();
 		return ok(forms.render(formList));
 	}
 
-	private Result renderForm(KatalogForm katalogForm) {
-		Form<?> form = formFactory.form(katalogForm.getModel().getClass());
+	private Result renderForm(ZettelRegisterEntry zettel) {
+		Form<?> form = formFactory.form(zettel.getModel().getClass());
 		if (form.hasErrors()) {
 			play.Logger.debug(form.globalErrors() + "");
 			play.Logger.debug(form.errors() + "");
-			return badRequest(katalogForm.render(form));
+			return badRequest(zettel.render(form));
 		}
-		return ok(katalogForm.render(form));
+		return ok(zettel.render(form));
 	}
 
 	public CompletionStage<Result> getRdf(String id) {
@@ -79,21 +79,21 @@ public class KatalogController extends Controller {
 				"\n" + request().toString() + "\n\t" + request().body().toString());
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
-		KatalogForm myKatalogForm = katalogForms.get(id);
-		result = convertKatalogForm(myKatalogForm);
+		ZettelRegisterEntry myZettel = zettelRegister.get(id);
+		result = convert(myZettel);
 		future.complete(result);
 		return future;
 	}
 
-	private Result convertKatalogForm(KatalogForm katalogForm) {
+	private Result convert(ZettelRegisterEntry zettel) {
 		Result result = null;
 		Form<?> form =
-				formFactory.form(katalogForm.getModel().getClass()).bindFromRequest();
+				formFactory.form(zettel.getModel().getClass()).bindFromRequest();
 		if (form.hasErrors()) {
-			play.Logger.debug("POST " + katalogForm.getId() + " form has errors.");
+			play.Logger.debug("POST " + zettel.getId() + " form has errors.");
 			play.Logger.debug(form.globalErrors() + "");
 			play.Logger.debug(form.errors() + "");
-			result = badRequest(katalogForm.render(form));
+			result = badRequest(zettel.render(form));
 		} else {
 			response().setHeader("Content-Type", "application/json");
 			result = ok(form.get().toString());

@@ -26,14 +26,14 @@ import java.util.stream.Collectors;
  * @author Jan Schnasse
  *
  */
-public class FormRegister {
-	Map<String, KatalogForm> register = new HashMap();
+public class ZettelRegister {
+	Map<String, ZettelRegisterEntry> register = new HashMap();
 
-	public FormRegister() {
-		register(new ResearchDataKatalogForm());
+	public ZettelRegister() {
+		register(new ResearchDataZettel());
 	}
 
-	private void register(KatalogForm form) {
+	private void register(ZettelRegisterEntry form) {
 		register.put(form.getId(), form);
 	}
 
@@ -41,7 +41,7 @@ public class FormRegister {
 		return register.keySet().parallelStream().collect(Collectors.toList());
 	}
 
-	public KatalogForm get(String id) {
+	public ZettelRegisterEntry get(String id) {
 		return register.get(id);
 	}
 }
