@@ -9,8 +9,9 @@
     </p>
 	}
 	@helper.form(action = routes.KatalogController.getRdf("researchData")) {
+	
 		@tags.singlefieldTemplate(myForm,"title","Titel")
-		@tags.multifieldTemplate(myForm,"author","Author")
+		@tags.multifieldGndTemplate(myForm,"author","Author")
 		@tags.singlefieldTemplate(myForm,"yearOfCopyright","Copyright Jahr")
 		@tags.singlefieldTemplate(myForm,"license","Lizenz")
 		@tags.multifieldTemplate(myForm,"doi","Doi")

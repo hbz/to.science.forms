@@ -33,27 +33,62 @@
 	</div>
 </body>
 	<script>
+		enableAllGndAutocompletion();
+		addActionsToRemoveAndAddButtons();
+		
+		function enableAllGndAutocompletion(){
+			$('input.gnd-search').each(function() {
+				enableGndAutocompletion($(this));
+		    });
+		}
+		function enableGndAutocompletion(inputElement){
+			inputElement.autocomplete({
+	            source : function(request, response) {
+	                $.ajax({
+	                    url : "http://api.lobid.org/person",
+	                    dataType : "jsonp",
+	                    data : {
+	                        name : request.term,
+	                        format : "ids"
+	                    },
+	                    success : function(data) {
+	                        response(data);
+	                    }
+	                });
+	            }		        	
+	        });
+		}
+		function destroyGndAutocompletion(){
+			$('input.gnd-search').each(function() {
+		        $(this).autocomplete('destroy');
+		        $(this).removeData('autocomplete');
+			});
+		}
 		function resetIds(curFieldName){
 			 var num = 0;
-			 $('input[name='+curFieldName+']').each(function() {
+			 $('input[name^='+curFieldName+']').each(function() {
 				 $(this).attr('name',curFieldName+"["+num+"]");
 				 $(this).attr('id',curFieldName+"_"+num);
 				 num++;
 			 });
-			 
 		}
-		$('.multi-field-wrapper').each(function() {
-		    var $wrapper = $('.multi-fields', this);
- 		    var curFieldName = $('.multi-field:first-child', this).find('input').attr('id');
-		    $(".add-field", $(this)).click(function(e) {
-		        var newField = $('.multi-field:first-child', $wrapper).clone(true);  
-		        newField.appendTo($wrapper).find('input').val('').focus();
-		        resetIds(curFieldName);
-		    });
-		    $('.multi-field .remove-field', $wrapper).click(function() {
-		        if ($('.multi-field', $wrapper).length > 1)
-		            $(this).parents('.multi-field').remove();
-		    });
-		});
+		function addActionsToRemoveAndAddButtons(){
+			$('.multi-field-wrapper').each(function() {
+			    var $wrapper = $('.multi-fields', this);
+	 		    var curFieldName = $('.multi-field:first-child', this).find('input').attr('id');
+			    $(".add-field", $(this)).click(function(e) {
+			    	destroyGndAutocompletion();
+			        var newField = $('.multi-field:first-child', $wrapper).clone(true);  
+			        newField.appendTo($wrapper).find('input').val('').focus();
+			        resetIds(curFieldName);
+			        enableAllGndAutocompletion();	      
+			    });
+			    $('.multi-field .remove-field', $wrapper).click(function() {
+			        if ($('.multi-field', $wrapper).length > 1)
+			            $(this).parents('.multi-field').remove();
+			    });
+			});
+		}
+	
 	</script>
 </html>
