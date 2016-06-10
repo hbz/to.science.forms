@@ -1,4 +1,4 @@
-name := """katalog"""
+name := """zettel"""
 
 version := "1.0-SNAPSHOT"
 
