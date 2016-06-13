@@ -7,3 +7,4 @@
     border-color:red;
     border-radius: 5px;
 }
+@media (min-width: 600px) { .container { max-width: 600px; } }

@@ -1,7 +1,7 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
 @(myForm: Form[ResearchData])
 
-@zettel("Research Data") {
+@zettel("Forschungsdaten") {
 	@if(myForm.hasGlobalErrors) {
     <p class="error">
         @myForm.globalError.message
@@ -12,38 +12,37 @@
 			@tags.inputField(myForm,"title","Titel","title")
 		}
 		@multifield{
-			@tags.inputField(myForm,"author","Author", "gnd-person-search")
+			@tags.inputField(myForm,"author","Autor", "gnd-person-search")
 		}
 		@singlefield{
-			@tags.inputField(myForm,"abstractText","Abstract","abstract")
+			@tags.textArea(myForm,"abstractText","Abstract","");
 		}
 		@singlefield{
-			@tags.select(myForm,"professionalGroup","Fachgruppe","select-pg",Array("Medizin","Gesundheitswesen","Ernährungswissenschaften","Agrarwissenschaften","Umweltwissenschaften","Biologie"))
+			@tags.select(myForm,"professionalGroup","Fachgruppe","select-pg",ResearchDataHelper.getProfessionalGroupMap())
 		}
 		@multifield{
-			@tags.select(myForm,"ddc","DDC","select-ddc",Array("333.7 Natürliche Ressourcen,Energie & Umwelt","570 Biowissenschaften, Biologie","610 Medizin & Gesundheit","630 Landwirtschaft","640 Hauswirtschaft & Familie","660 Chemische Verfahrenstechnik"))
-		}
+			@tags.select(myForm,"ddc","DDC","select-ddc",ResearchDataHelper.getDeweyMap())}
 		@multifield{
 			@tags.inputField(myForm,"subject","Sacherschließung","gnd-subject-search")
 		}
 		@singlefield{
-			@tags.select(myForm,"medium","Medium","select-medium",Array("Audio","Video","Bild","Text","Software","Anderes"))
+			@tags.select(myForm,"medium","Medium","select-medium",ResearchDataHelper.getMediumMap())
 		}
 		@singlefield{
-			@tags.select(myForm,"dataOrigin","Erhebungsform","select-dataOrigin",Array("Interview","Umfrage","Anamnese","Exploration","Probe","Gewebeprobe","Flächenmischprobe","Bodenbohrung","Experiment","apparative Untersuchung","körperliche Untersuchung","Feldbeobachtung","Laborbeobachtung","Analyse","Genomsequenzierung","Messung","Berechnung","Evaluation","Querschnittstudie","Langzeitstudie","Interventionsstudie","Kohortenstudie","Simulation","Andere"))
+			@tags.select(myForm,"dataOrigin","Erhebungsform","select-dataOrigin",ResearchDataHelper.getDataOriginMap())
 		}
 		@singlefield{
 			@tags.inputField(myForm,"yearOfCopyright","Copyright Jahr","datepicker")
 		}
-		@singlefield{
+	@*	@singlefield{
 			@tags.select(myForm,"license","Lizenz","select-license",Array("PDDL","CC 0","CC BY","CC PDM","GNU GPL","Andere"))
-		}
+		}*@
 		@singlefield{
 			@tags.inputField(myForm,"embargo","Embargo","datepicker")
 		}
-		@singlefield{
+		@*@singlefield{
 			@tags.select(myForm,"language","Sprache","select-language",Array("Deutsch","Englisch","Französisch","Spanisch","Italienisch"))
-		}
+		}*@
 		@multifield{
 			@tags.inputField(myForm,"doi","Doi","")
 		}

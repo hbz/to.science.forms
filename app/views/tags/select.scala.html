@@ -1,5 +1,7 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(myForm:Form[ResearchData],fieldName:String,fieldLabel:String,classString:String,list:Array[String])
+@(myForm:Form[ResearchData],fieldName:String,fieldLabel:String,classString:String,map:Map[String,String])
+
+@import java.util.stream.Collectors
 
 	<div class="first-child-of-multi-field col-sm-12">
 				<div class="col-sm-4">
@@ -8,12 +10,13 @@
 				<div class="col-sm-offset-4 col-sm-8">
 				 	<fieldset>
 					    <select name="@fieldName" id="@classString">
-					    @for(i <-list){
-					      <option>@i</option>
+					    @for(i <- map.keySet().stream()
+				.collect(Collectors.toList())){
+					      <option value="@i">@map.get(i)</option>
 					    }
 					    </select>
 				    </fieldset>
 				</div>
-  </div>	
+  	</div>	
 
  

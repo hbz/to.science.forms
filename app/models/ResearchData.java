@@ -24,31 +24,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import play.data.validation.Constraints.Required;
 
 public class ResearchData {
-
 	public final static String id = "katalog:data";
 
 	@Required
 	private String title;
-	@Required
+
 	private List<String> author;
-	@Required
+
 	private String yearOfCopyright;
-	@Required
+
 	private String license;
 
-	@Required
 	private String abstractText;
-	@Required
+
 	private String professionalGroup;
-	@Required
+
 	private String embargo;
-	@Required
+
 	List<String> ddc;
-	@Required
+
 	String language;
-	@Required
+
 	String medium;
-	@Required
+
 	String dataOrigin;
 
 	private List<String> subject;

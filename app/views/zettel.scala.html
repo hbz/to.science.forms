@@ -27,7 +27,7 @@
 <body>
 
 	<div class="container col-sd-12">
-		<h1>Add @title</h1>
+		<h1>@title</h1>
 		@content
 		</div>
 	</div>
@@ -46,6 +46,11 @@
 		}
 		function enableGndPersonAutocompletion(inputElement){
 			inputElement.autocomplete({
+				select: function (event, ui) {
+				      this.value = ui.item.value;
+				      $(this).siblings(".input-field-heading").html("<b>"+ui.item.label+"</b>("+ui.item.value+")");				     
+				      return false;
+				   },
 	            source : function(request, response) {
 	                $.ajax({
 	                    url : "http://api.lobid.org/person",
@@ -63,6 +68,11 @@
 		}
 		function enableGndSubjectAutocompletion(inputElement){
 			inputElement.autocomplete({
+				select: function (event, ui) {
+				      this.value = ui.item.value;
+				      $(this).siblings(".input-field-heading").html("<b>"+ui.item.label+"</b>("+ui.item.value+")");				     
+				      return false;
+				   },
 	            source : function(request, response) {
 	                $.ajax({
 	                    url : "http://api.lobid.org/subject",
@@ -105,17 +115,29 @@
 			        var newField = $('.multi-field:first-child', $wrapper).clone(true);  
 			        newField.appendTo($wrapper).find('input').val('').focus();
 			        resetIds(curFieldName);
+			        $(newField).find(".input-field-heading").html("");
 			        enableAllGndAutocompletion();	      
 			    });
 			    $('.multi-field .remove-field', $wrapper).click(function() {
 			        if ($('.multi-field', $wrapper).length > 1)
 			            $(this).parents('.multi-field').remove();
 			    });
+			    $('.multi-field .moveUp', $wrapper).click(function() {
+			    	var $el=$(this).parents(".multi-field");
+			    	 if ($el.not(':first-child'))
+			    		    $el.prev().before($el);
+			    });
+			    $('.multi-field .moveDown', $wrapper).click(function() {
+			    	var $el=$(this).parents(".multi-field");
+			    	 if ($el.not(':last-child'))
+			    		    $el.next().after($el);
+			    });
+			    
 			});
 		}
 	
 		$(function() {
-			    $(".datepicker").datepicker();
+			    $(".datepicker").datepicker().datepicker("setDate", new Date());;
 		 });
 	</script>
 </html>
