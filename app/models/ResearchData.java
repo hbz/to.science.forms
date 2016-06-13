@@ -19,10 +19,19 @@ package models;
 
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.inject.Inject;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.typesafe.config.ConfigFactory;
+
+import play.Configuration;
 import play.data.validation.Constraints.Required;
 
+/**
+ * @author Jan Schnasse
+ *
+ */
 public class ResearchData {
 	public final static String id = "katalog:data";
 
@@ -154,6 +163,11 @@ public class ResearchData {
 
 	public void setDataOrigin(String dataOrigin) {
 		this.dataOrigin = dataOrigin;
+	}
+
+	@JsonProperty("@context")
+	public String getContext() {
+		return ConfigFactory.load().getString("contextUrl");
 	}
 
 	public String toString() {
