@@ -17,7 +17,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.google.common.base.Charsets;
+import com.google.common.io.CharStreams;
+import com.google.common.io.Closeables;
+import com.typesafe.config.ConfigFactory;
+
+import play.data.Form;
+import play.libs.ws.WSAuthScheme;
+import play.libs.ws.WSResponse;
 
 /**
  * @author Jan Schnasse
@@ -97,15 +111,66 @@ public class ResearchDataHelper {
 	public static LinkedHashMap<String, String> getLicenseMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap();
 		map.put("https://creativecommons.org/licenses/by/4.0", "CC BY 4.0");
-		map.put("https://creativecommons.org/licenses/by-nd/4.0", "CC BY-ND 4.0");
-		map.put("https://creativecommons.org/licenses/by-nc-sa/4.0",
-				"CC BY-NC-SA  4.0");
-		map.put("https://creativecommons.org/licenses/by-sa/4.0", "CC BY-SA  4.0");
-		map.put("https://creativecommons.org/licenses/by-nc/4.0", "CC BY-NC  4.0");
-		map.put("https://creativecommons.org/licenses/by-nc-nd/4.0",
-				"CC BY-NC-ND  4.0");
-
+		map.put("https://creativecommons.org/publicdomain/zero/1.0/", "CC0 1.0");
+		map.put("http://opendatacommons.org/licenses/odbl/1-0/",
+				"ODbL (Open Database License)");
+		map.put("http://opendatacommons.org/licenses/pddl/1.0/",
+				"PDDL (Public Domain Dedication and License)");
+		map.put("http://www.gnu.org/licenses/gpl-3.0.de.html",
+				"GNU GPL (GNU General Public Licence)");
 		return map;
 	}
 
+	public static LinkedHashMap<String, String> getLanguageMap() {
+		LinkedHashMap<String, String> map = new LinkedHashMap();
+		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "Deutsch");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "Englisch");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/spa", "Spanisch");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/ita", "Italienisch");
+		return map;
+	}
+
+	public static String getLinkedDataLabel(String uri) {
+		try {
+			if (uri == null || uri.isEmpty())
+				return uri;
+			String etikettUrl = ConfigFactory.load().getString("etikettService");
+			String etikettUser = ConfigFactory.load().getString("etikettUser");
+			String etikettPwd = ConfigFactory.load().getString("etikettPwd");
+			play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
+			WSResponse response = play.libs.ws.WS.client()
+					.url(etikettUrl + "?url=" + uri + "&column=label")
+					.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
+					.setFollowRedirects(true).get().toCompletableFuture().get();
+			try (InputStream input = response.getBodyAsStream()) {
+				String content =
+						CharStreams.toString(new InputStreamReader(input, Charsets.UTF_8));
+				play.Logger.debug(content);
+				return content;
+			}
+		} catch (Exception e) {
+			return uri;
+		}
+	}
+
+	public static List<String> getFieldWithIndex(Form<?> form, String fieldName) {
+		List<String> result = new ArrayList();
+		Map<String, String> formData = form.data();
+		String id = formData.get(fieldName);
+		if (id != null) {
+			result.add(fieldName);
+		} else {
+			for (int i = 0; i < Integer.MAX_VALUE; i++) {
+				id = formData.get(fieldName + "[" + i + "]");
+				if (id == null)
+					break;
+				result.add(fieldName + "[" + i + "]");
+			}
+		}
+		if (result.isEmpty()) {
+			result.add(fieldName);
+		}
+		return result;
+	}
 }

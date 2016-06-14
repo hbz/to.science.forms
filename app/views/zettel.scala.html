@@ -31,6 +31,20 @@
 		@content
 		</div>
 	</div>
+	@if(flash.containsKey("success")) {
+  <div class="well">
+    <div id="success-message" class="text-success">
+      @flash.get("success")
+    </div>
+  </div>
+  }
+  @if(flash.containsKey("error")) {
+  <div class="well">
+    <div id="error-message" class="text-danger">
+      @flash.get("error")
+  </div>
+</div>
+}
 </body>
 	<script>
 		enableAllGndAutocompletion();
@@ -101,6 +115,7 @@
 		function resetIds(curFieldName){
 			 var num = 0;
 			 $('input[name^='+curFieldName+']').each(function() {
+				 console.log(curFieldName);
 				 $(this).attr('name',curFieldName+"["+num+"]");
 				 $(this).attr('id',curFieldName+"_"+num);
 				 num++;
@@ -109,7 +124,7 @@
 		function addActionsToRemoveAndAddButtons(){
 			$('.multi-field-wrapper').each(function() {
 			    var $wrapper = $('.multi-fields', this);
-	 		    var curFieldName = $('.multi-field:first-child', this).find('input').attr('id');
+	 		    var curFieldName = $('.multi-fields', this).attr('id');
 			    $(".add-field", $(this)).click(function(e) {
 			    	destroyGndAutocompletion();
 			        var newField = $('.multi-field:first-child', $wrapper).clone(true);  
@@ -121,23 +136,31 @@
 			    $('.multi-field .remove-field', $wrapper).click(function() {
 			        if ($('.multi-field', $wrapper).length > 1)
 			            $(this).parents('.multi-field').remove();
+			        	resetIds(curFieldName);
 			    });
 			    $('.multi-field .moveUp', $wrapper).click(function() {
 			    	var $el=$(this).parents(".multi-field");
-			    	 if ($el.not(':first-child'))
+			    	 if ($el.not(':first-child')){
 			    		    $el.prev().before($el);
+			    		    resetIds(curFieldName);
+			    	 }
 			    });
 			    $('.multi-field .moveDown', $wrapper).click(function() {
 			    	var $el=$(this).parents(".multi-field");
-			    	 if ($el.not(':last-child'))
+			    	 if ($el.not(':last-child')){
 			    		    $el.next().after($el);
+			    		    resetIds(curFieldName);
+			    	 }
 			    });
 			    
 			});
 		}
 	
 		$(function() {
-			    $(".datepicker").datepicker().datepicker("setDate", new Date());;
+			    $(".datepicker").datepicker();
 		 });
+		$(function() {
+		    $(".datepicker-year").datepicker({ dateFormat: 'yy'});
+	 	});
 	</script>
 </html>

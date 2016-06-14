@@ -1,12 +1,13 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(myForm:Form[ResearchData],fieldName:String,fieldLabel:String,classString:String) 
+@(myForm:Form[ResearchData],fieldName:String,fieldLabel:String,classString:String,map:Map[String,String]) 
 @import tags._
 <div class="form-group row">
 <div class="multi-field-wrapper">
 	<div class="multi-fields" id="@fieldName">
 		@for(fieldWithIndex <- ResearchDataHelper.getFieldWithIndex(myForm,fieldName) ){
 		<div class="multi-field">
-			 @ldInputField(myForm,fieldWithIndex,fieldLabel, classString)
+			
+			 @select(myForm,fieldWithIndex,fieldLabel,classString,map)
 					<div class="col-sm-offset-4 col-sm-2">
 						<button type="button" class="add-field col-sm-1" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-plus-circle"/></button>
 						<button type="button" class="remove-field col-sm-1" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-minus-circle"/></button>

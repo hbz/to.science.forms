@@ -17,10 +17,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typesafe.config.ConfigFactory;
@@ -32,10 +34,11 @@ import play.data.validation.Constraints.Required;
  * @author Jan Schnasse
  *
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResearchData {
 	public final static String id = "katalog:data";
 
-	@Required
+	@Required(message = "Please provide a title")
 	private String title;
 
 	private List<String> author;
@@ -60,6 +63,42 @@ public class ResearchData {
 
 	private List<String> subject;
 	private List<String> doi;
+
+	public ResearchData() {
+		this.title = new String();
+		this.author = new ArrayList<String>();
+		this.yearOfCopyright = new String();
+		this.license = new String();
+		this.abstractText = new String();
+		this.professionalGroup = new String();
+		this.embargo = new String();
+		this.ddc = new ArrayList<String>();
+		this.language = new String();
+		this.medium = new String();
+		this.dataOrigin = new String();
+		this.subject = new ArrayList<String>();
+		this.doi = new ArrayList<String>();
+	}
+
+	public ResearchData(String title, List<String> author, String yearOfCopyright,
+			String license, String abstractText, String professionalGroup,
+			String embargo, List<String> ddc, String language, String medium,
+			String dataOrigin, List<String> subject, List<String> doi) {
+		super();
+		this.title = title;
+		this.author = author;
+		this.yearOfCopyright = yearOfCopyright;
+		this.license = license;
+		this.abstractText = abstractText;
+		this.professionalGroup = professionalGroup;
+		this.embargo = embargo;
+		this.ddc = ddc;
+		this.language = language;
+		this.medium = medium;
+		this.dataOrigin = dataOrigin;
+		this.subject = subject;
+		this.doi = doi;
+	}
 
 	public String getTitle() {
 		return title;

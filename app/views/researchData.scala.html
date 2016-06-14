@@ -1,6 +1,6 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
 @(myForm: Form[ResearchData])
-
+@import tags._
 @zettel("Forschungsdaten") {
 	@if(myForm.hasGlobalErrors) {
     <p class="error">
@@ -9,46 +9,52 @@
 	}
 	@helper.form(action = routes.ZettelController.getRdf(ResearchData.id)) {
 		@singlefield{
-			@tags.inputField(myForm,"title","Titel","title")
+			@inputField(myForm,"title","Titel","title")
 		}
-		@multifield{
-			@tags.inputField(myForm,"author","Autor", "gnd-person-search")
+		
+	    @multifield(myForm,"author","Autor","gnd-person-search")
+	    
+		@singlefield{
+			@textArea(myForm,"abstractText","Abstract","")
+		}
+		
+		@singlefield{
+			@select(myForm,"professionalGroup","Fachgruppe","select-pg",ResearchDataHelper.getProfessionalGroupMap())
+		}	
+		
+		@multiselect(myForm,"ddc","DDC","select-ddc",ResearchDataHelper.getDeweyMap())
+	
+			 
+		@multifield(myForm,"subject","Sacherschließung","gnd-subject-search")
+	
+	
+		@singlefield{
+			@select(myForm,"medium","Medium","select-medium",ResearchDataHelper.getMediumMap())
 		}
 		@singlefield{
-			@tags.textArea(myForm,"abstractText","Abstract","");
+			@select(myForm,"dataOrigin","Erhebungsform","select-dataOrigin",ResearchDataHelper.getDataOriginMap())
 		}
 		@singlefield{
-			@tags.select(myForm,"professionalGroup","Fachgruppe","select-pg",ResearchDataHelper.getProfessionalGroupMap())
-		}
-		@multifield{
-			@tags.select(myForm,"ddc","DDC","select-ddc",ResearchDataHelper.getDeweyMap())}
-		@multifield{
-			@tags.inputField(myForm,"subject","Sacherschließung","gnd-subject-search")
+			@inputField(myForm,"yearOfCopyright","Copyright Jahr","datepicker-year")
 		}
 		@singlefield{
-			@tags.select(myForm,"medium","Medium","select-medium",ResearchDataHelper.getMediumMap())
+			@select(myForm,"license","Lizenz","select-license",ResearchDataHelper.getLicenseMap())
 		}
 		@singlefield{
-			@tags.select(myForm,"dataOrigin","Erhebungsform","select-dataOrigin",ResearchDataHelper.getDataOriginMap())
+			@inputField(myForm,"embargo","Embargo","datepicker")
 		}
 		@singlefield{
-			@tags.inputField(myForm,"yearOfCopyright","Copyright Jahr","datepicker")
+			@select(myForm,"language","Sprache","select-language",ResearchDataHelper.getLanguageMap())
 		}
-	@*	@singlefield{
-			@tags.select(myForm,"license","Lizenz","select-license",Array("PDDL","CC 0","CC BY","CC PDM","GNU GPL","Andere"))
-		}*@
-		@singlefield{
-			@tags.inputField(myForm,"embargo","Embargo","datepicker")
-		}
-		@*@singlefield{
-			@tags.select(myForm,"language","Sprache","select-language",Array("Deutsch","Englisch","Französisch","Spanisch","Italienisch"))
-		}*@
-		@multifield{
-			@tags.inputField(myForm,"doi","Doi","")
-		}
+
+		@multifield(myForm,"doi","Doi","")
+		
+
 		<div class="form-group row">
 			<div class="col-sm-offset-8 col-sm-4">
+			<button id="cancel" class="btn cancel">Cancel</button>
 			<input type="submit" value="Save" class="btn btn-success"/>
+			
 			</div>
 		</div>
 	}

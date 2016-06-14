@@ -17,13 +17,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package controllers;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 import javax.inject.Inject;
 
+import models.ResearchData;
 import play.data.Form;
+import play.data.format.Formatters;
 import play.mvc.Controller;
 import play.mvc.Result;
 import services.ZettelRegister;
@@ -66,17 +70,12 @@ public class ZettelController extends Controller {
 
 	private Result renderForm(ZettelRegisterEntry zettel) {
 		Form<?> form = formFactory.form(zettel.getModel().getClass());
-		if (form.hasErrors()) {
-			play.Logger.debug(form.globalErrors() + "");
-			play.Logger.debug(form.errors() + "");
-			return badRequest(zettel.render(form));
-		}
 		return ok(zettel.render(form));
 	}
 
 	public CompletionStage<Result> getRdf(String id) {
-		play.Logger.debug(
-				"\n" + request().toString() + "\n\t" + request().body().toString());
+		play.Logger.debug("\n" + request().toString() + "\n\t" + request().body());
+
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
 		ZettelRegisterEntry myZettel = zettelRegister.get(id);
@@ -89,14 +88,20 @@ public class ZettelController extends Controller {
 		Result result = null;
 		Form<?> form =
 				formFactory.form(zettel.getModel().getClass()).bindFromRequest();
+		play.Logger.debug(form.data() + "");
 		if (form.hasErrors()) {
 			play.Logger.debug("POST " + zettel.getId() + " form has errors.");
 			play.Logger.debug(form.globalErrors() + "");
 			play.Logger.debug(form.errors() + "");
+			play.Logger.debug(form.data() + "");
 			result = badRequest(zettel.render(form));
 		} else {
-			response().setHeader("Content-Type", "application/json");
-			result = ok(form.get().toString());
+			if (request().accepts("text/html")) {
+				result = ok(zettel.render(form));
+			} else {
+				response().setHeader("Content-Type", "application/json");
+				result = ok(form.get().toString());
+			}
 		}
 		return result;
 	}
