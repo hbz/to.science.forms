@@ -40,6 +40,7 @@ public class ResearchDataZettel implements ZettelRegisterEntry {
 		return model;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Content render(Form<?> form) {
 		return researchData.render((Form<ResearchData>) form);

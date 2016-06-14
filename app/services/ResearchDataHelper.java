@@ -15,23 +15,9 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package models;
+package services;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.CharStreams;
-import com.google.common.io.Closeables;
-import com.typesafe.config.ConfigFactory;
-
-import play.data.Form;
-import play.libs.ws.WSAuthScheme;
-import play.libs.ws.WSResponse;
 
 /**
  * @author Jan Schnasse
@@ -39,8 +25,11 @@ import play.libs.ws.WSResponse;
  */
 public class ResearchDataHelper {
 
+	/**
+	 * @return a map that can be used in an html select
+	 */
 	public static LinkedHashMap<String, String> getDeweyMap() {
-		LinkedHashMap<String, String> map = new LinkedHashMap();
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("http://dewey.info/class/333/7/",
 				"333.7 Natürliche Ressourcen,Energie & Umwelt");
 		map.put("http://dewey.info/class/570", "570 Biowissenschaften, Biologie");
@@ -51,8 +40,11 @@ public class ResearchDataHelper {
 		return map;
 	}
 
+	/**
+	 * @return a map that can be used in an html select
+	 */
 	public static LinkedHashMap<String, String> getProfessionalGroupMap() {
-		LinkedHashMap<String, String> map = new LinkedHashMap();
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("http://d-nb.info/gnd/4038243-6", "Medizin");
 		map.put("http://d-nb.info/gnd/4020775-4", "Gesundheitswesen");
 		map.put("http://d-nb.info/gnd/4152829-3", "Ernährungswissenschaften");
@@ -62,8 +54,11 @@ public class ResearchDataHelper {
 		return map;
 	}
 
+	/**
+	 * @return a map that can be used in an html select
+	 */
 	public static LinkedHashMap<String, String> getDataOriginMap() {
-		LinkedHashMap<String, String> map = new LinkedHashMap();
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("http://hbz-nrw.de/regal#Interview", "Interview");
 		map.put("http://hbz-nrw.de/regal#Umfrage", "Umfrage");
 		map.put("http://hbz-nrw.de/regal#Anamnese", "Anamnese");
@@ -93,8 +88,11 @@ public class ResearchDataHelper {
 		return map;
 	}
 
+	/**
+	 * @return a map that can be used in an html select
+	 */
 	public static LinkedHashMap<String, String> getMediumMap() {
-		LinkedHashMap<String, String> map = new LinkedHashMap();
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("http://rdvocab.info/termList/RDAproductionMethod/1010", "Print");
 		map.put("http://rdvocab.info/termList/RDACarrierType/1018", "Online");
 		map.put("http://purl.org/ontology/bibo/AudioDocument", "Audio");
@@ -108,8 +106,11 @@ public class ResearchDataHelper {
 		return map;
 	}
 
+	/**
+	 * @return a map that can be used in an html select
+	 */
 	public static LinkedHashMap<String, String> getLicenseMap() {
-		LinkedHashMap<String, String> map = new LinkedHashMap();
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("https://creativecommons.org/licenses/by/4.0", "CC BY 4.0");
 		map.put("https://creativecommons.org/publicdomain/zero/1.0/", "CC0 1.0");
 		map.put("http://opendatacommons.org/licenses/odbl/1-0/",
@@ -121,8 +122,11 @@ public class ResearchDataHelper {
 		return map;
 	}
 
+	/**
+	 * @return a map that can be used in an html select
+	 */
 	public static LinkedHashMap<String, String> getLanguageMap() {
-		LinkedHashMap<String, String> map = new LinkedHashMap();
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "Deutsch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "Englisch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");
@@ -131,46 +135,4 @@ public class ResearchDataHelper {
 		return map;
 	}
 
-	public static String getLinkedDataLabel(String uri) {
-		try {
-			if (uri == null || uri.isEmpty())
-				return uri;
-			String etikettUrl = ConfigFactory.load().getString("etikettService");
-			String etikettUser = ConfigFactory.load().getString("etikettUser");
-			String etikettPwd = ConfigFactory.load().getString("etikettPwd");
-			play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
-			WSResponse response = play.libs.ws.WS.client()
-					.url(etikettUrl + "?url=" + uri + "&column=label")
-					.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
-					.setFollowRedirects(true).get().toCompletableFuture().get();
-			try (InputStream input = response.getBodyAsStream()) {
-				String content =
-						CharStreams.toString(new InputStreamReader(input, Charsets.UTF_8));
-				play.Logger.debug(content);
-				return content;
-			}
-		} catch (Exception e) {
-			return uri;
-		}
-	}
-
-	public static List<String> getFieldWithIndex(Form<?> form, String fieldName) {
-		List<String> result = new ArrayList();
-		Map<String, String> formData = form.data();
-		String id = formData.get(fieldName);
-		if (id != null) {
-			result.add(fieldName);
-		} else {
-			for (int i = 0; i < Integer.MAX_VALUE; i++) {
-				id = formData.get(fieldName + "[" + i + "]");
-				if (id == null)
-					break;
-				result.add(fieldName + "[" + i + "]");
-			}
-		}
-		if (result.isEmpty()) {
-			result.add(fieldName);
-		}
-		return result;
-	}
 }

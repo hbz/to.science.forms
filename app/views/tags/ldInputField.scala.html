@@ -2,6 +2,7 @@
 General Public License *@
 @(myForm:Form[ResearchData],fieldName:String,fieldLabel:String,classString:String)
 
+@import services._
 @myValue=@{myForm.data().get(fieldName)}
 <div class="first-child-of-multi-field col-sm-12">
 	<div class="col-sm-4">
@@ -9,7 +10,7 @@ General Public License *@
 	</div>
 	<div class="col-sm-offset-4 col-sm-8">
 		<p class="input-field-heading">
-			<b>@ResearchDataHelper.getLinkedDataLabel(myValue)</b>
+			<b>@ZettelHelper.getLinkedDataLabel(myValue)</b>
 			@if(myValue!=null && !myValue.isEmpty()){(@myValue)}
 		</p>
 		<input size="50" class="@classString" value="@myValue"

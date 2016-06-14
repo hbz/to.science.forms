@@ -20,22 +20,23 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typesafe.config.ConfigFactory;
 
-import play.Configuration;
 import play.data.validation.Constraints.Required;
 
 /**
  * @author Jan Schnasse
  *
  */
+@SuppressWarnings("javadoc")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResearchData {
+	/**
+	 * The id under which this model is registered in the ZettelRegister
+	 */
 	public final static String id = "katalog:data";
 
 	@Required(message = "Please provide a title")
@@ -64,22 +65,28 @@ public class ResearchData {
 	private List<String> subject;
 	private List<String> doi;
 
+	/**
+	 * Create an empty ResearchData model
+	 */
 	public ResearchData() {
 		this.title = new String();
-		this.author = new ArrayList<String>();
+		this.author = new ArrayList<>();
 		this.yearOfCopyright = new String();
 		this.license = new String();
 		this.abstractText = new String();
 		this.professionalGroup = new String();
 		this.embargo = new String();
-		this.ddc = new ArrayList<String>();
+		this.ddc = new ArrayList<>();
 		this.language = new String();
 		this.medium = new String();
 		this.dataOrigin = new String();
-		this.subject = new ArrayList<String>();
-		this.doi = new ArrayList<String>();
+		this.subject = new ArrayList<>();
+		this.doi = new ArrayList<>();
 	}
 
+	/**
+	 * Initialize all values at once
+	 */
 	public ResearchData(String title, List<String> author, String yearOfCopyright,
 			String license, String abstractText, String professionalGroup,
 			String embargo, List<String> ddc, String language, String medium,
@@ -209,6 +216,7 @@ public class ResearchData {
 		return ConfigFactory.load().getString("contextUrl");
 	}
 
+	@Override
 	public String toString() {
 		try {
 			return new ObjectMapper().writeValueAsString(this);

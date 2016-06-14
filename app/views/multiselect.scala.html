@@ -1,10 +1,11 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
 @(myForm:Form[ResearchData],fieldName:String,fieldLabel:String,classString:String,map:Map[String,String]) 
 @import tags._
+@import services._
 <div class="form-group row">
 <div class="multi-field-wrapper">
 	<div class="multi-fields" id="@fieldName">
-		@for(fieldWithIndex <- ResearchDataHelper.getFieldWithIndex(myForm,fieldName) ){
+		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,fieldName) ){
 		<div class="multi-field">
 			
 			 @select(myForm,fieldWithIndex,fieldLabel,classString,map)

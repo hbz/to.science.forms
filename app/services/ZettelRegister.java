@@ -23,14 +23,20 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * The ZettelRegister provides access to all available forms.
+ * 
  * @author Jan Schnasse
  *
  */
+@SuppressWarnings("javadoc")
 public class ZettelRegister {
-	Map<String, ZettelRegisterEntry> register = new HashMap();
+	Map<String, ZettelRegisterEntry> register = new HashMap<>();
 
 	public ZettelRegister() {
 		register(new ResearchDataZettel());
+		/**
+		 * register additional forms
+		 */
 	}
 
 	private void register(ZettelRegisterEntry form) {

@@ -17,17 +17,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package controllers;
 
-import java.text.ParseException;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 import javax.inject.Inject;
 
-import models.ResearchData;
 import play.data.Form;
-import play.data.format.Formatters;
 import play.mvc.Controller;
 import play.mvc.Result;
 import services.ZettelRegister;
@@ -44,12 +40,21 @@ public class ZettelController extends Controller {
 
 	private static final ZettelRegister zettelRegister = new ZettelRegister();
 
+	/**
+	 * @return the start page
+	 */
 	public CompletionStage<Result> index() {
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		future.complete(ok(index.render("Zettel")));
 		return future;
 	}
 
+	/**
+	 * @param id if null list all available forms otherwise render the requested
+	 *          form.
+	 * @return a list of available forms or if present the form with a certain id.
+	 * 
+	 */
 	public CompletionStage<Result> getForms(String id) {
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
@@ -63,6 +68,7 @@ public class ZettelController extends Controller {
 		return future;
 	}
 
+	@SuppressWarnings("static-method")
 	private Result listForms() {
 		List<String> formList = zettelRegister.getIds();
 		return ok(forms.render(formList));
@@ -73,36 +79,36 @@ public class ZettelController extends Controller {
 		return ok(zettel.render(form));
 	}
 
-	public CompletionStage<Result> getRdf(String id) {
+	/**
+	 * @param id the id of the form the POST data is send to.
+	 * @return if posted with accept:application/json return json-ld
+	 *         representation of the data. In all other cases return an html
+	 *         formular.
+	 */
+	public CompletionStage<Result> postForm(String id) {
 		play.Logger.debug("\n" + request().toString() + "\n\t" + request().body());
-
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
-		ZettelRegisterEntry myZettel = zettelRegister.get(id);
-		result = convert(myZettel);
-		future.complete(result);
-		return future;
-	}
-
-	private Result convert(ZettelRegisterEntry zettel) {
-		Result result = null;
+		ZettelRegisterEntry zettel = zettelRegister.get(id);
 		Form<?> form =
 				formFactory.form(zettel.getModel().getClass()).bindFromRequest();
 		play.Logger.debug(form.data() + "");
 		if (form.hasErrors()) {
-			play.Logger.debug("POST " + zettel.getId() + " form has errors.");
-			play.Logger.debug(form.globalErrors() + "");
-			play.Logger.debug(form.errors() + "");
-			play.Logger.debug(form.data() + "");
-			result = badRequest(zettel.render(form));
+			if (request().accepts("text/html")) {
+				result = badRequest(zettel.render(form));
+			} else {
+				result = badRequest(form.errorsAsJson()).as("application/json");
+			}
 		} else {
 			if (request().accepts("text/html")) {
 				result = ok(zettel.render(form));
+				play.Logger.debug(form.get().toString());
 			} else {
-				response().setHeader("Content-Type", "application/json");
-				result = ok(form.get().toString());
+				result = ok(form.get().toString()).as("application/json");
 			}
 		}
-		return result;
+		future.complete(result);
+		return future;
 	}
+
 }

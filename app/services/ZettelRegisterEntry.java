@@ -26,10 +26,28 @@ import play.twirl.api.Content;
  */
 public interface ZettelRegisterEntry {
 
+	/**
+	 * @return the id of a provided Html form
+	 */
 	String getId();
 
+	/**
+	 * @return the model that holds the forms data
+	 */
 	Object getModel();
 
+	/**
+	 * <p>
+	 * You can easily inject a form from your running application (e.g. from
+	 * controller)
+	 * </p>
+	 * <code>
+	 * Form<?> form = formFactory.form(zettel.getModel().getClass());
+	 * </code>
+	 * 
+	 * @param form
+	 * @return a Html rendering
+	 */
 	Content render(Form<?> form);
 
 }
