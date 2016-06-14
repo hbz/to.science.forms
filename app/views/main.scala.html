@@ -1,6 +1,10 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
 @(title: String)(content: Html) 
+
+@context=@{play.api.Play.configuration.getString("play.http.context").getOrElse("")}
+
 @import play.api.Play.current
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,13 +29,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
 
-<script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-		$('#example').dataTable({
-			"order" : [ 0, 'asc' ]
-		});
-	});
-</script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -53,7 +50,7 @@
 						aria-expanded="false" arai-haspopup="true" role="button"
 						data-toggle="dropdown" href="#"> Show <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="@play.api.Play.configuration.getString("application.context").getOrElse("")/forms">Available forms</a></li>
+							<li><a href="@context/forms">Available forms</a></li>
 						</ul></li>
 					
 				</ul>

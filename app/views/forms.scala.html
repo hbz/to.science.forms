@@ -5,9 +5,11 @@
 @import play.data.Form;
 @import java.util.List;
 
+@context = @{play.api.Play.configuration.getString("play.http.context").getOrElse("")}
+
 @main("Zettel") {
 <h1>Available Form Models</h1>
 	@for(f <- forms){
-	<a href="/forms?id=@f">@f</a>
+	<a href="@context/forms?id=@f">@f</a>
 	}
 }
