@@ -111,4 +111,12 @@ public class ZettelController extends Controller {
 		return future;
 	}
 
+	/**
+	 * @return a client demo
+	 */
+	public CompletionStage<Result> client() {
+		CompletableFuture<Result> future = new CompletableFuture<>();
+		future.complete(ok(client.render("Zettel")));
+		return future;
+	}
 }

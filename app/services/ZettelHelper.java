@@ -39,8 +39,6 @@ import play.libs.ws.WSResponse;
  *
  */
 public class ZettelHelper {
-	@Inject
-	static WSClient ws;
 
 	/**
 	 * The function calls a deployment of https://github.com/hbz/etikett to
@@ -105,5 +103,24 @@ public class ZettelHelper {
 			result.add(fieldName);
 		}
 		return result;
+	}
+
+	public static String getEmbeddedJson(Form<?> form) {
+		String result = "";
+		String success = "success-false";
+		try {
+			if (form.hasErrors()) {
+				result = form.errorsAsJson() + "";
+			} else {
+				if (form.get() != null) {
+					result = form.get().toString();
+					success = "success-true";
+				}
+			}
+		} catch (Exception e) {
+			play.Logger.debug("", e);
+		}
+		return "<div id=\"embeddedJson\" class=\"" + success
+				+ "\" style=\"display:none\">" + result + "</div>";
 	}
 }

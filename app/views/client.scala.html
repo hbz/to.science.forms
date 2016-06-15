@@ -1,0 +1,32 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero
+General Public License *@ 
+@(heading:String) 
+@import play.api.Play.current
+@context=@{play.api.Play.configuration.getString("play.http.context").getOrElse("")}
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="@controllers.routes.Assets.versioned("javascripts/jquery-1.10.2.min.js")"></script>
+<script>
+	$(function() {
+		$('#myIframe-1').on(
+				'load',
+				function() {
+					var f = $('#myIframe-1').contents().find(
+							'#embeddedJson.success-true');
+					if (f.length) {
+						console.log(f.html());
+					}
+				});
+	});
+</script>
+</head>
+<body>
+	<iframe src="/tools/zettel/forms?id=katalog:data" width="100%"
+		style="height: 100vh; border: none;" id="myIframe-1">
+		<p>iframes are not supported by your browser.</p>
+	</iframe>
+
+</body>
+</html>

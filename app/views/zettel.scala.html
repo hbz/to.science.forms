@@ -1,13 +1,12 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(title: String)(content: Html) 
+@(title: String,myForm: Form[ResearchData])(content: Html) 
 @import play.api.Play.current
+@import services._
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="shortcut icon" href="/public/images/favicon.ico"
 	type="image/x-icon" />
-<link rel="stylesheet" media="screen"
-	href="@controllers.routes.Assets.versioned("stylesheets/main.css")">
 <link rel="stylesheet" media="screen"
 	href="@controllers.routes.Assets.versioned("stylesheets/bootstrap.min.css")">
 <link rel="stylesheet" media="screen"
@@ -16,6 +15,7 @@
 	href="@controllers.routes.Assets.versioned("images/favicon.png")">
 <link rel="stylesheet" href="@controllers.routes.Assets.versioned("stylesheets/font-awesome.min.css")">
 <link rel="stylesheet" href="@controllers.routes.Assets.versioned("stylesheets/jquery-ui.css")">
+<link rel="stylesheet" href="@controllers.routes.Assets.versioned("stylesheets/main.css")">
 <script src="@controllers.routes.Assets.versioned("javascripts/jquery-1.10.2.min.js")"></script>
 <script src="@controllers.routes.Assets.versioned("javascripts/jquery-ui.min.js")"></script>
 <script src="@controllers.routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
@@ -46,6 +46,7 @@
   </div>
 </div>
 }
+@Html(ZettelHelper.getEmbeddedJson(myForm))
 </body>
 	<script>
 		enableAllGndAutocompletion();
@@ -56,5 +57,6 @@
 		$(function() {
 		    $(".datepicker-year").datepicker({ dateFormat: 'yy'});
 	 	});
+		
 	</script>
 </html>

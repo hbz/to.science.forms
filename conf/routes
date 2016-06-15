@@ -2,3 +2,4 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET	    /							controllers.ZettelController.index()
 GET 	/forms						controllers.ZettelController.getForms(id : String?=null)
 POST	/forms  				    controllers.ZettelController.postForm(id : String?=null)
+GET	    /client						controllers.ZettelController.client()
