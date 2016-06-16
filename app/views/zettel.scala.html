@@ -51,12 +51,29 @@
 	<script>
 		enableAllGndAutocompletion();
 		addActionsToRemoveAndAddButtons();
+	
 		$(function() {
 			    $(".datepicker").datepicker();
 		 });
 		$(function() {
 		    $(".datepicker-year").datepicker({ dateFormat: 'yy'});
 	 	});
+		$(function() {
+		    if(top != self){
+		    	postJsonData();
+		    }
+	 	});
 		
+		function postJsonData() {
+			var target = parent.postMessage ? parent
+					: (parent.document.postMessage ? parent.document
+							: undefined);
+			if (typeof target != "undefined") {
+				var data = $('#embeddedJson').text();
+				if (data.length) {
+					target.postMessage(data, "*");
+				}
+			}
+		}
 	</script>
 </html>

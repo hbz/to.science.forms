@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.typesafe.config.ConfigFactory;
 
 import play.data.validation.Constraints.Required;
+import services.ZettelHelper;
 
 /**
  * @author Jan Schnasse
@@ -218,10 +219,6 @@ public class ResearchData {
 
 	@Override
 	public String toString() {
-		try {
-			return new ObjectMapper().writeValueAsString(this);
-		} catch (Exception e) {
-			return "To String failed " + e.getMessage();
-		}
+		return ZettelHelper.objectToString(this);
 	}
 }

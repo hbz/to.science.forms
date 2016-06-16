@@ -23,15 +23,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 import com.typesafe.config.ConfigFactory;
 
+import models.JsonMessage;
 import play.data.Form;
 import play.libs.ws.WSAuthScheme;
-import play.libs.ws.WSClient;
 import play.libs.ws.WSResponse;
 
 /**
@@ -56,6 +57,7 @@ public class ZettelHelper {
 			String etikettUser = ConfigFactory.load().getString("etikettUser");
 			String etikettPwd = ConfigFactory.load().getString("etikettPwd");
 			play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
+			@SuppressWarnings("deprecation")
 			WSResponse response =
 					play.libs.ws.WS.url(etikettUrl + "?url=" + uri + "&column=label")
 							.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
@@ -105,15 +107,28 @@ public class ZettelHelper {
 		return result;
 	}
 
+	/**
+	 * Returns a html fragment like <code>
+	 * <div id="embeddedJson" 
+	 * 	class="success-true" 
+	 * 	style="display:none">{"some":"json","data":"from","your":"form","model":"end"}</div>
+	 * </code> If form validation has been successful class attribute is set to
+	 * 'success-true' or 'success-false' if not. In case of success the div
+	 * contains a json-ld representation of the forms underlying model. In case of
+	 * errors, the error message is returned as json string.
+	 * 
+	 * @param form the forms data will be returned in a html div
+	 * @return an html div containing json data
+	 */
 	public static String getEmbeddedJson(Form<?> form) {
 		String result = "";
 		String success = "success-false";
 		try {
 			if (form.hasErrors()) {
-				result = form.errorsAsJson() + "";
+				result = new JsonMessage(form.errorsAsJson(), 400).toString();
 			} else {
 				if (form.get() != null) {
-					result = form.get().toString();
+					result = new JsonMessage(form.get(), 200).toString();
 					success = "success-true";
 				}
 			}
@@ -122,5 +137,21 @@ public class ZettelHelper {
 		}
 		return "<div id=\"embeddedJson\" class=\"" + success
 				+ "\" style=\"display:none\">" + result + "</div>";
+	}
+
+	public static String objectToString(Object object) {
+		try {
+			return new ObjectMapper().writeValueAsString(object);
+		} catch (Exception e) {
+			return "To String failed " + e.getMessage();
+		}
+	}
+
+	public static JsonNode objectToJson(Object object) {
+		try {
+			return new ObjectMapper().readTree(objectToString(object));
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

@@ -8,25 +8,52 @@ General Public License *@
 <html>
 <head>
 <script src="@controllers.routes.Assets.versioned("javascripts/jquery-1.10.2.min.js")"></script>
+<style>
+.success, .warning{
+border: 1px solid;
+margin: 10px 0px;
+padding:15px 10px 15px 50px;
+visibility:hidden;
+}
+
+.success {
+color: #4F8A10;
+background-color: #DFF2BF;
+}
+.warning {
+color: #D8000C;
+background-color: #FFBABA;
+}
+</style>
 <script>
-	$(function() {
-		$('#myIframe-1').on(
-				'load',
-				function() {
-					var f = $('#myIframe-1').contents().find(
-							'#embeddedJson.success-true');
-					if (f.length) {
-						console.log(f.html());
-					}
-				});
-	});
+     function onSuccess(data){
+	      	$('#successBox').html(data);
+	      	$('#successBox').css('visibility','visible');
+	      	$('#warningBox').css('visibility','hidden');
+	   }
+     function onFail(data){
+	     	$('#warningBox').html(data);
+	      	$('#warningBox').css('visibility','visible');
+	      	$('#successBox').css('visibility','hidden');
+	   }
+     function getMessage(e){
+    	 var obj = JSON.parse(e.data);
+    	 if(obj.code == 200){
+    	 	onSuccess(JSON.stringify(obj.message));
+    	 }else{
+    		 onFail(JSON.stringify(obj.message));
+    	 }
+     }
+	window.addEventListener("message", getMessage, false);
 </script>
 </head>
-<body>
+<body >
+	<div id="successBox"  class="success"></div>
+	<div id="warningBox" class="warning"></div>
 	<iframe src="/tools/zettel/forms?id=katalog:data" width="100%"
 		style="height: 100vh; border: none;" id="myIframe-1">
 		<p>iframes are not supported by your browser.</p>
 	</iframe>
-
+	
 </body>
 </html>
