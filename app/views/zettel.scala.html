@@ -28,7 +28,7 @@
 <body>
 
 	<div class="container col-sd-12">
-		<h1>@title</h1>
+	
 		@content
 		</div>
 	</div>
@@ -60,20 +60,34 @@
 	 	});
 		$(function() {
 		    if(top != self){
-		    	postJsonData();
+		    	emitEvent();
 		    }
 	 	});
 		
-		function postJsonData() {
+		function emitEvent() {
 			var target = parent.postMessage ? parent
 					: (parent.document.postMessage ? parent.document
 							: undefined);
 			if (typeof target != "undefined") {
-				var data = $('#embeddedJson').text();
-				if (data.length) {
-					target.postMessage(data, "*");
-				}
+				postData(target);
+				resize(target);
+				 
 			}
+		}
+		function postData(target){
+			var data = $('#embeddedJson').text();
+			if (data.length) {
+				target.postMessage(data, "*");
+			}
+		}
+		function resize(target){
+			var body = document.body;
+			var html = document.documentElement;
+			var height = body.offsetHeight;
+		    if(height === 0){
+		        height = html.offsetHeight;
+		    }
+	 		target.postMessage({'action':'RESIZE', 'height':height}, '*');
 		}
 	</script>
 </html>

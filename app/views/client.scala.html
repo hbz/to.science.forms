@@ -26,32 +26,42 @@ background-color: #FFBABA;
 }
 </style>
 <script>
-     function onSuccess(data){
-	      	$('#successBox').html(data);
-	      	$('#successBox').css('visibility','visible');
-	      	$('#warningBox').css('visibility','hidden');
-	   }
-     function onFail(data){
-	     	$('#warningBox').html(data);
-	      	$('#warningBox').css('visibility','visible');
-	      	$('#successBox').css('visibility','hidden');
-	   }
-     function getMessage(e){
-    	 var obj = JSON.parse(e.data);
-    	 if(obj.code == 200){
-    	 	onSuccess(JSON.stringify(obj.message));
-    	 }else{
-    		 onFail(JSON.stringify(obj.message));
-    	 }
-     }
-	window.addEventListener("message", getMessage, false);
+function onSuccess(data){
+ 	jQuery('#successBox').html(data);
+ 	jQuery('#successBox').css('visibility','visible');
+ 	jQuery('#warningBox').css('visibility','hidden');
+}
+function onFail(data){
+	jQuery('#warningBox').html(data);
+ 	jQuery('#warningBox').css('visibility','visible');
+ 	jQuery('#successBox').css('visibility','hidden');
+}
+function getMessage(e){
+ var obj = JSON.parse(e.data);
+ if(obj.code == 200){
+ 	onSuccess(JSON.stringify(obj.message));
+ }else{
+	onFail(JSON.stringify(obj.message));
+ }
+}
+function handleMessage(e) {
+if (e.data.action == 'RESIZE') {
+    var targetHeight = e.data.height;
+    $('#iFrame').height(targetHeight);
+}else{
+	console.log("getData");
+	getMessage(e);
+}
+}
+
+window.addEventListener("message", handleMessage, false);
 </script>
 </head>
 <body >
 	<div id="successBox"  class="success"></div>
 	<div id="warningBox" class="warning"></div>
 	<iframe src="/tools/zettel/forms?id=katalog:data" width="100%"
-		style="height: 100vh; border: none;" id="myIframe-1">
+		style="border: none;" id="iFrame">
 		<p>iframes are not supported by your browser.</p>
 	</iframe>
 	
