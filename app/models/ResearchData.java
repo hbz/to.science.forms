@@ -78,7 +78,8 @@ public class ResearchData {
 	private List<String> doi;
 	private Map<String, Object> context;
 
-	private Object documentId = "frl:1";
+	private String documentId;
+	private String topicId;
 
 	/**
 	 * Create an empty ResearchData model
@@ -98,6 +99,8 @@ public class ResearchData {
 		this.subject = new ArrayList<>();
 		this.doi = new ArrayList<>();
 		initContext();
+		documentId = "_:foo";
+		topicId = "http://localhost/resource/add/researchData";
 	}
 
 	private void initContext() {
@@ -240,6 +243,22 @@ public class ResearchData {
 		this.dataOrigin = dataOrigin;
 	}
 
+	public String getDocumentId() {
+		return documentId;
+	}
+
+	public void setDocumentId(String documentId) {
+		this.documentId = documentId;
+	}
+
+	public String getTopicId() {
+		return topicId;
+	}
+
+	public void setTopicId(String topicId) {
+		this.topicId = topicId;
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(getJsonLdMap());
@@ -248,10 +267,32 @@ public class ResearchData {
 	public Map<String, Object> getJsonLdMap() {
 		Map<String, Object> jsonMap = new HashMap<>();
 		jsonMap.put(ID, documentId);
-		jsonMap.put("primaryTopic", documentId);
+		Map<String, Object> topicMap = new HashMap<>();
+		topicMap.put(ID, topicId);
+		topicMap.put("primaryTopic", documentId);
+		jsonMap.put("isPrimaryTopicOf", topicMap);
+		jsonMap.put("type", "http://hbz-nrw.de/regal#ResearchData");
 		jsonMap.put("title", getTitle());
 		if (author != null && !author.isEmpty())
 			jsonMap.put("creator", author);
+		if (abstractText != null && !abstractText.isEmpty())
+			jsonMap.put("abstract", abstractText);
+		if (dataOrigin != null && !dataOrigin.isEmpty())
+			jsonMap.put("dataOrigin", dataOrigin);
+		if (embargo != null && !embargo.isEmpty())
+			jsonMap.put("embargo", embargo);
+		if (language != null && !language.isEmpty())
+			jsonMap.put("language", language);
+		if (license != null && !license.isEmpty())
+			jsonMap.put("license", license);
+		if (medium != null && !medium.isEmpty())
+			jsonMap.put("medium", medium);
+		if (professionalGroup != null && !professionalGroup.isEmpty())
+			jsonMap.put("professionalGroup", professionalGroup);
+		if (subject != null && !subject.isEmpty())
+			jsonMap.put("subject", subject);
+		if (yearOfCopyright != null && !yearOfCopyright.isEmpty())
+			jsonMap.put("yearOfCopyright", yearOfCopyright);
 		jsonMap.put("@context", context.get("@context"));
 		return jsonMap;
 

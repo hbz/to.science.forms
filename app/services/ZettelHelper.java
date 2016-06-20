@@ -129,7 +129,7 @@ public class ZettelHelper {
 		JsonMessage result = null;
 		try {
 			if (form.hasErrors()) {
-				result = new JsonMessage(form.errorsAsJson().toString(), 400);
+				result = new JsonMessage(form.errorsAsJson(), 400);
 			} else {
 				String jsonldString = form.get().toString();
 
