@@ -119,10 +119,12 @@ function emitEvent() {
 }
 function postData(target){
 	var data = $('#embeddedJson').text();
+	console.log("IFRAME post: "+data);
 	if (data.length) {
 		target.postMessage(data, "*");
 	}
 }
+
 function resize(target){
 	var body = document.body;
 	var html = document.documentElement;

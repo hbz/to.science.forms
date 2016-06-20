@@ -1,14 +1,14 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(myForm: Form[ResearchData])
+@(myForm: Form[ResearchData],dataFormat:String)
 @import tags._
 @import services._
-@zettel("Forschungsdaten",myForm) {
+@zettel("Forschungsdaten",myForm,dataFormat) {
 	@if(myForm.hasGlobalErrors) {
     <p class="error">
         @myForm.globalError.message
     </p>
 	}
-	@helper.form(action = routes.ZettelController.postForm(ResearchData.id)) {
+	@helper.form(action = routes.ZettelController.postForm(ResearchData.id,dataFormat)) {
 		@singlefield{
 			@inputField(myForm,"title","Titel","title")
 		}

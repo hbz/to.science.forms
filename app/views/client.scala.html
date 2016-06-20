@@ -1,6 +1,6 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero
 General Public License *@ 
-@(heading:String) 
+@(heading:String,myFormat:String) 
 @import play.api.Play.current
 @context=@{play.api.Play.configuration.getString("play.http.context").getOrElse("")}
 
@@ -60,7 +60,7 @@ window.addEventListener("message", handleMessage, false);
 <body >
 	<div id="successBox"  class="success"></div>
 	<div id="warningBox" class="warning"></div>
-	<iframe src="/tools/zettel/forms?id=katalog:data" width="100%"
+	<iframe src="/tools/zettel/forms?id=katalog:data&format=@myFormat" width="100%"
 		style="border: none;" id="iFrame">
 		<p>iframes are not supported by your browser.</p>
 	</iframe>

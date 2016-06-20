@@ -17,20 +17,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.openrdf.rio.RDFFormat;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Charsets;
+import com.google.common.html.HtmlEscapers;
 import com.google.common.io.CharStreams;
 import com.typesafe.config.ConfigFactory;
 
 import models.JsonMessage;
+import models.ResearchData;
 import play.data.Form;
 import play.libs.ws.WSAuthScheme;
 import play.libs.ws.WSResponse;
@@ -120,23 +125,36 @@ public class ZettelHelper {
 	 * @param form the forms data will be returned in a html div
 	 * @return an html div containing json data
 	 */
-	public static String getEmbeddedJson(Form<?> form) {
-		String result = "";
-		String success = "success-false";
+	public static JsonMessage getEmbeddedJson(Form<?> form, String format) {
+		JsonMessage result = null;
 		try {
 			if (form.hasErrors()) {
-				result = new JsonMessage(form.errorsAsJson(), 400).toString();
+				result = new JsonMessage(form.errorsAsJson().toString(), 400);
 			} else {
+				String jsonldString = form.get().toString();
+
 				if (form.get() != null) {
-					result = new JsonMessage(form.get(), 200).toString();
-					success = "success-true";
+					if ("xml".equals(format)) {
+						String rdfString =
+								HtmlEscapers.htmlEscaper()
+										.escape(RdfUtils.readRdfToString(
+												new ByteArrayInputStream(
+														jsonldString.getBytes("utf-8")),
+												RDFFormat.JSONLD, RDFFormat.RDFXML, ""));
+						result = new JsonMessage(rdfString, 200);
+						play.Logger.debug("Message: " + result);
+					} else {
+						result = new JsonMessage(((ResearchData) form.get()).getJsonLdMap(),
+								200);
+						play.Logger.debug("Message: " + result);
+					}
+
 				}
 			}
 		} catch (Exception e) {
 			play.Logger.debug("", e);
 		}
-		return "<div id=\"embeddedJson\" class=\"" + success
-				+ "\" style=\"display:none\">" + result + "</div>";
+		return result;
 	}
 
 	public static String objectToString(Object object) {

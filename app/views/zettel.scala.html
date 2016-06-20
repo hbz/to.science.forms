@@ -1,5 +1,5 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(title: String,myForm: Form[ResearchData],f:String)(content: Html) 
+@(title: String,myForm: Form[ResearchData],dataFormat:String)(content: Html) 
 @import play.api.Play.current
 @import services._
 <!DOCTYPE html>
@@ -46,7 +46,15 @@
   </div>
 </div>
 }
-@Html(ZettelHelper.getEmbeddedJson(myForm,f))
+@defining(ZettelHelper.getEmbeddedJson(myForm,dataFormat)){ ej =>
+	@if(ej!=null){
+		@if("200".equals(ej.getCode())){
+		<div id="embeddedJson" class="success-true" style="display:none">@ej.toString()</div>
+		}else{
+		<div id="embeddedJson" class="success-false" style="display:none">@ej.toString()</div>
+		}
+	}
+}
 </body>
 	<script>
 		enableAllGndAutocompletion();

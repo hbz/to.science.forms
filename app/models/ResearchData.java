@@ -76,27 +76,27 @@ public class ResearchData {
 
 	private List<String> subject;
 	private List<String> doi;
-	private String context;
+	private Map<String, Object> context;
 
-	private Object documentId = "zettel:1";
+	private Object documentId = "frl:1";
 
 	/**
 	 * Create an empty ResearchData model
 	 */
 	public ResearchData() {
-		// this.title = new String();
-		// this.author = new ArrayList<>();
-		// this.yearOfCopyright = new String();
-		// this.license = new String();
-		// this.abstractText = new String();
-		// this.professionalGroup = new String();
-		// this.embargo = new String();
-		// this.ddc = new ArrayList<>();
-		// this.language = new String();
-		// this.medium = new String();
-		// this.dataOrigin = new String();
-		// this.subject = new ArrayList<>();
-		// this.doi = new ArrayList<>();
+		this.title = new String();
+		this.author = new ArrayList<>();
+		this.yearOfCopyright = new String();
+		this.license = new String();
+		this.abstractText = new String();
+		this.professionalGroup = new String();
+		this.embargo = new String();
+		this.ddc = new ArrayList<>();
+		this.language = new String();
+		this.medium = new String();
+		this.dataOrigin = new String();
+		this.subject = new ArrayList<>();
+		this.doi = new ArrayList<>();
 		initContext();
 	}
 
@@ -104,7 +104,10 @@ public class ResearchData {
 		try (InputStream in =
 				new URL(ConfigFactory.load().getString("contextUrl")).openStream()) {
 
-			context = CharStreams.toString(new InputStreamReader(in, "UTF-8"));
+			context = new ObjectMapper().readValue(
+					CharStreams.toString(new InputStreamReader(in, "UTF-8")),
+					HashMap.class);
+
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -239,16 +242,18 @@ public class ResearchData {
 
 	@Override
 	public String toString() {
-		try {
-			Map<String, Object> jsonMap = new HashMap<>();
-			jsonMap.put(ID, documentId);
-			jsonMap.put("title", getTitle());
-			jsonMap.put("@context",
-					new ObjectMapper().readValue(context, HashMap.class).get("@context"));
+		return ZettelHelper.objectToString(getJsonLdMap());
+	}
 
-			return ZettelHelper.objectToString(jsonMap);
-		} catch (Exception e) {
-			return "Cannot create string";
-		}
+	public Map<String, Object> getJsonLdMap() {
+		Map<String, Object> jsonMap = new HashMap<>();
+		jsonMap.put(ID, documentId);
+		jsonMap.put("primaryTopic", documentId);
+		jsonMap.put("title", getTitle());
+		if (author != null && !author.isEmpty())
+			jsonMap.put("creator", author);
+		jsonMap.put("@context", context.get("@context"));
+		return jsonMap;
+
 	}
 }

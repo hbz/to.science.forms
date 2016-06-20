@@ -55,14 +55,14 @@ public class ZettelController extends Controller {
 	 * @return a list of available forms or if present the form with a certain id.
 	 * 
 	 */
-	public CompletionStage<Result> getForms(String id) {
+	public CompletionStage<Result> getForms(String id, String format) {
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
 		if (id == null)
 			result = listForms();
 		else {
 			ZettelRegisterEntry zettel = zettelRegister.get(id);
-			result = renderForm(zettel);
+			result = renderForm(zettel, format);
 		}
 		future.complete(result);
 		return future;
@@ -74,9 +74,9 @@ public class ZettelController extends Controller {
 		return ok(forms.render(formList));
 	}
 
-	private Result renderForm(ZettelRegisterEntry zettel) {
+	private Result renderForm(ZettelRegisterEntry zettel, String format) {
 		Form<?> form = formFactory.form(zettel.getModel().getClass());
-		return ok(zettel.render(form));
+		return ok(zettel.render(form, format));
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class ZettelController extends Controller {
 	 *         representation of the data. In all other cases return an html
 	 *         formular.
 	 */
-	public CompletionStage<Result> postForm(String id) {
+	public CompletionStage<Result> postForm(String id, String format) {
 		play.Logger.debug("\n" + request().toString() + "\n\t" + request().body());
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
@@ -95,13 +95,13 @@ public class ZettelController extends Controller {
 		play.Logger.debug(form.data() + "");
 		if (form.hasErrors()) {
 			if (request().accepts("text/html")) {
-				result = badRequest(zettel.render(form));
+				result = badRequest(zettel.render(form, format));
 			} else {
 				result = badRequest(form.errorsAsJson()).as("application/json");
 			}
 		} else {
 			if (request().accepts("text/html")) {
-				result = ok(zettel.render(form));
+				result = ok(zettel.render(form, format));
 				play.Logger.debug(form.get().toString());
 			} else {
 				result = ok(form.get().toString()).as("application/json");
@@ -114,9 +114,9 @@ public class ZettelController extends Controller {
 	/**
 	 * @return a client demo
 	 */
-	public CompletionStage<Result> client() {
+	public CompletionStage<Result> client(String format) {
 		CompletableFuture<Result> future = new CompletableFuture<>();
-		future.complete(ok(client.render("Zettel")));
+		future.complete(ok(client.render("Zettel", format)));
 		return future;
 	}
 }
