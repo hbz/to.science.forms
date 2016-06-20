@@ -1,9 +1,15 @@
 import org.junit.*;
+import org.openrdf.rio.RDFFormat;
 
 import play.mvc.*;
 import play.test.*;
+import services.RdfUtils;
 
 import static play.test.Helpers.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
+
 import static org.junit.Assert.*;
 
 import static org.fluentlenium.core.filter.FilterConstructor.*;
@@ -27,4 +33,10 @@ public class IntegrationTest {
 				});
 	}
 
+	public void testJsonLd() throws UnsupportedEncodingException {
+		String jsonldString;
+		String rdfString = RdfUtils.readRdfToString(
+				new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
+				RDFFormat.JSONLD, RDFFormat.RDFXML, "");
+	}
 }

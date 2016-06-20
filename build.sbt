@@ -9,7 +9,9 @@ scalaVersion := "2.11.7"
 libraryDependencies ++= Seq(
   javaJdbc,
   cache,
-  javaWs
+  javaWs,
+  "org.openrdf.sesame" % "sesame-runtime" % "2.7.9",
+  "com.github.jsonld-java"%"jsonld-java-sesame"%"0.3"
 )
 
 EclipseKeys.preTasks := Seq(compile in Compile)

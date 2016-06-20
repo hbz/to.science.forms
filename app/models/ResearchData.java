@@ -17,12 +17,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.io.CharStreams;
 import com.typesafe.config.ConfigFactory;
 
 import play.data.validation.Constraints.Required;
@@ -39,6 +46,10 @@ public class ResearchData {
 	 * The id under which this model is registered in the ZettelRegister
 	 */
 	public final static String id = "katalog:data";
+
+	private static final String ID = "@id";
+
+	private static final String LABEL = "prefLabel";
 
 	@Required(message = "Please provide a title")
 	private String title;
@@ -65,24 +76,38 @@ public class ResearchData {
 
 	private List<String> subject;
 	private List<String> doi;
+	private String context;
+
+	private Object documentId = "zettel:1";
 
 	/**
 	 * Create an empty ResearchData model
 	 */
 	public ResearchData() {
-		this.title = new String();
-		this.author = new ArrayList<>();
-		this.yearOfCopyright = new String();
-		this.license = new String();
-		this.abstractText = new String();
-		this.professionalGroup = new String();
-		this.embargo = new String();
-		this.ddc = new ArrayList<>();
-		this.language = new String();
-		this.medium = new String();
-		this.dataOrigin = new String();
-		this.subject = new ArrayList<>();
-		this.doi = new ArrayList<>();
+		// this.title = new String();
+		// this.author = new ArrayList<>();
+		// this.yearOfCopyright = new String();
+		// this.license = new String();
+		// this.abstractText = new String();
+		// this.professionalGroup = new String();
+		// this.embargo = new String();
+		// this.ddc = new ArrayList<>();
+		// this.language = new String();
+		// this.medium = new String();
+		// this.dataOrigin = new String();
+		// this.subject = new ArrayList<>();
+		// this.doi = new ArrayList<>();
+		initContext();
+	}
+
+	private void initContext() {
+		try (InputStream in =
+				new URL(ConfigFactory.load().getString("contextUrl")).openStream()) {
+
+			context = CharStreams.toString(new InputStreamReader(in, "UTF-8"));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -212,13 +237,18 @@ public class ResearchData {
 		this.dataOrigin = dataOrigin;
 	}
 
-	@JsonProperty("@context")
-	public String getContext() {
-		return ConfigFactory.load().getString("contextUrl");
-	}
-
 	@Override
 	public String toString() {
-		return ZettelHelper.objectToString(this);
+		try {
+			Map<String, Object> jsonMap = new HashMap<>();
+			jsonMap.put(ID, documentId);
+			jsonMap.put("title", getTitle());
+			jsonMap.put("@context",
+					new ObjectMapper().readValue(context, HashMap.class).get("@context"));
+
+			return ZettelHelper.objectToString(jsonMap);
+		} catch (Exception e) {
+			return "Cannot create string";
+		}
 	}
 }

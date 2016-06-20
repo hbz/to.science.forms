@@ -105,3 +105,30 @@ function addActionsToRemoveAndAddButtons() {
 
 	});
 }
+
+
+function emitEvent() {
+	var target = parent.postMessage ? parent
+			: (parent.document.postMessage ? parent.document
+					: undefined);
+	if (typeof target != "undefined") {
+		postData(target);
+		resize(target);
+		 
+	}
+}
+function postData(target){
+	var data = $('#embeddedJson').text();
+	if (data.length) {
+		target.postMessage(data, "*");
+	}
+}
+function resize(target){
+	var body = document.body;
+	var html = document.documentElement;
+	var height = body.offsetHeight;
+    if(height === 0){
+        height = html.offsetHeight;
+    }
+		target.postMessage({'action':'RESIZE', 'height':height}, '*');
+}
