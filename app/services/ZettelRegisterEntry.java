@@ -48,6 +48,6 @@ public interface ZettelRegisterEntry {
 	 * @param form
 	 * @return a Html rendering
 	 */
-	Content render(Form<?> form, String format);
+	Content render(Form<?> form, String format, String documentId);
 
 }
