@@ -59,7 +59,8 @@
 	<script>
 		enableAllGndAutocompletion();
 		addActionsToRemoveAndAddButtons();
-	
+		window.addEventListener("message", handleMessage, false);
+		
 		$(function() {
 			    $(".datepicker").datepicker();
 		 });
@@ -71,6 +72,20 @@
 		    	emitEvent();
 		    }
 	 	});
-	
+		
+		function handleMessage(evt) {
+			$.ajax({
+				type:'POST',
+				url:"/tools/zettel/forms/init?id=katalog:data", 
+				data:evt.data,
+				crossDomain:true,
+				contentType:'text/plain',
+				success:function(data, textStatus, jqXHR) {
+				},
+				error:function(data, textStatus, jqXHR) {
+				}
+				});
+			
+		}
 	</script>
 </html>

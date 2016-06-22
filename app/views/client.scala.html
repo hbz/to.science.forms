@@ -1,6 +1,5 @@
-@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero
-General Public License *@ 
-@(heading:String,myFormat:String,documentId:String,topicId:String) 
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
+@(heading:String,myFormat:String,documentId:String,topicId:String)
 @import play.api.Play.current
 @context=@{play.api.Play.configuration.getString("play.http.context").getOrElse("")}
 
@@ -9,61 +8,73 @@ General Public License *@
 <head>
 <script src="@controllers.routes.Assets.versioned("javascripts/jquery-1.10.2.min.js")"></script>
 <style>
-.success, .warning{
-border: 1px solid;
-margin: 10px 0px;
-padding:15px 10px 15px 50px;
-visibility:hidden;
+.success, .warning, .data {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding: 15px 10px 15px 50px;
+	visibility: hidden;
 }
 
 .success {
-color: #4F8A10;
-background-color: #DFF2BF;
+	color: #4F8A10;
+	background-color: #DFF2BF;
 }
+
 .warning {
-color: #D8000C;
-background-color: #FFBABA;
+	color: #D8000C;
+	background-color: #FFBABA;
 }
 </style>
 <script>
-function onSuccess(data){
- 	jQuery('#successBox').html(data);
- 	jQuery('#successBox').css('visibility','visible');
- 	jQuery('#warningBox').css('visibility','hidden');
-}
-function onFail(data){
-	jQuery('#warningBox').html(data);
- 	jQuery('#warningBox').css('visibility','visible');
- 	jQuery('#successBox').css('visibility','hidden');
-}
-function getMessage(e){
- var obj = JSON.parse(e.data);
- if(obj.code == 200){
- 	onSuccess(JSON.stringify(obj.message));
- }else{
-	onFail(JSON.stringify(obj.message));
- }
-}
-function handleMessage(e) {
-if (e.data.action == 'RESIZE') {
-    var targetHeight = e.data.height;
-    $('#iFrame').height(targetHeight);
-}else{
-	console.log("getData");
-	getMessage(e);
-}
-}
+	function onSuccess(data) {
+		jQuery('#successBox').html(data);
+		jQuery('#successBox').css('visibility', 'visible');
+		jQuery('#warningBox').css('visibility', 'hidden');
+	}
+	function onFail(data) {
+		jQuery('#warningBox').html(data);
+		jQuery('#warningBox').css('visibility', 'visible');
+		jQuery('#successBox').css('visibility', 'hidden');
+	}
+	function getMessage(e) {
+		var obj = JSON.parse(e.data);
+		if (obj.code == 200) {
+			onSuccess(JSON.stringify(obj.message));
+		} else {
+			onFail(JSON.stringify(obj.message));
+		}
+	}
+	function handleMessage(e) {
+		if (e.data == null) {
+			var iframe = document.getElementById("iFrame");
+			var target = iframe.contentWindow || iframe;
+			if (typeof target != "undefined") {
+				console.log("POST");
+				console.log(target);
+				rdf=$('#rdfBox').text();
+				target.postMessage(rdf, "*");
+			}
+		} else if (e.data.action == 'RESIZE') {
+			var targetHeight = e.data.height;
+			$('#iFrame').height(targetHeight);
+		} else {
+			console.log("getData");
+			getMessage(e);
+		}
+	}
 
-window.addEventListener("message", handleMessage, false);
+	window.addEventListener("message", handleMessage, false);
 </script>
 </head>
-<body >
-	<div id="successBox"  class="success"></div>
+<body>
+	<div id="successBox" class="success"></div>
 	<div id="warningBox" class="warning"></div>
-	<iframe src="/tools/zettel/forms?id=katalog:data&format=@myFormat&documentId=@documentId&topicId=@topicId" width="100%"
-		style="border: none;" id="iFrame">
+	<div id="rdfBox" class="data">test</div>
+	<iframe
+		src="/tools/zettel/forms?id=katalog:data&format=@myFormat&documentId=@documentId&topicId=@topicId"
+		width="100%" style="border: none;" id="iFrame">
 		<p>iframes are not supported by your browser.</p>
 	</iframe>
-	
+
 </body>
 </html>

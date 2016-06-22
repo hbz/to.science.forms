@@ -93,16 +93,17 @@ public class ZettelController extends Controller {
 	 */
 	public CompletionStage<Result> postForm(String id, String format,
 			String documentId, String topicId) {
-
 		response().setHeader("Access-Control-Allow-Origin", "*");
 		response().setHeader("Access-Control-Allow-Headers",
 				"Origin, X-Requested-With, Content-Type, Accept");
 		play.Logger.debug("\n" + request().toString() + "\n\t" + request().body());
+
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
 		Form<?> form =
 				formFactory.form(zettel.getModel().getClass()).bindFromRequest();
+
 		play.Logger.debug(form.data() + "");
 		if (form.hasErrors()) {
 			if (request().accepts("text/html")) {
@@ -140,6 +141,16 @@ public class ZettelController extends Controller {
 				"POST, GET, PUT, DELETE, OPTIONS");
 		response().setHeader("Access-Control-Allow-Headers",
 				"Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
+		future.complete(ok());
+		return future;
+	}
+
+	public CompletionStage<Result> initForm(String id, String format,
+			String documentId, String topicId) {
+		CompletableFuture<Result> future = new CompletableFuture<>();
+
+		play.Logger.debug("Thnx for the rdf.");
+		play.Logger.debug(request().body().asText());
 
 		future.complete(ok());
 		return future;

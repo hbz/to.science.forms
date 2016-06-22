@@ -72,11 +72,9 @@ public class IntegrationTest {
 						String rdfString = RdfUtils.readRdfToString(
 								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
 								RDFFormat.JSONLD, RDFFormat.RDFXML, "");
-
 						play.Logger.debug(HtmlEscapers.htmlEscaper().escape(rdfString));
 						Assert.assertFalse(
 								"{\"message\":\"Cannot create string\"}".equals(jsonldString));
-
 					} catch (Exception e) {
 						throw new RuntimeException(e);
 					}
