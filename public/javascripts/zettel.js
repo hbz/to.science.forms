@@ -16,7 +16,7 @@ function enableGndPersonAutocompletion(inputElement) {
 		},
 		source : function(request, response) {
 			$.ajax({
-				url : "http://api.lobid.org/person",
+				url : "https://lobid.org/person",
 				dataType : "jsonp",
 				data : {
 					name : request.term,
@@ -39,7 +39,7 @@ function enableGndSubjectAutocompletion(inputElement) {
 		},
 		source : function(request, response) {
 			$.ajax({
-				url : "http://api.lobid.org/subject",
+				url : "https://lobid.org/subject",
 				dataType : "jsonp",
 				data : {
 					name : request.term,
