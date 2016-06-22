@@ -56,14 +56,18 @@ public class ZettelController extends Controller {
 	 * 
 	 */
 	public CompletionStage<Result> getForms(String id, String format,
-			String documentId) {
+			String documentId, String topicId) {
+
+		response().setHeader("Access-Control-Allow-Origin", "*");
+		response().setHeader("Access-Control-Allow-Headers",
+				"Origin, X-Requested-With, Content-Type, Accept");
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
 		if (id == null)
 			result = listForms();
 		else {
 			ZettelRegisterEntry zettel = zettelRegister.get(id);
-			result = renderForm(zettel, format, documentId);
+			result = renderForm(zettel, format, documentId, topicId);
 		}
 		future.complete(result);
 		return future;
@@ -76,9 +80,9 @@ public class ZettelController extends Controller {
 	}
 
 	private Result renderForm(ZettelRegisterEntry zettel, String format,
-			String documentId) {
+			String documentId, String topicId) {
 		Form<?> form = formFactory.form(zettel.getModel().getClass());
-		return ok(zettel.render(form, format, documentId));
+		return ok(zettel.render(form, format, documentId, topicId));
 	}
 
 	/**
@@ -88,7 +92,11 @@ public class ZettelController extends Controller {
 	 *         formular.
 	 */
 	public CompletionStage<Result> postForm(String id, String format,
-			String documentId) {
+			String documentId, String topicId) {
+
+		response().setHeader("Access-Control-Allow-Origin", "*");
+		response().setHeader("Access-Control-Allow-Headers",
+				"Origin, X-Requested-With, Content-Type, Accept");
 		play.Logger.debug("\n" + request().toString() + "\n\t" + request().body());
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
@@ -98,13 +106,13 @@ public class ZettelController extends Controller {
 		play.Logger.debug(form.data() + "");
 		if (form.hasErrors()) {
 			if (request().accepts("text/html")) {
-				result = badRequest(zettel.render(form, format, documentId));
+				result = badRequest(zettel.render(form, format, documentId, topicId));
 			} else {
 				result = badRequest(form.errorsAsJson()).as("application/json");
 			}
 		} else {
 			if (request().accepts("text/html")) {
-				result = ok(zettel.render(form, format, documentId));
+				result = ok(zettel.render(form, format, documentId, topicId));
 				play.Logger.debug(form.get().toString());
 			} else {
 				result = ok(form.get().toString()).as("application/json");
@@ -117,9 +125,23 @@ public class ZettelController extends Controller {
 	/**
 	 * @return a client demo
 	 */
-	public CompletionStage<Result> client(String format, String documentId) {
+	public CompletionStage<Result> client(String format, String documentId,
+			String topicId) {
 		CompletableFuture<Result> future = new CompletableFuture<>();
-		future.complete(ok(client.render("Zettel", format, documentId)));
+		future.complete(ok(client.render("Zettel", format, documentId, topicId)));
+		return future;
+	}
+
+	public CompletionStage<Result> corsforall(String all) {
+		CompletableFuture<Result> future = new CompletableFuture<>();
+		response().setHeader("Access-Control-Allow-Origin", "*");
+		response().setHeader("Allow", "*");
+		response().setHeader("Access-Control-Allow-Methods",
+				"POST, GET, PUT, DELETE, OPTIONS");
+		response().setHeader("Access-Control-Allow-Headers",
+				"Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
+
+		future.complete(ok());
 		return future;
 	}
 }

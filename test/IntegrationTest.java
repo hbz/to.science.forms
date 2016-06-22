@@ -102,7 +102,9 @@ public class IntegrationTest {
 						Map<String, Object> eventDataAsMap =
 								new ObjectMapper().readValue(eventData, HashMap.class);
 
-						String jsonldString = (String) eventDataAsMap.get("message");
+						String jsonldString = new ObjectMapper()
+								.writeValueAsString(eventDataAsMap.get("message"));
+
 						play.Logger.debug(jsonldString);
 						String rdfString = RdfUtils.readRdfToString(
 								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),

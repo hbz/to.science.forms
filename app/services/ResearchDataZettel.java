@@ -42,8 +42,10 @@ public class ResearchDataZettel implements ZettelRegisterEntry {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Content render(Form<?> form, String format, String documentId) {
-		return researchData.render((Form<ResearchData>) form, format, documentId);
+	public Content render(Form<?> form, String format, String documentId,
+			String topicId) {
+		return researchData.render((Form<ResearchData>) form, format, documentId,
+				topicId);
 	}
 
 }
