@@ -34,7 +34,7 @@ public interface ZettelRegisterEntry {
 	/**
 	 * @return the model that holds the forms data
 	 */
-	Object getModel();
+	ZettelModel getModel();
 
 	/**
 	 * <p>

@@ -52,7 +52,9 @@
 				console.log("POST");
 				console.log(target);
 				rdf=$('#rdfBox').text();
-				target.postMessage(rdf, "*");
+				if(typeof rdf!="undefined"){
+					target.postMessage({'queryParam':'id=katalog:data&format=xml&topicId=http://github.com/hbz/zettel&documentId=zettel:1','message':'TEST'}, "*");
+				}
 			}
 		} else if (e.data.action == 'RESIZE') {
 			var targetHeight = e.data.height;

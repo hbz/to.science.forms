@@ -17,12 +17,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 import javax.inject.Inject;
 
+import org.openrdf.rio.RDFFormat;
+
+import models.ResearchData;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -96,14 +103,21 @@ public class ZettelController extends Controller {
 		response().setHeader("Access-Control-Allow-Origin", "*");
 		response().setHeader("Access-Control-Allow-Headers",
 				"Origin, X-Requested-With, Content-Type, Accept");
+		play.Logger.debug("SHOW BODY");
 		play.Logger.debug("\n" + request().toString() + "\n\t" + request().body());
 
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
-		Form<?> form =
-				formFactory.form(zettel.getModel().getClass()).bindFromRequest();
 
+		Form<?> form = null;
+		if ("text/plain".equals(request().contentType().get())) {
+			play.Logger.debug("load rdf");
+			form = loadRdf(request().body().asText(), zettel);
+			form.bindFromRequest();
+		} else {
+			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
+		}
 		play.Logger.debug(form.data() + "");
 		if (form.hasErrors()) {
 			if (request().accepts("text/html")) {
@@ -121,6 +135,16 @@ public class ZettelController extends Controller {
 		}
 		future.complete(result);
 		return future;
+	}
+
+	private Form<?> loadRdf(String asText, ZettelRegisterEntry zettel) {
+		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
+			Form<ResearchData> form = formFactory.form(ResearchData.class)
+					.fill((ResearchData) zettel.getModel().loadRdf(in, RDFFormat.RDFXML));
+			return form;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -148,11 +172,22 @@ public class ZettelController extends Controller {
 	public CompletionStage<Result> initForm(String id, String format,
 			String documentId, String topicId) {
 		CompletableFuture<Result> future = new CompletableFuture<>();
-
-		play.Logger.debug("Thnx for the rdf.");
-		play.Logger.debug(request().body().asText());
-
-		future.complete(ok());
+		try (InputStream in =
+				new ByteArrayInputStream(request().body().asText().getBytes("utf-8"))) {
+			ZettelRegisterEntry zettel = zettelRegister.get(id);
+			zettel.getModel().loadRdf(in, RDFFormat.RDFXML);
+			Form<ResearchData> form = formFactory.form(ResearchData.class)
+					.fill((ResearchData) zettel.getModel());
+			future.complete(redirect(
+					routes.ZettelController.getForms(id, format, documentId, topicId)));// ok(zettel.render(form,
+																																							// format,
+																																							// documentId,
+			session("rdfBody", request().body().asText()); // topicId)));
+			return future;
+		} catch (Exception e) {
+			future.complete(badRequest());
+		}
 		return future;
+
 	}
 }

@@ -74,18 +74,29 @@
 	 	});
 		
 		function handleMessage(evt) {
+			console.log("And the msg is...");
+			console.log(evt.data.message);
+			if(evt.data.message!=0){
 			$.ajax({
 				type:'POST',
-				url:"/tools/zettel/forms/init?id=katalog:data", 
-				data:evt.data,
+				url:"/tools/zettel/forms?"+evt.data.queryParam, 
+				data:evt.data.message,
 				crossDomain:true,
 				contentType:'text/plain',
 				success:function(data, textStatus, jqXHR) {
+					var html =$('<div/>').html(data).contents();
+					var newForm= $('form',html);
+					var containerOfOldform= $('div.container');
+					containerOfOldform.html(newForm);
+					enableAllGndAutocompletion();
+					addActionsToRemoveAndAddButtons();
+					window.addEventListener("message", handleMessage, false);
 				},
 				error:function(data, textStatus, jqXHR) {
+					
 				}
 				});
-			
+			}
 		}
 	</script>
 </html>

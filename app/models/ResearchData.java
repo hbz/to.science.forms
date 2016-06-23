@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.openrdf.rio.RDFFormat;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,6 +36,7 @@ import com.typesafe.config.ConfigFactory;
 
 import play.data.validation.Constraints.Required;
 import services.ZettelHelper;
+import services.ZettelModel;
 
 /**
  * @author Jan Schnasse
@@ -41,7 +44,10 @@ import services.ZettelHelper;
  */
 @SuppressWarnings("javadoc")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResearchData {
+public class ResearchData implements ZettelModel
+
+{
+
 	/**
 	 * The id under which this model is registered in the ZettelRegister
 	 */
@@ -264,6 +270,7 @@ public class ResearchData {
 		return ZettelHelper.objectToString(getJsonLdMap());
 	}
 
+	@Override
 	public Map<String, Object> getJsonLdMap() {
 		Map<String, Object> jsonMap = new HashMap<>();
 		jsonMap.put(ID, documentId);
@@ -296,5 +303,12 @@ public class ResearchData {
 		jsonMap.put("@context", context.get("@context"));
 		return jsonMap;
 
+	}
+
+	@Override
+	public ZettelModel loadRdf(InputStream in, RDFFormat format) {
+		play.Logger.debug("SET TITLE");
+		setTitle("Das Laden der Daten ist noch nicht implementiert");
+		return this;
 	}
 }
