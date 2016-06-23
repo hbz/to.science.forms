@@ -1,5 +1,5 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(title: String,myForm: Form[ResearchData],dataFormat:String)(content: Html) 
+@(title: String,myForm: Form[ResearchData],dataFormat:String,documentId:String,topicId:String)(content: Html) 
 @import play.api.Play.current
 @import services._
 <!DOCTYPE html>
@@ -26,12 +26,11 @@
 
 </head>
 <body>
-
+	<div id="documentId" class="data">@documentId</div>
+	<div id="topicId" class="data">@topicId</div>
 	<div class="container col-sd-12">
-	
 		@content
 		</div>
-	</div>
 	@if(flash.containsKey("success")) {
   <div class="well">
     <div id="success-message" class="text-success">
@@ -74,8 +73,6 @@
 	 	});
 		
 		function handleMessage(evt) {
-			console.log("And the msg is...");
-			console.log(evt.data.message);
 			if(evt.data.message!=0){
 			$.ajax({
 				type:'POST',

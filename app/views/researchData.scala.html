@@ -2,7 +2,7 @@
 @(myForm: Form[ResearchData],dataFormat:String,documentId:String,topicId:String)
 @import tags._
 @import services._
-@zettel("Forschungsdaten",myForm,dataFormat) {
+@zettel("Forschungsdaten",myForm,dataFormat,documentId,topicId) {
 	@if(myForm.hasGlobalErrors) {
     <p class="error">
         @myForm.globalError.message

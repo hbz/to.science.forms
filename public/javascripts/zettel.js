@@ -114,15 +114,16 @@ function emitEvent() {
 	if (typeof target != "undefined") {
 		postData(target);
 		resize(target);
-		 
 	}
 }
 function postData(target){
 	var data = $('#embeddedJson').text();
 	if (data.length) {
-		target.postMessage(data, "*");
+		target.postMessage({'action':'postData', 'message':data}, "*");
 	}else{
-		target.postMessage(null, "*");
+		var topicId=$('#topicId').text();
+		var documentId=$('#documentId').text();
+		target.postMessage({'action':'establishConnection', 'message':null,'topicId':topicId,'documentId':documentId}, "*");
 	}
 }
 
@@ -133,5 +134,5 @@ function resize(target){
     if(height === 0){
         height = html.offsetHeight;
     }
-		target.postMessage({'action':'RESIZE', 'height':height}, '*');
+	target.postMessage({'action':'resize', 'message':height}, '*');
 }

@@ -44,26 +44,24 @@
 			onFail(JSON.stringify(obj.message));
 		}
 	}
-	function handleMessage(e) {
-		if (e.data == null) {
-			var iframe = document.getElementById("iFrame");
-			var target = iframe.contentWindow || iframe;
-			if (typeof target != "undefined") {
-				console.log("POST");
-				console.log(target);
-				rdf=$('#rdfBox').text();
-				if(typeof rdf!="undefined"){
-					target.postMessage({'queryParam':'id=katalog:data&format=xml&topicId=http://github.com/hbz/zettel&documentId=zettel:1','message':'TEST'}, "*");
-				}
-			}
-		} else if (e.data.action == 'RESIZE') {
-			var targetHeight = e.data.height;
-			$('#iFrame').height(targetHeight);
-		} else {
-			console.log("getData");
-			getMessage(e);
-		}
-	}
+	
+	function handleMessage(e) {	
+ 		 if (e.data.action == 'establishConnection'){
+ 		  var topicId=e.data.topicId;
+ 		  var documentId=e.data.documentId;
+ 		  var iframe = document.getElementById("iFrame");
+ 		  var target =  iframe.contentWindow || iframe;	
+ 		  var rdf ="TEST"
+         if(typeof rdf!="undefined"){
+ 			target.postMessage({'queryParam':'id=katalog:data&format=xml&topicId='+topicId+'&documentId='+documentId,'message':rdf}, "*");
+ 		   }                                
+ 		}else if (e.data.action == 'resize') {
+ 			var targetHeight = e.data.message;
+ 			jQuery('#iFrame').height(targetHeight);
+ 		} else if (e.data.action == 'postData') {
+ 			getMessage(e.data.message);  		
+ 		}
+ 	}
 
 	window.addEventListener("message", handleMessage, false);
 </script>
@@ -71,7 +69,7 @@
 <body>
 	<div id="successBox" class="success"></div>
 	<div id="warningBox" class="warning"></div>
-	<div id="rdfBox" class="data">test</div>
+	<div id="rdfBox" class="data"></div>
 	<iframe
 		src="/tools/zettel/forms?id=katalog:data&format=@myFormat&documentId=@documentId&topicId=@topicId"
 		width="100%" style="border: none;" id="iFrame">
