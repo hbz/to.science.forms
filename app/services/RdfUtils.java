@@ -19,6 +19,9 @@ package services;
 
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.openrdf.model.Graph;
 import org.openrdf.model.Statement;
@@ -35,6 +38,12 @@ import org.openrdf.rio.helpers.StatementCollector;
  *
  */
 public class RdfUtils {
+
+	public static String first =
+			"http://www.w3.org/1999/02/22-rdf-syntax-ns#first";
+	static String rest = "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest";
+	static String nil = "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil";
+
 	/**
 	 * @param inputStream an Input stream containing rdf data
 	 * @param inf the rdf format
@@ -89,5 +98,30 @@ public class RdfUtils {
 			throw new RuntimeException(e);
 		}
 		return out.getBuffer().toString();
+	}
+
+	public static List<String> traverseList(Graph g, String uri, String property,
+			List<String> orderedList) {
+		for (Statement s : find(g, uri)) {
+			if (uri.equals(s.getSubject().stringValue())
+					&& property.equals(s.getPredicate().stringValue())) {
+				if (property.equals(first)) {
+					orderedList.add(s.getObject().stringValue());
+					traverseList(g, s.getSubject().stringValue(), rest, orderedList);
+				} else if (property.equals(rest)) {
+					traverseList(g, s.getObject().stringValue(), first, orderedList);
+				}
+			}
+		}
+		return orderedList;
+	}
+
+	public static Set<Statement> find(Graph g, String uri) {
+		Set<Statement> result = new HashSet<>();
+		g.forEach((i) -> {
+			if (uri.equals(i.getSubject().stringValue()))
+				result.add(i);
+		});
+		return result;
 	}
 }

@@ -37,31 +37,38 @@
 		jQuery('#successBox').css('visibility', 'hidden');
 	}
 	function getMessage(e) {
-		var obj = JSON.parse(e.data);
+		console.log(e.data);
+		var obj = JSON.parse(e);
 		if (obj.code == 200) {
 			onSuccess(JSON.stringify(obj.message));
 		} else {
 			onFail(JSON.stringify(obj.message));
 		}
 	}
-	
+
 	function handleMessage(e) {	
  		 if (e.data.action == 'establishConnection'){
  		  var topicId=e.data.topicId;
  		  var documentId=e.data.documentId;
  		  var iframe = document.getElementById("iFrame");
  		  var target =  iframe.contentWindow || iframe;	
- 		  var rdf ="TEST"
-         if(typeof rdf!="undefined"){
- 			target.postMessage({'queryParam':'id=katalog:data&format=xml&topicId='+topicId+'&documentId='+documentId,'message':rdf}, "*");
- 		   }                                
- 		}else if (e.data.action == 'resize') {
- 			var targetHeight = e.data.message;
- 			jQuery('#iFrame').height(targetHeight);
- 		} else if (e.data.action == 'postData') {
- 			getMessage(e.data.message);  		
- 		}
- 	}
+ 		  
+ 		  //push here your rdf string to send it to zettel 		  
+	      var rdf = '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:frl="http://api.localhost/resource/frl:" xmlns:authors="http://api.localhost/authors/" xmlns:local="http://api.localhost/resource/local:" xmlns:template="http://api.localhost/resource/template:" xmlns:isbd="http://iflastandards.info/ns/isbd/elements/" xmlns:frbr="http://purl.org/vocab/frbr/core#" xmlns:bibo="http://purl.org/ontology/bibo/" xmlns:dce="http://purl.org/dc/elements/1.1/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:umbel="http://umbel.org/umbel#" xmlns:lv="http://purl.org/lobid/lv#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:orca="http://geni-orca.renci.org/owl/topology.owl#" xmlns:dnb="http://d-nb.info/gnd/" xmlns:gnd="http://d-nb.info/standards/elementset/gnd#" xmlns:lr="http://lobid.org/resource/" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:ddc="http://dewey.info/class/" xmlns:regal="http://hbz-nrw.de/regal#" xmlns:rdvocab="http://rdvocab.info/Elements/" xmlns:file="http://downlode.org/Code/RDF/File_Properties/schema#" xmlns:marcrel="http://id.loc.gov/vocabulary/relators/" xmlns:rpb="http://purl.org/lobid/rpb#" xmlns:nwbib="http://purl.org/lobid/nwbib#" xmlns:nwbib-spatial="http://purl.org/lobid/nwbib-spatial#" xmlns:radion="http://www.w3.org/ns/radion#" xmlns:holding="http://purl.org/ontology/holding#" xmlns:dbpedia="http://dbpedia.org/ontology/" xmlns:rda="http://rdaregistry.info/Elements/u/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/terms/" xmlns:og="http://ogp.me/ns#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#"><regal:ResearchData rdf:about="frl:94"><rdf:type xml:lang="en">Please click on link symbol to add linked data.</rdf:type><dc:title xml:lang="en">test</dc:title><dc:language rdf:resource="http://id.loc.gov/vocabulary/iso639-2/ger"/><dc:medium rdf:resource="http://rdvocab.info/termList/RDAproductionMethod/1010"/><dc:medium xml:lang="en">Please click on link symbol to add linked data.</dc:medium><regal:license rdf:resource="https://creativecommons.org/licenses/by/4.0"/><regal:professionalGroup rdf:resource="http://d-nb.info/gnd/4038243-6"/><dc:creator xml:lang="en">Please click on link symbol to add linked data.</dc:creator><dc:contributor xml:lang="en">Please click on link symbol to add linked data.</dc:contributor><rdvocab:placeOfPublication xml:lang="en"></rdvocab:placeOfPublication><dce:publisher xml:lang="en"></dce:publisher><dc:issued xml:lang="en"></dc:issued><isbd:P1053 xml:lang="en"></isbd:P1053><dc:description xml:lang="en"></dc:description><dc:subject xml:lang="en">Please click on link symbol to add linked data.</dc:subject><lv:subjectLabel xml:lang="en"></lv:subjectLabel><dc:abstract xml:lang="en"></dc:abstract><bibo:isbn xml:lang="en"></bibo:isbn><bibo:isbn13 xml:lang="en"></bibo:isbn13><dbpedia:institution xml:lang="en">Please click on link symbol to add linked data.</dbpedia:institution><regal:yearOfCopyright xml:lang="en"></regal:yearOfCopyright><regal:embargoTime xml:lang="en"></regal:embargoTime><regal:relatedResource xml:lang="en"></regal:relatedResource></regal:ResearchData><rdf:Description rdf:about="http://localhost/resource/frl:94/edit"><foaf:primaryTopic rdf:resource="frl:94"/></rdf:Description></rdf:RDF>';
+			if (typeof rdf != "undefined") {
+				target.postMessage({
+					'queryParam' : 'id=katalog:data&format=xml&topicId='
+							+ topicId + '&documentId=' + documentId,
+					'message' : rdf
+				}, "*");
+			}
+		} else if (e.data.action == 'resize') {
+			var targetHeight = e.data.message;
+			jQuery('#iFrame').height(targetHeight);
+		} else if (e.data.action == 'postData') {
+			getMessage(e.data.message);
+		}
+	}
 
 	window.addEventListener("message", handleMessage, false);
 </script>

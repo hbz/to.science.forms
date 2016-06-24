@@ -18,8 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package services;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,17 +27,12 @@ import org.openrdf.rio.RDFFormat;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.common.base.Charsets;
 import com.google.common.html.HtmlEscapers;
-import com.google.common.io.CharStreams;
-import com.typesafe.config.ConfigFactory;
 
+import de.hbz.lobid.helper.Etikett;
 import models.JsonMessage;
 import models.ResearchData;
 import play.data.Form;
-import play.libs.ws.WSAuthScheme;
-import play.libs.ws.WSResponse;
 
 /**
  * @author Jan Schnasse
@@ -46,37 +40,7 @@ import play.libs.ws.WSResponse;
  */
 public class ZettelHelper {
 
-	/**
-	 * The function calls a deployment of https://github.com/hbz/etikett to
-	 * provide a label for a given uri. If no deployment is available the plain
-	 * uri is returned.
-	 * 
-	 * @param uri a uri somewhere in the net
-	 * @return a label for the uri
-	 */
-	public static String getLinkedDataLabel(String uri) {
-		try {
-			if (uri == null || uri.isEmpty())
-				return uri;
-			String etikettUrl = ConfigFactory.load().getString("etikettService");
-			String etikettUser = ConfigFactory.load().getString("etikettUser");
-			String etikettPwd = ConfigFactory.load().getString("etikettPwd");
-			play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
-			@SuppressWarnings("deprecation")
-			WSResponse response =
-					play.libs.ws.WS.url(etikettUrl + "?url=" + uri + "&column=label")
-							.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
-							.setFollowRedirects(true).get().toCompletableFuture().get();
-			try (InputStream input = response.getBodyAsStream()) {
-				String content =
-						CharStreams.toString(new InputStreamReader(input, Charsets.UTF_8));
-				play.Logger.debug(content);
-				return content;
-			}
-		} catch (Exception e) {
-			return uri;
-		}
-	}
+	public static MyEtikettMaker etikett = new MyEtikettMaker();
 
 	/**
 	 * To post a dynamic number of repeated values a simple convention is used.

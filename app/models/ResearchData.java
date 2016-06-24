@@ -17,24 +17,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.openrdf.model.BNode;
+import org.openrdf.model.Graph;
 import org.openrdf.rio.RDFFormat;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.io.CharStreams;
-import com.typesafe.config.ConfigFactory;
-
 import play.data.validation.Constraints.Required;
+import services.RdfUtils;
+import static services.ZettelFields.*;
 import services.ZettelHelper;
 import services.ZettelModel;
 
@@ -82,7 +78,6 @@ public class ResearchData implements ZettelModel
 
 	private List<String> subject;
 	private List<String> doi;
-	private Map<String, Object> context;
 
 	private String documentId;
 	private String topicId;
@@ -104,22 +99,8 @@ public class ResearchData implements ZettelModel
 		this.dataOrigin = new String();
 		this.subject = new ArrayList<>();
 		this.doi = new ArrayList<>();
-		initContext();
 		documentId = "_:foo";
 		topicId = "http://localhost/resource/add/researchData";
-	}
-
-	private void initContext() {
-		try (InputStream in =
-				new URL(ConfigFactory.load().getString("contextUrl")).openStream()) {
-
-			context = new ObjectMapper().readValue(
-					CharStreams.toString(new InputStreamReader(in, "UTF-8")),
-					HashMap.class);
-
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	/**
@@ -279,36 +260,86 @@ public class ResearchData implements ZettelModel
 		topicMap.put("primaryTopic", documentId);
 		jsonMap.put("isPrimaryTopicOf", topicMap);
 		jsonMap.put("type", "http://hbz-nrw.de/regal#ResearchData");
-		jsonMap.put("title", getTitle());
+		jsonMap.put(titleZF.name, getTitle());
 		if (author != null && !author.isEmpty())
-			jsonMap.put("creator", author);
+			jsonMap.put(creatorZF.name, author);
 		if (abstractText != null && !abstractText.isEmpty())
-			jsonMap.put("abstract", abstractText);
+			jsonMap.put(abstractTextZF.name, abstractText);
 		if (dataOrigin != null && !dataOrigin.isEmpty())
-			jsonMap.put("dataOrigin", dataOrigin);
+			jsonMap.put(dataOriginZF.name, dataOrigin);
 		if (embargo != null && !embargo.isEmpty())
-			jsonMap.put("embargo", embargo);
+			jsonMap.put(embargoZF.name, embargo);
 		if (language != null && !language.isEmpty())
-			jsonMap.put("language", language);
+			jsonMap.put(languageZF.name, language);
 		if (license != null && !license.isEmpty())
-			jsonMap.put("license", license);
+			jsonMap.put(licenseZF.name, license);
 		if (medium != null && !medium.isEmpty())
-			jsonMap.put("medium", medium);
+			jsonMap.put(mediumZF.name, medium);
 		if (professionalGroup != null && !professionalGroup.isEmpty())
-			jsonMap.put("professionalGroup", professionalGroup);
+			jsonMap.put(professionalGroupZF.name, professionalGroup);
 		if (subject != null && !subject.isEmpty())
-			jsonMap.put("subject", subject);
+			jsonMap.put(subjectZF.name, subject);
 		if (yearOfCopyright != null && !yearOfCopyright.isEmpty())
-			jsonMap.put("yearOfCopyright", yearOfCopyright);
-		jsonMap.put("@context", context.get("@context"));
+			jsonMap.put(yearOfCopyrightZF.name, yearOfCopyright);
+		if (ddc != null && !ddc.isEmpty())
+			jsonMap.put(ddcZF.name, ddc);
+		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
 		return jsonMap;
-
 	}
 
 	@Override
 	public ZettelModel loadRdf(InputStream in, RDFFormat format) {
-		play.Logger.debug("SET TITLE");
 		setTitle("Das Laden der Daten ist noch nicht implementiert");
+
+		Graph graph = RdfUtils.readRdfToGraph(in, format, this.documentId);
+
+		graph.forEach((st) -> {
+			String rdf_P = st.getPredicate().stringValue();
+			String rdf_O = st.getObject().stringValue();
+
+			if (rdf_P.equals(titleZF.uri)) {
+				setTitle(rdf_O);
+			} else if (rdf_P.equals(creatorZF.uri)) {
+				if (st.getObject() instanceof org.openrdf.model.BNode) {
+					List<String> list =
+							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
+									RdfUtils.first, new ArrayList<>());
+					setAuthor(list);
+				} else if (rdf_P.equals(abstractTextZF.uri)) {
+					setAbstractText(rdf_O);
+				} else if (rdf_P.equals(professionalGroupZF.uri)) {
+					setProfessionalGroup(rdf_O);
+				} else if (rdf_P.equals(ddcZF.uri)) {
+					List<String> list =
+							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
+									RdfUtils.first, new ArrayList<>());
+					setDdc(list);
+				} else if (rdf_P.equals(subjectZF.uri)) {
+					List<String> list =
+							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
+									RdfUtils.first, new ArrayList<>());
+					setSubject(list);
+				} else if (rdf_P.equals(mediumZF.uri)) {
+					setMedium(rdf_O);
+				} else if (rdf_P.equals(dataOriginZF.uri)) {
+					setDataOrigin(rdf_O);
+				} else if (rdf_P.equals(yearOfCopyrightZF.uri)) {
+					setYearOfCopyright(rdf_O);
+				} else if (rdf_P.equals(embargoZF.uri)) {
+					setEmbargo(rdf_O);
+				} else if (rdf_P.equals(languageZF.uri)) {
+					setLanguage(rdf_O);
+				} else if (rdf_P.equals(doiZF.uri)) {
+					List<String> list =
+							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
+									RdfUtils.first, new ArrayList<>());
+					setDoi(list);
+				}
+
+			}
+
+		});
+
 		return this;
 	}
 }

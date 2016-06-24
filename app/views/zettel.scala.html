@@ -77,7 +77,7 @@
 			$.ajax({
 				type:'POST',
 				url:"/tools/zettel/forms?"+evt.data.queryParam, 
-				data:evt.data.message,
+				data:decodeURI(evt.data.message),
 				crossDomain:true,
 				contentType:'text/plain',
 				success:function(data, textStatus, jqXHR) {
