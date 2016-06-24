@@ -82,11 +82,13 @@ function addActionsToRemoveAndAddButtons() {
 			resetIds(curFieldName);
 			$(newField).find(".input-field-heading").html("");
 			enableAllGndAutocompletion();
+			emitResize();
 		});
 		$('.multi-field .remove-field', $wrapper).click(function() {
 			if ($('.multi-field', $wrapper).length > 1)
 				$(this).parents('.multi-field').remove();
 			resetIds(curFieldName);
+			emitResize();
 		});
 		$('.multi-field .moveUp', $wrapper).click(function() {
 			var $el = $(this).parents(".multi-field");
@@ -126,7 +128,14 @@ function postData(target){
 		target.postMessage({'action':'establishConnection', 'message':null,'topicId':topicId,'documentId':documentId}, "*");
 	}
 }
-
+function emitResize(){
+	var target = parent.postMessage ? parent
+			: (parent.document.postMessage ? parent.document
+					: undefined);
+	if (typeof target != "undefined") {
+		resize(target);
+	}
+}
 function resize(target){
 	var body = document.body;
 	var html = document.documentElement;
