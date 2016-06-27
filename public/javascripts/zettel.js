@@ -12,6 +12,7 @@ function enableGndPersonAutocompletion(inputElement) {
 			this.value = ui.item.value;
 			$(this).siblings(".input-field-heading").html(
 					"<b>" + ui.item.label + "</b>(" + ui.item.value + ")");
+			emitResize();
 			return false;
 		},
 		source : function(request, response) {
@@ -35,6 +36,7 @@ function enableGndSubjectAutocompletion(inputElement) {
 			this.value = ui.item.value;
 			$(this).siblings(".input-field-heading").html(
 					"<b>" + ui.item.label + "</b>(" + ui.item.value + ")");
+			emitResize();
 			return false;
 		},
 		source : function(request, response) {
