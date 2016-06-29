@@ -1,5 +1,5 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(title: String,myForm: Form[ResearchData],dataFormat:String,documentId:String,topicId:String)(content: Html) 
+@(title: String,myForm: Form[services.ZettelModel],dataFormat:String,documentId:String,topicId:String)(content: Html) 
 @import play.api.Play.current
 @import services._
 <!DOCTYPE html>
@@ -71,7 +71,6 @@
 		    	emitEvent();
 		    }
 	 	});
-		
 		function handleMessage(evt) {
 			if(evt.data.message!=0){
 			$.ajax({
@@ -88,6 +87,7 @@
 					enableAllGndAutocompletion();
 					addActionsToRemoveAndAddButtons();
 					window.addEventListener("message", handleMessage, false);
+					emitResize();
 				},
 				error:function(data, textStatus, jqXHR) {
 					

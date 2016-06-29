@@ -45,7 +45,12 @@ public interface ZettelRegisterEntry {
 	 * Form<?> form = formFactory.form(zettel.getModel().getClass());
 	 * </code>
 	 * 
-	 * @param form
+	 * @param form the form that must be rendered
+	 * @param format ask for certain format. supports xml and json
+	 * @param documentId your personal id for the document you want to create form
+	 *          data for
+	 * @param topicId the topic id is used by our regal-drupal to find the actual
+	 *          documentId. You can probably ignore this.
 	 * @return a Html rendering
 	 */
 	Content render(Form<?> form, String format, String documentId,

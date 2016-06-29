@@ -21,7 +21,6 @@ import java.io.ByteArrayInputStream;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.openrdf.rio.RDFFormat;
 
@@ -29,7 +28,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.html.HtmlEscapers;
 
-import de.hbz.lobid.helper.Etikett;
 import models.JsonMessage;
 import models.ResearchData;
 import play.data.Form;
@@ -40,6 +38,10 @@ import play.data.Form;
  */
 public class ZettelHelper {
 
+	/**
+	 * Provides access to useful config data for transformation and display of rdf
+	 * uris
+	 */
 	public static MyEtikettMaker etikett = new MyEtikettMaker();
 
 	/**
@@ -56,18 +58,19 @@ public class ZettelHelper {
 	 * @param fieldName the fieldname that is used to post data
 	 * @return a list of valid fieldnames for post data.
 	 */
-	public static List<String> getFieldWithIndex(Form<?> form, String fieldName) {
+	public static List<String> getFieldWithIndex(Form<ZettelModel> form,
+			String fieldName) {
 		List<String> result = new ArrayList<>();
-		Map<String, String> formData = form.data();
-		String id = formData.get(fieldName);
-		if (id != null) {
-			result.add(fieldName);
-		} else {
-			for (int i = 0; i < Integer.MAX_VALUE; i++) {
-				id = formData.get(fieldName + "[" + i + "]");
-				if (id == null)
-					break;
-				result.add(fieldName + "[" + i + "]");
+		if (form.value().isPresent()) {
+			Object data = form.value().get().getJsonLdMap().get(fieldName);
+			if (data != null) {
+				if (data instanceof List<?>) {
+					@SuppressWarnings("unchecked")
+					List<String> dataList = (List<String>) data;
+					for (int i = 0; i < dataList.size(); i++) {
+						result.add(fieldName + "[" + i + "]");
+					}
+				}
 			}
 		}
 		if (result.isEmpty()) {
@@ -87,6 +90,7 @@ public class ZettelHelper {
 	 * errors, the error message is returned as json string.
 	 * 
 	 * @param form the forms data will be returned in a html div
+	 * @param format can be xml or json
 	 * @return an html div containing json data
 	 */
 	public static JsonMessage getEmbeddedJson(Form<?> form, String format) {
@@ -106,11 +110,9 @@ public class ZettelHelper {
 														jsonldString.getBytes("utf-8")),
 												RDFFormat.JSONLD, RDFFormat.RDFXML, ""));
 						result = new JsonMessage(rdfString, 200);
-						play.Logger.debug("Message: " + result);
 					} else {
 						result = new JsonMessage(((ResearchData) form.get()).getJsonLdMap(),
 								200);
-						play.Logger.debug("Message: " + result);
 					}
 
 				}
@@ -121,6 +123,10 @@ public class ZettelHelper {
 		return result;
 	}
 
+	/**
+	 * @param object a java object
+	 * @return a json serialization of the object as string
+	 */
 	public static String objectToString(Object object) {
 		try {
 			return new ObjectMapper().writeValueAsString(object);
@@ -129,11 +135,63 @@ public class ZettelHelper {
 		}
 	}
 
+	/**
+	 * @param object a java object
+	 * @return a json serialization of the object
+	 */
 	public static JsonNode objectToJson(Object object) {
 		try {
 			return new ObjectMapper().readTree(objectToString(object));
 		} catch (Exception e) {
 			return null;
+		}
+	}
+
+	/**
+	 * @param form the form to get values from
+	 * @param fieldNameWithIndex an fieldName with index, e.g. creator[index]
+	 * @return data for repeated form field
+	 */
+	@SuppressWarnings("unchecked")
+	public static String getData(Form<ZettelModel> form,
+			String fieldNameWithIndex) {
+		String result = "";
+		try {
+			if (form.value().isPresent()) {
+				int i = parseIndex(fieldNameWithIndex);
+				String f = parseFieldName(fieldNameWithIndex);
+				if (i != -1) {
+					result =
+							((List<String>) form.value().get().getJsonLdMap().get(f)).get(i);
+				} else {
+					result = form.value().get().getJsonLdMap().get(f).toString();
+				}
+			}
+		} catch (Exception e) {
+			// this can happen. Return empty string in that case.
+		}
+		return result;
+	}
+
+	private static String parseFieldName(String fieldNameWithIndex) {
+		try {
+			int rb = fieldNameWithIndex.indexOf('[');
+			String result = fieldNameWithIndex.substring(0, rb);
+			return result;
+		} catch (Exception e) {
+			return fieldNameWithIndex;
+		}
+	}
+
+	private static int parseIndex(String fieldNameWithIndex) {
+		try {
+			int rb = fieldNameWithIndex.indexOf('[');
+			int re = fieldNameWithIndex.indexOf(']');
+			play.Logger.debug(fieldNameWithIndex.substring(rb + 1, re));
+			int result = Integer.parseInt(fieldNameWithIndex.substring(rb + 1, re));
+			return result;
+		} catch (Exception e) {
+			return -1;
 		}
 	}
 

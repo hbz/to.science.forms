@@ -1,9 +1,9 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero
 General Public License *@
-@(myForm:Form[ResearchData],fieldName:String,fieldLabel:String,classString:String)
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String)
 
 @import services._
-@myValue=@{myForm.data().get(fieldName)}
+@myValue=@{ZettelHelper.getData(myForm,fieldName)}
 <div class="first-child-of-multi-field col-sm-12">
 	<div class="col-sm-4">
 		<label class="form-control-label" for="@fieldName">@fieldLabel</label>

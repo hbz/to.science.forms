@@ -51,12 +51,13 @@ public class ResearchData implements ZettelModel
 
 	private static final String ID = "@id";
 
+	@SuppressWarnings("unused")
 	private static final String LABEL = "prefLabel";
 
 	@Required(message = "Please provide a title")
 	private String title;
 
-	private List<String> author;
+	private List<String> creator;
 
 	private String yearOfCopyright;
 
@@ -87,7 +88,7 @@ public class ResearchData implements ZettelModel
 	 */
 	public ResearchData() {
 		this.title = new String();
-		this.author = new ArrayList<>();
+		this.creator = new ArrayList<>();
 		this.yearOfCopyright = new String();
 		this.license = new String();
 		this.abstractText = new String();
@@ -112,7 +113,7 @@ public class ResearchData implements ZettelModel
 			String dataOrigin, List<String> subject, List<String> doi) {
 		super();
 		this.title = title;
-		this.author = author;
+		this.creator = author;
 		this.yearOfCopyright = yearOfCopyright;
 		this.license = license;
 		this.abstractText = abstractText;
@@ -134,12 +135,12 @@ public class ResearchData implements ZettelModel
 		this.title = title;
 	}
 
-	public List<String> getAuthor() {
-		return author;
+	public List<String> getCreator() {
+		return creator;
 	}
 
-	public void setAuthor(List<String> author) {
-		this.author = author;
+	public void setCreator(List<String> author) {
+		this.creator = author;
 	}
 
 	public String getYearOfCopyright() {
@@ -261,8 +262,8 @@ public class ResearchData implements ZettelModel
 		jsonMap.put("isPrimaryTopicOf", topicMap);
 		jsonMap.put("type", "http://hbz-nrw.de/regal#ResearchData");
 		jsonMap.put(titleZF.name, getTitle());
-		if (author != null && !author.isEmpty())
-			jsonMap.put(creatorZF.name, author);
+		if (creator != null && !creator.isEmpty())
+			jsonMap.put(creatorZF.name, creator);
 		if (abstractText != null && !abstractText.isEmpty())
 			jsonMap.put(abstractTextZF.name, abstractText);
 		if (dataOrigin != null && !dataOrigin.isEmpty())
@@ -289,22 +290,22 @@ public class ResearchData implements ZettelModel
 
 	@Override
 	public ZettelModel loadRdf(InputStream in, RDFFormat format) {
-		setTitle("Das Laden der Daten ist noch nicht implementiert");
 
 		Graph graph = RdfUtils.readRdfToGraph(in, format, this.documentId);
 
 		graph.forEach((st) -> {
 			String rdf_P = st.getPredicate().stringValue();
 			String rdf_O = st.getObject().stringValue();
-
 			if (rdf_P.equals(titleZF.uri)) {
 				setTitle(rdf_O);
 			} else if (rdf_P.equals(creatorZF.uri)) {
 				if (st.getObject() instanceof org.openrdf.model.BNode) {
+					play.Logger.debug(st.toString());
 					List<String> list =
 							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
 									RdfUtils.first, new ArrayList<>());
-					setAuthor(list);
+					play.Logger.debug("" + list);
+					setCreator(list);
 				} else if (rdf_P.equals(abstractTextZF.uri)) {
 					setAbstractText(rdf_O);
 				} else if (rdf_P.equals(professionalGroupZF.uri)) {

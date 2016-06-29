@@ -39,6 +39,9 @@ import org.openrdf.rio.helpers.StatementCollector;
  */
 public class RdfUtils {
 
+	/**
+	 * rdf list first element in list
+	 */
 	public static String first =
 			"http://www.w3.org/1999/02/22-rdf-syntax-ns#first";
 	static String rest = "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest";
@@ -100,6 +103,13 @@ public class RdfUtils {
 		return out.getBuffer().toString();
 	}
 
+	/**
+	 * @param g a graph with rdf statements
+	 * @param uri a rdf subject
+	 * @param property a rdf property
+	 * @param orderedList result will be written to orderedList
+	 * @return the ordered list
+	 */
 	public static List<String> traverseList(Graph g, String uri, String property,
 			List<String> orderedList) {
 		for (Statement s : find(g, uri)) {
@@ -116,6 +126,11 @@ public class RdfUtils {
 		return orderedList;
 	}
 
+	/**
+	 * @param g a graph with rdf statements
+	 * @param uri a subject
+	 * @return all statements with uri as subject in one set
+	 */
 	public static Set<Statement> find(Graph g, String uri) {
 		Set<Statement> result = new HashSet<>();
 		g.forEach((i) -> {

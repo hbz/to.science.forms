@@ -4,4 +4,3 @@ GET 	/forms						controllers.ZettelController.getForms(id : String?=null,format:
 POST	/forms  				    controllers.ZettelController.postForm(id : String?=null,format:String?=null,documentId:String?=null,topicId?=null)
 GET	    /client						controllers.ZettelController.client(format : String?="json",documentId:String?=null,topicId?=null)
 OPTIONS /*all                       controllers.ZettelController.corsforall(all)
-POST 	/forms/init					controllers.ZettelController.initForm(id : String?=null,format:String?=null,documentId:String?=null,topicId?=null)

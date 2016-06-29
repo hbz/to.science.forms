@@ -1,5 +1,5 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(myForm: Form[ResearchData],dataFormat:String,documentId:String,topicId:String)
+@(myForm: Form[services.ZettelModel],dataFormat:String,documentId:String,topicId:String)
 @import tags._
 @import services._
 @zettel("Forschungsdaten",myForm,dataFormat,documentId,topicId) {
@@ -11,10 +11,10 @@
 	@helper.form(action = routes.ZettelController.postForm(ResearchData.id,dataFormat,documentId,topicId)) {
 	
 		@singlefield{
-			@inputField(myForm,"title","Titel","title")
+			@inputField(myForm,"title","Titel","")
 		}
 		
-	    @multifield(myForm,"author","Autor","gnd-person-search")
+	    @multifield(myForm,"creator","Autor","gnd-person-search")
 	    
 		@singlefield{
 			@textArea(myForm,"abstractText","Abstract","")
@@ -26,9 +26,7 @@
 		
 		@multiselect(myForm,"ddc","DDC","select-ddc",ResearchDataHelper.getDeweyMap())
 	
-			 
 		@multifield(myForm,"subject","Sacherschließung","gnd-subject-search")
-	
 	
 		@singlefield{
 			@select(myForm,"medium","Medium","select-medium",ResearchDataHelper.getMediumMap())

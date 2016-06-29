@@ -67,7 +67,7 @@ public class IntegrationTest {
 						List<String> author = new ArrayList<>();
 						author.add("http://d-nb.info/gnd/1047170264");
 						author.add("http://d-nb.info/gnd/5030229-2");
-						testData.setAuthor(author);
+						testData.setCreator(author);
 						String jsonldString = testData.toString();
 						String rdfString = RdfUtils.readRdfToString(
 								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
@@ -91,7 +91,7 @@ public class IntegrationTest {
 						List<String> author = new ArrayList<>();
 						author.add("http://d-nb.info/gnd/1047170264");
 						author.add("http://d-nb.info/gnd/5030229-2");
-						testData.setAuthor(author);
+						testData.setCreator(author);
 
 						String eventData =
 								new JsonMessage(testData.getJsonLdMap(), 200).toString();

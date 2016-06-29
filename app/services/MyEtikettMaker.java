@@ -56,6 +56,9 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 	@Inject
 	Environment environment;
 
+	/**
+	 * Creates a new EtikettMaker to provide labels from etikett webservice
+	 */
 	public MyEtikettMaker() {
 
 		String url = null;
@@ -88,19 +91,19 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 		try {
 			result = maker.getEtikett(uri);
 		} catch (RuntimeException e) {
+			// local lookup might fail
 		}
 		if (result == null) {
 			result = new Etikett(uri);
 			result.setName(getJsonName(result));
 		}
 		if (result.getLabel() == null || result.getLabel().isEmpty()) {
-			// result = getLabelFromEtikettWs(uri);
+			result = new Etikett(uri);
+			result.setLabel(getLabelFromEtikettWs(uri));
 		}
 		if (result.getLabel() == null || result.getLabel().isEmpty()) {
 			result.setLabel(result.getUri());
 		}
-		// play.Logger.debug("Label " + result.getUri() + " with " +
-		// result.getLabel());
 		return result;
 	}
 
@@ -110,9 +113,9 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 	}
 
 	/**
-	 * @param predicate
-	 * @return The short name of the predicate uses String.split on first index of
-	 *         '#' or last index of '/'
+	 * @param e an etikett to create a json name from
+	 * @return The short name of the e.uri uses String.split on first index of '#'
+	 *         or last index of '/'
 	 */
 	public String getJsonName(Etikett e) {
 		String result = null;
@@ -138,7 +141,7 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 
 	private Map<String, Object> getAnnotatedContext() {
 		Map<String, Object> pmap;
-		Map<String, Object> cmap = new HashMap<String, Object>();
+		Map<String, Object> cmap = new HashMap<>();
 		for (Etikett l : getValues()) {
 			if ("class".equals(l.getReferenceType()) || l.getReferenceType() == null
 					|| l.getName() == null)
@@ -155,19 +158,24 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 			addFieldToMap(pmap, "@container", l.getContainer());
 			cmap.put(l.getName(), pmap);
 		}
-		Map<String, Object> contextObject = new HashMap<String, Object>();
+		Map<String, Object> contextObject = new HashMap<>();
 		addAliases(cmap);
 		contextObject.put("@context", cmap);
 		return contextObject;
 	}
 
-	private void addFieldToMap(Map<String, Object> map, String key,
+	private static void addFieldToMap(Map<String, Object> map, String key,
 			String value) {
 		if (value != null && !value.isEmpty()) {
 			map.put(key, value);
 		}
 	}
 
+	/**
+	 * place to define alias for json ld context
+	 * 
+	 * @param cmap
+	 */
 	private void addAliases(Map<String, Object> cmap) {
 		// No aliases;
 	}

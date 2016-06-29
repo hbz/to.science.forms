@@ -18,9 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package controllers;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -59,12 +57,16 @@ public class ZettelController extends Controller {
 	/**
 	 * @param id if null list all available forms otherwise render the requested
 	 *          form.
+	 * @param format ask for certain format. supports xml and json
+	 * @param documentId your personal id for the document you want to create form
+	 *          data for
+	 * @param topicId the topic id is used by our regal-drupal to find the actual
+	 *          documentId. You can probably ignore this.
 	 * @return a list of available forms or if present the form with a certain id.
 	 * 
 	 */
 	public CompletionStage<Result> getForms(String id, String format,
 			String documentId, String topicId) {
-
 		response().setHeader("Access-Control-Allow-Origin", "*");
 		response().setHeader("Access-Control-Allow-Headers",
 				"Origin, X-Requested-With, Content-Type, Accept");
@@ -94,6 +96,11 @@ public class ZettelController extends Controller {
 
 	/**
 	 * @param id the id of the form the POST data is send to.
+	 * @param format ask for certain format. supports xml and json
+	 * @param documentId your personal id for the document you want to create form
+	 *          data for
+	 * @param topicId the topic id is used by our regal-drupal to find the actual
+	 *          documentId. You can probably ignore this.
 	 * @return if posted with accept:application/json return json-ld
 	 *         representation of the data. In all other cases return an html
 	 *         formular.
@@ -112,13 +119,11 @@ public class ZettelController extends Controller {
 
 		Form<?> form = null;
 		if ("text/plain".equals(request().contentType().get())) {
-			play.Logger.debug("load rdf");
 			form = loadRdf(request().body().asText(), zettel);
 			form.bindFromRequest();
 		} else {
 			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
 		}
-		play.Logger.debug(form.data() + "");
 		if (form.hasErrors()) {
 			if (request().accepts("text/html")) {
 				result = badRequest(zettel.render(form, format, documentId, topicId));
@@ -128,7 +133,6 @@ public class ZettelController extends Controller {
 		} else {
 			if (request().accepts("text/html")) {
 				result = ok(zettel.render(form, format, documentId, topicId));
-				play.Logger.debug(form.get().toString());
 			} else {
 				result = ok(form.get().toString()).as("application/json");
 			}
@@ -141,6 +145,7 @@ public class ZettelController extends Controller {
 		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
 			Form<ResearchData> form = formFactory.form(ResearchData.class)
 					.fill((ResearchData) zettel.getModel().loadRdf(in, RDFFormat.RDFXML));
+			play.Logger.debug(form.get().getCreator().toString());
 			return form;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -148,6 +153,11 @@ public class ZettelController extends Controller {
 	}
 
 	/**
+	 * @param format ask for certain format. supports xml and json
+	 * @param documentId your personal id for the document you want to create form
+	 *          data for
+	 * @param topicId the topic id is used by our regal-drupal to find the actual
+	 *          documentId. You can probably ignore this.
 	 * @return a client demo
 	 */
 	public CompletionStage<Result> client(String format, String documentId,
@@ -157,6 +167,10 @@ public class ZettelController extends Controller {
 		return future;
 	}
 
+	/**
+	 * @param all a path
+	 * @return a header for all routes when ask with HTTP OPTIONS
+	 */
 	public CompletionStage<Result> corsforall(String all) {
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		response().setHeader("Access-Control-Allow-Origin", "*");
@@ -169,25 +183,4 @@ public class ZettelController extends Controller {
 		return future;
 	}
 
-	public CompletionStage<Result> initForm(String id, String format,
-			String documentId, String topicId) {
-		CompletableFuture<Result> future = new CompletableFuture<>();
-		try (InputStream in =
-				new ByteArrayInputStream(request().body().asText().getBytes("utf-8"))) {
-			ZettelRegisterEntry zettel = zettelRegister.get(id);
-			zettel.getModel().loadRdf(in, RDFFormat.RDFXML);
-			Form<ResearchData> form = formFactory.form(ResearchData.class)
-					.fill((ResearchData) zettel.getModel());
-			future.complete(redirect(
-					routes.ZettelController.getForms(id, format, documentId, topicId)));// ok(zettel.render(form,
-																																							// format,
-																																							// documentId,
-			session("rdfBody", request().body().asText()); // topicId)));
-			return future;
-		} catch (Exception e) {
-			future.complete(badRequest());
-		}
-		return future;
-
-	}
 }
