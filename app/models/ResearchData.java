@@ -299,44 +299,40 @@ public class ResearchData implements ZettelModel
 			if (rdf_P.equals(titleZF.uri)) {
 				setTitle(rdf_O);
 			} else if (rdf_P.equals(creatorZF.uri)) {
-				if (st.getObject() instanceof org.openrdf.model.BNode) {
-					play.Logger.debug(st.toString());
-					List<String> list =
-							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
-									RdfUtils.first, new ArrayList<>());
-					play.Logger.debug("" + list);
-					setCreator(list);
-				} else if (rdf_P.equals(abstractTextZF.uri)) {
-					setAbstractText(rdf_O);
-				} else if (rdf_P.equals(professionalGroupZF.uri)) {
-					setProfessionalGroup(rdf_O);
-				} else if (rdf_P.equals(ddcZF.uri)) {
-					List<String> list =
-							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
-									RdfUtils.first, new ArrayList<>());
-					setDdc(list);
-				} else if (rdf_P.equals(subjectZF.uri)) {
-					List<String> list =
-							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
-									RdfUtils.first, new ArrayList<>());
-					setSubject(list);
-				} else if (rdf_P.equals(mediumZF.uri)) {
-					setMedium(rdf_O);
-				} else if (rdf_P.equals(dataOriginZF.uri)) {
-					setDataOrigin(rdf_O);
-				} else if (rdf_P.equals(yearOfCopyrightZF.uri)) {
-					setYearOfCopyright(rdf_O);
-				} else if (rdf_P.equals(embargoZF.uri)) {
-					setEmbargo(rdf_O);
-				} else if (rdf_P.equals(languageZF.uri)) {
-					setLanguage(rdf_O);
-				} else if (rdf_P.equals(doiZF.uri)) {
-					List<String> list =
-							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
-									RdfUtils.first, new ArrayList<>());
-					setDoi(list);
-				}
-
+				List<String> list =
+						RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
+								RdfUtils.first, new ArrayList<>());
+				setCreator(list);
+			} else if (rdf_P.equals(abstractTextZF.uri)) {
+				setAbstractText(rdf_O);
+			} else if (rdf_P.equals(professionalGroupZF.uri)) {
+				play.Logger.debug("Set professionalGroup");
+				setProfessionalGroup(rdf_O);
+			} else if (rdf_P.equals(ddcZF.uri)) {
+				List<String> list =
+						RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
+								RdfUtils.first, new ArrayList<>());
+				setDdc(list);
+			} else if (rdf_P.equals(subjectZF.uri)) {
+				List<String> list =
+						RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
+								RdfUtils.first, new ArrayList<>());
+				setSubject(list);
+			} else if (rdf_P.equals(mediumZF.uri)) {
+				setMedium(rdf_O);
+			} else if (rdf_P.equals(dataOriginZF.uri)) {
+				setDataOrigin(rdf_O);
+			} else if (rdf_P.equals(yearOfCopyrightZF.uri)) {
+				setYearOfCopyright(rdf_O);
+			} else if (rdf_P.equals(embargoZF.uri)) {
+				setEmbargo(rdf_O);
+			} else if (rdf_P.equals(languageZF.uri)) {
+				setLanguage(rdf_O);
+			} else if (rdf_P.equals(doiZF.uri)) {
+				List<String> list =
+						RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
+								RdfUtils.first, new ArrayList<>());
+				setDoi(list);
 			}
 
 		});
