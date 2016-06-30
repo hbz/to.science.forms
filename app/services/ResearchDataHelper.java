@@ -32,11 +32,11 @@ public class ResearchDataHelper {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("http://dewey.info/class/333/7/",
 				"333.7 Natürliche Ressourcen,Energie & Umwelt");
-		map.put("http://dewey.info/class/570", "570 Biowissenschaften, Biologie");
-		map.put("http://dewey.info/class/610", "610 Medizin & Gesundheit");
-		map.put("http://dewey.info/class/630", "630 Landwirtschaft");
-		map.put("http://dewey.info/class/640", "640 Hauswirtschaft & Familie");
-		map.put("http://dewey.info/class/660", "660 Chemische Verfahrenstechnik");
+		map.put("http://dewey.info/class/570/", "570 Biowissenschaften, Biologie");
+		map.put("http://dewey.info/class/610/", "610 Medizin & Gesundheit");
+		map.put("http://dewey.info/class/630/", "630 Landwirtschaft");
+		map.put("http://dewey.info/class/640/", "640 Hauswirtschaft & Familie");
+		map.put("http://dewey.info/class/660/", "660 Chemische Verfahrenstechnik");
 		return map;
 	}
 
