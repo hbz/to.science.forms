@@ -16,6 +16,8 @@
 		
 	    @multifield(myForm,"creator","Autor","gnd-person-search")
 	    
+	    @multifield(myForm,"contributor","Beteiligte","gnd-person-search")
+	    
 		@singlefield{
 			@textArea(myForm,"abstractText","Abstract","")
 		}
@@ -47,7 +49,7 @@
 			@select(myForm,"language","Sprache","select-language",ResearchDataHelper.getLanguageMap())
 		}
 
-		@multifield(myForm,"doi","Doi","")
+		@multifield(myForm,"doi","Externe Dois","")
 		
 
 		<div class="form-group row">

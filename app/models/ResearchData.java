@@ -59,6 +59,8 @@ public class ResearchData implements ZettelModel
 
 	private List<String> creator;
 
+	private List<String> contributor;
+
 	private String yearOfCopyright;
 
 	private String license;
@@ -247,6 +249,14 @@ public class ResearchData implements ZettelModel
 		this.topicId = topicId;
 	}
 
+	public List<String> getContributor() {
+		return contributor;
+	}
+
+	public void setContributor(List<String> contributor) {
+		this.contributor = contributor;
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(getJsonLdMap());
@@ -264,6 +274,8 @@ public class ResearchData implements ZettelModel
 		jsonMap.put(titleZF.name, getTitle());
 		if (creator != null && !creator.isEmpty())
 			jsonMap.put(creatorZF.name, creator);
+		if (contributor != null && !contributor.isEmpty())
+			jsonMap.put(contributorZF.name, contributor);
 		if (abstractText != null && !abstractText.isEmpty())
 			jsonMap.put(abstractTextZF.name, abstractText);
 		if (dataOrigin != null && !dataOrigin.isEmpty())
@@ -290,21 +302,25 @@ public class ResearchData implements ZettelModel
 
 	@Override
 	public ZettelModel loadRdf(InputStream in, RDFFormat format) {
-
 		Graph graph = RdfUtils.readRdfToGraph(in, format, this.documentId);
-
 		graph.forEach((st) -> {
 			String rdf_P = st.getPredicate().stringValue();
 			String rdf_O = st.getObject().stringValue();
 			if (rdf_P.equals(titleZF.uri)) {
 				setTitle(rdf_O);
 			} else if (rdf_P.equals(creatorZF.uri)) {
-
 				if (st.getObject() instanceof BNode) {
 					List<String> list =
 							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
 									RdfUtils.first, new ArrayList<>());
 					setCreator(list);
+				}
+			} else if (rdf_P.equals(contributorZF.uri)) {
+				if (st.getObject() instanceof BNode) {
+					List<String> list =
+							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
+									RdfUtils.first, new ArrayList<>());
+					setContributor(list);
 				}
 			} else if (rdf_P.equals(abstractTextZF.uri)) {
 				setAbstractText(rdf_O);
@@ -343,9 +359,7 @@ public class ResearchData implements ZettelModel
 					setDoi(list);
 				}
 			}
-
 		});
-
 		return this;
 	}
 }

@@ -27,6 +27,8 @@ import de.hbz.lobid.helper.Etikett;
 public class ZettelFields {
 	public static Etikett creatorZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/creator");
+	public static Etikett contributorZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/contributor");
 	public static Etikett titleZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/title");
 	public static Etikett dataOriginZF =
