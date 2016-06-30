@@ -114,7 +114,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getLicenseMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("ODC By", "http://opendatacommons.org/licenses/by/1.0/");
+		map.put("http://opendatacommons.org/licenses/by/1.0/", "ODC By");
 		map.put("https://creativecommons.org/licenses/by/4.0", "CC BY 4.0");
 		map.put("https://creativecommons.org/publicdomain/zero/1.0/", "CC0 1.0");
 		map.put("http://opendatacommons.org/licenses/odbl/1-0/",

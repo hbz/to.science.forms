@@ -48,6 +48,18 @@
 		@singlefield{
 			@select(myForm,"language","Sprache","select-language",ResearchDataHelper.getLanguageMap())
 		}
+		@multifield(myForm,"funding","Förderer","")
+		
+		@multifield(myForm,"recordingPeriod","Erfassungszeitraum","")
+		
+		@multifield(myForm,"recordingLocation","Erfassungsort","")
+		
+		@singlefield{
+			@inputField(myForm,"nextVersion","Nachfolger Version","")
+		}
+		@singlefield{
+			@inputField(myForm,"previousVersion","Vorgänger Version","")
+		}
 
 		@multifield(myForm,"doi","Externe Dois","")
 		

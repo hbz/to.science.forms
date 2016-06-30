@@ -53,4 +53,14 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#ddc");
 	public static Etikett doiZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/ontology/bibo/doi");
+	public static Etikett fundingZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#funding");
+	public static Etikett recordingPeriodZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#recordingPeriod");
+	public static Etikett recordingLocationZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#recordingLocation");
+	public static Etikett previousVersionZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#previousVersion");
+	public static Etikett nextVersionZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#nextVersion");
 }

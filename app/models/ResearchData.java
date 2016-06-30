@@ -22,12 +22,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 import org.openrdf.model.BNode;
 import org.openrdf.model.Graph;
+import org.openrdf.model.Value;
 import org.openrdf.rio.RDFFormat;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import de.hbz.lobid.helper.Etikett;
 import play.data.validation.Constraints.Required;
 import services.RdfUtils;
 import static services.ZettelFields.*;
@@ -81,6 +87,12 @@ public class ResearchData implements ZettelModel
 
 	private List<String> subject;
 	private List<String> doi;
+
+	private List<String> funding;
+	private List<String> recordingLocation;
+	private List<String> recordingPeriod;
+	private List<String> previousVersion;
+	private List<String> nextVersion;
 
 	private String documentId;
 	private String topicId;
@@ -257,6 +269,46 @@ public class ResearchData implements ZettelModel
 		this.contributor = contributor;
 	}
 
+	public List<String> getFunding() {
+		return funding;
+	}
+
+	public void setFunding(List<String> funding) {
+		this.funding = funding;
+	}
+
+	public List<String> getRecordingLocation() {
+		return recordingLocation;
+	}
+
+	public void setRecordingLocation(List<String> recordingLocation) {
+		this.recordingLocation = recordingLocation;
+	}
+
+	public List<String> getRecordingPeriod() {
+		return recordingPeriod;
+	}
+
+	public void setRecordingPeriod(List<String> recordingPeriod) {
+		this.recordingPeriod = recordingPeriod;
+	}
+
+	public List<String> getPreviousVersion() {
+		return previousVersion;
+	}
+
+	public void setPreviousVersion(List<String> previousVersion) {
+		this.previousVersion = previousVersion;
+	}
+
+	public List<String> getNextVersion() {
+		return nextVersion;
+	}
+
+	public void setNextVersion(List<String> nextVersion) {
+		this.nextVersion = nextVersion;
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(getJsonLdMap());
@@ -294,10 +346,27 @@ public class ResearchData implements ZettelModel
 			jsonMap.put(subjectZF.name, subject);
 		if (yearOfCopyright != null && !yearOfCopyright.isEmpty())
 			jsonMap.put(yearOfCopyrightZF.name, yearOfCopyright);
-		if (ddc != null && !ddc.isEmpty())
-			jsonMap.put(ddcZF.name, ddc);
+		addField(jsonMap, ddc, ddcZF);
+		addField(jsonMap, funding, fundingZF);
+		addField(jsonMap, recordingPeriod, recordingPeriodZF);
+		addField(jsonMap, recordingLocation, recordingLocationZF);
+		addField(jsonMap, nextVersion, nextVersionZF);
+		addField(jsonMap, previousVersion, previousVersionZF);
+
 		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
 		return jsonMap;
+	}
+
+	private void addField(Map<String, Object> jsonMap, List<String> o,
+			Etikett e) {
+		if (o != null && !o.isEmpty())
+			jsonMap.put(e.name, o);
+
+	}
+
+	private void addField(Map<String, Object> jsonMap, String o, Etikett e) {
+		if (o != null && !o.isEmpty())
+			jsonMap.put(e.name, o);
 	}
 
 	@Override
@@ -358,8 +427,30 @@ public class ResearchData implements ZettelModel
 									RdfUtils.first, new ArrayList<>());
 					setDoi(list);
 				}
+			} else if (rdf_P.equals(fundingZF.uri)) {
+				initListField(graph, st.getObject(), (list) -> setFunding(list));
+			} else if (rdf_P.equals(recordingLocationZF.uri)) {
+				initListField(graph, st.getObject(),
+						(list) -> setRecordingLocation(list));
+			} else if (rdf_P.equals(recordingPeriodZF.uri)) {
+				initListField(graph, st.getObject(),
+						(list) -> setRecordingPeriod(list));
+			} else if (rdf_P.equals(nextVersionZF.uri)) {
+				initListField(graph, st.getObject(), (list) -> setNextVersion(list));
+			} else if (rdf_P.equals(previousVersionZF.uri)) {
+				initListField(graph, st.getObject(),
+						(list) -> setPreviousVersion(list));
 			}
 		});
 		return this;
+	}
+
+	private void initListField(Graph graph, Value object,
+			Consumer<List<String>> f) {
+		if (object instanceof BNode) {
+			List<String> list = RdfUtils.traverseList(graph, ((BNode) object).getID(),
+					RdfUtils.first, new ArrayList<>());
+			f.accept(list);
+		}
 	}
 }
