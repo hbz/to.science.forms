@@ -31,6 +31,7 @@ import models.ResearchData;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.XmlUtils;
 import services.ZettelRegister;
 import services.ZettelRegisterEntry;
 import views.html.*;
@@ -118,8 +119,8 @@ public class ZettelController extends Controller {
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
 
 		Form<?> form = null;
-		if ("text/plain".equals(request().contentType().get())) {
-			form = loadRdf(request().body().asText(), zettel);
+		if ("application/rdf+xml".equals(request().contentType().get())) {
+			form = loadRdf(XmlUtils.docToString(request().body().asXml()), zettel);
 			form.bindFromRequest();
 		} else {
 			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();

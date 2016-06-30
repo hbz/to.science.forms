@@ -72,7 +72,7 @@ function handleMessage(evt) {
 			url : "/tools/zettel/forms?" + evt.data.queryParam,
 			data : decodeURI(evt.data.message),
 			crossDomain : true,
-			contentType : 'text/plain',
+			contentType : 'application/rdf+xml;charset=utf-8',
 			success : function(data, textStatus, jqXHR) {
 				var html = $('<div/>').html(data).contents();
 				var newForm = $('form', html);
@@ -123,10 +123,21 @@ function addActionsToRemoveAndAddButtons() {
 			emitResize();
 		});
 		$('.multi-field .remove-field', $wrapper).click(function() {
-			if ($('.multi-field', $wrapper).length > 1)
+			if ($('.multi-field', $wrapper).length > 1){
 				$(this).parents('.multi-field').remove();
-			resetIds(curFieldName);
-			emitResize();
+				resetIds(curFieldName);
+				emitResize();
+			}
+			else{
+				destroyGndAutocompletion();
+				var newField = $('.multi-field:first-child', $wrapper).clone(true);
+				newField.appendTo($wrapper).find('.input-widget').val('').focus();
+				resetIds(curFieldName);
+				$(newField).find(".input-field-heading").html("");
+				$(this).parents('.multi-field').remove();
+				enableAllGndAutocompletion();
+				emitResize();
+			}
 		});
 		$('.multi-field .moveUp', $wrapper).click(function() {
 			var $el = $(this).parents(".multi-field");
