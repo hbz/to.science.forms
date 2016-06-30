@@ -144,6 +144,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getCopyrightYear() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+
 		List<LocalDate> years =
 				Stream.iterate(LocalDate.now(), date -> date.minusYears(1)).limit(100)
 						.collect(Collectors.toList());
