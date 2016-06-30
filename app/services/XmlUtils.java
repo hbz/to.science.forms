@@ -33,7 +33,7 @@ import org.w3c.dom.Document;
  */
 public class XmlUtils {
 	/**
-	 * @param doc
+	 * @param doc an xml document
 	 * @return a xml string representing the passed document
 	 */
 	public static String docToString(Document doc) {
