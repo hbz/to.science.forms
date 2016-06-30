@@ -26,7 +26,7 @@
 		
 		@multiselect(myForm,"ddc","DDC","select-ddc",ResearchDataHelper.getDeweyMap())
 	
-		@multifield(myForm,"subject","Sacherschließung","gnd-subject-search")
+		@multifield(myForm,"subject","GND Schlagworte","gnd-subject-search")
 	
 		@singlefield{
 			@select(myForm,"medium","Medium","select-medium",ResearchDataHelper.getMediumMap())
@@ -35,7 +35,7 @@
 			@select(myForm,"dataOrigin","Erhebungsform","select-dataOrigin",ResearchDataHelper.getDataOriginMap())
 		}
 		@singlefield{
-			@inputField(myForm,"yearOfCopyright","Copyright Jahr","datepicker-year")
+			@select(myForm,"yearOfCopyright","Copyright Jahr","datepicker-year",ResearchDataHelper.getCopyrightYear())
 		}
 		@singlefield{
 			@select(myForm,"license","Lizenz","select-license",ResearchDataHelper.getLicenseMap())
