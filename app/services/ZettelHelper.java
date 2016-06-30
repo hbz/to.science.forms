@@ -21,6 +21,7 @@ import java.io.ByteArrayInputStream;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.openrdf.rio.RDFFormat;
 
@@ -62,19 +63,49 @@ public class ZettelHelper {
 			String fieldName) {
 		List<String> result = new ArrayList<>();
 		if (form.value().isPresent()) {
-			Object data = form.value().get().getJsonLdMap().get(fieldName);
-			if (data != null) {
-				if (data instanceof List<?>) {
-					@SuppressWarnings("unchecked")
-					List<String> dataList = (List<String>) data;
-					for (int i = 0; i < dataList.size(); i++) {
-						result.add(fieldName + "[" + i + "]");
-					}
-				}
+			result = getFieldNamesWithIndexFromJsonLd(form, fieldName);
+		} else if (form.hasErrors()) {
+			result = getFieldNamesWithIndexFromFormData(form, fieldName);
+		}
+		if (result.isEmpty()) {
+			result.add(fieldName);
+		}
+		return result;
+	}
+
+	private static List<String> getFieldNamesWithIndexFromFormData(
+			Form<ZettelModel> form, String fieldName) {
+		List<String> result = new ArrayList<>();
+		Map<String, String> formData = form.data();
+		String id = formData.get(fieldName);
+		if (id != null) {
+			result.add(fieldName);
+		} else {
+			for (int i = 0; i < Integer.MAX_VALUE; i++) {
+				id = formData.get(fieldName + "[" + i + "]");
+				if (id == null)
+					break;
+				result.add(fieldName + "[" + i + "]");
 			}
 		}
 		if (result.isEmpty()) {
 			result.add(fieldName);
+		}
+		return result;
+	}
+
+	private static List<String> getFieldNamesWithIndexFromJsonLd(
+			Form<ZettelModel> form, String fieldName) {
+		List<String> result = new ArrayList<>();
+		Object data = form.value().get().getJsonLdMap().get(fieldName);
+		if (data != null) {
+			if (data instanceof List<?>) {
+				@SuppressWarnings("unchecked")
+				List<String> dataList = (List<String>) data;
+				for (int i = 0; i < dataList.size(); i++) {
+					result.add(fieldName + "[" + i + "]");
+				}
+			}
 		}
 		return result;
 	}
@@ -156,19 +187,45 @@ public class ZettelHelper {
 	public static String getData(Form<ZettelModel> form,
 			String fieldNameWithIndex) {
 		String result = "";
+		play.Logger.debug("Try to get data from " + fieldNameWithIndex);
 		try {
-			if (form.value().isPresent()) {
+			if (form.value().isPresent() || form.hasErrors()) {
+				play.Logger.debug("Form value is present!");
 				int i = parseIndex(fieldNameWithIndex);
 				String f = parseFieldName(fieldNameWithIndex);
-				if (i != -1) {
-					result =
-							((List<String>) form.value().get().getJsonLdMap().get(f)).get(i);
+
+				if (form.hasErrors()) {
+					result = getDataFromMap(form, f, i);
 				} else {
-					result = form.value().get().getJsonLdMap().get(f).toString();
+					result = getDataFromJson(form, f, i);
+
 				}
+
 			}
 		} catch (Exception e) {
 			// this can happen. Return empty string in that case.
+		}
+		return result;
+	}
+
+	private static String getDataFromMap(Form<ZettelModel> form, String f,
+			int i) {
+		String result = "";
+		if (i != -1) {
+			result = form.data().get(f + "[" + i + "]");
+		} else {
+			result = form.data().get(f);
+		}
+		return result;
+	}
+
+	private static String getDataFromJson(Form<ZettelModel> form, String f,
+			int i) {
+		String result = "";
+		if (i != -1) {
+			result = ((List<String>) form.value().get().getJsonLdMap().get(f)).get(i);
+		} else {
+			result = form.value().get().getJsonLdMap().get(f).toString();
 		}
 		return result;
 	}

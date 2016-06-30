@@ -59,7 +59,8 @@
 				target.postMessage({
 					'queryParam' : 'id=katalog:data&format=xml&topicId='
 							+ topicId + '&documentId=' + documentId,
-					'message' : rdf
+					'message' : rdf,
+					'action'  : 'postDataToZettel'
 				}, "*");
 			}
 		} else if (e.data.action == 'resize') {

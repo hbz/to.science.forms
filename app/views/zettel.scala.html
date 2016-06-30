@@ -56,44 +56,12 @@
 }
 </body>
 	<script>
+	$(function() {
 		enableAllGndAutocompletion();
 		addActionsToRemoveAndAddButtons();
 		window.addEventListener("message", handleMessage, false);
-		
-		$(function() {
-			    $(".datepicker").datepicker();
-		 });
-		$(function() {
-		    $(".datepicker-year").datepicker({ dateFormat: 'yy'});
-	 	});
-		$(function() {
-		    if(top != self){
-		    	emitEvent();
-		    }
-	 	});
-		function handleMessage(evt) {
-			if(evt.data.message!=0){
-			$.ajax({
-				type:'POST',
-				url:"/tools/zettel/forms?"+evt.data.queryParam, 
-				data:decodeURI(evt.data.message),
-				crossDomain:true,
-				contentType:'text/plain',
-				success:function(data, textStatus, jqXHR) {
-					var html =$('<div/>').html(data).contents();
-					var newForm= $('form',html);
-					var containerOfOldform= $('div.container');
-					containerOfOldform.html(newForm);
-					enableAllGndAutocompletion();
-					addActionsToRemoveAndAddButtons();
-					window.addEventListener("message", handleMessage, false);
-					emitResize();
-				},
-				error:function(data, textStatus, jqXHR) {
-					
-				}
-				});
-			}
-		}
+		addDatepicker();
+		initializeConnectionToParent();
+	});
 	</script>
 </html>

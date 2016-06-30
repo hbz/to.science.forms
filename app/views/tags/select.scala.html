@@ -5,29 +5,31 @@
 
 	<div class="first-child-of-multi-field col-sm-12">
 				<div class="col-sm-4">
-					   <label class="form-control-label" for="@classString">@fieldLabel</label>
+					   <label class="form-control-label" for="select-input">@fieldLabel</label>
 				</div>		
 				<div class="col-sm-offset-4 col-sm-8">
-				 	<fieldset>
-					    <select name="@fieldName" id="@classString">
-					    @services.ZettelHelper.getData(myForm,fieldName) match{
-						case myValue: String => {
-							@for(i <- map.keySet().stream().collect(Collectors.toList())){
-									@if(myValue.equals(i)){
-								      <option value="@i" selected>@map.get(i)</option>
-								     }else{
-								      <option value="@i">@map.get(i)</option>
-								     }
-							}		
+					<div class="@classString">
+					 	<fieldset>
+						    <select name="@fieldName" id="select-input" class="input-widget">
+						    @services.ZettelHelper.getData(myForm,fieldName) match{
+							case myValue: String => {
+								@for(i <- map.keySet().stream().collect(Collectors.toList())){
+										@if(myValue.equals(i)){
+									      <option value="@i" selected>@map.get(i)</option>
+									     }else{
+									      <option value="@i">@map.get(i)</option>
+									     }
+								}		
+							}
+							case _ => {
+								@for(i <- map.keySet().stream().collect(Collectors.toList())){
+						      		<option value="@i">@map.get(i)</option>
+						    	}
+							}
 						}
-						case _ => {
-							@for(i <- map.keySet().stream().collect(Collectors.toList())){
-					      		<option value="@i">@map.get(i)</option>
-					    	}
-						}
-					}
-					    </select>
-				    </fieldset>
+						    </select>
+					    </fieldset>
+				    </div>
 				</div>
   	</div>	
 

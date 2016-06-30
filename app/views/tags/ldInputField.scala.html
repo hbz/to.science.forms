@@ -2,19 +2,21 @@
 General Public License *@
 @(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String)
 
-@import services._
+@import services._ 
 @myValue=@{ZettelHelper.getData(myForm,fieldName)}
 <div class="first-child-of-multi-field col-sm-12">
 	<div class="col-sm-4">
 		<label class="form-control-label" for="@fieldName">@fieldLabel</label>
 	</div>
-	<div class="col-sm-offset-4 col-sm-8">
-		<p class="input-field-heading">
-			<b>@ZettelHelper.etikett.getLabelFromEtikettWs(myValue)</b>
-			@if(myValue!=null && !myValue.isEmpty()){(@myValue)}
-		</p>
-		<input size="50" class="@classString" value="@myValue"
-			name="@fieldName" /> <span class="help"> </span>
+	<div class="@classString">
+		<div class="col-sm-offset-4 col-sm-8">
+			<p class="input-field-heading">
+				<b>@ZettelHelper.etikett.getLabelFromEtikettWs(myValue)</b>
+				@if(myValue!=null && !myValue.isEmpty()){(@myValue)}
+			</p>
+				<input size="50" class="input-widget" value="@myValue"
+					name="@fieldName" /> <span class="help"> </span>
+		</div>
 	</div>
 	<div class="col-sm-offset-4 col-sm-4">
 		<span class="errors">@if(myForm.error(fieldName)!=null){@myForm.error(fieldName).message()}</span>

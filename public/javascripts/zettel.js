@@ -1,8 +1,20 @@
+function addDatepicker() {
+	$(".datepicker").datepicker();
+	$(".datepicker-year").datepicker({
+		dateFormat : 'yy'
+	});
+}
+function initializeConnectionToParent() {
+	if (top != self) {
+		emitEvent();
+	}
+}
+
 function enableAllGndAutocompletion() {
-	$('input.gnd-person-search').each(function() {
+	$('.gnd-person-search input').each(function() {
 		enableGndPersonAutocompletion($(this));
 	});
-	$('input.gnd-subject-search').each(function() {
+	$('.gnd-subject-search input').each(function() {
 		enableGndSubjectAutocompletion($(this));
 	});
 }
@@ -54,25 +66,51 @@ function enableGndSubjectAutocompletion(inputElement) {
 		}
 	});
 }
+
+function handleMessage(evt) {
+	if (evt.data.action == 'postDataToZettel' && evt.data.message != 0) {
+		$.ajax({
+			type : 'POST',
+			url : "/tools/zettel/forms?" + evt.data.queryParam,
+			data : decodeURI(evt.data.message),
+			crossDomain : true,
+			contentType : 'text/plain',
+			success : function(data, textStatus, jqXHR) {
+				var html = $('<div/>').html(data).contents();
+				var newForm = $('form', html);
+				var containerOfOldform = $('div.container');
+				containerOfOldform.html(newForm);
+				enableAllGndAutocompletion();
+				addActionsToRemoveAndAddButtons();
+				window.addEventListener("message", handleMessage, false);
+				emitResize();
+			},
+			error : function(data, textStatus, jqXHR) {
+
+			}
+		});
+	}
+}
 function destroyGndAutocompletion() {
-	$('input.gnd-person-search').each(function() {
+	$('.gnd-person-search input').each(function() {
 		$(this).autocomplete('destroy');
 		$(this).removeData('autocomplete');
 	});
-	$('input.gnd-subject-search').each(function() {
+	$('.gnd-subject-search input').each(function() {
 		$(this).autocomplete('destroy');
 		$(this).removeData('autocomplete');
 	});
 }
 function resetIds(curFieldName) {
 	var num = 0;
-	$('input[name^=' + curFieldName + ']').each(function() {
+	$('.input-widget[name^=' + curFieldName + ']').each(function() {
 		console.log(curFieldName);
 		$(this).attr('name', curFieldName + "[" + num + "]");
 		$(this).attr('id', curFieldName + "_" + num);
 		num++;
 	});
 }
+
 function addActionsToRemoveAndAddButtons() {
 	$('.multi-field-wrapper').each(function() {
 		var $wrapper = $('.multi-fields', this);
@@ -80,7 +118,7 @@ function addActionsToRemoveAndAddButtons() {
 		$(".add-field", $(this)).click(function(e) {
 			destroyGndAutocompletion();
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
-			newField.appendTo($wrapper).find('input').val('').focus();
+			newField.appendTo($wrapper).find('.input-widget').val('').focus();
 			resetIds(curFieldName);
 			$(newField).find(".input-field-heading").html("");
 			enableAllGndAutocompletion();
@@ -110,40 +148,50 @@ function addActionsToRemoveAndAddButtons() {
 	});
 }
 
-
 function emitEvent() {
 	var target = parent.postMessage ? parent
-			: (parent.document.postMessage ? parent.document
-					: undefined);
+			: (parent.document.postMessage ? parent.document : undefined);
 	if (typeof target != "undefined") {
 		postData(target);
 		resize(target);
 	}
 }
-function postData(target){
+function postData(target) {
 	var data = $('#embeddedJson').text();
 	if (data.length) {
-		target.postMessage({'action':'postData', 'message':data}, "*");
-	}else{
-		var topicId=$('#topicId').text();
-		var documentId=$('#documentId').text();
-		target.postMessage({'action':'establishConnection', 'message':null,'topicId':topicId,'documentId':documentId}, "*");
+		target.postMessage({
+			'action' : 'postData',
+			'message' : data
+		}, "*");
+	} else {
+		var topicId = $('#topicId').text();
+		var documentId = $('#documentId').text();
+		target.postMessage({
+			'action' : 'establishConnection',
+			'message' : null,
+			'topicId' : topicId,
+			'documentId' : documentId
+		}, "*");
 	}
 }
-function emitResize(){
+function emitResize() {
 	var target = parent.postMessage ? parent
-			: (parent.document.postMessage ? parent.document
-					: undefined);
+			: (parent.document.postMessage ? parent.document : undefined);
+
 	if (typeof target != "undefined") {
 		resize(target);
 	}
 }
-function resize(target){
+
+function resize(target) {
 	var body = document.body;
 	var html = document.documentElement;
 	var height = body.offsetHeight;
-    if(height === 0){
-        height = html.offsetHeight;
-    }
-	target.postMessage({'action':'resize', 'message':height}, '*');
+	if (height === 0) {
+		height = html.offsetHeight;
+	}
+	target.postMessage({
+		'action' : 'resize',
+		'message' : height
+	}, '*');
 }
