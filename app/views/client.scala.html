@@ -40,7 +40,7 @@
 		console.log(e.data);
 		var obj = JSON.parse(e);
 		if (obj.code == 200) {
-			onSuccess(JSON.stringify(obj.message));
+			onSuccess(decodeURI(JSON.stringify(obj.message)));
 		} else {
 			onFail(JSON.stringify(obj.message));
 		}

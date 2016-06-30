@@ -27,7 +27,6 @@ import org.openrdf.rio.RDFFormat;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.html.HtmlEscapers;
 
 import models.JsonMessage;
 import models.ResearchData;
@@ -134,12 +133,9 @@ public class ZettelHelper {
 
 				if (form.get() != null) {
 					if ("xml".equals(format)) {
-						String rdfString =
-								HtmlEscapers.htmlEscaper()
-										.escape(RdfUtils.readRdfToString(
-												new ByteArrayInputStream(
-														jsonldString.getBytes("utf-8")),
-												RDFFormat.JSONLD, RDFFormat.RDFXML, ""));
+						String rdfString = RdfUtils.readRdfToString(
+								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
+								RDFFormat.JSONLD, RDFFormat.RDFXML, "");
 						result = new JsonMessage(rdfString, 200);
 					} else {
 						result = new JsonMessage(((ResearchData) form.get()).getJsonLdMap(),
