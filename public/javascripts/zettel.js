@@ -1,8 +1,6 @@
 function addDatepicker() {
 	$(".datepicker").datepicker();
-	$(".datepicker-year").datepicker({
-		dateFormat : 'yy'
-	});
+
 }
 function initializeConnectionToParent() {
 	if (top != self) {

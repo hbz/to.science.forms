@@ -17,7 +17,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Jan Schnasse
@@ -93,8 +98,6 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getMediumMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("http://rdvocab.info/termList/RDAproductionMethod/1010", "Print");
-		map.put("http://rdvocab.info/termList/RDACarrierType/1018", "Online");
 		map.put("http://purl.org/ontology/bibo/AudioDocument", "Audio");
 		map.put("http://rdvocab.info/termList/RDACarrierType/1050", "Video");
 		map.put("http://purl.org/ontology/bibo/Image", "Bild");
@@ -132,6 +135,23 @@ public class ResearchDataHelper {
 		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/spa", "Spanisch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/ita", "Italienisch");
+		return map;
+	}
+
+	/**
+	 * @return a map of yyyy strings with the last hundred years descending from
+	 *         today
+	 */
+	public static LinkedHashMap<String, String> getCopyrightYear() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		List<LocalDate> years =
+				Stream.iterate(LocalDate.now(), date -> date.minusYears(1)).limit(100)
+						.collect(Collectors.toList());
+		for (LocalDate d : years) {
+			String ds = d.format(DateTimeFormatter.ofPattern("yyyy"));
+			map.put(ds, ds);
+		}
+
 		return map;
 	}
 

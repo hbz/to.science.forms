@@ -183,7 +183,6 @@ public class ZettelHelper {
 	 * @param fieldNameWithIndex an fieldName with index, e.g. creator[index]
 	 * @return data for repeated form field
 	 */
-	@SuppressWarnings("unchecked")
 	public static String getData(Form<ZettelModel> form,
 			String fieldNameWithIndex) {
 		String result = "";
@@ -219,6 +218,7 @@ public class ZettelHelper {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	private static String getDataFromJson(Form<ZettelModel> form, String f,
 			int i) {
 		String result = "";
