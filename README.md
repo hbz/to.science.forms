@@ -30,6 +30,8 @@ Go to http://localhost:9000/tools/zettel
 
 # Add zettel to an existing web application
 
+[Find a complete example](https://github.com/hbz/zettel/blob/master/app/views/client.scala.html) on how to embedd a zettel form to your application, using javascript.
+
 You can include a zettel form using iframes
 
 	<iframe src="http://localhost:9000/tools/zettel/forms?id=katalog:data" width="100%"
@@ -57,17 +59,25 @@ A client can catch the data using an event listener
     	 var obj = JSON.parse(e.data);
     	 console.log(JSON.stringify(obj.message));
     	 console.log(JSON.stringify(obj.code));
+    	 console.log(JSON.stringify(obj.action));
     }
 	window.addEventListener("message", getMessage, false);
 
-The json data has the form "message", "code". If the form contains errors a code of 400 is replied together with a reasonable message. If zettel was able to produce json-ld from the form it sends a code of 200 and the actual data in the message field.
+The json data has the form "message", "code", "action". If the form contains errors a code of 400 is replied together with a reasonable message. If zettel was able to produce rdf from the form it sends a code of 200 and the actual data in the message field.
 
     {
-    	"message":{...more json data...},
+    	"message":{...more json data or URI-encoded rdf-xml...},
     	"code": <"200"|"400">
     }
+To edit an existing resource you must send your data to the zettelform this can be done by posting form-data to the /forms route. You can also post rdf-xml data. Zettel will try to fill the form with your rdf data. You can achieve this by sending a message to the zettel iframe. Zettel listens to javascript events. Please use the following pattern:
 
-A client example is available at <https://github.com/hbz/zettel/blob/master/app/views/client.scala.html>. In your running zettel application you can run the example under /tools/zettel/client.
+	target.postMessage({
+					'queryParam' : 'id=katalog:data&format=xml&topicId='
+							+ topicId + '&documentId=' + documentId,
+					'message' : rdf,
+					'action'  : 'postDataToZettel'
+				}, "*");
+
 
 # List forms
 
