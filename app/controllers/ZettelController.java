@@ -2,7 +2,7 @@
 
 This file is part of zettel.
 
-etikett is free software: you can redistribute it and/or modify
+zettel is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
 published by the Free Software Foundation, either version 3 of the
 License, or (at your option) any later version.
@@ -54,6 +54,22 @@ public class ZettelController extends Controller {
 	}
 
 	/**
+	 * @param all a path
+	 * @return a header for all routes when ask with HTTP OPTIONS
+	 */
+	public CompletionStage<Result> corsforall(String all) {
+		CompletableFuture<Result> future = new CompletableFuture<>();
+		response().setHeader("Access-Control-Allow-Origin", "*");
+		response().setHeader("Allow", "*");
+		response().setHeader("Access-Control-Allow-Methods",
+				"POST, GET, PUT, DELETE, OPTIONS");
+		response().setHeader("Access-Control-Allow-Headers",
+				"Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
+		future.complete(ok());
+		return future;
+	}
+
+	/**
 	 * @param id if null list all available forms otherwise render the requested
 	 *          form.
 	 * @param format ask for certain format. supports xml and json
@@ -66,34 +82,18 @@ public class ZettelController extends Controller {
 	 */
 	public CompletionStage<Result> getForms(String id, String format,
 			String documentId, String topicId) {
-		response().setHeader("Access-Control-Allow-Origin", "*");
-		response().setHeader("Access-Control-Allow-Headers",
-				"Origin, X-Requested-With, Content-Type, Accept");
+		setHeaders();
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
 		if (id == null)
 			result = listForms();
 		else {
-
 			ZettelRegister zettelRegister = new ZettelRegister();
 			ZettelRegisterEntry zettel = zettelRegister.get(id);
 			result = renderForm(zettel, format, documentId, topicId);
 		}
 		future.complete(result);
 		return future;
-	}
-
-	@SuppressWarnings("static-method")
-	private Result listForms() {
-		ZettelRegister zettelRegister = new ZettelRegister();
-		List<String> formList = zettelRegister.getIds();
-		return ok(forms.render(formList));
-	}
-
-	private Result renderForm(ZettelRegisterEntry zettel, String format,
-			String documentId, String topicId) {
-		Form<?> form = formFactory.form(zettel.getModel().getClass());
-		return ok(zettel.render(form, format, documentId, topicId));
 	}
 
 	/**
@@ -109,47 +109,15 @@ public class ZettelController extends Controller {
 	 */
 	public CompletionStage<Result> postForm(String id, String format,
 			String documentId, String topicId) {
-		response().setHeader("Access-Control-Allow-Origin", "*");
-		response().setHeader("Access-Control-Allow-Headers",
-				"Origin, X-Requested-With, Content-Type, Accept");
-
+		setHeaders();
+		Result result = null;
 		ZettelRegister zettelRegister = new ZettelRegister();
 		CompletableFuture<Result> future = new CompletableFuture<>();
-		Result result = null;
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
-
-		Form<?> form = null;
-		if ("application/rdf+xml".equals(request().contentType().get())) {
-			form = loadRdf(XmlUtils.docToString(request().body().asXml()), zettel);
-			form.bindFromRequest();
-		} else {
-			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
-		}
-		if (form.hasErrors()) {
-			if (request().accepts("text/html")) {
-				result = badRequest(zettel.render(form, format, documentId, topicId));
-			} else {
-				result = badRequest(form.errorsAsJson()).as("application/json");
-			}
-		} else {
-			if (request().accepts("text/html")) {
-				result = ok(zettel.render(form, format, documentId, topicId));
-			} else {
-				result = ok(form.get().toString()).as("application/json");
-			}
-		}
+		Form<?> form = bindToForm(zettel);
+		result = renderForm(format, documentId, topicId, zettel, form);
 		future.complete(result);
 		return future;
-	}
-
-	private Form<?> loadRdf(String asText, ZettelRegisterEntry zettel) {
-		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
-			Form<ResearchData> form = formFactory.form(ResearchData.class)
-					.fill((ResearchData) zettel.getModel().deserializeFromRdf(in, RDFFormat.RDFXML));
-			return form;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	/**
@@ -167,20 +135,63 @@ public class ZettelController extends Controller {
 		return future;
 	}
 
-	/**
-	 * @param all a path
-	 * @return a header for all routes when ask with HTTP OPTIONS
-	 */
-	public CompletionStage<Result> corsforall(String all) {
-		CompletableFuture<Result> future = new CompletableFuture<>();
+	private static Result renderForm(String format, String documentId,
+			String topicId, ZettelRegisterEntry zettel, Form<?> form) {
+		Result result;
+		if (form.hasErrors()) {
+			if (request().accepts("text/html")) {
+				result = badRequest(zettel.render(form, format, documentId, topicId));
+			} else {
+				result = badRequest(form.errorsAsJson()).as("application/json");
+			}
+		} else {
+			if (request().accepts("text/html")) {
+				result = ok(zettel.render(form, format, documentId, topicId));
+			} else {
+				result = ok(form.get().toString()).as("application/json");
+			}
+		}
+		return result;
+	}
+
+	private Form<?> bindToForm(ZettelRegisterEntry zettel) {
+		Form<?> form = null;
+		if ("application/rdf+xml".equals(request().contentType().get())) {
+			form = loadRdf(XmlUtils.docToString(request().body().asXml()), zettel);
+			form.bindFromRequest();
+		} else {
+			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
+		}
+		return form;
+	}
+
+	private Form<?> loadRdf(String asText, ZettelRegisterEntry zettel) {
+		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
+			Form<ResearchData> form =
+					formFactory.form(ResearchData.class).fill((ResearchData) zettel
+							.getModel().deserializeFromRdf(in, RDFFormat.RDFXML));
+			return form;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private static void setHeaders() {
 		response().setHeader("Access-Control-Allow-Origin", "*");
-		response().setHeader("Allow", "*");
-		response().setHeader("Access-Control-Allow-Methods",
-				"POST, GET, PUT, DELETE, OPTIONS");
 		response().setHeader("Access-Control-Allow-Headers",
-				"Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
-		future.complete(ok());
-		return future;
+				"Origin, X-Requested-With, Content-Type, Accept");
+	}
+
+	private static Result listForms() {
+		ZettelRegister zettelRegister = new ZettelRegister();
+		List<String> formList = zettelRegister.getIds();
+		return ok(forms.render(formList));
+	}
+
+	private Result renderForm(ZettelRegisterEntry zettel, String format,
+			String documentId, String topicId) {
+		Form<?> form = formFactory.form(zettel.getModel().getClass());
+		return ok(zettel.render(form, format, documentId, topicId));
 	}
 
 }
