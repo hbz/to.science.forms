@@ -94,7 +94,7 @@ public class IntegrationTest {
 						testData.setCreator(author);
 
 						String eventData =
-								new JsonMessage(testData.getJsonLdMap(), 200).toString();
+								new JsonMessage(testData.serializeToMap(), 200).toString();
 						play.Logger.debug(eventData);
 
 						Map<String, Object> eventDataAsMap =

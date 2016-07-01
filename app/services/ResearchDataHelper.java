@@ -101,7 +101,7 @@ public class ResearchDataHelper {
 		map.put("http://purl.org/ontology/bibo/AudioDocument", "Audio");
 		map.put("http://rdvocab.info/termList/RDACarrierType/1050", "Video");
 		map.put("http://purl.org/ontology/bibo/Image", "Bild");
-		map.put("http://pbcore.org/vocabularies/instantiationMediaType#text ",
+		map.put("http://pbcore.org/vocabularies/instantiationMediaType#text",
 				"Text");
 		map.put("http://pbcore.org/vocabularies/instantiationMediaType#software",
 				"Software");

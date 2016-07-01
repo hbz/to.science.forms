@@ -96,7 +96,7 @@ public class ZettelHelper {
 	private static List<String> getFieldNamesWithIndexFromJsonLd(
 			Form<ZettelModel> form, String fieldName) {
 		List<String> result = new ArrayList<>();
-		Object data = form.value().get().getJsonLdMap().get(fieldName);
+		Object data = form.value().get().serializeToMap().get(fieldName);
 		if (data != null) {
 			if (data instanceof List<?>) {
 				@SuppressWarnings("unchecked")
@@ -138,7 +138,7 @@ public class ZettelHelper {
 								RDFFormat.JSONLD, RDFFormat.RDFXML, "");
 						result = new JsonMessage(rdfString, 200);
 					} else {
-						result = new JsonMessage(((ResearchData) form.get()).getJsonLdMap(),
+						result = new JsonMessage(((ResearchData) form.get()).serializeToMap(),
 								200);
 					}
 
@@ -217,9 +217,9 @@ public class ZettelHelper {
 			int i) {
 		String result = "";
 		if (i != -1) {
-			result = ((List<String>) form.value().get().getJsonLdMap().get(f)).get(i);
+			result = ((List<String>) form.value().get().serializeToMap().get(f)).get(i);
 		} else {
-			result = form.value().get().getJsonLdMap().get(f).toString();
+			result = form.value().get().serializeToMap().get(f).toString();
 		}
 		return result;
 	}

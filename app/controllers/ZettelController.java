@@ -145,7 +145,7 @@ public class ZettelController extends Controller {
 	private Form<?> loadRdf(String asText, ZettelRegisterEntry zettel) {
 		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
 			Form<ResearchData> form = formFactory.form(ResearchData.class)
-					.fill((ResearchData) zettel.getModel().loadRdf(in, RDFFormat.RDFXML));
+					.fill((ResearchData) zettel.getModel().deserializeFromRdf(in, RDFFormat.RDFXML));
 			return form;
 		} catch (Exception e) {
 			throw new RuntimeException(e);

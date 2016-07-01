@@ -17,25 +17,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-
-import org.openrdf.model.BNode;
-import org.openrdf.model.Graph;
-import org.openrdf.model.Value;
-import org.openrdf.rio.RDFFormat;
-
+import java.util.function.Supplier;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
-import de.hbz.lobid.helper.Etikett;
 import play.data.validation.Constraints.Required;
-import services.RdfUtils;
 import static services.ZettelFields.*;
 import services.ZettelHelper;
 import services.ZettelModel;
@@ -46,56 +35,32 @@ import services.ZettelModel;
  */
 @SuppressWarnings("javadoc")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResearchData implements ZettelModel
-
-{
-
+public class ResearchData extends ZettelModel {
 	/**
 	 * The id under which this model is registered in the ZettelRegister
 	 */
 	public final static String id = "katalog:data";
 
-	private static final String ID = "@id";
-
-	@SuppressWarnings("unused")
-	private static final String LABEL = "prefLabel";
-
 	@Required(message = "Please provide a title")
 	private String title;
-
 	private List<String> creator;
-
 	private List<String> contributor;
-
 	private String yearOfCopyright;
-
 	private String license;
-
 	private String abstractText;
-
 	private String professionalGroup;
-
 	private String embargo;
-
 	List<String> ddc;
-
 	String language;
-
 	String medium;
-
 	String dataOrigin;
-
 	private List<String> subject;
 	private List<String> doi;
-
 	private List<String> funding;
 	private List<String> recordingLocation;
 	private List<String> recordingPeriod;
 	private List<String> previousVersion;
 	private List<String> nextVersion;
-
-	private String documentId;
-	private String topicId;
 
 	/**
 	 * Create an empty ResearchData model
@@ -114,31 +79,6 @@ public class ResearchData implements ZettelModel
 		this.dataOrigin = new String();
 		this.subject = new ArrayList<>();
 		this.doi = new ArrayList<>();
-		documentId = "_:foo";
-		topicId = "http://localhost/resource/add/researchData";
-	}
-
-	/**
-	 * Initialize all values at once
-	 */
-	public ResearchData(String title, List<String> author, String yearOfCopyright,
-			String license, String abstractText, String professionalGroup,
-			String embargo, List<String> ddc, String language, String medium,
-			String dataOrigin, List<String> subject, List<String> doi) {
-		super();
-		this.title = title;
-		this.creator = author;
-		this.yearOfCopyright = yearOfCopyright;
-		this.license = license;
-		this.abstractText = abstractText;
-		this.professionalGroup = professionalGroup;
-		this.embargo = embargo;
-		this.ddc = ddc;
-		this.language = language;
-		this.medium = medium;
-		this.dataOrigin = dataOrigin;
-		this.subject = subject;
-		this.doi = doi;
 	}
 
 	public String getTitle() {
@@ -245,22 +185,6 @@ public class ResearchData implements ZettelModel
 		this.dataOrigin = dataOrigin;
 	}
 
-	public String getDocumentId() {
-		return documentId;
-	}
-
-	public void setDocumentId(String documentId) {
-		this.documentId = documentId;
-	}
-
-	public String getTopicId() {
-		return topicId;
-	}
-
-	public void setTopicId(String topicId) {
-		this.topicId = topicId;
-	}
-
 	public List<String> getContributor() {
 		return contributor;
 	}
@@ -311,146 +235,64 @@ public class ResearchData implements ZettelModel
 
 	@Override
 	public String toString() {
-		return ZettelHelper.objectToString(getJsonLdMap());
+		return ZettelHelper.objectToString(serializeToMap());
 	}
 
 	@Override
-	public Map<String, Object> getJsonLdMap() {
-		Map<String, Object> jsonMap = new HashMap<>();
-		jsonMap.put(ID, documentId);
-		Map<String, Object> topicMap = new HashMap<>();
-		topicMap.put(ID, topicId);
-		topicMap.put("primaryTopic", documentId);
-		jsonMap.put("isPrimaryTopicOf", topicMap);
-		jsonMap.put("type", "http://hbz-nrw.de/regal#ResearchData");
-		jsonMap.put(titleZF.name, getTitle());
-		if (creator != null && !creator.isEmpty())
-			jsonMap.put(creatorZF.name, creator);
-		if (contributor != null && !contributor.isEmpty())
-			jsonMap.put(contributorZF.name, contributor);
-		if (abstractText != null && !abstractText.isEmpty())
-			jsonMap.put(abstractTextZF.name, abstractText);
-		if (dataOrigin != null && !dataOrigin.isEmpty())
-			jsonMap.put(dataOriginZF.name, dataOrigin);
-		if (embargo != null && !embargo.isEmpty())
-			jsonMap.put(embargoZF.name, embargo);
-		if (language != null && !language.isEmpty())
-			jsonMap.put(languageZF.name, language);
-		if (license != null && !license.isEmpty())
-			jsonMap.put(licenseZF.name, license);
-		if (medium != null && !medium.isEmpty())
-			jsonMap.put(mediumZF.name, medium);
-		if (professionalGroup != null && !professionalGroup.isEmpty())
-			jsonMap.put(professionalGroupZF.name, professionalGroup);
-		if (subject != null && !subject.isEmpty())
-			jsonMap.put(subjectZF.name, subject);
-		if (yearOfCopyright != null && !yearOfCopyright.isEmpty())
-			jsonMap.put(yearOfCopyrightZF.name, yearOfCopyright);
-		addField(jsonMap, ddc, ddcZF);
-		addField(jsonMap, funding, fundingZF);
-		addField(jsonMap, recordingPeriod, recordingPeriodZF);
-		addField(jsonMap, recordingLocation, recordingLocationZF);
-		addField(jsonMap, nextVersion, nextVersionZF);
-		addField(jsonMap, previousVersion, previousVersionZF);
-
-		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
-		return jsonMap;
+	protected Map<String, Supplier<Object>> getMappingForSerialization() {
+		Map<String, Supplier<Object>> dict = new LinkedHashMap<>();
+		dict.put(titleZF.name, () -> getTitle());
+		dict.put(creatorZF.name, () -> getCreator());
+		dict.put(contributorZF.name, () -> getContributor());
+		dict.put(abstractTextZF.name, () -> getAbstractText());
+		dict.put(dataOriginZF.name, () -> getDataOrigin());
+		dict.put(embargoZF.name, () -> getEmbargo());
+		dict.put(languageZF.name, () -> getLanguage());
+		dict.put(licenseZF.name, () -> getLicense());
+		dict.put(mediumZF.name, () -> getMedium());
+		dict.put(professionalGroupZF.name, () -> getProfessionalGroup());
+		dict.put(subjectZF.name, () -> getSubject());
+		dict.put(yearOfCopyrightZF.name, () -> getYearOfCopyright());
+		dict.put(ddcZF.name, () -> getDdc());
+		dict.put(fundingZF.name, () -> getFunding());
+		dict.put(recordingPeriodZF.name, () -> getRecordingPeriod());
+		dict.put(recordingLocationZF.name, () -> getRecordingLocation());
+		dict.put(nextVersionZF.name, () -> getNextVersion());
+		dict.put(previousVersionZF.name, () -> getPreviousVersion());
+		return dict;
 	}
 
-	private void addField(Map<String, Object> jsonMap, List<String> o,
-			Etikett e) {
-		if (o != null && !o.isEmpty())
-			jsonMap.put(e.name, o);
-
-	}
-
-	private void addField(Map<String, Object> jsonMap, String o, Etikett e) {
-		if (o != null && !o.isEmpty())
-			jsonMap.put(e.name, o);
+	@SuppressWarnings("unchecked")
+	@Override
+	protected Map<String, Consumer<Object>> getMappingForDeserialization() {
+		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
+		dict.put(titleZF.uri, (in) -> setTitle((String) in));
+		dict.put(creatorZF.uri, (in) -> setCreator((List<String>) in));
+		dict.put(contributorZF.uri, (in) -> setContributor((List<String>) in));
+		dict.put(abstractTextZF.uri, (in) -> setAbstractText((String) in));
+		dict.put(dataOriginZF.uri, (in) -> setDataOrigin((String) in));
+		dict.put(embargoZF.uri, (in) -> setEmbargo((String) in));
+		dict.put(languageZF.uri, (in) -> setLanguage((String) in));
+		dict.put(licenseZF.uri, (in) -> setLicense((String) in));
+		dict.put(mediumZF.uri, (in) -> setMedium((String) in));
+		dict.put(professionalGroupZF.uri,
+				(in) -> setProfessionalGroup((String) in));
+		dict.put(subjectZF.uri, (in) -> setSubject((List<String>) in));
+		dict.put(yearOfCopyrightZF.uri, (in) -> setYearOfCopyright((String) in));
+		dict.put(ddcZF.uri, (in) -> setDdc((List<String>) in));
+		dict.put(fundingZF.uri, (in) -> setFunding((List<String>) in));
+		dict.put(recordingPeriodZF.uri,
+				(in) -> setRecordingPeriod((List<String>) in));
+		dict.put(recordingLocationZF.uri,
+				(in) -> setRecordingLocation((List<String>) in));
+		dict.put(nextVersionZF.uri, (in) -> setNextVersion((List<String>) in));
+		dict.put(previousVersionZF.uri,
+				(in) -> setPreviousVersion((List<String>) in));
+		return dict;
 	}
 
 	@Override
-	public ZettelModel loadRdf(InputStream in, RDFFormat format) {
-		Graph graph = RdfUtils.readRdfToGraph(in, format, this.documentId);
-		graph.forEach((st) -> {
-			String rdf_P = st.getPredicate().stringValue();
-			String rdf_O = st.getObject().stringValue();
-			if (rdf_P.equals(titleZF.uri)) {
-				setTitle(rdf_O);
-			} else if (rdf_P.equals(creatorZF.uri)) {
-				if (st.getObject() instanceof BNode) {
-					List<String> list =
-							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
-									RdfUtils.first, new ArrayList<>());
-					setCreator(list);
-				}
-			} else if (rdf_P.equals(contributorZF.uri)) {
-				if (st.getObject() instanceof BNode) {
-					List<String> list =
-							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
-									RdfUtils.first, new ArrayList<>());
-					setContributor(list);
-				}
-			} else if (rdf_P.equals(abstractTextZF.uri)) {
-				setAbstractText(rdf_O);
-			} else if (rdf_P.equals(professionalGroupZF.uri)) {
-				play.Logger.debug("Set professionalGroup");
-				setProfessionalGroup(rdf_O);
-			} else if (rdf_P.equals(ddcZF.uri)) {
-				if (st.getObject() instanceof BNode) {
-					List<String> list =
-							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
-									RdfUtils.first, new ArrayList<>());
-					setDdc(list);
-				}
-			} else if (rdf_P.equals(subjectZF.uri)) {
-				if (st.getObject() instanceof BNode) {
-					List<String> list =
-							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
-									RdfUtils.first, new ArrayList<>());
-					setSubject(list);
-				}
-			} else if (rdf_P.equals(mediumZF.uri)) {
-				setMedium(rdf_O);
-			} else if (rdf_P.equals(dataOriginZF.uri)) {
-				setDataOrigin(rdf_O);
-			} else if (rdf_P.equals(yearOfCopyrightZF.uri)) {
-				setYearOfCopyright(rdf_O);
-			} else if (rdf_P.equals(embargoZF.uri)) {
-				setEmbargo(rdf_O);
-			} else if (rdf_P.equals(languageZF.uri)) {
-				setLanguage(rdf_O);
-			} else if (rdf_P.equals(doiZF.uri)) {
-				if (st.getObject() instanceof BNode) {
-					List<String> list =
-							RdfUtils.traverseList(graph, ((BNode) st.getObject()).getID(),
-									RdfUtils.first, new ArrayList<>());
-					setDoi(list);
-				}
-			} else if (rdf_P.equals(fundingZF.uri)) {
-				initListField(graph, st.getObject(), (list) -> setFunding(list));
-			} else if (rdf_P.equals(recordingLocationZF.uri)) {
-				initListField(graph, st.getObject(),
-						(list) -> setRecordingLocation(list));
-			} else if (rdf_P.equals(recordingPeriodZF.uri)) {
-				initListField(graph, st.getObject(),
-						(list) -> setRecordingPeriod(list));
-			} else if (rdf_P.equals(nextVersionZF.uri)) {
-				initListField(graph, st.getObject(), (list) -> setNextVersion(list));
-			} else if (rdf_P.equals(previousVersionZF.uri)) {
-				initListField(graph, st.getObject(),
-						(list) -> setPreviousVersion(list));
-			}
-		});
-		return this;
-	}
-
-	private void initListField(Graph graph, Value object,
-			Consumer<List<String>> f) {
-		if (object instanceof BNode) {
-			List<String> list = RdfUtils.traverseList(graph, ((BNode) object).getID(),
-					RdfUtils.first, new ArrayList<>());
-			f.accept(list);
-		}
+	protected String getType() {
+		return "http://hbz-nrw.de/regal#ResearchData";
 	}
 }
