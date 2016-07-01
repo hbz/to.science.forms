@@ -182,10 +182,8 @@ public class ZettelHelper {
 	public static String getData(Form<ZettelModel> form,
 			String fieldNameWithIndex) {
 		String result = "";
-		play.Logger.debug("Try to get data from " + fieldNameWithIndex);
 		try {
 			if (form.value().isPresent() || form.hasErrors()) {
-				play.Logger.debug("Form value is present!");
 				int i = parseIndex(fieldNameWithIndex);
 				String f = parseFieldName(fieldNameWithIndex);
 
@@ -240,7 +238,6 @@ public class ZettelHelper {
 		try {
 			int rb = fieldNameWithIndex.indexOf('[');
 			int re = fieldNameWithIndex.indexOf(']');
-			play.Logger.debug(fieldNameWithIndex.substring(rb + 1, re));
 			int result = Integer.parseInt(fieldNameWithIndex.substring(rb + 1, re));
 			return result;
 		} catch (Exception e) {

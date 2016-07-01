@@ -44,8 +44,6 @@ public class ZettelController extends Controller {
 	@Inject
 	play.data.FormFactory formFactory;
 
-	private static final ZettelRegister zettelRegister = new ZettelRegister();
-
 	/**
 	 * @return the start page
 	 */
@@ -76,6 +74,8 @@ public class ZettelController extends Controller {
 		if (id == null)
 			result = listForms();
 		else {
+
+			ZettelRegister zettelRegister = new ZettelRegister();
 			ZettelRegisterEntry zettel = zettelRegister.get(id);
 			result = renderForm(zettel, format, documentId, topicId);
 		}
@@ -85,6 +85,7 @@ public class ZettelController extends Controller {
 
 	@SuppressWarnings("static-method")
 	private Result listForms() {
+		ZettelRegister zettelRegister = new ZettelRegister();
 		List<String> formList = zettelRegister.getIds();
 		return ok(forms.render(formList));
 	}
@@ -111,9 +112,8 @@ public class ZettelController extends Controller {
 		response().setHeader("Access-Control-Allow-Origin", "*");
 		response().setHeader("Access-Control-Allow-Headers",
 				"Origin, X-Requested-With, Content-Type, Accept");
-		play.Logger.debug("SHOW BODY");
-		play.Logger.debug("\n" + request().toString() + "\n\t" + request().body());
 
+		ZettelRegister zettelRegister = new ZettelRegister();
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
@@ -146,7 +146,6 @@ public class ZettelController extends Controller {
 		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
 			Form<ResearchData> form = formFactory.form(ResearchData.class)
 					.fill((ResearchData) zettel.getModel().loadRdf(in, RDFFormat.RDFXML));
-			play.Logger.debug(form.get().getCreator().toString());
 			return form;
 		} catch (Exception e) {
 			throw new RuntimeException(e);

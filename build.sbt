@@ -8,7 +8,6 @@ scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
   javaJdbc,
-  cache,
   javaWs,
   filters,
   "org.openrdf.sesame" % "sesame-runtime" % "2.7.9",

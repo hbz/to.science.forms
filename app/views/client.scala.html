@@ -37,7 +37,6 @@
 		jQuery('#successBox').css('visibility', 'hidden');
 	}
 	function getMessage(e) {
-		console.log(e.data);
 		var obj = JSON.parse(e);
 		if (obj.code == 200) {
 			onSuccess(decodeURI(JSON.stringify(obj.message)));
