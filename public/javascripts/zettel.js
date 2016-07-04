@@ -15,6 +15,21 @@ function enableAllGndAutocompletion() {
 	$('.gnd-subject-search input').each(function() {
 		enableGndSubjectAutocompletion($(this));
 	});
+	$('.mydaterangepicker').each(function() {
+		$(this).daterangepicker({
+		      autoUpdateInput: false,
+		      locale: {
+		          cancelLabel: 'Clear'
+		      }
+		  });
+		$(this).on('apply.daterangepicker', function(ev, picker) {
+		      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+		});
+		$(this).on('cancel.daterangepicker', function(ev, picker) {
+		      $(this).val('');
+		});
+
+	});
 }
 function enableGndPersonAutocompletion(inputElement) {
 	inputElement.autocomplete({
@@ -40,6 +55,7 @@ function enableGndPersonAutocompletion(inputElement) {
 		}
 	});
 }
+
 function enableGndSubjectAutocompletion(inputElement) {
 	inputElement.autocomplete({
 		select : function(event, ui) {

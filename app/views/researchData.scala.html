@@ -108,7 +108,10 @@
 				@singlefield{
 				@select(myForm,"dataOrigin","Erfassungsart*","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),8)
 				} <br />
-				@multifield(myForm,"recordingPeriod","Erfassungszeitraum*","",14) <br />
+				
+				@multidaterange(myForm,"recordingPeriod","Erfassungszeitraum*","",14) <br />
+				
+				
 				@multifield(myForm,"recordingLocation","Erfassungsort*","",15) <br />
 			</div>
 		</div>

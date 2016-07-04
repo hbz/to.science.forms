@@ -6,7 +6,8 @@
 	<div class="multi-fields" id="@fieldName">
 		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,fieldName) ){
 		<div class="multi-field">
-			 @ldInputField(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt)
+		
+		 @rangeInputWidget(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt)
 					<div class="btn-group">
 						<button type="button" class="add-field" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-plus-circle"/></button>
 						<button type="button" class="remove-field" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-minus-circle"/></button>

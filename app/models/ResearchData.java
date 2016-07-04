@@ -24,12 +24,11 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import javax.validation.Constraint;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import play.data.validation.Constraints.Required;
 import static services.ZettelFields.*;
 
+import services.ValidDateRange;
 import services.ValidUrl;
 import services.ZettelHelper;
 import services.ZettelModel;
@@ -50,6 +49,7 @@ public class ResearchData extends ZettelModel {
 	private String title;
 
 	@Required(message = "Bitte nennen Sie einen Autor oder Ersteller!")
+	@ValidUrl(message = "Bitte nennen Sie einen Autor oder Ersteller!")
 	private List<String> creator;
 
 	private List<String> contributor;
@@ -88,10 +88,8 @@ public class ResearchData extends ZettelModel {
 	private List<String> doi;
 	private List<String> funding;
 
-	@Required(message = "Bitte geben Sie Informationen zum Ort der Datenerfassung!")
 	private List<String> recordingLocation;
 
-	@Required(message = "Bitte geben Sie Informationen zur Zeit der Datenerfassung!")
 	private List<String> recordingPeriod;
 
 	private List<String> previousVersion;
@@ -115,6 +113,11 @@ public class ResearchData extends ZettelModel {
 		this.dataOrigin = new String();
 		this.subject = new ArrayList<>();
 		this.doi = new ArrayList<>();
+		this.funding = new ArrayList<>();
+		this.recordingLocation = new ArrayList<>();
+		this.recordingPeriod = new ArrayList<>();
+		this.previousVersion = new ArrayList<>();
+		this.nextVersion = new ArrayList<>();
 	}
 
 	public String getTitle() {

@@ -79,7 +79,7 @@ public final class MyUrlValidator
 		play.Logger.debug("Validate " + object + "");
 
 		if (object == null)
-			return true;
+			return false;
 		if ((object instanceof String)) {
 			try {
 				String s = sanitizeUrl(object.toString());
@@ -91,7 +91,10 @@ public final class MyUrlValidator
 		if ((object instanceof List<?>)) {
 			try {
 				List<String> list = (List<String>) object;
-				list.forEach((n) -> isValid(n));
+				for (String s : list) {
+					if (!isValid(s))
+						return false;
+				}
 				return true;
 			} catch (Exception e) {
 				return false;
