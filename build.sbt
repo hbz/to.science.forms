@@ -12,8 +12,10 @@ libraryDependencies ++= Seq(
   filters,
   "org.openrdf.sesame" % "sesame-runtime" % "2.7.9",
   "com.github.jsonld-java"%"jsonld-java-sesame"%"0.3",
-  "com.github.hbz" %"lobid-rdf-to-json" % "d7c013261299658be5ad5016dedb20af8927e698"
+  "com.github.hbz" %"lobid-rdf-to-json" % "d7c013261299658be5ad5016dedb20af8927e698",
+  "commons-validator" % "commons-validator" % "1.5.1"
 )
+
 resolvers += "jitpack" at "https://jitpack.io"
 
 EclipseKeys.preTasks := Seq(compile in Compile)

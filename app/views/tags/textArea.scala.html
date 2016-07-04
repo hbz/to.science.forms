@@ -1,6 +1,6 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String)
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int)
 @import helper._
 
 @implicitField = @{ FieldConstructor(textAreaConstructor.f) }
-@helper.textarea(myForm(fieldName), '_label -> fieldLabel, 'cols -> 50,'class -> classString,'rows->10 )
+@helper.textarea(myForm(fieldName), '_label -> fieldLabel, 'cols -> 50,'class -> classString,'rows->10,'tabindex->tabOrderAsInt )

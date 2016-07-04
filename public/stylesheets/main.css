@@ -18,3 +18,7 @@
 	display:none;
 	visibility:hidden;
 }
+
+.form-control-label{
+	font-size:larger;
+}

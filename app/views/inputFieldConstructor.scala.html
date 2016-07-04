@@ -1,19 +1,13 @@
-@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@ 
 @(elements: helper.FieldElements)
-			<div class="first-child-of-multi-field col-sm-12">
-				<div class="col-sm-4">
-					<label class="form-control-label" for="@elements.id">@elements.label</label>
-				</div>
-				<div class="col-sm-offset-4 col-sm-8">
-					
-					@elements.input 
-					<span class="help">
-						@elements.infos.mkString(", ")
-					</span>
-				</div>
-				<div class="col-sm-offset-4 col-sm-4">
-    				<span class="errors">@elements.errors.mkString(", ")</span>
-   				 </div>
-			</div>	
-			
-
+<div>
+	<label class="form-control-label" for="@elements.id">@elements.label</label>
+</div>
+<div>
+	@elements.input 
+	<span class="help">
+	</span>
+</div>
+<div>
+	<span class="errors">@elements.errors.mkString(", ")</span>
+</div>

@@ -1,16 +1,16 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,map:Map[String,String])
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,map:Map[String,String],tabOrderAsInt:Int)
 
 @import java.util.stream.Collectors
 
-	<div class="first-child-of-multi-field col-sm-12">
-				<div class="col-sm-4">
+	<div class="first-child-of-multi-field">
+				<div>
 					   <label class="form-control-label" for="select-input">@fieldLabel</label>
 				</div>		
-				<div class="col-sm-offset-4 col-sm-8">
+				<div>
 					<div class="@classString">
 					 	<fieldset>
-						    <select name="@fieldName" id="select-input" class="input-widget">
+						    <select name="@fieldName" id="select-input" class="input-widget" tabindex=@tabOrderAsInt>
 						    @services.ZettelHelper.getData(myForm,fieldName) match{
 							case myValue: String => {
 								@for(i <- map.keySet().stream().collect(Collectors.toList())){
@@ -31,6 +31,8 @@
 					    </fieldset>
 				    </div>
 				</div>
+				<div>
+    					<span class="errors">@if(myForm.error(fieldName)!=null){@myForm.error(fieldName).message()}</span>
+   				 </div>
   	</div>	
-
- 
+  	

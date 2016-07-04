@@ -1,24 +1,24 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero
 General Public License *@
-@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String)
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int)
 
 @import services._ 
 @myValue=@{ZettelHelper.getData(myForm,fieldName)}
-<div class="first-child-of-multi-field col-sm-12">
-	<div class="col-sm-4">
+<div class="first-child-of-multi-field">
+	<div >
 		<label class="form-control-label" for="@fieldName">@fieldLabel</label>
 	</div>
 	<div class="@classString">
-		<div class="col-sm-offset-4 col-sm-8">
+		<div>
 			<p class="input-field-heading">
 				<b>@ZettelHelper.etikett.getLabelFromEtikettWs(myValue)</b>
 				@if(myValue!=null && !myValue.isEmpty()){(@myValue)}
 			</p>
 				<input size="50" class="input-widget" value="@myValue"
-					name="@fieldName" /> <span class="help"> </span>
+					name="@fieldName" tabindex=@tabOrderAsInt)/> <span class="help"> </span>
 		</div>
 	</div>
-	<div class="col-sm-offset-4 col-sm-4">
+	<div>
 		<span class="errors">@if(myForm.error(fieldName)!=null){@myForm.error(fieldName).message()}</span>
 	</div>
 </div>

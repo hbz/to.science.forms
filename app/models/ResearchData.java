@@ -23,9 +23,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import javax.validation.Constraint;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import play.data.validation.Constraints.Required;
 import static services.ZettelFields.*;
+
+import services.ValidUrl;
 import services.ZettelHelper;
 import services.ZettelModel;
 
@@ -41,25 +46,56 @@ public class ResearchData extends ZettelModel {
 	 */
 	public final static String id = "katalog:data";
 
-	@Required(message = "Please provide a title")
+	@Required(message = "Bitte vergeben Sie einen Titel!")
 	private String title;
+
+	@Required(message = "Bitte nennen Sie einen Autor oder Ersteller!")
 	private List<String> creator;
+
 	private List<String> contributor;
+
+	@Required(message = "Bitte geben Sie das Jahr zum Copyright an.")
 	private String yearOfCopyright;
+
+	@Required(message = "Bitte vergeben Sie eine Lizenz!")
+	@ValidUrl(message = "Bitte geben	Sie einen gültigen URL an!")
 	private String license;
+
+	@Required(message = "Bitte erstellen Sie eine kurze Inhaltsangabe!")
 	private String abstractText;
+
+	@Required(message = "Bitte orden Sie Ihre Daten einer Fachgruppe zu!")
+	@ValidUrl(message = "Bitte orden Sie Ihre Daten einer Fachgruppe zu!")
 	private String professionalGroup;
 	private String embargo;
-	List<String> ddc;
-	String language;
-	String medium;
-	String dataOrigin;
+
+	@Required(message = "Bitte orden Sie Ihre Daten einem Dewey Schlagwort zu!")
+	@ValidUrl(message = "Bitte orden Sie Ihre Daten einem Dewey Schlagwort zu!")
+	private List<String> ddc;
+
+	@Required(message = "Welche Sprache passt am ehesten zu Ihrer Eingabe?")
+	@ValidUrl(message = "Welche Sprache passt am ehesten zu Ihrer Eingabe?")
+	private String language;
+
+	@Required(message = "Bitte ordnen Sie ihre Eingabe einem Medium zu!")
+	@ValidUrl(message = "Bitte ordnen Sie ihre Eingabe einem Medium zu!")
+	private String medium;
+
+	@Required(message = "Bitte geben Sie Informationen zur Erzeugung der Daten!")
+	@ValidUrl(message = "Bitte geben Sie Informationen zur Erzeugung der Daten!")
+	private String dataOrigin;
 	private List<String> subject;
 	private List<String> doi;
 	private List<String> funding;
+
+	@Required(message = "Bitte geben Sie Informationen zum Ort der Datenerfassung!")
 	private List<String> recordingLocation;
+
+	@Required(message = "Bitte geben Sie Informationen zur Zeit der Datenerfassung!")
 	private List<String> recordingPeriod;
+
 	private List<String> previousVersion;
+
 	private List<String> nextVersion;
 
 	/**

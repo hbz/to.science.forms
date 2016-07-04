@@ -35,6 +35,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getDeweyMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("Choose a value!", null);
 		map.put("http://dewey.info/class/333/7/",
 				"333.7 Natürliche Ressourcen,Energie & Umwelt");
 		map.put("http://dewey.info/class/570/", "570 Biowissenschaften, Biologie");
@@ -50,6 +51,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getProfessionalGroupMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("Choose a value!", null);
 		map.put("http://d-nb.info/gnd/4038243-6", "Medizin");
 		map.put("http://d-nb.info/gnd/4020775-4", "Gesundheitswesen");
 		map.put("http://d-nb.info/gnd/4152829-3", "Ernährungswissenschaften");
@@ -64,6 +66,8 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getDataOriginMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("Choose a value!", null);
+		map.put("http://hbz-nrw.de/regal#Andere", "Andere");
 		map.put("http://hbz-nrw.de/regal#Interview", "Interview");
 		map.put("http://hbz-nrw.de/regal#Umfrage", "Umfrage");
 		map.put("http://hbz-nrw.de/regal#Anamnese", "Anamnese");
@@ -89,7 +93,6 @@ public class ResearchDataHelper {
 				"Interventionsstudie");
 		map.put("http://hbz-nrw.de/regal#Kohortenstudie", "Kohortenstudie");
 		map.put("http://hbz-nrw.de/regal#Simulation", "Simulation");
-		map.put("http://hbz-nrw.de/regal#Andere", "Andere");
 		return map;
 	}
 
@@ -98,6 +101,8 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getMediumMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("Choose a value!", null);
+		map.put("http://purl.org/lobid/lv%23Miscellaneous", "Andere");
 		map.put("http://purl.org/ontology/bibo/AudioDocument", "Audio");
 		map.put("http://rdvocab.info/termList/RDACarrierType/1050", "Video");
 		map.put("http://purl.org/ontology/bibo/Image", "Bild");
@@ -105,7 +110,6 @@ public class ResearchDataHelper {
 				"Text");
 		map.put("http://pbcore.org/vocabularies/instantiationMediaType#software",
 				"Software");
-		map.put("http://purl.org/lobid/lv%23Miscellaneous", "Andere");
 		return map;
 	}
 
@@ -131,6 +135,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getLanguageMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("Choose a value!", null);
 		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "Deutsch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "Englisch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");

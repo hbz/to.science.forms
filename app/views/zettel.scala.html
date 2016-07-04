@@ -28,9 +28,9 @@
 <body>
 	<div id="documentId" class="data">@documentId</div>
 	<div id="topicId" class="data">@topicId</div>
-	<div class="container col-sd-12">
+	<div class="container col-sd-12 ">
 		@content
-		</div>
+	</div>
 	@if(flash.containsKey("success")) {
   <div class="well">
     <div id="success-message" class="text-success">
@@ -62,6 +62,7 @@
 		window.addEventListener("message", handleMessage, false);
 		addDatepicker();
 		initializeConnectionToParent();
+		
 	});
 	</script>
 </html>
