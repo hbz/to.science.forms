@@ -1,0 +1,15 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
+@(title: String,id:String)(content: Html) 
+<div class="panel panel-default">
+	<div class="panel-heading accordion-toggle" data-toggle="collapse"
+		href="#@id">
+		<h3 class="panel-title">
+			<a href="#">@title</a>
+		</h3>
+	</div>
+	<div id="@id" class="panel-collapse collapse in">
+		<div class="panel-body">
+			@content
+		</div>
+	</div>
+</div>

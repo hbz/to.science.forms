@@ -14,14 +14,17 @@ General Public License *@
 				<b>@ZettelHelper.etikett.getLabelFromEtikettWs(myValue)</b>
 				@if(myValue!=null && !myValue.isEmpty()){(@myValue)}
 			</p>
-				<input size="50" class="input-widget" value="@myValue"
-					name="@fieldName" tabindex=@tabOrderAsInt)/> <span class="help"> </span>
+				<input size="50" class="input-widget @classString" value="@myValue"
+					name="@fieldName" tabindex="@tabOrderAsInt"/>
+										
+				<button type="button" class="inline-help" name="@fieldName"
+				 vertical-align:middle">
+					<span class="fa fa-question-circle"/>
+				</button>
 		</div>
 	</div>
 	<div>
 		<span class="errors">@if(myForm.error(fieldName)!=null){@myForm.error(fieldName).message()}</span>
 	</div>
 </div>
-
-
 

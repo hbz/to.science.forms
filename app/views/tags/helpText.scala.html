@@ -1,0 +1,12 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
+@(fieldName:String)
+
+<button type="button" class="inline-help" name="@fieldName">
+	<span class="fa fa-question-circle" />
+</button>
+<div class="help-text" name="@fieldName" style="display: none">
+	<button name="@fieldName" type="button" class="close-help"
+		style="float: right">
+		<span class="fa fa-times-circle" />
+	</button>
+</div>

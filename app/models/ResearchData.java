@@ -25,6 +25,10 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.sun.glass.ui.Application;
+import com.typesafe.config.ConfigFactory;
+
+import play.Play;
 import play.data.validation.Constraints.Required;
 import static services.ZettelFields.*;
 
@@ -333,5 +337,17 @@ public class ResearchData extends ZettelModel {
 	@Override
 	protected String getType() {
 		return "http://hbz-nrw.de/regal#ResearchData";
+	}
+
+	/**
+	 * The help text url must provide help texts in a certain html form. For each
+	 * field a <div id="fieldName"> must be provided to contain the help text for
+	 * the corresponding field.
+	 * 
+	 * @return return a url with help texts for the form
+	 */
+	public static String getHelpTextUrl() {
+		String url = ConfigFactory.load().getString("zettel.researchData.helpText");
+		return url;
 	}
 }

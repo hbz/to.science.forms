@@ -97,6 +97,8 @@ function handleMessage(evt) {
 				enableAllGndAutocompletion();
 				addActionsToRemoveAndAddButtons();
 				window.addEventListener("message", handleMessage, false);
+				enableHelpOpenButtons();
+				enableHelpCloseButtons();
 				emitResize();
 			},
 			error : function(data, textStatus, jqXHR) {
@@ -219,4 +221,49 @@ function resize(target) {
 		'action' : 'resize',
 		'message' : height
 	}, '*');
+}
+
+function resetHelpText(helpDiv){
+	$('div',helpDiv).remove();
+	helpDiv.css('display','none');
+}
+function enableHelpOpenButtons(){
+	var helpTextUrl=$(document).find('#helpTextUrl').attr('href');
+	$('.inline-help').on("click",function(){
+		var fieldName = $(this).attr('name');
+		var helpDiv=$('.help-text[name='+fieldName+']');
+		$.ajax({
+			type : 'GET',
+			url : helpTextUrl,
+			crossDomain : true,
+			success : function(data, textStatus, jqXHR) {
+				resetHelpText(helpDiv);
+				var all = $('<div/>').html(data).contents();
+				var text = $('#'+fieldName,$(all)).html();
+				if(typeof text != 'undefined' ){
+					$('h2',$(text)).css("font-size","lower");
+					helpDiv.append('<div>'+text+'</div>');
+				}else{
+					var text = 'Noch kein Hilfetext verf&uuml;gbar';
+					helpDiv.append('<div>'+text+'</div>');
+				}
+			},
+			error : function(data, textStatus, jqXHR) {
+				resetHelpText(helpDiv);
+				var text = 'Noch kein Hilfetext verf&uuml;gbar';
+				helpDiv.append('<div>'+text+'</div>');
+			}
+		}).done(function (){
+			helpDiv.css("display","block");
+			emitResize();
+		});
+	});
+}
+function enableHelpCloseButtons(){
+	$('.help-text').on("click",function(){
+		var fieldName = $(this).attr('name');
+		var helpDiv=$('.help-text[name='+fieldName+']');
+		resetHelpText(helpDiv);
+		emitResize();
+	});
 }

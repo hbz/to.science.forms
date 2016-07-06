@@ -5,139 +5,68 @@
 @import services._
 
 @zettel("Forschungsdaten",myForm,dataFormat,documentId,topicId) {
+
+	<a href="@models.ResearchData.getHelpTextUrl()" id="helpTextUrl" style="float:right">Hilfe</a>
 	@if(myForm.hasGlobalErrors) {
 		<p class="error">@myForm.globalError.message</p>
 	} 
-@helper.form(action = routes.ZettelController.postForm(ResearchData.id,dataFormat,documentId,topicId)){
-<div class="panel-group" id="accordion">
-	<div class="panel panel-default">
-		<div class="panel-heading accordion-toggle" data-toggle="collapse"
-			href="#titleSection">
-			<h3 lass="panel-title">
-				<a href="#">Titel</a>
-			</h3>
-		</div>
-		<div id="titleSection" class="panel-collapse collapse in">
-			<div class="panel-body">
-				@singlefield{ @inputField(myForm,"title","Titel*","",1) } <br />
-			</div>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading accordion-toggle" data-toggle="collapse"
-			href="#creatorsSection">
-			<h3 lass="panel-title">
-				<a href="#">Urheberschaft</a>
-			</h3>
-		</div>
-		<div id="creatorsSection" class="panel-collapse collapse in">
-			<div class="panel-body">
-				@multifield(myForm,"creator","Autor*","gnd-person-search",2) <br />
-			</div>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading accordion-toggle" data-toggle="collapse"
-			href="#uploadSection">
-			<h3 lass="panel-title">
-				<a href="#">Dateiupload</a>
-			</h3>
-		</div>
-		<div id="uploadSection" class="panel-collapse collapse in">
-			<div class="panel-body">
-				@singlefield{
-				@select(myForm,"medium","Medium*","select-medium",ResearchDataHelper.getMediumMap(),3)
-				} @singlefield{ @select(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ResearchDataHelper.getCopyrightYear(),4) }
-				<br /> @singlefield{
-				@select(myForm,"license","Lizenz*","select-license",ResearchDataHelper.getLicenseMap(),5)
-				} <br /> @singlefield{
-				@inputField(myForm,"embargo","Embargo","datepicker",6) } <br />
-				<div class="alert alert-info">Der eigentliche Uploadvorgang
-					findet in einem gesonderten Formular statt. Bitte füllen Sie
-					zunächst alle Pflichtfelder in den hier aufgeführten Kategorien
-					aus.</div>
+	@helper.form(action = routes.ZettelController.postForm(ResearchData.id,dataFormat,documentId,topicId)){
+		@accordion(""){
+			@accordionPanel("Titel","title-section"){
+				@inputField(myForm,"title","Titel*","",1)
+			}
+			@accordionPanel("Urheberschaft","creator-section"){
+				@multifield(myForm,"creator","Autor*","gnd-person-search",2)
+			}
+			@accordionPanel("Dateiupload","upload-section"){
+				@singleSelect(myForm,"medium","Medium*","select-medium",ResearchDataHelper.getMediumMap(),3)
+				<br/>
+				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ResearchDataHelper.getCopyrightYear(),4)
 				<br />
-			</div>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading accordion-toggle" data-toggle="collapse"
-			href="#subjectsSection">
-			<h3 lass="panel-title">
-				<a href="#">Erschließung</a>
-			</h3>
-		</div>
-		<div id="subjectsSection" class="panel-collapse collapse in">
-			<div class="panel-body">
-				@singlefield{ @textArea(myForm,"abstractText","Abstract*","",7) } <br />
-				@singlefield{
-				@select(myForm,"language","Sprache*","select-language",ResearchDataHelper.getLanguageMap(),8)
-				} <br /> @singlefield{
-				@select(myForm,"professionalGroup","Fachgruppe*","select-pg",ResearchDataHelper.getProfessionalGroupMap(),9)
-				} <br />
+				@singleSelect(myForm,"license","Lizenz*","select-license",ResearchDataHelper.getLicenseMap(),5)
+				<br />
+				@inputField(myForm,"embargo","Embargo","datepicker",6)
+			}
+			@accordionPanel("Erschließung","cataloging-section"){
+				@textArea(myForm,"abstractText","Abstract*","",7)
+				<br />
+				@singleSelect(myForm,"language","Sprache*","select-language",ResearchDataHelper.getLanguageMap(),8)
+				<br /> 
+				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ResearchDataHelper.getProfessionalGroupMap(),9)
+				<br />
 				@multiselect(myForm,"ddc","DDC*","select-ddc",ResearchDataHelper.getDeweyMap(),10)
 				<br />
 				@multifield(myForm,"subject","Schlagworte","gnd-subject-search",11)
-				<br />
-			</div>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading accordion-toggle" data-toggle="collapse"
-			href="#contributorsSection">
-			<h3 lass="panel-title">
-				<a href="#">Beteiligte</a>
-			</h3>
-		</div>
-		<div id="contributorsSection" class="panel-collapse collapse in">
-			<div class="panel-body">
+			}
+			@accordionPanel("Beteiligte","contributor-section"){
 				@multifield(myForm,"contributor","Beteiligte","gnd-person-search",12)
-				<br /> @multifield(myForm,"funding","Förderer","",13) <br />
+				<br /> 
+				@multifield(myForm,"funding","Förderer","",13) 
+				<br />
+				@multifield(myForm,"projectId","Projekt-ID","",14) 
+			}
+			@accordionPanel("Erfassung","recording-section"){
+				@singleSelect(myForm,"dataOrigin","Erfassungsart*","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),15)
+				<br />
+				@textArea(myForm,"recordingPeriod","Erfassungszeitraum*","",16) 
+				<br />
+				@multifield(myForm,"recordingLocation","Erfassungsort*","",17) 
+				<br />
+				@multifield(myForm,"recordingLocationCoord","Geokoordinaten*","",18) 
+			}
+			@accordionPanel("Externe Referenzen","link-section"){
+				@inputField(myForm,"nextVersion","Nachfolger Version","",19)  
+				<br />
+				@inputField(myForm,"previousVersion","Vorgänger Version","",20) 
+				<br />
+				@multifield(myForm,"doi","Vorhandene DOIs","",21) 
+			}
+		}
+		<div class="form-group row">
+			<div class="col-sm-offset-8 col-sm-4">
+				<button id="cancel" class="btn cancel">Cancel</button>
+				<input type="submit" value="Save" class="btn btn-success" />
 			</div>
 		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading accordion-toggle" data-toggle="collapse"
-			href="#recordingSection">
-			<h3 lass="panel-title">
-				<a href="#">Erfassung</a>
-			</h3>
-		</div>
-		<div id="recordingSection" class="panel-collapse collapse in">
-			<div class="panel-body">
-				@singlefield{
-				@select(myForm,"dataOrigin","Erfassungsart*","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),8)
-				} <br />
-				
-				@multidaterange(myForm,"recordingPeriod","Erfassungszeitraum*","",14) <br />
-				
-				
-				@multifield(myForm,"recordingLocation","Erfassungsort*","",15) <br />
-			</div>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading accordion-toggle" data-toggle="collapse"
-			href="#linksSection">
-			<h3 lass="panel-title">
-				<a href="#">Externe Referenzen</a>
-			</h3>
-		</div>
-		<div id="linksSection" class="panel-collapse collapse in">
-			<div class="panel-body">
-				@singlefield{ @inputField(myForm,"nextVersion","Nachfolger Version","",16) } <br /> @singlefield{
-				@inputField(myForm,"previousVersion","Vorgänger Version","",17) } <br />
-				@multifield(myForm,"doi","Vorhandene Dois","",18) <br />
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<div class="form-group row">
-	<div class="col-sm-offset-8 col-sm-4">
-		<button id="cancel" class="btn cancel">Cancel</button>
-		<input type="submit" value="Save" class="btn btn-success" />
-	</div>
-</div>
-} }
+	} 
+}
