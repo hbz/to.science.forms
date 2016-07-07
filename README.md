@@ -104,6 +104,75 @@ The request is processed as application/x-www-form-urlencoded. Incoming data is 
 # Add new forms to zettel
 Comming soon...
 
+# Run
+
+##Download
+	cd /tmp
+	git clone https://github.com/hbz/zettel
+	cd zettel
+	
+##Run
+
+	/opt/activator-1.3.2-minimal/activator run
+
+Go to http://localhost:9000/tools/zettel
+
+##Install 
+
+	cd /tmp/zettel
+	/opt/activator-1.3.2-minimal/activator dist
+	cp target/universal/zettel-0.1.0-SNAPSHOT.zip  /tmp
+	cd /tmp
+	unzip zettel-0.1.0-SNAPSHOT.zip
+	mv zettel-0.1.0-SNAPSHOT /opt/zettel
+
+edit /opt/zettel/conf/application.conf
+
+	contextUrl="http://localhost:9002/tools/etikett/context.json"
+	etikettService="http://api.localhost:9002/tools/etikett"
+	etikettUser=admin
+	etikettPwd=admin
+	zettel.researchData.helpText="http://localhost/node/2"
+
+edit startscript
+
+	sudo cp /tmp/zettel/install/zettel.tmpl /etc/init.d/zettel
+	sudo chmod u+x /etc/init.d/zettel
+	sudo editor /etc/init.d/zettel
+
+set the following vars
+
+	JAVA_HOME=/opt/java
+	HOME="/opt/zettel"
+	USER="user to run zettel"
+	GROUP="user to run zettel"
+	SECRET=`uuidgen` # generate a secret e.g. using uuidgen
+	PORT=9000
+
+include into system start and shutdown
+
+	sudo update-rc.d zettel defaults 99 20
+
+start
+
+	sudo service zettel start
+
+# Update
+
+	rm -rf /tmp/zettel
+	cd /tmp
+	git clone https://github.com/hbz/zettel
+	cd /tmp/zettel
+	/opt/activator-1.3.2-minimal/activator dist
+	cp target/universal/zettel-0.1.0-SNAPSHOT.zip  /tmp
+	cd /tmp
+	unzip zettel-0.1.0-SNAPSHOT.zip
+	cp /opt/zettel/conf/application.conf /tmp/zettel-0.1.0-SNAPSHOT/conf
+	sudo service zettel stop
+	rm -rf /opt/zettel/*
+	mv /tmp/zettel-0.1.0-SNAPSHOT/* /opt/zettel/
+	sudo service zettel start
+
 #License
 
 GNU AFFERO GENERAL PUBLIC LICENSE
