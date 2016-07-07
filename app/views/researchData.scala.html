@@ -10,7 +10,7 @@
 		<p class="error">@myForm.globalError.message</p>
 	} 
 	@helper.form(action = routes.ZettelController.postForm(ResearchData.id,dataFormat,documentId,topicId)){
-		<a href="@models.ResearchData.getHelpTextUrl()" id="helpTextUrl" style="float:right">Hilfe</a>
+		<a href="@models.ResearchData.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
 			@accordionPanel("Titel","title-section"){
 				@inputField(myForm,"title","Titel*","",1)

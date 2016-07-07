@@ -1,6 +1,6 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero
 General Public License *@
-@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int)
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int)(content:Html)
 
 @import services._ 
 @myValue=@{ZettelHelper.getData(myForm,fieldName)}
@@ -16,11 +16,7 @@ General Public License *@
 			</p>
 				<input size="50" class="input-widget @classString" value="@myValue"
 					name="@fieldName" tabindex="@tabOrderAsInt"/>
-										
-				<button type="button" class="inline-help" name="@fieldName"
-				 vertical-align:middle">
-					<span class="fa fa-question-circle"/>
-				</button>
+			@content
 		</div>
 	</div>
 	<div>

@@ -7,7 +7,11 @@
 		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,fieldName) ){
 		<div class="multi-field">
 				
-			 @ldInputField(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt)
+			 @ldInputField(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt){
+			  	<button type="button" class="inline-help" name="@fieldName">
+								<span class="fa fa-question-circle" />
+				</button>
+				}
 			 	<div class="buttonBox">
 			 	
 					<div class="btn-group">
@@ -28,5 +32,5 @@
 	</div>
 	<div class="help-text" name="@fieldName" style="display:none">
 				<button name="@fieldName" type="button" class="close-help" style="float:right"><span class="fa fa-times-circle"/></button>
-				</div>
+	</div>
 </div>
