@@ -121,10 +121,10 @@ Go to http://localhost:9000/tools/zettel
 
 	cd /tmp/zettel
 	/opt/activator-1.3.2-minimal/activator dist
-	cp target/universal/zettel-0.1.0-SNAPSHOT.zip  /tmp
+	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
-	unzip zettel-0.1.0-SNAPSHOT.zip
-	mv zettel-0.1.0-SNAPSHOT /opt/zettel
+	unzip zettel-1.0-SNAPSHOT.zip
+	mv zettel-1.0-SNAPSHOT /opt/zettel
 
 edit /opt/zettel/conf/application.conf
 
@@ -164,13 +164,13 @@ start
 	git clone https://github.com/hbz/zettel
 	cd /tmp/zettel
 	/opt/activator-1.3.2-minimal/activator dist
-	cp target/universal/zettel-0.1.0-SNAPSHOT.zip  /tmp
+	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
-	unzip zettel-0.1.0-SNAPSHOT.zip
-	cp /opt/zettel/conf/application.conf /tmp/zettel-0.1.0-SNAPSHOT/conf
+	unzip zettel-1.0-SNAPSHOT.zip
+	cp /opt/zettel/conf/application.conf /tmp/zettel-1.0-SNAPSHOT/conf
 	sudo service zettel stop
 	rm -rf /opt/zettel/*
-	mv /tmp/zettel-0.1.0-SNAPSHOT/* /opt/zettel/
+	mv /tmp/zettel-1.0-SNAPSHOT/* /opt/zettel/
 	sudo service zettel start
 
 #License
