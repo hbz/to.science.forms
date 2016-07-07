@@ -264,7 +264,7 @@ function enableHelpOpenButtons(){
 	});
 }
 function enableHelpCloseButtons(){
-	$('.help-text').on("click",function(){
+	$('button.close-help').on("click",function(){
 		var fieldName = $(this).attr('name');
 		var helpDiv=$('.help-text[name='+fieldName+']');
 		resetHelpText(helpDiv);
