@@ -245,7 +245,7 @@ function enableHelpOpenButtons(){
 					helpDiv.append('<div>'+text+'</div>');
 				}else{
 					var text = '<b>Noch kein Hilfetext verf&uuml;gbar! </b><br/> '+
-					'Bitte navigieren sie zur <a href="'+helpTextUrl+'"> Hilfeseite</a>'+
+					'Bitte navigieren sie zur <a href="'+helpTextUrl+'" target="blank"> Hilfeseite</a>'+
 					', dr&uuml;cken Sie auf &quot;Bearbeiten&quot; und tragen Sir dort Ihren Text ein.'+
 					' Damit der Text an dieser Stelle erscheint, rahmen Sie ihn bitte in folgendes'+
 					' HTML-Markup ein:<br/><pre> &lt;div id=&quot;'+fieldName+'&quot;&gt; Hier kommte der Text hin! &lt;/div&gt;</pre>';
