@@ -239,22 +239,27 @@ function enableHelpOpenButtons(){
 			success : function(data, textStatus, jqXHR) {
 				resetHelpText(helpDiv);
 				var all = $('<div/>').html(data).contents();
-				var text = $('#'+fieldName,$(all)).html();
-				if(typeof text != 'undefined' ){
-					$('h2',$(text)).css("font-size","lower");
-					helpDiv.append('<div>'+text+'</div>');
+				var text = $('#'+fieldName,$(all));
+				if(typeof text.html() != 'undefined' ){
+					var heading=$('h2',text);
+					$('h2',text).replaceWith($('<b>' + heading.html() + '</b></br>'));
+					helpDiv.append('<div>'+text.html()+'</div>');
 				}else{
 					var text = '<b>Noch kein Hilfetext verf&uuml;gbar! </b><br/> '+
 					'Bitte navigieren sie zur <a href="'+helpTextUrl+'" target="blank"> Hilfeseite</a>'+
-					', dr&uuml;cken Sie auf &quot;Bearbeiten&quot; und tragen Sir dort Ihren Text ein.'+
+					', dr&uuml;cken Sie auf &quot;Bearbeiten&quot; und tragen Sie dort Ihren Text ein.'+
 					' Damit der Text an dieser Stelle erscheint, rahmen Sie ihn bitte in folgendes'+
-					' HTML-Markup ein:<br/><pre> &lt;div id=&quot;'+fieldName+'&quot;&gt; Hier kommte der Text hin! &lt;/div&gt;</pre>';
+					' HTML-Markup ein:<br/><pre> &lt;div id=&quot;'+fieldName+'&quot;&gt; Hier kommt der Text hin! &lt;/div&gt;</pre>';
 					helpDiv.append('<div>'+text+'</div>');
 				}
 			},
 			error : function(data, textStatus, jqXHR) {
 				resetHelpText(helpDiv);
-				var text = 'Noch kein Hilfetext verf&uuml;gbar';
+				var text = '<b>Noch kein Hilfetext verf&uuml;gbar! </b><br/> '+
+				'Bitte navigieren sie zur <a href="'+helpTextUrl+'" target="blank"> Hilfeseite</a>'+
+				', dr&uuml;cken Sie auf &quot;Bearbeiten&quot; und tragen Sie dort Ihren Text ein.'+
+				' Damit der Text an dieser Stelle erscheint, rahmen Sie ihn bitte in folgendes'+
+				' HTML-Markup ein:<br/><pre> &lt;div id=&quot;'+fieldName+'&quot;&gt; Hier kommt der Text hin! &lt;/div&gt;</pre>';
 				helpDiv.append('<div>'+text+'</div>');
 			}
 		}).done(function (){
