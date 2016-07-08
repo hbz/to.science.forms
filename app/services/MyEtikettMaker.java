@@ -16,12 +16,14 @@
  */
 package services;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -32,6 +34,7 @@ import com.typesafe.config.ConfigFactory;
 import de.hbz.lobid.helper.Etikett;
 import de.hbz.lobid.helper.EtikettMaker;
 import de.hbz.lobid.helper.EtikettMakerInterface;
+import play.Play;
 import play.api.Environment;
 import play.libs.ws.WSAuthScheme;
 import play.libs.ws.WSResponse;
@@ -53,8 +56,6 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 	private static final String TYPE = "@type";
 	private static final String ID = "@id";
 	EtikettMaker maker;
-	@Inject
-	Environment environment;
 
 	/**
 	 * Creates a new EtikettMaker to provide labels from etikett webservice
@@ -69,11 +70,10 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 			URL u = new URL(url);
 			maker = new EtikettMaker(u.openStream());
 		} catch (Exception e) {
-			play.Logger.info(
-					"Reload labels from Url:'" + url + "' failed! Load local labels.json",
-					e);
-			maker =
-					new EtikettMaker(environment.resourceAsStream("labels.json").get());
+			play.Logger.info("Reload labels from Url:'" + url
+					+ "' failed! Load local labels.json");
+			maker = new EtikettMaker(
+					Play.application().resourceAsStream("conf/labels.json"));
 		}
 	}
 
