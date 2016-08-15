@@ -46,13 +46,13 @@
 				@multifield(myForm,"projectId","Projekt-ID","",14) 
 			}
 			@accordionPanel("Erfassung","recording-section"){
-				@singleSelect(myForm,"dataOrigin","Erfassungsart*","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),15)
+				@singleSelect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),15)
 				<br />
-				@textArea(myForm,"recordingPeriod","Erfassungszeitraum*","",16) 
+				@textArea(myForm,"recordingPeriod","Erfassungszeitraum","",16) 
 				<br />
-				@multifield(myForm,"recordingLocation","Erfassungsort*","",17) 
+				@multifield(myForm,"recordingLocation","Erfassungsort","",17) 
 				<br />
-				@multifield(myForm,"recordingLocationCoord","Geokoordinaten*","",18) 
+				@multifield(myForm,"recordingLocationCoord","Geokoordinaten","",18) 
 			}
 			@accordionPanel("Externe Referenzen","link-section"){
 				@inputField(myForm,"nextVersion","Nachfolger Version","",19)  

@@ -85,8 +85,6 @@ public class ResearchData extends ZettelModel {
 	@ValidUrl(message = "Bitte ordnen Sie ihre Eingabe einem Medium zu!")
 	private String medium;
 
-	@Required(message = "Bitte geben Sie Informationen zur Erzeugung der Daten!")
-	@ValidUrl(message = "Bitte geben Sie Informationen zur Erzeugung der Daten!")
 	private String dataOrigin;
 	private List<String> subject;
 	private List<String> doi;
