@@ -102,7 +102,6 @@ public class ResearchDataHelper {
 	public static LinkedHashMap<String, String> getMediumMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("Choose a value!", null);
-		map.put("http://purl.org/lobid/lv%23Miscellaneous", "Andere");
 		map.put("http://purl.org/ontology/bibo/AudioDocument", "Audio");
 		map.put("http://rdvocab.info/termList/RDACarrierType/1050", "Video");
 		map.put("http://purl.org/ontology/bibo/Image", "Bild");
@@ -110,6 +109,7 @@ public class ResearchDataHelper {
 				"Text");
 		map.put("http://pbcore.org/vocabularies/instantiationMediaType#software",
 				"Software");
+		map.put("http://purl.org/lobid/lv%23Miscellaneous", "Andere");
 		return map;
 	}
 
