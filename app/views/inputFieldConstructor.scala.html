@@ -2,13 +2,14 @@
 @(elements: helper.FieldElements)
 <div>
 	<label class="form-control-label" for="@elements.id">@elements.label</label>
+	<button type="button" class="inline-help" name="@elements.name"
+				 vertical-align:middle">
+					<span class="fa fa-question-circle"/>
+	</button>
 </div>
 <div>
 	@elements.input 
-<button type="button" class="inline-help" name="@elements.name"
-				 vertical-align:middle">
-					<span class="fa fa-question-circle"/>
-				</button>
+
 				</div>
 <div>
 	<span class="errors">@elements.errors.mkString(", ")</span>

@@ -7,6 +7,7 @@ General Public License *@
 <div class="first-child-of-multi-field">
 	<div >
 		<label class="form-control-label" for="@fieldName">@fieldLabel</label>
+		@content
 	</div>
 	<div class="@classString">
 		<div>
@@ -16,7 +17,6 @@ General Public License *@
 			</p>
 				<input size="50" class="input-widget @classString" value="@myValue"
 					name="@fieldName" tabindex="@tabOrderAsInt"/>
-			@content
 		</div>
 	</div>
 	<div>
