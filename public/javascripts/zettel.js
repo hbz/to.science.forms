@@ -95,6 +95,7 @@ function handleMessage(evt) {
 				var containerOfOldform = $('div.container');
 				containerOfOldform.html(newForm);
 				enableAllGndAutocompletion();
+				addGeonamesLookup();
 				addActionsToRemoveAndAddButtons();
 				window.addEventListener("message", handleMessage, false);
 				enableHelpOpenButtons();
@@ -123,14 +124,19 @@ function resetIds(curFieldName) {
 		console.log(curFieldName);
 		$(this).attr('name', curFieldName + "[" + num + "]");
 		$(this).attr('id', curFieldName + "_" + num);
+		$(this).removeClass("focus");
 		num++;
 	});
+	num--;
+	console.log("add class to "+"#"+ curFieldName + "_" + num);
+	$("#"+ curFieldName + "_" + num).addClass("focus");
 }
 
 function addActionsToRemoveAndAddButtons() {
 	$('.multi-field-wrapper').each(function() {
 		var $wrapper = $('.multi-fields', this);
 		var curFieldName = $('.multi-fields', this).attr('id');
+		$('.multi-fields input', this).addClass("focus");
 		$(".add-field", $(this)).click(function(e) {
 			destroyGndAutocompletion();
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
@@ -275,4 +281,68 @@ function enableHelpCloseButtons(){
 		resetHelpText(helpDiv);
 		emitResize();
 	});
+}
+
+function addGeonamesLookup(){	
+	$('#recordingLocation').after('<div id="geoSearchDiv"><input id="geoSearchQuery"></input><button type="button" id="geofind-button">find</button></div>');
+	$('.input-widget.geonames-lookup').css('display','none');
+	$('input.geonames-lookup').siblings(".input-field-heading").html(
+			"Noch kein Geoname vorhanden!");
+	var findButton=$('#geofind-button');
+	findButton.on("click",function(){
+		var geoSearchQuery=$('#geoSearchQuery').val();
+		var geoNamesUrl = "http://api.geonames.org/searchJSON?username=epublishinghbz&q="+geoSearchQuery;
+		$.ajax({
+			type : 'GET',
+			url : geoNamesUrl,
+			crossDomain : true,
+			success : function(data, textStatus, jqXHR) {
+				displayMap(data.geonames);
+			},
+			error : function(data, textStatus, jqXHR) {
+				console.log(data);
+			}
+		}).done(function (){
+			
+		});
+	}
+	);
+}
+
+function displayMap(geonamesArr){	
+	$("#mapid").remove();
+	$('#geoSearchDiv').append('<div id="mapid" style="height:180px"></div>');
+	var i = 0;
+	var mymap;
+	$.each(geonamesArr,function(key,value){
+		console.log(i+" "+value.geonameId);
+		console.log(value);
+		var lat = value.lat;
+		var lng = value.lng;
+		if(i==0){
+			console.log("Init Map");
+			mymap=initMap(lat,lng);
+		}
+		L.marker([lat, lng]).addTo(mymap).on('click',function(e){
+			console.log(e.latlng);
+			$('input.geonames-lookup.focus').val("http://www.geonames.org/"+value.geonameId);
+			$('input.geonames-lookup.focus').siblings(".input-field-heading").html(
+					"<b>" + value.name + "</b>(" + "http://www.geonames.org/"+value.geonameId+ ")");
+		});
+		if(i==10){
+			return false;
+		}
+		i++;
+	});
+	i=0;
+}
+
+function initMap(lat,lng){
+	L.map('mapid').remove();
+	var mymap = L.map('mapid').setView([lat, lng], 13);
+	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	    attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	    maxZoom: 18
+	}).addTo(mymap);
+	return mymap;
 }
