@@ -291,7 +291,7 @@ function addGeonamesLookup(){
 	var findButton=$('#geofind-button');
 	findButton.on("click",function(){
 		var geoSearchQuery=$('#geoSearchQuery').val();
-		var geoNamesUrl = "http://api.geonames.org/searchJSON?username=epublishinghbz&q="+geoSearchQuery;
+		var geoNamesUrl = "geoSearch?q="+geoSearchQuery;
 		$.ajax({
 			type : 'GET',
 			url : geoNamesUrl,
@@ -307,6 +307,7 @@ function addGeonamesLookup(){
 		});
 	}
 	);
+	emitResize();
 }
 
 function displayMap(geonamesArr){	
@@ -335,6 +336,7 @@ function displayMap(geonamesArr){
 		i++;
 	});
 	i=0;
+	emitResize();
 }
 
 function initMap(lat,lng){

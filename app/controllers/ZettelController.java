@@ -35,6 +35,7 @@ import services.XmlUtils;
 import services.ZettelRegister;
 import services.ZettelRegisterEntry;
 import views.html.*;
+import play.libs.ws.*;
 
 /**
  * @author Jan Schnasse
@@ -43,6 +44,9 @@ import views.html.*;
 public class ZettelController extends Controller {
 	@Inject
 	play.data.FormFactory formFactory;
+
+	@Inject
+	WSClient ws;
 
 	/**
 	 * @return the start page
@@ -192,6 +196,17 @@ public class ZettelController extends Controller {
 			String documentId, String topicId) {
 		Form<?> form = formFactory.form(zettel.getModel().getClass());
 		return ok(zettel.render(form, format, documentId, topicId));
+	}
+
+	public CompletionStage<Result> geoSearch(String q) {
+		CompletableFuture<Result> future = new CompletableFuture<>();
+		String geoNamesUrl = "http://api.geonames.org/searchJSON";
+		WSRequest request = ws.url(geoNamesUrl);
+		WSRequest complexRequest =
+				request.setRequestTimeout(1000).setQueryParameter("q", q)
+						.setQueryParameter("username", "epublishinghbz");
+		return complexRequest.setFollowRedirects(true).get()
+				.thenApply(response -> ok(response.asJson()));
 	}
 
 }
