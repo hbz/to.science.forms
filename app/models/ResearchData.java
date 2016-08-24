@@ -17,7 +17,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,30 +93,6 @@ public class ResearchData extends ZettelModel {
 	private List<String> previousVersion;
 
 	private List<String> nextVersion;
-
-	/**
-	 * Create an empty ResearchData model
-	 */
-	public ResearchData() {
-		this.title = new String();
-		this.creator = new ArrayList<>();
-		this.yearOfCopyright = new String();
-		this.license = new String();
-		this.abstractText = new String();
-		this.professionalGroup = new String();
-		this.embargo = new String();
-		this.ddc = new ArrayList<>();
-		this.language = new String();
-		this.medium = new String();
-		this.dataOrigin = new String();
-		this.subject = new ArrayList<>();
-		this.doi = new ArrayList<>();
-		this.funding = new ArrayList<>();
-		this.recordingLocation = new ArrayList<>();
-		this.recordingPeriod = new ArrayList<>();
-		this.previousVersion = new ArrayList<>();
-		this.nextVersion = new ArrayList<>();
-	}
 
 	public String getTitle() {
 		return title;
