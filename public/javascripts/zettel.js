@@ -97,6 +97,7 @@ function handleMessage(evt) {
 				containerOfOldform.html(newForm);
 				enableAllGndAutocompletion();
 				addGeonamesLookup();
+				addGeonamesReverseLookup();
 				addActionsToRemoveAndAddButtons();
 				window.addEventListener("message", handleMessage, false);
 				enableHelpOpenButtons();
@@ -142,8 +143,8 @@ function addActionsToRemoveAndAddButtons() {
 			destroyGndAutocompletion();
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
 			newField.appendTo($wrapper).find('.input-widget').val('').focus();
-			newField.appendTo($wrapper).find('.input-widget').css('display','block');
-
+			newField.appendTo($wrapper).find('.gnd-person-search.input-widget').css('display','block');
+			newField.appendTo($wrapper).find('.gnd-subject-search.input-widget').css('display','block');
 			newField.appendTo($wrapper).find('.help-text').css('display','none');
 			resetIds(curFieldName);
 			$(newField).find(".input-field-heading").html("");
@@ -350,6 +351,64 @@ function displayMap(geonamesArr){
 function initMap(lat,lng){
 	L.map('mapid').remove();
 	var mymap = L.map('mapid').setView([lat, lng], 13);
+	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	    attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	    maxZoom: 18
+	}).addTo(mymap);
+	return mymap;
+}
+
+function addGeonamesReverseLookup(){	
+	$('#recordingCoordinates').after('<div id="geoReverseSearchDiv"><input id="geoReverseSearchQuery"></input><button type="button" id="georevfind-button">Open Map</button></div>');
+	$('.input-widget.geonames-reverse-lookup').css('display','none');
+	$('input.geonames-reverse-lookup').siblings(".input-field-heading").html(
+			"Noch keine Erfassungskoordinaten vorhanden!");
+	var findButton=$('#georevfind-button');
+	$('#geoReverseSearchQuery').bind('keypress keydown keyup', function(e){
+	      if(e.keyCode == 13) { e.preventDefault(); findButton.click();}
+	});
+	findButton.on("click",function(){
+		var geoSearchQuery=$('#geoReverseSearchQuery').val();
+		var array = geoSearchQuery.split(',')
+         displayReverseMap(array[0],array[1]);	
+	}
+	);
+	emitResize();
+}
+
+function displayReverseMap(lat,lng){	
+	$("#revmapid").remove();
+	$('#geoReverseSearchDiv').append('<div id="revmapid" style="height:180px"></div>');
+
+	var mymap=initRevMap(lat,lng);
+	var marker = new L.marker([lat, lng], {draggable:'true'});
+	marker.addTo(mymap);
+	marker.on('click',function(e){
+			var position = marker.getLatLng();
+			var link ="http://www.openstreetmap.org/?mlat="+position.lat+"&mlon="+position.lng;
+			$('input.geonames-reverse-lookup.focus').val(link);
+			$('input.geonames-reverse-lookup.focus').siblings(".input-field-heading").html(
+					"<b>" + position.lat+","+position.lng+ "  </b><a href=\""+link+"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+		});
+	marker.on('dragend', function(event){
+            var marker = event.target;
+            var position = marker.getLatLng();
+            marker.setLatLng(position,{draggable:'true'}).bindPopup(position.lat+","+position.lng).update();
+            $('#geoReverseSearchQuery').val(position.lat+","+position.lng);
+		});
+	marker.on('mouseover',function(e){
+			this.openPopup();
+		});
+	marker.on('mouseout', function (e) {
+            this.closePopup();
+        });
+	//marker.bindPopup(lat+","+lng);
+	emitResize();
+}
+
+function initRevMap(lat,lng){
+	L.map('revmapid').remove();
+	var mymap = L.map('revmapid').setView([lat, lng], 13);
 	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 	    maxZoom: 18

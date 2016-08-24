@@ -88,6 +88,8 @@ public class ResearchData extends ZettelModel {
 
 	private List<String> recordingLocation;
 
+	private List<String> recordingCoordinates;
+
 	private List<String> recordingPeriod;
 
 	private List<String> previousVersion;
@@ -246,6 +248,14 @@ public class ResearchData extends ZettelModel {
 		this.nextVersion = nextVersion;
 	}
 
+	public List<String> getRecordingCoordinates() {
+		return recordingCoordinates;
+	}
+
+	public void setRecordingCoordinates(List<String> recordingCoordinates) {
+		this.recordingCoordinates = recordingCoordinates;
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(serializeToMap());
@@ -270,6 +280,7 @@ public class ResearchData extends ZettelModel {
 		dict.put(fundingZF.name, () -> getFunding());
 		dict.put(recordingPeriodZF.name, () -> getRecordingPeriod());
 		dict.put(recordingLocationZF.name, () -> getRecordingLocation());
+		dict.put(recordingCoordinatesZF.name, () -> getRecordingLocation());
 		dict.put(nextVersionZF.name, () -> getNextVersion());
 		dict.put(previousVersionZF.name, () -> getPreviousVersion());
 		return dict;
@@ -297,6 +308,8 @@ public class ResearchData extends ZettelModel {
 		dict.put(recordingPeriodZF.uri,
 				(in) -> setRecordingPeriod((List<String>) in));
 		dict.put(recordingLocationZF.uri,
+				(in) -> setRecordingLocation((List<String>) in));
+		dict.put(recordingCoordinatesZF.uri,
 				(in) -> setRecordingLocation((List<String>) in));
 		dict.put(nextVersionZF.uri, (in) -> setNextVersion((List<String>) in));
 		dict.put(previousVersionZF.uri,
