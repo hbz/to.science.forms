@@ -25,14 +25,11 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sun.glass.ui.Application;
 import com.typesafe.config.ConfigFactory;
 
-import play.Play;
 import play.data.validation.Constraints.Required;
 import static services.ZettelFields.*;
 
-import services.ValidDateRange;
 import services.ValidUrl;
 import services.ZettelHelper;
 import services.ZettelModel;

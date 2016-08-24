@@ -28,7 +28,6 @@ function enableAllGndAutocompletion() {
 		$(this).on('cancel.daterangepicker', function(ev, picker) {
 		      $(this).val('');
 		});
-
 	});
 }
 function enableGndPersonAutocompletion(inputElement) {
@@ -36,7 +35,8 @@ function enableGndPersonAutocompletion(inputElement) {
 		select : function(event, ui) {
 			this.value = ui.item.value;
 			$(this).siblings(".input-field-heading").html(
-					"<b>" + ui.item.label + "</b>(" + ui.item.value + ")");
+					"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+			$(this).css('display','none');
 			emitResize();
 			return false;
 		},
@@ -61,7 +61,8 @@ function enableGndSubjectAutocompletion(inputElement) {
 		select : function(event, ui) {
 			this.value = ui.item.value;
 			$(this).siblings(".input-field-heading").html(
-					"<b>" + ui.item.label + "</b>(" + ui.item.value + ")");
+					"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+			$(this).css('display','none');
 			emitResize();
 			return false;
 		},
@@ -141,6 +142,9 @@ function addActionsToRemoveAndAddButtons() {
 			destroyGndAutocompletion();
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
 			newField.appendTo($wrapper).find('.input-widget').val('').focus();
+			newField.appendTo($wrapper).find('.input-widget').css('display','block');
+
+			newField.appendTo($wrapper).find('.help-text').css('display','none');
 			resetIds(curFieldName);
 			$(newField).find(".input-field-heading").html("");
 			enableAllGndAutocompletion();
@@ -237,7 +241,7 @@ function enableHelpOpenButtons(){
 	var helpTextUrl=$(document).find('#helpTextUrl').attr('href');
 	$('.inline-help').on("click",function(){
 		var fieldName = $(this).attr('name');
-		var helpDiv=$('.help-text[name='+fieldName+']');
+		var helpDiv=$(this).siblings('.help-text[name='+fieldName+']');
 		$.ajax({
 			type : 'GET',
 			url : helpTextUrl,
@@ -287,8 +291,11 @@ function addGeonamesLookup(){
 	$('#recordingLocation').after('<div id="geoSearchDiv"><input id="geoSearchQuery"></input><button type="button" id="geofind-button">find</button></div>');
 	$('.input-widget.geonames-lookup').css('display','none');
 	$('input.geonames-lookup').siblings(".input-field-heading").html(
-			"Noch kein Geoname vorhanden!");
+			"Noch kein Erfassungsort vorhanden!");
 	var findButton=$('#geofind-button');
+	$('#geoSearchQuery').bind('keypress keydown keyup', function(e){
+	      if(e.keyCode == 13) { e.preventDefault(); findButton.click();}
+	});
 	findButton.on("click",function(){
 		var geoSearchQuery=$('#geoSearchQuery').val();
 		var geoNamesUrl = "geoSearch?q="+geoSearchQuery;
@@ -316,20 +323,21 @@ function displayMap(geonamesArr){
 	var i = 0;
 	var mymap;
 	$.each(geonamesArr,function(key,value){
-		console.log(i+" "+value.geonameId);
-		console.log(value);
 		var lat = value.lat;
 		var lng = value.lng;
 		if(i==0){
-			console.log("Init Map");
 			mymap=initMap(lat,lng);
 		}
 		L.marker([lat, lng]).addTo(mymap).on('click',function(e){
-			console.log(e.latlng);
 			$('input.geonames-lookup.focus').val("http://www.geonames.org/"+value.geonameId);
 			$('input.geonames-lookup.focus').siblings(".input-field-heading").html(
-					"<b>" + value.name + "</b>(" + "http://www.geonames.org/"+value.geonameId+ ")");
-		});
+					"<b>" + value.name + "  </b><a href=\"http://www.geonames.org/"+value.geonameId+"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+		}).on('mouseover',function(e){
+			this.openPopup();
+		}).on('mouseout', function (e) {
+            this.closePopup();
+        }).bindPopup(value.name);
+		
 		if(i==10){
 			return false;
 		}
