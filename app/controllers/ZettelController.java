@@ -162,6 +162,7 @@ public class ZettelController extends Controller {
 		Form<?> form = null;
 		if ("application/rdf+xml".equals(request().contentType().get())) {
 			form = loadRdf(XmlUtils.docToString(request().body().asXml()), zettel);
+			play.Logger.debug("" + form);
 			form.bindFromRequest();
 		} else {
 			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
@@ -198,8 +199,11 @@ public class ZettelController extends Controller {
 		return ok(zettel.render(form, format, documentId, topicId));
 	}
 
+	/**
+	 * @param q the query will be redirected to geonames
+	 * @return the response from api.geonames.org
+	 */
 	public CompletionStage<Result> geoSearch(String q) {
-		CompletableFuture<Result> future = new CompletableFuture<>();
 		String geoNamesUrl = "http://api.geonames.org/searchJSON";
 		WSRequest request = ws.url(geoNamesUrl);
 		WSRequest complexRequest =

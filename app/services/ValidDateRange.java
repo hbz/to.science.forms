@@ -6,6 +6,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 import javax.validation.*;
 
+@SuppressWarnings("javadoc")
 @Target({ FIELD })
 @Retention(RUNTIME)
 @Constraint(validatedBy = MyDateRangeValidator.class)

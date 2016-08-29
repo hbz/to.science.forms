@@ -291,8 +291,6 @@ function enableHelpCloseButtons(){
 function addGeonamesLookup(){	
 	$('#recordingLocation').after('<div id="geoSearchDiv"><input id="geoSearchQuery"></input><button type="button" id="geofind-button">find</button></div>');
 	$('.input-widget.geonames-lookup').css('display','none');
-	$('input.geonames-lookup').siblings(".input-field-heading").html(
-			"Noch kein Erfassungsort vorhanden!");
 	var findButton=$('#geofind-button');
 	$('#geoSearchQuery').bind('keypress keydown keyup', function(e){
 	      if(e.keyCode == 13) { e.preventDefault(); findButton.click();}
@@ -360,9 +358,7 @@ function initMap(lat,lng){
 
 function addGeonamesReverseLookup(){	
 	$('#recordingCoordinates').after('<div id="geoReverseSearchDiv"><input id="geoReverseSearchQuery"></input><button type="button" id="georevfind-button">Open Map</button></div>');
-	$('.input-widget.geonames-reverse-lookup').css('display','none');
-	$('input.geonames-reverse-lookup').siblings(".input-field-heading").html(
-			"Noch keine Erfassungskoordinaten vorhanden!");
+	//$('.input-widget.geonames-reverse-lookup').css('display','none');
 	var findButton=$('#georevfind-button');
 	$('#geoReverseSearchQuery').bind('keypress keydown keyup', function(e){
 	      if(e.keyCode == 13) { e.preventDefault(); findButton.click();}

@@ -131,14 +131,15 @@ public class ZettelHelper {
 				result = new JsonMessage(form.errorsAsJson(), 400);
 			} else {
 				String jsonldString = form.get().toString();
-
 				if (form.get() != null) {
 					if ("xml".equals(format)) {
 						String rdfString = RdfUtils.readRdfToString(
 								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
 								RDFFormat.JSONLD, RDFFormat.RDFXML, "");
+
 						result = new JsonMessage(rdfString, 200);
 					} else {
+
 						result = new JsonMessage(
 								((ResearchData) form.get()).serializeToMap(), 200);
 					}

@@ -16,16 +16,12 @@
  */
 package services;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.inject.Inject;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
@@ -34,8 +30,6 @@ import com.typesafe.config.ConfigFactory;
 import de.hbz.lobid.helper.Etikett;
 import de.hbz.lobid.helper.EtikettMaker;
 import de.hbz.lobid.helper.EtikettMakerInterface;
-import play.Play;
-import play.api.Environment;
 import play.libs.ws.WSAuthScheme;
 import play.libs.ws.WSResponse;
 
@@ -64,7 +58,6 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 
 		String url = null;
 		try {
-
 			url = etikettUrl + "/labels.json";
 			play.Logger.info("Reload labels from " + url);
 			URL u = new URL(url);
@@ -73,7 +66,7 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 			play.Logger.info("Reload labels from Url:'" + url
 					+ "' failed! Load local labels.json");
 			maker = new EtikettMaker(
-					Play.application().resourceAsStream("conf/labels.json"));
+					play.Play.application().resourceAsStream("conf/labels.json"));
 		}
 	}
 
@@ -219,10 +212,10 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 				return uri;
 			play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
 			@SuppressWarnings("deprecation")
-			WSResponse response =
-					play.libs.ws.WS.url(etikettUrl + "?url=" + uri + "&column=label")
-							.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
-							.setFollowRedirects(true).get().toCompletableFuture().get();
+			WSResponse response = play.libs.ws.WS.url(etikettUrl)
+					.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
+					.setQueryParameter("column", "label").setQueryParameter("url", uri)
+					.setFollowRedirects(true).get().toCompletableFuture().get();
 			try (InputStream input = response.getBodyAsStream()) {
 				String content =
 						CharStreams.toString(new InputStreamReader(input, Charsets.UTF_8));
@@ -230,6 +223,7 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 				return content;
 			}
 		} catch (Exception e) {
+			play.Logger.debug("", e);
 			return uri;
 		}
 	}

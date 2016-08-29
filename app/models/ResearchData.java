@@ -280,7 +280,7 @@ public class ResearchData extends ZettelModel {
 		dict.put(fundingZF.name, () -> getFunding());
 		dict.put(recordingPeriodZF.name, () -> getRecordingPeriod());
 		dict.put(recordingLocationZF.name, () -> getRecordingLocation());
-		dict.put(recordingCoordinatesZF.name, () -> getRecordingLocation());
+		dict.put(recordingCoordinatesZF.name, () -> getRecordingCoordinates());
 		dict.put(nextVersionZF.name, () -> getNextVersion());
 		dict.put(previousVersionZF.name, () -> getPreviousVersion());
 		return dict;
@@ -310,7 +310,7 @@ public class ResearchData extends ZettelModel {
 		dict.put(recordingLocationZF.uri,
 				(in) -> setRecordingLocation((List<String>) in));
 		dict.put(recordingCoordinatesZF.uri,
-				(in) -> setRecordingLocation((List<String>) in));
+				(in) -> setRecordingCoordinates((List<String>) in));
 		dict.put(nextVersionZF.uri, (in) -> setNextVersion((List<String>) in));
 		dict.put(previousVersionZF.uri,
 				(in) -> setPreviousVersion((List<String>) in));

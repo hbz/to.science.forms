@@ -34,6 +34,9 @@ public final class MyUrlValidator
 		extends play.data.validation.Constraints.Validator<Object>
 		implements ConstraintValidator<ValidUrl, Object> {
 
+	/**
+	 * Is used as a default message when communicating with the calling instance
+	 */
 	final static public String message = "error.UrlValidator";
 
 	static UrlValidator urlValidator =
@@ -82,6 +85,7 @@ public final class MyUrlValidator
 			return false;
 		if ((object instanceof String)) {
 			try {
+				@SuppressWarnings("unused")
 				String s = sanitizeUrl(object.toString());
 				return true;
 			} catch (Exception e) {
@@ -90,6 +94,7 @@ public final class MyUrlValidator
 		}
 		if ((object instanceof List<?>)) {
 			try {
+				@SuppressWarnings("unchecked")
 				List<String> list = (List<String>) object;
 				for (String s : list) {
 					if (!isValid(s))
@@ -106,11 +111,11 @@ public final class MyUrlValidator
 
 	@Override
 	public void initialize(ValidUrl constraintAnnotation) {
+		// No need to implement
 	}
 
 	@Override
 	public Tuple<String, Object[]> getErrorMessageKey() {
-
 		return null;
 	}
 }
