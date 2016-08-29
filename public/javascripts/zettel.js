@@ -358,14 +358,15 @@ function initMap(lat,lng){
 
 function addGeonamesReverseLookup(){	
 	$('#recordingCoordinates').after('<div id="geoReverseSearchDiv"><input id="geoReverseSearchQuery"></input><button type="button" id="georevfind-button">Open Map</button></div>');
-	//$('.input-widget.geonames-reverse-lookup').css('display','none');
+	$('.input-widget.geonames-reverse-lookup').css('display','none');
 	var findButton=$('#georevfind-button');
 	$('#geoReverseSearchQuery').bind('keypress keydown keyup', function(e){
 	      if(e.keyCode == 13) { e.preventDefault(); findButton.click();}
 	});
 	findButton.on("click",function(){
 		var geoSearchQuery=$('#geoReverseSearchQuery').val();
-		var array = geoSearchQuery.split(',')
+		
+		var array = geoSearchQuery.split(',');
          displayReverseMap(array[0],array[1]);	
 	}
 	);
@@ -373,9 +374,11 @@ function addGeonamesReverseLookup(){
 }
 
 function displayReverseMap(lat,lng){	
+	if (typeof(lat)==='undefined' || lat =="") lat = "50.94";
+	if (typeof(lng)==='undefined') lng = "6.95";
+	
 	$("#revmapid").remove();
 	$('#geoReverseSearchDiv').append('<div id="revmapid" style="height:180px"></div>');
-
 	var mymap=initRevMap(lat,lng);
 	var marker = new L.marker([lat, lng], {draggable:'true'});
 	marker.addTo(mymap);
