@@ -52,12 +52,13 @@ public class ResearchDataHelper {
 	public static LinkedHashMap<String, String> getProfessionalGroupMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("Choose a value!", null);
-		map.put("http://d-nb.info/gnd/4038243-6", "Medizin");
-		map.put("http://d-nb.info/gnd/4020775-4", "Gesundheitswesen");
-		map.put("http://d-nb.info/gnd/4152829-3", "Ernährungswissenschaften");
-		map.put("http://d-nb.info/gnd/4068473-8", "Agrarwissenschaften");
-		map.put("http://d-nb.info/gnd/4137364-9", "Umweltwissenschaften");
-		map.put("http://d-nb.info/gnd/4006851-1", "Biologie");
+		map.put("http://skos.um.es/unesco6/32", "Medizin");
+		map.put("http://skos.um.es/unesco6/531207", "Gesundheitswesen");
+		map.put("http://skos.um.es/unesco6/3206", "Ernährungswissenschaften");
+		map.put("http://skos.um.es/unesco6/31", "Agrarwissenschaften");
+		map.put("http://skos.um.es/unescothes/C01397", "Umweltwissenschaften");
+		map.put("http://skos.um.es/unescothes/COL270", "Biologie");
+		map.put("http://skos.um.es/unescothes/C02053", "Interdisziplinär");
 		return map;
 	}
 
