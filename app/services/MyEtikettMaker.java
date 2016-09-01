@@ -30,7 +30,9 @@ import com.typesafe.config.ConfigFactory;
 import de.hbz.lobid.helper.Etikett;
 import de.hbz.lobid.helper.EtikettMaker;
 import de.hbz.lobid.helper.EtikettMakerInterface;
+import play.libs.ws.WS;
 import play.libs.ws.WSAuthScheme;
+import play.libs.ws.WSClient;
 import play.libs.ws.WSResponse;
 
 /**
@@ -212,7 +214,8 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 				return uri;
 			play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
 			@SuppressWarnings("deprecation")
-			WSResponse response = play.libs.ws.WS.url(etikettUrl)
+			WSClient client = WS.newClient(80);
+			WSResponse response = client.url(etikettUrl)
 					.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
 					.setQueryParameter("column", "label").setQueryParameter("url", uri)
 					.setFollowRedirects(true).get().toCompletableFuture().get();
@@ -223,6 +226,7 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 				return content;
 			}
 		} catch (Exception e) {
+			play.Logger.warn("Not able to get label for " + uri);
 			play.Logger.debug("", e);
 			return uri;
 		}
