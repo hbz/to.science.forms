@@ -36,13 +36,40 @@ public class ResearchDataHelper {
 	public static LinkedHashMap<String, String> getDeweyMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("Choose a value!", null);
+
+		map.put("http://dewey.info/class/020/",
+				"020 Bibliotheks- und Informationswissenschaft");
+		map.put("http://dewey.info/class/150/", "150 Psychologie");
+		map.put("http://dewey.info/class/300/",
+				"300 Sozialwissenschaften,Soziologie, Athropologie");
+		map.put("http://dewey.info/class/320/", "320 Politik");
+		map.put("http://dewey.info/class/330/", "330 Wirtschaft");
 		map.put("http://dewey.info/class/333/7/",
 				"333.7 Natürliche Ressourcen,Energie & Umwelt");
+		map.put("http://dewey.info/class/340/", "340 Recht");
+		map.put("http://dewey.info/class/360/",
+				"360 Soziale Probleme, Sozialdienste, Versicherungen");
+		map.put("http://dewey.info/class/500/", "500 Naturwissenschaften");
+		map.put("http://dewey.info/class/530/", "530 Physik");
+		map.put("http://dewey.info/class/540/", "540 Chemie");
+		map.put("http://dewey.info/class/550/", "550 Geowissenschaften");
+		map.put("http://dewey.info/class/560/", "560 Fossilien/Paläontologie");
 		map.put("http://dewey.info/class/570/", "570 Biowissenschaften, Biologie");
+		map.put("http://dewey.info/class/580/", "580 Pflanzen (Botanik)");
+		map.put("http://dewey.info/class/590/", "590 Tiere (Zoologie)");
+		map.put("http://dewey.info/class/600/", "600 Technik");
 		map.put("http://dewey.info/class/610/", "610 Medizin & Gesundheit");
-		map.put("http://dewey.info/class/630/", "630 Landwirtschaft");
-		map.put("http://dewey.info/class/640/", "640 Hauswirtschaft & Familie");
+		map.put("http://dewey.info/class/624/",
+				"624 Ingenieurbau und Umwelttechnik");
+		map.put("http://dewey.info/class/630/",
+				"630 Landwirtschaft, Veterinärmedizin");
+		map.put("http://dewey.info/class/640/", "640 Hauswirtschaft/Familie");
+		map.put("http://dewey.info/class/650/", "650 Management");
 		map.put("http://dewey.info/class/660/", "660 Chemische Verfahrenstechnik");
+		map.put("http://dewey.info/class/710/", "710 Landschaftsgestaltung");
+		map.put("http://dewey.info/class/720/", "720 Architektur");
+		map.put("http://dewey.info/class/940/", "940 Geschichte Europas");
+		map.put("http://dewey.info/class/943/", "943 Geschichte Deutschlands");
 		return map;
 	}
 
