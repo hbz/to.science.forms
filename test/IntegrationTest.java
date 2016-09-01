@@ -19,6 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 import org.junit.*;
 import org.openrdf.rio.RDFFormat;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.html.HtmlEscapers;
@@ -56,8 +57,6 @@ import static org.junit.Assert.*;
 
 @SuppressWarnings("javadoc")
 public class IntegrationTest {
-	@Inject
-	play.data.FormFactory formFactory;
 
 	/**
 	 * add your integration test here in this example we just check if the welcome
@@ -162,15 +161,7 @@ public class IntegrationTest {
 						coords.add("http://www.openstreetmap.org/?mlat=50.9&mlon=6.9");
 						testData.setRecordingCoordinates(coords);
 
-						String eventData =
-								new JsonMessage(testData.serializeToMap(), 200).toString();
-						play.Logger.debug(eventData);
-
-						Map<String, Object> eventDataAsMap =
-								new ObjectMapper().readValue(eventData, HashMap.class);
-
-						String jsonldString = new ObjectMapper()
-								.writeValueAsString(eventDataAsMap.get("message"));
+						String jsonldString = toString(testData);
 
 						play.Logger.debug(jsonldString);
 						String rdfString = RdfUtils.readRdfToString(
@@ -181,22 +172,12 @@ public class IntegrationTest {
 						play.Logger.debug("Send Request");
 						RequestBuilder request = new RequestBuilder().method("POST")
 								.header("content-type", "application/rdf+xml")
-								.bodyText(rdfString).uri(
+								.header("accept", "application/json").bodyText(rdfString).uri(
 										controllers.routes.ZettelController.postForm("katalog:data",
 												"json", "test:foo", "test:foo.rdf").url());
 						play.mvc.Result result = route(request);
 
-						ZettelRegister zettelRegister = new ZettelRegister();
-						CompletableFuture<Result> future = new CompletableFuture<>();
-						ZettelRegisterEntry zettel = zettelRegister.get("katalog:data");
-						Form<?> form = null;
-
-						form = loadRdf(rdfString, zettel);
-						play.Logger.debug("" + form);
-						form.bindFromRequest();
-
-						play.Logger.debug("" + ZettelHelper
-								.getData((Form<ZettelModel>) form, "recordingLocation"));
+						play.Logger.debug(contentAsString(result));
 
 					} catch (Exception e) {
 						throw new RuntimeException(e);
@@ -204,14 +185,9 @@ public class IntegrationTest {
 				});
 	}
 
-	private Form<?> loadRdf(String asText, ZettelRegisterEntry zettel) {
-		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
-			Form<ResearchData> form =
-					formFactory.form(ResearchData.class).fill((ResearchData) zettel
-							.getModel().deserializeFromRdf(in, RDFFormat.RDFXML));
-			return form;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	private String toString(ResearchData testData)
+			throws JsonProcessingException {
+		return new ObjectMapper().writeValueAsString(testData.serializeToMap());
 	}
+
 }
