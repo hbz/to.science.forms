@@ -82,7 +82,7 @@ public final class MyUrlValidator
 		play.Logger.debug("Validate " + object + "");
 
 		if (object == null)
-			return false;
+			return true;
 		if ((object instanceof String)) {
 			try {
 				@SuppressWarnings("unused")
@@ -96,6 +96,8 @@ public final class MyUrlValidator
 			try {
 				@SuppressWarnings("unchecked")
 				List<String> list = (List<String>) object;
+				if (list.isEmpty())
+					return true;
 				for (String s : list) {
 					if (!isValid(s))
 						return false;

@@ -227,7 +227,7 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 			}
 		} catch (Exception e) {
 			play.Logger.warn("Not able to get label for " + uri);
-			play.Logger.debug("", e);
+			play.Logger.debug("", e.getMessage());
 			return uri;
 		}
 	}

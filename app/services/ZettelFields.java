@@ -53,6 +53,10 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#ddc");
 	public static Etikett doiZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/ontology/bibo/doi");
+	public static Etikett urnZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/lobid/lv#urn");
+	public static Etikett isLikeZF = ZettelHelper.etikett
+			.getEtikett("http://www.umbel.org/specifications/vocabulary#isLike");
 	public static Etikett fundingZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#funding");
 	public static Etikett recordingPeriodZF = ZettelHelper.etikett

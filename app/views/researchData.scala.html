@@ -58,8 +58,14 @@
 				@inputField(myForm,"nextVersion","Nachfolger Version","",19)  
 				<br />
 				@inputField(myForm,"previousVersion","Vorgänger Version","",20) 
+			}
+			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
 				<br />
-				@multifield(myForm,"doi","Vorhandene persistente Identifikatoren","",21) 
+				@multifield(myForm,"urn","Vorhandene URN","",21) 
+				<br />
+				@multifield(myForm,"doi","Vorhandene DOI","",21) 
+				<br />
+				@multifield(myForm,"isLike","Persistente URL","",21)  
 			}
 		}
 		<div class="form-group row">

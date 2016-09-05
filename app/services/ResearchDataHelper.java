@@ -79,12 +79,14 @@ public class ResearchDataHelper {
 	public static LinkedHashMap<String, String> getProfessionalGroupMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("Choose a value!", null);
-		map.put("http://skos.um.es/unesco6/32", "Medizin");
-		map.put("http://skos.um.es/unesco6/531207", "Gesundheitswesen");
-		map.put("http://skos.um.es/unesco6/3206", "Ernährungswissenschaften");
-		map.put("http://skos.um.es/unesco6/31", "Agrarwissenschaften");
+		map.put("http://skos.um.es/unescothes/C02464", "Medizin");
+		map.put("http://skos.um.es/unescothes/C01771", "Gesundheitswesen");
+		map.put("http://skos.um.es/unescothes/C02780", "Ernährungswissenschaften");
+		map.put("http://skos.um.es/unescothes/C00106", "Agrarwissenschaften");
 		map.put("http://skos.um.es/unescothes/C01397", "Umweltwissenschaften");
 		map.put("http://skos.um.es/unescothes/COL270", "Biologie");
+		map.put("http://skos.um.es/unescothes/C02286",
+				"Bibliotheks- und Informationswissenschaften");
 		map.put("http://skos.um.es/unescothes/C02053", "Interdisziplinär");
 		return map;
 	}
@@ -178,7 +180,6 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getCopyrightYear() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Automatisch");
 		List<LocalDate> years =
 				Stream.iterate(LocalDate.now(), date -> date.minusYears(1)).limit(100)
 						.collect(Collectors.toList());

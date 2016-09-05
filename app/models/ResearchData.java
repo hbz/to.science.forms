@@ -17,6 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,11 +48,9 @@ public class ResearchData extends ZettelModel {
 
 	@Required(message = "Bitte vergeben Sie einen Titel!")
 	private String title;
-
-	@Required(message = "Bitte nennen Sie einen Autor oder Ersteller!")
 	@ValidUrl(message = "Bitte nennen Sie einen Autor oder Ersteller!")
 	private List<String> creator;
-
+	@ValidUrl(message = "Bitte nennen Sie einen Autor oder Ersteller!")
 	private List<String> contributor;
 
 	@Required(message = "Bitte geben Sie das Jahr zum Copyright an.")
@@ -84,13 +83,15 @@ public class ResearchData extends ZettelModel {
 	private String dataOrigin;
 	private List<String> subject;
 	private List<String> doi;
+	private List<String> urn;
+	private List<String> isLike;
 	private List<String> funding;
 
 	private List<String> recordingLocation;
 
 	private List<String> recordingCoordinates;
 
-	private List<String> recordingPeriod;
+	private String recordingPeriod;
 
 	private List<String> previousVersion;
 
@@ -224,11 +225,11 @@ public class ResearchData extends ZettelModel {
 		this.recordingLocation = recordingLocation;
 	}
 
-	public List<String> getRecordingPeriod() {
+	public String getRecordingPeriod() {
 		return recordingPeriod;
 	}
 
-	public void setRecordingPeriod(List<String> recordingPeriod) {
+	public void setRecordingPeriod(String recordingPeriod) {
 		this.recordingPeriod = recordingPeriod;
 	}
 
@@ -254,6 +255,22 @@ public class ResearchData extends ZettelModel {
 
 	public void setRecordingCoordinates(List<String> recordingCoordinates) {
 		this.recordingCoordinates = recordingCoordinates;
+	}
+
+	public List<String> getUrn() {
+		return urn;
+	}
+
+	public void setUrn(List<String> urn) {
+		this.urn = urn;
+	}
+
+	public List<String> getIsLike() {
+		return isLike;
+	}
+
+	public void setIsLike(List<String> isLike) {
+		this.isLike = isLike;
 	}
 
 	@Override
@@ -283,6 +300,9 @@ public class ResearchData extends ZettelModel {
 		dict.put(recordingCoordinatesZF.name, () -> getRecordingCoordinates());
 		dict.put(nextVersionZF.name, () -> getNextVersion());
 		dict.put(previousVersionZF.name, () -> getPreviousVersion());
+		dict.put(doiZF.name, () -> getDoi());
+		dict.put(urnZF.name, () -> getUrn());
+		dict.put(isLikeZF.name, () -> getIsLike());
 		return dict;
 	}
 
@@ -305,8 +325,7 @@ public class ResearchData extends ZettelModel {
 		dict.put(yearOfCopyrightZF.uri, (in) -> setYearOfCopyright((String) in));
 		dict.put(ddcZF.uri, (in) -> setDdc((List<String>) in));
 		dict.put(fundingZF.uri, (in) -> setFunding((List<String>) in));
-		dict.put(recordingPeriodZF.uri,
-				(in) -> setRecordingPeriod((List<String>) in));
+		dict.put(recordingPeriodZF.uri, (in) -> setRecordingPeriod((String) in));
 		dict.put(recordingLocationZF.uri,
 				(in) -> setRecordingLocation((List<String>) in));
 		dict.put(recordingCoordinatesZF.uri,
@@ -314,6 +333,9 @@ public class ResearchData extends ZettelModel {
 		dict.put(nextVersionZF.uri, (in) -> setNextVersion((List<String>) in));
 		dict.put(previousVersionZF.uri,
 				(in) -> setPreviousVersion((List<String>) in));
+		dict.put(doiZF.uri, (in) -> setDoi((List<String>) in));
+		dict.put(urnZF.uri, (in) -> setUrn((List<String>) in));
+		dict.put(isLikeZF.uri, (in) -> setIsLike((List<String>) in));
 		return dict;
 	}
 
@@ -332,5 +354,29 @@ public class ResearchData extends ZettelModel {
 	public static String getHelpTextUrl() {
 		String url = ConfigFactory.load().getString("zettel.researchData.helpText");
 		return url;
+	}
+
+	public String validate() {
+		if (containsOnlyNullValues(creator)) {
+			creator = new ArrayList<>();
+		}
+		if (containsOnlyNullValues(contributor)) {
+			contributor = new ArrayList<>();
+		}
+		if (creator.isEmpty() && contributor.isEmpty()) {
+			return "Bitte geben Sie einen Autor oder Beteiligten an!";
+		}
+		return null;
+	}
+
+	private boolean containsOnlyNullValues(List<String> list) {
+		if (list == null || list.isEmpty())
+			return true;
+		for (String i : list) {
+			if (i != null && !i.isEmpty()) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
