@@ -97,6 +97,10 @@ public class ResearchData extends ZettelModel {
 
 	private List<String> nextVersion;
 
+	private List<String> contributorOrder;
+
+	private List<String> subjectOrder;
+
 	public String getTitle() {
 		return title;
 	}
@@ -303,6 +307,8 @@ public class ResearchData extends ZettelModel {
 		dict.put(doiZF.name, () -> getDoi());
 		dict.put(urnZF.name, () -> getUrn());
 		dict.put(isLikeZF.name, () -> getIsLike());
+		dict.put(contributorOrderZF.name, () -> getContributorOrder());
+		dict.put(subjectOrderZF.name, () -> getSubjectOrder());
 		return dict;
 	}
 
@@ -336,7 +342,18 @@ public class ResearchData extends ZettelModel {
 		dict.put(doiZF.uri, (in) -> setDoi((List<String>) in));
 		dict.put(urnZF.uri, (in) -> setUrn((List<String>) in));
 		dict.put(isLikeZF.uri, (in) -> setIsLike((List<String>) in));
+		dict.put(contributorOrderZF.uri,
+				(in) -> setContributorOrder((List<String>) in));
+		dict.put(subjectOrderZF.uri, (in) -> setSubjectOrder((List<String>) in));
 		return dict;
+	}
+
+	private void setSubjectOrder(List<String> in) {
+		subjectOrder = in;
+	}
+
+	private void setContributorOrder(List<String> in) {
+		contributorOrder = in;
 	}
 
 	@Override
@@ -369,7 +386,7 @@ public class ResearchData extends ZettelModel {
 		return null;
 	}
 
-	private boolean containsOnlyNullValues(List<String> list) {
+	private static boolean containsOnlyNullValues(List<String> list) {
 		if (list == null || list.isEmpty())
 			return true;
 		for (String i : list) {
@@ -379,4 +396,40 @@ public class ResearchData extends ZettelModel {
 		}
 		return true;
 	}
+
+	public List<String> getContributorOrder() {
+		contributorOrder = new ArrayList<>();
+		StringBuffer buf = new StringBuffer();
+		if (creator != null) {
+			for (String str : creator) {
+				buf.append(str + "|");
+			}
+		}
+		if (contributor != null) {
+			for (String str : contributor) {
+				buf.append(str + "|");
+			}
+		}
+		if (buf.length() > 0) {
+			buf.deleteCharAt(buf.length() - 1);
+			contributorOrder.add(buf.toString());
+		}
+		return contributorOrder;
+	}
+
+	public List<String> getSubjectOrder() {
+		subjectOrder = new ArrayList<>();
+		StringBuffer buf = new StringBuffer();
+		if (subject != null) {
+			for (String str : subject) {
+				buf.append(str + "|");
+			}
+		}
+		if (buf.length() > 0) {
+			buf.deleteCharAt(buf.length() - 1);
+			subjectOrder.add(buf.toString());
+		}
+		return subjectOrder;
+	}
+
 }
