@@ -317,8 +317,8 @@ public class ResearchData extends ZettelModel {
 	protected Map<String, Consumer<Object>> getMappingForDeserialization() {
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
-		dict.put(creatorZF.uri, (in) -> setCreator((List<String>) in));
-		dict.put(contributorZF.uri, (in) -> setContributor((List<String>) in));
+		dict.put(creatorZF.uri, (in) -> setCreator((String) in));
+		dict.put(contributorZF.uri, (in) -> setContributor((String) in));
 		dict.put(abstractTextZF.uri, (in) -> setAbstractText((String) in));
 		dict.put(dataOriginZF.uri, (in) -> setDataOrigin((String) in));
 		dict.put(embargoZF.uri, (in) -> setEmbargo((String) in));
@@ -327,25 +327,107 @@ public class ResearchData extends ZettelModel {
 		dict.put(mediumZF.uri, (in) -> setMedium((String) in));
 		dict.put(professionalGroupZF.uri,
 				(in) -> setProfessionalGroup((String) in));
-		dict.put(subjectZF.uri, (in) -> setSubject((List<String>) in));
+		dict.put(subjectZF.uri, (in) -> setSubject((String) in));
 		dict.put(yearOfCopyrightZF.uri, (in) -> setYearOfCopyright((String) in));
-		dict.put(ddcZF.uri, (in) -> setDdc((List<String>) in));
-		dict.put(fundingZF.uri, (in) -> setFunding((List<String>) in));
+		dict.put(ddcZF.uri, (in) -> setDdc((String) in));
+		dict.put(fundingZF.uri, (in) -> setFunding((String) in));
 		dict.put(recordingPeriodZF.uri, (in) -> setRecordingPeriod((String) in));
 		dict.put(recordingLocationZF.uri,
-				(in) -> setRecordingLocation((List<String>) in));
+				(in) -> setRecordingLocation((String) in));
 		dict.put(recordingCoordinatesZF.uri,
-				(in) -> setRecordingCoordinates((List<String>) in));
-		dict.put(nextVersionZF.uri, (in) -> setNextVersion((List<String>) in));
-		dict.put(previousVersionZF.uri,
-				(in) -> setPreviousVersion((List<String>) in));
-		dict.put(doiZF.uri, (in) -> setDoi((List<String>) in));
-		dict.put(urnZF.uri, (in) -> setUrn((List<String>) in));
-		dict.put(isLikeZF.uri, (in) -> setIsLike((List<String>) in));
-		dict.put(contributorOrderZF.uri,
-				(in) -> setContributorOrder((List<String>) in));
-		dict.put(subjectOrderZF.uri, (in) -> setSubjectOrder((List<String>) in));
+				(in) -> setRecordingCoordinates((String) in));
+		dict.put(nextVersionZF.uri, (in) -> setNextVersion((String) in));
+		dict.put(previousVersionZF.uri, (in) -> setPreviousVersion((String) in));
+		dict.put(doiZF.uri, (in) -> setDoi((String) in));
+		dict.put(urnZF.uri, (in) -> setUrn((String) in));
+		dict.put(isLikeZF.uri, (in) -> setIsLike((String) in));
+		dict.put(contributorOrderZF.uri, (in) -> setContributorOrder((String) in));
+		dict.put(subjectOrderZF.uri, (in) -> setSubjectOrder((String) in));
 		return dict;
+	}
+
+	private void setSubjectOrder(String in) {
+		if (subjectOrder == null || subjectOrder.isEmpty())
+			subjectOrder = new ArrayList<>();
+		subjectOrder.add(in);
+	}
+
+	private void setContributorOrder(String in) {
+		if (contributorOrder == null || contributorOrder.isEmpty())
+			contributorOrder = new ArrayList<>();
+		contributorOrder.add(in);
+	}
+
+	private void setIsLike(String in) {
+		if (isLike == null || isLike.isEmpty())
+			isLike = new ArrayList<>();
+		isLike.add(in);
+	}
+
+	private void setUrn(String in) {
+		if (urn == null || urn.isEmpty())
+			urn = new ArrayList<>();
+		urn.add(in);
+	}
+
+	private void setDoi(String in) {
+		if (doi == null || doi.isEmpty())
+			doi = new ArrayList<>();
+		doi.add(in);
+	}
+
+	private void setPreviousVersion(String in) {
+		if (previousVersion == null || previousVersion.isEmpty())
+			previousVersion = new ArrayList<>();
+		previousVersion.add(in);
+	}
+
+	private void setNextVersion(String in) {
+		if (nextVersion == null || nextVersion.isEmpty())
+			nextVersion = new ArrayList<>();
+		nextVersion.add(in);
+	}
+
+	private void setRecordingCoordinates(String in) {
+		if (recordingCoordinates == null || recordingCoordinates.isEmpty())
+			recordingCoordinates = new ArrayList<>();
+		recordingCoordinates.add(in);
+	}
+
+	private void setRecordingLocation(String in) {
+		if (recordingLocation == null || recordingLocation.isEmpty())
+			recordingLocation = new ArrayList<>();
+		recordingLocation.add(in);
+	}
+
+	private void setFunding(String in) {
+		if (funding == null || funding.isEmpty())
+			funding = new ArrayList<>();
+		funding.add(in);
+	}
+
+	private void setDdc(String in) {
+		if (ddc == null || ddc.isEmpty())
+			ddc = new ArrayList<>();
+		ddc.add(in);
+	}
+
+	private void setSubject(String in) {
+		if (subject == null || subject.isEmpty())
+			subject = new ArrayList<>();
+		subject.add(in);
+	}
+
+	private void setContributor(String in) {
+		if (contributor == null || contributor.isEmpty())
+			contributor = new ArrayList<>();
+		contributor.add(in);
+	}
+
+	private void setCreator(String in) {
+		if (creator == null || creator.isEmpty())
+			creator = new ArrayList<>();
+		creator.add(in);
 	}
 
 	private void setSubjectOrder(List<String> in) {

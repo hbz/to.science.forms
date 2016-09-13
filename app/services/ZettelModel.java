@@ -177,11 +177,16 @@ public abstract class ZettelModel {
 	private static void initListField(Graph graph, Value rdf_O,
 			Consumer<Object> consumer) {
 		if (rdf_O instanceof BNode) {
-			List<String> list = RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(),
-					RdfUtils.first, new ArrayList<>());
-			consumer.accept(list);
+			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), RdfUtils.first,
+					consumer);
 		} else {
-			consumer.accept(rdf_O.stringValue());
+			try {
+				consumer.accept(rdf_O.stringValue());
+			} catch (ClassCastException e) {
+				List<String> list = new ArrayList<>();
+				list.add(rdf_O.stringValue());
+				consumer.accept(list);
+			}
 		}
 	}
 

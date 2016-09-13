@@ -22,6 +22,7 @@ import java.io.StringWriter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import org.openrdf.model.Graph;
 import org.openrdf.model.Statement;
@@ -110,20 +111,19 @@ public class RdfUtils {
 	 * @param orderedList result will be written to orderedList
 	 * @return the ordered list
 	 */
-	public static List<String> traverseList(Graph g, String uri, String property,
-			List<String> orderedList) {
+	public static void traverseList(Graph g, String uri, String property,
+			Consumer<Object> consumer) {
 		for (Statement s : find(g, uri)) {
 			if (uri.equals(s.getSubject().stringValue())
 					&& property.equals(s.getPredicate().stringValue())) {
 				if (property.equals(first)) {
-					orderedList.add(s.getObject().stringValue());
-					traverseList(g, s.getSubject().stringValue(), rest, orderedList);
+					consumer.accept(s.getObject().stringValue());
+					traverseList(g, s.getSubject().stringValue(), rest, consumer);
 				} else if (property.equals(rest)) {
-					traverseList(g, s.getObject().stringValue(), first, orderedList);
+					traverseList(g, s.getObject().stringValue(), first, consumer);
 				}
 			}
 		}
-		return orderedList;
 	}
 
 	/**
