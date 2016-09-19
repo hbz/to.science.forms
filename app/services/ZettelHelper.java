@@ -18,7 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package services;
 
 import java.io.ByteArrayInputStream;
-
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,8 @@ import org.openrdf.rio.RDFFormat;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Charsets;
+import com.google.common.io.CharStreams;
 
 import models.JsonMessage;
 import models.ResearchData;
@@ -126,30 +129,36 @@ public class ZettelHelper {
 	 */
 	public static JsonMessage getEmbeddedJson(Form<?> form, String format) {
 		JsonMessage result = null;
+		play.Logger.debug("Write " + format);
 		try {
 			if (form.hasErrors()) {
 				result = new JsonMessage(form.errorsAsJson(), 400);
 			} else {
 				String jsonldString = form.get().toString();
+				// play.Logger.debug(form.get() + "");
+				// play.Logger.debug("JSON from FORM " + jsonldString);
 				if (form.get() != null) {
 					if ("xml".equals(format)) {
 						String rdfString = RdfUtils.readRdfToString(
 								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
 								RDFFormat.JSONLD, RDFFormat.RDFXML, "");
-
+						result = new JsonMessage(rdfString, 200);
+					} else if ("ntriples".equals(format)) {
+						String rdfString = RdfUtils.readRdfToString(
+								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
+								RDFFormat.JSONLD, RDFFormat.NTRIPLES, "");
 						result = new JsonMessage(rdfString, 200);
 					} else {
-
 						result = new JsonMessage(
 								((ResearchData) form.get()).serializeToMap(), 200);
 					}
-
 				}
 			}
 		} catch (Exception e) {
 			play.Logger.debug("", e);
 		}
 		return result;
+
 	}
 
 	/**

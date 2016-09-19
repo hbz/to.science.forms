@@ -155,6 +155,14 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 		}
 		Map<String, Object> contextObject = new HashMap<>();
 		addAliases(cmap);
+		// Workaround to support old lobid api.
+		Map<String, Object> crdef = (Map<String, Object>) cmap.get("creator");
+		Map<String, Object> codef = (Map<String, Object>) cmap.get("contributor");
+		codef.put("@container", "@set");
+		crdef.put("@container", "@set");
+		cmap.put("creator", crdef);
+		cmap.put("contributor", codef);
+		// Workaround end
 		contextObject.put("@context", cmap);
 		return contextObject;
 	}
@@ -212,7 +220,7 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 		try {
 			if (uri == null || uri.isEmpty())
 				return uri;
-			play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
+			// play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
 			@SuppressWarnings("deprecation")
 			WSClient client = WS.newClient(80);
 			WSResponse response = client.url(etikettUrl)
@@ -222,12 +230,12 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 			try (InputStream input = response.getBodyAsStream()) {
 				String content =
 						CharStreams.toString(new InputStreamReader(input, Charsets.UTF_8));
-				play.Logger.debug(content);
+				// play.Logger.debug(content);
 				return content;
 			}
 		} catch (Exception e) {
 			play.Logger.warn("Not able to get label for " + uri);
-			play.Logger.debug("", e.getMessage());
+			// play.Logger.debug("", e.getMessage());
 			return uri;
 		}
 	}

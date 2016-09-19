@@ -487,6 +487,10 @@ public class ResearchData extends ZettelModel {
 				buf.append(str + "|");
 			}
 		}
+		if (buf.length() == 1) {
+			buf.deleteCharAt(buf.length() - 1);
+			contributorOrder.add(buf.toString());
+		}
 		if (contributor != null) {
 			for (String str : contributor) {
 				buf.append(str + "|");

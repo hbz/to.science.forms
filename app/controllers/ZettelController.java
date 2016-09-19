@@ -76,7 +76,7 @@ public class ZettelController extends Controller {
 	/**
 	 * @param id if null list all available forms otherwise render the requested
 	 *          form.
-	 * @param format ask for certain format. supports xml and json
+	 * @param format ask for certain format. supports xml,ntriples and json
 	 * @param documentId your personal id for the document you want to create form
 	 *          data for
 	 * @param topicId the topic id is used by our regal-drupal to find the actual
@@ -102,7 +102,7 @@ public class ZettelController extends Controller {
 
 	/**
 	 * @param id the id of the form the POST data is send to.
-	 * @param format ask for certain format. supports xml and json
+	 * @param format ask for certain format. supports xml,ntriples and json
 	 * @param documentId your personal id for the document you want to create form
 	 *          data for
 	 * @param topicId the topic id is used by our regal-drupal to find the actual
@@ -125,7 +125,7 @@ public class ZettelController extends Controller {
 	}
 
 	/**
-	 * @param format ask for certain format. supports xml and json
+	 * @param format ask for certain format. supports xml,ntriples and json
 	 * @param documentId your personal id for the document you want to create form
 	 *          data for
 	 * @param topicId the topic id is used by our regal-drupal to find the actual
@@ -162,7 +162,6 @@ public class ZettelController extends Controller {
 		Form<?> form = null;
 		if ("application/rdf+xml".equals(request().contentType().get())) {
 			form = loadRdf(XmlUtils.docToString(request().body().asXml()), zettel);
-			play.Logger.debug("" + form);
 			form.bindFromRequest();
 		} else {
 			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
