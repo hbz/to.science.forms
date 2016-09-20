@@ -14,58 +14,71 @@
 		@accordion(""){
 			@accordionPanel("Titel","title-section"){
 				@inputField(myForm,"title","Titel*","",1)
+				<br/>
+				@inputField(myForm,"alternativeTitle","Alternativer Titel","",2)
+				<br/>
+				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ResearchDataHelper.getLanguageMap(),3)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
-				@multifield(myForm,"creator","Autor*","gnd-person-search",2)
+				@multifield(myForm,"creator","Autor*","gnd-person-search",4)
 			}
 			@accordionPanel("Dateiupload","upload-section"){
-				@singleSelect(myForm,"medium","Medium*","select-medium",ResearchDataHelper.getMediumMap(),3)
+				@singleSelect(myForm,"medium","Medium*","select-medium",ResearchDataHelper.getMediumMap(),5)
 				<br/>
-				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ResearchDataHelper.getCopyrightYear(),4)
+				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ResearchDataHelper.getCopyrightYear(),6)
 				<br />
-				@singleSelect(myForm,"license","Lizenz*","select-license",ResearchDataHelper.getLicenseMap(),5)
+				@singleSelect(myForm,"license","Lizenz*","select-license",ResearchDataHelper.getLicenseMap(),7)
 				<br />
-				@inputField(myForm,"embargo","Embargo","datepicker",6)
+				@inputField(myForm,"embargo","Embargo","datepicker",8)
 			}
 			@accordionPanel("Erschließung","cataloging-section"){
-				@textArea(myForm,"abstractText","Beschreibung*","",7)
+				@textArea(myForm,"description","Beschreibung*","",9)
 				<br />
-				@singleSelect(myForm,"language","Sprache*","select-language",ResearchDataHelper.getLanguageMap(),8)
+				@singleSelect(myForm,"language","Sprache*","select-language",ResearchDataHelper.getLanguageMap(),10)
 				<br /> 
-				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ResearchDataHelper.getProfessionalGroupMap(),9)
+				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ResearchDataHelper.getProfessionalGroupMap(),11)
 				<br />
-				@multiselect(myForm,"ddc","DDC*","select-ddc",ResearchDataHelper.getDeweyMap(),10)
+				@multiselect(myForm,"ddc","DDC*","select-ddc",ResearchDataHelper.getDeweyMap(),12)
 				<br />
-				@multifield(myForm,"subject","Schlagworte","gnd-subject-search",11)
+				@multifield(myForm,"subject","Schlagworte","gnd-subject-search",13)
 			}
 			@accordionPanel("Beteiligte","contributor-section"){
-				@multifield(myForm,"contributor","Beteiligte","gnd-person-search",12)
+				@multifield(myForm,"contributor","Beteiligte","gnd-person-search",14)
 				<br /> 
-				@multifield(myForm,"funding","Förderer","",13) 
+				@multifield(myForm,"funding","Förderer","",15) 
 				<br />
-				@multifield(myForm,"projectId","Projekt-ID","",14) 
+				@multifield(myForm,"projectId","Projekt-ID","",16) 
+				<br/>
+				@multifield(myForm,"fundingProgram","Förderprogramm","",17) 
 			}
 			@accordionPanel("Erfassung","recording-section"){
-				@singleSelect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),15)
+				@singleSelect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),18)
 				<br />
-				@textArea(myForm,"recordingPeriod","Erfassungszeitraum","",16) 
+				@textArea(myForm,"recordingPeriod","Erfassungszeitraum","",19) 
 				<br />
-				@multifield(myForm,"recordingLocation","Erfassungsort","geonames-lookup",17) 
+				@multifield(myForm,"recordingLocation","Erfassungsort","geonames-lookup",20) 
 				<br />
-				@multifield(myForm,"recordingCoordinates","Geokoordinaten","geonames-reverse-lookup",18) 
+				@multifield(myForm,"recordingCoordinates","Geokoordinaten","geonames-reverse-lookup",21) 
 			}
-			@accordionPanel("Externe Referenzen","link-section"){
-				@inputField(myForm,"nextVersion","Nachfolger Version","",19)  
+			@accordionPanel("Zugehörige Publikationen","link-section"){
+			    @multifield(myForm,"references","Quellen","",22) 
 				<br />
-				@inputField(myForm,"previousVersion","Vorgänger Version","",20) 
+				@multifield(myForm,"associatedPublications","Zugehörige Publikationen","",23) 
+				<br/>
+				@multifield(myForm,"associatedDatasets","Zugehörige Datasets","",24) 
+				<br/>
+				@inputField(myForm,"nextVersion","Nachfolger Version","",25)  
+				<br />
+				@inputField(myForm,"previousVersion","Vorgänger Version","",26) 
+				
 			}
 			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
 				<br />
-				@multifield(myForm,"urn","Vorhandene URN","",21) 
+				@multifield(myForm,"urn","Vorhandene URN","",27) 
 				<br />
-				@multifield(myForm,"doi","Vorhandene DOI","",21) 
+				@multifield(myForm,"doi","Vorhandene DOI","",28) 
 				<br />
-				@multifield(myForm,"isLike","Persistente URL","",21)  
+				@multifield(myForm,"isLike","Persistente URL","",29)  
 			}
 		}
 		<div class="form-group row">

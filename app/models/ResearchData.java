@@ -48,6 +48,9 @@ public class ResearchData extends ZettelModel {
 
 	@Required(message = "Bitte vergeben Sie einen Titel!")
 	private String title;
+	private String titleLanguage;
+	private String alternativeTitle;
+
 	private List<String> creator;
 	private List<String> contributor;
 
@@ -59,7 +62,7 @@ public class ResearchData extends ZettelModel {
 	private String license;
 
 	@Required(message = "Bitte erstellen Sie eine kurze Inhaltsangabe!")
-	private String abstractText;
+	private String description;
 
 	@Required(message = "Bitte orden Sie Ihre Daten einer Fachgruppe zu!")
 	@ValidUrl(message = "Bitte orden Sie Ihre Daten einer Fachgruppe zu!")
@@ -83,11 +86,16 @@ public class ResearchData extends ZettelModel {
 	private List<String> doi;
 	private List<String> urn;
 	private List<String> isLike;
+
 	private List<String> funding;
+	private List<String> projectId;
+	private List<String> fundingProgram;
 
 	private List<String> recordingLocation;
 
 	private List<String> recordingCoordinates;
+
+	// private List<String> recordingCoordinatesPolygon;
 
 	private String recordingPeriod;
 
@@ -98,6 +106,10 @@ public class ResearchData extends ZettelModel {
 	private List<String> contributorOrder;
 
 	private List<String> subjectOrder;
+
+	private List<String> associatedPublications;
+	private List<String> associatedDatasets;
+	private List<String> references;
 
 	public String getTitle() {
 		return title;
@@ -137,14 +149,6 @@ public class ResearchData extends ZettelModel {
 
 	public void setDoi(List<String> doi) {
 		this.doi = doi;
-	}
-
-	public String getAbstractText() {
-		return abstractText;
-	}
-
-	public void setAbstractText(String abstractText) {
-		this.abstractText = abstractText;
 	}
 
 	public String getProfessionalGroup() {
@@ -275,6 +279,231 @@ public class ResearchData extends ZettelModel {
 		this.isLike = isLike;
 	}
 
+	public void setSubjectOrder(String in) {
+		if (subjectOrder == null || subjectOrder.isEmpty())
+			subjectOrder = new ArrayList<>();
+		subjectOrder.add(in);
+	}
+
+	public void setContributorOrder(String in) {
+		if (contributorOrder == null || contributorOrder.isEmpty())
+			contributorOrder = new ArrayList<>();
+		contributorOrder.add(in);
+	}
+
+	public void setIsLike(String in) {
+		if (isLike == null || isLike.isEmpty())
+			isLike = new ArrayList<>();
+		isLike.add(in);
+	}
+
+	public void setUrn(String in) {
+		if (urn == null || urn.isEmpty())
+			urn = new ArrayList<>();
+		urn.add(in);
+	}
+
+	public void setDoi(String in) {
+		if (doi == null || doi.isEmpty())
+			doi = new ArrayList<>();
+		doi.add(in);
+	}
+
+	public void setPreviousVersion(String in) {
+		if (previousVersion == null || previousVersion.isEmpty())
+			previousVersion = new ArrayList<>();
+		previousVersion.add(in);
+	}
+
+	public void setNextVersion(String in) {
+		if (nextVersion == null || nextVersion.isEmpty())
+			nextVersion = new ArrayList<>();
+		nextVersion.add(in);
+	}
+
+	public void setRecordingCoordinates(String in) {
+		if (recordingCoordinates == null || recordingCoordinates.isEmpty())
+			recordingCoordinates = new ArrayList<>();
+		recordingCoordinates.add(in);
+	}
+
+	public void setRecordingLocation(String in) {
+		if (recordingLocation == null || recordingLocation.isEmpty())
+			recordingLocation = new ArrayList<>();
+		recordingLocation.add(in);
+	}
+
+	public void setFunding(String in) {
+		if (funding == null || funding.isEmpty())
+			funding = new ArrayList<>();
+		funding.add(in);
+	}
+
+	public void setDdc(String in) {
+		if (ddc == null || ddc.isEmpty())
+			ddc = new ArrayList<>();
+		ddc.add(in);
+	}
+
+	public void setSubject(String in) {
+		if (subject == null || subject.isEmpty())
+			subject = new ArrayList<>();
+		subject.add(in);
+	}
+
+	public void setContributor(String in) {
+		if (contributor == null || contributor.isEmpty())
+			contributor = new ArrayList<>();
+		contributor.add(in);
+	}
+
+	public void setCreator(String in) {
+		if (creator == null || creator.isEmpty())
+			creator = new ArrayList<>();
+		creator.add(in);
+	}
+
+	public void setSubjectOrder(List<String> in) {
+		subjectOrder = in;
+	}
+
+	public void setContributorOrder(List<String> in) {
+		contributorOrder = in;
+	}
+
+	public List<String> getContributorOrder() {
+		contributorOrder = new ArrayList<>();
+		StringBuffer buf = new StringBuffer();
+		if (creator != null) {
+			for (String str : creator) {
+				buf.append(str + "|");
+			}
+		}
+		if (buf.length() == 1) {
+			buf.deleteCharAt(buf.length() - 1);
+			contributorOrder.add(buf.toString());
+		}
+		if (contributor != null) {
+			for (String str : contributor) {
+				buf.append(str + "|");
+			}
+		}
+		if (buf.length() > 0) {
+			buf.deleteCharAt(buf.length() - 1);
+			contributorOrder.add(buf.toString());
+		}
+		return contributorOrder;
+	}
+
+	public List<String> getSubjectOrder() {
+		subjectOrder = new ArrayList<>();
+		StringBuffer buf = new StringBuffer();
+		if (subject != null) {
+			for (String str : subject) {
+				buf.append(str + "|");
+			}
+		}
+		if (buf.length() > 0) {
+			buf.deleteCharAt(buf.length() - 1);
+			subjectOrder.add(buf.toString());
+		}
+		return subjectOrder;
+	}
+
+	public String getTitleLanguage() {
+		return titleLanguage;
+	}
+
+	public void setTitleLanguage(String titleLanguage) {
+		this.titleLanguage = titleLanguage;
+	}
+
+	public String getAlternativeTitle() {
+		return alternativeTitle;
+	}
+
+	public void setAlternativeTitle(String alternativeTitle) {
+		this.alternativeTitle = alternativeTitle;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<String> getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(List<String> projectId) {
+		this.projectId = projectId;
+	}
+
+	public void setProjectId(String in) {
+		if (projectId == null || projectId.isEmpty())
+			projectId = new ArrayList<>();
+		projectId.add(in);
+	}
+
+	public List<String> getFundingProgram() {
+		return fundingProgram;
+	}
+
+	public void setFundingProgram(List<String> fundingProgram) {
+		this.fundingProgram = fundingProgram;
+	}
+
+	public void setFundingProgram(String in) {
+		if (fundingProgram == null || fundingProgram.isEmpty())
+			fundingProgram = new ArrayList<>();
+		fundingProgram.add(in);
+	}
+
+	public List<String> getAssociatedPublications() {
+		return associatedPublications;
+	}
+
+	public void setAssociatedPublications(List<String> associatedPublications) {
+		this.associatedPublications = associatedPublications;
+	}
+
+	public void setAssociatedPublications(String in) {
+		if (associatedPublications == null || associatedPublications.isEmpty())
+			associatedPublications = new ArrayList<>();
+		associatedPublications.add(in);
+	}
+
+	public List<String> getAssociatedDatasets() {
+		return associatedDatasets;
+	}
+
+	public void setAssociatedDatasets(List<String> associatedDatasets) {
+		this.associatedDatasets = associatedDatasets;
+	}
+
+	public void setAssociatedDatasets(String in) {
+		if (associatedDatasets == null || associatedDatasets.isEmpty())
+			associatedDatasets = new ArrayList<>();
+		associatedDatasets.add(in);
+	}
+
+	public List<String> getReferences() {
+		return references;
+	}
+
+	public void setReferences(List<String> references) {
+		this.references = references;
+	}
+
+	public void setReferences(String in) {
+		if (references == null || references.isEmpty())
+			references = new ArrayList<>();
+		references.add(in);
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(serializeToMap());
@@ -286,7 +515,6 @@ public class ResearchData extends ZettelModel {
 		dict.put(titleZF.name, () -> getTitle());
 		dict.put(creatorZF.name, () -> getCreator());
 		dict.put(contributorZF.name, () -> getContributor());
-		dict.put(abstractTextZF.name, () -> getAbstractText());
 		dict.put(dataOriginZF.name, () -> getDataOrigin());
 		dict.put(embargoZF.name, () -> getEmbargo());
 		dict.put(languageZF.name, () -> getLanguage());
@@ -307,6 +535,14 @@ public class ResearchData extends ZettelModel {
 		dict.put(isLikeZF.name, () -> getIsLike());
 		dict.put(contributorOrderZF.name, () -> getContributorOrder());
 		dict.put(subjectOrderZF.name, () -> getSubjectOrder());
+		dict.put(alternativeTitleZF.name, () -> getAlternativeTitle());
+		dict.put(titleLanguageZF.name, () -> getTitleLanguage());
+		dict.put(descriptionZF.name, () -> getDescription());
+		dict.put(projectIdZF.name, () -> getProjectId());
+		dict.put(fundingProgramZF.name, () -> getFundingProgram());
+		dict.put(associatedPublicationZF.name, () -> getAssociatedPublications());
+		dict.put(associatedDatasetZF.name, () -> getAssociatedDatasets());
+		dict.put(referenceZF.name, () -> getReferences());
 		return dict;
 	}
 
@@ -317,7 +553,6 @@ public class ResearchData extends ZettelModel {
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
 		dict.put(creatorZF.uri, (in) -> setCreator((String) in));
 		dict.put(contributorZF.uri, (in) -> setContributor((String) in));
-		dict.put(abstractTextZF.uri, (in) -> setAbstractText((String) in));
 		dict.put(dataOriginZF.uri, (in) -> setDataOrigin((String) in));
 		dict.put(embargoZF.uri, (in) -> setEmbargo((String) in));
 		dict.put(languageZF.uri, (in) -> setLanguage((String) in));
@@ -341,99 +576,17 @@ public class ResearchData extends ZettelModel {
 		dict.put(isLikeZF.uri, (in) -> setIsLike((String) in));
 		dict.put(contributorOrderZF.uri, (in) -> setContributorOrder((String) in));
 		dict.put(subjectOrderZF.uri, (in) -> setSubjectOrder((String) in));
+		dict.put(alternativeTitleZF.uri, (in) -> setAlternativeTitle((String) in));
+		dict.put(titleLanguageZF.uri, (in) -> setTitleLanguage((String) in));
+		dict.put(descriptionZF.uri, (in) -> setDescription((String) in));
+		dict.put(projectIdZF.uri, (in) -> setProjectId((String) in));
+		dict.put(fundingProgramZF.uri, (in) -> setFundingProgram((String) in));
+		dict.put(associatedPublicationZF.uri,
+				(in) -> setAssociatedPublications((String) in));
+		dict.put(associatedDatasetZF.uri,
+				(in) -> setAssociatedDatasets((String) in));
+		dict.put(referenceZF.uri, (in) -> setReferences((String) in));
 		return dict;
-	}
-
-	private void setSubjectOrder(String in) {
-		if (subjectOrder == null || subjectOrder.isEmpty())
-			subjectOrder = new ArrayList<>();
-		subjectOrder.add(in);
-	}
-
-	private void setContributorOrder(String in) {
-		if (contributorOrder == null || contributorOrder.isEmpty())
-			contributorOrder = new ArrayList<>();
-		contributorOrder.add(in);
-	}
-
-	private void setIsLike(String in) {
-		if (isLike == null || isLike.isEmpty())
-			isLike = new ArrayList<>();
-		isLike.add(in);
-	}
-
-	private void setUrn(String in) {
-		if (urn == null || urn.isEmpty())
-			urn = new ArrayList<>();
-		urn.add(in);
-	}
-
-	private void setDoi(String in) {
-		if (doi == null || doi.isEmpty())
-			doi = new ArrayList<>();
-		doi.add(in);
-	}
-
-	private void setPreviousVersion(String in) {
-		if (previousVersion == null || previousVersion.isEmpty())
-			previousVersion = new ArrayList<>();
-		previousVersion.add(in);
-	}
-
-	private void setNextVersion(String in) {
-		if (nextVersion == null || nextVersion.isEmpty())
-			nextVersion = new ArrayList<>();
-		nextVersion.add(in);
-	}
-
-	private void setRecordingCoordinates(String in) {
-		if (recordingCoordinates == null || recordingCoordinates.isEmpty())
-			recordingCoordinates = new ArrayList<>();
-		recordingCoordinates.add(in);
-	}
-
-	private void setRecordingLocation(String in) {
-		if (recordingLocation == null || recordingLocation.isEmpty())
-			recordingLocation = new ArrayList<>();
-		recordingLocation.add(in);
-	}
-
-	private void setFunding(String in) {
-		if (funding == null || funding.isEmpty())
-			funding = new ArrayList<>();
-		funding.add(in);
-	}
-
-	private void setDdc(String in) {
-		if (ddc == null || ddc.isEmpty())
-			ddc = new ArrayList<>();
-		ddc.add(in);
-	}
-
-	private void setSubject(String in) {
-		if (subject == null || subject.isEmpty())
-			subject = new ArrayList<>();
-		subject.add(in);
-	}
-
-	private void setContributor(String in) {
-		if (contributor == null || contributor.isEmpty())
-			contributor = new ArrayList<>();
-		contributor.add(in);
-	}
-
-	private void setCreator(String in) {
-		if (creator == null || creator.isEmpty())
-			creator = new ArrayList<>();
-		creator.add(in);
-	}
-
-	private void setSubjectOrder(List<String> in) {
-		subjectOrder = in;
-	}
-
-	private void setContributorOrder(List<String> in) {
-		contributorOrder = in;
 	}
 
 	@Override
@@ -475,45 +628,6 @@ public class ResearchData extends ZettelModel {
 			}
 		}
 		return true;
-	}
-
-	public List<String> getContributorOrder() {
-		contributorOrder = new ArrayList<>();
-		StringBuffer buf = new StringBuffer();
-		if (creator != null) {
-			for (String str : creator) {
-				buf.append(str + "|");
-			}
-		}
-		if (buf.length() == 1) {
-			buf.deleteCharAt(buf.length() - 1);
-			contributorOrder.add(buf.toString());
-		}
-		if (contributor != null) {
-			for (String str : contributor) {
-				buf.append(str + "|");
-			}
-		}
-		if (buf.length() > 0) {
-			buf.deleteCharAt(buf.length() - 1);
-			contributorOrder.add(buf.toString());
-		}
-		return contributorOrder;
-	}
-
-	public List<String> getSubjectOrder() {
-		subjectOrder = new ArrayList<>();
-		StringBuffer buf = new StringBuffer();
-		if (subject != null) {
-			for (String str : subject) {
-				buf.append(str + "|");
-			}
-		}
-		if (buf.length() > 0) {
-			buf.deleteCharAt(buf.length() - 1);
-			subjectOrder.add(buf.toString());
-		}
-		return subjectOrder;
 	}
 
 }

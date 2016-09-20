@@ -73,4 +73,20 @@ public class ZettelFields {
 			.getEtikett("http://purl.org/lobid/lv#contributorOrder");
 	public static Etikett subjectOrderZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/lobid/lv#subjectOrder");
+	public static Etikett alternativeTitleZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/alternative");
+	public static Etikett titleLanguageZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#titleLanguage");
+	public static Etikett descriptionZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/description");
+	public static Etikett projectIdZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#projectId");
+	public static Etikett fundingProgramZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#fundingProgram");
+	public static Etikett associatedPublicationZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#associatedPublication");
+	public static Etikett associatedDatasetZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#associatedDataset");
+	public static Etikett referenceZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#reference");
 }
