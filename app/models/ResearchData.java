@@ -48,9 +48,7 @@ public class ResearchData extends ZettelModel {
 
 	@Required(message = "Bitte vergeben Sie einen Titel!")
 	private String title;
-	@ValidUrl(message = "Bitte nennen Sie einen Autor oder Ersteller!")
 	private List<String> creator;
-	@ValidUrl(message = "Bitte nennen Sie einen Autor oder Ersteller!")
 	private List<String> contributor;
 
 	@Required(message = "Bitte geben Sie das Jahr zum Copyright an.")
