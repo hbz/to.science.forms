@@ -111,6 +111,8 @@ public class ResearchData extends ZettelModel {
 	private List<String> associatedDatasets;
 	private List<String> references;
 
+	private List<String> agrovoc;
+
 	public String getTitle() {
 		return title;
 	}
@@ -504,6 +506,20 @@ public class ResearchData extends ZettelModel {
 		references.add(in);
 	}
 
+	public List<String> getAgrovoc() {
+		return agrovoc;
+	}
+
+	public void setAgrovoc(List<String> agrovoc) {
+		this.agrovoc = agrovoc;
+	}
+
+	public void setAgrovoc(String in) {
+		if (agrovoc == null || agrovoc.isEmpty())
+			agrovoc = new ArrayList<>();
+		agrovoc.add(in);
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(serializeToMap());
@@ -543,6 +559,7 @@ public class ResearchData extends ZettelModel {
 		dict.put(associatedPublicationZF.name, () -> getAssociatedPublications());
 		dict.put(associatedDatasetZF.name, () -> getAssociatedDatasets());
 		dict.put(referenceZF.name, () -> getReferences());
+		dict.put(agrovocZF.name, () -> getAgrovoc());
 		return dict;
 	}
 
@@ -586,6 +603,7 @@ public class ResearchData extends ZettelModel {
 		dict.put(associatedDatasetZF.uri,
 				(in) -> setAssociatedDatasets((String) in));
 		dict.put(referenceZF.uri, (in) -> setReferences((String) in));
+		dict.put(agrovocZF.uri, (in) -> setAgrovoc((String) in));
 		return dict;
 	}
 

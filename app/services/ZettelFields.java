@@ -89,4 +89,6 @@ public class ZettelFields {
 			.getEtikett("http://hbz-nrw.de/regal#associatedDataset");
 	public static Etikett referenceZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#reference");
+	public static Etikett agrovocZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#agrovoc");
 }

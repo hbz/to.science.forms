@@ -15,6 +15,9 @@ function enableAllGndAutocompletion() {
 	$('.gnd-subject-search input').each(function() {
 		enableGndSubjectAutocompletion($(this));
 	});
+	$('.agrovoc-subject-search input').each(function() {
+		enableAgrovocSubjectAutocompletion($(this));
+	});
 	$('.mydaterangepicker').each(function() {
 		$(this).daterangepicker({
 		      autoUpdateInput: false,
@@ -82,6 +85,33 @@ function enableGndSubjectAutocompletion(inputElement) {
 	});
 }
 
+function enableAgrovocSubjectAutocompletion(inputElement) {
+	inputElement.autocomplete({
+		select : function(event, ui) {
+			this.value = ui.item.value;
+			$(this).siblings(".input-field-heading").html(
+					"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+			$(this).css('display','none');
+			emitResize();
+			return false;
+		},
+		source : function(request, response) {
+			$.ajax({
+				url : "/tools/skos-lookup/autocomplete",
+				dataType : "jsonp",
+				data : {
+					q : request.term,
+					lang : "de",
+					index: "agrovoc"
+				},
+				success : function(data) {
+					response(data);
+				}
+			});
+		}
+	});
+}
+
 function handleMessage(evt) {
 	if (evt.data.action == 'postDataToZettel' && evt.data.message != 0) {
 		$.ajax({
@@ -119,6 +149,10 @@ function destroyGndAutocompletion() {
 		$(this).autocomplete('destroy');
 		$(this).removeData('autocomplete');
 	});
+	$('.agrovoc-subject-search input').each(function() {
+		$(this).autocomplete('destroy');
+		$(this).removeData('autocomplete');
+	});
 }
 function resetIds(curFieldName) {
 	var num = 0;
@@ -145,6 +179,7 @@ function addActionsToRemoveAndAddButtons() {
 			newField.appendTo($wrapper).find('.input-widget').val('').focus();
 			newField.appendTo($wrapper).find('.gnd-person-search.input-widget').css('display','block');
 			newField.appendTo($wrapper).find('.gnd-subject-search.input-widget').css('display','block');
+			newField.appendTo($wrapper).find('.agrovoc-subject-search.input-widget').css('display','block');
 			newField.appendTo($wrapper).find('.help-text').css('display','none');
 			resetIds(curFieldName);
 			$(newField).find(".input-field-heading").html("");
