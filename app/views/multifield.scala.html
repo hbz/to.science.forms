@@ -1,12 +1,12 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int) 
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int,lookupEndpoints:Map[String,String]) 
 @import tags._
 @import services._
 <div class="multi-field-wrapper">
 	<div class="multi-fields" id="@fieldName">
 		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,fieldName) ){
 		<div class="multi-field">
-			 @ldInputField(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt){
+			 @ldInputField(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt,lookupEndpoints){
 			  	@helpText(fieldName)
 				}
 			 	<div class="buttonBox">

@@ -19,13 +19,20 @@ package controllers;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 import javax.inject.Inject;
 
 import org.openrdf.rio.RDFFormat;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import models.ResearchData;
 import play.data.Form;
@@ -212,4 +219,58 @@ public class ZettelController extends Controller {
 				.thenApply(response -> ok(response.asJson()));
 	}
 
+	public CompletionStage<Result> orcidSearch(String q) {
+		String orcidUrl = "http://pub.orcid.org/search/orcid-bio";
+		WSRequest request = ws.url(orcidUrl);
+		WSRequest complexRequest =
+				request.setRequestTimeout(1000).setQueryParameter("q", q);
+		return complexRequest.setFollowRedirects(true).get()
+				.thenApply(response -> ok(response.asJson()));
+	}
+
+	public CompletionStage<Result> orcidAutocomplete(String q) {
+		final String[] callback =
+				request() == null || request().queryString() == null ? null
+						: request().queryString().get("callback");
+		String orcidUrl = "http://pub.orcid.org/search/orcid-bio";
+		WSRequest request = ws.url(orcidUrl);
+		WSRequest complexRequest = request.setHeader("accept", "application/json")
+				.setRequestTimeout(5000).setQueryParameter("q", q);
+		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
+			JsonNode hits =
+					response.asJson().at("/orcid-search-results/orcid-search-result");
+			List<Map<String, String>> result = new ArrayList<>();
+			hits.forEach((hit) -> {
+				String label = hit
+						.at("/orcid-profile/orcid-bio/personal-details/family-name/value")
+						.asText()
+						+ ", "
+						+ hit
+								.at("/orcid-profile/orcid-bio/personal-details/given-names/value")
+								.asText();
+				String id = hit.at("/orcid-profile/orcid-identifier/uri").asText();
+				Map<String, String> m = new HashMap<>();
+				m.put("label", label);
+				m.put("value", id);
+				result.add(m);
+			});
+			String searchResult = json(result);
+			String myResponse = callback != null
+					? String.format("/**/%s(%s)", callback[0], searchResult)
+					: searchResult;
+			return ok(myResponse);
+		});
+	}
+
+	private static String json(Object obj) {
+		try {
+			StringWriter w = new StringWriter();
+			new ObjectMapper().writeValue(w, obj);
+			String result = w.toString();
+			return result;
+		} catch (Exception e) {
+			play.Logger.error("", e);
+			return "{\"message\":\"error\"}";
+		}
+	}
 }

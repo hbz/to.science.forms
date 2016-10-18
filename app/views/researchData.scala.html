@@ -20,7 +20,7 @@
 				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ResearchDataHelper.getLanguageMap(),3)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
-				@multifield(myForm,"creator","Autor*","gnd-person-search",4)
+				@multifield(myForm,"creator","Autor*","gnd-person-search",4,ResearchDataHelper.getPersonLookupEndpoints())
 			}
 			@accordionPanel("Dateiupload","upload-section"){
 				@singleSelect(myForm,"medium","Medium*","select-medium",ResearchDataHelper.getMediumMap(),5)
@@ -40,34 +40,33 @@
 				<br />
 				@multiselect(myForm,"ddc","DDC*","select-ddc",ResearchDataHelper.getDeweyMap(),12)
 				<br />
-				@multifield(myForm,"subject","Schlagworte","gnd-subject-search",13)
-				<br />
-				@multifield(myForm,"agrovoc","Agrovoc","agrovoc-subject-search",13)
+				@multifield(myForm,"subject","Schlagworte","gnd-subject-search",13,ResearchDataHelper.getSubjectLookupEndpoints())
+
 			}
 			@accordionPanel("Beteiligte","contributor-section"){
-				@multifield(myForm,"contributor","Beteiligte","gnd-person-search",14)
+				@multifield(myForm,"contributor","Beteiligte","gnd-person-search",14,ResearchDataHelper.getPersonLookupEndpoints())
 				<br /> 
-				@multifield(myForm,"funding","Förderer","",15) 
+				@multifield(myForm,"funding","Förderer","",15,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br />
-				@multifield(myForm,"projectId","Projekt-ID","",16) 
+				@multifield(myForm,"projectId","Projekt-ID","",16,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br/>
-				@multifield(myForm,"fundingProgram","Förderprogramm","",17) 
+				@multifield(myForm,"fundingProgram","Förderprogramm","",17,ResearchDataHelper.getEmptyLookupEndpoints()) 
 			}
 			@accordionPanel("Erfassung","recording-section"){
 				@singleSelect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),18)
 				<br />
 				@textArea(myForm,"recordingPeriod","Erfassungszeitraum","",19) 
 				<br />
-				@multifield(myForm,"recordingLocation","Erfassungsort","geonames-lookup",20) 
+				@multifield(myForm,"recordingLocation","Erfassungsort","geonames-lookup",20,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br />
-				@multifield(myForm,"recordingCoordinates","Geokoordinaten","geonames-reverse-lookup",21) 
+				@multifield(myForm,"recordingCoordinates","Geokoordinaten","geonames-reverse-lookup",21,ResearchDataHelper.getEmptyLookupEndpoints()) 
 			}
 			@accordionPanel("Zugehörige Publikationen","link-section"){
-			    @multifield(myForm,"references","Quellen","",22) 
+			    @multifield(myForm,"references","Quellen","",22,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br />
-				@multifield(myForm,"associatedPublications","Zugehörige Publikationen","",23) 
+				@multifield(myForm,"associatedPublications","Zugehörige Publikationen","",23,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br/>
-				@multifield(myForm,"associatedDatasets","Zugehörige Datasets","",24) 
+				@multifield(myForm,"associatedDatasets","Zugehörige Datasets","",24,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br/>
 				@inputField(myForm,"nextVersion","Nachfolger Version","",25)  
 				<br />
@@ -76,11 +75,11 @@
 			}
 			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
 				<br />
-				@multifield(myForm,"urn","Vorhandene URN","",27) 
+				@multifield(myForm,"urn","Vorhandene URN","",27,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br />
-				@multifield(myForm,"doi","Vorhandene DOI","",28) 
+				@multifield(myForm,"doi","Vorhandene DOI","",28,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br />
-				@multifield(myForm,"isLike","Persistente URL","",29)  
+				@multifield(myForm,"isLike","Persistente URL","",29,ResearchDataHelper.getEmptyLookupEndpoints())  
 			}
 		}
 		<div class="form-group row">
