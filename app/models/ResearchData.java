@@ -523,7 +523,7 @@ public class ResearchData extends ZettelModel {
 	}
 
 	public List<String> getSubjectName() {
-		return creatorName;
+		return subjectName;
 	}
 
 	public void setSubjectName(List<String> subjectName) {
