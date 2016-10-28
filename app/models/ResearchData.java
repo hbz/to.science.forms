@@ -39,7 +39,7 @@ import services.ZettelModel;
  *
  */
 @SuppressWarnings("javadoc")
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ResearchData extends ZettelModel {
 	/**
 	 * The id under which this model is registered in the ZettelRegister
@@ -659,7 +659,10 @@ public class ResearchData extends ZettelModel {
 		if (containsOnlyNullValues(contributor)) {
 			contributor = new ArrayList<>();
 		}
-		if (creator.isEmpty() && contributor.isEmpty()) {
+		if (containsOnlyNullValues(creatorName)) {
+			creatorName = new ArrayList<>();
+		}
+		if (creator.isEmpty() && contributor.isEmpty() && creatorName.isEmpty()) {
 			return "Bitte geben Sie einen Autor oder Beteiligten an!";
 		}
 		return null;
