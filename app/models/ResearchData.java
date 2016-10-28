@@ -552,41 +552,63 @@ public class ResearchData extends ZettelModel {
 	@Override
 	protected Map<String, Supplier<Object>> getMappingForSerialization() {
 		Map<String, Supplier<Object>> dict = new LinkedHashMap<>();
-		dict.put(titleZF.name, () -> getTitle());
-		dict.put(creatorZF.name, () -> getCreator());
-		dict.put(contributorZF.name, () -> getContributor());
-		dict.put(dataOriginZF.name, () -> getDataOrigin());
-		dict.put(embargoZF.name, () -> getEmbargo());
-		dict.put(languageZF.name, () -> getLanguage());
-		dict.put(licenseZF.name, () -> getLicense());
-		dict.put(mediumZF.name, () -> getMedium());
-		dict.put(professionalGroupZF.name, () -> getProfessionalGroup());
-		dict.put(subjectZF.name, () -> getSubject());
-		dict.put(yearOfCopyrightZF.name, () -> getYearOfCopyright());
-		dict.put(ddcZF.name, () -> getDdc());
-		dict.put(fundingZF.name, () -> getFunding());
-		dict.put(recordingPeriodZF.name, () -> getRecordingPeriod());
-		dict.put(recordingLocationZF.name, () -> getRecordingLocation());
-		dict.put(recordingCoordinatesZF.name, () -> getRecordingCoordinates());
-		dict.put(nextVersionZF.name, () -> getNextVersion());
-		dict.put(previousVersionZF.name, () -> getPreviousVersion());
-		dict.put(doiZF.name, () -> getDoi());
-		dict.put(urnZF.name, () -> getUrn());
-		dict.put(isLikeZF.name, () -> getIsLike());
-		dict.put(contributorOrderZF.name, () -> getContributorOrder());
-		dict.put(subjectOrderZF.name, () -> getSubjectOrder());
-		dict.put(alternativeTitleZF.name, () -> getAlternativeTitle());
-		dict.put(titleLanguageZF.name, () -> getTitleLanguage());
-		dict.put(descriptionZF.name, () -> getDescription());
-		dict.put(projectIdZF.name, () -> getProjectId());
-		dict.put(fundingProgramZF.name, () -> getFundingProgram());
-		dict.put(associatedPublicationZF.name, () -> getAssociatedPublications());
-		dict.put(associatedDatasetZF.name, () -> getAssociatedDatasets());
-		dict.put(referenceZF.name, () -> getReferences());
-		dict.put(creatorNameZF.name, () -> getCreatorName());
-		dict.put(subjectNameZF.name, () -> getSubjectName());
-		dict.put(usageManualZF.name, () -> getUsageManual());
+		addFieldToMap(dict, titleZF.name, () -> getTitle());
+		addFieldToMap(dict, creatorZF.name, () -> getCreator());
+		addFieldToMap(dict, contributorZF.name, () -> getContributor());
+		addFieldToMap(dict, dataOriginZF.name, () -> getDataOrigin());
+		addFieldToMap(dict, embargoZF.name, () -> getEmbargo());
+		addFieldToMap(dict, languageZF.name, () -> getLanguage());
+		addFieldToMap(dict, licenseZF.name, () -> getLicense());
+		addFieldToMap(dict, mediumZF.name, () -> getMedium());
+		addFieldToMap(dict, professionalGroupZF.name, () -> getProfessionalGroup());
+		addFieldToMap(dict, subjectZF.name, () -> getSubject());
+		addFieldToMap(dict, yearOfCopyrightZF.name, () -> getYearOfCopyright());
+		addFieldToMap(dict, ddcZF.name, () -> getDdc());
+		addFieldToMap(dict, fundingZF.name, () -> getFunding());
+		addFieldToMap(dict, recordingPeriodZF.name, () -> getRecordingPeriod());
+		addFieldToMap(dict, recordingLocationZF.name, () -> getRecordingLocation());
+		addFieldToMap(dict, recordingCoordinatesZF.name,
+				() -> getRecordingCoordinates());
+		addFieldToMap(dict, nextVersionZF.name, () -> getNextVersion());
+		addFieldToMap(dict, previousVersionZF.name, () -> getPreviousVersion());
+		addFieldToMap(dict, doiZF.name, () -> getDoi());
+		addFieldToMap(dict, urnZF.name, () -> getUrn());
+		addFieldToMap(dict, isLikeZF.name, () -> getIsLike());
+		addFieldToMap(dict, contributorOrderZF.name, () -> getContributorOrder());
+		addFieldToMap(dict, subjectOrderZF.name, () -> getSubjectOrder());
+		addFieldToMap(dict, alternativeTitleZF.name, () -> getAlternativeTitle());
+		addFieldToMap(dict, titleLanguageZF.name, () -> getTitleLanguage());
+		addFieldToMap(dict, descriptionZF.name, () -> getDescription());
+		addFieldToMap(dict, projectIdZF.name, () -> getProjectId());
+		addFieldToMap(dict, fundingProgramZF.name, () -> getFundingProgram());
+		addFieldToMap(dict, associatedPublicationZF.name,
+				() -> getAssociatedPublications());
+		addFieldToMap(dict, associatedDatasetZF.name,
+				() -> getAssociatedDatasets());
+		addFieldToMap(dict, referenceZF.name, () -> getReferences());
+		addFieldToMap(dict, creatorNameZF.name, () -> getCreatorName());
+		addFieldToMap(dict, subjectNameZF.name, () -> getSubjectName());
+		addFieldToMap(dict, usageManualZF.name, () -> getUsageManual());
 		return dict;
+	}
+
+	private void addFieldToMap(Map<String, Supplier<Object>> dict, String name,
+			Supplier<Object> c) {
+		Object val = c.get();
+		if (val == null)
+			return;
+		if (val instanceof String) {
+			String str = (String) val;
+			if (!str.isEmpty()) {
+				dict.put(name, c);
+			}
+		}
+		if (val instanceof List) {
+			List<String> list = (List<String>) val;
+			if (!list.isEmpty() && !containsOnlyNullValues(list)) {
+				dict.put(name, c);
+			}
+		}
 	}
 
 	@SuppressWarnings("unchecked")
