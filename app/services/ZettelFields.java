@@ -89,6 +89,11 @@ public class ZettelFields {
 			.getEtikett("http://hbz-nrw.de/regal#associatedDataset");
 	public static Etikett referenceZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#reference");
-	public static Etikett agrovocZF =
-			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#agrovoc");
+	public static Etikett creatorNameZF = ZettelHelper.etikett
+			.getEtikett("http://purl.org/dc/elements/1.1/creator");
+	public static Etikett subjectNameZF = ZettelHelper.etikett
+			.getEtikett("http://purl.org/dc/elements/1.1/subject");
+	public static Etikett usageManualZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#usageManual");
+
 }

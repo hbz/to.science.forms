@@ -12,7 +12,7 @@ libraryDependencies ++= Seq(
   filters,
   "org.openrdf.sesame" % "sesame-runtime" % "2.7.9",
   "com.github.jsonld-java"%"jsonld-java-sesame"%"0.3",
-  "com.github.hbz" %"lobid-rdf-to-json" % "ceca31e1a0d537f1f5034bad85cd629639c7cf58",
+  "com.github.hbz" %"lobid-rdf-to-json" % "8dcd67c7aa7f4fb7b53e875ea0561a4fbb951f89",
   "commons-validator" % "commons-validator" % "1.5.1"
 )
 

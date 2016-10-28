@@ -111,7 +111,9 @@ public class ResearchData extends ZettelModel {
 	private List<String> associatedDatasets;
 	private List<String> references;
 
-	private List<String> agrovoc;
+	private List<String> creatorName;
+	private List<String> subjectName;
+	private String usageManual;
 
 	public String getTitle() {
 		return title;
@@ -506,18 +508,40 @@ public class ResearchData extends ZettelModel {
 		references.add(in);
 	}
 
-	public List<String> getAgrovoc() {
-		return agrovoc;
+	public List<String> getCreatorName() {
+		return creatorName;
 	}
 
-	public void setAgrovoc(List<String> agrovoc) {
-		this.agrovoc = agrovoc;
+	public void setCreatorName(List<String> creatorName) {
+		this.creatorName = creatorName;
 	}
 
-	public void setAgrovoc(String in) {
-		if (agrovoc == null || agrovoc.isEmpty())
-			agrovoc = new ArrayList<>();
-		agrovoc.add(in);
+	public void setCreatorName(String in) {
+		if (creatorName == null || creatorName.isEmpty())
+			creatorName = new ArrayList<>();
+		creatorName.add(in);
+	}
+
+	public List<String> getSubjectName() {
+		return creatorName;
+	}
+
+	public void setSubjectName(List<String> subjectName) {
+		this.subjectName = subjectName;
+	}
+
+	public void setSubjectName(String in) {
+		if (subjectName == null || subjectName.isEmpty())
+			subjectName = new ArrayList<>();
+		subjectName.add(in);
+	}
+
+	public String getUsageManual() {
+		return usageManual;
+	}
+
+	public void setUsageManual(String subjusageManualectName) {
+		this.usageManual = usageManual;
 	}
 
 	@Override
@@ -559,7 +583,9 @@ public class ResearchData extends ZettelModel {
 		dict.put(associatedPublicationZF.name, () -> getAssociatedPublications());
 		dict.put(associatedDatasetZF.name, () -> getAssociatedDatasets());
 		dict.put(referenceZF.name, () -> getReferences());
-		dict.put(agrovocZF.name, () -> getAgrovoc());
+		dict.put(creatorNameZF.name, () -> getCreatorName());
+		dict.put(subjectNameZF.name, () -> getSubjectName());
+		dict.put(usageManualZF.name, () -> getUsageManual());
 		return dict;
 	}
 
@@ -603,7 +629,9 @@ public class ResearchData extends ZettelModel {
 		dict.put(associatedDatasetZF.uri,
 				(in) -> setAssociatedDatasets((String) in));
 		dict.put(referenceZF.uri, (in) -> setReferences((String) in));
-		dict.put(agrovocZF.uri, (in) -> setAgrovoc((String) in));
+		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
+		dict.put(subjectNameZF.uri, (in) -> setSubjectName((String) in));
+		dict.put(creatorNameZF.uri, (in) -> setCreatorName((String) in));
 		return dict;
 	}
 

@@ -5,7 +5,6 @@
 @import services._
 
 @zettel("Forschungsdaten",myForm,dataFormat,documentId,topicId) {
-
 	@if(myForm.hasGlobalErrors) {
 		<p class="error">@myForm.globalError.message</p>
 	} 
@@ -20,7 +19,9 @@
 				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ResearchDataHelper.getLanguageMap(),3)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
-				@multifield(myForm,"creator","Autor*","gnd-person-search",4,ResearchDataHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,"creator","Autor (als Linked Data)*","gnd-person-search",4,ResearchDataHelper.getPersonLookupEndpoints())
+			
+				@multifieldText(myForm,"creatorName","Autor (als Freitext)*","",4)
 			}
 			@accordionPanel("Dateiupload","upload-section"){
 				@singleSelect(myForm,"medium","Medium*","select-medium",ResearchDataHelper.getMediumMap(),5)
@@ -40,46 +41,48 @@
 				<br />
 				@multiselect(myForm,"ddc","DDC*","select-ddc",ResearchDataHelper.getDeweyMap(),12)
 				<br />
-				@multifield(myForm,"subject","Schlagworte","gnd-subject-search",13,ResearchDataHelper.getSubjectLookupEndpoints())
-
+				@multifieldLd(myForm,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ResearchDataHelper.getSubjectLookupEndpoints())
+				<br />
+				@multifieldText(myForm,"subjectName","Schlagort (als Freitext)*","",13)
 			}
 			@accordionPanel("Beteiligte","contributor-section"){
-				@multifield(myForm,"contributor","Beteiligte","gnd-person-search",14,ResearchDataHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,"contributor","Beteiligte","gnd-person-search",14,ResearchDataHelper.getPersonLookupEndpoints())
 				<br /> 
-				@multifield(myForm,"funding","Förderer","",15,ResearchDataHelper.getEmptyLookupEndpoints()) 
+				@multifieldText(myForm,"funding","Förderer","",15) 
 				<br />
-				@multifield(myForm,"projectId","Projekt-ID","",16,ResearchDataHelper.getEmptyLookupEndpoints()) 
+				@multifieldText(myForm,"projectId","Projekt-ID","",16) 
 				<br/>
-				@multifield(myForm,"fundingProgram","Förderprogramm","",17,ResearchDataHelper.getEmptyLookupEndpoints()) 
+				@multifieldText(myForm,"fundingProgram","Förderprogramm","",17) 
 			}
 			@accordionPanel("Erfassung","recording-section"){
 				@singleSelect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),18)
 				<br />
 				@textArea(myForm,"recordingPeriod","Erfassungszeitraum","",19) 
 				<br />
-				@multifield(myForm,"recordingLocation","Erfassungsort","geonames-lookup",20,ResearchDataHelper.getEmptyLookupEndpoints()) 
+				@multifieldLd(myForm,"recordingLocation","Erfassungsort","geonames-lookup",20,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br />
-				@multifield(myForm,"recordingCoordinates","Geokoordinaten","geonames-reverse-lookup",21,ResearchDataHelper.getEmptyLookupEndpoints()) 
+				@multifieldLd(myForm,"recordingCoordinates","Geokoordinaten","geonames-reverse-lookup",21,ResearchDataHelper.getEmptyLookupEndpoints()) 
+				<br />
+				@textArea(myForm,"usageManual","Hinweise zur Nutzung","",22)
 			}
 			@accordionPanel("Zugehörige Publikationen","link-section"){
-			    @multifield(myForm,"references","Quellen","",22,ResearchDataHelper.getEmptyLookupEndpoints()) 
+			    @multifieldText(myForm,"references","Quellen","",22) 
 				<br />
-				@multifield(myForm,"associatedPublications","Zugehörige Publikationen","",23,ResearchDataHelper.getEmptyLookupEndpoints()) 
+				@multifieldText(myForm,"associatedPublications","Zugehörige Publikationen","",23) 
 				<br/>
-				@multifield(myForm,"associatedDatasets","Zugehörige Datasets","",24,ResearchDataHelper.getEmptyLookupEndpoints()) 
+				@multifieldText(myForm,"associatedDatasets","Zugehörige Datasets","",24) 
 				<br/>
 				@inputField(myForm,"nextVersion","Nachfolger Version","",25)  
-				<br />
+				<br />	<br />
 				@inputField(myForm,"previousVersion","Vorgänger Version","",26) 
-				
 			}
 			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
 				<br />
-				@multifield(myForm,"urn","Vorhandene URN","",27,ResearchDataHelper.getEmptyLookupEndpoints()) 
+				@multifieldText(myForm,"urn","Vorhandene URN","",27) 
 				<br />
-				@multifield(myForm,"doi","Vorhandene DOI","",28,ResearchDataHelper.getEmptyLookupEndpoints()) 
+				@multifieldText(myForm,"doi","Vorhandene DOI","",28) 
 				<br />
-				@multifield(myForm,"isLike","Persistente URL","",29,ResearchDataHelper.getEmptyLookupEndpoints())  
+				@multifieldText(myForm,"isLike","Persistente URL","",29)  
 			}
 		}
 		<div class="form-group row">

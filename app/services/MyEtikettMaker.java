@@ -68,7 +68,7 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 			play.Logger.info("Reload labels from Url:'" + url
 					+ "' failed! Load local labels.json");
 			maker = new EtikettMaker(
-					play.Play.application().resourceAsStream("conf/labels.json"));
+					play.Play.application().resourceAsStream("labels.json"));
 		}
 	}
 
