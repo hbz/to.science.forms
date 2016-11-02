@@ -6,7 +6,9 @@
 	<div class="multi-fields" id="@fieldName">
 		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,fieldName) ){
 		<div class="multi-field">
-			 @inputField(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt)
+			 @inputField(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt){
+			  	@helpText(fieldName)
+				}
 			 	<div class="buttonBox">
 			 	
 					<div class="btn-group">

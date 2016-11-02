@@ -12,16 +12,16 @@
 		<a href="@models.ResearchData.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
 			@accordionPanel("Titel","title-section"){
-				@inputField(myForm,"title","Titel*","",1)
+				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
-				@inputField(myForm,"alternativeTitle","Alternativer Titel","",2)
+				@singlefieldText(myForm,"alternativeTitle","Alternativer Titel","",2)
 				<br/>
 				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ResearchDataHelper.getLanguageMap(),3)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
 				@multifieldLd(myForm,"creator","Autor (als Linked Data)*","gnd-person-search",4,ResearchDataHelper.getPersonLookupEndpoints())
 			<br/>
-				@multifieldText(myForm,"creatorName","Autor (als Freitext)*","",4)
+				@multifieldText(myForm,"creatorName","Autor (als Freitext)*","free-text",4)
 			}
 			@accordionPanel("Dateiupload","upload-section"){
 				@singleSelect(myForm,"medium","Medium*","select-medium",ResearchDataHelper.getMediumMap(),5)
@@ -30,7 +30,7 @@
 				<br />
 				@singleSelect(myForm,"license","Lizenz*","select-license",ResearchDataHelper.getLicenseMap(),7)
 				<br />
-				@inputField(myForm,"embargo","Embargo","datepicker",8)
+				@singlefieldText(myForm,"embargo","Embargo","datepicker",8)
 			}
 			@accordionPanel("Erschließung","cataloging-section"){
 				@textArea(myForm,"description","Beschreibung*","",9)
@@ -45,12 +45,12 @@
 				<br />
 				@multifieldLd(myForm,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ResearchDataHelper.getSubjectLookupEndpoints())
 				<br />
-				@multifieldText(myForm,"subjectName","Schlagort (als Freitext)","",13)
+				@multifieldText(myForm,"subjectName","Schlagworte (als Freitext)","free-text",13)
 			}
 			@accordionPanel("Beteiligte","contributor-section"){
 				@multifieldLd(myForm,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ResearchDataHelper.getPersonLookupEndpoints())
 				<br/>
-				@multifieldText(myForm,"contributorName","Beteiligte (als Freitext)","",4)
+				@multifieldText(myForm,"contributorName","Beteiligte (als Freitext)","free-text",4)
 				<br /> 
 				@multifieldText(myForm,"funding","Förderer","",15) 
 				<br />
@@ -74,9 +74,9 @@
 				<br/>
 				@multifieldText(myForm,"associatedDatasets","Zugehörige Datasets","",24) 
 				<br/>
-				@inputField(myForm,"nextVersion","Nachfolger Version","",25)  
+				@singlefieldText(myForm,"nextVersion","Nachfolger Version","",25)
 				<br />	<br />
-				@inputField(myForm,"previousVersion","Vorgänger Version","",26) 
+				@singlefieldText(myForm,"previousVersion","Vorgänger Version","",26)
 			}
 			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
 				<br />
