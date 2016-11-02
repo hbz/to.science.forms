@@ -113,6 +113,8 @@ public class ResearchData extends ZettelModel {
 
 	private List<String> creatorName;
 	private List<String> subjectName;
+	private List<String> contributorName;
+
 	private String usageManual;
 
 	public String getTitle() {
@@ -544,6 +546,20 @@ public class ResearchData extends ZettelModel {
 		this.usageManual = usageManual;
 	}
 
+	public List<String> getContributorName() {
+		return contributorName;
+	}
+
+	public void setContributorName(List<String> contributorName) {
+		this.contributorName = contributorName;
+	}
+
+	public void setContributorName(String in) {
+		if (contributorName == null || contributorName.isEmpty())
+			contributorName = new ArrayList<>();
+		contributorName.add(in);
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(serializeToMap());
@@ -589,6 +605,7 @@ public class ResearchData extends ZettelModel {
 		addFieldToMap(dict, creatorNameZF.name, () -> getCreatorName());
 		addFieldToMap(dict, subjectNameZF.name, () -> getSubjectName());
 		addFieldToMap(dict, usageManualZF.name, () -> getUsageManual());
+		addFieldToMap(dict, contributorNameZF.name, () -> getContributorName());
 		return dict;
 	}
 
@@ -654,6 +671,7 @@ public class ResearchData extends ZettelModel {
 		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
 		dict.put(subjectNameZF.uri, (in) -> setSubjectName((String) in));
 		dict.put(creatorNameZF.uri, (in) -> setCreatorName((String) in));
+		dict.put(contributorNameZF.uri, (in) -> setContributorName((String) in));
 		return dict;
 	}
 
@@ -684,7 +702,11 @@ public class ResearchData extends ZettelModel {
 		if (containsOnlyNullValues(creatorName)) {
 			creatorName = new ArrayList<>();
 		}
-		if (creator.isEmpty() && contributor.isEmpty() && creatorName.isEmpty()) {
+		if (containsOnlyNullValues(contributorName)) {
+			contributorName = new ArrayList<>();
+		}
+		if (creator.isEmpty() && contributor.isEmpty() && creatorName.isEmpty()
+				&& contributorName.isEmpty()) {
 			return "Bitte geben Sie einen Autor oder Beteiligten an!";
 		}
 		return null;

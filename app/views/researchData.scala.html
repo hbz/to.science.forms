@@ -35,6 +35,8 @@
 			@accordionPanel("Erschließung","cataloging-section"){
 				@textArea(myForm,"description","Beschreibung*","",9)
 				<br />
+				@textArea(myForm,"usageManual","Hinweise zur Nutzung","",22)
+				<br />
 				@singleSelect(myForm,"language","Sprache*","select-language",ResearchDataHelper.getLanguageMap(),10)
 				<br /> 
 				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ResearchDataHelper.getProfessionalGroupMap(),11)
@@ -43,10 +45,12 @@
 				<br />
 				@multifieldLd(myForm,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ResearchDataHelper.getSubjectLookupEndpoints())
 				<br />
-				@multifieldText(myForm,"subjectName","Schlagort (als Freitext)*","",13)
+				@multifieldText(myForm,"subjectName","Schlagort (als Freitext)","",13)
 			}
 			@accordionPanel("Beteiligte","contributor-section"){
-				@multifieldLd(myForm,"contributor","Beteiligte","gnd-person-search",14,ResearchDataHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ResearchDataHelper.getPersonLookupEndpoints())
+				<br/>
+				@multifieldText(myForm,"contributorName","Beteiligte (als Freitext)","",4)
 				<br /> 
 				@multifieldText(myForm,"funding","Förderer","",15) 
 				<br />
@@ -62,8 +66,6 @@
 				@multifieldLd(myForm,"recordingLocation","Erfassungsort","geonames-lookup",20,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br />
 				@multifieldLd(myForm,"recordingCoordinates","Geokoordinaten","geonames-reverse-lookup",21,ResearchDataHelper.getEmptyLookupEndpoints()) 
-				<br />
-				@textArea(myForm,"usageManual","Hinweise zur Nutzung","",22)
 			}
 			@accordionPanel("Zugehörige Publikationen","link-section"){
 			    @multifieldText(myForm,"references","Quellen","",22) 
