@@ -70,7 +70,7 @@ public class ZettelHelper {
 			result = getFieldNamesWithIndexFromFormData(form, fieldName);
 		}
 		if (result.isEmpty()) {
-			result.add(fieldName);
+			result.add(fieldName + "[0]");
 		}
 		return result;
 	}
