@@ -58,27 +58,22 @@ public class Proceeding extends ZettelModel {
 	private String yearOfCopyright;
 
 	@Required(message = "Bitte vergeben Sie eine Lizenz!")
-	@ValidUrl(message = "Bitte geben	Sie einen gültigen URL an!")
 	private String license;
 
 	@Required(message = "Bitte erstellen Sie eine kurze Inhaltsangabe!")
 	private String description;
 
 	@Required(message = "Bitte orden Sie Ihre Daten einer Fachgruppe zu!")
-	@ValidUrl(message = "Bitte orden Sie Ihre Daten einer Fachgruppe zu!")
 	private String professionalGroup;
 	private String embargo;
 
 	@Required(message = "Bitte orden Sie Ihre Daten einem Dewey Schlagwort zu!")
-	@ValidUrl(message = "Bitte orden Sie Ihre Daten einem Dewey Schlagwort zu!")
 	private List<String> ddc;
 
 	@Required(message = "Welche Sprache passt am ehesten zu Ihrer Eingabe?")
-	@ValidUrl(message = "Welche Sprache passt am ehesten zu Ihrer Eingabe?")
 	private String language;
 
 	@Required(message = "Bitte ordnen Sie ihre Eingabe einem Medium zu!")
-	@ValidUrl(message = "Bitte ordnen Sie ihre Eingabe einem Medium zu!")
 	private String medium;
 
 	private String dataOrigin;
