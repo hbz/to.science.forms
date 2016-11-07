@@ -1,0 +1,83 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@ 
+
+@(myForm:Form[services.ZettelModel],dataFormat:String,documentId:String,topicId:String)
+@import tags._ 
+@import services._
+
+@zettel("Kongressbeitrag",myForm,dataFormat,documentId,topicId) {
+	@if(myForm.hasGlobalErrors) {
+		<p class="error">@myForm.globalError.message</p>
+	} 
+	@helper.form(action = routes.ZettelController.postForm(Article.id,dataFormat,documentId,topicId)){
+		<a href="@models.Article.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
+		@accordion(""){
+			@accordionPanel("Titel","title-section"){
+				@singlefieldText(myForm,"title","Titel*","",1)
+				<br/>
+				@singlefieldText(myForm,"alternativeTitle","Alternativer Titel","",2)
+				<br/>
+				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ArticleHelper.getLanguageMap(),3)
+			}
+			@accordionPanel("Urheberschaft","creator-section"){
+				@multifieldLd(myForm,"creator","Autor (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+			    <br/>
+				@multifieldText(myForm,"creatorName","Autor (als Freitext)*","free-text",4)
+				<br/>
+				@multifieldLd(myForm,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
+				<br/>
+				@multifieldText(myForm,"contributorName","Beteiligte (als Freitext)","free-text",4)
+			}
+			@accordionPanel("Angaben zur Quelle","upload-section"){
+				@singlefieldText(myForm,"titleOfJournal","Titel der Zeitschrift*","",1)
+				<br/>
+				@singlefieldText(myForm,"shortTitleOfJournal","Kurztitel der Zeitschrift","",1)
+				<br/>
+				@singlefieldText(myForm,"volume","Band","",1)
+				<br/>
+				@singlefieldText(myForm,"issue","Heft","",1)
+				<br/>
+				@singlefieldText(myForm,"pages","Seitenangabe","",1)
+				<br/>
+				@singlefieldText(myForm,"publicationYear","Erscheinungsjahr","",1)
+				<br/>
+				@singlefieldText(myForm,"issn","ISSN","",1)
+			}
+			@accordionPanel("Dateiupload","upload-section"){
+				@singleSelect(myForm,"medium","Medium*","select-medium",ArticleHelper.getMediumMap(),5)
+				<br/>
+				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ArticleHelper.getCopyrightYear(),6)
+				<br />
+				@singleSelect(myForm,"license","Lizenz*","select-license",ArticleHelper.getLicenseMap(),7)
+				<br />
+				@singlefieldText(myForm,"embargo","Embargo","datepicker",8)
+			}
+			@accordionPanel("Erschließung","cataloging-section"){
+				@textArea(myForm,"abstract","Abstract*","",9)
+				<br />
+				@singleSelect(myForm,"language","Sprache*","select-language",ArticleHelper.getLanguageMap(),10)
+				<br /> 
+				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ArticleHelper.getProfessionalGroupMap(),11)
+				<br />
+				@multiselect(myForm,"ddc","DDC*","select-ddc",ArticleHelper.getDeweyMap(),12)
+				<br />
+				@multifieldLd(myForm,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
+				<br />
+				@multifieldText(myForm,"subjectName","Schlagworte (als Freitext)","free-text",13)
+			}
+			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
+				<br />
+				@multifieldText(myForm,"urn","Vorhandene URN","",27) 
+				<br />
+				@multifieldText(myForm,"doi","Vorhandene DOI","",28) 
+				<br />
+				@multifieldText(myForm,"isLike","Persistente URL","",29)  
+			}
+		}
+		<div class="form-group row">
+			<div class="col-sm-offset-8 col-sm-4">
+				<button id="cancel" class="btn cancel">Cancel</button>
+				<input type="submit" value="Save" class="btn btn-success" />
+			</div>
+		</div>
+	} 
+}

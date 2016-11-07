@@ -40,16 +40,16 @@ import services.ZettelModel;
  *
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Proceeding extends ZettelModel {
+public class Article extends ZettelModel {
 
 	/**
 	 * The id under which this model is registered in the ZettelRegister
 	 */
-	public final static String id = "katalog:proceeding";
+	public final static String id = "katalog:article";
 
 	@Override
 	protected String getType() {
-		return "http://hbz-nrw.de/regal#Proceeding";
+		return "http://hbz-nrw.de/regal#Article";
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class Proceeding extends ZettelModel {
 	 * @return return a url with help texts for the form
 	 */
 	public static String getHelpTextUrl() {
-		String url = ConfigFactory.load().getString("zettel.proceeding.helpText");
+		String url = ConfigFactory.load().getString("zettel.article.helpText");
 		return url;
 	}
 
