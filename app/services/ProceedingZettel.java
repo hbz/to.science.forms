@@ -17,38 +17,35 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import models.Proceeding;
+import play.data.Form;
+import play.twirl.api.Content;
+import views.html.proceeding;
 
 /**
- * The ZettelRegister provides access to all available forms.
- * 
  * @author Jan Schnasse
  *
  */
-@SuppressWarnings("javadoc")
-public class ZettelRegister {
-	Map<String, ZettelRegisterEntry> register = new HashMap<>();
+public class ProceedingZettel implements ZettelRegisterEntry {
 
-	public ZettelRegister() {
-		register(new ResearchDataZettel());
-		register(new ProceedingZettel());
-		/**
-		 * register additional forms
-		 */
+	Proceeding model = new Proceeding();
+
+	@Override
+	public String getId() {
+		return Proceeding.id;
 	}
 
-	private void register(ZettelRegisterEntry form) {
-		register.put(form.getId(), form);
+	@Override
+	public Proceeding getModel() {
+		return model;
 	}
 
-	public List<String> getIds() {
-		return register.keySet().parallelStream().collect(Collectors.toList());
+	@SuppressWarnings("unchecked")
+	@Override
+	public Content render(Form<?> form, String format, String documentId,
+			String topicId) {
+		return proceeding.render((Form<ZettelModel>) form, format, documentId,
+				topicId);
 	}
 
-	public ZettelRegisterEntry get(String id) {
-		return register.get(id);
-	}
 }

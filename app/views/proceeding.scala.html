@@ -1,0 +1,97 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@ 
+
+@(myForm:Form[services.ZettelModel],dataFormat:String,documentId:String,topicId:String)
+@import tags._ 
+@import services._
+
+@zettel("Kongressbeitrag",myForm,dataFormat,documentId,topicId) {
+	@if(myForm.hasGlobalErrors) {
+		<p class="error">@myForm.globalError.message</p>
+	} 
+	@helper.form(action = routes.ZettelController.postForm(Proceeding.id,dataFormat,documentId,topicId)){
+		<a href="@models.Proceeding.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
+		@accordion(""){
+			@accordionPanel("Titel","title-section"){
+				@singlefieldText(myForm,"title","Titel*","",1)
+				<br/>
+				@singlefieldText(myForm,"alternativeTitle","Alternativer Titel","",2)
+				<br/>
+				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ProceedingHelper.getLanguageMap(),3)
+			}
+			@accordionPanel("Urheberschaft","creator-section"){
+				@multifieldLd(myForm,"creator","Autor (als Linked Data)*","gnd-person-search",4,ProceedingHelper.getPersonLookupEndpoints())
+			<br/>
+				@multifieldText(myForm,"creatorName","Autor (als Freitext)*","free-text",4)
+			}
+			@accordionPanel("Dateiupload","upload-section"){
+				@singleSelect(myForm,"medium","Medium*","select-medium",ProceedingHelper.getMediumMap(),5)
+				<br/>
+				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ProceedingHelper.getCopyrightYear(),6)
+				<br />
+				@singleSelect(myForm,"license","Lizenz*","select-license",ProceedingHelper.getLicenseMap(),7)
+				<br />
+				@singlefieldText(myForm,"embargo","Embargo","datepicker",8)
+			}
+			@accordionPanel("Erschließung","cataloging-section"){
+				@textArea(myForm,"description","Beschreibung*","",9)
+				<br />
+				@textArea(myForm,"usageManual","Hinweise zur Nutzung","",22)
+				<br />
+				@singleSelect(myForm,"language","Sprache*","select-language",ProceedingHelper.getLanguageMap(),10)
+				<br /> 
+				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ProceedingHelper.getProfessionalGroupMap(),11)
+				<br />
+				@multiselect(myForm,"ddc","DDC*","select-ddc",ProceedingHelper.getDeweyMap(),12)
+				<br />
+				@multifieldLd(myForm,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ProceedingHelper.getSubjectLookupEndpoints())
+				<br />
+				@multifieldText(myForm,"subjectName","Schlagworte (als Freitext)","free-text",13)
+			}
+			@accordionPanel("Beteiligte","contributor-section"){
+				@multifieldLd(myForm,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ProceedingHelper.getPersonLookupEndpoints())
+				<br/>
+				@multifieldText(myForm,"contributorName","Beteiligte (als Freitext)","free-text",4)
+				<br /> 
+				@multifieldText(myForm,"funding","Förderer","",15) 
+				<br />
+				@multifieldText(myForm,"projectId","Projekt-ID","",16) 
+				<br/>
+				@multifieldText(myForm,"fundingProgram","Förderprogramm","",17) 
+			}
+			@accordionPanel("Erfassung","recording-section"){
+				@singleSelect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ProceedingHelper.getDataOriginMap(),18)
+				<br />
+				@textArea(myForm,"recordingPeriod","Erfassungszeitraum","",19) 
+				<br />
+				@multifieldLd(myForm,"recordingLocation","Erfassungsort","geonames-lookup",20,ProceedingHelper.getEmptyLookupEndpoints()) 
+				<br />
+				@multifieldLd(myForm,"recordingCoordinates","Geokoordinaten","geonames-reverse-lookup",21,ProceedingHelper.getEmptyLookupEndpoints()) 
+			}
+			@accordionPanel("Zugehörige Publikationen","link-section"){
+			    @multifieldText(myForm,"references","Quellen","",22) 
+				<br />
+				@multifieldText(myForm,"associatedPublications","Zugehörige Publikationen","",23) 
+				<br/>
+				@multifieldText(myForm,"associatedDatasets","Zugehörige Datasets","",24) 
+				<br/>
+				@singlefieldText(myForm,"nextVersion","Nachfolger Version","",25)
+				<br />	<br />
+				@singlefieldText(myForm,"previousVersion","Vorgänger Version","",26)
+			}
+			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
+				<br />
+				@multifieldText(myForm,"urn","Vorhandene URN","",27) 
+				<br />
+				@multifieldText(myForm,"doi","Vorhandene DOI","",28) 
+				<br />
+				@multifieldText(myForm,"isLike","Persistente URL","",29)  
+			}
+		}
+		<div class="form-group row">
+			<div class="col-sm-offset-8 col-sm-4">
+				<button id="cancel" class="btn cancel">Cancel</button>
+				<input type="submit" value="Save" class="btn btn-success" />
+			</div>
+		</div>
+	} 
+}
