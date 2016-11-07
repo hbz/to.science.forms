@@ -30,9 +30,16 @@ public final class MyDateRangeValidator
 		extends play.data.validation.Constraints.Validator<Object>
 		implements ConstraintValidator<ValidDateRange, Object> {
 
+	/**
+	 * 
+	 */
 	final static public String message = "error.DateValidator";
 
-	public String process(final String value) {
+	/**
+	 * @param value a value from user
+	 * @return the value as ISO_DATE
+	 */
+	public static String process(final String value) {
 		return parseDate(value);
 	}
 
@@ -53,6 +60,8 @@ public final class MyDateRangeValidator
 			return false;
 		if ((object instanceof String)) {
 			try {
+				// Will cause exception if wrong format is provided
+				@SuppressWarnings("unused")
 				String s = parseDate(object.toString());
 				return true;
 			} catch (Exception e) {
@@ -61,6 +70,9 @@ public final class MyDateRangeValidator
 		}
 		if ((object instanceof List<?>)) {
 			try {
+
+				// Will cause exception if wrong format is provided
+				@SuppressWarnings("unchecked")
 				List<String> list = (List<String>) object;
 				for (String s : list) {
 					if (!isValid(s))
@@ -76,12 +88,14 @@ public final class MyDateRangeValidator
 	}
 
 	@Override
-	public void initialize(ValidDateRange constraintAnnotation) {
-	}
-
-	@Override
 	public Tuple<String, Object[]> getErrorMessageKey() {
 
 		return null;
+	}
+
+	@Override
+	public void initialize(ValidDateRange constraintAnnotation) {
+		// TODO Auto-generated method stub
+
 	}
 }

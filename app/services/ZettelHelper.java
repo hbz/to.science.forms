@@ -18,7 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package services;
 
 import java.io.ByteArrayInputStream;
-
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,8 @@ import org.openrdf.rio.RDFFormat;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Charsets;
+import com.google.common.io.CharStreams;
 
 import models.JsonMessage;
 import models.ResearchData;
@@ -67,7 +70,7 @@ public class ZettelHelper {
 			result = getFieldNamesWithIndexFromFormData(form, fieldName);
 		}
 		if (result.isEmpty()) {
-			result.add(fieldName);
+			result.add(fieldName + "[0]");
 		}
 		return result;
 	}
@@ -113,7 +116,8 @@ public class ZettelHelper {
 	 * Returns a html fragment like <code>
 	 * <div id="embeddedJson" 
 	 * 	class="success-true" 
-	 * 	style="display:none">{"some":"json","data":"from","your":"form","model":"end"}</div>
+	 * 	style=
+	"display:none">{"some":"json","data":"from","your":"form","model":"end"}</div>
 	 * </code> If form validation has been successful class attribute is set to
 	 * 'success-true' or 'success-false' if not. In case of success the div
 	 * contains a json-ld representation of the forms underlying model. In case of
@@ -125,29 +129,36 @@ public class ZettelHelper {
 	 */
 	public static JsonMessage getEmbeddedJson(Form<?> form, String format) {
 		JsonMessage result = null;
+		play.Logger.debug("Write " + format);
 		try {
 			if (form.hasErrors()) {
 				result = new JsonMessage(form.errorsAsJson(), 400);
 			} else {
 				String jsonldString = form.get().toString();
-
+				// play.Logger.debug(form.get() + "");
+				// play.Logger.debug("JSON from FORM " + jsonldString);
 				if (form.get() != null) {
 					if ("xml".equals(format)) {
 						String rdfString = RdfUtils.readRdfToString(
 								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
 								RDFFormat.JSONLD, RDFFormat.RDFXML, "");
 						result = new JsonMessage(rdfString, 200);
+					} else if ("ntriples".equals(format)) {
+						String rdfString = RdfUtils.readRdfToString(
+								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
+								RDFFormat.JSONLD, RDFFormat.NTRIPLES, "");
+						result = new JsonMessage(rdfString, 200);
 					} else {
 						result = new JsonMessage(
 								((ResearchData) form.get()).serializeToMap(), 200);
 					}
-
 				}
 			}
 		} catch (Exception e) {
 			play.Logger.debug("", e);
 		}
 		return result;
+
 	}
 
 	/**
@@ -186,14 +197,11 @@ public class ZettelHelper {
 			if (form.value().isPresent() || form.hasErrors()) {
 				int i = parseIndex(fieldNameWithIndex);
 				String f = parseFieldName(fieldNameWithIndex);
-
 				if (form.hasErrors()) {
 					result = getDataFromMap(form, f, i);
 				} else {
 					result = getDataFromJson(form, f, i);
-
 				}
-
 			}
 		} catch (Exception e) {
 			// this can happen. Return empty string in that case.

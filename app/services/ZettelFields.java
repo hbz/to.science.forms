@@ -53,14 +53,49 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#ddc");
 	public static Etikett doiZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/ontology/bibo/doi");
+	public static Etikett urnZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/lobid/lv#urn");
+	public static Etikett isLikeZF = ZettelHelper.etikett
+			.getEtikett("http://www.umbel.org/specifications/vocabulary#isLike");
 	public static Etikett fundingZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#funding");
 	public static Etikett recordingPeriodZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#recordingPeriod");
 	public static Etikett recordingLocationZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#recordingLocation");
+	public static Etikett recordingCoordinatesZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#recordingCoordinates");
 	public static Etikett previousVersionZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#previousVersion");
 	public static Etikett nextVersionZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#nextVersion");
+	public static Etikett contributorOrderZF = ZettelHelper.etikett
+			.getEtikett("http://purl.org/lobid/lv#contributorOrder");
+	public static Etikett subjectOrderZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/lobid/lv#subjectOrder");
+	public static Etikett alternativeTitleZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/alternative");
+	public static Etikett titleLanguageZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#titleLanguage");
+	public static Etikett descriptionZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/description");
+	public static Etikett projectIdZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#projectId");
+	public static Etikett fundingProgramZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#fundingProgram");
+	public static Etikett associatedPublicationZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#associatedPublication");
+	public static Etikett associatedDatasetZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#associatedDataset");
+	public static Etikett referenceZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#reference");
+	public static Etikett creatorNameZF = ZettelHelper.etikett
+			.getEtikett("http://purl.org/dc/elements/1.1/creator");
+	public static Etikett subjectNameZF = ZettelHelper.etikett
+			.getEtikett("http://purl.org/dc/elements/1.1/subject");
+	public static Etikett usageManualZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#usageManual");
+	public static Etikett contributorNameZF = ZettelHelper.etikett
+			.getEtikett("http://purl.org/dc/elements/1.1/contributor");
+
 }

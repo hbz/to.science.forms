@@ -7,14 +7,23 @@ function initializeConnectionToParent() {
 		emitEvent();
 	}
 }
-
+function addAutocompletionWithDynamicEndpoint(autocompleteItem){
+	endpoint = autocompleteItem.siblings("select").val();
+	enableAutocompletion(autocompleteItem,endpoint);
+	autocompleteItem.siblings("select").change(function(){
+		newEndpoint=$(this).val();
+		enableAutocompletion(autocompleteItem,newEndpoint);
+	 });
+}
 function enableAllGndAutocompletion() {
-	$('.gnd-person-search input').each(function() {
-		enableGndPersonAutocompletion($(this));
-	});
 	$('.gnd-subject-search input').each(function() {
-		enableGndSubjectAutocompletion($(this));
+		addAutocompletionWithDynamicEndpoint($(this));
 	});
+	
+	$('.gnd-person-search input').each(function() {
+		addAutocompletionWithDynamicEndpoint($(this));
+	});
+	
 	$('.mydaterangepicker').each(function() {
 		$(this).daterangepicker({
 		      autoUpdateInput: false,
@@ -28,50 +37,31 @@ function enableAllGndAutocompletion() {
 		$(this).on('cancel.daterangepicker', function(ev, picker) {
 		      $(this).val('');
 		});
-
 	});
 }
-function enableGndPersonAutocompletion(inputElement) {
+
+
+function enableAutocompletion(inputElement,endpoint) {
 	inputElement.autocomplete({
 		select : function(event, ui) {
 			this.value = ui.item.value;
 			$(this).siblings(".input-field-heading").html(
-					"<b>" + ui.item.label + "</b>(" + ui.item.value + ")");
+					"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+			$(this).siblings("select").css('display','none');
+			$(this).css('display','none');
 			emitResize();
 			return false;
 		},
-		source : function(request, response) {
+		source : function(request, response) {	
 			$.ajax({
-				url : "https://lobid.org/person",
+				url : endpoint,
 				dataType : "jsonp",
 				data : {
 					name : request.term,
-					format : "ids"
-				},
-				success : function(data) {
-					response(data);
-				}
-			});
-		}
-	});
-}
-
-function enableGndSubjectAutocompletion(inputElement) {
-	inputElement.autocomplete({
-		select : function(event, ui) {
-			this.value = ui.item.value;
-			$(this).siblings(".input-field-heading").html(
-					"<b>" + ui.item.label + "</b>(" + ui.item.value + ")");
-			emitResize();
-			return false;
-		},
-		source : function(request, response) {
-			$.ajax({
-				url : "https://lobid.org/subject",
-				dataType : "jsonp",
-				data : {
-					name : request.term,
-					format : "ids"
+					q:request.term,
+					format : "ids",
+					lang:"de",
+					index:"agrovoc"
 				},
 				success : function(data) {
 					response(data);
@@ -95,6 +85,8 @@ function handleMessage(evt) {
 				var containerOfOldform = $('div.container');
 				containerOfOldform.html(newForm);
 				enableAllGndAutocompletion();
+				addGeonamesLookup();
+				addGeonamesReverseLookup();
 				addActionsToRemoveAndAddButtons();
 				window.addEventListener("message", handleMessage, false);
 				enableHelpOpenButtons();
@@ -123,18 +115,27 @@ function resetIds(curFieldName) {
 		console.log(curFieldName);
 		$(this).attr('name', curFieldName + "[" + num + "]");
 		$(this).attr('id', curFieldName + "_" + num);
+		$(this).removeClass("focus");
 		num++;
 	});
+	num--;
+	console.log("add class to "+"#"+ curFieldName + "_" + num);
+	$("#"+ curFieldName + "_" + num).addClass("focus");
 }
 
 function addActionsToRemoveAndAddButtons() {
 	$('.multi-field-wrapper').each(function() {
 		var $wrapper = $('.multi-fields', this);
 		var curFieldName = $('.multi-fields', this).attr('id');
+		$('.multi-fields input', this).addClass("focus");
 		$(".add-field", $(this)).click(function(e) {
 			destroyGndAutocompletion();
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
 			newField.appendTo($wrapper).find('.input-widget').val('').focus();
+			newField.appendTo($wrapper).find('.gnd-person-search.input-widget').css('display','inline');
+			newField.appendTo($wrapper).find('.gnd-subject-search.input-widget').css('display','inline');
+			newField.appendTo($wrapper).find('select').css('display','inline');
+			newField.appendTo($wrapper).find('.help-text').css('display','none');
 			resetIds(curFieldName);
 			$(newField).find(".input-field-heading").html("");
 			enableAllGndAutocompletion();
@@ -231,7 +232,7 @@ function enableHelpOpenButtons(){
 	var helpTextUrl=$(document).find('#helpTextUrl').attr('href');
 	$('.inline-help').on("click",function(){
 		var fieldName = $(this).attr('name');
-		var helpDiv=$('.help-text[name='+fieldName+']');
+		var helpDiv=$(this).siblings('.help-text[name='+fieldName+']');
 		$.ajax({
 			type : 'GET',
 			url : helpTextUrl,
@@ -275,4 +276,131 @@ function enableHelpCloseButtons(){
 		resetHelpText(helpDiv);
 		emitResize();
 	});
+}
+
+function addGeonamesLookup(){	
+	$('#recordingLocation').after('<div id="geoSearchDiv"><input id="geoSearchQuery"></input><button type="button" id="geofind-button">find</button></div>');
+	$('.input-widget.geonames-lookup').css('display','none');
+	var findButton=$('#geofind-button');
+	$('#geoSearchQuery').bind('keypress keydown keyup', function(e){
+	      if(e.keyCode == 13) { e.preventDefault(); findButton.click();}
+	});
+	findButton.on("click",function(){
+		var geoSearchQuery=$('#geoSearchQuery').val();
+		var geoNamesUrl = "geoSearch?q="+geoSearchQuery;
+		$.ajax({
+			type : 'GET',
+			url : geoNamesUrl,
+			crossDomain : true,
+			success : function(data, textStatus, jqXHR) {
+				displayMap(data.geonames);
+			},
+			error : function(data, textStatus, jqXHR) {
+				console.log(data);
+			}
+		}).done(function (){
+			
+		});
+	}
+	);
+	emitResize();
+}
+
+function displayMap(geonamesArr){	
+	$("#mapid").remove();
+	$('#geoSearchDiv').append('<div id="mapid" style="height:180px"></div>');
+	var i = 0;
+	var mymap;
+	$.each(geonamesArr,function(key,value){
+		var lat = value.lat;
+		var lng = value.lng;
+		if(i==0){
+			mymap=initMap(lat,lng);
+		}
+		L.marker([lat, lng]).addTo(mymap).on('click',function(e){
+			$('input.geonames-lookup.focus').val("http://www.geonames.org/"+value.geonameId);
+			$('input.geonames-lookup.focus').siblings(".input-field-heading").html(
+					"<b>" + value.name + "  </b><a href=\"http://www.geonames.org/"+value.geonameId+"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+		}).on('mouseover',function(e){
+			this.openPopup();
+		}).on('mouseout', function (e) {
+            this.closePopup();
+        }).bindPopup(value.name);
+		
+		if(i==10){
+			return false;
+		}
+		i++;
+	});
+	i=0;
+	emitResize();
+}
+
+function initMap(lat,lng){
+	L.map('mapid').remove();
+	var mymap = L.map('mapid').setView([lat, lng], 13);
+	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	    attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	    maxZoom: 18
+	}).addTo(mymap);
+	return mymap;
+}
+
+function addGeonamesReverseLookup(){	
+	$('#recordingCoordinates').after('<div id="geoReverseSearchDiv"><input id="geoReverseSearchQuery"></input><button type="button" id="georevfind-button">Open Map</button></div>');
+	$('.input-widget.geonames-reverse-lookup').css('display','none');
+	var findButton=$('#georevfind-button');
+	$('#geoReverseSearchQuery').bind('keypress keydown keyup', function(e){
+	      if(e.keyCode == 13) { e.preventDefault(); findButton.click();}
+	});
+	findButton.on("click",function(){
+		var geoSearchQuery=$('#geoReverseSearchQuery').val();
+		
+		var array = geoSearchQuery.split(',');
+         displayReverseMap(array[0],array[1]);	
+	}
+	);
+	emitResize();
+}
+
+function displayReverseMap(lat,lng){	
+	if (typeof(lat)==='undefined' || lat =="") lat = "50.94";
+	if (typeof(lng)==='undefined') lng = "6.95";
+	
+	$("#revmapid").remove();
+	$('#geoReverseSearchDiv').append('<div id="revmapid" style="height:180px"></div>');
+	var mymap=initRevMap(lat,lng);
+	var marker = new L.marker([lat, lng], {draggable:'true'});
+	marker.addTo(mymap);
+	marker.on('click',function(e){
+			var position = marker.getLatLng();
+			var link ="http://www.openstreetmap.org/?mlat="+position.lat+"&mlon="+position.lng;
+			$('input.geonames-reverse-lookup.focus').val(link);
+			$('input.geonames-reverse-lookup.focus').siblings(".input-field-heading").html(
+					"<b>" + position.lat+","+position.lng+ "  </b><a href=\""+link+"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+		});
+	marker.on('dragend', function(event){
+            var marker = event.target;
+            var position = marker.getLatLng();
+            marker.setLatLng(position,{draggable:'true'}).bindPopup(position.lat+","+position.lng).update();
+            $('#geoReverseSearchQuery').val(position.lat+","+position.lng);
+		});
+	marker.on('mouseover',function(e){
+			this.openPopup();
+		});
+	marker.on('mouseout', function (e) {
+            this.closePopup();
+        });
+	//marker.bindPopup(lat+","+lng);
+	emitResize();
+}
+
+function initRevMap(lat,lng){
+	L.map('revmapid').remove();
+	var mymap = L.map('revmapid').setView([lat, lng], 13);
+	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	    attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	    maxZoom: 18
+	}).addTo(mymap);
+	return mymap;
 }

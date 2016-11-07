@@ -1,15 +1,13 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int) 
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int,lookupEndpoints:Map[String,String]) 
 @import tags._
 @import services._
 <div class="multi-field-wrapper">
 	<div class="multi-fields" id="@fieldName">
 		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,fieldName) ){
 		<div class="multi-field">
-			 @ldInputField(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt){
-			  	<button type="button" class="inline-help" name="@fieldName">
-								<span class="fa fa-question-circle" />
-				</button>
+			 @ldInputField(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt,lookupEndpoints){
+			  	@helpText(fieldName)
 				}
 			 	<div class="buttonBox">
 			 	
@@ -29,7 +27,5 @@
 		</div>
 		}
 	</div>
-	<div class="help-text" name="@fieldName" style="display:none">
-				<button name="@fieldName" type="button" class="close-help" style="float:right"><span class="fa fa-times-circle"/></button>
-	</div>
+	
 </div>

@@ -1,22 +1,77 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero
 General Public License *@
-@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int)(content:Html)
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int,lookupEndpoints:Map[String,String])(content:Html)
 
+@import java.util.stream.Collectors
 @import services._ 
 @myValue=@{ZettelHelper.getData(myForm,fieldName)}
 <div class="first-child-of-multi-field">
 	<div >
 		<label class="form-control-label" for="@fieldName">@fieldLabel</label>
+		@content
 	</div>
 	<div class="@classString">
 		<div>
 			<p class="input-field-heading">
 				<b>@ZettelHelper.etikett.getLabelFromEtikettWs(myValue)</b>
-				@if(myValue!=null && !myValue.isEmpty()){(@myValue)}
-			</p>
+			@if(myValue!=null && !myValue.isEmpty()){
+			<a href="@myValue" target="_blank"><span class="octicon octicon-link-external"></span></a>
+			</p>				
+				
+				<input size="50" class="input-widget @classString" value="@myValue"
+					name="@fieldName" tabindex="@tabOrderAsInt" style="display:none;"/>
+					@if(!lookupEndpoints.isEmpty()){
+				
+						<select class="endpointSelect">
+						@services.ZettelHelper.getData(myForm,fieldName) match{
+								case myValue: String => {
+									@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
+											@if(myValue.equals(i)){
+										      <option value="@i" selected>@lookupEndpoints.get(i)</option>
+										     }else{
+										      <option value="@i">@lookupEndpoints.get(i)</option>
+										     }
+									}		
+								}
+								case _ => {
+									@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
+							      		<option value="@i">@lookupEndpoints.get(i)</option>
+							    	}
+								}
+						}
+					  </select>
+				    }
+				}else{
+				</p>
 				<input size="50" class="input-widget @classString" value="@myValue"
 					name="@fieldName" tabindex="@tabOrderAsInt"/>
-			@content
+					@if(!lookupEndpoints.isEmpty()){
+						<select class="endpointSelect">
+				@services.ZettelHelper.getData(myForm,fieldName) match{
+							case myValue: String => {
+							
+								@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
+										@if(myValue.equals(i)){
+									      <option value="@i" selected>@lookupEndpoints.get(i)</option>
+									     }else{
+									      <option value="@i">@lookupEndpoints.get(i)</option>
+									     }
+								}	
+								}	
+							
+							case _ => {
+						
+								@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
+						      		<option value="@i">@lookupEndpoints.get(i)</option>
+						    	}
+						    	}
+							
+				}
+						
+						</select>
+				}}
+				
+				
 		</div>
 	</div>
 	<div>

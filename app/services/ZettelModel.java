@@ -104,9 +104,12 @@ public abstract class ZettelModel {
 		Map<String, Consumer<Object>> dict = getMappingForDeserialization();
 		Graph graph = RdfUtils.readRdfToGraph(in, format, getDocumentId());
 		graph.forEach((st) -> {
-			String rdf_P = st.getPredicate().stringValue();
-			if (dict.containsKey(rdf_P)) {
-				initListField(graph, st.getObject(), dict.get(rdf_P));
+			// play.Logger.debug(st + "");
+			if (!"".equals(st.getObject().stringValue())) {
+				String rdf_P = st.getPredicate().stringValue();
+				if (dict.containsKey(rdf_P)) {
+					initListField(graph, st.getObject(), dict.get(rdf_P));
+				}
 			}
 		});
 		return this;
@@ -174,11 +177,16 @@ public abstract class ZettelModel {
 	private static void initListField(Graph graph, Value rdf_O,
 			Consumer<Object> consumer) {
 		if (rdf_O instanceof BNode) {
-			List<String> list = RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(),
-					RdfUtils.first, new ArrayList<>());
-			consumer.accept(list);
+			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), RdfUtils.first,
+					consumer);
 		} else {
-			consumer.accept(rdf_O.stringValue());
+			try {
+				consumer.accept(rdf_O.stringValue());
+			} catch (ClassCastException e) {
+				List<String> list = new ArrayList<>();
+				list.add(rdf_O.stringValue());
+				consumer.accept(list);
+			}
 		}
 	}
 

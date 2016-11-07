@@ -1,0 +1,31 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int) 
+@import tags._
+@import services._
+<div class="multi-field-wrapper">
+	<div class="multi-fields" id="@fieldName">
+		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,fieldName) ){
+		<div class="multi-field">
+			 @inputField(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt){
+			  	@helpText(fieldName)
+				}
+			 	<div class="buttonBox">
+			 	
+					<div class="btn-group">
+						<button type="button" class="add-field" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-plus-circle"/></button>
+						<button type="button" class="remove-field" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-minus-circle"/></button>
+					</div>	
+					<div class="btn-group">
+						<button type="button" class="moveUp" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-arrow-circle-up"/></button>
+						<button type="button" class="moveDown" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-arrow-circle-down"/></button>
+					</div>	
+				</div>
+				<div>
+				</div>
+			<br/>
+			<!-- do not insert elements after the following div, unless you want to modify moveDown implementation in zettel.js -->
+		</div>
+		}
+	</div>
+	
+</div>

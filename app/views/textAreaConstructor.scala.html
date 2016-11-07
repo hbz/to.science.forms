@@ -1,20 +1,17 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
+@import tags._
 @(elements: helper.FieldElements)
 			<div>
 				<div>
 					<label class="form-control-label" for="@elements.id">@elements.label</label>
+					@helpText(elements.id)
 				</div>
 				<div>					
 					@elements.input 
-				<button type="button" class="inline-help" name="@elements.name">
-					<span class="fa fa-question-circle"/>
-				</button>
 				</div>
 				<div>
     				<span class="errors">@elements.errors.mkString(", ")</span>
    				 </div>
-   				 <div class="help-text" name="@elements.name" style="display:none">
-					<button name="@elements.name" type="button" class="close-help" style="float:right"><span class="fa fa-times-circle"/></button>
-				</div>
+   				
 			</div>	
 			

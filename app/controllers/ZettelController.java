@@ -19,13 +19,20 @@ package controllers;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 import javax.inject.Inject;
 
 import org.openrdf.rio.RDFFormat;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import models.ResearchData;
 import play.data.Form;
@@ -35,6 +42,7 @@ import services.XmlUtils;
 import services.ZettelRegister;
 import services.ZettelRegisterEntry;
 import views.html.*;
+import play.libs.ws.*;
 
 /**
  * @author Jan Schnasse
@@ -43,6 +51,9 @@ import views.html.*;
 public class ZettelController extends Controller {
 	@Inject
 	play.data.FormFactory formFactory;
+
+	@Inject
+	WSClient ws;
 
 	/**
 	 * @return the start page
@@ -72,7 +83,7 @@ public class ZettelController extends Controller {
 	/**
 	 * @param id if null list all available forms otherwise render the requested
 	 *          form.
-	 * @param format ask for certain format. supports xml and json
+	 * @param format ask for certain format. supports xml,ntriples and json
 	 * @param documentId your personal id for the document you want to create form
 	 *          data for
 	 * @param topicId the topic id is used by our regal-drupal to find the actual
@@ -98,7 +109,7 @@ public class ZettelController extends Controller {
 
 	/**
 	 * @param id the id of the form the POST data is send to.
-	 * @param format ask for certain format. supports xml and json
+	 * @param format ask for certain format. supports xml,ntriples and json
 	 * @param documentId your personal id for the document you want to create form
 	 *          data for
 	 * @param topicId the topic id is used by our regal-drupal to find the actual
@@ -121,7 +132,7 @@ public class ZettelController extends Controller {
 	}
 
 	/**
-	 * @param format ask for certain format. supports xml and json
+	 * @param format ask for certain format. supports xml,ntriples and json
 	 * @param documentId your personal id for the document you want to create form
 	 *          data for
 	 * @param topicId the topic id is used by our regal-drupal to find the actual
@@ -194,4 +205,72 @@ public class ZettelController extends Controller {
 		return ok(zettel.render(form, format, documentId, topicId));
 	}
 
+	/**
+	 * @param q the query will be redirected to geonames
+	 * @return the response from api.geonames.org
+	 */
+	public CompletionStage<Result> geoSearch(String q) {
+		String geoNamesUrl = "http://api.geonames.org/searchJSON";
+		WSRequest request = ws.url(geoNamesUrl);
+		WSRequest complexRequest =
+				request.setRequestTimeout(1000).setQueryParameter("q", q)
+						.setQueryParameter("username", "epublishinghbz");
+		return complexRequest.setFollowRedirects(true).get()
+				.thenApply(response -> ok(response.asJson()));
+	}
+
+	public CompletionStage<Result> orcidSearch(String q) {
+		String orcidUrl = "http://pub.orcid.org/search/orcid-bio";
+		WSRequest request = ws.url(orcidUrl);
+		WSRequest complexRequest =
+				request.setRequestTimeout(1000).setQueryParameter("q", q);
+		return complexRequest.setFollowRedirects(true).get()
+				.thenApply(response -> ok(response.asJson()));
+	}
+
+	public CompletionStage<Result> orcidAutocomplete(String q) {
+		final String[] callback =
+				request() == null || request().queryString() == null ? null
+						: request().queryString().get("callback");
+		String orcidUrl = "http://pub.orcid.org/search/orcid-bio";
+		WSRequest request = ws.url(orcidUrl);
+		WSRequest complexRequest = request.setHeader("accept", "application/json")
+				.setRequestTimeout(5000).setQueryParameter("q", q);
+		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
+			JsonNode hits =
+					response.asJson().at("/orcid-search-results/orcid-search-result");
+			List<Map<String, String>> result = new ArrayList<>();
+			hits.forEach((hit) -> {
+				String label = hit
+						.at("/orcid-profile/orcid-bio/personal-details/family-name/value")
+						.asText()
+						+ ", "
+						+ hit
+								.at("/orcid-profile/orcid-bio/personal-details/given-names/value")
+								.asText();
+				String id = hit.at("/orcid-profile/orcid-identifier/uri").asText();
+				Map<String, String> m = new HashMap<>();
+				m.put("label", label);
+				m.put("value", id);
+				result.add(m);
+			});
+			String searchResult = json(result);
+			String myResponse = callback != null
+					? String.format("/**/%s(%s)", callback[0], searchResult)
+					: searchResult;
+			return ok(myResponse);
+		});
+	}
+
+	private static String json(Object obj) {
+		try {
+			StringWriter w = new StringWriter();
+			new ObjectMapper().writeValue(w, obj);
+			String result = w.toString();
+			return result;
+		} catch (Exception e) {
+			play.Logger.error("", e);
+			return "{\"message\":\"error\"}";
+		}
+	}
 }

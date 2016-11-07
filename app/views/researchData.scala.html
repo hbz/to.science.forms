@@ -5,7 +5,6 @@
 @import services._
 
 @zettel("Forschungsdaten",myForm,dataFormat,documentId,topicId) {
-
 	@if(myForm.hasGlobalErrors) {
 		<p class="error">@myForm.globalError.message</p>
 	} 
@@ -13,53 +12,79 @@
 		<a href="@models.ResearchData.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
 			@accordionPanel("Titel","title-section"){
-				@inputField(myForm,"title","Titel*","",1)
+				@singlefieldText(myForm,"title","Titel*","",1)
+				<br/>
+				@singlefieldText(myForm,"alternativeTitle","Alternativer Titel","",2)
+				<br/>
+				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ResearchDataHelper.getLanguageMap(),3)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
-				@multifield(myForm,"creator","Autor*","gnd-person-search",2)
+				@multifieldLd(myForm,"creator","Autor (als Linked Data)*","gnd-person-search",4,ResearchDataHelper.getPersonLookupEndpoints())
+			<br/>
+				@multifieldText(myForm,"creatorName","Autor (als Freitext)*","free-text",4)
 			}
 			@accordionPanel("Dateiupload","upload-section"){
-				@singleSelect(myForm,"medium","Medium*","select-medium",ResearchDataHelper.getMediumMap(),3)
+				@singleSelect(myForm,"medium","Medium*","select-medium",ResearchDataHelper.getMediumMap(),5)
 				<br/>
-				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ResearchDataHelper.getCopyrightYear(),4)
+				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ResearchDataHelper.getCopyrightYear(),6)
 				<br />
-				@singleSelect(myForm,"license","Lizenz*","select-license",ResearchDataHelper.getLicenseMap(),5)
+				@singleSelect(myForm,"license","Lizenz*","select-license",ResearchDataHelper.getLicenseMap(),7)
 				<br />
-				@inputField(myForm,"embargo","Embargo","datepicker",6)
+				@singlefieldText(myForm,"embargo","Embargo","datepicker",8)
 			}
 			@accordionPanel("Erschließung","cataloging-section"){
-				@textArea(myForm,"abstractText","Beschreibung*","",7)
+				@textArea(myForm,"description","Beschreibung*","",9)
 				<br />
-				@singleSelect(myForm,"language","Sprache*","select-language",ResearchDataHelper.getLanguageMap(),8)
+				@textArea(myForm,"usageManual","Hinweise zur Nutzung","",22)
+				<br />
+				@singleSelect(myForm,"language","Sprache*","select-language",ResearchDataHelper.getLanguageMap(),10)
 				<br /> 
-				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ResearchDataHelper.getProfessionalGroupMap(),9)
+				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ResearchDataHelper.getProfessionalGroupMap(),11)
 				<br />
-				@multiselect(myForm,"ddc","DDC*","select-ddc",ResearchDataHelper.getDeweyMap(),10)
+				@multiselect(myForm,"ddc","DDC*","select-ddc",ResearchDataHelper.getDeweyMap(),12)
 				<br />
-				@multifield(myForm,"subject","Schlagworte","gnd-subject-search",11)
+				@multifieldLd(myForm,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ResearchDataHelper.getSubjectLookupEndpoints())
+				<br />
+				@multifieldText(myForm,"subjectName","Schlagworte (als Freitext)","free-text",13)
 			}
 			@accordionPanel("Beteiligte","contributor-section"){
-				@multifield(myForm,"contributor","Beteiligte","gnd-person-search",12)
+				@multifieldLd(myForm,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ResearchDataHelper.getPersonLookupEndpoints())
+				<br/>
+				@multifieldText(myForm,"contributorName","Beteiligte (als Freitext)","free-text",4)
 				<br /> 
-				@multifield(myForm,"funding","Förderer","",13) 
+				@multifieldText(myForm,"funding","Förderer","",15) 
 				<br />
-				@multifield(myForm,"projectId","Projekt-ID","",14) 
+				@multifieldText(myForm,"projectId","Projekt-ID","",16) 
+				<br/>
+				@multifieldText(myForm,"fundingProgram","Förderprogramm","",17) 
 			}
 			@accordionPanel("Erfassung","recording-section"){
-				@singleSelect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),15)
+				@singleSelect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),18)
 				<br />
-				@textArea(myForm,"recordingPeriod","Erfassungszeitraum","",16) 
+				@textArea(myForm,"recordingPeriod","Erfassungszeitraum","",19) 
 				<br />
-				@multifield(myForm,"recordingLocation","Erfassungsort","",17) 
+				@multifieldLd(myForm,"recordingLocation","Erfassungsort","geonames-lookup",20,ResearchDataHelper.getEmptyLookupEndpoints()) 
 				<br />
-				@multifield(myForm,"recordingLocationCoord","Geokoordinaten","",18) 
+				@multifieldLd(myForm,"recordingCoordinates","Geokoordinaten","geonames-reverse-lookup",21,ResearchDataHelper.getEmptyLookupEndpoints()) 
 			}
-			@accordionPanel("Externe Referenzen","link-section"){
-				@inputField(myForm,"nextVersion","Nachfolger Version","",19)  
+			@accordionPanel("Zugehörige Publikationen","link-section"){
+			    @multifieldText(myForm,"references","Quellen","",22) 
 				<br />
-				@inputField(myForm,"previousVersion","Vorgänger Version","",20) 
+				@multifieldText(myForm,"associatedPublications","Zugehörige Publikationen","",23) 
+				<br/>
+				@multifieldText(myForm,"associatedDatasets","Zugehörige Datasets","",24) 
+				<br/>
+				@singlefieldText(myForm,"nextVersion","Nachfolger Version","",25)
+				<br />	<br />
+				@singlefieldText(myForm,"previousVersion","Vorgänger Version","",26)
+			}
+			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
 				<br />
-				@multifield(myForm,"doi","Vorhandene DOIs","",21) 
+				@multifieldText(myForm,"urn","Vorhandene URN","",27) 
+				<br />
+				@multifieldText(myForm,"doi","Vorhandene DOI","",28) 
+				<br />
+				@multifieldText(myForm,"isLike","Persistente URL","",29)  
 			}
 		}
 		<div class="form-group row">

@@ -25,14 +25,11 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sun.glass.ui.Application;
 import com.typesafe.config.ConfigFactory;
 
-import play.Play;
 import play.data.validation.Constraints.Required;
 import static services.ZettelFields.*;
 
-import services.ValidDateRange;
 import services.ValidUrl;
 import services.ZettelHelper;
 import services.ZettelModel;
@@ -42,7 +39,7 @@ import services.ZettelModel;
  *
  */
 @SuppressWarnings("javadoc")
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ResearchData extends ZettelModel {
 	/**
 	 * The id under which this model is registered in the ZettelRegister
@@ -51,11 +48,10 @@ public class ResearchData extends ZettelModel {
 
 	@Required(message = "Bitte vergeben Sie einen Titel!")
 	private String title;
+	private String titleLanguage;
+	private String alternativeTitle;
 
-	@Required(message = "Bitte nennen Sie einen Autor oder Ersteller!")
-	@ValidUrl(message = "Bitte nennen Sie einen Autor oder Ersteller!")
 	private List<String> creator;
-
 	private List<String> contributor;
 
 	@Required(message = "Bitte geben Sie das Jahr zum Copyright an.")
@@ -66,7 +62,7 @@ public class ResearchData extends ZettelModel {
 	private String license;
 
 	@Required(message = "Bitte erstellen Sie eine kurze Inhaltsangabe!")
-	private String abstractText;
+	private String description;
 
 	@Required(message = "Bitte orden Sie Ihre Daten einer Fachgruppe zu!")
 	@ValidUrl(message = "Bitte orden Sie Ihre Daten einer Fachgruppe zu!")
@@ -88,39 +84,38 @@ public class ResearchData extends ZettelModel {
 	private String dataOrigin;
 	private List<String> subject;
 	private List<String> doi;
+	private List<String> urn;
+	private List<String> isLike;
+
 	private List<String> funding;
+	private List<String> projectId;
+	private List<String> fundingProgram;
 
 	private List<String> recordingLocation;
 
-	private List<String> recordingPeriod;
+	private List<String> recordingCoordinates;
+
+	// private List<String> recordingCoordinatesPolygon;
+
+	private String recordingPeriod;
 
 	private List<String> previousVersion;
 
 	private List<String> nextVersion;
 
-	/**
-	 * Create an empty ResearchData model
-	 */
-	public ResearchData() {
-		this.title = new String();
-		this.creator = new ArrayList<>();
-		this.yearOfCopyright = new String();
-		this.license = new String();
-		this.abstractText = new String();
-		this.professionalGroup = new String();
-		this.embargo = new String();
-		this.ddc = new ArrayList<>();
-		this.language = new String();
-		this.medium = new String();
-		this.dataOrigin = new String();
-		this.subject = new ArrayList<>();
-		this.doi = new ArrayList<>();
-		this.funding = new ArrayList<>();
-		this.recordingLocation = new ArrayList<>();
-		this.recordingPeriod = new ArrayList<>();
-		this.previousVersion = new ArrayList<>();
-		this.nextVersion = new ArrayList<>();
-	}
+	private List<String> contributorOrder;
+
+	private List<String> subjectOrder;
+
+	private List<String> associatedPublications;
+	private List<String> associatedDatasets;
+	private List<String> references;
+
+	private List<String> creatorName;
+	private List<String> subjectName;
+	private List<String> contributorName;
+
+	private String usageManual;
 
 	public String getTitle() {
 		return title;
@@ -160,14 +155,6 @@ public class ResearchData extends ZettelModel {
 
 	public void setDoi(List<String> doi) {
 		this.doi = doi;
-	}
-
-	public String getAbstractText() {
-		return abstractText;
-	}
-
-	public void setAbstractText(String abstractText) {
-		this.abstractText = abstractText;
 	}
 
 	public String getProfessionalGroup() {
@@ -250,11 +237,11 @@ public class ResearchData extends ZettelModel {
 		this.recordingLocation = recordingLocation;
 	}
 
-	public List<String> getRecordingPeriod() {
+	public String getRecordingPeriod() {
 		return recordingPeriod;
 	}
 
-	public void setRecordingPeriod(List<String> recordingPeriod) {
+	public void setRecordingPeriod(String recordingPeriod) {
 		this.recordingPeriod = recordingPeriod;
 	}
 
@@ -274,6 +261,305 @@ public class ResearchData extends ZettelModel {
 		this.nextVersion = nextVersion;
 	}
 
+	public List<String> getRecordingCoordinates() {
+		return recordingCoordinates;
+	}
+
+	public void setRecordingCoordinates(List<String> recordingCoordinates) {
+		this.recordingCoordinates = recordingCoordinates;
+	}
+
+	public List<String> getUrn() {
+		return urn;
+	}
+
+	public void setUrn(List<String> urn) {
+		this.urn = urn;
+	}
+
+	public List<String> getIsLike() {
+		return isLike;
+	}
+
+	public void setIsLike(List<String> isLike) {
+		this.isLike = isLike;
+	}
+
+	public void setSubjectOrder(String in) {
+		if (subjectOrder == null || subjectOrder.isEmpty())
+			subjectOrder = new ArrayList<>();
+		subjectOrder.add(in);
+	}
+
+	public void setContributorOrder(String in) {
+		if (contributorOrder == null || contributorOrder.isEmpty())
+			contributorOrder = new ArrayList<>();
+		contributorOrder.add(in);
+	}
+
+	public void setIsLike(String in) {
+		if (isLike == null || isLike.isEmpty())
+			isLike = new ArrayList<>();
+		isLike.add(in);
+	}
+
+	public void setUrn(String in) {
+		if (urn == null || urn.isEmpty())
+			urn = new ArrayList<>();
+		urn.add(in);
+	}
+
+	public void setDoi(String in) {
+		if (doi == null || doi.isEmpty())
+			doi = new ArrayList<>();
+		doi.add(in);
+	}
+
+	public void setPreviousVersion(String in) {
+		if (previousVersion == null || previousVersion.isEmpty())
+			previousVersion = new ArrayList<>();
+		previousVersion.add(in);
+	}
+
+	public void setNextVersion(String in) {
+		if (nextVersion == null || nextVersion.isEmpty())
+			nextVersion = new ArrayList<>();
+		nextVersion.add(in);
+	}
+
+	public void setRecordingCoordinates(String in) {
+		if (recordingCoordinates == null || recordingCoordinates.isEmpty())
+			recordingCoordinates = new ArrayList<>();
+		recordingCoordinates.add(in);
+	}
+
+	public void setRecordingLocation(String in) {
+		if (recordingLocation == null || recordingLocation.isEmpty())
+			recordingLocation = new ArrayList<>();
+		recordingLocation.add(in);
+	}
+
+	public void setFunding(String in) {
+		if (funding == null || funding.isEmpty())
+			funding = new ArrayList<>();
+		funding.add(in);
+	}
+
+	public void setDdc(String in) {
+		if (ddc == null || ddc.isEmpty())
+			ddc = new ArrayList<>();
+		ddc.add(in);
+	}
+
+	public void setSubject(String in) {
+		if (subject == null || subject.isEmpty())
+			subject = new ArrayList<>();
+		subject.add(in);
+	}
+
+	public void setContributor(String in) {
+		if (contributor == null || contributor.isEmpty())
+			contributor = new ArrayList<>();
+		contributor.add(in);
+	}
+
+	public void setCreator(String in) {
+		if (creator == null || creator.isEmpty())
+			creator = new ArrayList<>();
+		creator.add(in);
+	}
+
+	public void setSubjectOrder(List<String> in) {
+		subjectOrder = in;
+	}
+
+	public void setContributorOrder(List<String> in) {
+		contributorOrder = in;
+	}
+
+	public List<String> getContributorOrder() {
+		contributorOrder = new ArrayList<>();
+		StringBuffer buf = new StringBuffer();
+		if (creator != null) {
+			for (String str : creator) {
+				buf.append(str + "|");
+			}
+		}
+		if (buf.length() == 1) {
+			buf.deleteCharAt(buf.length() - 1);
+			contributorOrder.add(buf.toString());
+		}
+		if (contributor != null) {
+			for (String str : contributor) {
+				buf.append(str + "|");
+			}
+		}
+		if (buf.length() > 0) {
+			buf.deleteCharAt(buf.length() - 1);
+			contributorOrder.add(buf.toString());
+		}
+		return contributorOrder;
+	}
+
+	public List<String> getSubjectOrder() {
+		subjectOrder = new ArrayList<>();
+		StringBuffer buf = new StringBuffer();
+		if (subject != null) {
+			for (String str : subject) {
+				buf.append(str + "|");
+			}
+		}
+		if (buf.length() > 0) {
+			buf.deleteCharAt(buf.length() - 1);
+			subjectOrder.add(buf.toString());
+		}
+		return subjectOrder;
+	}
+
+	public String getTitleLanguage() {
+		return titleLanguage;
+	}
+
+	public void setTitleLanguage(String titleLanguage) {
+		this.titleLanguage = titleLanguage;
+	}
+
+	public String getAlternativeTitle() {
+		return alternativeTitle;
+	}
+
+	public void setAlternativeTitle(String alternativeTitle) {
+		this.alternativeTitle = alternativeTitle;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<String> getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(List<String> projectId) {
+		this.projectId = projectId;
+	}
+
+	public void setProjectId(String in) {
+		if (projectId == null || projectId.isEmpty())
+			projectId = new ArrayList<>();
+		projectId.add(in);
+	}
+
+	public List<String> getFundingProgram() {
+		return fundingProgram;
+	}
+
+	public void setFundingProgram(List<String> fundingProgram) {
+		this.fundingProgram = fundingProgram;
+	}
+
+	public void setFundingProgram(String in) {
+		if (fundingProgram == null || fundingProgram.isEmpty())
+			fundingProgram = new ArrayList<>();
+		fundingProgram.add(in);
+	}
+
+	public List<String> getAssociatedPublications() {
+		return associatedPublications;
+	}
+
+	public void setAssociatedPublications(List<String> associatedPublications) {
+		this.associatedPublications = associatedPublications;
+	}
+
+	public void setAssociatedPublications(String in) {
+		if (associatedPublications == null || associatedPublications.isEmpty())
+			associatedPublications = new ArrayList<>();
+		associatedPublications.add(in);
+	}
+
+	public List<String> getAssociatedDatasets() {
+		return associatedDatasets;
+	}
+
+	public void setAssociatedDatasets(List<String> associatedDatasets) {
+		this.associatedDatasets = associatedDatasets;
+	}
+
+	public void setAssociatedDatasets(String in) {
+		if (associatedDatasets == null || associatedDatasets.isEmpty())
+			associatedDatasets = new ArrayList<>();
+		associatedDatasets.add(in);
+	}
+
+	public List<String> getReferences() {
+		return references;
+	}
+
+	public void setReferences(List<String> references) {
+		this.references = references;
+	}
+
+	public void setReferences(String in) {
+		if (references == null || references.isEmpty())
+			references = new ArrayList<>();
+		references.add(in);
+	}
+
+	public List<String> getCreatorName() {
+		return creatorName;
+	}
+
+	public void setCreatorName(List<String> creatorName) {
+		this.creatorName = creatorName;
+	}
+
+	public void setCreatorName(String in) {
+		if (creatorName == null || creatorName.isEmpty())
+			creatorName = new ArrayList<>();
+		creatorName.add(in);
+	}
+
+	public List<String> getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(List<String> subjectName) {
+		this.subjectName = subjectName;
+	}
+
+	public void setSubjectName(String in) {
+		if (subjectName == null || subjectName.isEmpty())
+			subjectName = new ArrayList<>();
+		subjectName.add(in);
+	}
+
+	public String getUsageManual() {
+		return usageManual;
+	}
+
+	public void setUsageManual(String subjusageManualectName) {
+		this.usageManual = usageManual;
+	}
+
+	public List<String> getContributorName() {
+		return contributorName;
+	}
+
+	public void setContributorName(List<String> contributorName) {
+		this.contributorName = contributorName;
+	}
+
+	public void setContributorName(String in) {
+		if (contributorName == null || contributorName.isEmpty())
+			contributorName = new ArrayList<>();
+		contributorName.add(in);
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(serializeToMap());
@@ -282,25 +568,64 @@ public class ResearchData extends ZettelModel {
 	@Override
 	protected Map<String, Supplier<Object>> getMappingForSerialization() {
 		Map<String, Supplier<Object>> dict = new LinkedHashMap<>();
-		dict.put(titleZF.name, () -> getTitle());
-		dict.put(creatorZF.name, () -> getCreator());
-		dict.put(contributorZF.name, () -> getContributor());
-		dict.put(abstractTextZF.name, () -> getAbstractText());
-		dict.put(dataOriginZF.name, () -> getDataOrigin());
-		dict.put(embargoZF.name, () -> getEmbargo());
-		dict.put(languageZF.name, () -> getLanguage());
-		dict.put(licenseZF.name, () -> getLicense());
-		dict.put(mediumZF.name, () -> getMedium());
-		dict.put(professionalGroupZF.name, () -> getProfessionalGroup());
-		dict.put(subjectZF.name, () -> getSubject());
-		dict.put(yearOfCopyrightZF.name, () -> getYearOfCopyright());
-		dict.put(ddcZF.name, () -> getDdc());
-		dict.put(fundingZF.name, () -> getFunding());
-		dict.put(recordingPeriodZF.name, () -> getRecordingPeriod());
-		dict.put(recordingLocationZF.name, () -> getRecordingLocation());
-		dict.put(nextVersionZF.name, () -> getNextVersion());
-		dict.put(previousVersionZF.name, () -> getPreviousVersion());
+		addFieldToMap(dict, titleZF.name, () -> getTitle());
+		addFieldToMap(dict, creatorZF.name, () -> getCreator());
+		addFieldToMap(dict, contributorZF.name, () -> getContributor());
+		addFieldToMap(dict, dataOriginZF.name, () -> getDataOrigin());
+		addFieldToMap(dict, embargoZF.name, () -> getEmbargo());
+		addFieldToMap(dict, languageZF.name, () -> getLanguage());
+		addFieldToMap(dict, licenseZF.name, () -> getLicense());
+		addFieldToMap(dict, mediumZF.name, () -> getMedium());
+		addFieldToMap(dict, professionalGroupZF.name, () -> getProfessionalGroup());
+		addFieldToMap(dict, subjectZF.name, () -> getSubject());
+		addFieldToMap(dict, yearOfCopyrightZF.name, () -> getYearOfCopyright());
+		addFieldToMap(dict, ddcZF.name, () -> getDdc());
+		addFieldToMap(dict, fundingZF.name, () -> getFunding());
+		addFieldToMap(dict, recordingPeriodZF.name, () -> getRecordingPeriod());
+		addFieldToMap(dict, recordingLocationZF.name, () -> getRecordingLocation());
+		addFieldToMap(dict, recordingCoordinatesZF.name,
+				() -> getRecordingCoordinates());
+		addFieldToMap(dict, nextVersionZF.name, () -> getNextVersion());
+		addFieldToMap(dict, previousVersionZF.name, () -> getPreviousVersion());
+		addFieldToMap(dict, doiZF.name, () -> getDoi());
+		addFieldToMap(dict, urnZF.name, () -> getUrn());
+		addFieldToMap(dict, isLikeZF.name, () -> getIsLike());
+		addFieldToMap(dict, contributorOrderZF.name, () -> getContributorOrder());
+		addFieldToMap(dict, subjectOrderZF.name, () -> getSubjectOrder());
+		addFieldToMap(dict, alternativeTitleZF.name, () -> getAlternativeTitle());
+		addFieldToMap(dict, titleLanguageZF.name, () -> getTitleLanguage());
+		addFieldToMap(dict, descriptionZF.name, () -> getDescription());
+		addFieldToMap(dict, projectIdZF.name, () -> getProjectId());
+		addFieldToMap(dict, fundingProgramZF.name, () -> getFundingProgram());
+		addFieldToMap(dict, associatedPublicationZF.name,
+				() -> getAssociatedPublications());
+		addFieldToMap(dict, associatedDatasetZF.name,
+				() -> getAssociatedDatasets());
+		addFieldToMap(dict, referenceZF.name, () -> getReferences());
+		addFieldToMap(dict, creatorNameZF.name, () -> getCreatorName());
+		addFieldToMap(dict, subjectNameZF.name, () -> getSubjectName());
+		addFieldToMap(dict, usageManualZF.name, () -> getUsageManual());
+		addFieldToMap(dict, contributorNameZF.name, () -> getContributorName());
 		return dict;
+	}
+
+	private void addFieldToMap(Map<String, Supplier<Object>> dict, String name,
+			Supplier<Object> c) {
+		Object val = c.get();
+		if (val == null)
+			return;
+		if (val instanceof String) {
+			String str = (String) val;
+			if (!str.isEmpty()) {
+				dict.put(name, c);
+			}
+		}
+		if (val instanceof List) {
+			List<String> list = (List<String>) val;
+			if (!list.isEmpty() && !containsOnlyNullValues(list)) {
+				dict.put(name, c);
+			}
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -308,9 +633,8 @@ public class ResearchData extends ZettelModel {
 	protected Map<String, Consumer<Object>> getMappingForDeserialization() {
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
-		dict.put(creatorZF.uri, (in) -> setCreator((List<String>) in));
-		dict.put(contributorZF.uri, (in) -> setContributor((List<String>) in));
-		dict.put(abstractTextZF.uri, (in) -> setAbstractText((String) in));
+		dict.put(creatorZF.uri, (in) -> setCreator((String) in));
+		dict.put(contributorZF.uri, (in) -> setContributor((String) in));
 		dict.put(dataOriginZF.uri, (in) -> setDataOrigin((String) in));
 		dict.put(embargoZF.uri, (in) -> setEmbargo((String) in));
 		dict.put(languageZF.uri, (in) -> setLanguage((String) in));
@@ -318,17 +642,36 @@ public class ResearchData extends ZettelModel {
 		dict.put(mediumZF.uri, (in) -> setMedium((String) in));
 		dict.put(professionalGroupZF.uri,
 				(in) -> setProfessionalGroup((String) in));
-		dict.put(subjectZF.uri, (in) -> setSubject((List<String>) in));
+		dict.put(subjectZF.uri, (in) -> setSubject((String) in));
 		dict.put(yearOfCopyrightZF.uri, (in) -> setYearOfCopyright((String) in));
-		dict.put(ddcZF.uri, (in) -> setDdc((List<String>) in));
-		dict.put(fundingZF.uri, (in) -> setFunding((List<String>) in));
-		dict.put(recordingPeriodZF.uri,
-				(in) -> setRecordingPeriod((List<String>) in));
+		dict.put(ddcZF.uri, (in) -> setDdc((String) in));
+		dict.put(fundingZF.uri, (in) -> setFunding((String) in));
+		dict.put(recordingPeriodZF.uri, (in) -> setRecordingPeriod((String) in));
 		dict.put(recordingLocationZF.uri,
-				(in) -> setRecordingLocation((List<String>) in));
-		dict.put(nextVersionZF.uri, (in) -> setNextVersion((List<String>) in));
-		dict.put(previousVersionZF.uri,
-				(in) -> setPreviousVersion((List<String>) in));
+				(in) -> setRecordingLocation((String) in));
+		dict.put(recordingCoordinatesZF.uri,
+				(in) -> setRecordingCoordinates((String) in));
+		dict.put(nextVersionZF.uri, (in) -> setNextVersion((String) in));
+		dict.put(previousVersionZF.uri, (in) -> setPreviousVersion((String) in));
+		dict.put(doiZF.uri, (in) -> setDoi((String) in));
+		dict.put(urnZF.uri, (in) -> setUrn((String) in));
+		dict.put(isLikeZF.uri, (in) -> setIsLike((String) in));
+		dict.put(contributorOrderZF.uri, (in) -> setContributorOrder((String) in));
+		dict.put(subjectOrderZF.uri, (in) -> setSubjectOrder((String) in));
+		dict.put(alternativeTitleZF.uri, (in) -> setAlternativeTitle((String) in));
+		dict.put(titleLanguageZF.uri, (in) -> setTitleLanguage((String) in));
+		dict.put(descriptionZF.uri, (in) -> setDescription((String) in));
+		dict.put(projectIdZF.uri, (in) -> setProjectId((String) in));
+		dict.put(fundingProgramZF.uri, (in) -> setFundingProgram((String) in));
+		dict.put(associatedPublicationZF.uri,
+				(in) -> setAssociatedPublications((String) in));
+		dict.put(associatedDatasetZF.uri,
+				(in) -> setAssociatedDatasets((String) in));
+		dict.put(referenceZF.uri, (in) -> setReferences((String) in));
+		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
+		dict.put(subjectNameZF.uri, (in) -> setSubjectName((String) in));
+		dict.put(creatorNameZF.uri, (in) -> setCreatorName((String) in));
+		dict.put(contributorNameZF.uri, (in) -> setContributorName((String) in));
 		return dict;
 	}
 
@@ -348,4 +691,36 @@ public class ResearchData extends ZettelModel {
 		String url = ConfigFactory.load().getString("zettel.researchData.helpText");
 		return url;
 	}
+
+	public String validate() {
+		if (containsOnlyNullValues(creator)) {
+			creator = new ArrayList<>();
+		}
+		if (containsOnlyNullValues(contributor)) {
+			contributor = new ArrayList<>();
+		}
+		if (containsOnlyNullValues(creatorName)) {
+			creatorName = new ArrayList<>();
+		}
+		if (containsOnlyNullValues(contributorName)) {
+			contributorName = new ArrayList<>();
+		}
+		if (creator.isEmpty() && contributor.isEmpty() && creatorName.isEmpty()
+				&& contributorName.isEmpty()) {
+			return "Bitte geben Sie einen Autor oder Beteiligten an!";
+		}
+		return null;
+	}
+
+	private static boolean containsOnlyNullValues(List<String> list) {
+		if (list == null || list.isEmpty())
+			return true;
+		for (String i : list) {
+			if (i != null && !i.isEmpty()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }
