@@ -1,5 +1,5 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(heading:String,myFormat:String,documentId:String,topicId:String)
+@(heading:String,myFormat:String,formId:String,documentId:String,topicId:String)
 @import play.api.Play.current
 @context=@{play.api.Play.configuration.getString("play.http.context").getOrElse("")}
 
@@ -84,7 +84,7 @@
 	<div id="warningBox" class="warning"></div>
 	<div id="rdfBox" class="data" style="display:none;"></div>
 	<iframe
-		src="/tools/zettel/forms?id=katalog:data&format=@myFormat&documentId=@documentId&topicId=@topicId"
+		src="/tools/zettel/forms?id=@formId&format=@myFormat&documentId=@documentId&topicId=@topicId"
 		width="100%" style="border: none;" id="iFrame">
 		<p>iframes are not supported by your browser.</p>
 	</iframe>

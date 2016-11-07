@@ -20,8 +20,27 @@
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
 				@multifieldLd(myForm,"creator","Autor (als Linked Data)*","gnd-person-search",4,ProceedingHelper.getPersonLookupEndpoints())
-			<br/>
+			    <br/>
 				@multifieldText(myForm,"creatorName","Autor (als Freitext)*","free-text",4)
+				<br/>
+				@multifieldLd(myForm,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ProceedingHelper.getPersonLookupEndpoints())
+				<br/>
+				@multifieldText(myForm,"contributorName","Beteiligte (als Freitext)","free-text",4)
+			}
+			@accordionPanel("Angaben zur Quelle","upload-section"){
+				@singlefieldText(myForm,"congressTitle","Titel des Kongresses*","",1)
+				<br/>
+				@singlefieldText(myForm,"congressShortTitle","Kurztitel des Kongresses*","",1)
+				<br/>
+				@singlefieldText(myForm,"congressLocation","Veranstaltungsort*","",1)
+				<br/>
+				@multidaterange(myForm,"congressDuration","Veranstaltungszeitraum*","",1)
+				<br/>
+				@singlefieldText(myForm,"publisher","Verlag","",1)
+				<br/>
+				@singlefieldText(myForm,"publicationYear","Erscheinungsjahr","",1)
+				<br/>
+				@singlefieldText(myForm,"isbn","ISBN","",1)
 			}
 			@accordionPanel("Dateiupload","upload-section"){
 				@singleSelect(myForm,"medium","Medium*","select-medium",ProceedingHelper.getMediumMap(),5)
@@ -33,9 +52,7 @@
 				@singlefieldText(myForm,"embargo","Embargo","datepicker",8)
 			}
 			@accordionPanel("Erschließung","cataloging-section"){
-				@textArea(myForm,"description","Beschreibung*","",9)
-				<br />
-				@textArea(myForm,"usageManual","Hinweise zur Nutzung","",22)
+				@textArea(myForm,"abstract","Abstract*","",9)
 				<br />
 				@singleSelect(myForm,"language","Sprache*","select-language",ProceedingHelper.getLanguageMap(),10)
 				<br /> 
@@ -48,35 +65,11 @@
 				@multifieldText(myForm,"subjectName","Schlagworte (als Freitext)","free-text",13)
 			}
 			@accordionPanel("Beteiligte","contributor-section"){
-				@multifieldLd(myForm,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ProceedingHelper.getPersonLookupEndpoints())
-				<br/>
-				@multifieldText(myForm,"contributorName","Beteiligte (als Freitext)","free-text",4)
-				<br /> 
 				@multifieldText(myForm,"funding","Förderer","",15) 
 				<br />
 				@multifieldText(myForm,"projectId","Projekt-ID","",16) 
 				<br/>
 				@multifieldText(myForm,"fundingProgram","Förderprogramm","",17) 
-			}
-			@accordionPanel("Erfassung","recording-section"){
-				@singleSelect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ProceedingHelper.getDataOriginMap(),18)
-				<br />
-				@textArea(myForm,"recordingPeriod","Erfassungszeitraum","",19) 
-				<br />
-				@multifieldLd(myForm,"recordingLocation","Erfassungsort","geonames-lookup",20,ProceedingHelper.getEmptyLookupEndpoints()) 
-				<br />
-				@multifieldLd(myForm,"recordingCoordinates","Geokoordinaten","geonames-reverse-lookup",21,ProceedingHelper.getEmptyLookupEndpoints()) 
-			}
-			@accordionPanel("Zugehörige Publikationen","link-section"){
-			    @multifieldText(myForm,"references","Quellen","",22) 
-				<br />
-				@multifieldText(myForm,"associatedPublications","Zugehörige Publikationen","",23) 
-				<br/>
-				@multifieldText(myForm,"associatedDatasets","Zugehörige Datasets","",24) 
-				<br/>
-				@singlefieldText(myForm,"nextVersion","Nachfolger Version","",25)
-				<br />	<br />
-				@singlefieldText(myForm,"previousVersion","Vorgänger Version","",26)
 			}
 			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
 				<br />
