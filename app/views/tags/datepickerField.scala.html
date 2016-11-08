@@ -1,0 +1,21 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero
+General Public License *@
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int)(content:Html)
+
+@import java.util.stream.Collectors
+@import services._ 
+@myValue=@{ZettelHelper.getData(myForm,fieldName)}
+<div class="first-child-of-multi-field">
+	<div >
+		<label class="form-control-label" for="@fieldName">@fieldLabel</label>
+		@content
+	</div>
+	<div>
+		<input size="50" class="input-widget @classString" value="@myValue"
+					name="@fieldName" tabindex="@tabOrderAsInt"/>
+	</div>
+	<div>
+		<span class="errors">@if(myForm.error(fieldName)!=null){@myForm.error(fieldName).message()}</span>
+	</div>
+</div>
+

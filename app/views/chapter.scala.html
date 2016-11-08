@@ -8,59 +8,55 @@
 	@if(myForm.hasGlobalErrors) {
 		<p class="error">@myForm.globalError.message</p>
 	} 
-	@helper.form(action = routes.ZettelController.postForm(Article.id,dataFormat,documentId,topicId)){
-		<a href="@models.Article.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
+	@helper.form(action = routes.ZettelController.postForm(Chapter.id,dataFormat,documentId,topicId)){
+		<a href="@models.Chapter.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
 			@accordionPanel("Titel","title-section"){
 				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
 				@singlefieldText(myForm,"alternativeTitle","Alternativer Titel","",2)
 				<br/>
-				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ArticleHelper.getLanguageMap(),3)
+				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ChapterHelper.getLanguageMap(),3)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
-				@multifieldLd(myForm,"creator","Autor (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,"creator","Autor (als Linked Data)*","gnd-person-search",4,ChapterHelper.getPersonLookupEndpoints())
 			    <br/>
 				@multifieldText(myForm,"creatorName","Autor (als Freitext)*","free-text",4)
 				<br/>
-				@multifieldLd(myForm,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ChapterHelper.getPersonLookupEndpoints())
 				<br/>
 				@multifieldText(myForm,"contributorName","Beteiligte (als Freitext)","free-text",4)
 			}
 			@accordionPanel("Angaben zur Quelle","upload-section"){
-				@singlefieldText(myForm,"titleOfJournal","Titel der Zeitschrift*","",1)
+				@singlefieldText(myForm,"titleOfMonograph","Titel der Monografie*","",1)
 				<br/>
-				@singlefieldText(myForm,"shortTitleOfJournal","Kurztitel der Zeitschrift","",1)
-				<br/>
-				@singlefieldText(myForm,"volume","Band","",1)
-				<br/>
-				@singlefieldText(myForm,"issue","Heft","",1)
+				@singlefieldText(myForm,"publisher","Verlag","",1)
 				<br/>
 				@singlefieldText(myForm,"pages","Seitenangabe","",1)
 				<br/>
 				@singlefieldText(myForm,"publicationYear","Erscheinungsjahr","",1)
 				<br/>
-				@singlefieldText(myForm,"issn","ISSN","",1)
+				@singlefieldText(myForm,"ibn","ISBN","",1)
 			}
 			@accordionPanel("Dateiupload","upload-section"){
-				@singleSelect(myForm,"medium","Medium*","select-medium",ArticleHelper.getMediumMap(),5)
+				@singleSelect(myForm,"medium","Medium*","select-medium",ChapterHelper.getMediumMap(),5)
 				<br/>
-				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ArticleHelper.getCopyrightYear(),6)
+				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ChapterHelper.getCopyrightYear(),6)
 				<br />
-				@singleSelect(myForm,"license","Lizenz*","select-license",ArticleHelper.getLicenseMap(),7)
+				@singleSelect(myForm,"license","Lizenz*","select-license",ChapterHelper.getLicenseMap(),7)
 				<br />
 				@datepicker(myForm,"embargo","Embargo","datepicker",8)
 			}
 			@accordionPanel("Erschließung","cataloging-section"){
 				@textArea(myForm,"abstract","Abstract*","",9)
 				<br />
-				@singleSelect(myForm,"language","Sprache*","select-language",ArticleHelper.getLanguageMap(),10)
+				@singleSelect(myForm,"language","Sprache*","select-language",ChapterHelper.getLanguageMap(),10)
 				<br /> 
-				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ArticleHelper.getProfessionalGroupMap(),11)
+				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ChapterHelper.getProfessionalGroupMap(),11)
 				<br />
-				@multiselect(myForm,"ddc","DDC*","select-ddc",ArticleHelper.getDeweyMap(),12)
+				@multiselect(myForm,"ddc","DDC*","select-ddc",ChapterHelper.getDeweyMap(),12)
 				<br />
-				@multifieldLd(myForm,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
+				@multifieldLd(myForm,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ChapterHelper.getSubjectLookupEndpoints())
 				<br />
 				@multifieldText(myForm,"subjectName","Schlagworte (als Freitext)","free-text",13)
 			}

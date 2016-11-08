@@ -139,11 +139,11 @@ public class ZettelController extends Controller {
 	 *          documentId. You can probably ignore this.
 	 * @return a client demo
 	 */
-	public CompletionStage<Result> client(String format, String formId,
+	public CompletionStage<Result> client(String format, String id,
 			String documentId, String topicId) {
 		CompletableFuture<Result> future = new CompletableFuture<>();
-		future.complete(
-				ok(client.render("Zettel", format, formId, documentId, topicId)));
+		future
+				.complete(ok(client.render("Zettel", format, id, documentId, topicId)));
 		return future;
 	}
 

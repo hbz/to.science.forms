@@ -1,0 +1,9 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int) 
+@import tags._
+@import services._
+
+			 @datepickerField(myForm,fieldName,fieldLabel, classString,tabOrderAsInt){
+			  	@helpText(fieldName)
+				}
+			 	
