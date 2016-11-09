@@ -902,6 +902,10 @@ public abstract class ZettelModel {
 
 	private static void addField(Map<String, Object> jsonMap, String name,
 			Object o) {
+		if (name == null) {
+			play.Logger.debug("Null key in" + o);
+			return;
+		}
 		if (o == null)
 			return;
 		if (o instanceof String) {
