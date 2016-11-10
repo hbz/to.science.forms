@@ -88,9 +88,6 @@ public class ResearchData extends ZettelModel {
 		addErrorMessage("professionalGroup",
 				"Bitte orden Sie Ihre Daten einer Fachgruppe zu!",
 				() -> getProfessionalGroup(), errors);
-		addErrorMessage("language",
-				"Welche Sprache passt am ehesten zu Ihrer Eingabe?",
-				() -> getLanguage(), errors);
 		addErrorMessage("medium", "Bitte ordnen Sie ihre Eingabe einem Medium zu!",
 				() -> getMedium(), errors);
 	}
