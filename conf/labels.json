@@ -14739,7 +14739,7 @@
       "name" : "dataOrigin",
       "multilangLabel" : {},
       "icon" : "fa fa-bars",
-      "container" : "",
+      "container" : "@set",
       "label" : "Erhebungsform",
       "weight" : "1000",
       "uri" : "http://hbz-nrw.de/regal#dataOrigin",
