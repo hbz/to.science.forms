@@ -64,10 +64,10 @@ public class ZettelHelper {
 	public static List<String> getFieldWithIndex(Form<ZettelModel> form,
 			String fieldName) {
 		List<String> result = new ArrayList<>();
-		if (form.value().isPresent()) {
-			result = getFieldNamesWithIndexFromJsonLd(form, fieldName);
-		} else if (form.hasErrors()) {
+		if (form.hasErrors()) {
 			result = getFieldNamesWithIndexFromFormData(form, fieldName);
+		} else if (form.value().isPresent()) {
+			result = getFieldNamesWithIndexFromJsonLd(form, fieldName);
 		}
 		if (result.isEmpty()) {
 			result.add(fieldName + "[0]");
