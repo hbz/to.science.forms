@@ -156,8 +156,8 @@ public abstract class ZettelModel {
 	private List<String> recordingLocation;
 	private List<String> recordingCoordinates;
 	private String recordingPeriod;
-	private List<String> previousVersion;
-	private List<String> nextVersion;
+	private String previousVersion;
+	private String nextVersion;
 	private List<String> contributorOrder;
 	private List<String> subjectOrder;
 	private List<String> associatedPublications;
@@ -310,19 +310,19 @@ public abstract class ZettelModel {
 		this.recordingPeriod = recordingPeriod;
 	}
 
-	public List<String> getPreviousVersion() {
+	public String getPreviousVersion() {
 		return previousVersion;
 	}
 
-	public void setPreviousVersion(List<String> previousVersion) {
+	public void setPreviousVersion(String previousVersion) {
 		this.previousVersion = previousVersion;
 	}
 
-	public List<String> getNextVersion() {
+	public String getNextVersion() {
 		return nextVersion;
 	}
 
-	public void setNextVersion(List<String> nextVersion) {
+	public void setNextVersion(String nextVersion) {
 		this.nextVersion = nextVersion;
 	}
 
@@ -378,18 +378,6 @@ public abstract class ZettelModel {
 		if (doi == null || doi.isEmpty())
 			doi = new ArrayList<>();
 		doi.add(in);
-	}
-
-	public void setPreviousVersion(String in) {
-		if (previousVersion == null || previousVersion.isEmpty())
-			previousVersion = new ArrayList<>();
-		previousVersion.add(in);
-	}
-
-	public void setNextVersion(String in) {
-		if (nextVersion == null || nextVersion.isEmpty())
-			nextVersion = new ArrayList<>();
-		nextVersion.add(in);
 	}
 
 	public void setRecordingCoordinates(String in) {
