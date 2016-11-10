@@ -145,7 +145,7 @@ public abstract class ZettelModel {
 	private List<String> ddc;
 	private String language;
 	private String medium;
-	private String dataOrigin;
+	private List<String> dataOrigin;
 	private List<String> subject;
 	private List<String> doi;
 	private List<String> urn;
@@ -264,12 +264,18 @@ public abstract class ZettelModel {
 		this.medium = medium;
 	}
 
-	public String getDataOrigin() {
+	public List<String> getDataOrigin() {
 		return dataOrigin;
 	}
 
-	public void setDataOrigin(String dataOrigin) {
+	public void setDataOrigin(List<String> dataOrigin) {
 		this.dataOrigin = dataOrigin;
+	}
+
+	public void setDataOrigin(String in) {
+		if (dataOrigin == null || dataOrigin.isEmpty())
+			dataOrigin = new ArrayList<>();
+		dataOrigin.add(in);
 	}
 
 	public List<String> getContributor() {
