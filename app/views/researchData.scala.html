@@ -15,8 +15,6 @@
 				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
 				@singlefieldText(myForm,"alternativeTitle","Alternativer Titel","",2)
-				<br/>
-				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ResearchDataHelper.getLanguageMap(),3)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
 				@multifieldLd(myForm,"creator","Autor (als Linked Data)*","gnd-person-search",4,ResearchDataHelper.getPersonLookupEndpoints())
@@ -36,8 +34,6 @@
 				@textArea(myForm,"description","Beschreibung*","",9)
 				<br />
 				@textArea(myForm,"usageManual","Hinweise zur Nutzung","",22)
-				<br />
-				@singleSelect(myForm,"language","Sprache*","select-language",ResearchDataHelper.getLanguageMap(),10)
 				<br /> 
 				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ResearchDataHelper.getProfessionalGroupMap(),11)
 				<br />
@@ -59,7 +55,7 @@
 				@multifieldText(myForm,"fundingProgram","Förderprogramm","",17) 
 			}
 			@accordionPanel("Erfassung","recording-section"){
-				@singleSelect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),18)
+				@multiselect(myForm,"dataOrigin","Erfassungsart","select-dataOrigin",ResearchDataHelper.getDataOriginMap(),18)
 				<br />
 				@textArea(myForm,"recordingPeriod","Erfassungszeitraum","",19) 
 				<br />
