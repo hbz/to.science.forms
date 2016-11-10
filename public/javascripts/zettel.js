@@ -112,15 +112,14 @@ function destroyGndAutocompletion() {
 }
 function resetIds(curFieldName) {
 	var num = 0;
-	$('.input-widget[name^=' + curFieldName + ']').each(function() {
-		console.log(curFieldName);
+	var c=curFieldName+"\\[";
+	$('.input-widget[name^=' + c + ']').each(function() {
 		$(this).attr('name', curFieldName + "[" + num + "]");
 		$(this).attr('id', curFieldName + "_" + num);
 		$(this).removeClass("focus");
 		num++;
 	});
 	num--;
-	console.log("add class to "+"#"+ curFieldName + "_" + num);
 	$("#"+ curFieldName + "_" + num).addClass("focus");
 }
 
