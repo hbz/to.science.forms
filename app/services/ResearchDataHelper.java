@@ -140,7 +140,7 @@ public class ResearchDataHelper {
 		map.put("http://purl.org/dc/dcmitype/Dataset", "Datensatz");
 		map.put("http://pbcore.org/vocabularies/instantiationMediaType#software",
 				"Software");
-		map.put("http://purl.org/lobid/lv:Miscellaneous", "Andere");
+		map.put("http://purl.org/lobid/lv#Miscellaneous", "Andere");
 		return map;
 	}
 
