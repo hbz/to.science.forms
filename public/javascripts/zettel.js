@@ -1,8 +1,8 @@
 function addDatepicker() {
 	$.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
 	$(".datepicker").datepicker();
-
 }
+
 function initializeConnectionToParent() {
 	if (top != self) {
 		emitEvent();
@@ -124,6 +124,7 @@ function resetIds(curFieldName) {
 }
 
 function addActionsToRemoveAndAddButtons() {
+	addDatepicker();
 	$('.multi-field-wrapper').each(function() {
 		var $wrapper = $('.multi-fields', this);
 		var curFieldName = $('.multi-fields', this).attr('id');
