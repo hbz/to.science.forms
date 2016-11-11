@@ -160,9 +160,9 @@ public abstract class ZettelModel {
 	private String nextVersion;
 	private List<String> contributorOrder;
 	private List<String> subjectOrder;
-	private List<String> associatedPublications;
-	private List<String> associatedDatasets;
-	private List<String> references;
+	private List<String> associatedPublication;
+	private List<String> associatedDataset;
+	private List<String> reference;
 	private List<String> creatorName;
 	private List<String> subjectName;
 	private List<String> contributorName;
@@ -521,46 +521,46 @@ public abstract class ZettelModel {
 		fundingProgram.add(in);
 	}
 
-	public List<String> getAssociatedPublications() {
-		return associatedPublications;
+	public List<String> getAssociatedPublication() {
+		return associatedPublication;
 	}
 
-	public void setAssociatedPublications(List<String> associatedPublications) {
-		this.associatedPublications = associatedPublications;
+	public void setAssociatedPublication(List<String> associatedPublication) {
+		this.associatedPublication = associatedPublication;
 	}
 
-	public void setAssociatedPublications(String in) {
-		if (associatedPublications == null || associatedPublications.isEmpty())
-			associatedPublications = new ArrayList<>();
-		associatedPublications.add(in);
+	public void setAssociatedPublication(String in) {
+		if (associatedPublication == null || associatedPublication.isEmpty())
+			associatedPublication = new ArrayList<>();
+		associatedPublication.add(in);
 	}
 
-	public List<String> getAssociatedDatasets() {
-		return associatedDatasets;
+	public List<String> getAssociatedDataset() {
+		return associatedDataset;
 	}
 
-	public void setAssociatedDatasets(List<String> associatedDatasets) {
-		this.associatedDatasets = associatedDatasets;
+	public void setAssociatedDataset(List<String> associatedDataset) {
+		this.associatedDataset = associatedDataset;
 	}
 
-	public void setAssociatedDatasets(String in) {
-		if (associatedDatasets == null || associatedDatasets.isEmpty())
-			associatedDatasets = new ArrayList<>();
-		associatedDatasets.add(in);
+	public void setAssociatedDataset(String in) {
+		if (associatedDataset == null || associatedDataset.isEmpty())
+			associatedDataset = new ArrayList<>();
+		associatedDataset.add(in);
 	}
 
-	public List<String> getReferences() {
-		return references;
+	public List<String> getReference() {
+		return reference;
 	}
 
-	public void setReferences(List<String> references) {
-		this.references = references;
+	public void setReference(List<String> reference) {
+		this.reference = reference;
 	}
 
-	public void setReferences(String in) {
-		if (references == null || references.isEmpty())
-			references = new ArrayList<>();
-		references.add(in);
+	public void setReference(String in) {
+		if (reference == null || reference.isEmpty())
+			reference = new ArrayList<>();
+		reference.add(in);
 	}
 
 	public List<String> getCreatorName() {
@@ -716,10 +716,9 @@ public abstract class ZettelModel {
 		addFieldToMap(dict, projectIdZF.name, () -> getProjectId());
 		addFieldToMap(dict, fundingProgramZF.name, () -> getFundingProgram());
 		addFieldToMap(dict, associatedPublicationZF.name,
-				() -> getAssociatedPublications());
-		addFieldToMap(dict, associatedDatasetZF.name,
-				() -> getAssociatedDatasets());
-		addFieldToMap(dict, referenceZF.name, () -> getReferences());
+				() -> getAssociatedPublication());
+		addFieldToMap(dict, associatedDatasetZF.name, () -> getAssociatedDataset());
+		addFieldToMap(dict, referenceZF.name, () -> getReference());
 		addFieldToMap(dict, creatorNameZF.name, () -> getCreatorName());
 		addFieldToMap(dict, subjectNameZF.name, () -> getSubjectName());
 		addFieldToMap(dict, usageManualZF.name, () -> getUsageManual());
@@ -793,10 +792,10 @@ public abstract class ZettelModel {
 		dict.put(projectIdZF.uri, (in) -> setProjectId((String) in));
 		dict.put(fundingProgramZF.uri, (in) -> setFundingProgram((String) in));
 		dict.put(associatedPublicationZF.uri,
-				(in) -> setAssociatedPublications((String) in));
+				(in) -> setAssociatedPublication((String) in));
 		dict.put(associatedDatasetZF.uri,
-				(in) -> setAssociatedDatasets((String) in));
-		dict.put(referenceZF.uri, (in) -> setReferences((String) in));
+				(in) -> setAssociatedDataset((String) in));
+		dict.put(referenceZF.uri, (in) -> setReference((String) in));
 		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
 		dict.put(subjectNameZF.uri, (in) -> setSubjectName((String) in));
 		dict.put(creatorNameZF.uri, (in) -> setCreatorName((String) in));
