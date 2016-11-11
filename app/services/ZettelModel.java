@@ -595,7 +595,7 @@ public abstract class ZettelModel {
 		return usageManual;
 	}
 
-	public void setUsageManual(String subjusageManualectName) {
+	public void setUsageManual(String usageManual) {
 		this.usageManual = usageManual;
 	}
 
