@@ -4,6 +4,7 @@
 @import tags._ 
 @import services._
 
+@jsonMap=@{myForm.value().get().serializeToMap()}
 @zettel("Kongressbeitrag",myForm,dataFormat,documentId,topicId) {
 	@if(myForm.hasGlobalErrors) {
 		<p class="error">@myForm.globalError.message</p>
@@ -19,13 +20,13 @@
 				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ChapterHelper.getLanguageMap(),3)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
-				@multifieldLd(myForm,"creator","Autor (als Linked Data)*","gnd-person-search",4,ChapterHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ChapterHelper.getPersonLookupEndpoints())
 			    <br/>
-				@multifieldText(myForm,"creatorName","Autor (als Freitext)*","free-text",4)
+				@multifieldText(myForm,jsonMap,"creatorName","Autor (als Freitext)*","free-text",4)
 				<br/>
-				@multifieldLd(myForm,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ChapterHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ChapterHelper.getPersonLookupEndpoints())
 				<br/>
-				@multifieldText(myForm,"contributorName","Beteiligte (als Freitext)","free-text",4)
+				@multifieldText(myForm,jsonMap,"contributorName","Beteiligte (als Freitext)","free-text",4)
 			}
 			@accordionPanel("Angaben zur Quelle","upload-section"){
 				@singlefieldText(myForm,"titleOfMonograph","Titel der Monografie*","",1)
@@ -54,19 +55,19 @@
 				<br /> 
 				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ChapterHelper.getProfessionalGroupMap(),11)
 				<br />
-				@multiselect(myForm,"ddc","DDC*","select-ddc",ChapterHelper.getDeweyMap(),12)
+				@multiselect(myForm,jsonMap,"ddc","DDC*","select-ddc",ChapterHelper.getDeweyMap(),12)
 				<br />
-				@multifieldLd(myForm,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ChapterHelper.getSubjectLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ChapterHelper.getSubjectLookupEndpoints())
 				<br />
-				@multifieldText(myForm,"subjectName","Schlagworte (als Freitext)","free-text",13)
+				@multifieldText(myForm,jsonMap,"subjectName","Schlagworte (als Freitext)","free-text",13)
 			}
 			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
 				<br />
-				@multifieldText(myForm,"urn","Vorhandene URN","",27) 
+				@multifieldText(myForm,jsonMap,"urn","Vorhandene URN","",27) 
 				<br />
-				@multifieldText(myForm,"doi","Vorhandene DOI","",28) 
+				@multifieldText(myForm,jsonMap,"doi","Vorhandene DOI","",28) 
 				<br />
-				@multifieldText(myForm,"isLike","Persistente URL","",29)  
+				@multifieldText(myForm,jsonMap,"isLike","Persistente URL","",29)  
 			}
 		}
 		<div class="form-group row">

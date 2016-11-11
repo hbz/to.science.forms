@@ -861,6 +861,7 @@ public abstract class ZettelModel {
 		addIsPrimaryTopicOf(jsonMap);
 		dict.entrySet().stream().forEach((entry) -> ZettelModel.addField(jsonMap,
 				entry.getKey(), entry.getValue().get()));
+		play.Logger.debug("---------------" + jsonMap + "\n---------------");
 		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
 		return jsonMap;
 	}
