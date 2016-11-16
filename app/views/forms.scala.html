@@ -10,6 +10,16 @@
 @main("Zettel") {
 <h1>Available Form Models</h1>
 	@for(f <- forms){
-	<a href="@context/forms?id=@f">@f</a>
+	<p>
+	<h2>@f</h2>
+	<ul>
+	<li>
+	As <a href="@context/forms?id=@f">plain form</a>  
+	</li>
+	<li>
+	As example <a href="@context/client?formId=@f">wrapped in an iframe</a>
+	</li>
+	</ul>
+	</p>
 	}
 }

@@ -97,5 +97,19 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#usageManual");
 	public static Etikett contributorNameZF = ZettelHelper.etikett
 			.getEtikett("http://purl.org/dc/elements/1.1/contributor");
+	public static Etikett reviewStatusZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#reviewStatus");
+	public static Etikett congressTitleZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#congressTitle");
+	public static Etikett congressLocationZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#congressLocation");
+	public static Etikett congressDurationZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#congressDuration");
+	public static Etikett isbnZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/ontology/bibo/isbn10");
+	public static Etikett publisherZF = ZettelHelper.etikett
+			.getEtikett("http://purl.org/dc/elements/1.1/publisher");
+	public static Etikett publicationPlaceZF = ZettelHelper.etikett
+			.getEtikett("http://rdvocab.info/Elements/placeOfPublication");
 
 }

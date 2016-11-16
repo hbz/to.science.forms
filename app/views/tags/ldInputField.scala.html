@@ -22,7 +22,7 @@ General Public License *@
 					name="@fieldName" tabindex="@tabOrderAsInt" style="display:none;"/>
 					@if(!lookupEndpoints.isEmpty()){
 				
-						<select class="endpointSelect">
+						<select class="endpointSelect" style="display:none;">
 						@services.ZettelHelper.getData(myForm,fieldName) match{
 								case myValue: String => {
 									@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){

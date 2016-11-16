@@ -1,0 +1,80 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@ 
+
+@(myForm:Form[services.ZettelModel],dataFormat:String,documentId:String,topicId:String)
+@import tags._ 
+@import services._
+
+@jsonMap=@{myForm.value().get().serializeToMap()}
+@zettel("Kongressbeitrag",myForm,dataFormat,documentId,topicId) {
+	@if(myForm.hasGlobalErrors) {
+		<p class="error">@myForm.globalError.message</p>
+	} 
+	@helper.form(action = routes.ZettelController.postForm(Chapter.id,dataFormat,documentId,topicId)){
+		<a href="@models.Chapter.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
+		@accordion(""){
+			@accordionPanel("Titel","title-section"){
+				@singlefieldText(myForm,"title","Titel*","",1)
+				<br/>
+				@singlefieldText(myForm,"alternativeTitle","Alternativer Titel","",2)
+				<br/>
+				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ChapterHelper.getLanguageMap(),3)
+			}
+			@accordionPanel("Urheberschaft","creator-section"){
+				@multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ChapterHelper.getPersonLookupEndpoints())
+			    <br/>
+				@multifieldText(myForm,jsonMap,"creatorName","Autor (als Freitext)*","free-text",4)
+				<br/>
+				@multifieldLd(myForm,jsonMap,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ChapterHelper.getPersonLookupEndpoints())
+				<br/>
+				@multifieldText(myForm,jsonMap,"contributorName","Beteiligte (als Freitext)","free-text",4)
+			}
+			@accordionPanel("Angaben zur Quelle","upload-section"){
+				@singlefieldText(myForm,"titleOfMonograph","Titel der Monografie*","",1)
+				<br/>
+				@singlefieldText(myForm,"publisher","Verlag","",1)
+				<br/>
+				@singlefieldText(myForm,"pages","Seitenangabe","",1)
+				<br/>
+				@singlefieldText(myForm,"publicationYear","Erscheinungsjahr","",1)
+				<br/>
+				@singlefieldText(myForm,"ibn","ISBN","",1)
+			}
+			@accordionPanel("Dateiupload","upload-section"){
+				@singleSelect(myForm,"medium","Medium*","select-medium",ChapterHelper.getMediumMap(),5)
+				<br/>
+				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ChapterHelper.getCopyrightYear(),6)
+				<br />
+				@singleSelect(myForm,"license","Lizenz*","select-license",ChapterHelper.getLicenseMap(),7)
+				<br />
+				@datepicker(myForm,"embargo","Embargo","datepicker",8)
+			}
+			@accordionPanel("Erschließung","cataloging-section"){
+				@textArea(myForm,"abstract","Abstract*","",9)
+				<br />
+				@singleSelect(myForm,"language","Sprache*","select-language",ChapterHelper.getLanguageMap(),10)
+				<br /> 
+				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ChapterHelper.getProfessionalGroupMap(),11)
+				<br />
+				@multiselect(myForm,jsonMap,"ddc","DDC*","select-ddc",ChapterHelper.getDeweyMap(),12)
+				<br />
+				@multifieldLd(myForm,jsonMap,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ChapterHelper.getSubjectLookupEndpoints())
+				<br />
+				@multifieldText(myForm,jsonMap,"subjectName","Schlagworte (als Freitext)","free-text",13)
+			}
+			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
+				<br />
+				@multifieldText(myForm,jsonMap,"urn","Vorhandene URN","",27) 
+				<br />
+				@multifieldText(myForm,jsonMap,"doi","Vorhandene DOI","",28) 
+				<br />
+				@multifieldText(myForm,jsonMap,"isLike","Persistente URL","",29)  
+			}
+		}
+		<div class="form-group row">
+			<div class="col-sm-offset-8 col-sm-4">
+				<button id="cancel" class="btn cancel">Cancel</button>
+				<input type="submit" value="Save" class="btn btn-success" />
+			</div>
+		</div>
+	} 
+}

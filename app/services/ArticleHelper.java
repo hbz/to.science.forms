@@ -28,7 +28,7 @@ import java.util.stream.Stream;
  * @author Jan Schnasse
  *
  */
-public class ResearchDataHelper {
+public class ArticleHelper {
 
 	/**
 	 * @return a map that can be used in an html select
@@ -137,10 +137,9 @@ public class ResearchDataHelper {
 		map.put("http://purl.org/ontology/bibo/Image", "Bild");
 		map.put("http://pbcore.org/vocabularies/instantiationMediaType#text",
 				"Text");
-		map.put("http://purl.org/dc/dcmitype/Dataset", "Datensatz");
 		map.put("http://pbcore.org/vocabularies/instantiationMediaType#software",
 				"Software");
-		map.put("http://purl.org/lobid/lv#Miscellaneous", "Andere");
+		map.put("http://purl.org/lobid/lv%23Miscellaneous", "Andere");
 		return map;
 	}
 

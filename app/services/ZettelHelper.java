@@ -21,6 +21,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,12 +64,12 @@ public class ZettelHelper {
 	 * @return a list of valid fieldnames for post data.
 	 */
 	public static List<String> getFieldWithIndex(Form<ZettelModel> form,
-			String fieldName) {
+			Map<String, Object> jsonMap, String fieldName) {
 		List<String> result = new ArrayList<>();
-		if (form.value().isPresent()) {
-			result = getFieldNamesWithIndexFromJsonLd(form, fieldName);
-		} else if (form.hasErrors()) {
+		if (form.hasErrors()) {
 			result = getFieldNamesWithIndexFromFormData(form, fieldName);
+		} else if (form.value().isPresent()) {
+			result = getFieldNamesWithIndexFromJsonLd(form, jsonMap, fieldName);
 		}
 		if (result.isEmpty()) {
 			result.add(fieldName + "[0]");
@@ -97,17 +99,23 @@ public class ZettelHelper {
 	}
 
 	private static List<String> getFieldNamesWithIndexFromJsonLd(
-			Form<ZettelModel> form, String fieldName) {
+			Form<ZettelModel> form, Map<String, Object> jsonMap, String fieldName) {
 		List<String> result = new ArrayList<>();
-		Object data = form.value().get().serializeToMap().get(fieldName);
+		Object data = jsonMap.get(fieldName);
 		if (data != null) {
-			if (data instanceof List<?>) {
+			if (data instanceof Collection<?>) {
 				@SuppressWarnings("unchecked")
 				List<String> dataList = (List<String>) data;
 				for (int i = 0; i < dataList.size(); i++) {
 					result.add(fieldName + "[" + i + "]");
+					play.Logger.debug("Load: " + fieldName + "[" + i + "]");
 				}
+			} else {
+				play.Logger.debug("No index added to " + fieldName + " with class "
+						+ data.getClass());
 			}
+		} else {
+			play.Logger.debug("No data found for " + fieldName);
 		}
 		return result;
 	}
@@ -252,5 +260,14 @@ public class ZettelHelper {
 		} catch (Exception e) {
 			return -1;
 		}
+	}
+
+	public static Map<String, Object> getJsonMap(Form<ZettelModel> form) {
+		try {
+			return form.value().get().serializeToMap();
+		} catch (Exception e) {
+			return new HashMap<String, Object>();
+		}
+
 	}
 }

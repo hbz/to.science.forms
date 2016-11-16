@@ -18,7 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package models;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -26,6 +28,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
 
 import play.data.validation.ValidationError;
+import play.data.validation.Constraints.Required;
+import static services.ZettelFields.*;
+
+import services.ValidUrl;
+import services.ZettelHelper;
 import services.ZettelModel;
 
 /**
@@ -33,15 +40,16 @@ import services.ZettelModel;
  *
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ResearchData extends ZettelModel {
+public class Chapter extends ZettelModel {
+
 	/**
 	 * The id under which this model is registered in the ZettelRegister
 	 */
-	public final static String id = "katalog:data";
+	public final static String id = "katalog:chapter";
 
 	@Override
 	protected String getType() {
-		return "http://hbz-nrw.de/regal#ResearchData";
+		return "http://hbz-nrw.de/regal#Chapter";
 	}
 
 	/**
@@ -52,7 +60,7 @@ public class ResearchData extends ZettelModel {
 	 * @return return a url with help texts for the form
 	 */
 	public static String getHelpTextUrl() {
-		String url = ConfigFactory.load().getString("zettel.researchData.helpText");
+		String url = ConfigFactory.load().getString("zettel.chapter.helpText");
 		return url;
 	}
 
@@ -88,6 +96,9 @@ public class ResearchData extends ZettelModel {
 		addErrorMessage("professionalGroup",
 				"Bitte orden Sie Ihre Daten einer Fachgruppe zu!",
 				() -> getProfessionalGroup(), errors);
+		addErrorMessage("language",
+				"Welche Sprache passt am ehesten zu Ihrer Eingabe?",
+				() -> getLanguage(), errors);
 		addErrorMessage("medium", "Bitte ordnen Sie ihre Eingabe einem Medium zu!",
 				() -> getMedium(), errors);
 	}
@@ -109,13 +120,10 @@ public class ResearchData extends ZettelModel {
 				&& getCreatorName().isEmpty() && getContributorName().isEmpty()) {
 			errors.add(new ValidationError("creator",
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-
 			errors.add(new ValidationError("contributor",
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-
 			errors.add(new ValidationError("creatorName",
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-
 			errors.add(new ValidationError("contributorName",
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
 		}
