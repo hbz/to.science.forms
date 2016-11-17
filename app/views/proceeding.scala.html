@@ -4,7 +4,7 @@
 @import tags._ 
 @import services._
 
-@jsonMap=@{myForm.value().get().serializeToMap()}
+@jsonMap=@{ZettelHelper.getJsonMap(myForm)}
 @zettel("Kongressbeitrag",myForm,dataFormat,documentId,topicId) {
 	@if(myForm.hasGlobalErrors) {
 		<p class="error">@myForm.globalError.message</p>
@@ -16,8 +16,6 @@
 				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
 				@singlefieldText(myForm,"alternativeTitle","Alternativer Titel","",2)
-				<br/>
-				@singleSelect(myForm,"titleLanguage","Sprache","select-language",ProceedingHelper.getLanguageMap(),3)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
 				@multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ProceedingHelper.getPersonLookupEndpoints())
