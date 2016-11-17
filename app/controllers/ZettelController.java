@@ -34,11 +34,13 @@ import org.openrdf.rio.RDFFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import models.Article;
 import models.ResearchData;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import services.XmlUtils;
+import services.ZettelModel;
 import services.ZettelRegister;
 import services.ZettelRegisterEntry;
 import views.html.*;
@@ -179,10 +181,16 @@ public class ZettelController extends Controller {
 
 	private Form<?> loadRdf(String asText, ZettelRegisterEntry zettel) {
 		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
-			Form<ResearchData> form =
-					formFactory.form(ResearchData.class).fill((ResearchData) zettel
-							.getModel().deserializeFromRdf(in, RDFFormat.RDFXML));
-			return form;
+			String id = zettel.getId();
+
+			if (ResearchData.id.equals(id)) {
+				return formFactory.form(ResearchData.class).fill((ResearchData) zettel
+						.getModel().deserializeFromRdf(in, RDFFormat.RDFXML));
+			} else if (Article.id.equals(id)) {
+				return formFactory.form(Article.class).fill((Article) zettel.getModel()
+						.deserializeFromRdf(in, RDFFormat.RDFXML));
+			}
+			return null;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
