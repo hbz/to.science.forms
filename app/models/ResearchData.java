@@ -37,7 +37,7 @@ public class ResearchData extends ZettelModel {
 	/**
 	 * The id under which this model is registered in the ZettelRegister
 	 */
-	public final static String id = "katalog:data";
+	public final static String id = "katalog:researchData";
 
 	@Override
 	protected String getType() {
