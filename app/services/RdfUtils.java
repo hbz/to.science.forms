@@ -127,6 +127,20 @@ public class RdfUtils {
 	}
 
 	/**
+	 * @param g the whole rdf graph
+	 * @param statement a statement
+	 * @return true if the statement object refers to a rdf-list or false if not
+	 */
+	public static boolean isList(Graph g, Statement statement) {
+		for (Statement s : find(g, statement.getObject().stringValue())) {
+			if (first.equals(s.getPredicate().stringValue())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * @param g a graph with rdf statements
 	 * @param uri a subject
 	 * @return all statements with uri as subject in one set

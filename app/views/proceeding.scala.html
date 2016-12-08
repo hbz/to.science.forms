@@ -12,6 +12,11 @@
 	@helper.form(action = routes.ZettelController.postForm(Proceeding.id,dataFormat,documentId,topicId)){
 		<a href="@models.Proceeding.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
+			@accordionPanel("Angaben zur Publikation","publicationStatus-section"){
+				@singleSelect(myForm,"publicationStatus","Publikationsstatus*","select-pg",ProceedingHelper.getPublicationStatusMap(),11)
+				<br/>
+				@singleSelect(myForm,"reviewStatus","Begutachtungsstatus","select-pg",ProceedingHelper.getReviewStatusMap(),11)
+			}
 			@accordionPanel("Titel","title-section"){
 				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
@@ -27,13 +32,21 @@
 				@multifieldText(myForm,jsonMap,"contributorName","Beteiligte (als Freitext)","free-text",4)
 			}
 			@accordionPanel("Angaben zur Quelle","upload-section"){
-				@singlefieldText(myForm,"congressTitle","Titel des Kongresses*","",1)
+				@singlefieldText(myForm,"congressTitle","Titel der Konferenz*","",1)
 				<br/>
-				@singlefieldText(myForm,"congressShortTitle","Kurztitel des Kongresses*","",1)
+				@singlefieldText(myForm,"congressShortTitle","Kurztitel der Konferenz*","",1)
+				<br/>
+				@singlefieldText(myForm,"congressNumber","Zählung der Konferenz*","",1)
 				<br/>
 				@singlefieldText(myForm,"congressLocation","Veranstaltungsort*","",1)
 				<br/>
 				@multidaterange(myForm,jsonMap,"congressDuration","Veranstaltungszeitraum*","",1)
+				<br/>
+				@multifieldLd(myForm,jsonMap,"congressHost","Veranstalter (als Linked Data)","gnd-person-search",14,ProceedingHelper.getPersonLookupEndpoints())
+				<br/>
+				@singlefieldText(myForm,"containedIn","Titel des Konferenzbandes*","",1)
+				<br/>
+				@singlefieldText(myForm,"volume","Band","",1)
 				<br/>
 				@singlefieldText(myForm,"publisher","Verlag","",1)
 				<br/>

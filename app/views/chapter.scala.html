@@ -12,6 +12,11 @@
 	@helper.form(action = routes.ZettelController.postForm(Chapter.id,dataFormat,documentId,topicId)){
 		<a href="@models.Chapter.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
+			@accordionPanel("Angaben zur Publikation","publicationStatus-section"){
+				@singleSelect(myForm,"publicationStatus","Publikationsstatus*","select-pg",ChapterHelper.getPublicationStatusMap(),11)
+				<br/>
+				@singleSelect(myForm,"reviewStatus","Begutachtungsstatus","select-pg",ChapterHelper.getReviewStatusMap(),11)
+			}
 			@accordionPanel("Titel","title-section"){
 				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
@@ -27,15 +32,17 @@
 				@multifieldText(myForm,jsonMap,"contributorName","Beteiligte (als Freitext)","free-text",4)
 			}
 			@accordionPanel("Angaben zur Quelle","upload-section"){
-				@singlefieldText(myForm,"titleOfMonograph","Titel der Monografie*","",1)
+				@singlefieldText(myForm,"containedIn","Erschienen in (Link zur Monographie)","ht-field",1)
 				<br/>
 				@singlefieldText(myForm,"publisher","Verlag","",1)
+				<br/>
+				@singlefieldText(myForm,"publicationLocation","Verlagsort","",1)
 				<br/>
 				@singlefieldText(myForm,"pages","Seitenangabe","",1)
 				<br/>
 				@singlefieldText(myForm,"publicationYear","Erscheinungsjahr","",1)
 				<br/>
-				@singlefieldText(myForm,"ibn","ISBN","",1)
+				@singlefieldText(myForm,"isbn","ISBN","",1)
 			}
 			@accordionPanel("Dateiupload","upload-section"){
 				@singleSelect(myForm,"medium","Medium*","select-medium",ChapterHelper.getMediumMap(),5)
@@ -53,7 +60,7 @@
 				<br /> 
 				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ChapterHelper.getProfessionalGroupMap(),11)
 				<br />
-				@multiselect(myForm,jsonMap,"ddc","DDC*","select-ddc",ChapterHelper.getDeweyMap(),12)
+				@multiselect(myForm,jsonMap,"ddc","Fächerklassifikation*","select-ddc",ChapterHelper.getDeweyMap(),12)
 				<br />
 				@multifieldLd(myForm,jsonMap,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ChapterHelper.getSubjectLookupEndpoints())
 				<br />

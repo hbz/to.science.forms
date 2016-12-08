@@ -17,49 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
-import static services.ZettelFields.alternativeTitleZF;
-import static services.ZettelFields.associatedDatasetZF;
-import static services.ZettelFields.associatedPublicationZF;
-import static services.ZettelFields.contributorNameZF;
-import static services.ZettelFields.contributorOrderZF;
-import static services.ZettelFields.contributorZF;
-import static services.ZettelFields.creatorNameZF;
-import static services.ZettelFields.creatorZF;
-import static services.ZettelFields.dataOriginZF;
-import static services.ZettelFields.ddcZF;
-import static services.ZettelFields.descriptionZF;
-import static services.ZettelFields.doiZF;
-import static services.ZettelFields.embargoZF;
-import static services.ZettelFields.fundingProgramZF;
-import static services.ZettelFields.fundingZF;
-import static services.ZettelFields.isLikeZF;
-import static services.ZettelFields.languageZF;
-import static services.ZettelFields.licenseZF;
-import static services.ZettelFields.mediumZF;
-import static services.ZettelFields.nextVersionZF;
-import static services.ZettelFields.previousVersionZF;
-import static services.ZettelFields.professionalGroupZF;
-import static services.ZettelFields.projectIdZF;
-import static services.ZettelFields.recordingCoordinatesZF;
-import static services.ZettelFields.recordingLocationZF;
-import static services.ZettelFields.recordingPeriodZF;
-import static services.ZettelFields.referenceZF;
-import static services.ZettelFields.subjectNameZF;
-import static services.ZettelFields.subjectOrderZF;
-import static services.ZettelFields.subjectZF;
-import static services.ZettelFields.titleLanguageZF;
-import static services.ZettelFields.titleZF;
-import static services.ZettelFields.urnZF;
-import static services.ZettelFields.usageManualZF;
-import static services.ZettelFields.yearOfCopyrightZF;
-import static services.ZettelFields.reviewStatusZF;
-import static services.ZettelFields.congressTitleZF;
-import static services.ZettelFields.congressLocationZF;
-import static services.ZettelFields.congressDurationZF;
-import static services.ZettelFields.publisherZF;
-import static services.ZettelFields.isbnZF;
-import static services.ZettelFields.abstractTextZF;
-import static services.ZettelFields.publicationPlaceZF;
+import static services.ZettelFields.*;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -72,6 +30,7 @@ import java.util.function.Supplier;
 
 import org.openrdf.model.BNode;
 import org.openrdf.model.Graph;
+import org.openrdf.model.Statement;
 import org.openrdf.model.Value;
 import org.openrdf.rio.RDFFormat;
 
@@ -171,10 +130,106 @@ public abstract class ZettelModel {
 	private String congressTitle;
 	private String congressLocation;
 	private String congressDuration;
+	private String congressNumber;
+	private List<String> congressHost;
 	private String isbn;
 	private String publisher;
 	private String publicationPlace;
 	private String abstractText;
+	private String containedIn;
+	private String bibliographicCitation;
+	private String volume;
+	private String issue;
+	private String pages;
+	private String articleNumber;
+	private String publicationStatus;
+	private String issn;
+
+	public String getCongressNumber() {
+		return congressNumber;
+	}
+
+	public void setCongressNumber(String congressNumber) {
+		this.congressNumber = congressNumber;
+	}
+
+	public List<String> getCongressHost() {
+		return congressHost;
+	}
+
+	public void setCongressHost(List<String> congressHost) {
+		this.congressHost = congressHost;
+	}
+
+	public void setCongressHost(String in) {
+		if (congressHost == null || congressHost.isEmpty())
+			congressHost = new ArrayList<>();
+		congressHost.add(in);
+	}
+
+	public String getVolume() {
+		return volume;
+	}
+
+	public void setVolume(String volume) {
+		this.volume = volume;
+	}
+
+	public String getIssue() {
+		return issue;
+	}
+
+	public void setIssue(String issue) {
+		this.issue = issue;
+	}
+
+	public String getPages() {
+		return pages;
+	}
+
+	public void setPages(String pages) {
+		this.pages = pages;
+	}
+
+	public String getArticleNumber() {
+		return articleNumber;
+	}
+
+	public void setArticleNumber(String articleNumber) {
+		this.articleNumber = articleNumber;
+	}
+
+	public String getPublicationStatus() {
+		return publicationStatus;
+	}
+
+	public void setPublicationStatus(String publicationStatus) {
+		this.publicationStatus = publicationStatus;
+	}
+
+	public String getIssn() {
+		return issn;
+	}
+
+	public void setIssn(String issn) {
+		this.issn = issn;
+	}
+
+	public String getContainedIn() {
+		return containedIn;
+	}
+
+	public void setContainedIn(String in) {
+		containedIn = in;
+	}
+
+	public String getBibliographicCitation() {
+		return bibliographicCitation;
+	}
+
+	public void setBibliographicCitation(String bibliographicCitation) {
+		this.bibliographicCitation = bibliographicCitation;
+	}
 
 	public String getTitle() {
 		return title;
@@ -677,6 +732,7 @@ public abstract class ZettelModel {
 		this.abstractText = abstractText;
 	}
 
+	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(serializeToMap());
 	}
@@ -731,12 +787,21 @@ public abstract class ZettelModel {
 		addFieldToMap(dict, publisherZF.name, () -> getPublisher());
 		addFieldToMap(dict, publicationPlaceZF.name, () -> getPublicationPlace());
 		addFieldToMap(dict, abstractTextZF.name, () -> getAbstractText());
-
+		addFieldToMap(dict, containedInZF.name, () -> getContainedIn());
+		addFieldToMap(dict, bibliographicCitationZF.name,
+				() -> getBibliographicCitation());
+		addFieldToMap(dict, congressHostZF.name, () -> getCongressHost());
+		addFieldToMap(dict, volumeZF.name, () -> getVolume());
+		addFieldToMap(dict, issueZF.name, () -> getIssue());
+		addFieldToMap(dict, pagesZF.name, () -> getPages());
+		addFieldToMap(dict, articleNumberZF.name, () -> getArticleNumber());
+		addFieldToMap(dict, publicationStatusZF.name, () -> getPublicationStatus());
+		addFieldToMap(dict, issnZF.name, () -> getIssn());
 		return dict;
 	}
 
-	private void addFieldToMap(Map<String, Supplier<Object>> dict, String name,
-			Supplier<Object> c) {
+	private static void addFieldToMap(Map<String, Supplier<Object>> dict,
+			String name, Supplier<Object> c) {
 		Object val = c.get();
 		if (val == null)
 			return;
@@ -747,6 +812,7 @@ public abstract class ZettelModel {
 			}
 		}
 		if (val instanceof List) {
+			@SuppressWarnings("unchecked")
 			List<String> list = (List<String>) val;
 			if (!list.isEmpty() && !containsOnlyNullValues(list)) {
 				dict.put(name, c);
@@ -757,7 +823,6 @@ public abstract class ZettelModel {
 	/**
 	 * @return a map that maps a uri to a setter method
 	 */
-	@SuppressWarnings("unchecked")
 	protected Map<String, Consumer<Object>> getMappingForDeserialization() {
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
@@ -808,6 +873,17 @@ public abstract class ZettelModel {
 		dict.put(publisherZF.uri, (in) -> setPublisher((String) in));
 		dict.put(publicationPlaceZF.uri, (in) -> setPublicationPlace((String) in));
 		dict.put(abstractTextZF.uri, (in) -> setAbstractText((String) in));
+		dict.put(containedInZF.uri, (in) -> setContainedIn((String) in));
+		dict.put(bibliographicCitationZF.uri,
+				(in) -> setBibliographicCitation((String) in));
+		dict.put(congressHostZF.uri, (in) -> setCongressHost((String) in));
+		dict.put(volumeZF.uri, (in) -> setVolume((String) in));
+		dict.put(issueZF.uri, (in) -> setIssue((String) in));
+		dict.put(pagesZF.uri, (in) -> setPages((String) in));
+		dict.put(articleNumberZF.uri, (in) -> setArticleNumber((String) in));
+		dict.put(publicationStatusZF.uri,
+				(in) -> setPublicationStatus((String) in));
+		dict.put(issnZF.uri, (in) -> setIssn((String) in));
 		return dict;
 	}
 
@@ -842,7 +918,7 @@ public abstract class ZettelModel {
 			if (!"".equals(st.getObject().stringValue())) {
 				String rdf_P = st.getPredicate().stringValue();
 				if (dict.containsKey(rdf_P)) {
-					initListField(graph, st.getObject(), dict.get(rdf_P));
+					processField(graph, st, dict.get(rdf_P));
 				}
 			}
 		});
@@ -913,11 +989,15 @@ public abstract class ZettelModel {
 		}
 	}
 
-	private static void initListField(Graph graph, Value rdf_O,
+	private static void processField(Graph graph, Statement st,
 			Consumer<Object> consumer) {
+		Value rdf_O = st.getObject();
+		if (RdfUtils.isList(graph, st)) {
+			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), "", consumer);
+			return;
+		}
 		if (rdf_O instanceof BNode) {
-			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), RdfUtils.first,
-					consumer);
+			// createNestedObject(graph, st, consumer);
 		} else {
 			try {
 				consumer.accept(rdf_O.stringValue());

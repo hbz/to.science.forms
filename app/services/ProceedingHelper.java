@@ -91,6 +91,24 @@ public class ProceedingHelper {
 		return map;
 	}
 
+	public static LinkedHashMap<String, String> getPublicationStatusMap() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put(null, "Choose a value!");
+		map.put("http://hbz-nrw.de/regal#original", "Veröffentlichungsversion");
+		map.put("http://hbz-nrw.de/regal#postprint", "Postprint");
+		map.put("http://hbz-nrw.de/regal#preprint", "Preprint");
+		return map;
+	}
+
+	public static LinkedHashMap<String, String> getReviewStatusMap() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put(null, "Choose a value!");
+		map.put("http://hbz-nrw.de/regal#reviewed", "begutachtet");
+		map.put("http://hbz-nrw.de/regal#peerReviewed",
+				"begutachtet (Peer-reviewed)");
+		return map;
+	}
+
 	/**
 	 * @return a map that can be used in an html select
 	 */

@@ -17,6 +17,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
+import java.util.List;
+
 import de.hbz.lobid.helper.Etikett;
 
 /**
@@ -111,5 +113,25 @@ public class ZettelFields {
 			.getEtikett("http://purl.org/dc/elements/1.1/publisher");
 	public static Etikett publicationPlaceZF = ZettelHelper.etikett
 			.getEtikett("http://rdvocab.info/Elements/placeOfPublication");
+	public static Etikett containedInZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/lobid/lv#containedIn");
+	public static Etikett bibliographicCitationZF = ZettelHelper.etikett
+			.getEtikett("http://purl.org/dc/terms/bibliographicCitation");
+	public static Etikett volumeZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#volume");
+	public static Etikett issueZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#issue");
+	public static Etikett pagesZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#pages");
+	public static Etikett articleNumberZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#articleNumber");
+	public static Etikett publicationStatusZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#publicationStatus");
+	public static Etikett issnZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/ontology/bibo/issn");
+	public static Etikett congressNumberZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#congressNumber");
+	public static Etikett congressHostZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#congressHost");
 
 }

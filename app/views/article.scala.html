@@ -12,6 +12,11 @@
 	@helper.form(action = routes.ZettelController.postForm(Article.id,dataFormat,documentId,topicId)){
 		<a href="@models.Article.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
+			@accordionPanel("Angaben zur Publikation","publicationStatus-section"){
+				@singleSelect(myForm,"publicationStatus","Publikationsstatus*","select-pg",ArticleHelper.getPublicationStatusMap(),11)
+				<br/>
+				@singleSelect(myForm,"reviewStatus","Begutachtungsstatus","select-pg",ArticleHelper.getReviewStatusMap(),11)
+			}
 			@accordionPanel("Titel","title-section"){
 				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
@@ -27,7 +32,15 @@
 				@multifieldText(myForm,jsonMap,"contributorName","Beteiligte (als Freitext)","free-text",4)
 			}
 			@accordionPanel("Angaben zur Quelle","upload-section"){
-				@singlefieldText(myForm,"titleOfJournal","Titel der Zeitschrift*","",1)
+				@singlefieldText(myForm,"containedIn","Erschienen in (Link zur Quelle)","ht-field",1)
+				<br/>
+				@singlefieldText(myForm,"bibligraphicCitation","Details zur Quelle","",1)
+				<br/>
+				@singlefieldText(myForm,"volume","Band","",1)
+				<br/>
+				@singlefieldText(myForm,"issue","Heft","",1)
+				<br/>
+				@singlefieldText(myForm,"articleNumber","Artikelnummer","",1)
 				<br/>
 				@singlefieldText(myForm,"pages","Seitenangabe","",1)
 				<br/>
@@ -51,7 +64,7 @@
 				<br /> 
 				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ArticleHelper.getProfessionalGroupMap(),11)
 				<br />
-				@multiselect(myForm,jsonMap,"ddc","DDC*","select-ddc",ArticleHelper.getDeweyMap(),12)
+				@multiselect(myForm,jsonMap,"ddc","Fächerklassifikation*","select-ddc",ArticleHelper.getDeweyMap(),12)
 				<br />
 				@multifieldLd(myForm,jsonMap,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
 				<br />
