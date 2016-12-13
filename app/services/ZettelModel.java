@@ -129,7 +129,7 @@ public abstract class ZettelModel {
 	private String reviewStatus;
 	private String congressTitle;
 	private String congressLocation;
-	private String congressDuration;
+	private List<String> congressDuration;
 	private String congressNumber;
 	private List<String> congressHost;
 	private String isbn;
@@ -692,12 +692,18 @@ public abstract class ZettelModel {
 		this.congressLocation = congressLocation;
 	}
 
-	public String getCongressDuration() {
+	public List<String> getCongressDuration() {
 		return congressDuration;
 	}
 
-	public void setCongressDuration(String congressDuration) {
+	public void setCongressDuration(List<String> congressDuration) {
 		this.congressDuration = congressDuration;
+	}
+
+	public void setCongressDuration(String in) {
+		if (congressDuration == null || congressDuration.isEmpty())
+			congressDuration = new ArrayList<>();
+		congressDuration.add(in);
 	}
 
 	public String getIsbn() {

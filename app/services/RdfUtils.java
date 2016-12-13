@@ -134,6 +134,7 @@ public class RdfUtils {
 	public static boolean isList(Graph g, Statement statement) {
 		for (Statement s : find(g, statement.getObject().stringValue())) {
 			if (first.equals(s.getPredicate().stringValue())) {
+				play.Logger.debug(statement + " is List!");
 				return true;
 			}
 		}

@@ -86,9 +86,8 @@ public class Chapter extends ZettelModel {
 	private void validateSimpleFields(List<ValidationError> errors) {
 		addErrorMessage("title", "Bitte vergeben Sie einen Titel!",
 				() -> getTitle(), errors);
-		addErrorMessage("description",
-				"Bitte erstellen Sie eine kurze Inhaltsangabe!", () -> getDescription(),
-				errors);
+		addErrorMessage("abstract", "Bitte erstellen Sie eine kurze Inhaltsangabe!",
+				() -> getAbstractText(), errors);
 		addErrorMessage("license", "Bitte vergeben Sie eine Lizenz!",
 				() -> getLicense(), errors);
 		addErrorMessage("copyright", "Bitte geben Sie das Jahr zum Copyright an.",

@@ -34,6 +34,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 
 import models.JsonMessage;
+import models.Proceeding;
 import models.ResearchData;
 import play.data.Form;
 
@@ -158,7 +159,7 @@ public class ZettelHelper {
 						result = new JsonMessage(rdfString, 200);
 					} else {
 						result = new JsonMessage(
-								((ResearchData) form.get()).serializeToMap(), 200);
+								((ZettelModel) form.get()).serializeToMap(), 200);
 					}
 				}
 			}
