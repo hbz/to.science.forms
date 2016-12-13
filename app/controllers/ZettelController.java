@@ -35,6 +35,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import models.Article;
+import models.Chapter;
+import models.Proceeding;
 import models.ResearchData;
 import play.data.Form;
 import play.mvc.Controller;
@@ -188,6 +190,12 @@ public class ZettelController extends Controller {
 						.getModel().deserializeFromRdf(in, RDFFormat.RDFXML));
 			} else if (Article.id.equals(id)) {
 				return formFactory.form(Article.class).fill((Article) zettel.getModel()
+						.deserializeFromRdf(in, RDFFormat.RDFXML));
+			} else if (Proceeding.id.equals(id)) {
+				return formFactory.form(Proceeding.class).fill((Proceeding) zettel
+						.getModel().deserializeFromRdf(in, RDFFormat.RDFXML));
+			} else if (Chapter.id.equals(id)) {
+				return formFactory.form(Chapter.class).fill((Chapter) zettel.getModel()
 						.deserializeFromRdf(in, RDFFormat.RDFXML));
 			}
 			return null;
