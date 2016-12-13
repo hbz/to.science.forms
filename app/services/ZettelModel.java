@@ -920,7 +920,6 @@ public abstract class ZettelModel {
 		Map<String, Consumer<Object>> dict = getMappingForDeserialization();
 		Graph graph = RdfUtils.readRdfToGraph(in, format, getDocumentId());
 		graph.forEach((st) -> {
-			play.Logger.debug(st + "");
 			if (!"".equals(st.getObject().stringValue())) {
 				String rdf_P = st.getPredicate().stringValue();
 				if (dict.containsKey(rdf_P)) {
@@ -996,7 +995,6 @@ public abstract class ZettelModel {
 
 	private static void processField(Graph graph, Statement st,
 			Consumer<Object> consumer) {
-		play.Logger.debug("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
 		Value rdf_O = st.getObject();
 		if (RdfUtils.isList(graph, st)) {
 			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), "", consumer);

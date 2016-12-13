@@ -56,7 +56,7 @@
 	      var rdf = $('#rdfBox').text();
  		  if (typeof rdf != "undefined") {
 				target.postMessage({
-					'queryParam' : 'id=katalog:data&format=xml&topicId='
+					'queryParam' : 'id=@formId&format=xml&topicId='
 							+ topicId + '&documentId=' + documentId,
 					'message' : rdf,
 					'action'  : 'postDataToZettel'
