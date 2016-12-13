@@ -113,7 +113,9 @@ public class RdfUtils {
 	 */
 	public static void traverseList(Graph g, String uri, String property,
 			Consumer<Object> consumer) {
+		play.Logger.debug("Traverse list");
 		for (Statement s : find(g, uri)) {
+			play.Logger.debug("\tprocess statement " + s);
 			if (uri.equals(s.getSubject().stringValue())
 					&& property.equals(s.getPredicate().stringValue())) {
 				if (property.equals(first)) {

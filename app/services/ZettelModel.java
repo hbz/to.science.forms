@@ -472,6 +472,7 @@ public abstract class ZettelModel {
 	}
 
 	public void setCreator(String in) {
+		play.Logger.debug("Add creator " + in);
 		if (creator == null || creator.isEmpty())
 			creator = new ArrayList<>();
 		creator.add(in);
@@ -996,12 +997,9 @@ public abstract class ZettelModel {
 	private static void processField(Graph graph, Statement st,
 			Consumer<Object> consumer) {
 		Value rdf_O = st.getObject();
-		if (RdfUtils.isList(graph, st)) {
-			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), "", consumer);
-			return;
-		}
 		if (rdf_O instanceof BNode) {
-			// createNestedObject(graph, st, consumer);
+			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), RdfUtils.first,
+					consumer);
 		} else {
 			try {
 				consumer.accept(rdf_O.stringValue());
