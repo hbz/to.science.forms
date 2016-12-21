@@ -228,4 +228,10 @@ public class ArticleHelper {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		return map;
 	}
+
+	public static LinkedHashMap<String, String> getTitleLookupEndpoints() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("https://lobid.org/resource", "Aleph");
+		return map;
+	}
 }

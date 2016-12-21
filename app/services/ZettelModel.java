@@ -34,6 +34,7 @@ import org.openrdf.model.Statement;
 import org.openrdf.model.Value;
 import org.openrdf.rio.RDFFormat;
 
+import de.hbz.lobid.helper.Etikett;
 import play.data.validation.ValidationError;
 
 /**
@@ -73,7 +74,6 @@ import play.data.validation.ValidationError;
  */
 @SuppressWarnings("javadoc")
 public abstract class ZettelModel {
-
 	static final String TYPE = "type";
 	static final String IS_PRIMARY_TOPIC_OF = "isPrimaryTopicOf";
 	static final String PRIMARY_TOPIC = "primaryTopic";
@@ -144,6 +144,9 @@ public abstract class ZettelModel {
 	private String articleNumber;
 	private String publicationStatus;
 	private String issn;
+	List<String> editor;
+	List<String> redaktor;
+	String institution;
 
 	public String getCongressNumber() {
 		return congressNumber;
@@ -739,6 +742,42 @@ public abstract class ZettelModel {
 		this.abstractText = abstractText;
 	}
 
+	public List<String> getEditor() {
+		return editor;
+	}
+
+	public void setEditor(List<String> editor) {
+		this.editor = editor;
+	}
+
+	public void setEditor(String in) {
+		if (editor == null || editor.isEmpty())
+			editor = new ArrayList<>();
+		editor.add(in);
+	}
+
+	public List<String> getRedaktor() {
+		return redaktor;
+	}
+
+	public void setRedaktor(List<String> redaktor) {
+		this.redaktor = redaktor;
+	}
+
+	public void setRedaktor(String in) {
+		if (redaktor == null || redaktor.isEmpty())
+			redaktor = new ArrayList<>();
+		redaktor.add(in);
+	}
+
+	public String getInstitution() {
+		return institution;
+	}
+
+	public void setInstitution(String in) {
+		institution = in;
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(serializeToMap());
@@ -804,6 +843,9 @@ public abstract class ZettelModel {
 		addFieldToMap(dict, articleNumberZF.name, () -> getArticleNumber());
 		addFieldToMap(dict, publicationStatusZF.name, () -> getPublicationStatus());
 		addFieldToMap(dict, issnZF.name, () -> getIssn());
+		addFieldToMap(dict, editorZF.name, () -> getEditor());
+		addFieldToMap(dict, redaktorZF.name, () -> getRedaktor());
+		addFieldToMap(dict, institutionZF.name, () -> getInstitution());
 		return dict;
 	}
 
@@ -891,6 +933,9 @@ public abstract class ZettelModel {
 		dict.put(publicationStatusZF.uri,
 				(in) -> setPublicationStatus((String) in));
 		dict.put(issnZF.uri, (in) -> setIssn((String) in));
+		dict.put(editorZF.uri, (in) -> setEditor((String) in));
+		dict.put(redaktorZF.uri, (in) -> setRedaktor((String) in));
+		dict.put(institutionZF.uri, (in) -> setInstitution((String) in));
 		return dict;
 	}
 

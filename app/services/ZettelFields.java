@@ -133,5 +133,11 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#congressNumber");
 	public static Etikett congressHostZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#congressHost");
+	public static Etikett redaktorZF = ZettelHelper.etikett
+			.getEtikett("http://id.loc.gov/vocabulary/relators/red");
+	public static Etikett editorZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/ontology/bibo/editor");
+	public static Etikett institutionZF = ZettelHelper.etikett
+			.getEtikett("http://dbpedia.org/ontology/institution");
 
 }

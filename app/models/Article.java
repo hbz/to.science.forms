@@ -67,9 +67,10 @@ public class Article extends ZettelModel {
 	@Override
 	public List<ValidationError> validate() {
 		List<ValidationError> errors = new ArrayList<>();
-		validateAuthorship(errors);
-		validateSimpleFields(errors);
-		validateListFields(errors);
+		/*
+		 * validateAuthorship(errors); validateSimpleFields(errors);
+		 * validateListFields(errors);
+		 */
 		return errors.isEmpty() ? null : errors;
 	}
 

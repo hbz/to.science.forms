@@ -30,9 +30,14 @@
 				@multifieldLd(myForm,jsonMap,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
 				<br/>
 				@multifieldText(myForm,jsonMap,"contributorName","Beteiligte (als Freitext)","free-text",4)
+				<br/>
+				@multifieldLd(myForm,jsonMap,"editor","Herausgeber (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+			    <br/>
+			    @multifieldLd(myForm,jsonMap,"redaktor","Redakteur (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+			    <br/>
 			}
 			@accordionPanel("Angaben zur Quelle","upload-section"){
-				@singlefieldText(myForm,"containedIn","Erschienen in (Link zur Quelle)","ht-field",1)
+				@multifieldLd(myForm,jsonMap,"containedIn","Erschienen in (Link zur Quelle)","gnd-person-search",1,ArticleHelper.getTitleLookupEndpoints())
 				<br/>
 				@singlefieldText(myForm,"bibligraphicCitation","Details zur Quelle","",1)
 				<br/>
@@ -48,12 +53,15 @@
 				<br/>
 				@singlefieldText(myForm,"issn","ISSN","",1)
 			}
+			@accordionPanel("Zuordnung zur Sammlung","collectiopn-section"){
+				@multifieldLd(myForm,jsonMap,"institution","Institution (als Linked Data)","gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
+			}
 			@accordionPanel("Dateiupload","upload-section"){
 				@singleSelect(myForm,"medium","Medium*","select-medium",ArticleHelper.getMediumMap(),5)
 				<br/>
 				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ArticleHelper.getCopyrightYear(),6)
 				<br />
-				@singleSelect(myForm,"license","Lizenz*","select-license",ArticleHelper.getLicenseMap(),7)
+				@singlefieldText(myForm,"license","Lizenz (als Link)","",1)
 				<br />
 				@datepicker(myForm,"embargo","Embargo","datepicker",8)
 			}
@@ -76,7 +84,7 @@
 				<br />
 				@multifieldText(myForm,jsonMap,"doi","Vorhandene DOI","",28) 
 				<br />
-				@multifieldText(myForm,jsonMap,"isLike","Persistente URL","",29)  
+				@multifieldText(myForm,jsonMap,"isLike","URL","",29)  
 			}
 		}
 		<div class="form-group row">
