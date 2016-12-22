@@ -136,7 +136,7 @@ public abstract class ZettelModel {
 	private String publisher;
 	private String publicationPlace;
 	private String abstractText;
-	private String containedIn;
+	private List<String> containedIn;
 	private String bibliographicCitation;
 	private String volume;
 	private String issue;
@@ -218,12 +218,18 @@ public abstract class ZettelModel {
 		this.issn = issn;
 	}
 
-	public String getContainedIn() {
+	public List<String> getContainedIn() {
 		return containedIn;
 	}
 
-	public void setContainedIn(String in) {
+	public void setContainedIn(List<String> in) {
 		containedIn = in;
+	}
+
+	public void setContainedIn(String in) {
+		if (containedIn == null || containedIn.isEmpty())
+			containedIn = new ArrayList<>();
+		containedIn.add(in);
 	}
 
 	public String getBibliographicCitation() {
