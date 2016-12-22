@@ -34,7 +34,6 @@ import org.openrdf.model.Statement;
 import org.openrdf.model.Value;
 import org.openrdf.rio.RDFFormat;
 
-import de.hbz.lobid.helper.Etikett;
 import play.data.validation.ValidationError;
 
 /**
@@ -93,7 +92,7 @@ public abstract class ZettelModel {
 
 	private String title;
 	private String titleLanguage;
-	private String alternativeTitle;
+	private String alternative;
 	private List<String> creator;
 	private List<String> contributor;
 	private String yearOfCopyright;
@@ -542,12 +541,12 @@ public abstract class ZettelModel {
 		this.titleLanguage = titleLanguage;
 	}
 
-	public String getAlternativeTitle() {
-		return alternativeTitle;
+	public String getAlternative() {
+		return alternative;
 	}
 
-	public void setAlternativeTitle(String alternativeTitle) {
-		this.alternativeTitle = alternativeTitle;
+	public void setAlternative(String alternativeTitle) {
+		this.alternative = alternativeTitle;
 	}
 
 	public String getDescription() {
@@ -824,7 +823,7 @@ public abstract class ZettelModel {
 		addFieldToMap(dict, isLikeZF.name, () -> getIsLike());
 		addFieldToMap(dict, contributorOrderZF.name, () -> getContributorOrder());
 		addFieldToMap(dict, subjectOrderZF.name, () -> getSubjectOrder());
-		addFieldToMap(dict, alternativeTitleZF.name, () -> getAlternativeTitle());
+		addFieldToMap(dict, alternativeTitleZF.name, () -> getAlternative());
 		addFieldToMap(dict, titleLanguageZF.name, () -> getTitleLanguage());
 		addFieldToMap(dict, descriptionZF.name, () -> getDescription());
 		addFieldToMap(dict, projectIdZF.name, () -> getProjectId());
@@ -912,7 +911,7 @@ public abstract class ZettelModel {
 		dict.put(isLikeZF.uri, (in) -> setIsLike((String) in));
 		dict.put(contributorOrderZF.uri, (in) -> setContributorOrder((String) in));
 		dict.put(subjectOrderZF.uri, (in) -> setSubjectOrder((String) in));
-		dict.put(alternativeTitleZF.uri, (in) -> setAlternativeTitle((String) in));
+		dict.put(alternativeTitleZF.uri, (in) -> setAlternative((String) in));
 		dict.put(titleLanguageZF.uri, (in) -> setTitleLanguage((String) in));
 		dict.put(descriptionZF.uri, (in) -> setDescription((String) in));
 		dict.put(projectIdZF.uri, (in) -> setProjectId((String) in));

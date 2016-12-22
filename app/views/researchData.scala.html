@@ -14,7 +14,7 @@
 			@accordionPanel("Titel","title-section"){
 				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
-				@singlefieldText(myForm,"alternativeTitle","Alternativer Titel","",2)
+				@singlefieldText(myForm,"alternative","Alternativer Titel","",2)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
 				@multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ResearchDataHelper.getPersonLookupEndpoints())
