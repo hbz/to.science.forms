@@ -146,7 +146,7 @@ public abstract class ZettelModel {
 	private String issn;
 	List<String> editor;
 	List<String> redaktor;
-	String institution;
+	List<String> institution;
 
 	public String getCongressNumber() {
 		return congressNumber;
@@ -770,12 +770,18 @@ public abstract class ZettelModel {
 		redaktor.add(in);
 	}
 
-	public String getInstitution() {
+	public List<String> getInstitution() {
 		return institution;
 	}
 
-	public void setInstitution(String in) {
+	public void setInstitution(List<String> in) {
 		institution = in;
+	}
+
+	public void setInstitution(String in) {
+		if (institution == null || institution.isEmpty())
+			institution = new ArrayList<>();
+		institution.add(in);
 	}
 
 	@Override
