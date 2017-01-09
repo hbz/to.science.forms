@@ -117,8 +117,8 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://purl.org/lobid/lv#containedIn");
 	public static Etikett bibliographicCitationZF = ZettelHelper.etikett
 			.getEtikett("http://purl.org/dc/terms/bibliographicCitation");
-	public static Etikett volumeZF =
-			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#volume");
+	public static Etikett volumeInZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/lobid/lv#volumeIn");
 	public static Etikett issueZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#issue");
 	public static Etikett pagesZF =
@@ -139,5 +139,7 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://purl.org/ontology/bibo/editor");
 	public static Etikett institutionZF = ZettelHelper.etikett
 			.getEtikett("http://dbpedia.org/ontology/institution");
+	public static Etikett publicationYearZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#publicationYear");
 
 }

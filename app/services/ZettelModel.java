@@ -137,7 +137,7 @@ public abstract class ZettelModel {
 	private String abstractText;
 	private List<String> containedIn;
 	private String bibliographicCitation;
-	private String volume;
+	private String volumeIn;
 	private String issue;
 	private String pages;
 	private String articleNumber;
@@ -146,6 +146,15 @@ public abstract class ZettelModel {
 	List<String> editor;
 	List<String> redaktor;
 	List<String> institution;
+	String publicationYear;
+
+	public String getPublicationYear() {
+		return publicationYear;
+	}
+
+	public void setPublicationYear(String publicationYear) {
+		this.publicationYear = publicationYear;
+	}
 
 	public String getCongressNumber() {
 		return congressNumber;
@@ -169,12 +178,12 @@ public abstract class ZettelModel {
 		congressHost.add(in);
 	}
 
-	public String getVolume() {
-		return volume;
+	public String getVolumeIn() {
+		return volumeIn;
 	}
 
-	public void setVolume(String volume) {
-		this.volume = volume;
+	public void setVolumeIn(String volumeIn) {
+		this.volumeIn = volumeIn;
 	}
 
 	public String getIssue() {
@@ -848,7 +857,7 @@ public abstract class ZettelModel {
 		addFieldToMap(dict, bibliographicCitationZF.name,
 				() -> getBibliographicCitation());
 		addFieldToMap(dict, congressHostZF.name, () -> getCongressHost());
-		addFieldToMap(dict, volumeZF.name, () -> getVolume());
+		addFieldToMap(dict, volumeInZF.name, () -> getVolumeIn());
 		addFieldToMap(dict, issueZF.name, () -> getIssue());
 		addFieldToMap(dict, pagesZF.name, () -> getPages());
 		addFieldToMap(dict, articleNumberZF.name, () -> getArticleNumber());
@@ -857,6 +866,7 @@ public abstract class ZettelModel {
 		addFieldToMap(dict, editorZF.name, () -> getEditor());
 		addFieldToMap(dict, redaktorZF.name, () -> getRedaktor());
 		addFieldToMap(dict, institutionZF.name, () -> getInstitution());
+		addFieldToMap(dict, publicationYearZF.name, () -> getPublicationYear());
 		return dict;
 	}
 
@@ -937,7 +947,7 @@ public abstract class ZettelModel {
 		dict.put(bibliographicCitationZF.uri,
 				(in) -> setBibliographicCitation((String) in));
 		dict.put(congressHostZF.uri, (in) -> setCongressHost((String) in));
-		dict.put(volumeZF.uri, (in) -> setVolume((String) in));
+		dict.put(volumeInZF.uri, (in) -> setVolumeIn((String) in));
 		dict.put(issueZF.uri, (in) -> setIssue((String) in));
 		dict.put(pagesZF.uri, (in) -> setPages((String) in));
 		dict.put(articleNumberZF.uri, (in) -> setArticleNumber((String) in));
@@ -947,6 +957,7 @@ public abstract class ZettelModel {
 		dict.put(editorZF.uri, (in) -> setEditor((String) in));
 		dict.put(redaktorZF.uri, (in) -> setRedaktor((String) in));
 		dict.put(institutionZF.uri, (in) -> setInstitution((String) in));
+		dict.put(publicationYearZF.uri, (in) -> setPublicationYear((String) in));
 		return dict;
 	}
 
