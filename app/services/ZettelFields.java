@@ -118,7 +118,7 @@ public class ZettelFields {
 	public static Etikett bibliographicCitationZF = ZettelHelper.etikett
 			.getEtikett("http://purl.org/dc/terms/bibliographicCitation");
 	public static Etikett volumeInZF =
-			ZettelHelper.etikett.getEtikett("http://purl.org/lobid/lv#volumeIn");
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#volumeIn");
 	public static Etikett issueZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#issue");
 	public static Etikett pagesZF =
