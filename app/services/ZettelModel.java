@@ -34,6 +34,11 @@ import org.openrdf.model.Statement;
 import org.openrdf.model.Value;
 import org.openrdf.rio.RDFFormat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import models.Agent;
+import models.Contribution;
 import play.data.validation.ValidationError;
 
 /**
@@ -78,9 +83,10 @@ public abstract class ZettelModel {
 	static final String PRIMARY_TOPIC = "primaryTopic";
 	static final String ID = "@id";
 	static final String LABEL = "prefLabel";
-
-	private String documentId = "_:foo";
-	private String topicId = "http://localhost/resource/add/researchData";
+	@JsonProperty(ID)
+	private String documentId;
+	@JsonProperty(IS_PRIMARY_TOPIC_OF)
+	private String topicId;
 
 	/**
 	 * @return the type will be included as rdf type of the resource under field
@@ -89,6 +95,10 @@ public abstract class ZettelModel {
 	protected abstract String getType();
 
 	protected abstract List<ValidationError> validate();
+
+	private String id;
+	private String label;
+	private String role;
 
 	private String title;
 	private String titleLanguage;
@@ -143,10 +153,14 @@ public abstract class ZettelModel {
 	private String articleNumber;
 	private String publicationStatus;
 	private String issn;
-	List<String> editor;
-	List<String> redaktor;
-	List<String> institution;
-	String publicationYear;
+	private List<String> editor;
+	private List<String> redaktor;
+	private List<String> institution;
+	private String publicationYear;
+	private List<String> affiliation;
+	private List<Contribution> contribution;
+	private Agent agent;
+	private String affiliationIndex;
 
 	public String getPublicationYear() {
 		return publicationYear;
@@ -798,76 +812,77 @@ public abstract class ZettelModel {
 		institution.add(in);
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public List<String> getAffiliation() {
+		return affiliation;
+	}
+
+	public void setAffiliation(List<String> affiliation) {
+		this.affiliation = affiliation;
+	}
+
+	public void setAffiliation(String in) {
+		if (affiliation == null || affiliation.isEmpty())
+			affiliation = new ArrayList<>();
+		affiliation.add(in);
+	}
+
+	public List<Contribution> getContribution() {
+		return contribution;
+	}
+
+	public void setContribution(List<Contribution> contribution) {
+		this.contribution = contribution;
+	}
+
+	public String getAffiliationIndex() {
+		return affiliationIndex;
+	}
+
+	public void setAffiliationIndex(String affiliationIndex) {
+		this.affiliationIndex = affiliationIndex;
+	}
+
+	public Agent getAgent() {
+		return agent;
+	}
+
+	public void setAgent(Agent agent) {
+		this.agent = agent;
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(serializeToMap());
 	}
 
-	/**
-	 * @return a map that maps a json name to a getter method
-	 */
-	protected Map<String, Supplier<Object>> getMappingForSerialization() {
-		Map<String, Supplier<Object>> dict = new LinkedHashMap<>();
-		addFieldToMap(dict, titleZF.name, () -> getTitle());
-		addFieldToMap(dict, creatorZF.name, () -> getCreator());
-		addFieldToMap(dict, contributorZF.name, () -> getContributor());
-		addFieldToMap(dict, dataOriginZF.name, () -> getDataOrigin());
-		addFieldToMap(dict, embargoZF.name, () -> getEmbargo());
-		addFieldToMap(dict, languageZF.name, () -> getLanguage());
-		addFieldToMap(dict, licenseZF.name, () -> getLicense());
-		addFieldToMap(dict, mediumZF.name, () -> getMedium());
-		addFieldToMap(dict, professionalGroupZF.name, () -> getProfessionalGroup());
-		addFieldToMap(dict, subjectZF.name, () -> getSubject());
-		addFieldToMap(dict, yearOfCopyrightZF.name, () -> getYearOfCopyright());
-		addFieldToMap(dict, ddcZF.name, () -> getDdc());
-		addFieldToMap(dict, fundingZF.name, () -> getFunding());
-		addFieldToMap(dict, recordingPeriodZF.name, () -> getRecordingPeriod());
-		addFieldToMap(dict, recordingLocationZF.name, () -> getRecordingLocation());
-		addFieldToMap(dict, recordingCoordinatesZF.name,
-				() -> getRecordingCoordinates());
-		addFieldToMap(dict, nextVersionZF.name, () -> getNextVersion());
-		addFieldToMap(dict, previousVersionZF.name, () -> getPreviousVersion());
-		addFieldToMap(dict, doiZF.name, () -> getDoi());
-		addFieldToMap(dict, urnZF.name, () -> getUrn());
-		addFieldToMap(dict, isLikeZF.name, () -> getIsLike());
-		addFieldToMap(dict, contributorOrderZF.name, () -> getContributorOrder());
-		addFieldToMap(dict, subjectOrderZF.name, () -> getSubjectOrder());
-		addFieldToMap(dict, alternativeTitleZF.name, () -> getAlternative());
-		addFieldToMap(dict, titleLanguageZF.name, () -> getTitleLanguage());
-		addFieldToMap(dict, descriptionZF.name, () -> getDescription());
-		addFieldToMap(dict, projectIdZF.name, () -> getProjectId());
-		addFieldToMap(dict, fundingProgramZF.name, () -> getFundingProgram());
-		addFieldToMap(dict, associatedPublicationZF.name,
-				() -> getAssociatedPublication());
-		addFieldToMap(dict, associatedDatasetZF.name, () -> getAssociatedDataset());
-		addFieldToMap(dict, referenceZF.name, () -> getReference());
-		addFieldToMap(dict, creatorNameZF.name, () -> getCreatorName());
-		addFieldToMap(dict, subjectNameZF.name, () -> getSubjectName());
-		addFieldToMap(dict, usageManualZF.name, () -> getUsageManual());
-		addFieldToMap(dict, contributorNameZF.name, () -> getContributorName());
-		addFieldToMap(dict, reviewStatusZF.name, () -> getReviewStatus());
-		addFieldToMap(dict, congressTitleZF.name, () -> getCongressTitle());
-		addFieldToMap(dict, congressLocationZF.name, () -> getCongressLocation());
-		addFieldToMap(dict, congressDurationZF.name, () -> getCongressDuration());
-		addFieldToMap(dict, isbnZF.name, () -> getIsbn());
-		addFieldToMap(dict, publisherZF.name, () -> getPublisher());
-		addFieldToMap(dict, publicationPlaceZF.name, () -> getPublicationPlace());
-		addFieldToMap(dict, abstractTextZF.name, () -> getAbstractText());
-		addFieldToMap(dict, containedInZF.name, () -> getContainedIn());
-		addFieldToMap(dict, bibliographicCitationZF.name,
-				() -> getBibliographicCitation());
-		addFieldToMap(dict, congressHostZF.name, () -> getCongressHost());
-		addFieldToMap(dict, volumeInZF.name, () -> getVolumeIn());
-		addFieldToMap(dict, issueZF.name, () -> getIssue());
-		addFieldToMap(dict, pagesZF.name, () -> getPages());
-		addFieldToMap(dict, articleNumberZF.name, () -> getArticleNumber());
-		addFieldToMap(dict, publicationStatusZF.name, () -> getPublicationStatus());
-		addFieldToMap(dict, issnZF.name, () -> getIssn());
-		addFieldToMap(dict, editorZF.name, () -> getEditor());
-		addFieldToMap(dict, redaktorZF.name, () -> getRedaktor());
-		addFieldToMap(dict, institutionZF.name, () -> getInstitution());
-		addFieldToMap(dict, publicationYearZF.name, () -> getPublicationYear());
-		return dict;
+	public String print() {
+		Map<String, Object> m = serializeToMap();
+		m.remove("@context");
+		return ZettelHelper.objectToString(m);
 	}
 
 	private static void addFieldToMap(Map<String, Supplier<Object>> dict,
@@ -958,6 +973,8 @@ public abstract class ZettelModel {
 		dict.put(redaktorZF.uri, (in) -> setRedaktor((String) in));
 		dict.put(institutionZF.uri, (in) -> setInstitution((String) in));
 		dict.put(publicationYearZF.uri, (in) -> setPublicationYear((String) in));
+		dict.put(affiliationZF.uri, (in) -> setAffiliation((String) in));
+		dict.put(affiliationIndexZF.uri, (in) -> setAffiliationIndex((String) in));
 		return dict;
 	}
 
@@ -1002,13 +1019,9 @@ public abstract class ZettelModel {
 	 * @return json ld map for this model
 	 */
 	public Map<String, Object> serializeToMap() {
-		Map<String, Supplier<Object>> dict = getMappingForSerialization();
-		Map<String, Object> jsonMap = new LinkedHashMap<>();
-		jsonMap.put(ID, documentId);
-		jsonMap.put(TYPE, getType());
+		Map<String, Object> jsonMap =
+				new ObjectMapper().convertValue(this, HashMap.class);
 		addIsPrimaryTopicOf(jsonMap);
-		dict.entrySet().stream().forEach((entry) -> ZettelModel.addField(jsonMap,
-				entry.getKey(), entry.getValue().get()));
 		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
 		return jsonMap;
 	}

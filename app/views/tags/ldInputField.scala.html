@@ -16,8 +16,7 @@ General Public License *@
 				<b>@ZettelHelper.etikett.getLabelFromEtikettWs(myValue)</b>
 			@if(myValue!=null && !myValue.isEmpty()){
 			<a href="@myValue" target="_blank"><span class="octicon octicon-link-external"></span></a>
-			</p>				
-				
+			</p>			
 				<input size="50" class="input-widget @classString" value="@myValue"
 					name="@fieldName" tabindex="@tabOrderAsInt" style="display:none;"/>
 					@if(!lookupEndpoints.isEmpty()){

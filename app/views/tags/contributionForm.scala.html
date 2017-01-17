@@ -1,0 +1,86 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero
+General Public License *@
+@(myForm:Form[services.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int,lookupEndpoints:Map[String,String])(content:Html)
+
+@import java.util.stream.Collectors
+@import services._ 
+@myValue=@{ZettelHelper.getData(myForm,fieldName)}
+<div class="first-child-of-multi-field">
+	<div >
+		<label class="form-control-label" for="@fieldName">@fieldLabel</label>
+		@content
+	</div>
+	<div class="@classString">
+		<div>
+			<p class="input-field-heading">
+				<b>@ZettelHelper.etikett.getLabelFromEtikettWs(myValue)</b>
+			</p>
+			<div  class="input-widget" name=@fieldName>
+				<label class="" for="@fieldName">ID</label><br/>
+				<input size="50" class="@classString input-widget  ui-autocomplete-input" value="@myValue"
+					name=@{fieldName+".agent.documentId"} tabindex="@tabOrderAsInt"/>
+						<select class="endpointSelect">
+							@services.ZettelHelper.getData(myForm,fieldName) match{
+										case myValue: String => {
+											@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
+													@if(myValue.equals(i)){
+												      <option value="@i" selected>@lookupEndpoints.get(i)</option>
+												     }else{
+												      <option value="@i">@lookupEndpoints.get(i)</option>
+												     }
+											}	
+										}	
+										case _ => {
+											@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
+									      		<option value="@i">@lookupEndpoints.get(i)</option>
+									    	}
+									    }
+										
+							}
+						</select>
+						<br/>
+				<label class="">Label</label><br/>	
+				<input size="50" class="label-field @classString input-widget" value="@myValue"
+					name=@{fieldName+".agent.label"} tabindex="@tabOrderAsInt + 1"/><br/>
+					<label class="" for="@fieldName">Role</label><br/>		
+				    <select class="role-field input-widget" name=@{fieldName+".role"}>
+					@services.ZettelHelper.getData(myForm,fieldName) match{
+							case myValue: String => {
+									@for(i <- ArticleHelper.getRoleMap().keySet().stream().collect(Collectors.toList())){
+											@if(myValue.equals(i)){
+										      <option value="@i" selected>@ArticleHelper.getRoleMap().get(i)</option>
+										     }else{
+										      <option value="@i">@ArticleHelper.getRoleMap().get(i)</option>
+										     }
+									}	
+								}	
+								case _ => {
+									@for(i <- ArticleHelper.getRoleMap().keySet().stream().collect(Collectors.toList())){
+							      		<option value="@i">@ArticleHelper.getRoleMap().get(i)</option>
+							    	}
+							    }
+							}	
+							
+					</select>
+					<br/>
+					<label class="">Adresse Satz-Nr.</label><br/>	
+					<select class="addr-key-field @classString input-widget" name=@{fieldName+".affiliationIndex"}>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select><br/>	
+		</div>
+	</div>
+	</div>
+	<div>
+		<span class="errors">@if(myForm.error(fieldName)!=null){@myForm.error(fieldName).message()}</span>
+	</div>
+</div>
+

@@ -33,6 +33,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 
+import models.Contribution;
 import models.JsonMessage;
 import models.Proceeding;
 import models.ResearchData;
@@ -118,6 +119,7 @@ public class ZettelHelper {
 		} else {
 			play.Logger.debug("No data found for " + fieldName);
 		}
+		play.Logger.debug("load " + result);
 		return result;
 	}
 
@@ -144,6 +146,12 @@ public class ZettelHelper {
 				result = new JsonMessage(form.errorsAsJson(), 400);
 			} else {
 				String jsonldString = form.get().toString();
+
+				play.Logger.debug(((ZettelModel) form.get()).print());
+
+				for (Contribution c : ((ZettelModel) form.get()).getContribution()) {
+					play.Logger.debug("Get contribution " + c.print());
+				}
 				// play.Logger.debug(form.get() + "");
 				// play.Logger.debug("JSON from FORM " + jsonldString);
 				if (form.get() != null) {

@@ -5,4 +5,4 @@ POST	/forms  				    controllers.ZettelController.postForm(id : String?=null,for
 GET	    /client						controllers.ZettelController.client(format : String?="json",id:String?="katalog:data",documentId:String?=null,topicId?=null)
 OPTIONS /*all                       controllers.ZettelController.corsforall(all)
 GET		/geoSearch					controllers.ZettelController.geoSearch(q:String?=null)
-GET		/orcidAutocomplete				controllers.ZettelController.orcidAutocomplete(q:String?=null)
+GET		/orcidAutocomplete			controllers.ZettelController.orcidAutocomplete(q:String?=null)

@@ -23,7 +23,7 @@
 				@singlefieldText(myForm,"alternative","Alternativer Titel","",2)
 			}
 			@accordionPanel("Urheberschaft","creator-section"){
-				@multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+<!-- 	@**			@multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
 				@multifieldText(myForm,jsonMap,"creatorName","Autor (als Freitext)*","free-text",4)
 				<br/>
@@ -34,7 +34,12 @@
 				@multifieldLd(myForm,jsonMap,"editor","Herausgeber (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
 			    @multifieldLd(myForm,jsonMap,"redaktor","Redakteur (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+			    <br/>**@ -->
+			    @contribution(myForm,jsonMap,"contribution","Beteiligung*","contribution-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
+			    @multiTextArea(myForm,jsonMap,"affiliation","Anstellung*","input-widget",9)
+				<br />
+			    
 			}
 			@accordionPanel("Angaben zur Quelle","upload-section"){
 				@multifieldLd(myForm,jsonMap,"containedIn","Erschienen in (Link zur Quelle)","gnd-person-search",1,ArticleHelper.getTitleLookupEndpoints())

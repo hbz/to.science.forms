@@ -141,5 +141,8 @@ public class ZettelFields {
 			.getEtikett("http://dbpedia.org/ontology/institution");
 	public static Etikett publicationYearZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#publicationYear");
-
+	public static Etikett affiliationZF =
+			ZettelHelper.etikett.getEtikett("http://www.w3.org/2006/vcard/ns#adr");
+	public static Etikett affiliationIndexZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#affiliationIndex");
 }

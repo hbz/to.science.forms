@@ -4,9 +4,9 @@
 @import services._
 
 <div class="multi-field-wrapper">
-	<div class="multi-fields" id="@fieldName">
+	<ol class="multi-fields" id="@fieldName">
 		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,jsonMap,fieldName) ){
-		<div class="multi-field">
+		<li class="multi-field">
 			
 			 @select(myForm,fieldWithIndex,fieldLabel,classString,map,tabOrderAsInt){
 			   <button type="button" class="inline-help" name="@fieldName">
@@ -23,9 +23,9 @@
 						<button type="button" class="moveUp col-sm-1" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-arrow-circle-up"/></button>
 						<button type="button" class="moveDown col-sm-1" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-arrow-circle-down"/></button>
 					</div>	
-		</div>
+		</li>
 		}
-	</div>
+	</ol>
 	 			<div class="help-text" name="@fieldName" style="display:none">
 					<button name="@fieldName" type="button" class="close-help" style="float:right"><span class="fa fa-times-circle"/></button>
 				</div>

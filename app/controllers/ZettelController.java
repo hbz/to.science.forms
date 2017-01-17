@@ -20,6 +20,7 @@ package controllers;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,7 @@ import models.ResearchData;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.RdfUtils;
 import services.XmlUtils;
 import services.ZettelModel;
 import services.ZettelRegister;
@@ -126,13 +128,34 @@ public class ZettelController extends Controller {
 			String documentId, String topicId) {
 		setHeaders();
 		Result result = null;
+		play.Logger.debug(
+				"Requets body as text " + json(request().body().asFormUrlEncoded()));
+		play.Logger.debug("Request as string " + request() + "");
+
 		ZettelRegister zettelRegister = new ZettelRegister();
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
 		Form<?> form = bindToForm(zettel);
 		result = renderForm(format, documentId, topicId, zettel, form);
 		future.complete(result);
+
+		play.Logger
+				.debug("Loaded data to model " + ((ZettelModel) form.get()).print());
+
+		printRdf(form);
 		return future;
+	}
+
+	private void printRdf(Form<?> form) {
+		try {
+			String rdfString = RdfUtils.readRdfToString(
+					new ByteArrayInputStream(
+							((ZettelModel) form.get()).toString().getBytes("utf-8")),
+					RDFFormat.JSONLD, RDFFormat.RDFXML, "");
+			play.Logger.debug("As rdf: " + rdfString);
+		} catch (Exception e) {
+			play.Logger.debug("", e);
+		}
 	}
 
 	/**

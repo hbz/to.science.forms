@@ -6,8 +6,8 @@
 	<ol class="multi-fields" id="@fieldName">
 		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,jsonMap,fieldName) ){
 		<li class="multi-field">
-		
-		 @rangeInputWidget(myForm,fieldWithIndex,fieldLabel, classString,tabOrderAsInt)
+			 @textArea(myForm,fieldWithIndex,fieldLabel,classString,tabOrderAsInt)
+			 	<div class="buttonBox">
 					<div class="btn-group">
 						<button type="button" class="add-field" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-plus-circle"/></button>
 						<button type="button" class="remove-field" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-minus-circle"/></button>
@@ -16,12 +16,14 @@
 						<button type="button" class="moveUp" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-arrow-circle-up"/></button>
 						<button type="button" class="moveDown" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-arrow-circle-down"/></button>
 					</div>	
+				</div>
+				<div>
+				</div>
+			<br/>
+			<!-- do not insert elements after the following div, unless you want to modify moveDown implementation in zettel.js -->
 		</li>
-		<br/>
 		}
 	
 	</ol>
-	<div class="help-text" name="@fieldName" style="display:none">
-				<button name="@fieldName" type="button" class="close-help" style="float:right"><span class="fa fa-times-circle"/></button>
-	</div>
+	
 </div>

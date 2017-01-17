@@ -16,15 +16,24 @@ function addAutocompletionWithDynamicEndpoint(autocompleteItem){
 		enableAutocompletion(autocompleteItem,newEndpoint);
 	 });
 }
-function enableAllGndAutocompletion() {
+function addContributionValues(autocompleteItem){
+	endpoint = autocompleteItem.siblings("select").val();
+	enableNewAutocompletion(autocompleteItem,endpoint);
+	autocompleteItem.siblings("select").change(function(){
+		newEndpoint=$(this).val();
+		enableNewAutocompletion(autocompleteItem,newEndpoint);
+	 });
+}
+function enableAutocompletionEndpoints() {
 	$('.gnd-subject-search input').each(function() {
 		addAutocompletionWithDynamicEndpoint($(this));
 	});
-	
 	$('.gnd-person-search input').each(function() {
 		addAutocompletionWithDynamicEndpoint($(this));
 	});
-	
+	$('.contribution-search').each(function() {
+		addContributionValues($(this));
+	});
 	$('.mydaterangepicker').each(function() {
 		$(this).daterangepicker({
 		      autoUpdateInput: false,
@@ -41,35 +50,179 @@ function enableAllGndAutocompletion() {
 	});
 }
 
-
 function enableAutocompletion(inputElement,endpoint) {
-	inputElement.autocomplete({
-		select : function(event, ui) {
-			this.value = ui.item.value;
-			$(this).siblings(".input-field-heading").html(
-					"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-			$(this).siblings("select").css('display','none');
-			$(this).css('display','none');
-			emitResize();
-			return false;
-		},
-		source : function(request, response) {	
-			$.ajax({
-				url : endpoint,
-				dataType : "jsonp",
-				data : {
-					name : request.term,
-					q:request.term,
-					format : "ids",
-					lang:"de",
-					index:"agrovoc"
-				},
-				success : function(data) {
-					response(data);
-				}
-			});
-		}
-	});
+	$(inputElement).autocomplete();
+	var gndPerson="https://lobid.org/person";
+	var agrovoc="/tools/skos-lookup/autocomplete";
+	var orcid="/tools/zettel/orcidAutocomplete";
+	var gndSubject="https://lobid.org/subject";
+	if(gndPerson == endpoint || gndSubject == endpoint){
+		inputElement.autocomplete({
+			select : function(event, ui) {
+				this.value = ui.item.value;
+				$(this).siblings(".input-field-heading").html(
+						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+				$(this).siblings("select").css('display','none');
+				$(this).css('display','none');
+				emitResize();
+				return false;
+			},
+			source : function(request, response) {	
+				$.ajax({
+					url : endpoint,
+					dataType : "jsonp",
+					data : {
+						name : request.term,
+						format : "ids",
+					},
+					success : function(data) {
+						response(data);
+					}
+				});
+			}
+		});
+	}
+	else if(agrovoc == endpoint){
+		inputElement.autocomplete({
+			select : function(event, ui) {
+				this.value = ui.item.value;
+				$(this).siblings(".input-field-heading").html(
+						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+				$(this).siblings("select").css('display','none');
+				$(this).css('display','none');
+				emitResize();
+				return false;
+			},
+			source : function(request, response) {	
+				$.ajax({
+					url : endpoint,
+					dataType : "jsonp",
+					data : {
+						q:request.term,
+                        lang:"de",
+                        index:"agrovoc"
+					},
+					success : function(data) {
+						response(data);
+					}
+				});
+			}
+		});
+	}
+	else if(orcid == endpoint){
+		inputElement.autocomplete({
+			select : function(event, ui) {
+				this.value = ui.item.value;
+				$(this).siblings(".input-field-heading").html(
+						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+				$(this).siblings("select").css('display','none');
+				$(this).css('display','none');
+				emitResize();
+				return false;
+			},
+			source : function(request, response) {	
+				$.ajax({
+					url : endpoint,
+					dataType : "jsonp",
+					data : {
+						q : request.term,
+					},
+					success : function(data) {
+						response(data);
+					}
+				});
+			}
+		});
+	}
+}
+
+function enableNewAutocompletion(inputElement,endpoint) {
+	$(inputElement).autocomplete();
+	var gndPerson="https://lobid.org/person";
+	var agrovoc="/tools/skos-lookup/autocomplete";
+	var orcid="/tools/zettel/orcidAutocomplete";
+	var gndSubject="https://lobid.org/subject";
+	
+	if(gndPerson == endpoint || gndSubject == endpoint){
+		$(inputElement).autocomplete();
+		inputElement.autocomplete({
+			select : function(event, ui) {
+				label=ui.item.label;
+				id=ui.item.value;
+				this.value = id;	
+				labelField=$(this).siblings('.label-field').val(label);
+				emitResize();
+				return false;
+			},
+			source : function(request, response) {	
+				$.ajax({
+					url : endpoint,
+					dataType : "jsonp",
+					data : {
+						q:request.term,
+						format : "ids",
+					},
+					success : function(data) {
+						response(data);
+					}
+				});
+			}
+		});
+	}
+	else if(agrovoc == endpoint){
+		$(inputElement).autocomplete();
+		inputElement.autocomplete({
+			select : function(event, ui) {
+				label=ui.item.label;
+				id=ui.item.value;
+				this.value = id;	
+				labelField=$(this).siblings('.label-field').val(label);
+				emitResize();
+				return false;
+			},
+			source : function(request, response) {	
+				$.ajax({
+					url : endpoint,
+					dataType : "jsonp",
+					data : {
+						q:request.term,
+                        lang:"de",
+                        index:"agrovoc"
+					},
+					success : function(data) {
+						response(data);
+					}
+				});
+			}
+		});
+	}
+	else if(orcid == endpoint){
+		$(inputElement).autocomplete();
+		inputElement.autocomplete({
+			select : function(event, ui) {
+				label=ui.item.label;
+				id=ui.item.value;
+				this.value = id;	
+				labelField=$(this).siblings('.label-field').val(label);
+				emitResize();
+				return false;
+			},
+			source : function(request, response) {	
+				$.ajax({
+					url : endpoint,
+					dataType : "jsonp",
+					data : {
+						q : request.term,
+					},
+					success : function(data) {
+						response(data);
+					}
+				});
+			}
+		});
+	}
+	
+	
 }
 
 function handleMessage(evt) {
@@ -85,7 +238,7 @@ function handleMessage(evt) {
 				var newForm = $('form', html);
 				var containerOfOldform = $('div.container');
 				containerOfOldform.html(newForm);
-				enableAllGndAutocompletion();
+				enableAutocompletionEndpoints();
 				addGeonamesLookup();
 				addGeonamesReverseLookup();
 				addActionsToRemoveAndAddButtons();
@@ -109,25 +262,35 @@ function destroyGndAutocompletion() {
 		$(this).autocomplete('destroy');
 		$(this).removeData('autocomplete');
 	});
-}
-function resetIds(curFieldName) {
-	var num = 0;
-	var c=curFieldName+"\\[";
-	$('.input-widget[name^=' + c + ']').each(function() {
-		$(this).attr('name', curFieldName + "[" + num + "]");
-		$(this).attr('id', curFieldName + "_" + num);
-		$(this).removeClass("focus");
-		num++;
+	$('.contribution-search input').each(function() {
+		$(this).autocomplete('destroy');
+		$(this).removeData('autocomplete');
 	});
-	num--;
-	$("#"+ curFieldName + "_" + num).addClass("focus");
+}
+
+function resetIds() {
+	$(document).find(".multi-fields").each(function(){
+		$('li.multi-field',this).each(function(){
+			var curIndex=$(this).index();
+			fixIds($(this),curIndex);
+		});
+	});
+}
+
+function fixIds(elem, cntr) {
+    $(elem).find("[name]").each(function() {
+        $(this).attr("name",$(this).attr("name").replace(/\d+/, cntr));
+    });
+    $(elem).find("[id]").each(function() {
+        $(this).attr("id",$(this).attr("id").replace(/\d+/, cntr));
+    })
+    
 }
 
 function addActionsToRemoveAndAddButtons() {
 	addDatepicker();
 	$('.multi-field-wrapper').each(function() {
 		var $wrapper = $('.multi-fields', this);
-		var curFieldName = $('.multi-fields', this).attr('id');
 		$('.multi-fields input', this).addClass("focus");
 		$(".add-field", $(this)).click(function(e) {
 			destroyGndAutocompletion();
@@ -137,25 +300,27 @@ function addActionsToRemoveAndAddButtons() {
 			newField.appendTo($wrapper).find('.gnd-subject-search.input-widget').css('display','inline');
 			newField.appendTo($wrapper).find('select').css('display','inline');
 			newField.appendTo($wrapper).find('.help-text').css('display','none');
-			resetIds(curFieldName);
+			newField.appendTo($wrapper).find('.form-control-label').css( 'visibility','hidden');
+			newField.appendTo($wrapper).find('.inline-help').css('display','none');
+			resetIds();
 			$(newField).find(".input-field-heading").html("");
-			enableAllGndAutocompletion();
+			enableAutocompletionEndpoints();
 			emitResize();
 		});
 		$('.multi-field .remove-field', $wrapper).click(function() {
 			if ($('.multi-field', $wrapper).length > 1){
 				$(this).parents('.multi-field').remove();
-				resetIds(curFieldName);
+				resetIds();
 				emitResize();
 			}
 			else{
 				destroyGndAutocompletion();
 				var newField = $('.multi-field:first-child', $wrapper).clone(true);
 				newField.appendTo($wrapper).find('.input-widget').val('').focus();
-				resetIds(curFieldName);
+				resetIds();
 				$(newField).find(".input-field-heading").html("");
 				$(this).parents('.multi-field').remove();
-				enableAllGndAutocompletion();
+				enableAutocompletionEndpoints();
 				emitResize();
 			}
 		});
@@ -163,14 +328,14 @@ function addActionsToRemoveAndAddButtons() {
 			var $el = $(this).parents(".multi-field");
 			if ($el.not(':first-child')) {
 				$el.prev().before($el);
-				resetIds(curFieldName);
+				resetIds();
 			}
 		});
 		$('.multi-field .moveDown', $wrapper).click(function() {
 			var $el = $(this).parents(".multi-field");
 			if ($el.not(':last-child')) {
 				$el.next().after($el);
-				resetIds(curFieldName);
+				resetIds();
 			}
 		});
 
