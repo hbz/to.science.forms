@@ -39,10 +39,10 @@ General Public License *@
 							}
 						</select>
 						<br/>
-				<label class="">Label</label><br/>	
+				<label class="">Name</label><br/>	
 				<input size="50" class="label-field @classString input-widget" value="@myValue"
 					name=@{fieldName+".agent.label"} tabindex="@tabOrderAsInt + 1"/><br/>
-					<label class="" for="@fieldName">Role</label><br/>		
+					<label class="" for="@fieldName">Rolle</label><br/>		
 				    <select class="role-field input-widget" name=@{fieldName+".role"}>
 					@services.ZettelHelper.getData(myForm,fieldName) match{
 							case myValue: String => {

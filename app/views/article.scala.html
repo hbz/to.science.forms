@@ -17,13 +17,13 @@
 				<br/>
 				@singleSelect(myForm,"reviewStatus","Begutachtungsstatus","select-pg",ArticleHelper.getReviewStatusMap(),11)
 			}
-			@accordionPanel("Titel","title-section"){
+			@accordionPanel("Titelangaben","title-section"){
 				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
 				@singlefieldText(myForm,"alternative","Alternativer Titel","",2)
 			}
-			@accordionPanel("Urheberschaft","creator-section"){
-<!-- 	@**			@multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+			@accordionPanel("Person/Körperschaft","creator-section"){
+<!-- 	@**	   @multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
 				@multifieldText(myForm,jsonMap,"creatorName","Autor (als Freitext)*","free-text",4)
 				<br/>
@@ -37,14 +37,12 @@
 			    <br/>**@ -->
 			    @contribution(myForm,jsonMap,"contribution","Beteiligung*","contribution-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
-			    @multiTextArea(myForm,jsonMap,"affiliation","Anstellung*","input-widget",9)
+			    @multiTextArea(myForm,jsonMap,"affiliation","Organisation*","input-widget",9)
 				<br />
 			    
 			}
 			@accordionPanel("Angaben zur Quelle","upload-section"){
-				@multifieldLd(myForm,jsonMap,"containedIn","Erschienen in (Link zur Quelle)","gnd-person-search",1,ArticleHelper.getTitleLookupEndpoints())
-				<br/>
-				@singlefieldText(myForm,"bibligraphicCitation","Details zur Quelle","",1)
+				@multifieldLd(myForm,jsonMap,"containedIn","Titel der Zeitschrift","gnd-person-search",1,ArticleHelper.getTitleLookupEndpoints())
 				<br/>
 				@singlefieldText(myForm,"volumeIn","Band","",1)
 				<br/>
@@ -64,7 +62,7 @@
 			@accordionPanel("Dateiupload","upload-section"){
 				@singleSelect(myForm,"medium","Medium*","select-medium",ArticleHelper.getMediumMap(),5)
 				<br/>
-				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ArticleHelper.getCopyrightYear(),6)
+				@singleSelect(myForm,"yearOfCopyright","Copyrightjahr*","datepicker-year",ArticleHelper.getCopyrightYear(),6)
 				<br />
 				@singlefieldText(myForm,"license","Lizenz (als Link)","",1)
 				<br />
@@ -73,15 +71,15 @@
 			@accordionPanel("Erschließung","cataloging-section"){
 				@textArea(myForm,"abstractText","Abstract*","",9)
 				<br />
-				@singleSelect(myForm,"language","Sprache*","select-language",ArticleHelper.getLanguageMap(),10)
+				@singleSelect(myForm,"language","Sprache der Publikation*","select-language",ArticleHelper.getLanguageMap(),10)
 				<br /> 
 				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ArticleHelper.getProfessionalGroupMap(),11)
 				<br />
 				@multiselect(myForm,jsonMap,"ddc","Fächerklassifikation*","select-ddc",ArticleHelper.getDeweyMap(),12)
 				<br />
-				@multifieldLd(myForm,jsonMap,"subject","Schlagworte (als Linked Data)","gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"subject","Normierte Schlagworte","gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
 				<br />
-				@multifieldText(myForm,jsonMap,"subjectName","Schlagworte (als Freitext)","free-text",13)
+				@multifieldText(myForm,jsonMap,"subjectName","Freie Schlagworte","free-text",13)
 			}
 			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
 				<br />
