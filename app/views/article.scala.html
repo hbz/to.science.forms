@@ -18,9 +18,9 @@
 				@singleSelect(myForm,"reviewStatus","Begutachtungsstatus","select-pg",ArticleHelper.getReviewStatusMap(),11)
 			}
 			@accordionPanel("Titelangaben","title-section"){
-				@singlefieldText(myForm,"title","Titel*","",1)
+				@smallTextArea(myForm,"title","Titel*","",1)
 				<br/>
-				@singlefieldText(myForm,"alternative","Alternativer Titel","",2)
+				@smallTextArea(myForm,"alternative","Alternativer Titel","",2)
 			}
 			@accordionPanel("Person/Körperschaft","creator-section"){
 <!-- 	@**	   @multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
