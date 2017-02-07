@@ -16,7 +16,7 @@ General Public License *@
 				<b>@ZettelHelper.etikett.getLabelFromEtikettWs(myValue)</b>
 			</p>
 			<div  class="input-widget" name=@fieldName>
-				<label class="" for="@fieldName">ID</label><br/>
+				<label class="" for="@fieldName">Name</label><br/>
 				<input size="50" class="@classString input-widget  ui-autocomplete-input" value="@myValue"
 					name=@{fieldName+".agent.documentId"} tabindex="@tabOrderAsInt"/>
 						<select class="endpointSelect">
@@ -39,7 +39,7 @@ General Public License *@
 							}
 						</select>
 						<br/>
-				<label class="">Name</label><br/>	
+				<label class="">Personen-Identifier</label><br/>	
 				<input size="50" class="label-field @classString input-widget" value="@myValue"
 					name=@{fieldName+".agent.label"} tabindex="@tabOrderAsInt + 1"/><br/>
 					<label class="" for="@fieldName">Rolle</label><br/>		
