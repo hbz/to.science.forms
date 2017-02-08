@@ -18,7 +18,7 @@ General Public License *@
 			<div  class="input-widget" name=@fieldName>
 				<label class="" for="@fieldName">Name</label><br/>
 				<input size="50" class="@classString input-widget  ui-autocomplete-input" value="@myValue"
-					name=@{fieldName+".agent.documentId"} tabindex="@tabOrderAsInt"/>
+					name=@{fieldName+".agent.label"} tabindex="@tabOrderAsInt"/>
 						<select class="endpointSelect">
 							@services.ZettelHelper.getData(myForm,fieldName) match{
 										case myValue: String => {
@@ -41,7 +41,7 @@ General Public License *@
 						<br/>
 				<label class="">Personen-Identifier</label><br/>	
 				<input size="50" class="label-field @classString input-widget" value="@myValue"
-					name=@{fieldName+".agent.label"} tabindex="@tabOrderAsInt + 1"/><br/>
+					name=@{fieldName+".agent.documentId"} tabindex="@tabOrderAsInt + 1"/><br/>
 					<label class="" for="@fieldName">Rolle</label><br/>		
 				    <select class="role-field input-widget" name=@{fieldName+".role"}>
 					@services.ZettelHelper.getData(myForm,fieldName) match{
