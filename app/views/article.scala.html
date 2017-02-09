@@ -56,32 +56,29 @@
 				<br/>
 				@singlefieldText(myForm,"issn","ISSN","",1)
 			}
-			@accordionPanel("Zuordnung zur Sammlung","collectiopn-section"){
-				@multifieldLd(myForm,jsonMap,"institution","Institution (als Linked Data)","gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
-			}
 			@accordionPanel("Dateiupload","upload-section"){
-				@singleSelect(myForm,"medium","Medium*","select-medium",ArticleHelper.getMediumMap(),5)
+				@singleSelect(myForm,"medium","Art der Datei*","select-medium",ArticleHelper.getMediumMap(),5)
 				<br/>
-				@singleSelect(myForm,"yearOfCopyright","Copyrightjahr*","datepicker-year",ArticleHelper.getCopyrightYear(),6)
+				@singleSelect(myForm,"yearOfCopyright","Copyrightjahr","datepicker-year",ArticleHelper.getCopyrightYear(),6)
 				<br />
 				@singlefieldText(myForm,"license","Lizenz (als Link)","",1)
 				<br />
 				@datepicker(myForm,"embargo","Embargo","datepicker",8)
 			}
-			@accordionPanel("Erschließung","cataloging-section"){
+			@accordionPanel("Inhaltliche Angaben","cataloging-section"){
 				@textArea(myForm,"abstractText","Abstract*","",9)
 				<br />
 				@singleSelect(myForm,"language","Sprache der Publikation*","select-language",ArticleHelper.getLanguageMap(),10)
 				<br /> 
 				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ArticleHelper.getProfessionalGroupMap(),11)
 				<br />
-				@multiselect(myForm,jsonMap,"ddc","Fächerklassifikation*","select-ddc",ArticleHelper.getDeweyMap(),12)
+				@multiselect(myForm,jsonMap,"ddc","Fächerklassifikation (DDC)*","select-ddc",ArticleHelper.getDeweyMap(),12)
 				<br />
-				@multifieldLd(myForm,jsonMap,"subject","Normierte Schlagworte","gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"subject","Normierte Schlagwörter","gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
 				<br />
-				@multifieldText(myForm,jsonMap,"subjectName","Freie Schlagworte","free-text",13)
+				@multifieldText(myForm,jsonMap,"subjectName","Freie Schlagwörter","free-text",13)
 			}
-			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
+			@accordionPanel("Externe Referenzen","identifier-section"){
 				<br />
 				@multifieldText(myForm,jsonMap,"urn","Vorhandene URN","",27) 
 				<br />
