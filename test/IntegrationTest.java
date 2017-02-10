@@ -78,6 +78,8 @@ public class IntegrationTest {
 					try {
 						ResearchData testData = new ResearchData();
 						testData.setTitle("Test Title");
+						testData.setTopicId("http://localhost/resource/add/researchData");
+						testData.setDocumentId("_:foo");
 						List<String> author = new ArrayList<>();
 						author.add("http://d-nb.info/gnd/1047170264");
 						author.add("http://d-nb.info/gnd/5030229-2");
@@ -108,6 +110,8 @@ public class IntegrationTest {
 					try {
 						ResearchData testData = new ResearchData();
 						testData.setTitle("Test Title");
+						testData.setTopicId("http://localhost/resource/add/researchData");
+						testData.setDocumentId("_:foo");
 						List<String> author = new ArrayList<>();
 						author.add("http://d-nb.info/gnd/1047170264");
 						author.add("http://d-nb.info/gnd/5030229-2");
@@ -148,6 +152,8 @@ public class IntegrationTest {
 					try {
 						ResearchData testData = new ResearchData();
 						testData.setTitle("Test Title");
+						testData.setTopicId("http://localhost/resource/add/researchData");
+						testData.setDocumentId("_:foo");
 						List<String> author = new ArrayList<>();
 						author.add("http://d-nb.info/gnd/1047170264");
 						author.add("http://d-nb.info/gnd/5030229-2");
