@@ -65,6 +65,9 @@
 				<br />
 				@datepicker(myForm,"embargo","Embargo","datepicker",8)
 			}
+                        @accordionPanel("Zuordnung zur Sammlung","collectiopn-section"){
+                                @multifieldLd(myForm,jsonMap,"institution","Institution (als Linked Data)","gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
+                        }
 			@accordionPanel("Inhaltliche Angaben","cataloging-section"){
 				@textArea(myForm,"abstractText","Abstract*","",9)
 				<br />
