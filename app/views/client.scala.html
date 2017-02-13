@@ -51,12 +51,12 @@
  		  var documentId=e.data.documentId;
  		  var iframe = document.getElementById("iFrame");
  		  var target =  iframe.contentWindow || iframe;	
- 		  
- 		  //push here your rdf string to send it to zettel 		  
+ 		  var formType=e.data.formType;
+ 		  //inject here your rdf string to send it to zettel 		  
 	      var rdf = $('#rdfBox').text();
  		  if (typeof rdf != "undefined") {
 				target.postMessage({
-					'queryParam' : 'id=katalog:data&format=xml&topicId='
+					'queryParam' : 'id='+formType+'&format=xml&topicId='
 							+ topicId + '&documentId=' + documentId,
 					'message' : rdf,
 					'action'  : 'postDataToZettel'
