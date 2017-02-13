@@ -12,17 +12,17 @@
 	@helper.form(action = routes.ZettelController.postForm(Article.id,dataFormat,documentId,topicId)){
 		<a href="@models.Article.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
-			@accordionPanel("Angaben zur Publikation","publicationStatus-section"){
+			@accordionPanel(services.ZettelFields.statusHeaderZF.getLabel(),"publicationStatus-section"){
 				@singleSelect(myForm,"publicationStatus","Publikationsstatus*","select-pg",ArticleHelper.getPublicationStatusMap(),11)
 				<br/>
 				@singleSelect(myForm,"reviewStatus","Begutachtungsstatus","select-pg",ArticleHelper.getReviewStatusMap(),11)
 			}
-			@accordionPanel("Titelangaben","title-section"){
+			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
 				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
 				@singlefieldText(myForm,"alternative","Alternativer Titel","",2)
 			}
-			@accordionPanel("Person/Körperschaft","creator-section"){
+			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
 <!-- 	@**	   @multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
 				@multifieldText(myForm,jsonMap,"creatorName","Autor (als Freitext)*","free-text",4)
@@ -41,7 +41,7 @@
 				<br />
 			    
 			}
-			@accordionPanel("Angaben zur Quelle","upload-section"){
+			@accordionPanel(services.ZettelFields.resourceHeaderZF.getLabel(),"upload-section"){
 				@multifieldLd(myForm,jsonMap,"containedIn","Titel der Zeitschrift","gnd-person-search",1,ArticleHelper.getTitleLookupEndpoints())
 				<br/>
 				@singlefieldText(myForm,"volumeIn","Band","",1)
@@ -56,10 +56,10 @@
 				<br/>
 				@singlefieldText(myForm,"issn","ISSN","",1)
 			}
-			@accordionPanel("Zuordnung zur Sammlung","collectiopn-section"){
+			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collectiopn-section"){
 				@multifieldLd(myForm,jsonMap,"institution","Institution (als Linked Data)","gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
 			}
-			@accordionPanel("Dateiupload","upload-section"){
+			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
 				@singleSelect(myForm,"medium","Medium*","select-medium",ArticleHelper.getMediumMap(),5)
 				<br/>
 				@singleSelect(myForm,"yearOfCopyright","Copyrightjahr*","datepicker-year",ArticleHelper.getCopyrightYear(),6)
@@ -68,7 +68,7 @@
 				<br />
 				@datepicker(myForm,"embargo","Embargo","datepicker",8)
 			}
-			@accordionPanel("Erschließung","cataloging-section"){
+			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@textArea(myForm,"abstractText","Abstract*","",9)
 				<br />
 				@singleSelect(myForm,"language","Sprache der Publikation*","select-language",ArticleHelper.getLanguageMap(),10)
@@ -81,7 +81,7 @@
 				<br />
 				@multifieldText(myForm,jsonMap,"subjectName","Freie Schlagworte","free-text",13)
 			}
-			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
+			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
 				<br />
 				@multifieldText(myForm,jsonMap,"urn","Vorhandene URN","",27) 
 				<br />
