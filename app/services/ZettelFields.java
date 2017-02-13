@@ -17,8 +17,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
-import java.util.List;
-
 import de.hbz.lobid.helper.Etikett;
 
 /**
@@ -145,4 +143,26 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://www.w3.org/2006/vcard/ns#adr");
 	public static Etikett affiliationIndexZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#affiliationIndex");
+	public static Etikett statusHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/statusHeader");
+	public static Etikett titleHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/titleHeader");
+	public static Etikett creatorshipHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/creatorshipHeader");
+	public static Etikett resourceHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/resourceHeader");
+	public static Etikett uploadHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/uploadHeader");
+	public static Etikett catalogingHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/catalogingHeader");
+	public static Etikett contributorsHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/contributorsHeader");
+	public static Etikett identifiersHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/identifiersHeader");
+	public static Etikett collectionHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionHeader");
+	public static Etikett publicationsHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/publicationsHeader");
+	public static Etikett observationHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/observationHeader");
 }
