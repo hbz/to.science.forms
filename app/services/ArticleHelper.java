@@ -91,6 +91,24 @@ public class ArticleHelper {
 		return map;
 	}
 
+	public static LinkedHashMap<String, String> getPublicationStatusMap() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put(null, "Choose a value!");
+		map.put("http://hbz-nrw.de/regal#original", "Veröffentlichungsversion");
+		map.put("http://hbz-nrw.de/regal#postprint", "Postprint");
+		map.put("http://hbz-nrw.de/regal#preprint", "Preprint");
+		return map;
+	}
+
+	public static LinkedHashMap<String, String> getReviewStatusMap() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put(null, "Choose a value!");
+		map.put("http://hbz-nrw.de/regal#reviewed", "begutachtet");
+		map.put("http://hbz-nrw.de/regal#peerReviewed",
+				"begutachtet (Peer-reviewed)");
+		return map;
+	}
+
 	/**
 	 * @return a map that can be used in an html select
 	 */
@@ -210,4 +228,45 @@ public class ArticleHelper {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		return map;
 	}
+
+	public static LinkedHashMap<String, String> getTitleLookupEndpoints() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("https://lobid.org/resource", "Aleph");
+		return map;
+	}
+
+	public static LinkedHashMap<String, String> getRoleMap() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("http://id.loc.gov/vocabulary/relators/cre", "Autor/in");
+		map.put("http://id.loc.gov/vocabulary/relators/clb", "Mitarbeit");
+		map.put("http://id.loc.gov/vocabulary/relators/edt", "Herausgeber/in");
+		map.put("http://id.loc.gov/vocabulary/relators/red", "Redaktor");
+		map.put("http://id.loc.gov/vocabulary/relators/act", "Schauspieler/in");
+		map.put("http://id.loc.gov/vocabulary/relators/aft",
+				"Autor des Nachwortes");
+		map.put("http://id.loc.gov/vocabulary/relators/ant",
+				"Basiert auf das Werk von");
+		map.put("http://id.loc.gov/vocabulary/relators/aui", "Einleitung");
+		map.put("http://id.loc.gov/vocabulary/relators/aus", "Drehbuch");
+		map.put("http://id.loc.gov/vocabulary/relators/cmp", "Komponist");
+		map.put("http://id.loc.gov/vocabulary/relators/cnd", "Dirigent/in");
+		map.put("http://id.loc.gov/vocabulary/relators/cng", "Kamera");
+		map.put("http://id.loc.gov/vocabulary/relators/col", "Sammler/in");
+		map.put("http://id.loc.gov/vocabulary/relators/ctb", "Mitwirkende");
+		map.put("http://id.loc.gov/vocabulary/relators/ctg", "Kartographie");
+		map.put("http://id.loc.gov/vocabulary/relators/drt", "Regie");
+		map.put("http://id.loc.gov/vocabulary/relators/dte", "Gewidmet");
+		map.put("http://id.loc.gov/vocabulary/relators/egr", "Stecher/in");
+		map.put("http://id.loc.gov/vocabulary/relators/hnr", "Gefeierte Person");
+		map.put("http://id.loc.gov/vocabulary/relators/ill", "Illustration");
+		map.put("http://id.loc.gov/vocabulary/relators/ive", "Interviewte/r");
+		map.put("http://id.loc.gov/vocabulary/relators/ivr", "Interviewer/in");
+		map.put("http://id.loc.gov/vocabulary/relators/mus", "Musik");
+		map.put("http://id.loc.gov/vocabulary/relators/pht", "Fotografie");
+		map.put("http://id.loc.gov/vocabulary/relators/prf", "Interpret");
+		map.put("http://id.loc.gov/vocabulary/relators/pro", "Produzent");
+		map.put("http://id.loc.gov/vocabulary/relators/sng", "Gesang");
+		return map;
+	}
+
 }
