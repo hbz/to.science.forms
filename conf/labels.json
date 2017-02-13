@@ -14714,6 +14714,83 @@
       "uri" : "ttps://creativecommons.org/publicdomain/zero/1.0/"
    },
    {
+      "label": "Erschließung",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/catalogingHeader"
+   },
+   {
+      "label": "Person/Körperschaft",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/creatorshipHeader"
+   },
+   {
+      "label": "Vorhandene Persistente Identifikatoren",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/identifiersHeader"
+   },
+   {
+      "label": "Angaben zur Quelle",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/resourceHeader"
+   },
+   {
+      "label": "Angaben zur Publikation",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/statusHeader"
+   },
+   {
+      "label": "Titelangaben",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/titleHeader"
+   },
+   {
+      "label": "Dateiupload",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/uploadHeader"
+   },
+   {
+      "label": "Beteiligte",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/contributorsHeader"
+   },
+   {
+      "label": "Zuordnung zur Sammlung",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/collectionHeader"
+   },
+   {
+      "label": "Zugehörige Publikationen",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/publicationsHeader"
+   },
+   {
+      "label": "Erfassung",
+      "multilangLabel": {},
+      "referenceType": "String",
+      "type": "STORE",
+      "uri": "info:regal/zettel/observationHeader"
+   },
+   {
       "weight" : "5",
       "comment" : "",
       "label" : "Agent",
