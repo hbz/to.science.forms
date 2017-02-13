@@ -12,17 +12,17 @@
 	@helper.form(action = routes.ZettelController.postForm(Proceeding.id,dataFormat,documentId,topicId)){
 		<a href="@models.Proceeding.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
-			@accordionPanel("Angaben zur Publikation","publicationStatus-section"){
+			@accordionPanel(services.ZettelFields.statusHeaderZF.getLabel(),"publicationStatus-section"){
 				@singleSelect(myForm,"publicationStatus","Publikationsstatus*","select-pg",ProceedingHelper.getPublicationStatusMap(),11)
 				<br/>
 				@singleSelect(myForm,"reviewStatus","Begutachtungsstatus","select-pg",ProceedingHelper.getReviewStatusMap(),11)
 			}
-			@accordionPanel("Titel","title-section"){
+			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
 				@singlefieldText(myForm,"title","Titel*","",1)
 				<br/>
 				@singlefieldText(myForm,"alternative","Alternativer Titel","",2)
 			}
-			@accordionPanel("Urheberschaft","creator-section"){
+			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
 				@multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ProceedingHelper.getPersonLookupEndpoints())
 			    <br/>
 				@multifieldText(myForm,jsonMap,"creatorName","Autor (als Freitext)*","free-text",4)
@@ -31,7 +31,7 @@
 				<br/>
 				@multifieldText(myForm,jsonMap,"contributorName","Beteiligte (als Freitext)","free-text",4)
 			}
-			@accordionPanel("Angaben zur Quelle","upload-section"){
+			@accordionPanel(services.ZettelFields.resourceHeaderZF.getLabel(),"upload-section"){
 				@singlefieldText(myForm,"congressTitle","Titel der Konferenz*","",1)
 				<br/>
 				@singlefieldText(myForm,"congressShortTitle","Kurztitel der Konferenz*","",1)
@@ -54,7 +54,7 @@
 				<br/>
 				@singlefieldText(myForm,"isbn","ISBN","",1)
 			}
-			@accordionPanel("Dateiupload","upload-section"){
+			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
 				@singleSelect(myForm,"medium","Medium*","select-medium",ProceedingHelper.getMediumMap(),5)
 				<br/>
 				@singleSelect(myForm,"yearOfCopyright","CopyrightJahr*","datepicker-year",ProceedingHelper.getCopyrightYear(),6)
@@ -63,7 +63,7 @@
 				<br />
 				@datepicker(myForm,"embargo","Embargo","datepicker",8)
 			}
-			@accordionPanel("Erschließung","cataloging-section"){
+			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@textArea(myForm,"abstractText","Abstract*","",9)
 				<br />
 				@singleSelect(myForm,"language","Sprache*","select-language",ProceedingHelper.getLanguageMap(),10)
@@ -76,14 +76,14 @@
 				<br />
 				@multifieldText(myForm,jsonMap,"subjectName","Schlagworte (als Freitext)","free-text",13)
 			}
-			@accordionPanel("Beteiligte","contributor-section"){
+			@accordionPanel(services.ZettelFields.contributorsHeaderZF.getLabel(),"contributor-section"){
 				@multifieldText(myForm,jsonMap,"funding","Förderer","",15) 
 				<br />
 				@multifieldText(myForm,jsonMap,"projectId","Projekt-ID","",16) 
 				<br/>
 				@multifieldText(myForm,jsonMap,"fundingProgram","Förderprogramm","",17) 
 			}
-			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
+			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
 				<br />
 				@multifieldText(myForm,jsonMap,"urn","Vorhandene URN","",27) 
 				<br />
