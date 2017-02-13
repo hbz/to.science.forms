@@ -195,11 +195,13 @@ function postData(target) {
 	} else {
 		var topicId = $('#topicId').text();
 		var documentId = $('#documentId').text();
+		var bundle =$('#formType').text();
 		target.postMessage({
 			'action' : 'establishConnection',
 			'message' : null,
 			'topicId' : topicId,
-			'documentId' : documentId
+			'documentId' : documentId,
+			'formType' :formType
 		}, "*");
 	}
 }

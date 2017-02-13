@@ -44,8 +44,8 @@ public class ChapterZettel implements ZettelRegisterEntry {
 	@Override
 	public Content render(Form<?> form, String format, String documentId,
 			String topicId) {
-		return chapter.render((Form<ZettelModel>) form, format, documentId,
-				topicId);
+		return chapter.render((Form<ZettelModel>) form, format, documentId, topicId,
+				getId());
 	}
 
 }
