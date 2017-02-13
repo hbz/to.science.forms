@@ -172,9 +172,11 @@ public class IntegrationTest {
 						play.Logger.debug("Send Request");
 						RequestBuilder request = new RequestBuilder().method("POST")
 								.header("content-type", "application/rdf+xml")
-								.header("accept", "application/json").bodyText(rdfString).uri(
-										controllers.routes.ZettelController.postForm("katalog:data",
-												"json", "test:foo", "test:foo.rdf").url());
+								.header("accept", "application/json").bodyText(rdfString)
+								.uri(controllers.routes.ZettelController
+										.postForm("katalog:researchData", "json", "test:foo",
+												"test:foo.rdf")
+										.url());
 						play.mvc.Result result = route(request);
 
 						play.Logger.debug(contentAsString(result));
