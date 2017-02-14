@@ -101,6 +101,8 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#reviewStatus");
 	public static Etikett congressTitleZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#congressTitle");
+	public static Etikett congressShortTitleZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#congressShortTitle");
 	public static Etikett congressLocationZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#congressLocation");
 	public static Etikett congressDurationZF = ZettelHelper.etikett
@@ -139,6 +141,8 @@ public class ZettelFields {
 			.getEtikett("http://dbpedia.org/ontology/institution");
 	public static Etikett publicationYearZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#publicationYear");
+	public static Etikett contributionZF = ZettelHelper.etikett
+			.getEtikett("http://bibframe.org/vocab/contribution");
 	public static Etikett affiliationZF =
 			ZettelHelper.etikett.getEtikett("http://www.w3.org/2006/vcard/ns#adr");
 	public static Etikett affiliationIndexZF = ZettelHelper.etikett
