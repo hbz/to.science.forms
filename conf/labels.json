@@ -15185,6 +15185,18 @@
       "uri" : "http://hbz-nrw.de/regal#congressNumber"
    },
    {
+      "label" : "Kurztitel der Konferenz*",
+      "icon" : "fa fa-bars",
+      "container" : "",
+      "name" : "congressShortTitle",
+      "comment" : "",
+      "weight" : "100",
+      "referenceType" : "String",
+      "multilangLabel" : {},
+      "type" : "CONTEXT",
+      "uri" : "http://hbz-nrw.de/regal#congressShortTitle"
+   },
+   {
       "label" : "Kongresstitel",
       "icon" : "fa fa-bars",
       "container" : "",
@@ -16646,12 +16658,12 @@
    },
    {
       "type" : "CONTEXT",
-      "uri" : "http://purl.org/ontology/bibo/isbn",
+      "uri" : "http://purl.org/ontology/bibo/isbn10",
       "weight" : "1000",
       "multilangLabel" : {},
       "referenceType" : "String",
       "name" : "isbn",
-      "label" : "Isbn"
+      "label" : "ISBN"
    },
    {
       "referenceType" : "String",
