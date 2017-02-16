@@ -147,10 +147,10 @@ function enableNewAutocompletion(inputElement,endpoint) {
 		$(inputElement).autocomplete();
 		inputElement.autocomplete({
 			select : function(event, ui) {
-				label=ui.item.label;
-				id=ui.item.value;
-				this.value = id;	
-				labelField=$(this).siblings('.label-field').val(label);
+				pName=ui.item.label;
+				pId=ui.item.value;
+				this.value = pName;	
+				labelField=$(this).siblings('.label-field').val(pId);
 				emitResize();
 				return false;
 			},
@@ -159,7 +159,7 @@ function enableNewAutocompletion(inputElement,endpoint) {
 					url : endpoint,
 					dataType : "jsonp",
 					data : {
-						q:request.term,
+						name: request.term,
 						format : "ids",
 					},
 					success : function(data) {
@@ -200,10 +200,10 @@ function enableNewAutocompletion(inputElement,endpoint) {
 		$(inputElement).autocomplete();
 		inputElement.autocomplete({
 			select : function(event, ui) {
-				label=ui.item.label;
-				id=ui.item.value;
-				this.value = id;	
-				labelField=$(this).siblings('.label-field').val(label);
+				pName=ui.item.label;
+				pId=ui.item.value;
+				this.value = pName;	
+				labelField=$(this).siblings('.label-field').val(pId);
 				emitResize();
 				return false;
 			},
@@ -360,11 +360,13 @@ function postData(target) {
 	} else {
 		var topicId = $('#topicId').text();
 		var documentId = $('#documentId').text();
+		var formType =$('#formType').text();
 		target.postMessage({
 			'action' : 'establishConnection',
 			'message' : null,
 			'topicId' : topicId,
-			'documentId' : documentId
+			'documentId' : documentId,
+			'formType' :formType
 		}, "*");
 	}
 }

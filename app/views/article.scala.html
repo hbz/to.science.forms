@@ -17,17 +17,10 @@
 				<br/>
 				@singleSelect(myForm,"reviewStatus",services.ZettelFields.reviewStatusZF.getLabel(),"select-pg",ArticleHelper.getReviewStatusMap(),11)
 			}
-<<<<<<< HEAD
-			@accordionPanel("Titelangaben","title-section"){
-				@smallTextArea(myForm,"title","Titel*","",1)
+			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
+					@smallTextArea(myForm,"title","Titel*","",1)
 				<br/>
 				@smallTextArea(myForm,"alternative","Alternativer Titel","",2)
-=======
-			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
-				@singlefieldText(myForm,"title",services.ZettelFields.titleZF.getLabel(),"",1)
-				<br/>
-				@singlefieldText(myForm,"alternative",services.ZettelFields.alternativeTitleZF.getLabel(),"",2)
->>>>>>> 053dbec467f626856ffdd3338b1e01b7ae8e91d5
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
 <!-- 	@**	   @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
