@@ -51,12 +51,13 @@ function enableAutocompletionEndpoints() {
 }
 
 function enableAutocompletion(inputElement,endpoint) {
-	$(inputElement).autocomplete();
+	$(inputElement).autocomplete({source:["No Result"]});
 	var gndPerson="https://lobid.org/person";
 	var agrovoc="/tools/skos-lookup/autocomplete";
 	var orcid="/tools/zettel/orcidAutocomplete";
 	var gndSubject="https://lobid.org/subject";
-	if(gndPerson == endpoint || gndSubject == endpoint){
+	var gndTitle = "https://lobid.org/resource";
+	if(gndPerson == endpoint || gndSubject == endpoint || gndTitle==endpoint){
 		inputElement.autocomplete({
 			select : function(event, ui) {
 				this.value = ui.item.value;
@@ -137,20 +138,20 @@ function enableAutocompletion(inputElement,endpoint) {
 }
 
 function enableNewAutocompletion(inputElement,endpoint) {
-	$(inputElement).autocomplete();
+	$(inputElement).autocomplete({source:["No Result"]});
 	var gndPerson="https://lobid.org/person";
 	var agrovoc="/tools/skos-lookup/autocomplete";
 	var orcid="/tools/zettel/orcidAutocomplete";
 	var gndSubject="https://lobid.org/subject";
-	
-	if(gndPerson == endpoint || gndSubject == endpoint){
+	var gndTitle = "https://lobid.org/resource";
+	if(gndPerson == endpoint || gndSubject == endpoint || gndTitle==endpoint){
 		$(inputElement).autocomplete();
 		inputElement.autocomplete({
 			select : function(event, ui) {
-				pName=ui.item.label;
-				pId=ui.item.value;
-				this.value = pName;	
-				labelField=$(this).siblings('.label-field').val(pId);
+				label=ui.item.label;
+				id=ui.item.value;
+				this.value = label;	
+				labelField=$(this).siblings('.label-field').val(id);
 				emitResize();
 				return false;
 			},
@@ -175,8 +176,8 @@ function enableNewAutocompletion(inputElement,endpoint) {
 			select : function(event, ui) {
 				label=ui.item.label;
 				id=ui.item.value;
-				this.value = id;	
-				labelField=$(this).siblings('.label-field').val(label);
+				this.value = label;	
+				labelField=$(this).siblings('.label-field').val(id);
 				emitResize();
 				return false;
 			},
@@ -200,10 +201,10 @@ function enableNewAutocompletion(inputElement,endpoint) {
 		$(inputElement).autocomplete();
 		inputElement.autocomplete({
 			select : function(event, ui) {
-				pName=ui.item.label;
-				pId=ui.item.value;
-				this.value = pName;	
-				labelField=$(this).siblings('.label-field').val(pId);
+				label=ui.item.label;
+				id=ui.item.value;
+				this.value = label;	
+				labelField=$(this).siblings('.label-field').val(id);
 				emitResize();
 				return false;
 			},
