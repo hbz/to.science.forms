@@ -34,7 +34,6 @@ import org.openrdf.model.Statement;
 import org.openrdf.model.Value;
 import org.openrdf.rio.RDFFormat;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -85,9 +84,9 @@ public abstract class ZettelModel {
 	static final String ID = "@id";
 	static final String LABEL = "prefLabel";
 	@JsonProperty(ID)
-	private String documentId = "_:foo";
+	private String documentId;
 	@JsonProperty(IS_PRIMARY_TOPIC_OF)
-	private String topicId = "http://localhost/resource/add/researchData";
+	private String topicId;
 
 	/**
 	 * @return the type will be included as rdf type of the resource under field
@@ -1002,7 +1001,10 @@ public abstract class ZettelModel {
 	 * @param format format of the rdf serialization
 	 * @return the rdf data loaded to a ZettelModel
 	 */
-	public ZettelModel deserializeFromRdf(InputStream in, RDFFormat format) {
+	public ZettelModel deserializeFromRdf(InputStream in, RDFFormat format,
+			String documentId, String topicId) {
+		this.documentId = documentId;
+		this.topicId = topicId;
 		Map<String, Consumer<Object>> dict = getMappingForDeserialization();
 		Graph graph = RdfUtils.readRdfToGraph(in, format, getDocumentId());
 		graph.forEach((st) -> {

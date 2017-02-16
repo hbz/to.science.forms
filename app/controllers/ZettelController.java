@@ -135,7 +135,7 @@ public class ZettelController extends Controller {
 		ZettelRegister zettelRegister = new ZettelRegister();
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
-		Form<?> form = bindToForm(zettel);
+		Form<?> form = bindToForm(zettel, documentId, topicId);
 		result = renderForm(format, documentId, topicId, zettel, form);
 		future.complete(result);
 
@@ -193,10 +193,12 @@ public class ZettelController extends Controller {
 		return result;
 	}
 
-	private Form<?> bindToForm(ZettelRegisterEntry zettel) {
+	private Form<?> bindToForm(ZettelRegisterEntry zettel, String documentId,
+			String topicId) {
 		Form<?> form = null;
 		if ("application/rdf+xml".equals(request().contentType().get())) {
-			form = loadRdf(XmlUtils.docToString(request().body().asXml()), zettel);
+			form = loadRdf(XmlUtils.docToString(request().body().asXml()), zettel,
+					documentId, topicId);
 			form.bindFromRequest();
 		} else {
 			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
@@ -204,21 +206,24 @@ public class ZettelController extends Controller {
 		return form;
 	}
 
-	private Form<?> loadRdf(String asText, ZettelRegisterEntry zettel) {
+	private Form<?> loadRdf(String asText, ZettelRegisterEntry zettel,
+			String documentId, String topicId) {
 		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
 			String id = zettel.getId();
 			if (ResearchData.id.equals(id)) {
-				return formFactory.form(ResearchData.class).fill((ResearchData) zettel
-						.getModel().deserializeFromRdf(in, RDFFormat.RDFXML));
+				return formFactory.form(ResearchData.class)
+						.fill((ResearchData) zettel.getModel().deserializeFromRdf(in,
+								RDFFormat.RDFXML, documentId, topicId));
 			} else if (Article.id.equals(id)) {
 				return formFactory.form(Article.class).fill((Article) zettel.getModel()
-						.deserializeFromRdf(in, RDFFormat.RDFXML));
+						.deserializeFromRdf(in, RDFFormat.RDFXML, documentId, topicId));
 			} else if (Proceeding.id.equals(id)) {
-				return formFactory.form(Proceeding.class).fill((Proceeding) zettel
-						.getModel().deserializeFromRdf(in, RDFFormat.RDFXML));
+				return formFactory.form(Proceeding.class)
+						.fill((Proceeding) zettel.getModel().deserializeFromRdf(in,
+								RDFFormat.RDFXML, documentId, topicId));
 			} else if (Chapter.id.equals(id)) {
 				return formFactory.form(Chapter.class).fill((Chapter) zettel.getModel()
-						.deserializeFromRdf(in, RDFFormat.RDFXML));
+						.deserializeFromRdf(in, RDFFormat.RDFXML, documentId, topicId));
 			}
 			return null;
 		} catch (Exception e) {

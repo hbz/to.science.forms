@@ -1,10 +1,14 @@
 package models;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import play.data.validation.ValidationError;
+import services.ZettelHelper;
 import services.ZettelModel;
 
 /**
@@ -27,4 +31,11 @@ public class Contribution extends ZettelModel {
 		return null;
 	}
 
+	@Override
+	public Map<String, Object> serializeToMap() {
+		Map<String, Object> jsonMap =
+				new ObjectMapper().convertValue(this, HashMap.class);
+		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
+		return jsonMap;
+	}
 }

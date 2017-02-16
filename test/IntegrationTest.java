@@ -152,8 +152,8 @@ public class IntegrationTest {
 					try {
 						ResearchData testData = new ResearchData();
 						testData.setTitle("Test Title");
-						testData.setTopicId("http://localhost/resource/add/researchData");
-						testData.setDocumentId("_:foo");
+						testData.setTopicId("test:2.rdf");
+						testData.setDocumentId("test:2");
 						List<String> author = new ArrayList<>();
 						author.add("http://d-nb.info/gnd/1047170264");
 						author.add("http://d-nb.info/gnd/5030229-2");
@@ -181,8 +181,8 @@ public class IntegrationTest {
 								.header("content-type", "application/rdf+xml")
 								.header("accept", "application/json").bodyText(rdfString)
 								.uri(controllers.routes.ZettelController
-										.postForm("katalog:researchData", "json", "test:foo",
-												"test:foo.rdf")
+										.postForm("katalog:researchData", "json", "test:2",
+												"test:2.rdf")
 										.url());
 						play.mvc.Result result = route(request);
 
