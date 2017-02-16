@@ -1,5 +1,5 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(title: String,myForm: Form[services.ZettelModel],dataFormat:String,documentId:String,topicId:String)(content: Html) 
+@(title: String,myForm: Form[services.ZettelModel],dataFormat:String,documentId:String,topicId:String,formType:String)(content: Html) 
 @import play.api.Play.current
 @import services._
 <!DOCTYPE html>
@@ -33,6 +33,7 @@
 <body>
 	<div id="documentId" class="data">@documentId</div>
 	<div id="topicId" class="data">@topicId</div>
+	<div id="formType" class="data">@formType</div>
 	<div class="container col-xs-12 col-md-8">
 		@content
 	</div>
