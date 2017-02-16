@@ -12,82 +12,89 @@
 	@helper.form(action = routes.ZettelController.postForm(Article.id,dataFormat,documentId,topicId)){
 		<a href="@models.Article.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
-			@accordionPanel("Angaben zur Publikation","publicationStatus-section"){
-				@singleSelect(myForm,"publicationStatus","Publikationsstatus*","select-pg",ArticleHelper.getPublicationStatusMap(),11)
+			@accordionPanel(services.ZettelFields.statusHeaderZF.getLabel(),"publicationStatus-section"){
+				@singleSelect(myForm,"publicationStatus",services.ZettelFields.publicationStatusZF.getLabel(),"select-pg",ArticleHelper.getPublicationStatusMap(),11)
 				<br/>
-				@singleSelect(myForm,"reviewStatus","Begutachtungsstatus","select-pg",ArticleHelper.getReviewStatusMap(),11)
+				@singleSelect(myForm,"reviewStatus",services.ZettelFields.reviewStatusZF.getLabel(),"select-pg",ArticleHelper.getReviewStatusMap(),11)
 			}
+<<<<<<< HEAD
 			@accordionPanel("Titelangaben","title-section"){
 				@smallTextArea(myForm,"title","Titel*","",1)
 				<br/>
 				@smallTextArea(myForm,"alternative","Alternativer Titel","",2)
+=======
+			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
+				@singlefieldText(myForm,"title",services.ZettelFields.titleZF.getLabel(),"",1)
+				<br/>
+				@singlefieldText(myForm,"alternative",services.ZettelFields.alternativeTitleZF.getLabel(),"",2)
+>>>>>>> 053dbec467f626856ffdd3338b1e01b7ae8e91d5
 			}
-			@accordionPanel("Person/Körperschaft","creator-section"){
-<!-- 	@**	   @multifieldLd(myForm,jsonMap,"creator","Autor (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
+<!-- 	@**	   @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
-				@multifieldText(myForm,jsonMap,"creatorName","Autor (als Freitext)*","free-text",4)
+				@multifieldText(myForm,jsonMap,"creatorName",services.ZettelFields.creatorNameZF.getLabel(),"free-text",4)
 				<br/>
-				@multifieldLd(myForm,jsonMap,"contributor","Beteiligte (als Linked Data)","gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
 				<br/>
-				@multifieldText(myForm,jsonMap,"contributorName","Beteiligte (als Freitext)","free-text",4)
+				@multifieldText(myForm,jsonMap,"contributorName",services.ZettelFields.contributorNameZF.getLabel(),"free-text",4)
 				<br/>
-				@multifieldLd(myForm,jsonMap,"editor","Herausgeber (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"editor",services.ZettelFields.editorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
-			    @multifieldLd(myForm,jsonMap,"redaktor","Redakteur (als Linked Data)*","gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+			    @multifieldLd(myForm,jsonMap,"redaktor",services.ZettelFields.redaktorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>**@ -->
-			    @contribution(myForm,jsonMap,"contribution","Beteiligung*","contribution-search",4,ArticleHelper.getPersonLookupEndpoints())
+			    @contribution(myForm,jsonMap,"contribution",services.ZettelFields.contributionZF.getLabel(),"contribution-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
-			    @multiTextArea(myForm,jsonMap,"affiliation","Organisation*","input-widget",9)
+			    @multiTextArea(myForm,jsonMap,"affiliation",services.ZettelFields.affiliationZF.getLabel(),"input-widget",9)
 				<br />
 			    
 			}
-			@accordionPanel("Angaben zur Quelle","upload-section"){
-				@multifieldLd(myForm,jsonMap,"containedIn","Titel der Zeitschrift","gnd-person-search",1,ArticleHelper.getTitleLookupEndpoints())
+			@accordionPanel(services.ZettelFields.resourceHeaderZF.getLabel(),"upload-section"){
+				@multifieldLd(myForm,jsonMap,"containedIn",services.ZettelFields.containedInZF.getLabel(),"gnd-person-search",1,ArticleHelper.getTitleLookupEndpoints())
 				<br/>
-				@singlefieldText(myForm,"volumeIn","Band","",1)
+				@singlefieldText(myForm,"volumeIn",services.ZettelFields.volumeInZF.getLabel(),"",1)
 				<br/>
-				@singlefieldText(myForm,"issue","Heft","",1)
+				@singlefieldText(myForm,"issue",services.ZettelFields.issueZF.getLabel(),"",1)
 				<br/>
-				@singlefieldText(myForm,"articleNumber","Artikelnummer","",1)
+				@singlefieldText(myForm,"articleNumber",services.ZettelFields.articleNumberZF.getLabel(),"",1)
 				<br/>
-				@singlefieldText(myForm,"pages","Seitenangabe","",1)
+				@singlefieldText(myForm,"pages",services.ZettelFields.pagesZF.getLabel(),"",1)
 				<br/>
-				@singlefieldText(myForm,"publicationYear","Erscheinungsjahr","",1)
+				@singlefieldText(myForm,"publicationYear",services.ZettelFields.publicationYearZF.getLabel(),"",1)
 				<br/>
-				@singlefieldText(myForm,"issn","ISSN","",1)
+				@singlefieldText(myForm,"issn",services.ZettelFields.issnZF.getLabel(),"",1)
 			}
-			@accordionPanel("Zuordnung zur Sammlung","collectiopn-section"){
-				@multifieldLd(myForm,jsonMap,"institution","Institution (als Linked Data)","gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
+			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collectiopn-section"){
+				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
 			}
-			@accordionPanel("Dateiupload","upload-section"){
-				@singleSelect(myForm,"medium","Medium*","select-medium",ArticleHelper.getMediumMap(),5)
+			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
+				@singleSelect(myForm,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ArticleHelper.getMediumMap(),5)
 				<br/>
-				@singleSelect(myForm,"yearOfCopyright","Copyrightjahr*","datepicker-year",ArticleHelper.getCopyrightYear(),6)
+				@singleSelect(myForm,"yearOfCopyright",services.ZettelFields.yearOfCopyrightZF.getLabel(),"datepicker-year",ArticleHelper.getCopyrightYear(),6)
 				<br />
-				@singlefieldText(myForm,"license","Lizenz (als Link)","",1)
+				@singlefieldText(myForm,"license",services.ZettelFields.licenseZF.getLabel(),"",1)
 				<br />
-				@datepicker(myForm,"embargo","Embargo","datepicker",8)
+				@datepicker(myForm,"embargo",services.ZettelFields.embargoZF.getLabel(),"datepicker",8)
 			}
-			@accordionPanel("Erschließung","cataloging-section"){
-				@textArea(myForm,"abstractText","Abstract*","",9)
+			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
+				@textArea(myForm,"abstractText",services.ZettelFields.abstractTextZF.getLabel(),"",9)
 				<br />
-				@singleSelect(myForm,"language","Sprache der Publikation*","select-language",ArticleHelper.getLanguageMap(),10)
+				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel(),"select-language",ArticleHelper.getLanguageMap(),10)
 				<br /> 
-				@singleSelect(myForm,"professionalGroup","Fachgruppe*","select-pg",ArticleHelper.getProfessionalGroupMap(),11)
+				@singleSelect(myForm,"professionalGroup",services.ZettelFields.professionalGroupZF.getLabel(),"select-pg",ArticleHelper.getProfessionalGroupMap(),11)
 				<br />
-				@multiselect(myForm,jsonMap,"ddc","Fächerklassifikation*","select-ddc",ArticleHelper.getDeweyMap(),12)
+				@multiselect(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel(),"select-ddc",ArticleHelper.getDeweyMap(),12)
 				<br />
-				@multifieldLd(myForm,jsonMap,"subject","Normierte Schlagworte","gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
 				<br />
-				@multifieldText(myForm,jsonMap,"subjectName","Freie Schlagworte","free-text",13)
+				@multifieldText(myForm,jsonMap,"subjectName",services.ZettelFields.subjectNameZF.getLabel(),"free-text",13)
 			}
-			@accordionPanel("Vorhandene Persistente Identifikatoren","identifier-section"){
+			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
 				<br />
-				@multifieldText(myForm,jsonMap,"urn","Vorhandene URN","",27) 
+				@multifieldText(myForm,jsonMap,"urn",services.ZettelFields.urnZF.getLabel(),"",27)
 				<br />
-				@multifieldText(myForm,jsonMap,"doi","Vorhandene DOI","",28) 
+				@multifieldText(myForm,jsonMap,"doi",services.ZettelFields.doiZF.getLabel(),"",28)
 				<br />
-				@multifieldText(myForm,jsonMap,"reference","URL","",29)  
+				@multifieldText(myForm,jsonMap,"reference",services.ZettelFields.isLikeZF.getLabel(),"",29)
 			}
 		}
 		<div class="form-group row">
