@@ -23,7 +23,7 @@
 				@smallTextArea(myForm,"alternative","Alternativer Titel","",2)
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
-<!-- 	@**	   @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
+   @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
 				@multifieldText(myForm,jsonMap,"creatorName",services.ZettelFields.creatorNameZF.getLabel(),"free-text",4)
 				<br/>
@@ -34,11 +34,11 @@
 				@multifieldLd(myForm,jsonMap,"editor",services.ZettelFields.editorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
 			    @multifieldLd(myForm,jsonMap,"redaktor",services.ZettelFields.redaktorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
-			    <br/>**@ -->
+		<!-- 	@**		    <br/>
 			    @contribution(myForm,jsonMap,"contribution",services.ZettelFields.contributionZF.getLabel(),"contribution-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
 			    @multiTextArea(myForm,jsonMap,"affiliation",services.ZettelFields.affiliationZF.getLabel(),"input-widget",9)
-				<br />
+				<br />**@ -->
 			    
 			}
 			@accordionPanel(services.ZettelFields.resourceHeaderZF.getLabel(),"upload-section"){
@@ -50,7 +50,11 @@
 				<br/>
 				@singlefieldText(myForm,"articleNumber",services.ZettelFields.articleNumberZF.getLabel(),"",1)
 				<br/>
+
 				@singlefieldText(myForm,"pages",services.ZettelFields.pagesZF.getLabel(),"",1)
+<br/>
+				@singlefieldText(myForm,"articleNumber","Artikelnummer","",1)
+		
 				<br/>
 				@singlefieldText(myForm,"publicationYear",services.ZettelFields.publicationYearZF.getLabel(),"",1)
 				<br/>
@@ -65,6 +69,7 @@
 				@singleSelect(myForm,"yearOfCopyright",services.ZettelFields.yearOfCopyrightZF.getLabel(),"datepicker-year",ArticleHelper.getCopyrightYear(),6)
 				<br />
 				@singlefieldText(myForm,"license",services.ZettelFields.licenseZF.getLabel(),"",1)
+
 				<br />
 				@datepicker(myForm,"embargo",services.ZettelFields.embargoZF.getLabel(),"datepicker",8)
 			}
@@ -72,6 +77,7 @@
 				@textArea(myForm,"abstractText",services.ZettelFields.abstractTextZF.getLabel(),"",9)
 				<br />
 				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel(),"select-language",ArticleHelper.getLanguageMap(),10)
+
 				<br /> 
 				@singleSelect(myForm,"professionalGroup",services.ZettelFields.professionalGroupZF.getLabel(),"select-pg",ArticleHelper.getProfessionalGroupMap(),11)
 				<br />
@@ -80,6 +86,7 @@
 				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
 				<br />
 				@multifieldText(myForm,jsonMap,"subjectName",services.ZettelFields.subjectNameZF.getLabel(),"free-text",13)
+
 			}
 			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
 				<br />
@@ -88,6 +95,7 @@
 				@multifieldText(myForm,jsonMap,"doi",services.ZettelFields.doiZF.getLabel(),"",28)
 				<br />
 				@multifieldText(myForm,jsonMap,"reference",services.ZettelFields.isLikeZF.getLabel(),"",29)
+
 			}
 		}
 		<div class="form-group row">
