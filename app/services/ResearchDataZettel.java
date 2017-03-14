@@ -45,7 +45,7 @@ public class ResearchDataZettel implements ZettelRegisterEntry {
 	public Content render(Form<?> form, String format, String documentId,
 			String topicId) {
 		return researchData.render((Form<ZettelModel>) form, format, documentId,
-				topicId);
+				topicId, getId());
 	}
 
 }

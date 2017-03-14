@@ -2,7 +2,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET	    /							controllers.ZettelController.index()
 GET 	/forms						controllers.ZettelController.getForms(id : String?=null,format:String?=null,documentId:String?=null,topicId?=null)
 POST	/forms  				    controllers.ZettelController.postForm(id : String?=null,format:String?=null,documentId:String?=null,topicId?=null)
-GET	    /client						controllers.ZettelController.client(format : String?="json",id:String?="katalog:data",documentId:String?=null,topicId?=null)
+GET	    /client						controllers.ZettelController.client(format : String?="json",id:String?="katalog:researchData",documentId:String?=null,topicId?=null)
 OPTIONS /*all                       controllers.ZettelController.corsforall(all)
 GET		/geoSearch					controllers.ZettelController.geoSearch(q:String?=null)
 GET		/orcidAutocomplete			controllers.ZettelController.orcidAutocomplete(q:String?=null)

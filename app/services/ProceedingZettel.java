@@ -45,7 +45,7 @@ public class ProceedingZettel implements ZettelRegisterEntry {
 	public Content render(Form<?> form, String format, String documentId,
 			String topicId) {
 		return proceeding.render((Form<ZettelModel>) form, format, documentId,
-				topicId);
+				topicId, getId());
 	}
 
 }

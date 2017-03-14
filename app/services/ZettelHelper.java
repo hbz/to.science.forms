@@ -18,8 +18,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package services;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -30,13 +28,9 @@ import org.openrdf.rio.RDFFormat;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Charsets;
-import com.google.common.io.CharStreams;
 
 import models.Contribution;
 import models.JsonMessage;
-import models.Proceeding;
-import models.ResearchData;
 import play.data.Form;
 
 /**
@@ -145,16 +139,8 @@ public class ZettelHelper {
 			if (form.hasErrors()) {
 				result = new JsonMessage(form.errorsAsJson(), 400);
 			} else {
-				String jsonldString = form.get().toString();
-
-				play.Logger.debug(((ZettelModel) form.get()).print());
-
-				for (Contribution c : ((ZettelModel) form.get()).getContribution()) {
-					play.Logger.debug("Get contribution " + c.print());
-				}
-				// play.Logger.debug(form.get() + "");
-				// play.Logger.debug("JSON from FORM " + jsonldString);
 				if (form.get() != null) {
+					String jsonldString = form.get().toString();
 					if ("xml".equals(format)) {
 						String rdfString = RdfUtils.readRdfToString(
 								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),

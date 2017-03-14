@@ -44,8 +44,8 @@ public class ArticleZettel implements ZettelRegisterEntry {
 	@Override
 	public Content render(Form<?> form, String format, String documentId,
 			String topicId) {
-		return article.render((Form<ZettelModel>) form, format, documentId,
-				topicId);
+		return article.render((Form<ZettelModel>) form, format, documentId, topicId,
+				getId());
 	}
 
 }
