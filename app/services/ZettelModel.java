@@ -21,6 +21,7 @@ import static services.ZettelFields.*;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -34,8 +35,10 @@ import org.openrdf.model.Statement;
 import org.openrdf.model.Value;
 import org.openrdf.rio.RDFFormat;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Strings;
 
 import models.Agent;
 import models.Contribution;
@@ -77,6 +80,7 @@ import play.data.validation.ValidationError;
  *
  */
 @SuppressWarnings("javadoc")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class ZettelModel {
 	static final String TYPE = "type";
 	static final String IS_PRIMARY_TOPIC_OF = "isPrimaryTopicOf";
@@ -103,49 +107,49 @@ public abstract class ZettelModel {
 	private String title;
 	private String titleLanguage;
 	private String alternative;
-	private List<String> creator;
-	private List<String> contributor;
+	private List<String> creator = new ArrayList<>();
+	private List<String> contributor = new ArrayList<>();
 	private String yearOfCopyright;
 	private String license;
 	private String description;
 	private String professionalGroup;
 	private String embargo;
-	private List<String> ddc;
+	private List<String> ddc = new ArrayList<>();
 	private String language;
 	private String medium;
-	private List<String> dataOrigin;
-	private List<String> subject;
-	private List<String> doi;
-	private List<String> urn;
-	private List<String> isLike;
-	private List<String> funding;
-	private List<String> projectId;
-	private List<String> fundingProgram;
-	private List<String> recordingLocation;
-	private List<String> recordingCoordinates;
+	private List<String> dataOrigin = new ArrayList<>();
+	private List<String> subject = new ArrayList<>();
+	private List<String> doi = new ArrayList<>();
+	private List<String> urn = new ArrayList<>();
+	private List<String> isLike = new ArrayList<>();
+	private List<String> funding = new ArrayList<>();
+	private List<String> projectId = new ArrayList<>();
+	private List<String> fundingProgram = new ArrayList<>();
+	private List<String> recordingLocation = new ArrayList<>();
+	private List<String> recordingCoordinates = new ArrayList<>();
 	private String recordingPeriod;
 	private String previousVersion;
 	private String nextVersion;
-	private List<String> contributorOrder;
-	private List<String> subjectOrder;
-	private List<String> associatedPublication;
-	private List<String> associatedDataset;
-	private List<String> reference;
-	private List<String> creatorName;
-	private List<String> subjectName;
-	private List<String> contributorName;
+	private List<String> contributorOrder = new ArrayList<>();
+	private List<String> subjectOrder = new ArrayList<>();
+	private List<String> associatedPublication = new ArrayList<>();
+	private List<String> associatedDataset = new ArrayList<>();
+	private List<String> reference = new ArrayList<>();
+	private List<String> creatorName = new ArrayList<>();
+	private List<String> subjectName = new ArrayList<>();
+	private List<String> contributorName = new ArrayList<>();
 	private String usageManual;
 	private String reviewStatus;
 	private String congressTitle;
 	private String congressLocation;
-	private List<String> congressDuration;
+	private List<String> congressDuration = new ArrayList<>();
 	private String congressNumber;
-	private List<String> congressHost;
+	private List<String> congressHost = new ArrayList<>();
 	private String isbn;
 	private String publisher;
 	private String publicationPlace;
 	private String abstractText;
-	private List<String> containedIn;
+	private List<String> containedIn = new ArrayList<>();
 	private String bibliographicCitation;
 	private String volumeIn;
 	private String issue;
@@ -153,12 +157,12 @@ public abstract class ZettelModel {
 	private String articleNumber;
 	private String publicationStatus;
 	private String issn;
-	private List<String> editor;
-	private List<String> redaktor;
-	private List<String> institution;
+	private List<String> editor = new ArrayList<>();
+	private List<String> redaktor = new ArrayList<>();
+	private List<String> institution = new ArrayList<>();
 	private String publicationYear;
-	private List<String> affiliation;
-	private List<Contribution> contribution;
+	private List<String> affiliation = new ArrayList<>();
+	private List<Contribution> contribution = new ArrayList<>();
 	private Agent agent;
 	private String affiliationIndex;
 
@@ -179,6 +183,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getCongressHost() {
+		removeEmptyValues(congressHost);
 		return congressHost;
 	}
 
@@ -241,6 +246,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getContainedIn() {
+		removeEmptyValues(containedIn);
 		return containedIn;
 	}
 
@@ -271,6 +277,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getCreator() {
+		removeEmptyValues(creator);
 		return creator;
 	}
 
@@ -295,6 +302,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getDoi() {
+		removeEmptyValues(doi);
 		return doi;
 	}
 
@@ -319,6 +327,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getDdc() {
+		removeEmptyValues(ddc);
 		return ddc;
 	}
 
@@ -335,6 +344,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getSubject() {
+		removeEmptyValues(subject);
 		return subject;
 	}
 
@@ -351,6 +361,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getDataOrigin() {
+		removeEmptyValues(dataOrigin);
 		return dataOrigin;
 	}
 
@@ -365,6 +376,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getContributor() {
+		removeEmptyValues(contributor);
 		return contributor;
 	}
 
@@ -373,6 +385,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getFunding() {
+		removeEmptyValues(funding);
 		return funding;
 	}
 
@@ -381,6 +394,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getRecordingLocation() {
+		removeEmptyValues(recordingLocation);
 		return recordingLocation;
 	}
 
@@ -413,6 +427,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getRecordingCoordinates() {
+		removeEmptyValues(recordingCoordinates);
 		return recordingCoordinates;
 	}
 
@@ -421,6 +436,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getUrn() {
+		removeEmptyValues(urn);
 		return urn;
 	}
 
@@ -429,6 +445,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getIsLike() {
+		removeEmptyValues(isLike);
 		return isLike;
 	}
 
@@ -581,6 +598,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getProjectId() {
+		removeEmptyValues(projectId);
 		return projectId;
 	}
 
@@ -595,6 +613,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getFundingProgram() {
+		removeEmptyValues(fundingProgram);
 		return fundingProgram;
 	}
 
@@ -609,6 +628,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getAssociatedPublication() {
+		removeEmptyValues(associatedPublication);
 		return associatedPublication;
 	}
 
@@ -623,6 +643,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getAssociatedDataset() {
+		removeEmptyValues(associatedDataset);
 		return associatedDataset;
 	}
 
@@ -637,6 +658,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getReference() {
+		removeEmptyValues(reference);
 		return reference;
 	}
 
@@ -651,6 +673,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getCreatorName() {
+		removeEmptyValues(creatorName);
 		return creatorName;
 	}
 
@@ -665,6 +688,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getSubjectName() {
+		removeEmptyValues(subjectName);
 		return subjectName;
 	}
 
@@ -687,6 +711,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getContributorName() {
+		removeEmptyValues(contributorName);
 		return contributorName;
 	}
 
@@ -725,6 +750,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getCongressDuration() {
+		removeEmptyValues(congressDuration);
 		return congressDuration;
 	}
 
@@ -771,6 +797,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getEditor() {
+		removeEmptyValues(editor);
 		return editor;
 	}
 
@@ -785,7 +812,12 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getRedaktor() {
+		removeEmptyValues(redaktor);
 		return redaktor;
+	}
+
+	private void removeEmptyValues(List<String> r) {
+		r.removeIf(Strings::isNullOrEmpty);
 	}
 
 	public void setRedaktor(List<String> redaktor) {
@@ -799,6 +831,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getInstitution() {
+		removeEmptyValues(institution);
 		return institution;
 	}
 
@@ -837,6 +870,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getAffiliation() {
+		removeEmptyValues(affiliation);
 		return affiliation;
 	}
 
