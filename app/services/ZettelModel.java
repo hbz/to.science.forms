@@ -148,7 +148,7 @@ public abstract class ZettelModel {
 	private String isbn;
 	private String publisher;
 	private String publicationPlace;
-	private String abstractText;
+	private List<String> abstractText = new ArrayList<>();
 	private List<String> containedIn = new ArrayList<>();
 	private String bibliographicCitation;
 	private String volumeIn;
@@ -788,12 +788,19 @@ public abstract class ZettelModel {
 		this.publicationPlace = publicationPlace;
 	}
 
-	public String getAbstractText() {
+	public List<String> getAbstractText() {
+		removeEmptyValues(abstractText);
 		return abstractText;
 	}
 
-	public void setAbstractText(String abstractText) {
+	public void setAbstractText(List<String> abstractText) {
 		this.abstractText = abstractText;
+	}
+
+	public void setAbstractText(String in) {
+		if (abstractText == null || abstractText.isEmpty())
+			abstractText = new ArrayList<>();
+		abstractText.add(in);
 	}
 
 	public List<String> getEditor() {
