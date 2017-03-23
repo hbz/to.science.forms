@@ -62,6 +62,8 @@
 			}
 			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collectiopn-section"){
 				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
+				<br/>
+				@multicombobox(myForm,jsonMap,"collectionOne",services.ZettelFields.collectionOneZF.getLabel(),"leibniz-open-search",ArticleHelper.getCollectionOneMap(),15)
 			}
 			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
 				@singleSelect(myForm,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ArticleHelper.getMediumMap(),5)

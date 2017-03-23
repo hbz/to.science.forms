@@ -1,0 +1,32 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
+@(myForm:Form[services.ZettelModel],jsonMap:Map[String,Object],fieldName:String,fieldLabel:String,classString:String,map:Map[String,String],tabOrderAsInt:Int) 
+@import tags._
+@import services._
+
+<div class="multi-field-wrapper">
+	<ol class="multi-fields" id="@fieldName">
+		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,jsonMap,fieldName) ){
+		<li class="multi-field">
+			
+			 @comboboxWidget(myForm,fieldWithIndex,fieldLabel,classString,map,tabOrderAsInt){
+			   <button type="button" class="inline-help" name="@fieldName">
+								<span class="fa fa-question-circle" />
+				</button>
+   				
+			 }
+			 
+					<div class="btn-group">
+						<button type="button" class="add-field col-sm-1" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-plus-circle"/></button>
+						<button type="button" class="remove-field col-sm-1" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-minus-circle"/></button>
+					</div>	
+					<div class="btn-group">
+						<button type="button" class="moveUp col-sm-1" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-arrow-circle-up"/></button>
+						<button type="button" class="moveDown col-sm-1" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-arrow-circle-down"/></button>
+					</div>	
+		</li>
+		}
+	</ol>
+	 			<div class="help-text" name="@fieldName" style="display:none">
+					<button name="@fieldName" type="button" class="close-help" style="float:right"><span class="fa fa-times-circle"/></button>
+				</div>
+</div>
