@@ -108,18 +108,18 @@ Comming soon...
 
 # Run
 
-##Download
+## Download
 	cd /tmp
 	git clone https://github.com/hbz/zettel
 	cd zettel
 	
-##Run
+## Run
 
 	/opt/activator-1.3.2-minimal/activator run
 
 Go to http://localhost:9000/tools/zettel
 
-##Install 
+## Install 
 
 	cd /tmp/zettel
 	/opt/activator-1.3.2-minimal/activator dist
@@ -175,7 +175,7 @@ start
 	mv /tmp/zettel-1.0-SNAPSHOT/* /opt/zettel/
 	sudo service zettel start
 
-#License
+# License
 
 GNU AFFERO GENERAL PUBLIC LICENSE
 Version 3, 19 November 2007
