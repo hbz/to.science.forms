@@ -35,7 +35,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getDeweyMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 
 		map.put("http://dewey.info/class/020/",
 				"020 Bibliotheks- und Informationswissenschaft");
@@ -78,7 +78,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getProfessionalGroupMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://skos.um.es/unescothes/C02464", "Medizin");
 		map.put("http://skos.um.es/unescothes/C01771", "Gesundheitswesen");
 		map.put("http://skos.um.es/unescothes/C02780", "Ernährungswissenschaften");
@@ -96,7 +96,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getDataOriginMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://hbz-nrw.de/regal#Andere", "Andere");
 		map.put("http://hbz-nrw.de/regal#Interview", "Interview");
 		map.put("http://hbz-nrw.de/regal#Umfrage", "Umfrage");
@@ -131,7 +131,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getMediumMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://purl.org/ontology/bibo/AudioDocument", "Audio");
 		map.put("http://rdvocab.info/termList/RDACarrierType/1050", "Video");
 		map.put("http://purl.org/ontology/bibo/Image", "Bild");
@@ -167,7 +167,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getLanguageMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "Deutsch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "Englisch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");
