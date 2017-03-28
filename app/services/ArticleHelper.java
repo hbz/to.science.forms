@@ -36,7 +36,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getDeweyMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 
 		map.put("http://dewey.info/class/020/",
 				"020 Bibliotheks- und Informationswissenschaft");
@@ -79,7 +79,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getProfessionalGroupMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://skos.um.es/unescothes/C02464", "Medizin");
 		map.put("http://skos.um.es/unescothes/C01771", "Gesundheitswesen");
 		map.put("http://skos.um.es/unescothes/C02780", "Ernährungswissenschaften");
@@ -94,7 +94,7 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getPublicationStatusMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://hbz-nrw.de/regal#original", "Veröffentlichungsversion");
 		map.put("http://hbz-nrw.de/regal#postprint", "Postprint");
 		map.put("http://hbz-nrw.de/regal#preprint", "Preprint");
@@ -103,7 +103,7 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getReviewStatusMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://hbz-nrw.de/regal#reviewed", "begutachtet");
 		map.put("http://hbz-nrw.de/regal#peerReviewed",
 				"begutachtet (Peer-reviewed)");
@@ -115,7 +115,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getDataOriginMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://hbz-nrw.de/regal#Andere", "Andere");
 		map.put("http://hbz-nrw.de/regal#Interview", "Interview");
 		map.put("http://hbz-nrw.de/regal#Umfrage", "Umfrage");
@@ -150,7 +150,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getMediumMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://purl.org/ontology/bibo/AudioDocument", "Audio");
 		map.put("http://rdvocab.info/termList/RDACarrierType/1050", "Video");
 		map.put("http://purl.org/ontology/bibo/Image", "Bild");
@@ -185,7 +185,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getLanguageMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Choose a value!");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "Deutsch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "Englisch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");
@@ -272,64 +272,65 @@ public class ArticleHelper {
 
 	public static Map<String, String> getCollectionOneMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put(null,"Bitte wählen Sie...");
+		map.put("info:regal/zettel/leibniz/org/BIPS",
+				"BIPS - Leibniz-Institut für Präventionsforschung und Epidemiologie");
 		map.put("info:regal/zettel/leibniz/org/BNITM",
-				"Bernhard-Nocht-Institut für Tropenmedizin");
-		map.put("info:regal/zettel/leibniz/org/DFA",
-				"Deutsche Forschungsanstalt für Lebensmittelchemie");
+				"BNITM - Bernhard-Nocht-Institut für Tropenmedizin");
 		map.put("info:regal/zettel/leibniz/org/DDZ",
-				"Deutsches Diabetes-Zentrum - Leibniz-Zentrum für Diabetes-Forschung an der Heinrich-Heine-Universität Düsseldorf");
+				"DDZ - Deutsches Diabetes-Zentrum - Leibniz-Zentrum für Diabetes-Forschung an der Heinrich-Heine-Universität Düsseldorf");
+		map.put("info:regal/zettel/leibniz/org/DFA",
+				"DFA - Deutsche Forschungsanstalt für Lebensmittelchemie");
 		map.put("info:regal/zettel/leibniz/org/DIfE",
-				"Deutsches Institut für Ernährungsforschung Potsdam-Rehbrücke");
+				"DIfE - Deutsches Institut für Ernährungsforschung Potsdam-Rehbrücke");
 		map.put("info:regal/zettel/leibniz/org/DPZ",
-				"Deutsches Primatenzentrum GmbH - Leibniz-Institut für Primatenforschung");
+				"DPZ - Deutsches Primatenzentrum GmbH - Leibniz-Institut für Primatenforschung");
 		map.put("info:regal/zettel/leibniz/org/DRFZ",
-				"Deutsches Rheuma-Forschungszentrum Berlin");
+				"DRFZ - Deutsches Rheuma-Forschungszentrum Berlin");
 		map.put("info:regal/zettel/leibniz/org/FZB",
-				"Forschungszentrum Borstel - Leibniz-Zentrum für Medizin und Biowissenschaften");
+				"DSM - Forschungszentrum Borstel - Leibniz-Zentrum für Medizin und Biowissenschaften");
+		map.put("info:regal/zettel/leibniz/org/DSMZ",
+				"DSMZ - Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen GmbH");
+		map.put("info:regal/zettel/leibniz/org/FBN",
+				"FBN - Leibniz-Institut für Nutztierbiologie");
+		map.put("info:regal/zettel/leibniz/org/FLI",
+				"FLI - Leibniz-Institut für Alternsforschung - Fritz-Lipmann-Institut");
+		map.put("info:regal/zettel/leibniz/org/FMP",
+				"FMP - Leibniz-Institut für Molekulare Pharmakologie");
+		map.put("info:regal/zettel/leibniz/org/HKI",
+				"HKI - Leibniz-Institut für Naturstoff-Forschung und Infektionsbiologie - Hans-Knöll-Institut");
 		map.put("info:regal/zettel/leibniz/org/HPI",
-				"Heinrich-Pette-Institut - Leibniz-Institut für Experimentelle Virologie");
+				"HPI - Heinrich-Pette-Institut - Leibniz-Institut für Experimentelle Virologie");
+		map.put("info:regal/zettel/leibniz/org/IGB",
+				"IGB - Leibniz-Institut für Gewässerökologie und Binnenfischerei");
+		map.put("info:regal/zettel/leibniz/org/IfADo",
+				"IfADo - Leibniz-Institut für Arbeitsforschung an der TU Dortmund");
+		map.put("info:regal/zettel/leibniz/org/IGZ",
+				"IGZ - Leibniz-Institut für Gemüse- und Zierpflanzenbau");
+		map.put("info:regal/zettel/leibniz/org/IOW",
+				"IOW - Leibniz-Institut für Ostseeforschung Warnemünde");
+		map.put("info:regal/zettel/leibniz/org/IPB",
+				"IPB - Leibniz-Institut für Pflanzenbiochemie");
+		map.put("info:regal/zettel/leibniz/org/IPK",
+				"IPK - Leibniz-Institut für Pflanzengenetik und Kulturpflanzenforschung");
 		map.put("info:regal/zettel/leibniz/org/IUF",
 				"IUF - Leibniz-Institut für umweltmedizinische Forschung");
-		map.put("info:regal/zettel/leibniz/org/DSMZ",
-				"Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen GmbH");
-		map.put("info:regal/zettel/leibniz/org/FLI",
-				"Leibniz-Institut für Alternsforschung - Fritz-Lipmann-Institut");
-		map.put("info:regal/zettel/leibniz/org/IfADo",
-				"Leibniz-Institut für Arbeitsforschung an der TU Dortmund");
-		map.put("info:regal/zettel/leibniz/org/IGZ",
-				"Leibniz-Institut für Gemüse- und Zierpflanzenbau");
-		map.put("info:regal/zettel/leibniz/org/IGB",
-				"Leibniz-Institut für Gewässerökologie und Binnenfischerei");
-		map.put("info:regal/zettel/leibniz/org/FMP",
-				"Leibniz-Institut für Molekulare Pharmakologie");
-		map.put("info:regal/zettel/leibniz/org/HKI",
-				"Leibniz-Institut für Naturstoff-Forschung und Infektionsbiologie - Hans-Knöll-Institut");
-		map.put("info:regal/zettel/leibniz/org/LIN",
-				"Leibniz-Institut für Neurobiologie");
-		map.put("info:regal/zettel/leibniz/org/FBN",
-				"Leibniz-Institut für Nutztierbiologie");
-		map.put("info:regal/zettel/leibniz/org/IOW",
-				"Leibniz-Institut für Ostseeforschung Warnemünde");
-		map.put("info:regal/zettel/leibniz/org/IPB",
-				"Leibniz-Institut für Pflanzenbiochemie");
-		map.put("info:regal/zettel/leibniz/org/IPK",
-				"Leibniz-Institut für Pflanzengenetik und Kulturpflanzenforschung");
-		map.put("info:regal/zettel/leibniz/org/BIPS",
-				"Leibniz-Institut für Präventionsforschung und Epidemiologie");
 		map.put("info:regal/zettel/leibniz/org/IZW",
-				"Leibniz-Institut für Zoo- und Wildtierforschung");
-		map.put("info:regal/zettel/leibniz/org/ZALF",
-				"Leibniz-Zentrum für Agrarlandschaftsforschung");
-		map.put("info:regal/zettel/leibniz/org/ZMT",
-				"Leibniz-Zentrum für Marine Tropenforschung GmbH");
+				"IZW - Leibniz-Institut für Zoo- und Wildtierforschung");
+		map.put("info:regal/zettel/leibniz/org/LIN",
+				"LIN - Leibniz-Institut für Neurobiologie");
 		map.put("info:regal/zettel/leibniz/org/MfN",
-				"Museum für Naturkunde - Leibniz-Institut für Evolutions- und Biodiversitätsforschung");
+				"MfN - Museum für Naturkunde - Leibniz-Institut für Evolutions- und Biodiversitätsforschung");
 		map.put("info:regal/zettel/leibniz/org/SGN",
-				"Senckenberg Gesellschaft für Naturforschung");
+				"SGN - Senckenberg Gesellschaft für Naturforschung");
+		map.put("info:regal/zettel/leibniz/org/ZALF",
+				"ZALF - Leibniz-Zentrum für Agrarlandschaftsforschung");
 		map.put("info:regal/zettel/leibniz/org/ZB MED",
 				"ZB MED - Informationszentrum Lebenswissenschaften");
 		map.put("info:regal/zettel/leibniz/org/ZFMK",
-				"Zoologisches Forschungsmuseum Alexander Koenig - Leibniz-Institut für Biodiversität der Tiere");
+				"ZFMK - Zoologisches Forschungsmuseum Alexander Koenig - Leibniz-Institut für Biodiversität der Tiere");
+		map.put("info:regal/zettel/leibniz/org/ZMT",
+				"ZMT - Leibniz-Zentrum für Marine Tropenforschung GmbH");
 
 		return map;
 	}
