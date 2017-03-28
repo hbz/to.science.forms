@@ -74,10 +74,9 @@
 				@datepicker(myForm,"embargo",services.ZettelFields.embargoZF.getLabel(),"datepicker",8)
 			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
-				@textArea(myForm,"abstractText",services.ZettelFields.abstractTextZF.getLabel(),"",9)
+				@multiTextArea(myForm,jsonMap,"abstractText",services.ZettelFields.abstractTextZF.getLabel(),"",9)
 				<br />
 				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel(),"select-language",ArticleHelper.getLanguageMap(),10)
-
 				<br /> 
 				@singleSelect(myForm,"professionalGroup",services.ZettelFields.professionalGroupZF.getLabel(),"select-pg",ArticleHelper.getProfessionalGroupMap(),11)
 				<br />
@@ -86,7 +85,6 @@
 				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
 				<br />
 				@multifieldText(myForm,jsonMap,"subjectName",services.ZettelFields.subjectNameZF.getLabel(),"free-text",13)
-
 			}
 			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
 				<br />
