@@ -21,7 +21,6 @@ import static services.ZettelFields.*;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -165,6 +164,7 @@ public abstract class ZettelModel {
 	private List<Contribution> contribution = new ArrayList<>();
 	private Agent agent;
 	private String affiliationIndex;
+	private List<String> collectionOne = new ArrayList<>();
 
 	public String getPublicationYear() {
 		return publicationYear;
@@ -926,6 +926,21 @@ public abstract class ZettelModel {
 		return ZettelHelper.objectToString(m);
 	}
 
+	public List<String> getCollectionOne() {
+		removeEmptyValues(collectionOne);
+		return collectionOne;
+	}
+
+	public void setCollectionOne(List<String> collectionOne) {
+		this.congressHost = collectionOne;
+	}
+
+	public void setCollectionOne(String in) {
+		if (collectionOne == null || collectionOne.isEmpty())
+			collectionOne = new ArrayList<>();
+		collectionOne.add(in);
+	}
+
 	private static void addFieldToMap(Map<String, Supplier<Object>> dict,
 			String name, Supplier<Object> c) {
 		Object val = c.get();
@@ -1016,6 +1031,7 @@ public abstract class ZettelModel {
 		dict.put(publicationYearZF.uri, (in) -> setPublicationYear((String) in));
 		dict.put(affiliationZF.uri, (in) -> setAffiliation((String) in));
 		dict.put(affiliationIndexZF.uri, (in) -> setAffiliationIndex((String) in));
+		dict.put(collectionOneZF.uri, (in) -> setCollectionOne((String) in));
 		return dict;
 	}
 

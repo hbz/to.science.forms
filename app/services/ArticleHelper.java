@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -266,6 +267,70 @@ public class ArticleHelper {
 		map.put("http://id.loc.gov/vocabulary/relators/prf", "Interpret");
 		map.put("http://id.loc.gov/vocabulary/relators/pro", "Produzent");
 		map.put("http://id.loc.gov/vocabulary/relators/sng", "Gesang");
+		return map;
+	}
+
+	public static Map<String, String> getCollectionOneMap() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("info:regal/zettel/leibniz/org/BNITM",
+				"Bernhard-Nocht-Institut für Tropenmedizin");
+		map.put("info:regal/zettel/leibniz/org/DFA",
+				"Deutsche Forschungsanstalt für Lebensmittelchemie");
+		map.put("info:regal/zettel/leibniz/org/DDZ",
+				"Deutsches Diabetes-Zentrum - Leibniz-Zentrum für Diabetes-Forschung an der Heinrich-Heine-Universität Düsseldorf");
+		map.put("info:regal/zettel/leibniz/org/DIfE",
+				"Deutsches Institut für Ernährungsforschung Potsdam-Rehbrücke");
+		map.put("info:regal/zettel/leibniz/org/DPZ",
+				"Deutsches Primatenzentrum GmbH - Leibniz-Institut für Primatenforschung");
+		map.put("info:regal/zettel/leibniz/org/DRFZ",
+				"Deutsches Rheuma-Forschungszentrum Berlin");
+		map.put("info:regal/zettel/leibniz/org/FZB",
+				"Forschungszentrum Borstel - Leibniz-Zentrum für Medizin und Biowissenschaften");
+		map.put("info:regal/zettel/leibniz/org/HPI",
+				"Heinrich-Pette-Institut - Leibniz-Institut für Experimentelle Virologie");
+		map.put("info:regal/zettel/leibniz/org/IUF",
+				"IUF - Leibniz-Institut für umweltmedizinische Forschung");
+		map.put("info:regal/zettel/leibniz/org/DSMZ",
+				"Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen GmbH");
+		map.put("info:regal/zettel/leibniz/org/FLI",
+				"Leibniz-Institut für Alternsforschung - Fritz-Lipmann-Institut");
+		map.put("info:regal/zettel/leibniz/org/IfADo",
+				"Leibniz-Institut für Arbeitsforschung an der TU Dortmund");
+		map.put("info:regal/zettel/leibniz/org/IGZ",
+				"Leibniz-Institut für Gemüse- und Zierpflanzenbau");
+		map.put("info:regal/zettel/leibniz/org/IGB",
+				"Leibniz-Institut für Gewässerökologie und Binnenfischerei");
+		map.put("info:regal/zettel/leibniz/org/FMP",
+				"Leibniz-Institut für Molekulare Pharmakologie");
+		map.put("info:regal/zettel/leibniz/org/HKI",
+				"Leibniz-Institut für Naturstoff-Forschung und Infektionsbiologie - Hans-Knöll-Institut");
+		map.put("info:regal/zettel/leibniz/org/LIN",
+				"Leibniz-Institut für Neurobiologie");
+		map.put("info:regal/zettel/leibniz/org/FBN",
+				"Leibniz-Institut für Nutztierbiologie");
+		map.put("info:regal/zettel/leibniz/org/IOW",
+				"Leibniz-Institut für Ostseeforschung Warnemünde");
+		map.put("info:regal/zettel/leibniz/org/IPB",
+				"Leibniz-Institut für Pflanzenbiochemie");
+		map.put("info:regal/zettel/leibniz/org/IPK",
+				"Leibniz-Institut für Pflanzengenetik und Kulturpflanzenforschung");
+		map.put("info:regal/zettel/leibniz/org/BIPS",
+				"Leibniz-Institut für Präventionsforschung und Epidemiologie");
+		map.put("info:regal/zettel/leibniz/org/IZW",
+				"Leibniz-Institut für Zoo- und Wildtierforschung");
+		map.put("info:regal/zettel/leibniz/org/ZALF",
+				"Leibniz-Zentrum für Agrarlandschaftsforschung");
+		map.put("info:regal/zettel/leibniz/org/ZMT",
+				"Leibniz-Zentrum für Marine Tropenforschung GmbH");
+		map.put("info:regal/zettel/leibniz/org/MfN",
+				"Museum für Naturkunde - Leibniz-Institut für Evolutions- und Biodiversitätsforschung");
+		map.put("info:regal/zettel/leibniz/org/SGN",
+				"Senckenberg Gesellschaft für Naturforschung");
+		map.put("info:regal/zettel/leibniz/org/ZB MED",
+				"ZB MED - Informationszentrum Lebenswissenschaften");
+		map.put("info:regal/zettel/leibniz/org/ZFMK",
+				"Zoologisches Forschungsmuseum Alexander Koenig - Leibniz-Institut für Biodiversität der Tiere");
+
 		return map;
 	}
 
