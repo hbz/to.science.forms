@@ -171,4 +171,6 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/observationHeader");
 	public static Etikett collectionOneZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionOne");
+	public static Etikett fundingsHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/fundingsHeader");
 }
