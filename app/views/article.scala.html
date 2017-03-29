@@ -99,6 +99,16 @@
 				@multifieldText(myForm,jsonMap,"reference",services.ZettelFields.isLikeZF.getLabel(),"",29)
 
 			}
+                        @accordionPanel(services.ZettelFields.fundingsHeaderZF.getLabel(),"identifier-section"){
+                                <br />
+                                @multifieldText(myForm,jsonMap,"funding",services.ZettelFields.fundingZF.getLabel(),"",15)
+                                <br />
+                                @multifieldText(myForm,jsonMap,"projectId",services.ZettelFields.projectIdZF.getLabel(),"",16)
+                                <br/>
+                                @multifieldText(myForm,jsonMap,"fundingProgram",services.ZettelFields.fundingProgramZF.getLabel(),"",17)
+
+                        }
+ 
 		}
 		<div class="form-group row">
 			<div class="col-sm-offset-8 col-sm-4">
