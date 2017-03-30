@@ -59,6 +59,7 @@ public class Article extends ZettelModel {
 	public List<ValidationError> validate() {
 		List<ValidationError> errors = new ArrayList<>();
 		validateStatus(errors);
+		validateTitle(errors);
 		validateAuthorship(errors);
 		validateSimpleFields(errors);
 		validateListFields(errors);
@@ -68,8 +69,15 @@ public class Article extends ZettelModel {
 	private void validateStatus(List<ValidationError> errors) {
 		addErrorMessage("publicationStatus",
 				String.format("Bitte vergeben Sie einen %s!", ZettelFields.publicationStatusZF.getLabel()),
-				() -> getTitle(), errors);
+				() -> getPublicationStatus(), errors);
 		// reviewStatus is optional
+	}
+
+	private void validateTitle(List<ValidationError> errors) {
+		addErrorMessage("title",
+				String.format("Bitte vergeben Sie einen %s!", ZettelFields.titleZF.getLabel()),
+				() -> getTitle(), errors);
+		// alternativeTitle is optional
 	}
 
 	private void validateListFields(List<ValidationError> errors) {
@@ -81,8 +89,6 @@ public class Article extends ZettelModel {
 	}
 
 	private void validateSimpleFields(List<ValidationError> errors) {
-		addErrorMessage("title", "Bitte vergeben Sie einen Titel!",
-				() -> getTitle(), errors);
 		addErrorMessage("license", "Bitte vergeben Sie eine Lizenz!",
 				() -> getLicense(), errors);
 		addErrorMessage("professionalGroup",
