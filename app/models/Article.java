@@ -64,7 +64,7 @@ public class Article extends ZettelModel {
 	}
 
 	private void validateListFields(List<ValidationError> errors) {
-		if (containsOnlyNullValues(getDdc())) {
+		if (containsNothing(getDdc())) {
 			setDdc(new ArrayList<String>());
 		}
 		if (getDdc().isEmpty()) {
@@ -91,16 +91,16 @@ public class Article extends ZettelModel {
 	}
 
 	private void validateAuthorship(List<ValidationError> errors) {
-		if (containsOnlyNullValues(getCreator())) {
+		if (containsNothing(getCreator())) {
 			setCreator(new ArrayList<>());
 		}
-		if (containsOnlyNullValues(getContributor())) {
+		if (containsNothing(getContributor())) {
 			setContributor(new ArrayList<>());
 		}
-		if (containsOnlyNullValues(getCreatorName())) {
+		if (containsNothing(getCreatorName())) {
 			setCreatorName(new ArrayList<>());
 		}
-		if (containsOnlyNullValues(getContributorName())) {
+		if (containsNothing(getContributorName())) {
 			setContributorName(new ArrayList<>());
 		}
 		if (getCreator().isEmpty() && getContributor().isEmpty()
