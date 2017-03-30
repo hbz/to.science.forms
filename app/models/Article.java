@@ -125,5 +125,6 @@ public class Article extends ZettelModel {
 			errors.add(new ValidationError("contributorName",
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
 		}
+		// editor and redaktor are optional
 	}
 }
