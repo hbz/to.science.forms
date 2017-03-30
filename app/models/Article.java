@@ -17,23 +17,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
-
 import play.data.validation.ValidationError;
-import play.data.validation.Constraints.Required;
-import static services.ZettelFields.*;
-
-import services.ValidUrl;
-import services.ZettelHelper;
 import services.ZettelModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Jan Schnasse
@@ -67,9 +57,9 @@ public class Article extends ZettelModel {
 	@Override
 	public List<ValidationError> validate() {
 		List<ValidationError> errors = new ArrayList<>();
-		// validateAuthorship(errors);
-		// validateSimpleFields(errors);
-		// validateListFields(errors);
+		validateAuthorship(errors);
+		validateSimpleFields(errors);
+		validateListFields(errors);
 		return errors.isEmpty() ? null : errors;
 	}
 
