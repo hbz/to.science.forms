@@ -1048,6 +1048,10 @@ public abstract class ZettelModel {
 		return true;
 	}
 
+	protected static boolean containsNothing(String value) {
+		return StringUtils.isEmpty(value);
+	}
+
 	/**
 	 * @param in input stream with rdf data
 	 * @param format format of the rdf serialization
