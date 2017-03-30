@@ -65,9 +65,7 @@ public class Article extends ZettelModel {
 
 	private void validateListFields(List<ValidationError> errors) {
 		if (containsNothing(getDdc())) {
-			setDdc(new ArrayList<String>());
-		}
-		if (getDdc().isEmpty()) {
+			setDdc(new ArrayList<>());
 			errors.add(new ValidationError("ddc",
 					"Bitte orden Sie Ihre Daten einem Dewey Schlagwort zu!"));
 		}
