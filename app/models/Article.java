@@ -76,8 +76,6 @@ public class Article extends ZettelModel {
 				() -> getTitle(), errors);
 		addErrorMessage("license", "Bitte vergeben Sie eine Lizenz!",
 				() -> getLicense(), errors);
-		addErrorMessage("copyright", "Bitte geben Sie das Jahr zum Copyright an.",
-				() -> getYearOfCopyright(), errors);
 		addErrorMessage("professionalGroup",
 				"Bitte orden Sie Ihre Daten einer Fachgruppe zu!",
 				() -> getProfessionalGroup(), errors);
