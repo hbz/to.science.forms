@@ -20,6 +20,7 @@ package models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
 import play.data.validation.ValidationError;
+import services.ZettelFields;
 import services.ZettelModel;
 
 import java.util.ArrayList;
@@ -57,10 +58,18 @@ public class Article extends ZettelModel {
 	@Override
 	public List<ValidationError> validate() {
 		List<ValidationError> errors = new ArrayList<>();
+		validateStatus(errors);
 		validateAuthorship(errors);
 		validateSimpleFields(errors);
 		validateListFields(errors);
 		return errors.isEmpty() ? null : errors;
+	}
+
+	private void validateStatus(List<ValidationError> errors) {
+		addErrorMessage("publicationStatus",
+				String.format("Bitte vergeben Sie einen %s!", ZettelFields.publicationStatusZF.getLabel()),
+				() -> getTitle(), errors);
+		// reviewStatus is optional
 	}
 
 	private void validateListFields(List<ValidationError> errors) {
