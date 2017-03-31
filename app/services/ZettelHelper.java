@@ -28,6 +28,7 @@ import org.openrdf.rio.RDFFormat;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import models.Contribution;
 import models.JsonMessage;
@@ -170,7 +171,8 @@ public class ZettelHelper {
 	 */
 	public static String objectToString(Object object) {
 		try {
-			return new ObjectMapper().writeValueAsString(object);
+			return new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
+					.writeValueAsString(object);
 		} catch (Exception e) {
 			return "To String failed " + e.getMessage();
 		}

@@ -44,6 +44,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import services.RdfUtils;
 import services.XmlUtils;
+import services.ZettelHelper;
 import services.ZettelModel;
 import services.ZettelRegister;
 import services.ZettelRegisterEntry;
@@ -128,8 +129,8 @@ public class ZettelController extends Controller {
 			String documentId, String topicId) {
 		setHeaders();
 		Result result = null;
-		play.Logger.debug(
-				"Requets body as text " + json(request().body().asFormUrlEncoded()));
+		play.Logger.debug("Requets body as text "
+				+ ZettelHelper.objectToString(request().body().asFormUrlEncoded()));
 		play.Logger.debug("Request as string " + request() + "");
 
 		ZettelRegister zettelRegister = new ZettelRegister();
@@ -298,23 +299,11 @@ public class ZettelController extends Controller {
 				m.put("value", id);
 				result.add(m);
 			});
-			String searchResult = json(result);
+			String searchResult = ZettelHelper.objectToString(result);
 			String myResponse = callback != null
 					? String.format("/**/%s(%s)", callback[0], searchResult)
 					: searchResult;
 			return ok(myResponse);
 		});
-	}
-
-	private static String json(Object obj) {
-		try {
-			StringWriter w = new StringWriter();
-			new ObjectMapper().writeValue(w, obj);
-			String result = w.toString();
-			return result;
-		} catch (Exception e) {
-			play.Logger.error("", e);
-			return "{\"message\":\"error\"}";
-		}
 	}
 }
