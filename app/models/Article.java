@@ -66,6 +66,7 @@ public class Article extends ZettelModel {
 		validateUpload(errors);
 		validateCataloging(errors);
 		validateIdentifiers(errors);
+		validateFunding(errors);
 		return errors.isEmpty() ? null : errors;
 	}
 
@@ -160,5 +161,10 @@ public class Article extends ZettelModel {
 		}
 		// TODO: DOI should be filled. If it is not, pop up a reminder.
 	}
-	
+
+	private void validateFunding(List<ValidationError> errors) {
+		// TODO: funding, projectId and fundingProgram should be filled. If they are not, pop up a reminder.
+	}
+
+
 }
