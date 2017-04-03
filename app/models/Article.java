@@ -61,6 +61,7 @@ public class Article extends ZettelModel {
 		validateStatus(errors);
 		validateTitle(errors);
 		validateAuthorship(errors);
+		validateUpload(errors);
 		validateSimpleFields(errors);
 		validateListFields(errors);
 		return errors.isEmpty() ? null : errors;
@@ -126,5 +127,17 @@ public class Article extends ZettelModel {
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
 		}
 		// editor and redaktor are optional
+	}
+
+	private void validateUpload(List<ValidationError> errors) {
+		if (containsNothing(getContainedIn())) {
+			setContainedIn(new ArrayList<>());
+			errors.add(new ValidationError("containedIn",
+					"Bitte geben Sie eine Quelle an."));
+		}
+		addErrorMessage("publicationYear",
+				String.format("Bitte vergeben Sie einen %s!", ZettelFields.publicationYearZF.getLabel()),
+				() -> getPublicationYear(), errors);
+		// issue, articleNumber, pages and issn are optional
 	}
 }
