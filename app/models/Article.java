@@ -61,7 +61,8 @@ public class Article extends ZettelModel {
 		validateStatus(errors);
 		validateTitle(errors);
 		validateAuthorship(errors);
-		validateUpload(errors);
+		validateResource(errors);
+		validateCollection(errors);
 		validateSimpleFields(errors);
 		validateListFields(errors);
 		return errors.isEmpty() ? null : errors;
@@ -129,7 +130,7 @@ public class Article extends ZettelModel {
 		// editor and redaktor are optional
 	}
 
-	private void validateUpload(List<ValidationError> errors) {
+	private void validateResource(List<ValidationError> errors) {
 		if (containsNothing(getContainedIn())) {
 			setContainedIn(new ArrayList<>());
 			errors.add(new ValidationError("containedIn",
@@ -140,4 +141,9 @@ public class Article extends ZettelModel {
 				() -> getPublicationYear(), errors);
 		// issue, articleNumber, pages and issn are optional
 	}
+
+	private void validateCollection(List<ValidationError> errors) {
+		// currently no required fields
+	}
+
 }
