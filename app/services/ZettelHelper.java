@@ -105,7 +105,7 @@ public class ZettelHelper {
 				List<String> dataList = (List<String>) data;
 				for (int i = 0; i < dataList.size(); i++) {
 					result.add(fieldName + "[" + i + "]");
-					play.Logger.debug("Load: " + fieldName + "[" + i + "]");
+					// play.Logger.debug("Load: " + fieldName + "[" + i + "]");
 				}
 			} else {
 				play.Logger.debug("No index added to " + fieldName + " with class "
@@ -114,7 +114,7 @@ public class ZettelHelper {
 		} else {
 			play.Logger.debug("No data found for " + fieldName);
 		}
-		play.Logger.debug("load " + result);
+		// play.Logger.debug("load " + result);
 		return result;
 	}
 
