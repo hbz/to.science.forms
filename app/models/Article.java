@@ -84,13 +84,6 @@ public class Article extends ZettelModel {
 		// alternativeTitle is optional
 	}
 
-	private void validateSimpleFields(List<ValidationError> errors) {
-		addErrorMessage("license", "Bitte vergeben Sie eine Lizenz!",
-				() -> getLicense(), errors);
-		addErrorMessage("medium", "Bitte ordnen Sie ihre Eingabe einem Medium zu!",
-				() -> getMedium(), errors);
-	}
-
 	private void validateAuthorship(List<ValidationError> errors) {
 		if (containsNothing(getCreator())) {
 			setCreator(new ArrayList<>());
