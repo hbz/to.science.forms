@@ -64,6 +64,7 @@ public class Article extends ZettelModel {
 		validateResource(errors);
 		validateCollection(errors);
 		validateUpload(errors);
+		validateCataloging(errors);
 		validateSimpleFields(errors);
 		validateListFields(errors);
 		return errors.isEmpty() ? null : errors;
@@ -83,23 +84,9 @@ public class Article extends ZettelModel {
 		// alternativeTitle is optional
 	}
 
-	private void validateListFields(List<ValidationError> errors) {
-		if (containsNothing(getDdc())) {
-			setDdc(new ArrayList<>());
-			errors.add(new ValidationError("ddc",
-					"Bitte orden Sie Ihre Daten einem Dewey Schlagwort zu!"));
-		}
-	}
-
 	private void validateSimpleFields(List<ValidationError> errors) {
 		addErrorMessage("license", "Bitte vergeben Sie eine Lizenz!",
 				() -> getLicense(), errors);
-		addErrorMessage("professionalGroup",
-				"Bitte orden Sie Ihre Daten einer Fachgruppe zu!",
-				() -> getProfessionalGroup(), errors);
-		addErrorMessage("language",
-				"Welche Sprache passt am ehesten zu Ihrer Eingabe?",
-				() -> getLanguage(), errors);
 		addErrorMessage("medium", "Bitte ordnen Sie ihre Eingabe einem Medium zu!",
 				() -> getMedium(), errors);
 	}
@@ -156,6 +143,21 @@ public class Article extends ZettelModel {
 				String.format("Bitte wählen Sie eine %s aus!", ZettelFields.mediumZF.getLabel()),
 				() -> getLicense(), errors);
 		// TODO: embargo should be filled. If it is not, pop up a reminder.
+	}
+
+	private void validateCataloging(List<ValidationError> errors) {
+		addErrorMessage("language",
+				"Welche Sprache passt am ehesten zu Ihrer Eingabe?",
+				() -> getLanguage(), errors);
+		addErrorMessage("professionalGroup",
+				"Bitte orden Sie Ihre Daten einer Fachgruppe zu!",
+				() -> getProfessionalGroup(), errors);
+		if (containsNothing(getDdc())) {
+			setDdc(new ArrayList<>());
+			errors.add(new ValidationError("ddc",
+					"Bitte orden Sie Ihre Daten einem Dewey Schlagwort zu!"));
+		}
+		// abstract and subject tags are optional
 	}
 
 }
