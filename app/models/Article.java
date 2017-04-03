@@ -25,6 +25,7 @@ import services.ZettelModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * @author Jan Schnasse
@@ -37,6 +38,13 @@ public class Article extends ZettelModel {
 	 * The id under which this model is registered in the ZettelRegister
 	 */
 	public final static String id = "katalog:article";
+
+	/**
+	 * Thanks Simon G.! http://stackoverflow.com/a/5492927/4420271
+	 */
+	public final static Pattern URN_PATTERN = Pattern.compile(
+			"^urn:[a-z0-9][a-z0-9-]{0,31}:([a-z0-9()+,\\-.:=@;$_!*']|%[0-9a-f]{2})+$",
+			Pattern.CASE_INSENSITIVE);
 
 	@Override
 	protected String getType() {
@@ -117,9 +125,18 @@ public class Article extends ZettelModel {
 			errors.add(new ValidationError("containedIn",
 					"Bitte geben Sie eine Quelle an."));
 		}
-		addErrorMessage("publicationYear",
-				String.format("Bitte vergeben Sie einen %s!", ZettelFields.publicationYearZF.getLabel()),
-				() -> getPublicationYear(), errors);
+		if (containsNothing(getPublicationYear())) {
+			setPublicationYear("");
+			errors.add(new ValidationError("publicationYear",
+					String.format("Bitte vergeben Sie ein %s!", ZettelFields.publicationYearZF.getLabel())));
+		}
+		else {
+			if (!getPublicationYear().trim().matches("[0-9]{4}")){
+				errors.add(new ValidationError("publicationYear",
+						String.format("Bitte formatieren Sie das %s \"%s\" korrekt!",
+								ZettelFields.publicationYearZF.getLabel(), getPublicationYear().trim())));
+			}
+		}
 		// issue, articleNumber, pages and issn are optional
 	}
 
@@ -159,12 +176,19 @@ public class Article extends ZettelModel {
 			errors.add(new ValidationError("urn",
 					String.format("Bitte geben Sie eine %s an.", ZettelFields.urnZF.getLabel())));
 		}
+		else{
+			for (String urn : getUrn()){
+				if (!URN_PATTERN.matcher(urn).matches()){
+						errors.add(new ValidationError("urn",
+							String.format("Bitte formatieren Sie die %s %s korrekt!", ZettelFields.urnZF.getLabel(), urn)));
+				}
+			}
+		}
 		// TODO: DOI should be filled. If it is not, pop up a reminder.
 	}
 
 	private void validateFunding(List<ValidationError> errors) {
 		// TODO: funding, projectId and fundingProgram should be filled. If they are not, pop up a reminder.
 	}
-
 
 }
