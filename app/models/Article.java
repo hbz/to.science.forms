@@ -65,8 +65,7 @@ public class Article extends ZettelModel {
 		validateCollection(errors);
 		validateUpload(errors);
 		validateCataloging(errors);
-		validateSimpleFields(errors);
-		validateListFields(errors);
+		validateIdentifiers(errors);
 		return errors.isEmpty() ? null : errors;
 	}
 
@@ -153,4 +152,13 @@ public class Article extends ZettelModel {
 		// abstract and subject tags are optional
 	}
 
+	private void validateIdentifiers(List<ValidationError> errors) {
+		if (containsNothing(getUrn())) {
+			setUrn(new ArrayList<>());
+			errors.add(new ValidationError("urn",
+					String.format("Bitte geben Sie eine %s an.", ZettelFields.urnZF.getLabel())));
+		}
+		// TODO: DOI should be filled. If it is not, pop up a reminder.
+	}
+	
 }
