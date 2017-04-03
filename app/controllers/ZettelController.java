@@ -44,6 +44,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import services.RdfUtils;
 import services.XmlUtils;
+import services.ZettelHelper;
 import services.ZettelModel;
 import services.ZettelRegister;
 import services.ZettelRegisterEntry;
@@ -128,33 +129,37 @@ public class ZettelController extends Controller {
 			String documentId, String topicId) {
 		setHeaders();
 		Result result = null;
-		play.Logger.debug(
-				"Requets body as text " + json(request().body().asFormUrlEncoded()));
-		play.Logger.debug("Request as string " + request() + "");
+
+		// play.Logger.debug("Content of request-------------\n"
+		// + ZettelHelper.objectToString(request().body().asText()));
+		// play.Logger.debug("Content of model-------------\n"
+		// + ZettelHelper.objectToString(zettel.getModel()));
+		play.Logger.debug(String.format("Content of request\n%s\n%s", request(),
+				ZettelHelper.objectToString(request().body().asFormUrlEncoded())));
 
 		ZettelRegister zettelRegister = new ZettelRegister();
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
 		Form<?> form = bindToForm(zettel, documentId, topicId);
+		play.Logger.debug(String.format("Content of model\n%s",
+				((ZettelModel) form.get()).print()));
+		play.Logger
+				.debug(String.format("Content of rdf result\n%s", printRdf(form)));
 		result = renderForm(format, documentId, topicId, zettel, form);
 		future.complete(result);
-
-		play.Logger
-				.debug("Loaded data to model " + ((ZettelModel) form.get()).print());
-
-		printRdf(form);
 		return future;
 	}
 
-	private void printRdf(Form<?> form) {
+	private String printRdf(Form<?> form) {
 		try {
 			String rdfString = RdfUtils.readRdfToString(
 					new ByteArrayInputStream(
 							((ZettelModel) form.get()).toString().getBytes("utf-8")),
 					RDFFormat.JSONLD, RDFFormat.RDFXML, "");
-			play.Logger.debug("As rdf: " + rdfString);
+			return rdfString;
 		} catch (Exception e) {
 			play.Logger.debug("", e);
+			return "";
 		}
 	}
 
@@ -197,11 +202,17 @@ public class ZettelController extends Controller {
 			String topicId) {
 		Form<?> form = null;
 		if ("application/rdf+xml".equals(request().contentType().get())) {
+			play.Logger.debug("Load form from rdf");
 			form = loadRdf(XmlUtils.docToString(request().body().asXml()), zettel,
 					documentId, topicId);
 			form.bindFromRequest();
-		} else {
+		} else if ("application/x-www-form-urlencoded"
+				.equals(request().contentType().get())) {
+			play.Logger.debug("Load form from request");
 			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
+		} else {
+			play.Logger
+					.error("WARN: Can not handle " + request().contentType().get());
 		}
 		return form;
 	}
@@ -298,23 +309,11 @@ public class ZettelController extends Controller {
 				m.put("value", id);
 				result.add(m);
 			});
-			String searchResult = json(result);
+			String searchResult = ZettelHelper.objectToString(result);
 			String myResponse = callback != null
 					? String.format("/**/%s(%s)", callback[0], searchResult)
 					: searchResult;
 			return ok(myResponse);
 		});
-	}
-
-	private static String json(Object obj) {
-		try {
-			StringWriter w = new StringWriter();
-			new ObjectMapper().writeValue(w, obj);
-			String result = w.toString();
-			return result;
-		} catch (Exception e) {
-			play.Logger.error("", e);
-			return "{\"message\":\"error\"}";
-		}
 	}
 }

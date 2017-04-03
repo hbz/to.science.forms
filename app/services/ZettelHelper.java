@@ -28,6 +28,7 @@ import org.openrdf.rio.RDFFormat;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import models.Contribution;
 import models.JsonMessage;
@@ -104,7 +105,7 @@ public class ZettelHelper {
 				List<String> dataList = (List<String>) data;
 				for (int i = 0; i < dataList.size(); i++) {
 					result.add(fieldName + "[" + i + "]");
-					play.Logger.debug("Load: " + fieldName + "[" + i + "]");
+					// play.Logger.debug("Load: " + fieldName + "[" + i + "]");
 				}
 			} else {
 				play.Logger.debug("No index added to " + fieldName + " with class "
@@ -113,7 +114,7 @@ public class ZettelHelper {
 		} else {
 			play.Logger.debug("No data found for " + fieldName);
 		}
-		play.Logger.debug("load " + result);
+		// play.Logger.debug("load " + result);
 		return result;
 	}
 
@@ -170,7 +171,8 @@ public class ZettelHelper {
 	 */
 	public static String objectToString(Object object) {
 		try {
-			return new ObjectMapper().writeValueAsString(object);
+			return new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
+					.writeValueAsString(object);
 		} catch (Exception e) {
 			return "To String failed " + e.getMessage();
 		}
