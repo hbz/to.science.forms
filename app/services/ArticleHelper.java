@@ -150,11 +150,11 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getMediumMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("http://pbcore.org/vocabularies/instantiationMediaType#text",
+		map.put("http://purl.org/lobid/lv#fulltextOnline",
 				"Volltext");
                 map.put("http://purl.org/dc/terms/LicenseDocument","Autorenvertrag");
-                map.put("http://purl.org/vocab/frbr/core#supplement","Beilage");
-		map.put("http://purl.org/lobid/lv%23Miscellaneous", "Andere");
+                map.put("http://id.loc.gov/ontologies/bibframe/supplement","Beilage");
+		map.put("http://purl.org/lobid/lv#Miscellaneous", "Andere");
 		return map;
 	}
 
