@@ -18,21 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package models;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
 
 import play.data.validation.ValidationError;
-import play.data.validation.Constraints.Required;
-import static services.ZettelFields.*;
 
-import services.ValidUrl;
-import services.ZettelHelper;
 import services.ZettelModel;
 
 /**
@@ -74,7 +66,7 @@ public class Proceeding extends ZettelModel {
 	}
 
 	private void validateListFields(List<ValidationError> errors) {
-		if (containsOnlyNullValues(getDdc())) {
+		if (containsNothing(getDdc())) {
 			setDdc(new ArrayList<String>());
 		}
 		if (getDdc().isEmpty()) {
@@ -101,16 +93,16 @@ public class Proceeding extends ZettelModel {
 	}
 
 	private void validateAuthorship(List<ValidationError> errors) {
-		if (containsOnlyNullValues(getCreator())) {
+		if (containsNothing(getCreator())) {
 			setCreator(new ArrayList<>());
 		}
-		if (containsOnlyNullValues(getContributor())) {
+		if (containsNothing(getContributor())) {
 			setContributor(new ArrayList<>());
 		}
-		if (containsOnlyNullValues(getCreatorName())) {
+		if (containsNothing(getCreatorName())) {
 			setCreatorName(new ArrayList<>());
 		}
-		if (containsOnlyNullValues(getContributorName())) {
+		if (containsNothing(getContributorName())) {
 			setContributorName(new ArrayList<>());
 		}
 		if (getCreator().isEmpty() && getContributor().isEmpty()
