@@ -20,7 +20,6 @@ package services;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Strings;
 import models.Agent;
 import models.Contribution;
 import org.apache.commons.lang3.StringUtils;
@@ -511,14 +510,16 @@ public abstract class ZettelModel {
 	public void setContributor(String in) {
 		if (contributor == null || contributor.isEmpty())
 			contributor = new ArrayList<>();
-		contributor.add(in);
+		if (in != null && !in.isEmpty())
+			contributor.add(in);
 	}
 
 	public void setCreator(String in) {
 		play.Logger.debug("Add creator " + in);
 		if (creator == null || creator.isEmpty())
 			creator = new ArrayList<>();
-		creator.add(in);
+		if (in != null && !in.isEmpty())
+			creator.add(in);
 	}
 
 	public void setSubjectOrder(List<String> in) {
@@ -818,8 +819,8 @@ public abstract class ZettelModel {
 		return redaktor;
 	}
 
-	private void removeEmptyValues(List<String> r) {
-		r.removeIf(Strings::isNullOrEmpty);
+	private static void removeEmptyValues(List<String> r) {
+		// r.removeIf(Strings::isNullOrEmpty);
 	}
 
 	public void setRedaktor(List<String> redaktor) {
@@ -936,26 +937,6 @@ public abstract class ZettelModel {
 		collectionOne.add(in);
 	}
 
-	private static void addFieldToMap(Map<String, Supplier<Object>> dict,
-			String name, Supplier<Object> c) {
-		Object val = c.get();
-		if (val == null)
-			return;
-		if (val instanceof String) {
-			String str = (String) val;
-			if (!str.isEmpty()) {
-				dict.put(name, c);
-			}
-		}
-		if (val instanceof List) {
-			@SuppressWarnings("unchecked")
-			List<String> list = (List<String>) val;
-			if (!list.isEmpty() && !containsNothing(list)) {
-				dict.put(name, c);
-			}
-		}
-	}
-
 	/**
 	 * @return a map that maps a uri to a setter method
 	 */
@@ -1058,9 +1039,9 @@ public abstract class ZettelModel {
 	 * @return the rdf data loaded to a ZettelModel
 	 */
 	public ZettelModel deserializeFromRdf(InputStream in, RDFFormat format,
-			String documentId, String topicId) {
-		this.documentId = documentId;
-		this.topicId = topicId;
+			String myDocumentId, String myTopicId) {
+		this.documentId = myDocumentId;
+		this.topicId = myTopicId;
 		Map<String, Consumer<Object>> dict = getMappingForDeserialization();
 		Graph graph = RdfUtils.readRdfToGraph(in, format, getDocumentId());
 		graph.forEach((st) -> {
@@ -1081,8 +1062,69 @@ public abstract class ZettelModel {
 		Map<String, Object> jsonMap =
 				new ObjectMapper().convertValue(this, HashMap.class);
 		addIsPrimaryTopicOf(jsonMap);
+		while (removeEmptyCollections(jsonMap))
+			;
 		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
 		return jsonMap;
+	}
+
+	@SuppressWarnings("unchecked")
+	private boolean removeEmptyCollections(Map<String, Object> jsonMap) {
+		boolean result = false;
+		Iterator<Map.Entry<String, Object>> it = jsonMap.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, Object> e = it.next();
+			Object value = e.getValue();
+			if (value == null) {
+				it.remove();
+				result = true;
+			} else {
+				if (value instanceof java.util.Map<?, ?>) {
+					if (((Map<?, ?>) value).size() <= 0) {
+						it.remove();
+						result = true;
+					} else
+						result = removeEmptyCollections((Map<String, Object>) value);
+				} else if (value instanceof java.util.List<?>) {
+					if (((java.util.List<?>) value).size() <= 0) {
+						it.remove();
+						result = true;
+					} else
+						result = removeEmptyCollections((List<Object>) value);
+				} else {
+					if (((String) value).isEmpty()) {
+						it.remove();
+						result = true;
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	private boolean removeEmptyCollections(List<Object> value) {
+		boolean result = false;
+		Iterator<Object> it = value.iterator();
+		while (it.hasNext()) {
+			Object e = it.next();
+			if (e == null) {
+				it.remove();
+				result = true;
+			} else {
+				if (e instanceof java.util.Map)
+					result = removeEmptyCollections((java.util.Map<String, Object>) e);
+				if (e instanceof java.util.List<?>)
+					result = removeEmptyCollections((java.util.List<Object>) e);
+				if (e instanceof String) {
+					if (((String) e).isEmpty()) {
+						it.remove();
+						result = true;
+					}
+				}
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -1112,25 +1154,6 @@ public abstract class ZettelModel {
 	 */
 	public void setTopicId(String topicId) {
 		this.topicId = topicId;
-	}
-
-	private static void addField(Map<String, Object> jsonMap, String name,
-			Object o) {
-		if (name == null) {
-			play.Logger.debug("Null key in" + o);
-			return;
-		}
-		if (o == null)
-			return;
-		if (o instanceof String) {
-			if (!((String) o).isEmpty())
-				jsonMap.put(name, o);
-		} else if (o instanceof List<?>) {
-			if (!((List<?>) o).isEmpty())
-				jsonMap.put(name, o);
-		} else {
-			play.Logger.error("Unknown type found in " + name + "! Value is " + o);
-		}
 	}
 
 	private static void processField(Graph graph, Statement st,

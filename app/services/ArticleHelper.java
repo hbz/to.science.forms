@@ -37,40 +37,39 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getDeweyMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(null, "Bitte wählen Sie...");
-
+		map.put("http://dewey.info/class/720/", "Architektur (720)");
 		map.put("http://dewey.info/class/020/",
-				"020 Bibliotheks- und Informationswissenschaft");
-		map.put("http://dewey.info/class/150/", "150 Psychologie");
-		map.put("http://dewey.info/class/300/",
-				"300 Sozialwissenschaften,Soziologie, Athropologie");
-		map.put("http://dewey.info/class/320/", "320 Politik");
-		map.put("http://dewey.info/class/330/", "330 Wirtschaft");
-		map.put("http://dewey.info/class/333/7/",
-				"333.7 Natürliche Ressourcen,Energie & Umwelt");
-		map.put("http://dewey.info/class/340/", "340 Recht");
-		map.put("http://dewey.info/class/360/",
-				"360 Soziale Probleme, Sozialdienste, Versicherungen");
-		map.put("http://dewey.info/class/500/", "500 Naturwissenschaften");
-		map.put("http://dewey.info/class/530/", "530 Physik");
-		map.put("http://dewey.info/class/540/", "540 Chemie");
-		map.put("http://dewey.info/class/550/", "550 Geowissenschaften");
-		map.put("http://dewey.info/class/560/", "560 Fossilien/Paläontologie");
-		map.put("http://dewey.info/class/570/", "570 Biowissenschaften, Biologie");
-		map.put("http://dewey.info/class/580/", "580 Pflanzen (Botanik)");
-		map.put("http://dewey.info/class/590/", "590 Tiere (Zoologie)");
-		map.put("http://dewey.info/class/600/", "600 Technik");
-		map.put("http://dewey.info/class/610/", "610 Medizin & Gesundheit");
+				"Bibliotheks- und Informationswissenschaft (020)");
+		map.put("http://dewey.info/class/570/", "Biowissenschaften, Biologie (570)");
+		map.put("http://dewey.info/class/540/", "Chemie (540)");
+		map.put("http://dewey.info/class/660/", "Chemische Verfahrenstechnik (660)");
+		map.put("http://dewey.info/class/560/", "Fossilien/Paläontologie (560)");
+		map.put("http://dewey.info/class/550/", "Geowissenschaften (550)");
+		map.put("http://dewey.info/class/943/", "Geschichte Deutschlands (943)");
+		map.put("http://dewey.info/class/940/", "Geschichte Europas (940)");
+		map.put("http://dewey.info/class/640/", "Hauswirtschaft/Familie (640)");
 		map.put("http://dewey.info/class/624/",
-				"624 Ingenieurbau und Umwelttechnik");
+				"Ingenieurbau und Umwelttechnik (624)");
+		map.put("http://dewey.info/class/710/", "Landschaftsgestaltung (710)");
 		map.put("http://dewey.info/class/630/",
-				"630 Landwirtschaft, Veterinärmedizin");
-		map.put("http://dewey.info/class/640/", "640 Hauswirtschaft/Familie");
-		map.put("http://dewey.info/class/650/", "650 Management");
-		map.put("http://dewey.info/class/660/", "660 Chemische Verfahrenstechnik");
-		map.put("http://dewey.info/class/710/", "710 Landschaftsgestaltung");
-		map.put("http://dewey.info/class/720/", "720 Architektur");
-		map.put("http://dewey.info/class/940/", "940 Geschichte Europas");
-		map.put("http://dewey.info/class/943/", "943 Geschichte Deutschlands");
+				"Landwirtschaft, Veterinärmedizin (630)");
+		map.put("http://dewey.info/class/650/", "Management (650)");
+		map.put("http://dewey.info/class/610/", "Medizin & Gesundheit (610)");
+		map.put("http://dewey.info/class/333/7/",
+				"Natürliche Ressourcen,Energie & Umwelt (333.7)");
+		map.put("http://dewey.info/class/500/", "Naturwissenschaften (500)");
+		map.put("http://dewey.info/class/580/", "Pflanzen (Botanik) (580)");
+		map.put("http://dewey.info/class/530/", "Physik (530)");
+		map.put("http://dewey.info/class/320/", "Politik (320)");
+		map.put("http://dewey.info/class/150/", "Psychologie (150)");
+		map.put("http://dewey.info/class/340/", "Recht (340)");
+		map.put("http://dewey.info/class/360/",
+				"Soziale Probleme, Sozialdienste, Versicherungen (360)");
+		map.put("http://dewey.info/class/300/",
+				"Sozialwissenschaften,Soziologie, Athropologie (300)");
+		map.put("http://dewey.info/class/600/", "Technik (600)");
+		map.put("http://dewey.info/class/590/", "Tiere (Zoologie) (590)");
+		map.put("http://dewey.info/class/330/", "Wirtschaft (330)");
 		return map;
 	}
 

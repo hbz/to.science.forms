@@ -52,6 +52,7 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 	private static final String TYPE = "@type";
 	private static final String ID = "@id";
 	EtikettMaker maker;
+	Map<String, Object> context;
 
 	/**
 	 * Creates a new EtikettMaker to provide labels from etikett webservice
@@ -70,11 +71,12 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 			maker = new EtikettMaker(
 					play.Play.application().resourceAsStream("labels.json"));
 		}
+		context = getAnnotatedContext();
 	}
 
 	@Override
 	public Map<String, Object> getContext() {
-		return getAnnotatedContext();
+		return context;
 	}
 
 	@Override
@@ -155,14 +157,7 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 		}
 		Map<String, Object> contextObject = new HashMap<>();
 		addAliases(cmap);
-		// Workaround to support old lobid api.
-		Map<String, Object> crdef = (Map<String, Object>) cmap.get("creator");
-		Map<String, Object> codef = (Map<String, Object>) cmap.get("contributor");
-		codef.put("@container", "@set");
-		crdef.put("@container", "@set");
-		cmap.put("creator", crdef);
-		cmap.put("contributor", codef);
-		// Workaround end
+
 		contextObject.put("@context", cmap);
 		return contextObject;
 	}
