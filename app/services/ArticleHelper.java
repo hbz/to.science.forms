@@ -40,9 +40,11 @@ public class ArticleHelper {
 		map.put("http://dewey.info/class/720/", "Architektur (720)");
 		map.put("http://dewey.info/class/020/",
 				"Bibliotheks- und Informationswissenschaft (020)");
-		map.put("http://dewey.info/class/570/", "Biowissenschaften, Biologie (570)");
+		map.put("http://dewey.info/class/570/",
+				"Biowissenschaften, Biologie (570)");
 		map.put("http://dewey.info/class/540/", "Chemie (540)");
-		map.put("http://dewey.info/class/660/", "Chemische Verfahrenstechnik (660)");
+		map.put("http://dewey.info/class/660/",
+				"Chemische Verfahrenstechnik (660)");
 		map.put("http://dewey.info/class/560/", "Fossilien/Paläontologie (560)");
 		map.put("http://dewey.info/class/550/", "Geowissenschaften (550)");
 		map.put("http://dewey.info/class/943/", "Geschichte Deutschlands (943)");
@@ -231,6 +233,7 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getTitleLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("/tools/zettel/journalAutocomplete", "ZDB");
 		map.put("https://lobid.org/resource", "Aleph");
 		return map;
 	}
@@ -271,7 +274,7 @@ public class ArticleHelper {
 
 	public static Map<String, String> getCollectionOneMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null,"Bitte wählen Sie...");
+		map.put(null, "Bitte wählen Sie...");
 		map.put("info:regal/zettel/leibniz/org/BIPS",
 				"BIPS - Leibniz-Institut für Präventionsforschung und Epidemiologie");
 		map.put("info:regal/zettel/leibniz/org/BNITM",

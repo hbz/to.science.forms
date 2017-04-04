@@ -316,4 +316,50 @@ public class ZettelController extends Controller {
 			return ok(myResponse);
 		});
 	}
+
+	/**
+	 * @param q a query against lobid
+	 * @return a jsonp result
+	 */
+	public CompletionStage<Result> journalAutocomplete(String q) {
+		final String[] callback =
+				request() == null || request().queryString() == null ? null
+						: request().queryString().get("callback");
+		String lobidUrl = "http://lobid.org/resources/search";
+		WSRequest request = ws.url(lobidUrl);
+		WSRequest complexRequest =
+				request.setHeader("accept", "application/json").setRequestTimeout(5000)
+						.setQueryParameter("q", q + " AND zdbId:* AND issn:*");
+		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
+			JsonNode hits = response.asJson().at("/member");
+			List<Map<String, String>> result = new ArrayList<>();
+			hits.forEach((hit) -> {
+				String title = hit.at("/title").asText();
+				String publisher =
+						hit.at("/publication").get(0).at("/publishedBy").asText();
+				String issn = "";
+				JsonNode issns = hit.at("/issn");
+				StringBuffer issn_c = new StringBuffer();
+				issns.forEach((issn_i) -> {
+					issn_c.append(issn_i.asText() + ",");
+				});
+				issn = issn_c.substring(0, issn_c.length() - 1);
+				StringBuilder label = new StringBuilder(title);
+				if (issn != null && !issn.isEmpty())
+					label.insert(0, issn + " - ");
+				if (publisher != null && !publisher.isEmpty())
+					label.append(" - Hrsg.: " + publisher);
+				String id = hit.at("/id").asText();
+				Map<String, String> m = new HashMap<>();
+				m.put("label", label.toString());
+				m.put("value", id);
+				result.add(m);
+			});
+			String searchResult = ZettelHelper.objectToString(result);
+			String myResponse = callback != null
+					? String.format("/**/%s(%s)", callback[0], searchResult)
+					: searchResult;
+			return ok(myResponse);
+		});
+	}
 }
