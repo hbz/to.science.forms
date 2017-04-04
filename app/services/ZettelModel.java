@@ -17,32 +17,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
-import static services.ZettelFields.*;
-
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import models.Agent;
+import models.Contribution;
+import org.apache.commons.lang3.StringUtils;
 import org.openrdf.model.BNode;
 import org.openrdf.model.Graph;
 import org.openrdf.model.Statement;
 import org.openrdf.model.Value;
 import org.openrdf.rio.RDFFormat;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
-import models.Agent;
-import models.Contribution;
 import play.data.validation.ValidationError;
+
+import java.io.InputStream;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+import static services.ZettelFields.*;
 
 /**
  * ZettelModel provides an abstract base class for all models used in model
@@ -1025,15 +1018,19 @@ public abstract class ZettelModel {
 		}
 	}
 
-	protected static boolean containsOnlyNullValues(List<String> list) {
+	protected static boolean containsNothing(List<String> list) {
 		if (list == null || list.isEmpty())
 			return true;
 		for (String i : list) {
-			if (i != null && !i.isEmpty()) {
+			if (!StringUtils.isEmpty(i)) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	protected static boolean containsNothing(String value) {
+		return StringUtils.isEmpty(value);
 	}
 
 	/**
