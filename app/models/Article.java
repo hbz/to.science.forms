@@ -80,15 +80,15 @@ public class Article extends ZettelModel {
 
 	private void validateStatus(List<ValidationError> errors) {
 		addErrorMessage("publicationStatus",
-				String.format("Bitte vergeben Sie einen %s!", ZettelFields.publicationStatusZF.getLabel()),
+				String.format("Bitte vergeben Sie einen %s!",
+						ZettelFields.publicationStatusZF.getLabel()),
 				() -> getPublicationStatus(), errors);
 		// reviewStatus is optional
 	}
 
 	private void validateTitle(List<ValidationError> errors) {
-		addErrorMessage("title",
-				String.format("Bitte vergeben Sie einen %s!", ZettelFields.titleZF.getLabel()),
-				() -> getTitle(), errors);
+		addErrorMessage("title", String.format("Bitte vergeben Sie einen %s!",
+				ZettelFields.titleZF.getLabel()), () -> getTitle(), errors);
 		// alternativeTitle is optional
 	}
 
@@ -128,13 +128,14 @@ public class Article extends ZettelModel {
 		if (containsNothing(getPublicationYear())) {
 			setPublicationYear("");
 			errors.add(new ValidationError("publicationYear",
-					String.format("Bitte vergeben Sie ein %s!", ZettelFields.publicationYearZF.getLabel())));
-		}
-		else {
-			if (!getPublicationYear().trim().matches("[0-9]{4}")){
+					String.format("Bitte vergeben Sie ein %s!",
+							ZettelFields.publicationYearZF.getLabel())));
+		} else {
+			if (!getPublicationYear().trim().matches("[0-9]{4}")) {
 				errors.add(new ValidationError("publicationYear",
 						String.format("Bitte formatieren Sie das %s \"%s\" korrekt!",
-								ZettelFields.publicationYearZF.getLabel(), getPublicationYear().trim())));
+								ZettelFields.publicationYearZF.getLabel(),
+								getPublicationYear().trim())));
 			}
 		}
 		// issue, articleNumber, pages and issn are optional
@@ -145,13 +146,11 @@ public class Article extends ZettelModel {
 	}
 
 	private void validateUpload(List<ValidationError> errors) {
-		addErrorMessage("medium",
-				String.format("Bitte wählen Sie ein %s aus!", ZettelFields.mediumZF.getLabel()),
-				() -> getMedium(), errors);
+		addErrorMessage("medium", String.format("Bitte wählen Sie ein %s aus!",
+				ZettelFields.mediumZF.getLabel()), () -> getMedium(), errors);
 		// yearOfCopyright is optional
-		addErrorMessage("license",
-				String.format("Bitte wählen Sie eine %s aus!", ZettelFields.mediumZF.getLabel()),
-				() -> getLicense(), errors);
+		addErrorMessage("license", String.format("Bitte wählen Sie eine %s aus!",
+				ZettelFields.mediumZF.getLabel()), () -> getLicense(), errors);
 		// TODO: embargo should be filled. If it is not, pop up a reminder.
 	}
 
@@ -171,24 +170,27 @@ public class Article extends ZettelModel {
 	}
 
 	private void validateIdentifiers(List<ValidationError> errors) {
-		if (containsNothing(getUrn())) {
-			setUrn(new ArrayList<>());
-			errors.add(new ValidationError("urn",
-					String.format("Bitte geben Sie eine %s an.", ZettelFields.urnZF.getLabel())));
-		}
-		else{
-			for (String urn : getUrn()){
-				if (!URN_PATTERN.matcher(urn).matches()){
-						errors.add(new ValidationError("urn",
-							String.format("Bitte formatieren Sie die %s %s korrekt!", ZettelFields.urnZF.getLabel(), urn)));
-				}
-			}
-		}
-		// TODO: DOI should be filled. If it is not, pop up a reminder.
+		// if (containsNothing(getUrn())) {
+		// setUrn(new ArrayList<>());
+		// errors.add(new ValidationError("urn",
+		// String.format("Bitte geben Sie eine %s an.",
+		// ZettelFields.urnZF.getLabel())));
+		// }
+		// else{
+		// for (String urn : getUrn()){
+		// if (!URN_PATTERN.matcher(urn).matches()){
+		// errors.add(new ValidationError("urn",
+		// String.format("Bitte formatieren Sie die %s %s korrekt!",
+		// ZettelFields.urnZF.getLabel(), urn)));
+		// }
+		// }
+		// }
+		// // TODO: DOI should be filled. If it is not, pop up a reminder.
 	}
 
 	private void validateFunding(List<ValidationError> errors) {
-		// TODO: funding, projectId and fundingProgram should be filled. If they are not, pop up a reminder.
+		// TODO: funding, projectId and fundingProgram should be filled. If they are
+		// not, pop up a reminder.
 	}
 
 }
