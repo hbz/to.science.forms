@@ -141,12 +141,9 @@ public class ZettelController extends Controller {
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
 		Form<?> form = bindToForm(zettel, documentId, topicId);
-		play.Logger.debug(String.format("Content of model\n%s",
-				((ZettelModel) form.get()).print()));
-		play.Logger
-				.debug(String.format("Content of rdf result\n%s", printRdf(form)));
 		result = renderForm(format, documentId, topicId, zettel, form);
 		future.complete(result);
+
 		return future;
 	}
 
@@ -194,6 +191,8 @@ public class ZettelController extends Controller {
 			} else {
 				result = ok(form.get().toString()).as("application/json");
 			}
+			play.Logger.debug(String.format("Content of model\n%s",
+					((ZettelModel) form.get()).print()));
 		}
 		return result;
 	}
@@ -214,6 +213,8 @@ public class ZettelController extends Controller {
 			play.Logger
 					.error("WARN: Can not handle " + request().contentType().get());
 		}
+		play.Logger
+				.debug(String.format("Content of rdf result\n%s", printRdf(form)));
 		return form;
 	}
 
