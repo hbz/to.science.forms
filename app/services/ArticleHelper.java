@@ -151,10 +151,9 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getMediumMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("http://purl.org/lobid/lv#fulltextOnline",
-				"Volltext");
-                map.put("http://purl.org/dc/terms/LicenseDocument","Autorenvertrag");
-                map.put("http://id.loc.gov/ontologies/bibframe/supplement","Beilage");
+		map.put("http://purl.org/lobid/lv#fulltextOnline", "Volltext");
+		map.put("http://purl.org/dc/terms/LicenseDocument", "Autorenvertrag");
+		map.put("http://id.loc.gov/ontologies/bibframe/supplement", "Beilage");
 		map.put("http://purl.org/lobid/lv#Miscellaneous", "Andere");
 		return map;
 	}
@@ -271,63 +270,63 @@ public class ArticleHelper {
 	public static Map<String, String> getCollectionOneMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(null, "Bitte wählen Sie...");
-		map.put("info:regal/zettel/leibniz/org/BIPS",
+		map.put("http://d-nb.info/gnd/1043624465",
 				"BIPS - Leibniz-Institut für Präventionsforschung und Epidemiologie");
-		map.put("info:regal/zettel/leibniz/org/BNITM",
+		map.put("http://d-nb.info/gnd/5279549-4",
 				"BNITM - Bernhard-Nocht-Institut für Tropenmedizin");
-		map.put("info:regal/zettel/leibniz/org/DDZ",
+		map.put("http://d-nb.info/gnd/16332572-8",
 				"DDZ - Deutsches Diabetes-Zentrum - Leibniz-Zentrum für Diabetes-Forschung an der Heinrich-Heine-Universität Düsseldorf");
-		map.put("info:regal/zettel/leibniz/org/DFA",
+		map.put("http://d-nb.info/gnd/16155791-0",
 				"DFA - Deutsche Forschungsanstalt für Lebensmittelchemie");
-		map.put("info:regal/zettel/leibniz/org/DIfE",
+		map.put("http://d-nb.info/gnd/5118980-X",
 				"DIfE - Deutsches Institut für Ernährungsforschung Potsdam-Rehbrücke");
-		map.put("info:regal/zettel/leibniz/org/DPZ",
+		map.put("http://d-nb.info/gnd/3002218-6",
 				"DPZ - Deutsches Primatenzentrum GmbH - Leibniz-Institut für Primatenforschung");
-		map.put("info:regal/zettel/leibniz/org/DRFZ",
+		map.put("http://d-nb.info/gnd/5305173-7",
 				"DRFZ - Deutsches Rheuma-Forschungszentrum Berlin");
-		map.put("info:regal/zettel/leibniz/org/FZB",
+		map.put("http://d-nb.info/gnd/5174043-6",
 				"DSM - Forschungszentrum Borstel - Leibniz-Zentrum für Medizin und Biowissenschaften");
-		map.put("info:regal/zettel/leibniz/org/DSMZ",
+		map.put("http://d-nb.info/gnd/1035759209",
 				"DSMZ - Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen GmbH");
-		map.put("info:regal/zettel/leibniz/org/FBN",
+		map.put("http://d-nb.info/gnd/16072459-4",
 				"FBN - Leibniz-Institut für Nutztierbiologie");
-		map.put("info:regal/zettel/leibniz/org/FLI",
+		map.put("http://d-nb.info/gnd/1124471707",
 				"FLI - Leibniz-Institut für Alternsforschung - Fritz-Lipmann-Institut");
-		map.put("info:regal/zettel/leibniz/org/FMP",
+		map.put("http://d-nb.info/gnd/10196210-1",
 				"FMP - Leibniz-Institut für Molekulare Pharmakologie");
-		map.put("info:regal/zettel/leibniz/org/HKI",
+		map.put("http://d-nb.info/gnd/6057389-2",
 				"HKI - Leibniz-Institut für Naturstoff-Forschung und Infektionsbiologie - Hans-Knöll-Institut");
-		map.put("info:regal/zettel/leibniz/org/HPI",
+		map.put("http://d-nb.info/gnd/16167877-4",
 				"HPI - Heinrich-Pette-Institut - Leibniz-Institut für Experimentelle Virologie");
-		map.put("info:regal/zettel/leibniz/org/IGB",
+		map.put("http://d-nb.info/gnd/10025895-5",
 				"IGB - Leibniz-Institut für Gewässerökologie und Binnenfischerei");
-		map.put("info:regal/zettel/leibniz/org/IfADo",
+		map.put("http://d-nb.info/gnd/16152455-2",
 				"IfADo - Leibniz-Institut für Arbeitsforschung an der TU Dortmund");
-		map.put("info:regal/zettel/leibniz/org/IGZ",
+		map.put("http://d-nb.info/gnd/16020644-3",
 				"IGZ - Leibniz-Institut für Gemüse- und Zierpflanzenbau");
-		map.put("info:regal/zettel/leibniz/org/IOW",
+		map.put("http://d-nb.info/gnd/10353244-4",
 				"IOW - Leibniz-Institut für Ostseeforschung Warnemünde");
-		map.put("info:regal/zettel/leibniz/org/IPB",
+		map.put("http://d-nb.info/gnd/10140857-2",
 				"IPB - Leibniz-Institut für Pflanzenbiochemie");
-		map.put("info:regal/zettel/leibniz/org/IPK",
+		map.put("http://d-nb.info/gnd/10201111-4",
 				"IPK - Leibniz-Institut für Pflanzengenetik und Kulturpflanzenforschung");
-		map.put("info:regal/zettel/leibniz/org/IUF",
+		map.put("http://d-nb.info/gnd/1075931290",
 				"IUF - Leibniz-Institut für umweltmedizinische Forschung");
-		map.put("info:regal/zettel/leibniz/org/IZW",
+		map.put("http://d-nb.info/gnd/10174100-5",
 				"IZW - Leibniz-Institut für Zoo- und Wildtierforschung");
-		map.put("info:regal/zettel/leibniz/org/LIN",
+		map.put("http://d-nb.info/gnd/2169938-0",
 				"LIN - Leibniz-Institut für Neurobiologie");
-		map.put("info:regal/zettel/leibniz/org/MfN",
+		map.put("http://d-nb.info/gnd/37657-7",
 				"MfN - Museum für Naturkunde - Leibniz-Institut für Evolutions- und Biodiversitätsforschung");
-		map.put("info:regal/zettel/leibniz/org/SGN",
+		map.put("http://d-nb.info/gnd/16018966-4",
 				"SGN - Senckenberg Gesellschaft für Naturforschung");
-		map.put("info:regal/zettel/leibniz/org/ZALF",
+		map.put("http://d-nb.info/gnd/10154023-1",
 				"ZALF - Leibniz-Zentrum für Agrarlandschaftsforschung");
-		map.put("info:regal/zettel/leibniz/org/ZB MED",
+		map.put("http://d-nb.info/gnd/1124555668",
 				"ZB MED - Informationszentrum Lebenswissenschaften");
-		map.put("info:regal/zettel/leibniz/org/ZFMK",
+		map.put("http://d-nb.info/gnd/10127705-2",
 				"ZFMK - Zoologisches Forschungsmuseum Alexander Koenig - Leibniz-Institut für Biodiversität der Tiere");
-		map.put("info:regal/zettel/leibniz/org/ZMT",
+		map.put("http://d-nb.info/gnd/1128825635",
 				"ZMT - Leibniz-Zentrum für Marine Tropenforschung GmbH");
 
 		return map;
