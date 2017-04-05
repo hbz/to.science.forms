@@ -363,4 +363,50 @@ public class ZettelController extends Controller {
 			return ok(myResponse);
 		});
 	}
+
+	/**
+	 * @param q a query against lobid
+	 * @return a jsonp result
+	 */
+	public CompletionStage<Result> subjectAutocomplete(String q) {
+		final String[] callback =
+				request() == null || request().queryString() == null ? null
+						: request().queryString().get("callback");
+		String lobidUrl = "http://lobid.org/subject";
+		WSRequest request = ws.url(lobidUrl);
+		WSRequest complexRequest = request.setHeader("accept", "application/json")
+				.setRequestTimeout(5000).setQueryParameter("q", q)
+				.setQueryParameter("t",
+						"http://d-nb.info/standards/elementset/gnd#SubjectHeadingSensoStricto");
+		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
+			JsonNode hits = response.asJson();
+			List<Map<String, String>> result = new ArrayList<>();
+			hits.forEach((hit) -> {
+				StringBuffer label = new StringBuffer();
+				JsonNode graph = hit.at("/@graph");
+				graph.forEach((g) -> {
+					label.append(g.at("/gndIdentifier").asText() + " - ");
+					JsonNode prefName = g.at("/preferredNameForTheSubjectHeading");
+					if (prefName.isArray()) {
+						prefName.forEach((p) -> {
+							label.append(p.asText() + ",");
+						});
+						label.deleteCharAt(label.length() - 1);
+					} else {
+						label.append(prefName.asText());
+					}
+				});
+				String id = hit.at("/primaryTopic").asText();
+				Map<String, String> m = new HashMap<>();
+				m.put("label", label.toString());
+				m.put("value", id);
+				result.add(m);
+			});
+			String searchResult = ZettelHelper.objectToString(result);
+			String myResponse = callback != null
+					? String.format("/**/%s(%s)", callback[0], searchResult)
+					: searchResult;
+			return ok(myResponse);
+		});
+	}
 }

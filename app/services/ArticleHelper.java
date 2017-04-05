@@ -216,7 +216,7 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getSubjectLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("https://lobid.org/subject", "GND");
+		map.put("/tools/zettel/subjectAutocomplete", "GND");
 		map.put("/tools/skos-lookup/autocomplete", "Agrovoc");
 		return map;
 	}
