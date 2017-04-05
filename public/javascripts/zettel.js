@@ -52,14 +52,14 @@ function enableAutocompletionEndpoints() {
 
 function enableAutocompletion(inputElement,endpoint) {
 	$(inputElement).autocomplete({source:["No Result"]});
-	var gndPerson="https://lobid.org/person";
+	var gndPerson="/tools/zettel/personAutocomplete";
 	var agrovoc="/tools/skos-lookup/autocomplete";
 	var orcid="/tools/zettel/orcidAutocomplete";
 	var gndSubject="/tools/zettel/subjectAutocomplete";
 	var gndTitle = "https://lobid.org/resource";
 	var journal = "/tools/zettel/journalAutocomplete";
 	
-	if(gndPerson == endpoint || gndTitle==endpoint){
+	if(gndTitle==endpoint){
 		inputElement.autocomplete({
 			select : function(event, ui) {
 				this.value = ui.item.value;
@@ -162,6 +162,30 @@ function enableAutocompletion(inputElement,endpoint) {
 			}
 		});
 	}else if(gndSubject == endpoint){
+		inputElement.autocomplete({
+			select : function(event, ui) {
+				this.value = ui.item.value;
+				$(this).siblings(".input-field-heading").html(
+						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+				$(this).siblings("select").css('display','none');
+				$(this).css('display','none');
+				emitResize();
+				return false;
+			},
+			source : function(request, response) {	
+				$.ajax({
+					url : endpoint,
+					dataType : "jsonp",
+					data : {
+						q : request.term,
+					},
+					success : function(data) {
+						response(data);
+					}
+				});
+			}
+		});
+	}else if(gndPerson == endpoint){
 		inputElement.autocomplete({
 			select : function(event, ui) {
 				this.value = ui.item.value;
