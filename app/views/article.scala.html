@@ -27,7 +27,7 @@
 			    <br/>
 				@multifieldText(myForm,jsonMap,"creatorName",services.ZettelFields.creatorNameZF.getLabel(),"free-text",4)
 				<br/>
-				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"gnd-person-search",14,ArticleHelper.getCorporateBodyLookupEndpoints())
 				<br/>
 				@multifieldText(myForm,jsonMap,"contributorName",services.ZettelFields.contributorNameZF.getLabel(),"free-text",4)
 				<br/>
@@ -61,7 +61,7 @@
 				@singlefieldText(myForm,"issn",services.ZettelFields.issnZF.getLabel(),"",1)
 			}
 			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collectiopn-section"){
-				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"gnd-person-search",14,ArticleHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"gnd-person-search",14,ArticleHelper.getCorporateBodyLookupEndpoints())
 				<br/>
 				@multicombobox(myForm,jsonMap,"collectionOne",services.ZettelFields.collectionOneZF.getLabel(),"leibniz-open-search",ArticleHelper.getCollectionOneMap(),15)
 			}

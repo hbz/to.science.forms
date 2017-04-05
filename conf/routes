@@ -9,3 +9,4 @@ GET		/orcidAutocomplete			controllers.ZettelController.orcidAutocomplete(q:Strin
 GET 	/journalAutocomplete 		controllers.ZettelController.journalAutocomplete(q:String?=null)
 GET 	/subjectAutocomplete 		controllers.ZettelController.subjectAutocomplete(q:String?=null)
 GET 	/personAutocomplete 		controllers.ZettelController.personAutocomplete(q:String?=null)
+GET 	/corporateBodyAutocomplete 		controllers.ZettelController.corporateBodyAutocomplete(q:String?=null)

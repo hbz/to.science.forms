@@ -58,6 +58,7 @@ function enableAutocompletion(inputElement,endpoint) {
 	var gndSubject="/tools/zettel/subjectAutocomplete";
 	var gndTitle = "https://lobid.org/resource";
 	var journal = "/tools/zettel/journalAutocomplete";
+	var gndCorporateBody ="/tools/zettel/corporateBodyAutocomplete";
 	
 	if(gndTitle==endpoint){
 		inputElement.autocomplete({
@@ -80,6 +81,30 @@ function enableAutocompletion(inputElement,endpoint) {
 					},
 					success : function(data) {
 						
+						response(data);
+					}
+				});
+			}
+		});
+	}else if(gndCorporateBody == endpoint){
+		inputElement.autocomplete({
+			select : function(event, ui) {
+				this.value = ui.item.value;
+				$(this).siblings(".input-field-heading").html(
+						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
+				$(this).siblings("select").css('display','none');
+				$(this).css('display','none');
+				emitResize();
+				return false;
+			},
+			source : function(request, response) {	
+				$.ajax({
+					url : endpoint,
+					dataType : "jsonp",
+					data : {
+						q : request.term,
+					},
+					success : function(data) {
 						response(data);
 					}
 				});
