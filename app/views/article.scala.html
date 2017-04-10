@@ -44,17 +44,10 @@
 			@accordionPanel(services.ZettelFields.resourceHeaderZF.getLabel(),"upload-section"){
 				@multifieldLd(myForm,jsonMap,"containedIn",services.ZettelFields.containedInZF.getLabel()+"*","gnd-person-search",1,ArticleHelper.getTitleLookupEndpoints())
 				<br/>
-				@singlefieldText(myForm,"volumeIn",services.ZettelFields.volumeInZF.getLabel(),"",1)
-				<br/>
-				@singlefieldText(myForm,"issue",services.ZettelFields.issueZF.getLabel(),"",1)
+				@singlefieldText(myForm,"bibliographicCitation",services.ZettelFields.bibliographicCitationZF.getLabel(),"",1)
 				<br/>
 				@singlefieldText(myForm,"articleNumber",services.ZettelFields.articleNumberZF.getLabel(),"",1)
 				<br/>
-
-				@singlefieldText(myForm,"pages",services.ZettelFields.pagesZF.getLabel(),"",1)
-<br/>
-				@singlefieldText(myForm,"articleNumber","Artikelnummer","",1)
-		
 				<br/>
 				@singlefieldText(myForm,"publicationYear",services.ZettelFields.publicationYearZF.getLabel()+"*","",1)
 				<br/>
