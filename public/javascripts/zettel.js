@@ -1,5 +1,5 @@
 function addDatepicker() {
-	$.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
+	$.datepicker.setDefaults({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true });
 	$(".datepicker").datepicker();
 }
 
