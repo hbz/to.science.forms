@@ -19,20 +19,18 @@ package services;
 
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import org.openrdf.model.Graph;
-import org.openrdf.model.Statement;
-import org.openrdf.model.impl.TreeModel;
-import org.openrdf.rio.RDFFormat;
-import org.openrdf.rio.RDFHandlerException;
-import org.openrdf.rio.RDFParser;
-import org.openrdf.rio.RDFWriter;
-import org.openrdf.rio.Rio;
-import org.openrdf.rio.helpers.StatementCollector;
+import org.eclipse.rdf4j.model.Statement;
+import org.eclipse.rdf4j.rio.RDFFormat;
+import org.eclipse.rdf4j.rio.RDFHandlerException;
+import org.eclipse.rdf4j.rio.RDFParser;
+import org.eclipse.rdf4j.rio.RDFWriter;
+import org.eclipse.rdf4j.rio.Rio;
+import org.eclipse.rdf4j.rio.helpers.StatementCollector;
 
 /**
  * @author Jan Schnasse
@@ -54,15 +52,15 @@ public class RdfUtils {
 	 * @param baseUrl see sesame docu
 	 * @return a Graph representing the rdf in the input stream
 	 */
-	public static Graph readRdfToGraph(final InputStream inputStream,
-			final RDFFormat inf, final String baseUrl) {
+	public static Collection<Statement> readRdfToGraph(
+			final InputStream inputStream, final RDFFormat inf,
+			final String baseUrl) {
 		try {
 			final RDFParser rdfParser = Rio.createParser(inf);
-			final org.openrdf.model.Graph myGraph = new TreeModel();
-			final StatementCollector collector = new StatementCollector(myGraph);
+			final StatementCollector collector = new StatementCollector();
 			rdfParser.setRDFHandler(collector);
 			rdfParser.parse(inputStream, baseUrl);
-			return myGraph;
+			return collector.getStatements();
 		} catch (final Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -77,7 +75,7 @@ public class RdfUtils {
 	 */
 	public static String readRdfToString(InputStream in, RDFFormat inf,
 			RDFFormat outf, String baseUrl) {
-		Graph myGraph = null;
+		Collection<Statement> myGraph = null;
 		myGraph = readRdfToGraph(in, inf, baseUrl);
 		return graphToString(myGraph, outf);
 	}
@@ -89,7 +87,8 @@ public class RdfUtils {
 	 * @param outf the expected output format
 	 * @return a rdf string
 	 */
-	public static String graphToString(Graph myGraph, RDFFormat outf) {
+	public static String graphToString(Collection<Statement> myGraph,
+			RDFFormat outf) {
 		StringWriter out = new StringWriter();
 		RDFWriter writer = Rio.createWriter(outf, out);
 		try {
@@ -111,8 +110,8 @@ public class RdfUtils {
 	 * @param orderedList result will be written to orderedList
 	 * @return the ordered list
 	 */
-	public static void traverseList(Graph g, String uri, String property,
-			Consumer<Object> consumer) {
+	public static void traverseList(Collection<Statement> g, String uri,
+			String property, Consumer<Object> consumer) {
 		play.Logger.debug("Traverse list");
 		for (Statement s : find(g, uri)) {
 			play.Logger.debug("\tprocess statement " + s);
@@ -133,7 +132,7 @@ public class RdfUtils {
 	 * @param statement a statement
 	 * @return true if the statement object refers to a rdf-list or false if not
 	 */
-	public static boolean isList(Graph g, Statement statement) {
+	public static boolean isList(Collection<Statement> g, Statement statement) {
 		for (Statement s : find(g, statement.getObject().stringValue())) {
 			if (first.equals(s.getPredicate().stringValue())) {
 				play.Logger.debug(statement + " is List!");
@@ -148,7 +147,7 @@ public class RdfUtils {
 	 * @param uri a subject
 	 * @return all statements with uri as subject in one set
 	 */
-	public static Set<Statement> find(Graph g, String uri) {
+	public static Set<Statement> find(Collection<Statement> g, String uri) {
 		Set<Statement> result = new HashSet<>();
 		g.forEach((i) -> {
 			if (uri.equals(i.getSubject().stringValue()))

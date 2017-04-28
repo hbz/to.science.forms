@@ -16,8 +16,8 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+import org.eclipse.rdf4j.rio.RDFFormat;
 import org.junit.*;
-import org.openrdf.rio.RDFFormat;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
