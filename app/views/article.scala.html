@@ -46,12 +46,7 @@
 				<br/>
 				@singlefieldText(myForm,"bibliographicCitation",services.ZettelFields.bibliographicCitationZF.getLabel(),"",1)
 				<br/>
-				@singlefieldText(myForm,"articleNumber",services.ZettelFields.articleNumberZF.getLabel(),"",1)
-				<br/>
-				<br/>
 				@singlefieldText(myForm,"publicationYear",services.ZettelFields.publicationYearZF.getLabel()+"*","",1)
-				<br/>
-				@singlefieldText(myForm,"issn",services.ZettelFields.issnZF.getLabel(),"",1)
 			}
 			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collectiopn-section"){
 				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"gnd-person-search",14,ArticleHelper.getCorporateBodyLookupEndpoints())
