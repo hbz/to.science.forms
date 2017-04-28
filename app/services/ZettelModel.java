@@ -104,7 +104,7 @@ public abstract class ZettelModel {
 	private String yearOfCopyright;
 	private String license;
 	private String description;
-	private String professionalGroup;
+	private List<String> professionalGroup;
 	private String embargo;
 	private List<String> ddc = new ArrayList<>();
 	private String language;
@@ -303,12 +303,19 @@ public abstract class ZettelModel {
 		this.doi = doi;
 	}
 
-	public String getProfessionalGroup() {
-		return professionalGroup;
+	public void setProfessionalGroup(List<String> professionalGroup) {
+		this.professionalGroup = professionalGroup;
 	}
 
-	public void setProfessionalGroup(String professionalGroup) {
-		this.professionalGroup = professionalGroup;
+	public void setProfessionalGroup(String in) {
+		if (professionalGroup == null || professionalGroup.isEmpty())
+			professionalGroup = new ArrayList<>();
+		professionalGroup.add(in);
+	}
+
+	public List<String> getProfessionalGroup() {
+		removeEmptyValues(professionalGroup);
+		return professionalGroup;
 	}
 
 	public String getEmbargo() {

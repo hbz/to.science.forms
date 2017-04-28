@@ -73,7 +73,7 @@
 				<br />
 				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel()+"*","select-language",ArticleHelper.getLanguageMap(),10)
 				<br /> 
-				@singleSelect(myForm,"professionalGroup",services.ZettelFields.professionalGroupZF.getLabel()+"*","select-pg",ArticleHelper.getProfessionalGroupMap(),11)
+				@multiselect(myForm,jsonMap,"professionalGroup",services.ZettelFields.professionalGroupZF.getLabel()+"*","select-pg",ArticleHelper.getProfessionalGroupMap(),11)
 				<br />
 				@multiselect(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel()+"*","select-ddc",ArticleHelper.getDeweyMap(),12)
 				<br />

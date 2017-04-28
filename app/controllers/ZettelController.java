@@ -31,7 +31,6 @@ import javax.inject.Inject;
 import org.eclipse.rdf4j.rio.RDFFormat;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import models.Article;
 import models.Chapter;

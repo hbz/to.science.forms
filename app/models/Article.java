@@ -156,9 +156,11 @@ public class Article extends ZettelModel {
 		addErrorMessage("language",
 				"Welche Sprache passt am ehesten zu Ihrer Eingabe?",
 				() -> getLanguage(), errors);
-		addErrorMessage("professionalGroup",
-				"Bitte orden Sie Ihre Daten einer Fachgruppe zu!",
-				() -> getProfessionalGroup(), errors);
+		if (containsNothing(getProfessionalGroup())) {
+			setProfessionalGroup(new ArrayList<>());
+			errors.add(new ValidationError("professionalGroup",
+					"Bitte orden Sie Ihre Daten einer Fachgruppe zu!"));
+		}
 		if (containsNothing(getDdc())) {
 			setDdc(new ArrayList<>());
 			errors.add(new ValidationError("ddc",
