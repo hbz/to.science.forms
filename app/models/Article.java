@@ -130,15 +130,7 @@ public class Article extends ZettelModel {
 			errors.add(new ValidationError("publicationYear",
 					String.format("Bitte vergeben Sie ein %s!",
 							ZettelFields.publicationYearZF.getLabel())));
-		} else {
-			if (!getPublicationYear().trim().matches("[0-9]{4}")) {
-				errors.add(new ValidationError("publicationYear",
-						String.format("Bitte formatieren Sie das %s \"%s\" korrekt!",
-								ZettelFields.publicationYearZF.getLabel(),
-								getPublicationYear().trim())));
-			}
 		}
-		// issue, articleNumber, pages and issn are optional
 	}
 
 	private void validateCollection(List<ValidationError> errors) {
