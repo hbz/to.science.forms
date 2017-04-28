@@ -28,7 +28,7 @@ import java.util.concurrent.CompletionStage;
 
 import javax.inject.Inject;
 
-import org.openrdf.rio.RDFFormat;
+import org.eclipse.rdf4j.rio.RDFFormat;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

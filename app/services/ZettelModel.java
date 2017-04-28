@@ -23,11 +23,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Agent;
 import models.Contribution;
 import org.apache.commons.lang3.StringUtils;
-import org.openrdf.model.BNode;
-import org.openrdf.model.Graph;
-import org.openrdf.model.Statement;
-import org.openrdf.model.Value;
-import org.openrdf.rio.RDFFormat;
+import org.eclipse.rdf4j.model.BNode;
+import org.eclipse.rdf4j.model.Statement;
+import org.eclipse.rdf4j.model.Value;
+import org.eclipse.rdf4j.rio.RDFFormat;
 import play.data.validation.ValidationError;
 
 import java.io.InputStream;
@@ -1043,7 +1042,8 @@ public abstract class ZettelModel {
 		this.documentId = myDocumentId;
 		this.topicId = myTopicId;
 		Map<String, Consumer<Object>> dict = getMappingForDeserialization();
-		Graph graph = RdfUtils.readRdfToGraph(in, format, getDocumentId());
+		Collection<Statement> graph =
+				RdfUtils.readRdfToGraph(in, format, getDocumentId());
 		graph.forEach((st) -> {
 			if (!"".equals(st.getObject().stringValue())) {
 				String rdf_P = st.getPredicate().stringValue();
@@ -1156,7 +1156,7 @@ public abstract class ZettelModel {
 		this.topicId = topicId;
 	}
 
-	private static void processField(Graph graph, Statement st,
+	private static void processField(Collection<Statement> graph, Statement st,
 			Consumer<Object> consumer) {
 		Value rdf_O = st.getObject();
 		if (rdf_O instanceof BNode) {
