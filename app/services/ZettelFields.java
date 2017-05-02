@@ -173,4 +173,10 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionOne");
 	public static Etikett fundingsHeaderZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/fundingsHeader");
+	public static Etikett additionalMaterialZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/additionalMaterial");
+	public static Etikett publisherVersionZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/publisherVersion");
+	public static Etikett fulltextVersionZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/fulltextVersion");
 }

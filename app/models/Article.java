@@ -138,8 +138,8 @@ public class Article extends ZettelModel {
 	}
 
 	private void validateUpload(List<ValidationError> errors) {
-		addErrorMessage("medium", String.format("Bitte wählen Sie ein %s aus!",
-				ZettelFields.mediumZF.getLabel()), () -> getMedium(), errors);
+		// addErrorMessage("medium", String.format("Bitte wählen Sie ein %s aus!",
+		// ZettelFields.mediumZF.getLabel()), () -> getMedium(), errors);
 		// yearOfCopyright and license are optional
 		// TODO: embargo should be filled. If it is not, pop up a reminder.
 	}

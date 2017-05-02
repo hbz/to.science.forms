@@ -54,7 +54,7 @@
 				@multicombobox(myForm,jsonMap,"collectionOne",services.ZettelFields.collectionOneZF.getLabel(),"leibniz-open-search",ArticleHelper.getCollectionOneMap(),15)
 			}
 			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
-				@singleSelect(myForm,"medium",services.ZettelFields.mediumZF.getLabel()+"*","select-medium",ArticleHelper.getMediumMap(),5)
+				@singleSelect(myForm,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ArticleHelper.getMediumMap(),5)
 				<br/>
 				@singleSelect(myForm,"yearOfCopyright",services.ZettelFields.yearOfCopyrightZF.getLabel(),"datepicker-year",ArticleHelper.getCopyrightYear(),6)
 				<br />
@@ -78,11 +78,11 @@
 			}
 			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
 				<br />
-				@multifieldText(myForm,jsonMap,"urn",services.ZettelFields.urnZF.getLabel(),"",27)
+				@multifieldText(myForm,jsonMap,"publisherVersion",services.ZettelFields.publisherVersionZF.getLabel(),"",27)
 				<br />
-				@multifieldText(myForm,jsonMap,"doi",services.ZettelFields.doiZF.getLabel(),"",28)
+				@multifieldText(myForm,jsonMap,"fulltextVersion",services.ZettelFields.fulltextVersionZF.getLabel(),"",28)
 				<br />
-				@multifieldText(myForm,jsonMap,"reference",services.ZettelFields.isLikeZF.getLabel(),"",29)
+				@multifieldText(myForm,jsonMap,"additionalMaterial",services.ZettelFields.additionalMaterialZF.getLabel(),"",29)
 
 			}
             @accordionPanel(services.ZettelFields.fundingsHeaderZF.getLabel(),"identifier-section"){

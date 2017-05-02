@@ -158,6 +158,9 @@ public abstract class ZettelModel {
 	private Agent agent;
 	private String affiliationIndex;
 	private List<String> collectionOne = new ArrayList<>();
+	private List<String> publisherVersion = new ArrayList<>();
+	private List<String> fulltextVersion = new ArrayList<>();
+	private List<String> additionalMaterial = new ArrayList<>();
 
 	public String getPublicationYear() {
 		return publicationYear;
@@ -943,6 +946,51 @@ public abstract class ZettelModel {
 		collectionOne.add(in);
 	}
 
+	public List<String> getAdditonalMaterial() {
+		removeEmptyValues(additionalMaterial);
+		return additionalMaterial;
+	}
+
+	public void setAdditionalMaterial(List<String> in) {
+		additionalMaterial = in;
+	}
+
+	public void setAdditionalMaterial(String in) {
+		if (additionalMaterial == null || additionalMaterial.isEmpty())
+			additionalMaterial = new ArrayList<>();
+		additionalMaterial.add(in);
+	}
+
+	public List<String> getPublisherVersion() {
+		removeEmptyValues(publisherVersion);
+		return publisherVersion;
+	}
+
+	public void setPublisherVersion(List<String> in) {
+		publisherVersion = in;
+	}
+
+	public void setPublisherVersion(String in) {
+		if (publisherVersion == null || publisherVersion.isEmpty())
+			publisherVersion = new ArrayList<>();
+		publisherVersion.add(in);
+	}
+
+	public List<String> getFulltextVersion() {
+		removeEmptyValues(fulltextVersion);
+		return fulltextVersion;
+	}
+
+	public void setFulltextVersion(List<String> in) {
+		fulltextVersion = in;
+	}
+
+	public void setFulltextVersion(String in) {
+		if (fulltextVersion == null || fulltextVersion.isEmpty())
+			fulltextVersion = new ArrayList<>();
+		fulltextVersion.add(in);
+	}
+
 	/**
 	 * @return a map that maps a uri to a setter method
 	 */
@@ -1014,6 +1062,10 @@ public abstract class ZettelModel {
 		dict.put(affiliationZF.uri, (in) -> setAffiliation((String) in));
 		dict.put(affiliationIndexZF.uri, (in) -> setAffiliationIndex((String) in));
 		dict.put(collectionOneZF.uri, (in) -> setCollectionOne((String) in));
+		dict.put(fulltextVersionZF.uri, (in) -> setFulltextVersion((String) in));
+		dict.put(publisherVersionZF.uri, (in) -> setPublisherVersion((String) in));
+		dict.put(additionalMaterialZF.uri,
+				(in) -> setAdditionalMaterial((String) in));
 		return dict;
 	}
 
