@@ -73,6 +73,11 @@ public class Chapter extends ZettelModel {
 			errors.add(new ValidationError("ddc",
 					"Bitte orden Sie Ihre Daten einem Dewey Schlagwort zu!"));
 		}
+		if (containsNothing(getProfessionalGroup())) {
+			setProfessionalGroup(new ArrayList<>());
+			errors.add(new ValidationError("professionalGroup",
+					"Bitte orden Sie Ihre Daten einer Fachgruppe zu!"));
+		}
 	}
 
 	private void validateSimpleFields(List<ValidationError> errors) {
@@ -82,9 +87,6 @@ public class Chapter extends ZettelModel {
 				() -> getLicense(), errors);
 		addErrorMessage("copyright", "Bitte geben Sie das Jahr zum Copyright an.",
 				() -> getYearOfCopyright(), errors);
-		addErrorMessage("professionalGroup",
-				"Bitte orden Sie Ihre Daten einer Fachgruppe zu!",
-				() -> getProfessionalGroup(), errors);
 		addErrorMessage("language",
 				"Welche Sprache passt am ehesten zu Ihrer Eingabe?",
 				() -> getLanguage(), errors);

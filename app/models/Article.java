@@ -130,15 +130,7 @@ public class Article extends ZettelModel {
 			errors.add(new ValidationError("publicationYear",
 					String.format("Bitte vergeben Sie ein %s!",
 							ZettelFields.publicationYearZF.getLabel())));
-		} else {
-			if (!getPublicationYear().trim().matches("[0-9]{4}")) {
-				errors.add(new ValidationError("publicationYear",
-						String.format("Bitte formatieren Sie das %s \"%s\" korrekt!",
-								ZettelFields.publicationYearZF.getLabel(),
-								getPublicationYear().trim())));
-			}
 		}
-		// issue, articleNumber, pages and issn are optional
 	}
 
 	private void validateCollection(List<ValidationError> errors) {
@@ -156,9 +148,11 @@ public class Article extends ZettelModel {
 		addErrorMessage("language",
 				"Welche Sprache passt am ehesten zu Ihrer Eingabe?",
 				() -> getLanguage(), errors);
-		addErrorMessage("professionalGroup",
-				"Bitte orden Sie Ihre Daten einer Fachgruppe zu!",
-				() -> getProfessionalGroup(), errors);
+		if (containsNothing(getProfessionalGroup())) {
+			setProfessionalGroup(new ArrayList<>());
+			errors.add(new ValidationError("professionalGroup",
+					"Bitte orden Sie Ihre Daten einer Fachgruppe zu!"));
+		}
 		if (containsNothing(getDdc())) {
 			setDdc(new ArrayList<>());
 			errors.add(new ValidationError("ddc",
