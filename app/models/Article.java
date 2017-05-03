@@ -48,7 +48,7 @@ public class Article extends ZettelModel {
 
 	@Override
 	protected String getType() {
-		return "http://hbz-nrw.de/regal#Article";
+		return "http://purl.org/ontology/bibo/Article";
 	}
 
 	/**
