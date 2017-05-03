@@ -946,7 +946,7 @@ public abstract class ZettelModel {
 		collectionOne.add(in);
 	}
 
-	public List<String> getAdditonalMaterial() {
+	public List<String> getAdditionalMaterial() {
 		removeEmptyValues(additionalMaterial);
 		return additionalMaterial;
 	}
