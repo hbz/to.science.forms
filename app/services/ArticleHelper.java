@@ -151,6 +151,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getMediumMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put(null, "Bitte wählen Sie...");
 		map.put("http://purl.org/lobid/lv#fulltextOnline", "Volltext");
 		map.put("http://purl.org/dc/terms/LicenseDocument", "Autorenvertrag");
 		map.put("http://id.loc.gov/ontologies/bibframe/supplement", "Beilage");
@@ -196,6 +197,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getCopyrightYear() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put(null, "Bitte wählen Sie...");
 		List<LocalDate> years =
 				Stream.iterate(LocalDate.now(), date -> date.minusYears(1)).limit(100)
 						.collect(Collectors.toList());
