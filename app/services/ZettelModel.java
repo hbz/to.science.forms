@@ -1121,6 +1121,7 @@ public abstract class ZettelModel {
 		Map<String, Object> jsonMap =
 				new ObjectMapper().convertValue(this, HashMap.class);
 		addIsPrimaryTopicOf(jsonMap);
+		jsonMap.put("rdftype", getType());
 		while (removeEmptyCollections(jsonMap))
 			;
 		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
