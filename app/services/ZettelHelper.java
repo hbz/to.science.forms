@@ -142,6 +142,7 @@ public class ZettelHelper {
 			} else {
 				if (form.get() != null) {
 					String jsonldString = form.get().toString();
+					jsonldString = jsonldString.replace("%", "%25");
 					if ("xml".equals(format)) {
 						String rdfString = RdfUtils.readRdfToString(
 								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
