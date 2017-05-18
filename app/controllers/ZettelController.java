@@ -144,7 +144,7 @@ public class ZettelController extends Controller {
 		return future;
 	}
 
-	private String printRdf(Form<?> form) {
+	private static String printRdf(Form<?> form) {
 		try (InputStream in = new ByteArrayInputStream(
 				((ZettelModel) form.get()).toString().getBytes("utf-8"))) {
 			String rdfString =
@@ -158,6 +158,7 @@ public class ZettelController extends Controller {
 
 	/**
 	 * @param format ask for certain format. supports xml,ntriples and json
+	 * @param id of the formular type
 	 * @param documentId your personal id for the document you want to create form
 	 *          data for
 	 * @param topicId the topic id is used by our regal-drupal to find the actual
@@ -271,6 +272,10 @@ public class ZettelController extends Controller {
 				.thenApply(response -> ok(response.asJson()));
 	}
 
+	/**
+	 * @param q a query string to find an orcid entry
+	 * @return the orcid response as json
+	 */
 	public CompletionStage<Result> orcidSearch(String q) {
 		String orcidUrl = "http://pub.orcid.org/search/orcid-bio";
 		WSRequest request = ws.url(orcidUrl);
@@ -280,6 +285,10 @@ public class ZettelController extends Controller {
 				.thenApply(response -> ok(response.asJson()));
 	}
 
+	/**
+	 * @param q a query string to get suggestion from orcid
+	 * @return a list of results from orcid wrapped in a jsonp array
+	 */
 	public CompletionStage<Result> orcidAutocomplete(String q) {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
@@ -440,7 +449,7 @@ public class ZettelController extends Controller {
 					}
 					JsonNode dob = g.at("/dataOfBirth/@value");
 					JsonNode dod = g.at("/dateOfDeath/@value");
-					JsonNode prof = g.at("/professionOrOccupation:AsLiteral");
+					// JsonNode prof = g.at("/professionOrOccupation:AsLiteral");
 
 					if (!dob.asText().isEmpty())
 						label.append(" " + dob.asText() + "-");
@@ -497,7 +506,7 @@ public class ZettelController extends Controller {
 					}
 					JsonNode dob = g.at("/dateOfEstablishment/@value");
 					JsonNode dod = g.at("/XX.XX.2003/@value");
-					JsonNode prof = g.at("/professionOrOccupation:AsLiteral");
+					// JsonNode prof = g.at("/professionOrOccupation:AsLiteral");
 
 					if (!dob.asText().isEmpty())
 						label.append(" " + dob.asText() + "-");

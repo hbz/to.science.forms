@@ -16,39 +16,34 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+import static org.junit.Assert.assertTrue;
+import static play.test.Helpers.HTMLUNIT;
+import static play.test.Helpers.contentAsString;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.route;
+import static play.test.Helpers.running;
+import static play.test.Helpers.testServer;
+
+import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.eclipse.rdf4j.rio.RDFFormat;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.html.HtmlEscapers;
 
 import models.JsonMessage;
 import models.ResearchData;
-import play.api.mvc.Result;
-import play.data.Form;
 import play.mvc.Http.RequestBuilder;
 import services.RdfUtils;
-import services.XmlUtils;
 import services.ZettelHelper;
-import services.ZettelModel;
-import services.ZettelRegister;
-import services.ZettelRegisterEntry;
-
-import static play.test.Helpers.*;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-
-import javax.inject.Inject;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Jan Schnasse
@@ -194,7 +189,7 @@ public class IntegrationTest {
 				});
 	}
 
-	private String toString(ResearchData testData)
+	private static String toString(ResearchData testData)
 			throws JsonProcessingException {
 		return new ObjectMapper().writeValueAsString(testData.serializeToMap());
 	}

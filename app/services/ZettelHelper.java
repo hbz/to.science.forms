@@ -57,6 +57,7 @@ public class ZettelHelper {
 	 * given field with repeated values.
 	 * 
 	 * @param form a form to drive a html formular
+	 * @param jsonMap a map with all data
 	 * @param fieldName the fieldname that is used to post data
 	 * @return a list of valid fieldnames for post data.
 	 */
@@ -66,7 +67,7 @@ public class ZettelHelper {
 		if (form.hasErrors()) {
 			result = getFieldNamesWithIndexFromFormData(form, fieldName);
 		} else if (form.value().isPresent()) {
-			result = getFieldNamesWithIndexFromJsonLd(form, jsonMap, fieldName);
+			result = getFieldNamesWithIndexFromJsonLd(jsonMap, fieldName);
 		}
 		if (result.isEmpty()) {
 			result.add(fieldName + "[0]");
@@ -96,7 +97,7 @@ public class ZettelHelper {
 	}
 
 	private static List<String> getFieldNamesWithIndexFromJsonLd(
-			Form<ZettelModel> form, Map<String, Object> jsonMap, String fieldName) {
+			Map<String, Object> jsonMap, String fieldName) {
 		List<String> result = new ArrayList<>();
 		Object data = jsonMap.get(fieldName);
 		if (data != null) {
@@ -105,7 +106,6 @@ public class ZettelHelper {
 				List<String> dataList = (List<String>) data;
 				for (int i = 0; i < dataList.size(); i++) {
 					result.add(fieldName + "[" + i + "]");
-					// play.Logger.debug("Load: " + fieldName + "[" + i + "]");
 				}
 			} else {
 				play.Logger.debug("No index added to " + fieldName + " with class "
@@ -114,7 +114,6 @@ public class ZettelHelper {
 		} else {
 			play.Logger.debug("No data found for " + fieldName);
 		}
-		// play.Logger.debug("load " + result);
 		return result;
 	}
 
@@ -261,11 +260,15 @@ public class ZettelHelper {
 		}
 	}
 
+	/**
+	 * @param form a play2 form
+	 * @return a jsonlike map
+	 */
 	public static Map<String, Object> getJsonMap(Form<ZettelModel> form) {
 		try {
 			return form.value().get().serializeToMap();
 		} catch (Exception e) {
-			return new HashMap<String, Object>();
+			return new HashMap<>();
 		}
 
 	}

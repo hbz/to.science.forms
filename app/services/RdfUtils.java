@@ -107,8 +107,7 @@ public class RdfUtils {
 	 * @param g a graph with rdf statements
 	 * @param uri a rdf subject
 	 * @param property a rdf property
-	 * @param orderedList result will be written to orderedList
-	 * @return the ordered list
+	 * @param consumer the consumer sets a value to the model
 	 */
 	public static void traverseList(Collection<Statement> g, String uri,
 			String property, Consumer<Object> consumer) {

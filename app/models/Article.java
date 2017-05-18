@@ -70,11 +70,11 @@ public class Article extends ZettelModel {
 		validateTitle(errors);
 		validateAuthorship(errors);
 		validateResource(errors);
-		validateCollection(errors);
-		validateUpload(errors);
+		// validateCollection(errors);
+		// validateUpload(errors);
 		validateCataloging(errors);
-		validateIdentifiers(errors);
-		validateFunding(errors);
+		// validateIdentifiers(errors);
+		// validateFunding(errors);
 		return errors.isEmpty() ? null : errors;
 	}
 
@@ -133,16 +133,16 @@ public class Article extends ZettelModel {
 		}
 	}
 
-	private void validateCollection(List<ValidationError> errors) {
-		// currently no required fields
-	}
+	// private void validateCollection(List<ValidationError> errors) {
+	// // currently no required fields
+	// }
 
-	private void validateUpload(List<ValidationError> errors) {
-		// addErrorMessage("medium", String.format("Bitte wählen Sie ein %s aus!",
-		// ZettelFields.mediumZF.getLabel()), () -> getMedium(), errors);
-		// yearOfCopyright and license are optional
-		// TODO: embargo should be filled. If it is not, pop up a reminder.
-	}
+	// private void validateUpload(List<ValidationError> errors) {
+	// // addErrorMessage("medium", String.format("Bitte wählen Sie ein %s aus!",
+	// // ZettelFields.mediumZF.getLabel()), () -> getMedium(), errors);
+	// // yearOfCopyright and license are optional
+	// // TODO: embargo should be filled. If it is not, pop up a reminder.
+	// }
 
 	private void validateCataloging(List<ValidationError> errors) {
 		addErrorMessage("language",
@@ -161,28 +161,29 @@ public class Article extends ZettelModel {
 		// abstract and subject tags are optional
 	}
 
-	private void validateIdentifiers(List<ValidationError> errors) {
-		// if (containsNothing(getUrn())) {
-		// setUrn(new ArrayList<>());
-		// errors.add(new ValidationError("urn",
-		// String.format("Bitte geben Sie eine %s an.",
-		// ZettelFields.urnZF.getLabel())));
-		// }
-		// else{
-		// for (String urn : getUrn()){
-		// if (!URN_PATTERN.matcher(urn).matches()){
-		// errors.add(new ValidationError("urn",
-		// String.format("Bitte formatieren Sie die %s %s korrekt!",
-		// ZettelFields.urnZF.getLabel(), urn)));
-		// }
-		// }
-		// }
-		// // TODO: DOI should be filled. If it is not, pop up a reminder.
-	}
+	// private void validateIdentifiers(List<ValidationError> errors) {
+	// // if (containsNothing(getUrn())) {
+	// // setUrn(new ArrayList<>());
+	// // errors.add(new ValidationError("urn",
+	// // String.format("Bitte geben Sie eine %s an.",
+	// // ZettelFields.urnZF.getLabel())));
+	// // }
+	// // else{
+	// // for (String urn : getUrn()){
+	// // if (!URN_PATTERN.matcher(urn).matches()){
+	// // errors.add(new ValidationError("urn",
+	// // String.format("Bitte formatieren Sie die %s %s korrekt!",
+	// // ZettelFields.urnZF.getLabel(), urn)));
+	// // }
+	// // }
+	// // }
+	// // // TODO: DOI should be filled. If it is not, pop up a reminder.
+	// }
 
-	private void validateFunding(List<ValidationError> errors) {
-		// TODO: funding, projectId and fundingProgram should be filled. If they are
-		// not, pop up a reminder.
-	}
+	// private void validateFunding(List<ValidationError> errors) {
+	// // TODO: funding, projectId and fundingProgram should be filled. If they
+	// are
+	// // not, pop up a reminder.
+	// }
 
 }

@@ -29,6 +29,8 @@ import java.util.stream.Stream;
  * @author Jan Schnasse
  *
  */
+
+@SuppressWarnings("javadoc")
 public class ArticleHelper {
 
 	/**

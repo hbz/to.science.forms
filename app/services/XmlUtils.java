@@ -17,11 +17,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
-import java.io.IOException;
 import java.io.StringWriter;
 
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;

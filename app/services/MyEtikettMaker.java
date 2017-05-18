@@ -219,7 +219,6 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 			if (uri == null || uri.isEmpty())
 				return uri;
 			// play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
-			@SuppressWarnings("deprecation")
 			WSClient client = WS.newClient(80);
 			WSResponse response = client.url(etikettUrl)
 					.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
