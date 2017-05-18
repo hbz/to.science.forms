@@ -145,11 +145,10 @@ public class ZettelController extends Controller {
 	}
 
 	private String printRdf(Form<?> form) {
-		try {
-			String rdfString = RdfUtils.readRdfToString(
-					new ByteArrayInputStream(
-							((ZettelModel) form.get()).toString().getBytes("utf-8")),
-					RDFFormat.JSONLD, RDFFormat.RDFXML, "");
+		try (InputStream in = new ByteArrayInputStream(
+				((ZettelModel) form.get()).toString().getBytes("utf-8"))) {
+			String rdfString =
+					RdfUtils.readRdfToString(in, RDFFormat.JSONLD, RDFFormat.RDFXML, "");
 			return rdfString;
 		} catch (Exception e) {
 			play.Logger.debug("", e);

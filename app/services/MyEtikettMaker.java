@@ -64,7 +64,10 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 			url = etikettUrl + "/labels.json";
 			play.Logger.info("Reload labels from " + url);
 			URL u = new URL(url);
-			maker = new EtikettMaker(u.openStream());
+			try (InputStream in = u.openStream()) {
+				maker = new EtikettMaker(in);
+			}
+
 		} catch (Exception e) {
 			play.Logger.info("Reload labels from Url:'" + url
 					+ "' failed! Load local labels.json");
@@ -222,9 +225,9 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 					.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
 					.setQueryParameter("column", "label").setQueryParameter("url", uri)
 					.setFollowRedirects(true).get().toCompletableFuture().get();
-			try (InputStream input = response.getBodyAsStream()) {
-				String content =
-						CharStreams.toString(new InputStreamReader(input, Charsets.UTF_8));
+			try (InputStreamReader input =
+					new InputStreamReader(response.getBodyAsStream(), Charsets.UTF_8)) {
+				String content = CharStreams.toString(input);
 				// play.Logger.debug(content);
 				return content;
 			}

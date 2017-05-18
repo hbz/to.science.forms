@@ -17,6 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
+import java.io.IOException;
 import java.io.StringWriter;
 
 import javax.xml.transform.Transformer;
@@ -37,15 +38,14 @@ public class XmlUtils {
 	 * @return a xml string representing the passed document
 	 */
 	public static String docToString(Document doc) {
-		try {
+		try (StringWriter writer = new StringWriter()) {
 			DOMSource domSource = new DOMSource(doc);
-			StringWriter writer = new StringWriter();
 			StreamResult result = new StreamResult(writer);
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer transformer = tf.newTransformer();
 			transformer.transform(domSource, result);
 			return writer.toString();
-		} catch (TransformerException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}

@@ -18,6 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package services;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -30,7 +31,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import models.Contribution;
 import models.JsonMessage;
 import play.data.Form;
 
@@ -143,19 +143,20 @@ public class ZettelHelper {
 				if (form.get() != null) {
 					String jsonldString = form.get().toString();
 					jsonldString = jsonldString.replace("%", "%25");
-					if ("xml".equals(format)) {
-						String rdfString = RdfUtils.readRdfToString(
-								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
-								RDFFormat.JSONLD, RDFFormat.RDFXML, "");
-						result = new JsonMessage(rdfString, 200);
-					} else if ("ntriples".equals(format)) {
-						String rdfString = RdfUtils.readRdfToString(
-								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
-								RDFFormat.JSONLD, RDFFormat.NTRIPLES, "");
-						result = new JsonMessage(rdfString, 200);
-					} else {
-						result = new JsonMessage(
-								((ZettelModel) form.get()).serializeToMap(), 200);
+					try (InputStream in =
+							new ByteArrayInputStream(jsonldString.getBytes("utf-8"))) {
+						if ("xml".equals(format)) {
+							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
+									RDFFormat.RDFXML, "");
+							result = new JsonMessage(rdfString, 200);
+						} else if ("ntriples".equals(format)) {
+							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
+									RDFFormat.NTRIPLES, "");
+							result = new JsonMessage(rdfString, 200);
+						} else {
+							result = new JsonMessage(
+									((ZettelModel) form.get()).serializeToMap(), 200);
+						}
 					}
 				}
 			}
