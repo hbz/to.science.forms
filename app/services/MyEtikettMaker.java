@@ -215,11 +215,10 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 	 * @return a label for the uri
 	 */
 	public String getLabelFromEtikettWs(String uri) {
-		try {
+		try (WSClient client = WS.newClient(80)) {
 			if (uri == null || uri.isEmpty())
 				return uri;
 			// play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
-			WSClient client = WS.newClient(80);
 			WSResponse response = client.url(etikettUrl)
 					.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
 					.setQueryParameter("column", "label").setQueryParameter("url", uri)
