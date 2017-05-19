@@ -140,7 +140,7 @@ public class ZettelController extends Controller {
 		Form<?> form = bindToForm(zettel, documentId, topicId);
 		result = renderForm(format, documentId, topicId, zettel, form);
 		future.complete(result);
-
+		form = null;
 		return future;
 	}
 
@@ -191,7 +191,6 @@ public class ZettelController extends Controller {
 			play.Logger.debug(String.format("Content of model\n%s",
 					((ZettelModel) form.get()).print()));
 		}
-		form = null;
 		return result;
 	}
 
