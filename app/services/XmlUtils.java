@@ -20,7 +20,6 @@ package services;
 import java.io.StringWriter;
 
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -37,15 +36,14 @@ public class XmlUtils {
 	 * @return a xml string representing the passed document
 	 */
 	public static String docToString(Document doc) {
-		try {
+		try (StringWriter writer = new StringWriter()) {
 			DOMSource domSource = new DOMSource(doc);
-			StringWriter writer = new StringWriter();
 			StreamResult result = new StreamResult(writer);
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer transformer = tf.newTransformer();
 			transformer.transform(domSource, result);
 			return writer.toString();
-		} catch (TransformerException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}

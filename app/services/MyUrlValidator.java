@@ -42,7 +42,11 @@ public final class MyUrlValidator
 	static UrlValidator urlValidator =
 			new UrlValidator(UrlValidator.ALLOW_2_SLASHES);
 
-	public String process(final String value) {
+	/**
+	 * @param value a url string
+	 * @return a normalized url string
+	 */
+	public static String process(final String value) {
 		return sanitizeUrl(value);
 	}
 

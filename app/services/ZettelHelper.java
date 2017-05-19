@@ -18,6 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package services;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -30,7 +31,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import models.Contribution;
 import models.JsonMessage;
 import play.data.Form;
 
@@ -57,6 +57,7 @@ public class ZettelHelper {
 	 * given field with repeated values.
 	 * 
 	 * @param form a form to drive a html formular
+	 * @param jsonMap a map with all data
 	 * @param fieldName the fieldname that is used to post data
 	 * @return a list of valid fieldnames for post data.
 	 */
@@ -66,7 +67,7 @@ public class ZettelHelper {
 		if (form.hasErrors()) {
 			result = getFieldNamesWithIndexFromFormData(form, fieldName);
 		} else if (form.value().isPresent()) {
-			result = getFieldNamesWithIndexFromJsonLd(form, jsonMap, fieldName);
+			result = getFieldNamesWithIndexFromJsonLd(jsonMap, fieldName);
 		}
 		if (result.isEmpty()) {
 			result.add(fieldName + "[0]");
@@ -96,7 +97,7 @@ public class ZettelHelper {
 	}
 
 	private static List<String> getFieldNamesWithIndexFromJsonLd(
-			Form<ZettelModel> form, Map<String, Object> jsonMap, String fieldName) {
+			Map<String, Object> jsonMap, String fieldName) {
 		List<String> result = new ArrayList<>();
 		Object data = jsonMap.get(fieldName);
 		if (data != null) {
@@ -105,7 +106,6 @@ public class ZettelHelper {
 				List<String> dataList = (List<String>) data;
 				for (int i = 0; i < dataList.size(); i++) {
 					result.add(fieldName + "[" + i + "]");
-					// play.Logger.debug("Load: " + fieldName + "[" + i + "]");
 				}
 			} else {
 				play.Logger.debug("No index added to " + fieldName + " with class "
@@ -114,7 +114,6 @@ public class ZettelHelper {
 		} else {
 			play.Logger.debug("No data found for " + fieldName);
 		}
-		// play.Logger.debug("load " + result);
 		return result;
 	}
 
@@ -143,19 +142,20 @@ public class ZettelHelper {
 				if (form.get() != null) {
 					String jsonldString = form.get().toString();
 					jsonldString = jsonldString.replace("%", "%25");
-					if ("xml".equals(format)) {
-						String rdfString = RdfUtils.readRdfToString(
-								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
-								RDFFormat.JSONLD, RDFFormat.RDFXML, "");
-						result = new JsonMessage(rdfString, 200);
-					} else if ("ntriples".equals(format)) {
-						String rdfString = RdfUtils.readRdfToString(
-								new ByteArrayInputStream(jsonldString.getBytes("utf-8")),
-								RDFFormat.JSONLD, RDFFormat.NTRIPLES, "");
-						result = new JsonMessage(rdfString, 200);
-					} else {
-						result = new JsonMessage(
-								((ZettelModel) form.get()).serializeToMap(), 200);
+					try (InputStream in =
+							new ByteArrayInputStream(jsonldString.getBytes("utf-8"))) {
+						if ("xml".equals(format)) {
+							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
+									RDFFormat.RDFXML, "");
+							result = new JsonMessage(rdfString, 200);
+						} else if ("ntriples".equals(format)) {
+							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
+									RDFFormat.NTRIPLES, "");
+							result = new JsonMessage(rdfString, 200);
+						} else {
+							result = new JsonMessage(
+									((ZettelModel) form.get()).serializeToMap(), 200);
+						}
 					}
 				}
 			}
@@ -260,11 +260,15 @@ public class ZettelHelper {
 		}
 	}
 
+	/**
+	 * @param form a play2 form
+	 * @return a jsonlike map
+	 */
 	public static Map<String, Object> getJsonMap(Form<ZettelModel> form) {
 		try {
 			return form.value().get().serializeToMap();
 		} catch (Exception e) {
-			return new HashMap<String, Object>();
+			return new HashMap<>();
 		}
 
 	}

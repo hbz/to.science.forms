@@ -11,6 +11,10 @@ import play.data.validation.ValidationError;
 import services.ZettelHelper;
 import services.ZettelModel;
 
+/**
+ * @author Jan Schnasse
+ *
+ */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Agent extends ZettelModel {
 

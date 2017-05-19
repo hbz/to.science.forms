@@ -179,7 +179,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getCongressHost() {
-		removeEmptyValues(congressHost);
 		return congressHost;
 	}
 
@@ -242,7 +241,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getContainedIn() {
-		removeEmptyValues(containedIn);
 		return containedIn;
 	}
 
@@ -273,7 +271,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getCreator() {
-		removeEmptyValues(creator);
 		return creator;
 	}
 
@@ -298,7 +295,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getDoi() {
-		removeEmptyValues(doi);
 		return doi;
 	}
 
@@ -317,7 +313,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getProfessionalGroup() {
-		removeEmptyValues(professionalGroup);
 		return professionalGroup;
 	}
 
@@ -330,7 +325,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getDdc() {
-		removeEmptyValues(ddc);
 		return ddc;
 	}
 
@@ -347,7 +341,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getSubject() {
-		removeEmptyValues(subject);
 		return subject;
 	}
 
@@ -364,7 +357,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getDataOrigin() {
-		removeEmptyValues(dataOrigin);
 		return dataOrigin;
 	}
 
@@ -379,7 +371,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getContributor() {
-		removeEmptyValues(contributor);
 		return contributor;
 	}
 
@@ -388,7 +379,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getFunding() {
-		removeEmptyValues(funding);
 		return funding;
 	}
 
@@ -397,7 +387,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getRecordingLocation() {
-		removeEmptyValues(recordingLocation);
 		return recordingLocation;
 	}
 
@@ -430,7 +419,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getRecordingCoordinates() {
-		removeEmptyValues(recordingCoordinates);
 		return recordingCoordinates;
 	}
 
@@ -439,7 +427,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getUrn() {
-		removeEmptyValues(urn);
 		return urn;
 	}
 
@@ -448,7 +435,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getIsLike() {
-		removeEmptyValues(isLike);
 		return isLike;
 	}
 
@@ -603,7 +589,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getProjectId() {
-		removeEmptyValues(projectId);
 		return projectId;
 	}
 
@@ -618,7 +603,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getFundingProgram() {
-		removeEmptyValues(fundingProgram);
 		return fundingProgram;
 	}
 
@@ -633,7 +617,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getAssociatedPublication() {
-		removeEmptyValues(associatedPublication);
 		return associatedPublication;
 	}
 
@@ -648,7 +631,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getAssociatedDataset() {
-		removeEmptyValues(associatedDataset);
 		return associatedDataset;
 	}
 
@@ -663,7 +645,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getReference() {
-		removeEmptyValues(reference);
 		return reference;
 	}
 
@@ -678,7 +659,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getCreatorName() {
-		removeEmptyValues(creatorName);
 		return creatorName;
 	}
 
@@ -693,7 +673,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getSubjectName() {
-		removeEmptyValues(subjectName);
 		return subjectName;
 	}
 
@@ -716,7 +695,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getContributorName() {
-		removeEmptyValues(contributorName);
 		return contributorName;
 	}
 
@@ -755,7 +733,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getCongressDuration() {
-		removeEmptyValues(congressDuration);
 		return congressDuration;
 	}
 
@@ -794,7 +771,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getAbstractText() {
-		removeEmptyValues(abstractText);
 		return abstractText;
 	}
 
@@ -809,7 +785,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getEditor() {
-		removeEmptyValues(editor);
 		return editor;
 	}
 
@@ -824,12 +799,7 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getRedaktor() {
-		removeEmptyValues(redaktor);
 		return redaktor;
-	}
-
-	private static void removeEmptyValues(List<String> r) {
-		// r.removeIf(Strings::isNullOrEmpty);
 	}
 
 	public void setRedaktor(List<String> redaktor) {
@@ -843,7 +813,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getInstitution() {
-		removeEmptyValues(institution);
 		return institution;
 	}
 
@@ -882,7 +851,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getAffiliation() {
-		removeEmptyValues(affiliation);
 		return affiliation;
 	}
 
@@ -932,7 +900,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getCollectionOne() {
-		removeEmptyValues(collectionOne);
 		return collectionOne;
 	}
 
@@ -947,7 +914,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getAdditionalMaterial() {
-		removeEmptyValues(additionalMaterial);
 		return additionalMaterial;
 	}
 
@@ -962,7 +928,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getPublisherVersion() {
-		removeEmptyValues(publisherVersion);
 		return publisherVersion;
 	}
 
@@ -977,7 +942,6 @@ public abstract class ZettelModel {
 	}
 
 	public List<String> getFulltextVersion() {
-		removeEmptyValues(fulltextVersion);
 		return fulltextVersion;
 	}
 
