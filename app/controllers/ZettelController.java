@@ -191,6 +191,7 @@ public class ZettelController extends Controller {
 			play.Logger.debug(String.format("Content of model\n%s",
 					((ZettelModel) form.get()).print()));
 		}
+		form = null;
 		return result;
 	}
 
