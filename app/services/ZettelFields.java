@@ -71,8 +71,6 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#nextVersion");
 	public static Etikett contributorOrderZF = ZettelHelper.etikett
 			.getEtikett("http://purl.org/lobid/lv#contributorOrder");
-	public static Etikett subjectOrderZF =
-			ZettelHelper.etikett.getEtikett("http://purl.org/lobid/lv#subjectOrder");
 	public static Etikett alternativeTitleZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/alternative");
 	public static Etikett titleLanguageZF =

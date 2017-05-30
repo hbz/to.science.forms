@@ -123,7 +123,6 @@ public abstract class ZettelModel {
 	private String previousVersion;
 	private String nextVersion;
 	private List<String> contributorOrder = new ArrayList<>();
-	private List<String> subjectOrder = new ArrayList<>();
 	private List<String> associatedPublication = new ArrayList<>();
 	private List<String> associatedDataset = new ArrayList<>();
 	private List<String> reference = new ArrayList<>();
@@ -442,12 +441,6 @@ public abstract class ZettelModel {
 		this.isLike = isLike;
 	}
 
-	public void setSubjectOrder(String in) {
-		if (subjectOrder == null || subjectOrder.isEmpty())
-			subjectOrder = new ArrayList<>();
-		subjectOrder.add(in);
-	}
-
 	public void setContributorOrder(String in) {
 		if (contributorOrder == null || contributorOrder.isEmpty())
 			contributorOrder = new ArrayList<>();
@@ -517,10 +510,6 @@ public abstract class ZettelModel {
 			creator.add(in);
 	}
 
-	public void setSubjectOrder(List<String> in) {
-		subjectOrder = in;
-	}
-
 	public void setContributorOrder(List<String> in) {
 		contributorOrder = in;
 	}
@@ -547,21 +536,6 @@ public abstract class ZettelModel {
 			contributorOrder.add(buf.toString());
 		}
 		return contributorOrder;
-	}
-
-	public List<String> getSubjectOrder() {
-		subjectOrder = new ArrayList<>();
-		StringBuffer buf = new StringBuffer();
-		if (subject != null) {
-			for (String str : subject) {
-				buf.append(str + "|");
-			}
-		}
-		if (buf.length() > 0) {
-			buf.deleteCharAt(buf.length() - 1);
-			subjectOrder.add(buf.toString());
-		}
-		return subjectOrder;
 	}
 
 	public String getTitleLanguage() {
@@ -985,7 +959,6 @@ public abstract class ZettelModel {
 		dict.put(urnZF.uri, (in) -> setUrn((String) in));
 		dict.put(isLikeZF.uri, (in) -> setIsLike((String) in));
 		dict.put(contributorOrderZF.uri, (in) -> setContributorOrder((String) in));
-		dict.put(subjectOrderZF.uri, (in) -> setSubjectOrder((String) in));
 		dict.put(alternativeTitleZF.uri, (in) -> setAlternative((String) in));
 		dict.put(titleLanguageZF.uri, (in) -> setTitleLanguage((String) in));
 		dict.put(descriptionZF.uri, (in) -> setDescription((String) in));
