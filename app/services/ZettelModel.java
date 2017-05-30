@@ -1186,6 +1186,8 @@ public abstract class ZettelModel {
 		if (rdf_O instanceof BNode) {
 			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), RdfUtils.first,
 					consumer);
+		} else if (RdfUtils.nil.equals(rdf_O)) {
+			return;
 		} else {
 			try {
 				consumer.accept(rdf_O.stringValue());
