@@ -1059,69 +1059,54 @@ public abstract class ZettelModel {
 				new ObjectMapper().convertValue(this, HashMap.class);
 		addIsPrimaryTopicOf(jsonMap);
 		jsonMap.put("rdftype", getType());
-		while (removeEmptyCollections(jsonMap))
-			;
+		removeEmptyCollections(jsonMap);
 		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
 		return jsonMap;
 	}
 
 	@SuppressWarnings("unchecked")
 	private boolean removeEmptyCollections(Map<String, Object> jsonMap) {
-		boolean result = false;
 		Iterator<Map.Entry<String, Object>> it = jsonMap.entrySet().iterator();
 		while (it.hasNext()) {
+			boolean r = false;
 			Map.Entry<String, Object> e = it.next();
-			Object value = e.getValue();
-			if (value == null) {
-				it.remove();
-				result = true;
-			} else {
-				if (value instanceof java.util.Map<?, ?>) {
-					if (((Map<?, ?>) value).size() <= 0) {
-						it.remove();
-						result = true;
-					} else
-						result = removeEmptyCollections((Map<String, Object>) value);
-				} else if (value instanceof java.util.List<?>) {
-					if (((java.util.List<?>) value).size() <= 0) {
-						it.remove();
-						result = true;
-					} else
-						result = removeEmptyCollections((List<Object>) value);
-				} else {
-					if (((String) value).isEmpty()) {
-						it.remove();
-						result = true;
-					}
-				}
+			if (e.getValue() instanceof java.util.Map)
+				r = removeEmptyCollections(
+						(java.util.Map<String, Object>) e.getValue());
+			else if (e.getValue() instanceof java.util.List<?>)
+				r = removeEmptyCollections((java.util.List<Object>) e.getValue());
+			else if (e.getValue() instanceof String) {
+				r = removeEmptyCollections((String) e.getValue());
 			}
+
+			if (r)
+				it.remove();
 		}
-		return result;
+		return jsonMap.isEmpty();
 	}
 
-	@SuppressWarnings("unchecked")
+	private boolean removeEmptyCollections(String value) {
+		if (value == null || value.isEmpty())
+			return true;
+		return false;
+	}
+
 	private boolean removeEmptyCollections(List<Object> value) {
-		boolean result = false;
 		Iterator<Object> it = value.iterator();
 		while (it.hasNext()) {
+			boolean r = false;
 			Object e = it.next();
-			if (e == null) {
-				it.remove();
-				result = true;
-			} else {
-				if (e instanceof java.util.Map)
-					result = removeEmptyCollections((java.util.Map<String, Object>) e);
-				if (e instanceof java.util.List<?>)
-					result = removeEmptyCollections((java.util.List<Object>) e);
-				if (e instanceof String) {
-					if (((String) e).isEmpty()) {
-						it.remove();
-						result = true;
-					}
-				}
+			if (e instanceof java.util.Map)
+				r = removeEmptyCollections((java.util.Map<String, Object>) e);
+			else if (e instanceof java.util.List<?>)
+				r = removeEmptyCollections((java.util.List<Object>) e);
+			else if (e instanceof String) {
+				r = removeEmptyCollections((String) e);
 			}
+			if (r)
+				it.remove();
 		}
-		return result;
+		return value.isEmpty();
 	}
 
 	/**
