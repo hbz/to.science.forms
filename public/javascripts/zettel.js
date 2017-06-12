@@ -673,3 +673,39 @@ function initRevMap(lat,lng){
 	}).addTo(mymap);
 	return mymap;
 }
+
+function addActionToCancelButton(){
+	if (top != self){
+		var sourceUrl=top.document.referrer;
+		console.log("Top source "+ top.document.referrer);
+		var targetUrl=decodeURIComponent(window.location.href);
+		console.log("Target "+ targetUrl);
+		if( sourceUrl !== targetUrl){
+			Cookies.set("cancel",top.document.referrer);
+		}
+		console.log("Set cookie to " + Cookies.get("cancel"));
+		/**
+		 * Argh - not proud of this one
+		 */
+		setTimeout(
+				function(){
+					$("#cancel").click(
+							function(){
+								top.window.location.href = Cookies.get("cancel");
+							}
+					);
+					
+				},3000);
+	}else{
+		var sourceUrl=document.referrer;
+		var targetUrl=decodeURIComponent(window.location.href);
+		if( sourceUrl !== targetUrl){
+			Cookies.set("cancel",document.referrer);
+		}
+		$("#cancel").click(function(){
+			window.location.href = Cookies.get("cancel");
+		});
+	}
+	
+}
+	
