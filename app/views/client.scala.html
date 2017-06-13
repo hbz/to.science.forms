@@ -62,11 +62,18 @@
 					'action'  : 'postDataToZettel'
 				}, "*");
 			}
+ 		 	target.postMessage({
+				'message' : document.referrer,
+				'action'  : 'sendReferrer'
+			}, "*");
 		} else if (e.data.action == 'resize') {
 			var targetHeight = e.data.message;
 			jQuery('#iFrame').height(targetHeight);
 		} else if (e.data.action == 'postData') {
 			getMessage(e.data.message);
+		}else if (e.data.action == 'cancel') {
+			console.log(e.data.message);
+			window.location.href =e.data.message;
 		}
 	}
 

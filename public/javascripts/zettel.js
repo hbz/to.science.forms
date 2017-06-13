@@ -352,6 +352,9 @@ function handleMessage(evt) {
 
 			}
 		});
+	} else if(evt.data.action === 'sendReferrer'){
+		var sourceUrl=evt.data.message;
+		Cookies.set("cancel",sourceUrl);
 	}
 }
 function destroyGndAutocompletion() {
@@ -673,3 +676,40 @@ function initRevMap(lat,lng){
 	}).addTo(mymap);
 	return mymap;
 }
+
+function addActionToCancelButton(){
+	if (top != self){
+		setTimeout(function(){
+		$("#cancel").click(function(){
+			emitCancel();
+		});},3000);
+	}else{
+		var sourceUrl=document.referrer;
+		var targetUrl=decodeURIComponent(window.location.href);
+		if( sourceUrl !== targetUrl){
+			Cookies.set("cancel",document.referrer);
+		}
+		$("#cancel").click(function(){
+			window.location.href = Cookies.get("cancel");
+		});
+	}
+	
+}
+
+function emitCancel() {
+	var target = parent.postMessage ? parent
+			: (parent.document.postMessage ? parent.document : undefined);
+	if (typeof target != "undefined") {
+		postCancel(target);
+	}
+}
+
+function postCancel(target) {
+	var cookie=Cookies.get("cancel");
+	target.postMessage({
+		'action' : 'cancel',
+		'message' : cookie
+	}, '*');
+}
+
+	

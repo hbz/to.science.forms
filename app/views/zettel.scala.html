@@ -25,7 +25,7 @@
 <script src="@controllers.routes.Assets.versioned("javascripts/moment.min.js")"></script>
 <script src="@controllers.routes.Assets.versioned("javascripts/daterangepicker.js")"></script>
 <script src="@controllers.routes.Assets.versioned("javascripts/leaflet.js")"></script>
-
+<script src="@controllers.routes.Assets.versioned("javascripts/js.cookie.js")"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
@@ -72,8 +72,10 @@
 		enableHelpOpenButtons();
 		enableHelpCloseButtons();
 		addGeonamesLookup();
-		addGeonamesReverseLookup();		
+		addGeonamesReverseLookup();	
+		addActionToCancelButton();
 	});
+
 	</script>
 </body>
 </html>
