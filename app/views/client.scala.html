@@ -62,6 +62,10 @@
 					'action'  : 'postDataToZettel'
 				}, "*");
 			}
+ 		 	target.postMessage({
+				'message' : document.referrer,
+				'action'  : 'sendReferrer'
+			}, "*");
 		} else if (e.data.action == 'resize') {
 			var targetHeight = e.data.message;
 			jQuery('#iFrame').height(targetHeight);

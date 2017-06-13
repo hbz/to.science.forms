@@ -352,6 +352,9 @@ function handleMessage(evt) {
 
 			}
 		});
+	} else if(evt.data.action === 'sendReferrer'){
+		var sourceUrl=evt.data.message;
+		Cookies.set("cancel",sourceUrl);
 	}
 }
 function destroyGndAutocompletion() {
@@ -676,11 +679,6 @@ function initRevMap(lat,lng){
 
 function addActionToCancelButton(){
 	if (top != self){
-		var sourceUrl=top.document.referrer;
-		var targetUrl=decodeURIComponent(window.location.href);
-		if( sourceUrl !== targetUrl){
-			Cookies.set("cancel",top.document.referrer);
-		}
 		setTimeout(function(){
 		$("#cancel").click(function(){
 			emitCancel();
