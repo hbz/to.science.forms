@@ -677,25 +677,14 @@ function initRevMap(lat,lng){
 function addActionToCancelButton(){
 	if (top != self){
 		var sourceUrl=top.document.referrer;
-		console.log("Top source "+ top.document.referrer);
 		var targetUrl=decodeURIComponent(window.location.href);
-		console.log("Target "+ targetUrl);
 		if( sourceUrl !== targetUrl){
 			Cookies.set("cancel",top.document.referrer);
 		}
-		console.log("Set cookie to " + Cookies.get("cancel"));
-		/**
-		 * Argh - not proud of this one
-		 */
-		setTimeout(
-				function(){
-					$("#cancel").click(
-							function(){
-								top.window.location.href = Cookies.get("cancel");
-							}
-					);
-					
-				},3000);
+		setTimeout(function(){
+		$("#cancel").click(function(){
+			emitCancel();
+		});},3000);
 	}else{
 		var sourceUrl=document.referrer;
 		var targetUrl=decodeURIComponent(window.location.href);
@@ -708,4 +697,21 @@ function addActionToCancelButton(){
 	}
 	
 }
+
+function emitCancel() {
+	var target = parent.postMessage ? parent
+			: (parent.document.postMessage ? parent.document : undefined);
+	if (typeof target != "undefined") {
+		postCancel(target);
+	}
+}
+
+function postCancel(target) {
+	var cookie=Cookies.get("cancel");
+	target.postMessage({
+		'action' : 'cancel',
+		'message' : cookie
+	}, '*');
+}
+
 	
