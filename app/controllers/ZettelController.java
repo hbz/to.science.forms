@@ -296,22 +296,16 @@ public class ZettelController extends Controller {
 		String orcidUrl = "http://pub.orcid.org/search/orcid-bio";
 		WSRequest request = ws.url(orcidUrl);
 		WSRequest complexRequest = request.setHeader("accept", "application/json")
-				.setRequestTimeout(5000).setQueryParameter("q", q);
+				.setRequestTimeout(5000).setQueryParameter("q",
+						"family-name:" + q + " OR given-names:" + q + " OR orcid:" + q);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
-			JsonNode hits =
-					response.asJson().at("/orcid-search-results/orcid-search-result");
+			JsonNode hits = response.asJson().at("/result");
 			List<Map<String, String>> result = new ArrayList<>();
 			hits.forEach((hit) -> {
-				String label = hit
-						.at("/orcid-profile/orcid-bio/personal-details/family-name/value")
-						.asText()
-						+ ", "
-						+ hit
-								.at("/orcid-profile/orcid-bio/personal-details/given-names/value")
-								.asText();
-				String id = hit.at("/orcid-profile/orcid-identifier/uri").asText();
+
+				String id = hit.at("/orcid-identifier/uri").asText();
 				Map<String, String> m = new HashMap<>();
-				m.put("label", label);
+				m.put("label", id);
 				m.put("value", id);
 				result.add(m);
 			});
