@@ -37,6 +37,8 @@ import models.Chapter;
 import models.Proceeding;
 import models.ResearchData;
 import play.data.Form;
+import play.libs.ws.WSClient;
+import play.libs.ws.WSRequest;
 import play.mvc.Controller;
 import play.mvc.Result;
 import services.RdfUtils;
@@ -45,8 +47,9 @@ import services.ZettelHelper;
 import services.ZettelModel;
 import services.ZettelRegister;
 import services.ZettelRegisterEntry;
-import views.html.*;
-import play.libs.ws.*;
+import views.html.client;
+import views.html.forms;
+import views.html.index;
 
 /**
  * @author Jan Schnasse
@@ -371,37 +374,39 @@ public class ZettelController extends Controller {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
 						: request().queryString().get("callback");
-		String lobidUrl = "http://lobid.org/subject";
+		String lobidUrl = "https://lobid.org/gnd/search";
 		WSRequest request = ws.url(lobidUrl);
-		WSRequest complexRequest = request.setHeader("accept", "application/json")
-				.setRequestTimeout(5000).setQueryParameter("q", q)
-				.setQueryParameter("t",
-						"http://d-nb.info/standards/elementset/gnd#SubjectHeadingSensoStricto");
+		String queryString = q + "OR gndIdentifier:" + q;
+		WSRequest complexRequest = request.setQueryParameter("q", queryString)
+				.setQueryParameter("format", "json")
+				.setQueryParameter("filter", "type:SubjectHeadingSensoStricto")
+				.setRequestTimeout(5000);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
-			JsonNode hits = response.asJson();
+
+			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
-			hits.forEach((hit) -> {
+			JsonNode member = root.at("/member");
+			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
-				JsonNode graph = hit.at("/@graph");
-				graph.forEach((g) -> {
-					label.append(g.at("/gndIdentifier").asText() + " - ");
-					JsonNode prefName = g.at("/preferredNameForTheSubjectHeading");
-					if (prefName.isArray()) {
-						prefName.forEach((p) -> {
-							label.append(p.asText() + ",");
-						});
-						label.deleteCharAt(label.length() - 1);
-					} else {
-						label.append(prefName.asText());
-					}
+				m.at("/gndIdentifier").forEach((id) -> {
+					label.append(id);
 				});
-				String id = hit.at("/primaryTopic").asText();
-				Map<String, String> m = new HashMap<>();
-				m.put("label", label.toString());
-				m.put("value", id);
-				result.add(m);
+				label.append(" - ");
+				JsonNode prefName = m.at("/preferredName");
+				if (prefName.isArray()) {
+					prefName.forEach((p) -> {
+						label.append(p.asText() + ",");
+					});
+					label.deleteCharAt(label.length() - 1);
+				} else {
+					label.append(prefName.asText());
+				}
+				String id = m.at("/primaryTopic").asText();
+				Map<String, String> map = new HashMap<>();
+				map.put("label", label.toString());
+				map.put("value", id);
+				result.add(map);
 			});
-			result.remove(0);
 			String searchResult = ZettelHelper.objectToString(result);
 			String myResponse = callback != null
 					? String.format("/**/%s(%s)", callback[0], searchResult)
@@ -415,56 +420,63 @@ public class ZettelController extends Controller {
 	 * @return a jsonp result
 	 */
 	public CompletionStage<Result> personAutocomplete(String q) {
+
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
 						: request().queryString().get("callback");
-		String lobidUrl = "http://lobid.org/subject";
+		String lobidUrl = "https://lobid.org/gnd/search";
 		WSRequest request = ws.url(lobidUrl);
-		WSRequest complexRequest = request.setHeader("accept", "application/json")
-				.setRequestTimeout(5000).setQueryParameter("q", q).setQueryParameter(
-						"t", "http://d-nb.info/standards/elementset/gnd#Person");
+		String queryString = q + "OR gndIdentifier:" + q;
+		WSRequest complexRequest = request.setQueryParameter("q", queryString)
+				.setQueryParameter("format", "json")
+				.setQueryParameter("filter", "type:DifferentiatedPerson")
+				.setRequestTimeout(5000);
+		play.Logger.info(
+				"GET " + complexRequest.getUrl() + complexRequest.getQueryParameters());
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
-			JsonNode hits = response.asJson();
+			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
-			hits.forEach((hit) -> {
+			JsonNode member = root.at("/member");
+			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
-				JsonNode graph = hit.at("/@graph");
-				graph.forEach((g) -> {
-
-					label.append(g.at("/gndIdentifier").asText() + " - ");
-					JsonNode prefName = g.at("/preferredNameForThePerson");
-					if (prefName.isArray()) {
-						prefName.forEach((p) -> {
-							label.append(p.asText() + ",");
-						});
-						label.deleteCharAt(label.length() - 1);
-					} else {
-						label.append(prefName.asText());
-					}
-					JsonNode dob = g.at("/dataOfBirth/@value");
-					JsonNode dod = g.at("/dateOfDeath/@value");
-					// JsonNode prof = g.at("/professionOrOccupation:AsLiteral");
-
-					if (!dob.asText().isEmpty())
-						label.append(" " + dob.asText() + "-");
-					if (!dod.asText().isEmpty())
-						label.append(" -" + dod.asText());
-					// label.append(prof.asText());
+				m.at("/gndIdentifier").forEach((id) -> {
+					label.append(id);
 				});
+				label.append(" - ");
+				JsonNode prefName = m.at("/preferredName");
 
-				String id = hit.at("/primaryTopic").asText();
-				Map<String, String> m = new HashMap<>();
-				m.put("label", label.toString());
-				m.put("value", id);
-				result.add(m);
+				if (prefName.isArray()) {
+					prefName.forEach((p) -> {
+						label.append(p.asText() + ",");
+					});
+					label.deleteCharAt(label.length() - 1);
+				} else {
+					label.append(prefName.asText());
+				}
+
+				JsonNode dob = m.at("/dateOfBirth/@value");
+				JsonNode dod = m.at("/dateOfDeath/@value");
+				// JsonNode prof = g.at("/professionOrOccupation:AsLiteral");
+
+				if (!dob.asText().isEmpty())
+					label.append(" " + dob.asText() + "-");
+				if (!dod.asText().isEmpty())
+					label.append(" -" + dod.asText());
+				// label.append(prof.asText());
+
+				String id = m.at("/primaryTopic").asText();
+				Map<String, String> map = new HashMap<>();
+				map.put("label", label.toString());
+				map.put("value", id);
+				result.add(map);
 			});
-			result.remove(0);
 			String searchResult = ZettelHelper.objectToString(result);
 			String myResponse = callback != null
 					? String.format("/**/%s(%s)", callback[0], searchResult)
 					: searchResult;
 			return ok(myResponse);
 		});
+
 	}
 
 	/**
@@ -475,47 +487,49 @@ public class ZettelController extends Controller {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
 						: request().queryString().get("callback");
-		String lobidUrl = "http://lobid.org/subject";
+		String lobidUrl = "https://lobid.org/gnd/search";
 		WSRequest request = ws.url(lobidUrl);
-		WSRequest complexRequest = request.setHeader("accept", "application/json")
-				.setRequestTimeout(5000).setQueryParameter("q", q).setQueryParameter(
-						"t", "http://d-nb.info/standards/elementset/gnd#CorporateBody");
+		String queryString = q + "OR gndIdentifier:" + q;
+		WSRequest complexRequest = request.setQueryParameter("q", queryString)
+				.setQueryParameter("format", "json")
+				.setQueryParameter("filter", "type:CorporateBody")
+				.setRequestTimeout(5000);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
-			JsonNode hits = response.asJson();
+
+			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
-			hits.forEach((hit) -> {
+			JsonNode member = root.at("/member");
+			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
-				JsonNode graph = hit.at("/@graph");
-				graph.forEach((g) -> {
-
-					label.append(g.at("/gndIdentifier").asText() + " - ");
-					JsonNode prefName = g.at("/preferredNameForTheCorporateBody");
-					if (prefName.isArray()) {
-						prefName.forEach((p) -> {
-							label.append(p.asText() + ",");
-						});
-						label.deleteCharAt(label.length() - 1);
-					} else {
-						label.append(prefName.asText());
-					}
-					JsonNode dob = g.at("/dateOfEstablishment/@value");
-					JsonNode dod = g.at("/XX.XX.2003/@value");
-					// JsonNode prof = g.at("/professionOrOccupation:AsLiteral");
-
-					if (!dob.asText().isEmpty())
-						label.append(" " + dob.asText() + "-");
-					if (!dod.asText().isEmpty())
-						label.append(" -" + dod.asText());
-					// label.append(prof.asText());
+				m.at("/gndIdentifier").forEach((id) -> {
+					label.append(id);
 				});
+				label.append(" - ");
+				JsonNode prefName = m.at("/preferredName");
+				if (prefName.isArray()) {
+					prefName.forEach((p) -> {
+						label.append(p.asText() + ",");
+					});
+					label.deleteCharAt(label.length() - 1);
+				} else {
+					label.append(prefName.asText());
+				}
+				JsonNode dob = m.at("/dateOfEstablishment/@value");
+				JsonNode dod = m.at("/XX.XX.2003/@value");
+				// JsonNode prof = g.at("/professionOrOccupation:AsLiteral");
 
-				String id = hit.at("/primaryTopic").asText();
-				Map<String, String> m = new HashMap<>();
-				m.put("label", label.toString());
-				m.put("value", id);
-				result.add(m);
+				if (!dob.asText().isEmpty())
+					label.append(" " + dob.asText() + "-");
+				if (!dod.asText().isEmpty())
+					label.append(" -" + dod.asText());
+				// label.append(prof.asText());
+
+				String id = m.at("/primaryTopic").asText();
+				Map<String, String> map = new HashMap<>();
+				map.put("label", label.toString());
+				map.put("value", id);
+				result.add(map);
 			});
-			result.remove(0);
 			String searchResult = ZettelHelper.objectToString(result);
 			String myResponse = callback != null
 					? String.format("/**/%s(%s)", callback[0], searchResult)
