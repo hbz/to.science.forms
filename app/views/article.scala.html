@@ -95,6 +95,31 @@
            }
  
 		}
+	
+		@if(myForm.hasErrors) {
+		    <div class="alert alert-error">
+		        <a class="close" data-dismiss="alert">x</a>
+		       
+		        @if(myForm.errors.size() > 0) {
+		        <h3>Das Formular enth&auml;lt noch Fehler!</h3>
+		        <table class="fieldErrors">
+		        <tr><th>Feldname</th><th>Fehlermeldung</th></tr>
+		            @for((key, value) <- myForm.errors) {
+		            	<tr>
+		               		<td style="padding-right:10px;"> @key.toString() </td>
+		               		<td>
+		                    @for(err <- value) {
+		                        @err.message().toString()
+		                    }
+		                    </td>
+		                 </tr>
+		            }
+		         </table>
+		        } else {No error returned.}
+		       
+		    </div>
+		}
+		
 		<div class="form-group row">
 			<div class="col-sm-offset-8 col-sm-4">
 				<input id="cancel" class="cancel btn" type="button" value="Cancel" />

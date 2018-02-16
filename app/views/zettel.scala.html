@@ -37,21 +37,7 @@
 	<div class="container col-xs-12 col-md-8">
 		@content
 	</div>
-	@if(flash.containsKey("success")) {
-  <div class="well">
-    <div id="success-message" class="text-success">
-      @flash.get("success")
-    </div>
-  </div>
-  }
-  @if(flash.containsKey("error")) {
-  <div class="well">
-    <div id="error-message" class="text-danger">
-      @flash.get("error")
-  </div>
- 
-</div>
-}
+	
 @defining(ZettelHelper.getEmbeddedJson(myForm,dataFormat)){ ej =>
 	@if(ej!=null){
 		@if("200".equals(ej.getCode())){

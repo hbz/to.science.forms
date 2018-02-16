@@ -206,6 +206,13 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 		return TYPE;
 	}
 
+	public String getLabel(String name) {
+		Etikett e = getEtikettByName(name);
+		if (e == null)
+			return null;
+		return e.label;
+	}
+
 	/**
 	 * The function calls a deployment of https://github.com/hbz/etikett to
 	 * provide a label for a given uri. If no deployment is available the plain

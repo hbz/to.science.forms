@@ -95,7 +95,7 @@ public class Article extends ZettelModel {
 	}
 
 	private String getLabel(String name) {
-		return ZettelHelper.etikett.getEtikettByName(name).label;
+		return ZettelHelper.etikett.getLabel(name);
 	}
 
 	private void validate(String name, List<String> l,
@@ -104,7 +104,8 @@ public class Article extends ZettelModel {
 			return;
 		l.forEach(v -> {
 			if (v != null && !v.isEmpty() && !isValid(v)) {
-				errors.add(new ValidationError(name, v + " is not a valid url."));
+				errors.add(new ValidationError(name,
+						"Die Eingabe \"" + v + "\" hat nicht die Form einer URL."));
 			}
 		});
 
