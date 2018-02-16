@@ -42,7 +42,7 @@ import static services.ZettelFields.ddcZF;
 import static services.ZettelFields.descriptionZF;
 import static services.ZettelFields.doiZF;
 import static services.ZettelFields.editorZF;
-import static services.ZettelFields.embargoZF;
+import static services.ZettelFields.embargoTimeZF;
 import static services.ZettelFields.fulltextVersionZF;
 import static services.ZettelFields.fundingProgramZF;
 import static services.ZettelFields.fundingZF;
@@ -173,7 +173,7 @@ public abstract class ZettelModel {
 	private String license;
 	private String description;
 	private List<String> professionalGroup;
-	private String embargo;
+	private String embargoTime;
 	private List<String> ddc = new ArrayList<>();
 	private String language;
 	private String medium;
@@ -383,12 +383,12 @@ public abstract class ZettelModel {
 		return professionalGroup;
 	}
 
-	public String getEmbargo() {
-		return embargo;
+	public String getEmbargoTime() {
+		return embargoTime;
 	}
 
-	public void setEmbargo(String embargo) {
-		this.embargo = embargo;
+	public void setEmbargoTime(String embargo) {
+		this.embargoTime = embargo;
 	}
 
 	public List<String> getDdc() {
@@ -1006,7 +1006,7 @@ public abstract class ZettelModel {
 		dict.put(creatorZF.uri, (in) -> setCreator((String) in));
 		dict.put(contributorZF.uri, (in) -> setContributor((String) in));
 		dict.put(dataOriginZF.uri, (in) -> setDataOrigin((String) in));
-		dict.put(embargoZF.uri, (in) -> setEmbargo((String) in));
+		dict.put(embargoTimeZF.uri, (in) -> setEmbargoTime((String) in));
 		dict.put(languageZF.uri, (in) -> setLanguage((String) in));
 		dict.put(licenseZF.uri, (in) -> setLicense((String) in));
 		dict.put(mediumZF.uri, (in) -> setMedium((String) in));
