@@ -35,7 +35,7 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#dataOrigin");
 	public static Etikett abstractTextZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/abstract");
-	public static Etikett embargoZF =
+	public static Etikett embargoTimeZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#embargoTime");
 	public static Etikett languageZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/language");
