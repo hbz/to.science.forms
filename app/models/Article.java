@@ -17,15 +17,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.typesafe.config.ConfigFactory;
-import play.data.validation.ValidationError;
-import services.ZettelFields;
-import services.ZettelModel;
-
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.typesafe.config.ConfigFactory;
+
+import play.data.validation.ValidationError;
+import services.ZettelFields;
+import services.ZettelHelper;
+import services.ZettelModel;
 
 /**
  * @author Jan Schnasse
@@ -75,20 +79,50 @@ public class Article extends ZettelModel {
 		validateCataloging(errors);
 		// validateIdentifiers(errors);
 		// validateFunding(errors);
+		validateURLs(errors);
 		return errors.isEmpty() ? null : errors;
 	}
 
+	private void validateURLs(List<ValidationError> errors) {
+		List<String> l = getPublisherVersion();
+		validate(getLabel("publisherVersion"), l, errors);
+		l = getFulltextVersion();
+		validate(getLabel("fulltextVersion"), l, errors);
+		l = getAdditionalMaterial();
+		validate(getLabel("additionalMaterial"), l, errors);
+		l = Arrays.asList(getLicense());
+		validate(getLabel("license"), l, errors);
+	}
+
+	private String getLabel(String name) {
+		return ZettelHelper.etikett.getLabel(name);
+	}
+
+	private void validate(String name, List<String> l,
+			List<ValidationError> errors) {
+		if (l == null || l.isEmpty())
+			return;
+		l.forEach(v -> {
+			if (v != null && !v.isEmpty() && !isValid(v)) {
+				errors.add(new ValidationError(name,
+						"Die Eingabe \"" + v + "\" hat nicht die Form einer URL."));
+			}
+		});
+
+	}
+
 	private void validateStatus(List<ValidationError> errors) {
-		addErrorMessage("publicationStatus",
+		addErrorMessage(getLabel("publicationStatus"),
 				String.format("Bitte vergeben Sie einen %s!",
-						ZettelFields.publicationStatusZF.getLabel()),
+						getLabel("publicationStatus")),
 				() -> getPublicationStatus(), errors);
 		// reviewStatus is optional
 	}
 
 	private void validateTitle(List<ValidationError> errors) {
-		addErrorMessage("title", String.format("Bitte vergeben Sie einen %s!",
-				ZettelFields.titleZF.getLabel()), () -> getTitle(), errors);
+		addErrorMessage(getLabel("title"),
+				String.format("Bitte vergeben Sie einen %s!", getLabel("title")),
+				() -> getTitle(), errors);
 		// alternativeTitle is optional
 	}
 
@@ -107,13 +141,13 @@ public class Article extends ZettelModel {
 		}
 		if (getCreator().isEmpty() && getContributor().isEmpty()
 				&& getCreatorName().isEmpty() && getContributorName().isEmpty()) {
-			errors.add(new ValidationError("creator",
+			errors.add(new ValidationError(getLabel("creator"),
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-			errors.add(new ValidationError("contributor",
+			errors.add(new ValidationError(getLabel("contributor"),
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-			errors.add(new ValidationError("creatorName",
+			errors.add(new ValidationError(getLabel("creatorName"),
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-			errors.add(new ValidationError("contributorName",
+			errors.add(new ValidationError(getLabel("contributorName"),
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
 		}
 		// editor and redaktor are optional
@@ -122,7 +156,7 @@ public class Article extends ZettelModel {
 	private void validateResource(List<ValidationError> errors) {
 		if (containsNothing(getContainedIn())) {
 			setContainedIn(new ArrayList<>());
-			errors.add(new ValidationError("containedIn",
+			errors.add(new ValidationError(getLabel("containedIn"),
 					"Bitte geben Sie eine Quelle an."));
 		}
 		if (containsNothing(getPublicationYear())) {
@@ -145,17 +179,17 @@ public class Article extends ZettelModel {
 	// }
 
 	private void validateCataloging(List<ValidationError> errors) {
-		addErrorMessage("language",
+		addErrorMessage(getLabel("language"),
 				"Welche Sprache passt am ehesten zu Ihrer Eingabe?",
 				() -> getLanguage(), errors);
 		if (containsNothing(getProfessionalGroup())) {
 			setProfessionalGroup(new ArrayList<>());
-			errors.add(new ValidationError("professionalGroup",
+			errors.add(new ValidationError(getLabel("professionalGroup"),
 					"Bitte orden Sie Ihre Daten einer Fachgruppe zu!"));
 		}
 		if (containsNothing(getDdc())) {
 			setDdc(new ArrayList<>());
-			errors.add(new ValidationError("ddc",
+			errors.add(new ValidationError(getLabel("ddc"),
 					"Bitte orden Sie Ihre Daten einem Dewey Schlagwort zu!"));
 		}
 		// abstract and subject tags are optional
@@ -186,4 +220,12 @@ public class Article extends ZettelModel {
 	// // not, pop up a reminder.
 	// }
 
+	public boolean isValid(String addr) {
+		try {
+			URL url = new URL(addr);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }
