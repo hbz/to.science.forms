@@ -94,10 +94,6 @@ public class Article extends ZettelModel {
 		validate(getLabel("license"), l, errors);
 	}
 
-	private String getLabel(String name) {
-		return ZettelHelper.etikett.getLabel(name);
-	}
-
 	private void validate(String name, List<String> l,
 			List<ValidationError> errors) {
 		if (l == null || l.isEmpty())
@@ -133,21 +129,11 @@ public class Article extends ZettelModel {
 		if (containsNothing(getContributor())) {
 			setContributor(new ArrayList<>());
 		}
-		if (containsNothing(getCreatorName())) {
-			setCreatorName(new ArrayList<>());
-		}
-		if (containsNothing(getContributorName())) {
-			setContributorName(new ArrayList<>());
-		}
-		if (getCreator().isEmpty() && getContributor().isEmpty()
-				&& getCreatorName().isEmpty() && getContributorName().isEmpty()) {
+
+		if (getCreator().isEmpty() && getContributor().isEmpty()) {
 			errors.add(new ValidationError(getLabel("creator"),
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
 			errors.add(new ValidationError(getLabel("contributor"),
-					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-			errors.add(new ValidationError(getLabel("creatorName"),
-					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-			errors.add(new ValidationError(getLabel("contributorName"),
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
 		}
 		// editor and redaktor are optional

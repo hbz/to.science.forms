@@ -101,22 +101,13 @@ public class Proceeding extends ZettelModel {
 		if (containsNothing(getContributor())) {
 			setContributor(new ArrayList<>());
 		}
-		if (containsNothing(getCreatorName())) {
-			setCreatorName(new ArrayList<>());
-		}
-		if (containsNothing(getContributorName())) {
-			setContributorName(new ArrayList<>());
-		}
-		if (getCreator().isEmpty() && getContributor().isEmpty()
-				&& getCreatorName().isEmpty() && getContributorName().isEmpty()) {
-			errors.add(new ValidationError("creator",
+
+		if (getCreator().isEmpty() && getContributor().isEmpty()) {
+			errors.add(new ValidationError(getLabel("creator"),
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-			errors.add(new ValidationError("contributor",
-					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-			errors.add(new ValidationError("creatorName",
-					"Bitte geben Sie einen Autor oder Beteiligten an!"));
-			errors.add(new ValidationError("contributorName",
+			errors.add(new ValidationError(getLabel("contributor"),
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
 		}
+		// editor and redaktor are optional
 	}
 }

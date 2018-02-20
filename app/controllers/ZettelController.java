@@ -448,7 +448,7 @@ public class ZettelController extends Controller {
 			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
 			suggestThisAsNewEntry.put("label", q);
 			suggestThisAsNewEntry.put("value",
-					configuration.getString("regalApi") + "/adhoc/author/" + q);
+					configuration.getString("regalApi") + "/adhoc/creator/" + q);
 			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
