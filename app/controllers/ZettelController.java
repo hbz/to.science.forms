@@ -401,7 +401,7 @@ public class ZettelController extends Controller {
 				} else {
 					label.append(prefName.asText());
 				}
-				String id = m.at("/primaryTopic").asText();
+				String id = m.at("/id").asText();
 				Map<String, String> map = new HashMap<>();
 				map.put("label", label.toString());
 				map.put("value", id);
@@ -464,7 +464,7 @@ public class ZettelController extends Controller {
 					label.append(" -" + dod.asText());
 				// label.append(prof.asText());
 
-				String id = m.at("/primaryTopic").asText();
+				String id = m.at("/id").asText();
 				Map<String, String> map = new HashMap<>();
 				map.put("label", label.toString());
 				map.put("value", id);
@@ -524,7 +524,7 @@ public class ZettelController extends Controller {
 					label.append(" -" + dod.asText());
 				// label.append(prof.asText());
 
-				String id = m.at("/primaryTopic").asText();
+				String id = m.at("/id").asText();
 				Map<String, String> map = new HashMap<>();
 				map.put("label", label.toString());
 				map.put("value", id);
