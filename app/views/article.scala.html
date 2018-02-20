@@ -25,20 +25,11 @@
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
    @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
-				@multifieldText(myForm,jsonMap,"creatorName",services.ZettelFields.creatorNameZF.getLabel(),"free-text",4)
-				<br/>
 				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"gnd-person-search",14,ArticleHelper.getCorporateBodyLookupEndpoints())
-				<br/>
-				@multifieldText(myForm,jsonMap,"contributorName",services.ZettelFields.contributorNameZF.getLabel(),"free-text",4)
 				<br/>
 				@multifieldLd(myForm,jsonMap,"editor",services.ZettelFields.editorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
 			    @multifieldLd(myForm,jsonMap,"redaktor",services.ZettelFields.redaktorZF.getLabel(),"gnd-person-search",4,ArticleHelper.getPersonLookupEndpoints())
-		<!-- 	@**		    <br/>
-			    @contribution(myForm,jsonMap,"contribution",services.ZettelFields.contributionZF.getLabel(),"contribution-search",4,ArticleHelper.getPersonLookupEndpoints())
-			    <br/>
-			    @multiTextArea(myForm,jsonMap,"affiliation",services.ZettelFields.affiliationZF.getLabel(),"input-widget",9)
-				<br />**@ -->
 			    
 			}
 			@accordionPanel(services.ZettelFields.resourceHeaderZF.getLabel(),"upload-section"){
@@ -73,8 +64,6 @@
 				@multiselect(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel()+"*","select-ddc",ArticleHelper.getDeweyMap(),12)
 				<br />
 				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
-				<br />
-				@multifieldText(myForm,jsonMap,"subjectName",services.ZettelFields.subjectNameZF.getLabel(),"free-text",13)
 			}
 			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
 				<br />

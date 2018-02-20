@@ -36,6 +36,7 @@ import models.Article;
 import models.Chapter;
 import models.Proceeding;
 import models.ResearchData;
+import play.Configuration;
 import play.data.Form;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
@@ -61,6 +62,8 @@ public class ZettelController extends Controller {
 
 	@Inject
 	WSClient ws;
+	@Inject
+	Configuration configuration;
 
 	/**
 	 * @return the start page
@@ -385,6 +388,11 @@ public class ZettelController extends Controller {
 
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
+			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
+			suggestThisAsNewEntry.put("label", q);
+			suggestThisAsNewEntry.put("value",
+					configuration.getString("regalApi") + "/adhoc/subject/" + q);
+			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
@@ -436,6 +444,12 @@ public class ZettelController extends Controller {
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
+
+			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
+			suggestThisAsNewEntry.put("label", q);
+			suggestThisAsNewEntry.put("value",
+					configuration.getString("regalApi") + "/adhoc/author/" + q);
+			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
@@ -498,6 +512,12 @@ public class ZettelController extends Controller {
 
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
+			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
+			suggestThisAsNewEntry.put("label", q);
+			suggestThisAsNewEntry.put("value",
+
+					configuration.getString("regalApi") + "/adhoc/corporateBody/" + q);
+			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
