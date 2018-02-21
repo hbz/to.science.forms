@@ -42,6 +42,7 @@ import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.MyURLEncoding;
 import services.RdfUtils;
 import services.XmlUtils;
 import services.ZettelHelper;
@@ -390,8 +391,8 @@ public class ZettelController extends Controller {
 			List<Map<String, String>> result = new ArrayList<>();
 			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
 			suggestThisAsNewEntry.put("label", q);
-			suggestThisAsNewEntry.put("value",
-					configuration.getString("regalApi") + "/adhoc/subject/" + q);
+			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
+					+ "/adhoc/subject/" + MyURLEncoding.percentEncode(q));
 			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
@@ -447,8 +448,8 @@ public class ZettelController extends Controller {
 
 			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
 			suggestThisAsNewEntry.put("label", q);
-			suggestThisAsNewEntry.put("value",
-					configuration.getString("regalApi") + "/adhoc/creator/" + q);
+			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
+					+ "/adhoc/creator/" + MyURLEncoding.percentEncode(q));
 			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
@@ -516,7 +517,8 @@ public class ZettelController extends Controller {
 			suggestThisAsNewEntry.put("label", q);
 			suggestThisAsNewEntry.put("value",
 
-					configuration.getString("regalApi") + "/adhoc/corporateBody/" + q);
+					configuration.getString("regalApi") + "/adhoc/corporateBody/"
+							+ MyURLEncoding.percentEncode(q));
 			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {

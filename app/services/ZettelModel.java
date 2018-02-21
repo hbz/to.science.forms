@@ -1041,12 +1041,12 @@ public abstract class ZettelModel {
 				(in) -> setAssociatedDataset((String) in));
 		dict.put(referenceZF.uri, (in) -> setReference((String) in));
 		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
-		dict.put(subjectNameZF.uri,
-				(in) -> setSubjectName(regalApi + "/adhoc/subject/" + (String) in));
-		dict.put(creatorNameZF.uri,
-				(in) -> setCreatorName(regalApi + "/adhoc/creator/" + (String) in));
-		dict.put(contributorNameZF.uri, (in) -> setContributorName(
-				regalApi + "/adhoc/contributor/" + (String) in));
+		dict.put(subjectNameZF.uri, (in) -> setSubjectName(regalApi
+				+ "/adhoc/subject/" + MyURLEncoding.percentEncode((String) in)));
+		dict.put(creatorNameZF.uri, (in) -> setCreatorName(regalApi
+				+ "/adhoc/creator/" + MyURLEncoding.percentEncode((String) in)));
+		dict.put(contributorNameZF.uri, (in) -> setContributorName(regalApi
+				+ "/adhoc/contributor/" + MyURLEncoding.percentEncode((String) in)));
 		dict.put(reviewStatusZF.uri, (in) -> setReviewStatus((String) in));
 		dict.put(congressTitleZF.uri, (in) -> setCongressTitle((String) in));
 		dict.put(congressLocationZF.uri, (in) -> setCongressLocation((String) in));
