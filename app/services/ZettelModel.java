@@ -90,8 +90,6 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import javax.inject.Inject;
-
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.rdf4j.model.BNode;
 import org.eclipse.rdf4j.model.Statement;
@@ -104,7 +102,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import models.Agent;
 import models.Contribution;
-import play.Configuration;
 import play.Play;
 import play.data.validation.ValidationError;
 
@@ -199,6 +196,7 @@ public abstract class ZettelModel {
 	private List<String> associatedPublication = new ArrayList<>();
 	private List<String> associatedDataset = new ArrayList<>();
 	private List<String> reference = new ArrayList<>();
+	private List<String> subjectName;
 	private String usageManual;
 	private String reviewStatus;
 	private String congressTitle;
@@ -717,17 +715,17 @@ public abstract class ZettelModel {
 	}
 
 	public void setSubjectName(List<String> subjectName) {
-		this.subject = subjectName;
+		this.subjectName = subjectName;
 	}
 
 	public void setSubjectName(String in) {
-		if (subject == null || subject.isEmpty())
-			subject = new ArrayList<>();
-		subject.add(in);
+		if (subjectName == null || subjectName.isEmpty())
+			subjectName = new ArrayList<>();
+		subjectName.add(in);
 	}
 
 	public List<String> getSubjectName() {
-		return subject;
+		return subjectName;
 	}
 
 	public String getUsageManual() {
@@ -1041,12 +1039,11 @@ public abstract class ZettelModel {
 				(in) -> setAssociatedDataset((String) in));
 		dict.put(referenceZF.uri, (in) -> setReference((String) in));
 		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
-		dict.put(subjectNameZF.uri, (in) -> setSubjectName(regalApi
-				+ "/adhoc/subject/" + MyURLEncoding.encode((String) in)));
-		dict.put(creatorNameZF.uri, (in) -> setCreatorName(regalApi
-				+ "/adhoc/creator/" + MyURLEncoding.encode((String) in)));
-		dict.put(contributorNameZF.uri, (in) -> setContributorName(regalApi
-				+ "/adhoc/contributor/" + MyURLEncoding.encode((String) in)));
+		dict.put(subjectNameZF.uri, (in) -> setSubjectName((String) in));
+		dict.put(creatorNameZF.uri, (in) -> setCreatorName(
+				regalApi + "/adhoc/creator/" + MyURLEncoding.encode((String) in)));
+		dict.put(contributorNameZF.uri, (in) -> setContributorName(
+				regalApi + "/adhoc/contributor/" + MyURLEncoding.encode((String) in)));
 		dict.put(reviewStatusZF.uri, (in) -> setReviewStatus((String) in));
 		dict.put(congressTitleZF.uri, (in) -> setCongressTitle((String) in));
 		dict.put(congressLocationZF.uri, (in) -> setCongressLocation((String) in));

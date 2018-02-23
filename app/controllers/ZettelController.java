@@ -340,6 +340,13 @@ public class ZettelController extends Controller {
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode hits = response.asJson().at("/member");
 			List<Map<String, String>> result = new ArrayList<>();
+			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
+			suggestThisAsNewEntry.put("label", q);
+			suggestThisAsNewEntry.put("value",
+
+					configuration.getString("regalApi") + "/adhoc/journal/"
+							+ MyURLEncoding.encode(q));
+			result.add(suggestThisAsNewEntry);
 			hits.forEach((hit) -> {
 				String title = hit.at("/title").asText();
 				String publisher =
