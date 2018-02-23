@@ -392,7 +392,7 @@ public class ZettelController extends Controller {
 			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
 			suggestThisAsNewEntry.put("label", q);
 			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
-					+ "/adhoc/subject/" + MyURLEncoding.percentEncode(q));
+					+ "/adhoc/subject/" + MyURLEncoding.encode(q));
 			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
@@ -449,7 +449,7 @@ public class ZettelController extends Controller {
 			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
 			suggestThisAsNewEntry.put("label", q);
 			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
-					+ "/adhoc/creator/" + MyURLEncoding.percentEncode(q));
+					+ "/adhoc/creator/" + MyURLEncoding.encode(q));
 			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
@@ -518,7 +518,7 @@ public class ZettelController extends Controller {
 			suggestThisAsNewEntry.put("value",
 
 					configuration.getString("regalApi") + "/adhoc/corporateBody/"
-							+ MyURLEncoding.percentEncode(q));
+							+ MyURLEncoding.encode(q));
 			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
