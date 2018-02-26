@@ -746,10 +746,6 @@ public abstract class ZettelModel {
 		contributor.add(in);
 	}
 
-	public List<String> getContributorName() {
-		return contributor;
-	}
-
 	public String getReviewStatus() {
 		return reviewStatus;
 	}
