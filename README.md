@@ -10,13 +10,17 @@ The Following media types are supported
 
 # Get zettel running
 
-## Download Activator
+## Install sbt
 
-	cd /tmp
-	wget http://downloads.typesafe.com/typesafe-activator/1.3.2/typesafe-activator-1.3.2-minimal.zip
-	unzip typesafe-activator-1.3.2-minimal.zip
-	sudo mv activator-1.3.2-minimal /opt
-
+Got to [sbt download page](https://www.scala-sbt.org/download.html)
+**For debian do**
+	
+	
+    echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+    sudo apt-get update
+    sudo apt-get install sbt
+    
 ## Git clone    
     
     cd /tmp
@@ -165,7 +169,7 @@ start
 	cd /tmp
 	git clone https://github.com/hbz/zettel
 	cd /tmp/zettel
-	/opt/activator-1.3.2-minimal/activator dist
+	sbt dist
 	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
 	unzip zettel-1.0-SNAPSHOT.zip
