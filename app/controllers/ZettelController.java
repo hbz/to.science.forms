@@ -308,6 +308,12 @@ public class ZettelController extends Controller {
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode hits = response.asJson().at("/result");
 			List<Map<String, String>> result = new ArrayList<>();
+
+			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
+			suggestThisAsNewEntry.put("label", q);
+			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
+					+ "/adhoc/creator/" + MyURLEncoding.encode(q));
+			result.add(suggestThisAsNewEntry);
 			hits.forEach((hit) -> {
 
 				String id = hit.at("/orcid-identifier/uri").asText();
@@ -386,14 +392,8 @@ public class ZettelController extends Controller {
 				.setQueryParameter("filter", "type:SubjectHeadingSensoStricto")
 				.setRequestTimeout(5000);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
-
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
-			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
-			suggestThisAsNewEntry.put("label", q);
-			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
-					+ "/adhoc/subject/" + MyURLEncoding.percentEncode(q));
-			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
@@ -445,11 +445,10 @@ public class ZettelController extends Controller {
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
-
 			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
 			suggestThisAsNewEntry.put("label", q);
 			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
-					+ "/adhoc/creator/" + MyURLEncoding.percentEncode(q));
+					+ "/adhoc/creator/" + MyURLEncoding.encode(q));
 			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
@@ -510,15 +509,12 @@ public class ZettelController extends Controller {
 				.setQueryParameter("filter", "type:CorporateBody")
 				.setRequestTimeout(5000);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
-
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
 			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
 			suggestThisAsNewEntry.put("label", q);
-			suggestThisAsNewEntry.put("value",
-
-					configuration.getString("regalApi") + "/adhoc/corporateBody/"
-							+ MyURLEncoding.percentEncode(q));
+			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
+					+ "/adhoc/corporateBody/" + MyURLEncoding.encode(q));
 			result.add(suggestThisAsNewEntry);
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {

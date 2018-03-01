@@ -23,9 +23,9 @@
 				@smallTextArea(myForm,"alternative","Alternativer Titel","",4)
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
-   @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"gnd-person-search",5,ArticleHelper.getPersonLookupEndpoints())
+   @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel()+"*","gnd-person-search",5,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
-				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"gnd-person-search",6,ArticleHelper.getCorporateBodyLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel()+"*","gnd-person-search",6,ArticleHelper.getCorporateBodyLookupEndpoints())
 				<br/>
 				@multifieldLd(myForm,jsonMap,"editor",services.ZettelFields.editorZF.getLabel(),"gnd-person-search",7,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
@@ -63,7 +63,9 @@
 				<br />
 				@multiselect(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel()+"*","select-ddc",ArticleHelper.getDeweyMap(),20)
 				<br />
-				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"gnd-subject-search",21,ArticleHelper.getSubjectLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"gnd-subject-search",13,ArticleHelper.getSubjectLookupEndpoints())
+				<br />
+				@multifieldText(myForm,jsonMap,"subjectName",services.ZettelFields.subjectNameZF.getLabel(),"free-text",13)
 			}
 			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
 				<br />

@@ -102,9 +102,8 @@ public class Article extends ZettelModel {
 	}
 
 	private void validateStatus() {
-		addErrorMessage(getLabel("publicationStatus"),
-				String.format("Bitte vergeben tets Sie einen %s!",
-						getLabel("publicationStatus")),
+		addErrorMessage(getLabel("publicationStatus"), String
+				.format("Bitte vergeben Sie einen %s!", getLabel("publicationStatus")),
 				() -> getPublicationStatus());
 	}
 
@@ -133,12 +132,8 @@ public class Article extends ZettelModel {
 	private void validateResource() {
 		if (containsNothing(getContainedIn())) {
 			setContainedIn(new ArrayList<>());
-			play.Logger.debug(
-					errors + "\n==========================\n=========================");
 			errors.add(new ValidationError(getLabel("containedIn"),
 					"Bitte geben Sie eine Quelle an."));
-			play.Logger.debug(
-					errors + "\n==========================\n=========================");
 		}
 		if (containsNothing(getPublicationYear())) {
 			setPublicationYear("");

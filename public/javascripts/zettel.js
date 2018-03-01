@@ -88,6 +88,11 @@ function enableAutocompletion(inputElement,endpoint) {
 		});
 	}else if(gndCorporateBody == endpoint){
 		inputElement.autocomplete({
+			open: function(event, ui) {
+		        var firstListEntry=$(".ui-corner-all li:first-child a");
+		        firstListEntry.addClass("btn-success");
+		        firstListEntry.append(' <span class="fa fa-plus"></span>');
+		    },
 			select : function(event, ui) {
 				this.value = ui.item.value;
 				$(this).siblings(".input-field-heading").html(
@@ -140,6 +145,11 @@ function enableAutocompletion(inputElement,endpoint) {
 	}
 	else if(orcid == endpoint){
 		inputElement.autocomplete({
+			open: function(event, ui) {
+		        var firstListEntry=$(".ui-corner-all li:first-child a");
+		        firstListEntry.addClass("btn-success");
+		        firstListEntry.append(' <span class="fa fa-plus"></span>');
+		    },
 			select : function(event, ui) {
 				this.value = ui.item.value;
 				$(this).siblings(".input-field-heading").html(
@@ -212,6 +222,11 @@ function enableAutocompletion(inputElement,endpoint) {
 		});
 	}else if(gndPerson == endpoint){
 		inputElement.autocomplete({
+			open: function(event, ui) {
+		        var firstListEntry=$(".ui-corner-all li:first-child a");
+		        firstListEntry.addClass("btn-success");
+		        firstListEntry.append(' <span class="fa fa-plus"></span>');
+		    },
 			select : function(event, ui) {
 				this.value = ui.item.value;
 				$(this).siblings(".input-field-heading").html(
