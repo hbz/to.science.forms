@@ -253,10 +253,10 @@ public class ZettelController extends Controller {
 				"Origin, X-Requested-With, Content-Type, Accept");
 	}
 
-	private static Result listForms() {
+	private Result listForms() {
 		ZettelRegister zettelRegister = new ZettelRegister();
 		List<String> formList = zettelRegister.getIds();
-		return ok(forms.render(formList));
+		return ok(forms.render(formList, configuration));
 	}
 
 	private Result renderForm(ZettelRegisterEntry zettel, String format,

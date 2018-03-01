@@ -19,6 +19,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
@@ -92,6 +93,13 @@ public class Chapter extends ZettelModel {
 				() -> getLanguage(), errors);
 		addErrorMessage("medium", "Bitte ordnen Sie ihre Eingabe einem Medium zu!",
 				() -> getMedium(), errors);
+	}
+
+	void addErrorMessage(String fieldName, String message,
+			Supplier<String> getValue, List<ValidationError> errors) {
+		if (getValue.get() == null || getValue.get().isEmpty()) {
+			errors.add(new ValidationError(fieldName, message));
+		}
 	}
 
 	private void validateAuthorship(List<ValidationError> errors) {
