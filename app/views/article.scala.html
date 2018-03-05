@@ -39,7 +39,7 @@
 				<br/>
 				@singlefieldText(myForm,"publicationYear",services.ZettelFields.publicationYearZF.getLabel()+"*","",1)
 			}
-			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collectiopn-section"){
+			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collection-section"){
 				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"gnd-person-search",14,ArticleHelper.getCorporateBodyLookupEndpoints())
 				<br/>
 				@multicombobox(myForm,jsonMap,"collectionOne",services.ZettelFields.collectionOneZF.getLabel(),"leibniz-open-search",ArticleHelper.getCollectionOneMap(),15)
