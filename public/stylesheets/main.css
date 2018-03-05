@@ -82,10 +82,4 @@ select{
 max-width:450px;	
 }
 
-/* Hides first element in institution autocomplete widget,
-* in order to prevent linking to /adhoc endpoint
-*/
-#ui-id-14 li:nth-of-type(1){
-	display:none;
-}
 
