@@ -169,7 +169,7 @@ start
 	cd /tmp
 	git clone https://github.com/hbz/zettel
 	cd /tmp/zettel
-	sbt dist
+	sbt -batch dist
 	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
 	unzip zettel-1.0-SNAPSHOT.zip
