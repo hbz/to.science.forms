@@ -102,6 +102,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import models.Agent;
 import models.Contribution;
+import play.Play;
 import play.data.validation.ValidationError;
 
 /**
@@ -142,6 +143,7 @@ import play.data.validation.ValidationError;
 @SuppressWarnings("javadoc")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class ZettelModel {
+
 	static final String TYPE = "type";
 	static final String IS_PRIMARY_TOPIC_OF = "isPrimaryTopicOf";
 	static final String PRIMARY_TOPIC = "primaryTopic";
@@ -194,9 +196,7 @@ public abstract class ZettelModel {
 	private List<String> associatedPublication = new ArrayList<>();
 	private List<String> associatedDataset = new ArrayList<>();
 	private List<String> reference = new ArrayList<>();
-	private List<String> creatorName = new ArrayList<>();
-	private List<String> subjectName = new ArrayList<>();
-	private List<String> contributorName = new ArrayList<>();
+	private List<String> subjectName;
 	private String usageManual;
 	private String reviewStatus;
 	private String congressTitle;
@@ -700,22 +700,18 @@ public abstract class ZettelModel {
 		reference.add(in);
 	}
 
-	public List<String> getCreatorName() {
-		return creatorName;
-	}
-
 	public void setCreatorName(List<String> creatorName) {
-		this.creatorName = creatorName;
+		this.creator = creatorName;
 	}
 
 	public void setCreatorName(String in) {
-		if (creatorName == null || creatorName.isEmpty())
-			creatorName = new ArrayList<>();
-		creatorName.add(in);
+		if (creator == null || creator.isEmpty())
+			creator = new ArrayList<>();
+		creator.add(in);
 	}
 
-	public List<String> getSubjectName() {
-		return subjectName;
+	public List<String> setCreatorName() {
+		return creator;
 	}
 
 	public void setSubjectName(List<String> subjectName) {
@@ -728,6 +724,10 @@ public abstract class ZettelModel {
 		subjectName.add(in);
 	}
 
+	public List<String> getSubjectName() {
+		return subjectName;
+	}
+
 	public String getUsageManual() {
 		return usageManual;
 	}
@@ -736,18 +736,14 @@ public abstract class ZettelModel {
 		this.usageManual = usageManual;
 	}
 
-	public List<String> getContributorName() {
-		return contributorName;
-	}
-
 	public void setContributorName(List<String> contributorName) {
-		this.contributorName = contributorName;
+		this.contributor = contributorName;
 	}
 
 	public void setContributorName(String in) {
-		if (contributorName == null || contributorName.isEmpty())
-			contributorName = new ArrayList<>();
-		contributorName.add(in);
+		if (contributor == null || contributor.isEmpty())
+			contributor = new ArrayList<>();
+		contributor.add(in);
 	}
 
 	public String getReviewStatus() {
@@ -1001,6 +997,7 @@ public abstract class ZettelModel {
 	 * @return a map that maps a uri to a setter method
 	 */
 	protected Map<String, Consumer<Object>> getMappingForDeserialization() {
+		String regalApi = Play.application().configuration().getString("regalApi");
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
 		dict.put(creatorZF.uri, (in) -> setCreator((String) in));
@@ -1039,8 +1036,10 @@ public abstract class ZettelModel {
 		dict.put(referenceZF.uri, (in) -> setReference((String) in));
 		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
 		dict.put(subjectNameZF.uri, (in) -> setSubjectName((String) in));
-		dict.put(creatorNameZF.uri, (in) -> setCreatorName((String) in));
-		dict.put(contributorNameZF.uri, (in) -> setContributorName((String) in));
+		dict.put(creatorNameZF.uri, (in) -> setCreatorName(
+				regalApi + "/adhoc/creator/" + MyURLEncoding.encode((String) in)));
+		dict.put(contributorNameZF.uri, (in) -> setContributorName(
+				regalApi + "/adhoc/contributor/" + MyURLEncoding.encode((String) in)));
 		dict.put(reviewStatusZF.uri, (in) -> setReviewStatus((String) in));
 		dict.put(congressTitleZF.uri, (in) -> setCongressTitle((String) in));
 		dict.put(congressLocationZF.uri, (in) -> setCongressLocation((String) in));
@@ -1230,5 +1229,9 @@ public abstract class ZettelModel {
 		topicMap.put(ZettelModel.ID, topicId);
 		topicMap.put(ZettelModel.PRIMARY_TOPIC, documentId);
 		jsonMap.put(ZettelModel.IS_PRIMARY_TOPIC_OF, topicMap);
+	}
+
+	protected String getLabel(String name) {
+		return ZettelHelper.etikett.getLabel(name);
 	}
 }
