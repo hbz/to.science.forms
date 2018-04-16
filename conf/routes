@@ -10,3 +10,4 @@ GET 	/journalAutocomplete 		controllers.ZettelController.journalAutocomplete(q:S
 GET 	/subjectAutocomplete 		controllers.ZettelController.subjectAutocomplete(q:String?=null)
 GET 	/personAutocomplete 		controllers.ZettelController.personAutocomplete(q:String?=null)
 GET 	/corporateBodyAutocomplete 		controllers.ZettelController.corporateBodyAutocomplete(q:String?=null)
+GET 	/lobidAutocomplete 		controllers.ZettelController.lobidAutocomplete(q:String?=null)

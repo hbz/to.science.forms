@@ -177,4 +177,6 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/publisherVersion");
 	public static Etikett fulltextVersionZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/fulltextVersion");
+	public static Etikett parallelEditionZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#parallelEdition");
 }

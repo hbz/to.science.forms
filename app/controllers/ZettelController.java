@@ -37,6 +37,7 @@ import models.Chapter;
 import models.Proceeding;
 import models.ResearchData;
 import play.Configuration;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
@@ -110,6 +111,9 @@ public class ZettelController extends Controller {
 		if (id == null)
 			result = listForms();
 		else {
+			if (id.equals("katalog:monograph")) {
+				id = "katalog:catalog";
+			}
 			ZettelRegister zettelRegister = new ZettelRegister();
 			ZettelRegisterEntry zettel = zettelRegister.get(id);
 			result = renderForm(zettel, format, documentId, topicId);
@@ -543,6 +547,51 @@ public class ZettelController extends Controller {
 				// label.append(prof.asText());
 
 				String id = m.at("/id").asText();
+				Map<String, String> map = new HashMap<>();
+				map.put("label", label.toString());
+				map.put("value", id);
+				result.add(map);
+			});
+			String searchResult = ZettelHelper.objectToString(result);
+			String myResponse = callback != null
+					? String.format("/**/%s(%s)", callback[0], searchResult)
+					: searchResult;
+			return ok(myResponse);
+		});
+	}
+
+	/**
+	 * @param q a query against lobid
+	 * @return a jsonp result
+	 */
+	public CompletionStage<Result> lobidAutocomplete(String q) {
+		final String[] callback =
+				request() == null || request().queryString() == null ? null
+						: request().queryString().get("callback");
+		String lobidUrl = "https://lobid.org/resources/search";
+		WSRequest request = ws.url(lobidUrl);
+		String queryString = q;
+		WSRequest complexRequest = request.setQueryParameter("q", queryString)
+				.setQueryParameter("format", "json").setRequestTimeout(5000);
+		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
+			JsonNode root = response.asJson();
+			List<Map<String, String>> result = new ArrayList<>();
+			JsonNode member = root.at("/member");
+			member.forEach((m) -> {
+				StringBuffer label = new StringBuffer();
+				label.append(m.at("/hbzId").asText());
+				label.append(" - ");
+				JsonNode prefName = m.at("/title");
+				if (prefName.isArray()) {
+					prefName.forEach((p) -> {
+						label.append(p.asText() + ",");
+					});
+					label.deleteCharAt(label.length() - 1);
+				} else {
+					label.append(prefName.asText());
+				}
+
+				String id = m.at("/id").asText().replaceAll("#!", "");
 				Map<String, String> map = new HashMap<>();
 				map.put("label", label.toString());
 				map.put("value", id);

@@ -234,6 +234,12 @@ public class ArticleHelper {
 		return map;
 	}
 
+	public static LinkedHashMap<String, String> getLobidLookupEndpoints() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("/tools/zettel/lobidAutocomplete", "Lobid 2");
+		return map;
+	}
+
 	public static LinkedHashMap<String, String> getEmptyLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		return map;

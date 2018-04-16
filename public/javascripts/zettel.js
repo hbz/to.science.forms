@@ -25,6 +25,9 @@ function addContributionValues(autocompleteItem){
 	 });
 }
 function enableAutocompletionEndpoints() {
+	$('.lobid-search input').each(function() {
+		addAutocompletionWithDynamicEndpoint($(this));
+	});
 	$('.gnd-subject-search input').each(function() {
 		addAutocompletionWithDynamicEndpoint($(this));
 	});
@@ -56,9 +59,10 @@ function enableAutocompletion(inputElement,endpoint) {
 	var agrovoc="/tools/skos-lookup/autocomplete";
 	var orcid="/tools/zettel/orcidAutocomplete";
 	var gndSubject="/tools/zettel/subjectAutocomplete";
-	var gndTitle = "https://lobid.org/resource";
+	var gndTitle = "/tools/zettel/lobidAutocomplete";
 	var journal = "/tools/zettel/journalAutocomplete";
 	var gndCorporateBody ="/tools/zettel/corporateBodyAutocomplete";
+	
 	
 	if(gndTitle==endpoint){
 		inputElement.autocomplete({
@@ -385,6 +389,10 @@ function destroyGndAutocompletion() {
 		$(this).autocomplete('destroy');
 		$(this).removeData('autocomplete');
 	});
+	$('.lobid-search input').each(function() {
+		$(this).autocomplete('destroy');
+		$(this).removeData('autocomplete');
+	});
 }
 
 function resetIds() {
@@ -416,6 +424,7 @@ function addActionsToRemoveAndAddButtons() {
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
 			newField.appendTo($wrapper).find('.input-widget').val('').focus();
 			newField.appendTo($wrapper).find('.gnd-person-search.input-widget').css('display','inline');
+			newField.appendTo($wrapper).find('.lobid-search.input-widget').css('display','inline');
 			newField.appendTo($wrapper).find('.gnd-subject-search.input-widget').css('display','inline');
 			newField.appendTo($wrapper).find('select').css('display','inline');
 			newField.appendTo($wrapper).find('.help-text').css('display','none');

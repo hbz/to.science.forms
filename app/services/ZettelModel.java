@@ -78,6 +78,7 @@ import static services.ZettelFields.urnZF;
 import static services.ZettelFields.usageManualZF;
 import static services.ZettelFields.volumeInZF;
 import static services.ZettelFields.yearOfCopyrightZF;
+import static services.ZettelFields.parallelEditionZF;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -228,6 +229,7 @@ public abstract class ZettelModel {
 	private List<String> publisherVersion = new ArrayList<>();
 	private List<String> fulltextVersion = new ArrayList<>();
 	private List<String> additionalMaterial = new ArrayList<>();
+	private String parallelEdition;
 
 	public String getPublicationYear() {
 		return publicationYear;
@@ -926,6 +928,14 @@ public abstract class ZettelModel {
 		this.agent = agent;
 	}
 
+	public String getParallelEdition() {
+		return parallelEdition;
+	}
+
+	public void setParallelEdition(String parallelEdition) {
+		this.parallelEdition = parallelEdition;
+	}
+
 	@Override
 	public String toString() {
 		return ZettelHelper.objectToString(serializeToMap());
@@ -1070,6 +1080,7 @@ public abstract class ZettelModel {
 		dict.put(publisherVersionZF.uri, (in) -> setPublisherVersion((String) in));
 		dict.put(additionalMaterialZF.uri,
 				(in) -> setAdditionalMaterial((String) in));
+		dict.put(parallelEditionZF.uri, (in) -> setParallelEdition((String) in));
 		return dict;
 	}
 
