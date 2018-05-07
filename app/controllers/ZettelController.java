@@ -397,9 +397,8 @@ public class ZettelController extends Controller {
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
-				m.at("/gndIdentifier").forEach((id) -> {
-					label.append(id);
-				});
+
+				label.append(m.at("/gndIdentifier"));
 				label.append(" - ");
 				JsonNode prefName = m.at("/preferredName");
 				if (prefName.isArray()) {
@@ -439,7 +438,7 @@ public class ZettelController extends Controller {
 		WSRequest complexRequest = request.setQueryParameter("q", queryString)
 				.setQueryParameter("format", "json")
 				.setQueryParameter("filter", "type:DifferentiatedPerson")
-				.setRequestTimeout(5000);
+				.setHeader("accept", "application/json").setRequestTimeout(5000);
 		play.Logger.info(
 				"GET " + complexRequest.getUrl() + complexRequest.getQueryParameters());
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
@@ -453,9 +452,9 @@ public class ZettelController extends Controller {
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
-				m.at("/gndIdentifier").forEach((id) -> {
-					label.append(id);
-				});
+
+				label.append(m.at("/gndIdentifier"));
+
 				label.append(" - ");
 				JsonNode prefName = m.at("/preferredName");
 
@@ -519,9 +518,8 @@ public class ZettelController extends Controller {
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
-				m.at("/gndIdentifier").forEach((id) -> {
-					label.append(id);
-				});
+
+				label.append(m.at("/gndIdentifier"));
 				label.append(" - ");
 				JsonNode prefName = m.at("/preferredName");
 				if (prefName.isArray()) {
