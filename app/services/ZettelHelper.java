@@ -147,6 +147,7 @@ public class ZettelHelper {
 						if ("xml".equals(format)) {
 							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
 									RDFFormat.RDFXML, "");
+							play.Logger.debug(rdfString);
 							result = new JsonMessage(rdfString, 200);
 						} else if ("ntriples".equals(format)) {
 							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,

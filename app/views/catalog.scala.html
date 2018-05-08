@@ -1,0 +1,28 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@ 
+
+@(myForm:Form[services.ZettelModel],dataFormat:String,documentId:String,topicId:String,formType:String)
+@import tags._ 
+@import services._
+
+@jsonMap=@{ZettelHelper.getJsonMap(myForm)}
+@zettel("Katalog Object",myForm,dataFormat,documentId,topicId,formType) {
+	@if(myForm.hasGlobalErrors) {
+		<p class="error">@myForm.globalError.message</p>
+	} 
+	@helper.form(action = routes.ZettelController.postForm(Catalog.id,dataFormat,documentId,topicId)){
+		@accordion(""){
+			@accordionPanel("Titel Import","catalogsection"){			
+				@ldInputField(myForm,"parallelEdition","Suche","lobid-search",1,ArticleHelper.getLobidLookupEndpoints()){
+				@helpText("parallelEdition")
+				}
+				<br />
+				}
+		}	
+		<div class="form-group row">
+			<div class="col-sm-offset-8 col-sm-4">
+				<input id="cancel" class="cancel btn" type="button" value="Cancel" />
+				<input type="submit" value="Save" class="btn btn-success" />
+			</div>
+		</div>
+	} 
+}
