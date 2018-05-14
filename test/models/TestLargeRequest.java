@@ -1,6 +1,6 @@
+package models;
 
 import static play.test.Helpers.HTMLUNIT;
-import static play.test.Helpers.contentAsString;
 import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.route;
@@ -15,23 +15,18 @@ import javax.inject.Inject;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.junit.Test;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
 
-import akka.stream.Materializer;
-import akka.util.ByteString;
-import models.Article;
-import models.ZettelModel;
-import play.core.j.JavaResultExtractor;
-import play.data.Form;
-import play.http.HttpEntity;
 import play.mvc.Http.RequestBuilder;
-import play.test.Helpers;
+import play.Configuration;
 import play.mvc.Result;
+import play.test.Helpers;
+import services.MyURLEncoding;
 import services.RdfUtils;
 
 public class TestLargeRequest {
+
+	private static final int MAX_NUM = 180;
 
 	@Test
 	public void testLargeFile() {
@@ -53,12 +48,32 @@ public class TestLargeRequest {
 						play.mvc.Result result = route(request);
 						while (true) {
 							org.junit.Assert.assertEquals(200, result.status());
-							String jsonString = resultToString(result);
-							play.Logger.info(jsonString);
-							Article article = mapper.readValue(jsonString, Article.class);
-							article.setCreator("One More");
-							play.Logger.info(article.getCreator().size() + "creators added");
 
+							String jsonString = resultToString(result);
+							// play.Logger.info(jsonString);
+							Article article = mapper.readValue(jsonString, Article.class);
+							article.addCreator("https://api.localhost/adhoc/creator/"
+									+ MyURLEncoding.encode("One More"));
+							article.addFunding("https://api.localhost/adhoc/creator/"
+									+ MyURLEncoding.encode("One More"));
+							play.Logger.info(article.getCreator().size() + " creators added");
+
+							play.Logger.info(article.getFunding().size() + " funding added");
+							if (article.getCreator().size() >= MAX_NUM)
+								return;
+							rdfString = RdfUtils.readRdfToString(
+									new ByteArrayInputStream(
+											article.toString().getBytes("utf-8")),
+									RDFFormat.JSONLD, RDFFormat.RDFXML, "");
+							play.Logger.debug("Send Request");
+							request = new RequestBuilder().method("POST")
+									.header("content-type", "application/rdf+xml")
+									.header("accept", "application/json").bodyText(rdfString)
+									.uri(controllers.routes.ZettelController
+											.postForm("katalog:article", "json", "frl:6407884",
+													"frl:6407884.rdf")
+											.url());
+							result = route(request);
 						}
 
 					} catch (Exception e) {
