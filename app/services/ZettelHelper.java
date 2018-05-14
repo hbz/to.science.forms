@@ -32,6 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import models.JsonMessage;
+import models.ZettelModel;
 import play.data.Form;
 
 /**

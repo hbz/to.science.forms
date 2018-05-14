@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import play.data.validation.ValidationError;
 import services.ZettelHelper;
-import services.ZettelModel;
 
 /**
  * @author Jan Schnasse
