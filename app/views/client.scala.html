@@ -1,7 +1,6 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
 @(heading:String,myFormat:String,formId:String,documentId:String,topicId:String)
 @import play.api.Play.current
-@context=@{play.api.Play.configuration.getString("play.http.context").getOrElse("")}
 
 <!DOCTYPE html>
 <html>
@@ -32,9 +31,9 @@
 		jQuery('#warningBox').css('visibility', 'hidden');
 	}
 	function onFail(data) {
-		jQuery('#warningBox').html(data);
+		/*jQuery('#warningBox').html(data);
 		jQuery('#warningBox').css('visibility', 'visible');
-		jQuery('#successBox').css('visibility', 'hidden');
+		jQuery('#successBox').css('visibility', 'hidden');*/
 	}
 	function getMessage(e) {
 		var obj = JSON.parse(e);

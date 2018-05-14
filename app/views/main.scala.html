@@ -1,7 +1,7 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(title: String)(content: Html) 
+@(title: String)(content: Html)(implicit configuration:play.Configuration)
 
-@context=@{play.api.Play.configuration.getString("play.http.context").getOrElse("")}
+@context=@{configuration.getString("play.http.context")}
 
 @import play.api.Play.current
 
@@ -41,7 +41,7 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand"
-					href="@play.api.Play.configuration.getString("application.context").getOrElse("")">@title</a>
+					href="@configuration.getString("application.context")">@title</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">

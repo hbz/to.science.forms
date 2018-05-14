@@ -144,7 +144,7 @@ import play.data.validation.ValidationError;
 @SuppressWarnings("javadoc")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class ZettelModel {
-
+	protected List<ValidationError> errors = new ArrayList<>();
 	static final String TYPE = "type";
 	static final String IS_PRIMARY_TOPIC_OF = "isPrimaryTopicOf";
 	static final String PRIMARY_TOPIC = "primaryTopic";
@@ -1084,14 +1084,12 @@ public abstract class ZettelModel {
 		return dict;
 	}
 
-	protected static void addErrorMessage(String fieldName, String message,
-			Supplier<String> getValue, List<ValidationError> errors) {
-		if (getValue.get() == null || getValue.get().isEmpty()) {
-			errors.add(new ValidationError(fieldName, message));
-		}
+	public List<ValidationError> getErrors() {
+
+		return errors;
 	}
 
-	protected static boolean containsNothing(List<String> list) {
+	protected boolean containsNothing(List<String> list) {
 		if (list == null || list.isEmpty())
 			return true;
 		for (String i : list) {
@@ -1102,7 +1100,7 @@ public abstract class ZettelModel {
 		return true;
 	}
 
-	protected static boolean containsNothing(String value) {
+	protected boolean containsNothing(String value) {
 		return StringUtils.isEmpty(value);
 	}
 

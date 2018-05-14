@@ -1,11 +1,11 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@
-@(forms : List[String])
+@(forms : List[String])(implicit configuration:play.Configuration)
 
 @import play.api.Play.current;
 @import play.data.Form;
 @import java.util.List;
 
-@context = @{play.api.Play.configuration.getString("play.http.context").getOrElse("")}
+@context = @{configuration.getString("play.http.context")}
 
 @main("Zettel") {
 <h1>Available Form Models</h1>

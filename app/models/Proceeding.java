@@ -19,6 +19,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
@@ -33,7 +34,6 @@ import services.ZettelModel;
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Proceeding extends ZettelModel {
-
 	/**
 	 * The id under which this model is registered in the ZettelRegister
 	 */
@@ -63,6 +63,13 @@ public class Proceeding extends ZettelModel {
 		validateSimpleFields(errors);
 		validateListFields(errors);
 		return errors.isEmpty() ? null : errors;
+	}
+
+	void addErrorMessage(String fieldName, String message,
+			Supplier<String> getValue, List<ValidationError> errors) {
+		if (getValue.get() == null || getValue.get().isEmpty()) {
+			errors.add(new ValidationError(fieldName, message));
+		}
 	}
 
 	private void validateListFields(List<ValidationError> errors) {
