@@ -18,6 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package services;
 
 import models.Chapter;
+import models.ZettelModel;
 import play.data.Form;
 import play.twirl.api.Content;
 import views.html.chapter;

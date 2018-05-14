@@ -15,7 +15,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package services;
+package models;
 
 import static services.ZettelFields.abstractTextZF;
 import static services.ZettelFields.additionalMaterialZF;
@@ -91,6 +91,10 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.rdf4j.model.BNode;
 import org.eclipse.rdf4j.model.Statement;
@@ -101,10 +105,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import models.Agent;
-import models.Contribution;
 import play.Play;
 import play.data.validation.ValidationError;
+import services.MyURLEncoding;
+import services.RdfUtils;
+import services.ZettelHelper;
 
 /**
  * ZettelModel provides an abstract base class for all models used in model
@@ -572,7 +577,7 @@ public abstract class ZettelModel {
 			contributor.add(in);
 	}
 
-	public void setCreator(String in) {
+	void setCreator(String in) {
 		play.Logger.debug("Add creator " + in);
 		if (creator == null || creator.isEmpty())
 			creator = new ArrayList<>();
