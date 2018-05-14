@@ -22,7 +22,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import play.data.validation.ValidationError;
-import services.ZettelModel;
+import models.ZettelModel;
 
 /**
  * @author Jan Schnasse

@@ -101,6 +101,7 @@ import org.eclipse.rdf4j.model.Statement;
 import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.rio.RDFFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -147,6 +148,7 @@ import services.ZettelHelper;
  *
  */
 @SuppressWarnings("javadoc")
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class ZettelModel {
 
@@ -157,7 +159,6 @@ public abstract class ZettelModel {
 	static final String LABEL = "prefLabel";
 	@JsonProperty(ID)
 	private String documentId;
-	@JsonProperty(IS_PRIMARY_TOPIC_OF)
 	private String topicId;
 
 	/**
@@ -260,7 +261,7 @@ public abstract class ZettelModel {
 		this.congressHost = congressHost;
 	}
 
-	public void setCongressHost(String in) {
+	public void addCongressHost(String in) {
 		if (congressHost == null || congressHost.isEmpty())
 			congressHost = new ArrayList<>();
 		congressHost.add(in);
@@ -322,7 +323,7 @@ public abstract class ZettelModel {
 		containedIn = in;
 	}
 
-	public void setContainedIn(String in) {
+	public void addContainedIn(String in) {
 		if (containedIn == null || containedIn.isEmpty())
 			containedIn = new ArrayList<>();
 		containedIn.add(in);
@@ -380,7 +381,7 @@ public abstract class ZettelModel {
 		this.professionalGroup = professionalGroup;
 	}
 
-	public void setProfessionalGroup(String in) {
+	public void addProfessionalGroup(String in) {
 		if (professionalGroup == null || professionalGroup.isEmpty())
 			professionalGroup = new ArrayList<>();
 		professionalGroup.add(in);
@@ -438,7 +439,7 @@ public abstract class ZettelModel {
 		this.dataOrigin = dataOrigin;
 	}
 
-	public void setDataOrigin(String in) {
+	public void addDataOrigin(String in) {
 		if (dataOrigin == null || dataOrigin.isEmpty())
 			dataOrigin = new ArrayList<>();
 		dataOrigin.add(in);
@@ -516,68 +517,68 @@ public abstract class ZettelModel {
 		this.isLike = isLike;
 	}
 
-	public void setContributorOrder(String in) {
+	public void addContributorOrder(String in) {
 		if (contributorOrder == null || contributorOrder.isEmpty())
 			contributorOrder = new ArrayList<>();
 		contributorOrder.add(in);
 	}
 
-	public void setIsLike(String in) {
+	public void addIsLike(String in) {
 		if (isLike == null || isLike.isEmpty())
 			isLike = new ArrayList<>();
 		isLike.add(in);
 	}
 
-	public void setUrn(String in) {
+	public void addUrn(String in) {
 		if (urn == null || urn.isEmpty())
 			urn = new ArrayList<>();
 		urn.add(in);
 	}
 
-	public void setDoi(String in) {
+	public void addDoi(String in) {
 		if (doi == null || doi.isEmpty())
 			doi = new ArrayList<>();
 		doi.add(in);
 	}
 
-	public void setRecordingCoordinates(String in) {
+	public void addRecordingCoordinates(String in) {
 		if (recordingCoordinates == null || recordingCoordinates.isEmpty())
 			recordingCoordinates = new ArrayList<>();
 		recordingCoordinates.add(in);
 	}
 
-	public void setRecordingLocation(String in) {
+	public void addRecordingLocation(String in) {
 		if (recordingLocation == null || recordingLocation.isEmpty())
 			recordingLocation = new ArrayList<>();
 		recordingLocation.add(in);
 	}
 
-	public void setFunding(String in) {
+	public void addFunding(String in) {
 		if (funding == null || funding.isEmpty())
 			funding = new ArrayList<>();
 		funding.add(in);
 	}
 
-	public void setDdc(String in) {
+	public void addDdc(String in) {
 		if (ddc == null || ddc.isEmpty())
 			ddc = new ArrayList<>();
 		ddc.add(in);
 	}
 
-	public void setSubject(String in) {
+	public void addSubject(String in) {
 		if (subject == null || subject.isEmpty())
 			subject = new ArrayList<>();
 		subject.add(in);
 	}
 
-	public void setContributor(String in) {
+	public void addContributor(String in) {
 		if (contributor == null || contributor.isEmpty())
 			contributor = new ArrayList<>();
 		if (in != null && !in.isEmpty())
 			contributor.add(in);
 	}
 
-	void setCreator(String in) {
+	public void addCreator(String in) {
 		play.Logger.debug("Add creator " + in);
 		if (creator == null || creator.isEmpty())
 			creator = new ArrayList<>();
@@ -645,7 +646,7 @@ public abstract class ZettelModel {
 		this.projectId = projectId;
 	}
 
-	public void setProjectId(String in) {
+	public void addProjectId(String in) {
 		if (projectId == null || projectId.isEmpty())
 			projectId = new ArrayList<>();
 		projectId.add(in);
@@ -659,7 +660,7 @@ public abstract class ZettelModel {
 		this.fundingProgram = fundingProgram;
 	}
 
-	public void setFundingProgram(String in) {
+	public void addFundingProgram(String in) {
 		if (fundingProgram == null || fundingProgram.isEmpty())
 			fundingProgram = new ArrayList<>();
 		fundingProgram.add(in);
@@ -673,7 +674,7 @@ public abstract class ZettelModel {
 		this.associatedPublication = associatedPublication;
 	}
 
-	public void setAssociatedPublication(String in) {
+	public void addAssociatedPublication(String in) {
 		if (associatedPublication == null || associatedPublication.isEmpty())
 			associatedPublication = new ArrayList<>();
 		associatedPublication.add(in);
@@ -687,7 +688,7 @@ public abstract class ZettelModel {
 		this.associatedDataset = associatedDataset;
 	}
 
-	public void setAssociatedDataset(String in) {
+	public void addAssociatedDataset(String in) {
 		if (associatedDataset == null || associatedDataset.isEmpty())
 			associatedDataset = new ArrayList<>();
 		associatedDataset.add(in);
@@ -701,7 +702,7 @@ public abstract class ZettelModel {
 		this.reference = reference;
 	}
 
-	public void setReference(String in) {
+	public void addReference(String in) {
 		if (reference == null || reference.isEmpty())
 			reference = new ArrayList<>();
 		reference.add(in);
@@ -711,7 +712,7 @@ public abstract class ZettelModel {
 		this.creator = creatorName;
 	}
 
-	public void setCreatorName(String in) {
+	public void addCreatorName(String in) {
 		if (creator == null || creator.isEmpty())
 			creator = new ArrayList<>();
 		creator.add(in);
@@ -747,7 +748,7 @@ public abstract class ZettelModel {
 		this.contributor = contributorName;
 	}
 
-	public void setContributorName(String in) {
+	public void addContributorName(String in) {
 		if (contributor == null || contributor.isEmpty())
 			contributor = new ArrayList<>();
 		contributor.add(in);
@@ -785,7 +786,7 @@ public abstract class ZettelModel {
 		this.congressDuration = congressDuration;
 	}
 
-	public void setCongressDuration(String in) {
+	public void addCongressDuration(String in) {
 		if (congressDuration == null || congressDuration.isEmpty())
 			congressDuration = new ArrayList<>();
 		congressDuration.add(in);
@@ -823,7 +824,7 @@ public abstract class ZettelModel {
 		this.abstractText = abstractText;
 	}
 
-	public void setAbstractText(String in) {
+	public void addAbstractText(String in) {
 		if (abstractText == null || abstractText.isEmpty())
 			abstractText = new ArrayList<>();
 		abstractText.add(in);
@@ -837,7 +838,7 @@ public abstract class ZettelModel {
 		this.editor = editor;
 	}
 
-	public void setEditor(String in) {
+	public void addEditor(String in) {
 		if (editor == null || editor.isEmpty())
 			editor = new ArrayList<>();
 		editor.add(in);
@@ -851,7 +852,7 @@ public abstract class ZettelModel {
 		this.redaktor = redaktor;
 	}
 
-	public void setRedaktor(String in) {
+	public void addRedaktor(String in) {
 		if (redaktor == null || redaktor.isEmpty())
 			redaktor = new ArrayList<>();
 		redaktor.add(in);
@@ -865,7 +866,7 @@ public abstract class ZettelModel {
 		institution = in;
 	}
 
-	public void setInstitution(String in) {
+	public void addInstitution(String in) {
 		if (institution == null || institution.isEmpty())
 			institution = new ArrayList<>();
 		institution.add(in);
@@ -903,7 +904,7 @@ public abstract class ZettelModel {
 		this.affiliation = affiliation;
 	}
 
-	public void setAffiliation(String in) {
+	public void addAffiliation(String in) {
 		if (affiliation == null || affiliation.isEmpty())
 			affiliation = new ArrayList<>();
 		affiliation.add(in);
@@ -960,7 +961,7 @@ public abstract class ZettelModel {
 		this.congressHost = collectionOne;
 	}
 
-	public void setCollectionOne(String in) {
+	public void addCollectionOne(String in) {
 		if (collectionOne == null || collectionOne.isEmpty())
 			collectionOne = new ArrayList<>();
 		collectionOne.add(in);
@@ -974,7 +975,7 @@ public abstract class ZettelModel {
 		additionalMaterial = in;
 	}
 
-	public void setAdditionalMaterial(String in) {
+	public void addAdditionalMaterial(String in) {
 		if (additionalMaterial == null || additionalMaterial.isEmpty())
 			additionalMaterial = new ArrayList<>();
 		additionalMaterial.add(in);
@@ -988,7 +989,7 @@ public abstract class ZettelModel {
 		publisherVersion = in;
 	}
 
-	public void setPublisherVersion(String in) {
+	public void addPublisherVersion(String in) {
 		if (publisherVersion == null || publisherVersion.isEmpty())
 			publisherVersion = new ArrayList<>();
 		publisherVersion.add(in);
@@ -1002,7 +1003,7 @@ public abstract class ZettelModel {
 		fulltextVersion = in;
 	}
 
-	public void setFulltextVersion(String in) {
+	public void addFulltextVersion(String in) {
 		if (fulltextVersion == null || fulltextVersion.isEmpty())
 			fulltextVersion = new ArrayList<>();
 		fulltextVersion.add(in);
@@ -1015,58 +1016,58 @@ public abstract class ZettelModel {
 		String regalApi = Play.application().configuration().getString("regalApi");
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
-		dict.put(creatorZF.uri, (in) -> setCreator((String) in));
-		dict.put(contributorZF.uri, (in) -> setContributor((String) in));
-		dict.put(dataOriginZF.uri, (in) -> setDataOrigin((String) in));
+		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
+		dict.put(contributorZF.uri, (in) -> addContributor((String) in));
+		dict.put(dataOriginZF.uri, (in) -> addDataOrigin((String) in));
 		dict.put(embargoTimeZF.uri, (in) -> setEmbargoTime((String) in));
 		dict.put(languageZF.uri, (in) -> setLanguage((String) in));
 		dict.put(licenseZF.uri, (in) -> setLicense((String) in));
 		dict.put(mediumZF.uri, (in) -> setMedium((String) in));
 		dict.put(professionalGroupZF.uri,
-				(in) -> setProfessionalGroup((String) in));
-		dict.put(subjectZF.uri, (in) -> setSubject((String) in));
+				(in) -> addProfessionalGroup((String) in));
+		dict.put(subjectZF.uri, (in) -> addSubject((String) in));
 		dict.put(yearOfCopyrightZF.uri, (in) -> setYearOfCopyright((String) in));
-		dict.put(ddcZF.uri, (in) -> setDdc((String) in));
-		dict.put(fundingZF.uri, (in) -> setFunding((String) in));
+		dict.put(ddcZF.uri, (in) -> addDdc((String) in));
+		dict.put(fundingZF.uri, (in) -> addFunding((String) in));
 		dict.put(recordingPeriodZF.uri, (in) -> setRecordingPeriod((String) in));
 		dict.put(recordingLocationZF.uri,
-				(in) -> setRecordingLocation((String) in));
+				(in) -> addRecordingLocation((String) in));
 		dict.put(recordingCoordinatesZF.uri,
-				(in) -> setRecordingCoordinates((String) in));
+				(in) -> addRecordingCoordinates((String) in));
 		dict.put(nextVersionZF.uri, (in) -> setNextVersion((String) in));
 		dict.put(previousVersionZF.uri, (in) -> setPreviousVersion((String) in));
-		dict.put(doiZF.uri, (in) -> setDoi((String) in));
-		dict.put(urnZF.uri, (in) -> setUrn((String) in));
-		dict.put(isLikeZF.uri, (in) -> setIsLike((String) in));
-		dict.put(contributorOrderZF.uri, (in) -> setContributorOrder((String) in));
+		dict.put(doiZF.uri, (in) -> addDoi((String) in));
+		dict.put(urnZF.uri, (in) -> addUrn((String) in));
+		dict.put(isLikeZF.uri, (in) -> addIsLike((String) in));
+		dict.put(contributorOrderZF.uri, (in) -> addContributorOrder((String) in));
 		dict.put(alternativeTitleZF.uri, (in) -> setAlternative((String) in));
 		dict.put(titleLanguageZF.uri, (in) -> setTitleLanguage((String) in));
 		dict.put(descriptionZF.uri, (in) -> setDescription((String) in));
-		dict.put(projectIdZF.uri, (in) -> setProjectId((String) in));
-		dict.put(fundingProgramZF.uri, (in) -> setFundingProgram((String) in));
+		dict.put(projectIdZF.uri, (in) -> addProjectId((String) in));
+		dict.put(fundingProgramZF.uri, (in) -> addFundingProgram((String) in));
 		dict.put(associatedPublicationZF.uri,
-				(in) -> setAssociatedPublication((String) in));
+				(in) -> addAssociatedPublication((String) in));
 		dict.put(associatedDatasetZF.uri,
-				(in) -> setAssociatedDataset((String) in));
-		dict.put(referenceZF.uri, (in) -> setReference((String) in));
+				(in) -> addAssociatedDataset((String) in));
+		dict.put(referenceZF.uri, (in) -> addReference((String) in));
 		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
 		dict.put(subjectNameZF.uri, (in) -> setSubjectName((String) in));
-		dict.put(creatorNameZF.uri, (in) -> setCreatorName(
+		dict.put(creatorNameZF.uri, (in) -> addCreatorName(
 				regalApi + "/adhoc/creator/" + MyURLEncoding.encode((String) in)));
-		dict.put(contributorNameZF.uri, (in) -> setContributorName(
+		dict.put(contributorNameZF.uri, (in) -> addContributorName(
 				regalApi + "/adhoc/contributor/" + MyURLEncoding.encode((String) in)));
 		dict.put(reviewStatusZF.uri, (in) -> setReviewStatus((String) in));
 		dict.put(congressTitleZF.uri, (in) -> setCongressTitle((String) in));
 		dict.put(congressLocationZF.uri, (in) -> setCongressLocation((String) in));
-		dict.put(congressDurationZF.uri, (in) -> setCongressDuration((String) in));
+		dict.put(congressDurationZF.uri, (in) -> addCongressDuration((String) in));
 		dict.put(isbnZF.uri, (in) -> setIsbn((String) in));
 		dict.put(publisherZF.uri, (in) -> setPublisher((String) in));
 		dict.put(publicationPlaceZF.uri, (in) -> setPublicationPlace((String) in));
-		dict.put(abstractTextZF.uri, (in) -> setAbstractText((String) in));
-		dict.put(containedInZF.uri, (in) -> setContainedIn((String) in));
+		dict.put(abstractTextZF.uri, (in) -> addAbstractText((String) in));
+		dict.put(containedInZF.uri, (in) -> addContainedIn((String) in));
 		dict.put(bibliographicCitationZF.uri,
 				(in) -> setBibliographicCitation((String) in));
-		dict.put(congressHostZF.uri, (in) -> setCongressHost((String) in));
+		dict.put(congressHostZF.uri, (in) -> addCongressHost((String) in));
 		dict.put(volumeInZF.uri, (in) -> setVolumeIn((String) in));
 		dict.put(issueZF.uri, (in) -> setIssue((String) in));
 		dict.put(pagesZF.uri, (in) -> setPages((String) in));
@@ -1074,18 +1075,19 @@ public abstract class ZettelModel {
 		dict.put(publicationStatusZF.uri,
 				(in) -> setPublicationStatus((String) in));
 		dict.put(issnZF.uri, (in) -> setIssn((String) in));
-		dict.put(editorZF.uri, (in) -> setEditor((String) in));
-		dict.put(redaktorZF.uri, (in) -> setRedaktor((String) in));
-		dict.put(institutionZF.uri, (in) -> setInstitution((String) in));
+		dict.put(editorZF.uri, (in) -> addEditor((String) in));
+		dict.put(redaktorZF.uri, (in) -> addRedaktor((String) in));
+		dict.put(institutionZF.uri, (in) -> addInstitution((String) in));
 		dict.put(publicationYearZF.uri, (in) -> setPublicationYear((String) in));
-		dict.put(affiliationZF.uri, (in) -> setAffiliation((String) in));
+		dict.put(affiliationZF.uri, (in) -> addAffiliation((String) in));
 		dict.put(affiliationIndexZF.uri, (in) -> setAffiliationIndex((String) in));
-		dict.put(collectionOneZF.uri, (in) -> setCollectionOne((String) in));
-		dict.put(fulltextVersionZF.uri, (in) -> setFulltextVersion((String) in));
-		dict.put(publisherVersionZF.uri, (in) -> setPublisherVersion((String) in));
+		dict.put(collectionOneZF.uri, (in) -> addCollectionOne((String) in));
+		dict.put(fulltextVersionZF.uri, (in) -> addFulltextVersion((String) in));
+		dict.put(publisherVersionZF.uri, (in) -> addPublisherVersion((String) in));
 		dict.put(additionalMaterialZF.uri,
-				(in) -> setAdditionalMaterial((String) in));
+				(in) -> addAdditionalMaterial((String) in));
 		dict.put(parallelEditionZF.uri, (in) -> setParallelEdition((String) in));
+
 		return dict;
 	}
 
@@ -1140,7 +1142,7 @@ public abstract class ZettelModel {
 	public Map<String, Object> serializeToMap() {
 		Map<String, Object> jsonMap =
 				new ObjectMapper().convertValue(this, HashMap.class);
-		addIsPrimaryTopicOf(jsonMap);
+		jsonMap.put(ZettelModel.IS_PRIMARY_TOPIC_OF, getIsPrimaryTopicOf());
 		jsonMap.put("rdftype", getType());
 		removeEmptyCollections(jsonMap);
 		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
@@ -1240,11 +1242,16 @@ public abstract class ZettelModel {
 		}
 	}
 
-	private void addIsPrimaryTopicOf(Map<String, Object> jsonMap) {
+	public void setIsPrimaryTopicOf(Map<String, Object> jsonMap) {
+		topicId = (String) jsonMap.get(ZettelModel.ID);
+		documentId = (String) jsonMap.get(ZettelModel.PRIMARY_TOPIC);
+	}
+
+	public Map<String, Object> getIsPrimaryTopicOf() {
 		Map<String, Object> topicMap = new HashMap<>();
 		topicMap.put(ZettelModel.ID, topicId);
 		topicMap.put(ZettelModel.PRIMARY_TOPIC, documentId);
-		jsonMap.put(ZettelModel.IS_PRIMARY_TOPIC_OF, topicMap);
+		return topicMap;
 	}
 
 	protected String getLabel(String name) {
