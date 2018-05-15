@@ -43,8 +43,8 @@ public class RdfUtils {
 	 */
 	public static String first =
 			"http://www.w3.org/1999/02/22-rdf-syntax-ns#first";
-	static String rest = "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest";
-	static String nil = "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil";
+	public static String rest = "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest";
+	public static String nil = "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil";
 
 	/**
 	 * @param inputStream an Input stream containing rdf data

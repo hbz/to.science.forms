@@ -24,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
 
 import play.data.validation.ValidationError;
-import services.ZettelModel;
 
 /**
  * @author Jan Schnasse
