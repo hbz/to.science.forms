@@ -5,8 +5,10 @@ Zettel is a webservice to generate html forms for different media types. You can
 
 The Following media types are supported
 
-* Research Data
+* Article
 
+## Screenshot
+<img src="screen.png" alt="Screenshot of zettel" style="width: 800px;"/>
 
 # Get zettel running
 
