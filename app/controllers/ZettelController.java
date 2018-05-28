@@ -435,7 +435,7 @@ public class ZettelController extends Controller {
 				label.append(m.at("/label"));
 				String id = m.at("/id").asText();
 				Map<String, String> map = new HashMap<>();
-				label.append("| " + getGndNumber(id));
+				label.append(" | " + getGndNumber(id));
 				map.put("label", label.toString());
 				map.put("value", id);
 				result.add(map);
