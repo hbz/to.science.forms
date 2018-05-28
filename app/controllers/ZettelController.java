@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -31,6 +32,8 @@ import javax.inject.Inject;
 import org.eclipse.rdf4j.rio.RDFFormat;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 
 import models.Article;
 import models.Chapter;
@@ -432,6 +435,7 @@ public class ZettelController extends Controller {
 				label.append(m.at("/label"));
 				String id = m.at("/id").asText();
 				Map<String, String> map = new HashMap<>();
+				label.append("| " + getGndNumber(id));
 				map.put("label", label.toString());
 				map.put("value", id);
 				result.add(map);
@@ -442,6 +446,14 @@ public class ZettelController extends Controller {
 					: searchResult;
 			return ok(myResponse);
 		});
+	}
+
+	private static String getGndNumber(String id) {
+		try {
+			return Iterables.getLast(Splitter.on("/").split(id));
+		} catch (NoSuchElementException e) {
+			return "";
+		}
 	}
 
 	/**
