@@ -304,7 +304,7 @@ public class ArticleHelper {
 		map.put("http://d-nb.info/gnd/5305173-7",
 				"DRFZ - Deutsches Rheuma-Forschungszentrum Berlin");
 		map.put("http://d-nb.info/gnd/5174043-6",
-				"DSM - Forschungszentrum Borstel - Leibniz-Zentrum für Medizin und Biowissenschaften");
+				"FZB - Forschungszentrum Borstel - Leibniz-Zentrum für Medizin und Biowissenschaften");
 		map.put("http://d-nb.info/gnd/1035759209",
 				"DSMZ - Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen GmbH");
 		map.put("http://d-nb.info/gnd/16072459-4",
