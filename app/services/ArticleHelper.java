@@ -303,8 +303,6 @@ public class ArticleHelper {
 				"DPZ - Deutsches Primatenzentrum GmbH - Leibniz-Institut für Primatenforschung");
 		map.put("http://d-nb.info/gnd/5305173-7",
 				"DRFZ - Deutsches Rheuma-Forschungszentrum Berlin");
-		map.put("http://d-nb.info/gnd/5174043-6",
-				"FZB - Forschungszentrum Borstel - Leibniz-Zentrum für Medizin und Biowissenschaften");
 		map.put("http://d-nb.info/gnd/1035759209",
 				"DSMZ - Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen GmbH");
 		map.put("http://d-nb.info/gnd/16072459-4",
@@ -313,6 +311,8 @@ public class ArticleHelper {
 				"FLI - Leibniz-Institut für Alternsforschung - Fritz-Lipmann-Institut");
 		map.put("http://d-nb.info/gnd/10196210-1",
 				"FMP - Leibniz-Institut für Molekulare Pharmakologie");
+		map.put("http://d-nb.info/gnd/5174043-6",
+				"FZB - Forschungszentrum Borstel - Leibniz-Zentrum für Medizin und Biowissenschaften");
 		map.put("http://d-nb.info/gnd/6057389-2",
 				"HKI - Leibniz-Institut für Naturstoff-Forschung und Infektionsbiologie - Hans-Knöll-Institut");
 		map.put("http://d-nb.info/gnd/16167877-4",
