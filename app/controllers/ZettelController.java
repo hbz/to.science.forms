@@ -397,7 +397,7 @@ public class ZettelController extends Controller {
 	 * @return a jsonp result
 	 */
 	public CompletionStage<Result> personAutocomplete(String q) {
-		String filter = "type:DifferentiatedPerson";
+		String filter = "type:Person";
 		return lobidResponse(q, filter);
 	}
 
