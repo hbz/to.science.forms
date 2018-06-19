@@ -1348,7 +1348,7 @@
 </rdf:Description>
 
 <rdf:Description rdf:nodeID="genid-454f65f2fdf34072ab03fa07c92a4ce3-b340">
-	<rdf:first rdf:resource="https://frl.publisso.de/adhoc/creator/RWxpbmUgU2xhZ2Jvb20sIFA="/>
+	<rdf:first rdf:resource="https://api.ellinet-dev.hbz-nrw.de/adhoc/creator/THVrYcSNLCBNYWph"/>
 	<rdf:rest rdf:nodeID="genid-454f65f2fdf34072ab03fa07c92a4ce3-b341"/>
 </rdf:Description>
 

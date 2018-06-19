@@ -1,0 +1,937 @@
+_:b0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Funding for this study was provided by the Academy of Finland " .
+_:b0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b1 .
+_:b1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Ahokas Foundation" .
+_:b1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b2 .
+_:b10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Danish Centre for Health Technology Assessment" .
+_:b10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b11 .
+_:b100 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Swedish Research Council " .
+_:b100 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b101 .
+_:b101 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Swiss Institute of Bioinformatics" .
+_:b101 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b102 .
+_:b102 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Swiss National Science Foundation " .
+_:b102 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b103 .
+_:b103 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Tampere Tuberculosis Foundation" .
+_:b103 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b104 .
+_:b104 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Torsten and Ragnar S\u00F6derberg\u2019s Foundation" .
+_:b104 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b105 .
+_:b105 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Ume\u00E5 University Career Development Award" .
+_:b105 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b106 .
+_:b106 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Unilever Colworth" .
+_:b106 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b107 .
+_:b107 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Wellcome Trust " .
+_:b107 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b108 .
+_:b108 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Wellcome Trust Centre for Human Genetics core funding " .
+_:b108 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b109 .
+_:b109 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Wissenschaftsoffensive TMO" .
+_:b109 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b110 .
+_:b11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Danish Council for Independent Research " .
+_:b11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b12 .
+_:b110 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Yrj\u00F6 Jahnsson Foundation" .
+_:b110 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:b111 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://skos.um.es/unescothes/C02464> .
+_:b111 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b112 .
+_:b112 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://skos.um.es/unescothes/C01771> .
+_:b112 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:b113 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "41071; 117787; 118065; 121584; 124282; 126925; 129494; 129322; 129378; 130326; 134309; 134791; 136895; 139635; 250207; 263836; 286284 ; 263924" .
+_:b113 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b114 .
+_:b114 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b114 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b115 .
+_:b115 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b115 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b116 .
+_:b116 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b116 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b117 .
+_:b117 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b117 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b118 .
+_:b118 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b118 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b119 .
+_:b119 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b119 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b120 .
+_:b12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Danish Diabetes Association" .
+_:b12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b13 .
+_:b120 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "PG/13/66/30442 ; PG/07/131/24254" .
+_:b120 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b121 .
+_:b121 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "FRCN-CCT-83028" .
+_:b121 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b122 .
+_:b122 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b122 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b123 .
+_:b123 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b123 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b124 .
+_:b124 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "DFF-1333-00124 ; DFF-1331-00730B" .
+_:b124 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b125 .
+_:b125 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b125 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b126 .
+_:b126 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b126 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b127 .
+_:b127 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b127 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b128 .
+_:b128 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b128 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b129 .
+_:b129 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "90049" .
+_:b129 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b130 .
+_:b13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Danish Heart Foundation" .
+_:b13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b14 .
+_:b130 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b130 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b131 .
+_:b131 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b131 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b132 .
+_:b132 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "DAA 2010_017" .
+_:b132 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b133 .
+_:b133 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "NWO 184.021.007" .
+_:b133 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b134 .
+_:b134 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b134 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b135 .
+_:b135 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b135 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b136 .
+_:b136 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b136 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b137 .
+_:b137 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "FP6-LSHG-CT-2006-018947; FP6-LSHG-CT-2006-01947; HEALTH-F2-2008-201865-GEFOS; FP7-201668; FP7-223004; FP7-259679; FP7-305739 ; FP7-IDEAS-ERC-323195" .
+_:b137 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b138 .
+_:b138 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b138 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b139 .
+_:b139 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b139 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b140 .
+_:b14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Danish Pharmaceutical Association" .
+_:b14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b15 .
+_:b140 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b140 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b141 .
+_:b141 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b141 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b142 .
+_:b142 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b142 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b143 .
+_:b143 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b143 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b144 .
+_:b144 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b144 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b145 .
+_:b145 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b145 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b146 .
+_:b146 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b146 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b147 .
+_:b147 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b147 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b148 .
+_:b148 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b148 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b149 .
+_:b149 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b149 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b150 .
+_:b15 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Danish Research Council" .
+_:b15 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b16 .
+_:b150 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b150 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b151 .
+_:b151 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b151 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b152 .
+_:b152 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b152 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b153 .
+_:b153 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b153 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b154 .
+_:b154 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b154 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b155 .
+_:b155 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b155 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b156 .
+_:b156 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b156 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b157 .
+_:b157 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b157 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b158 .
+_:b158 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "SenterNovem IGE05007" .
+_:b158 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b159 .
+_:b159 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "ICS110.1; RF97.71" .
+_:b159 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b160 .
+_:b16 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Department of Health Policy Research Programme " .
+_:b16 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b17 .
+_:b160 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b160 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b161 .
+_:b161 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b161 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b162 .
+_:b162 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b162 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b163 .
+_:b163 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b163 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b164 .
+_:b164 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "X51001; 9M048; 9N035" .
+_:b164 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b165 .
+_:b165 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b165 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b166 .
+_:b166 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b166 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b167 .
+_:b167 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b167 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b168 .
+_:b168 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b168 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b169 .
+_:b169 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b169 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b170 .
+_:b17 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Diabetes UK" .
+_:b17 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b18 .
+_:b170 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b170 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b171 .
+_:b171 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "-" .
+_:b171 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b172 .
+_:b172 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "MC_U106179471; MC_UU_12013/3; ; MC_UU_12013/8" .
+_:b172 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:b173 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S2lscGVsw6RpbmVuLCBUdW9tYXMgTy4=> .
+_:b173 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b174 .
+_:b174 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Q2FybGksIEpheW5lIEYuIE1hcnRpbg==> .
+_:b174 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b175 .
+_:b175 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U2tvd3JvbnNraSwgQWxpY2phIEEu> .
+_:b175 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b176 .
+_:b176 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U3VuLCBRaQ==> .
+_:b176 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b177 .
+_:b177 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S3JpZWJlbCwgSmVubmlmZXI=> .
+_:b177 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b178 .
+_:b178 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RmVpdG9zYSwgTWFyeSBG> .
+_:b178 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b179 .
+_:b179 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGVkbWFuLCDDhXNhIEsu> .
+_:b179 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b180 .
+_:b18 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Donald W. Reynolds Foundation" .
+_:b18 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b19 .
+_:b180 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RHJvbmcsIEFsZXhhbmRlciBXLg==> .
+_:b180 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b181 .
+_:b181 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGF5ZXMsIEphbWVzIEUu> .
+_:b181 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b182 .
+_:b182 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/WmhhbywgSmluZ2h1YQ==> .
+_:b182 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b183 .
+_:b183 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UGVycywgVHVuZSBILg==> .
+_:b183 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b184 .
+_:b184 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U2NoaWNrLCBVcnN1bGE=> .
+_:b184 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b185 .
+_:b185 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/R3JhcnVwLCBOaWVscw==> .
+_:b185 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b186 .
+_:b186 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S3V0YWxpaywgWm9sdMOhbg==> .
+_:b186 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b187 .
+_:b187 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/VHJvbXBldCwgU3RlbGxh> .
+_:b187 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b188 .
+_:b188 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TWFuZ2lubywgTWFzc2ltbw==> .
+_:b188 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b189 .
+_:b189 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S3Jpc3RpYW5zc29uLCBLYXRp> .
+_:b189 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b190 .
+_:b19 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Dutch Arthritis Association " .
+_:b19 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b20 .
+_:b190 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QmVla21hbiwgTWFyaWFu> .
+_:b190 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b191 .
+_:b191 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/THl5dGlrw6RpbmVuLCBMZW8tUGVra2E=> .
+_:b191 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b192 .
+_:b192 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RXJpa3Nzb24sIEpvZWw=> .
+_:b192 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b193 .
+_:b193 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGVubmVtYW4sIFBldGVy> .
+_:b193 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b194 .
+_:b194 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TGFodGksIEphcmk=> .
+_:b194 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b195 .
+_:b195 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/VGFuYWthLCBUb3NoaWtv> .
+_:b195 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b196 .
+_:b196 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/THVhbiwgSmlhbuKAmWFu> .
+_:b196 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b197 .
+_:b197 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/R3JlY28gTSwgRmFiaW9sYSBEZWw=> .
+_:b197 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b198 .
+_:b198 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UGFza28sIERvcm90YQ==> .
+_:b198 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b199 .
+_:b199 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UmVuc3Ryw7ZtLCBGcmlkYQ==> .
+_:b199 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b200 .
+_:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "ALF/LUA research grant in Gothenburg" .
+_:b2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b3 .
+_:b20 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Dutch government " .
+_:b20 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b21 .
+_:b200 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/V2lsbGVtcywgU2FyYSBNLg==> .
+_:b200 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b201 .
+_:b201 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TWFoYWphbiwgQW51Ymhh> .
+_:b201 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b202 .
+_:b202 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Um9zZSwgTHluZGEgTS4=> .
+_:b202 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b203 .
+_:b203 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/R3VvLCBYaXVxaW5n> .
+_:b203 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b204 .
+_:b204 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TGl1LCBZb25nbWVp> .
+_:b204 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b205 .
+_:b205 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S2xlYmVyLCBNYXJjdXMgRS4=> .
+_:b205 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b206 .
+_:b206 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UMOpcnVzc2UsIExvdWlz> .
+_:b206 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b207 .
+_:b207 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/R2F1bnQsIFRvbQ==> .
+_:b207 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b208 .
+_:b208 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QWhsdXdhbGlhLCBUYXJ1bnZlZXIgUy4=> .
+_:b208 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b209 .
+_:b209 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SnUgU3VuZywgWXVu> .
+_:b209 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b210 .
+_:b21 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Emil Aaltonen Foundation" .
+_:b21 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b22 .
+_:b210 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UmFtb3MsIFlvbGFuZGUgRi4=> .
+_:b210 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b211 .
+_:b211 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QW1pbiwgTmFqYWY=> .
+_:b211 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b212 .
+_:b212 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QW11enUsIEFudG9pbmV0dGU=> .
+_:b212 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b213 .
+_:b213 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QmFycm9zbywgSW7DqnM=> .
+_:b213 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b214 .
+_:b214 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QmVsbGlzLCBDbGFpcmU=> .
+_:b214 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b215 .
+_:b215 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Qmxhbmdlcm8sIEpvaG4=> .
+_:b215 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b216 .
+_:b216 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QnVja2xleSwgQnJlbmRhbiBNLg==> .
+_:b216 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b217 .
+_:b217 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QsO2aHJpbmdlciwgU3RlZmFu> .
+_:b217 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b218 .
+_:b218 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SSBDaGVuLCBZaWktRGVy> .
+_:b218 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b219 .
+_:b219 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/ZGUgQ3JhZW4sIEFudG9uIEouIE4u> .
+_:b219 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b220 .
+_:b22 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Erasmus MC" .
+_:b22 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b23 .
+_:b220 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Q3Jvc3NsaW4sIERhdmlkIFIu> .
+_:b220 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b221 .
+_:b221 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RGFsZSwgQ2Fyb2xpbmUgRS4=> .
+_:b221 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b222 .
+_:b222 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RGFzdGFuaSwgWmFyaQ==> .
+_:b222 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b223 .
+_:b223 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RGF5LCBGZWxpeCBSLg==> .
+_:b223 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b224 .
+_:b224 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RGVlbGVuLCBKb3Jpcw==> .
+_:b224 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b225 .
+_:b225 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RGVsZ2FkbywgR3JhY2llbGEgRS4=> .
+_:b225 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b226 .
+_:b226 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RGVtaXJrYW4sIEF5c2U=> .
+_:b226 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b227 .
+_:b227 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RmludWNhbmUsIEZyYW5jaXMgTS4=> .
+_:b227 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b228 .
+_:b228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Rm9yZCwgSWFu> .
+_:b228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b229 .
+_:b229 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/R2FyY2lhLCBNZWxpc3NhIEUu> .
+_:b229 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b230 .
+_:b23 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Erasmus University" .
+_:b23 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b24 .
+_:b230 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/R2llZ2VyLCBDaHJpc3RpYW4=> .
+_:b230 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b231 .
+_:b231 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/R3VzdGFmc3NvbiwgU3RlZmFu> .
+_:b231 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b232 .
+_:b232 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGFsbG1hbnMsIEfDtnJhbg==> .
+_:b232 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b233 .
+_:b233 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGFua2luc29uLCBTdXNhbiBFLg==> .
+_:b233 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b234 .
+_:b234 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGF2dWxpbm5hLCBBa2kgUw==> .
+_:b234 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b235 .
+_:b235 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://orcid.org/0000-0002-2050-093X> .
+_:b235 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b236 .
+_:b236 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGVybmFuZGV6LCBEZW5h> .
+_:b236 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b237 .
+_:b237 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGlja3MsIEFuZHJldyBBLg==> .
+_:b237 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b238 .
+_:b238 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SHVudGVyLCBEYXZpZCBKLg==> .
+_:b238 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b239 .
+_:b239 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SWxsaWcsIFRob21hcw==> .
+_:b239 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b240 .
+_:b24 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "European Commission " .
+_:b24 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b25 .
+_:b240 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SW5nZWxzc29uLCBFcmlr> .
+_:b240 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b241 .
+_:b241 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SW9hbi1GYWNzaW5heSwgQW5kcmVlYQ==> .
+_:b241 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b242 .
+_:b242 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SmFuc3NvbiwgSm9obi1PbG92> .
+_:b242 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b243 .
+_:b243 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SmVubnksIE5hbmN5IFMu> .
+_:b243 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b244 .
+_:b244 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SsO4cmdlbnNlbiwgTWFyaXQgRS4=> .
+_:b244 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b245 .
+_:b245 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SsO4cmdlbnNlbiwgVG9yYmVu> .
+_:b245 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b246 .
+_:b246 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S2FybHNzb24sIE1hZ251cw==> .
+_:b246 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b247 .
+_:b247 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S29lbmlnLCBXb2xmZ2FuZw==> .
+_:b247 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b248 .
+_:b248 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S3JhZnQsIFBldGVy> .
+_:b248 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b249 .
+_:b249 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S3dla2tlYm9vbSwgSm9hbm5la2U=> .
+_:b249 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b250 .
+_:b25 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "European Regional Development Fund" .
+_:b25 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b26 .
+_:b250 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TGFhdGlrYWluZW4sIFRpaW5h> .
+_:b250 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b251 .
+_:b251 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TGFkd2lnLCBLYXJsLUhlaW56> .
+_:b251 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b252 .
+_:b252 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TGVEdWMsIENoYXJsZXMgQS4=> .
+_:b252 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b253 .
+_:b253 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TG93ZSwgR29yZG9u> .
+_:b253 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b254 .
+_:b254 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/THUsIFlpbmdjaGFuZw==> .
+_:b254 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b255 .
+_:b255 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TWFycXVlcy1WaWRhbCwgUGVkcm8=> .
+_:b255 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b256 .
+_:b256 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TWVpc2luZ2VyLCBDaHJpc3Rh> .
+_:b256 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b257 .
+_:b257 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TWVubmksIENyaXN0aW5h> .
+_:b257 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b258 .
+_:b258 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TW9ycmlzLCBBbmRyZXcgUC4=> .
+_:b258 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b259 .
+_:b259 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TXllcnMsIFJpY2hhcmQgSC4=> .
+_:b259 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b260 .
+_:b26 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "EUROSPAN" .
+_:b26 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b27 .
+_:b260 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TcOkbm5pc3TDtiwgU2F0dQ==> .
+_:b260 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b261 .
+_:b261 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TmFsbHMsIE1pa2UgQS4=> .
+_:b261 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b262 .
+_:b262 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UGF0ZXJub3N0ZXIsIExhdmluaWE=> .
+_:b262 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b263 .
+_:b263 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UGV0ZXJzLCBBbm5ldHRl> .
+_:b263 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b264 .
+_:b264 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UHJhZGhhbiwgQXJ1bmEgRC4=> .
+_:b264 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b265 .
+_:b265 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UmFua2luZW4sIFR1b21v> .
+_:b265 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b266 .
+_:b266 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UmFzbXVzc2VuLVRvcnZpaywgTGF1cmEgSi4=> .
+_:b266 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b267 .
+_:b267 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UmF0aG1hbm4sIFdvbGZnYW5n> .
+_:b267 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b268 .
+_:b268 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UmljZSwgVHJldmEgSy4=> .
+_:b268 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b269 .
+_:b269 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QnJlbnQgUmljaGFyZHMsIEo=> .
+_:b269 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b270 .
+_:b27 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Faculty of Biology and Medicine of Lausanne" .
+_:b27 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b28 .
+_:b270 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Umlka2VyLCBQYXVsIE0u> .
+_:b270 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b271 .
+_:b271 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U2F0dGFyLCBOYXZlZWQ=> .
+_:b271 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b272 .
+_:b272 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U2F2YWdlLCBEYXZpZCBCLg==> .
+_:b272 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b273 .
+_:b273 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U8O2ZGVyYmVyZywgU3RlZmFu> .
+_:b273 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b274 .
+_:b274 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/VGltcHNvbiwgTmljaG9sYXMgSi4=> .
+_:b274 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b275 .
+_:b275 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/VmFuZGVucHV0LCBMaWVzYmV0aA==> .
+_:b275 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b276 .
+_:b276 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/dmFuIEhlZW1zdCwgRGlhbmE=> .
+_:b276 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b277 .
+_:b277 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/VWgsIEhhZS1Xb24=> .
+_:b277 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b278 .
+_:b278 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Vm9obCwgTWFyaWUtQ2xhdWRl> .
+_:b278 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b279 .
+_:b279 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/V2Fsa2VyLCBNYXJr> .
+_:b279 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b280 .
+_:b28 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Finnish Centre for Pensions" .
+_:b28 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b29 .
+_:b280 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/V2ljaG1hbm4sIEhlaW56LUVyaWNo> .
+_:b280 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b281 .
+_:b281 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/V2lkw6luLCBFbGlzYWJldGg=> .
+_:b281 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b282 .
+_:b282 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/V29vZCwgQW5kcmV3IFIu> .
+_:b282 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b283 .
+_:b283 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/WWFvLCBKaWU=> .
+_:b283 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b284 .
+_:b284 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/WmVsbGVyLCBUYW5qYQ==> .
+_:b284 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b285 .
+_:b285 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/WmhhbmcsIFlpeWluZw==> .
+_:b285 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b286 .
+_:b286 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TWV1bGVuYmVsdCwgSW5ncmlk> .
+_:b286 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b287 .
+_:b287 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S2xvcHBlbmJ1cmcsIE1hcmdyZWV0> .
+_:b287 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b288 .
+_:b288 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QXN0cnVwLCBBcm5l> .
+_:b288 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b289 .
+_:b289 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U8O4cmVuc2VuLCBUaG9ya2lsZCBJLiBBLg==> .
+_:b289 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b290 .
+_:b29 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Finnish Cultural Foundation" .
+_:b29 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b30 .
+_:b290 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U2Fyenluc2tpLCBNYXJrIEEu> .
+_:b290 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b291 .
+_:b291 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UmFvLCBELiBDLg==> .
+_:b291 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b292 .
+_:b292 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Sm91c2lsYWh0aSwgUGVra2E=> .
+_:b292 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b293 .
+_:b293 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/VmFydGlhaW5lbiwgRXJra2k=> .
+_:b293 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b294 .
+_:b294 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SG9mbWFuLCBBbGJlcnQ=> .
+_:b294 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b295 .
+_:b295 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Uml2YWRlbmVpcmEsIEZlcm5hbmRv> .
+_:b295 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b296 .
+_:b296 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/VWl0dGVybGluZGVuLCBBbmRyw6kgRy4=> .
+_:b296 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b297 .
+_:b297 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S2FqYW50aWUsIEVlcm8=> .
+_:b297 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b298 .
+_:b298 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/T3Ntb25kLCBDbGl2ZQ==> .
+_:b298 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b299 .
+_:b299 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UGFsb3RpZSwgQWFybm8=> .
+_:b299 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b300 .
+_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Amgen" .
+_:b3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b4 .
+_:b30 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Finnish Diabetes Research Society" .
+_:b30 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b31 .
+_:b300 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RXJpa3Nzb24sIEpvaGFuIEcu> .
+_:b300 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b301 .
+_:b301 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGVsacO2dmFhcmEsIE1hcmtrdQ==> .
+_:b301 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b302 .
+_:b302 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S25la3QsIFBhdWwgQi4=> .
+_:b302 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b303 .
+_:b303 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S29za2luZW4sIFNlcHBv> .
+_:b303 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b304 .
+_:b304 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SnVsYSwgQW50dGk=> .
+_:b304 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b305 .
+_:b305 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UGVyb2xhLCBNYXJrdXM=> .
+_:b305 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b306 .
+_:b306 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SHV1cHBvbmVuLCBSaXN0byBLLg==> .
+_:b306 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b307 .
+_:b307 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Vmlpa2FyaSwgSm9ybWEgUy4=> .
+_:b307 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b308 .
+_:b308 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S8OkaMO2bmVuLCBNaWth> .
+_:b308 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b309 .
+_:b309 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TGVodGltw6RraSwgVGVyaG8=> .
+_:b309 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b310 .
+_:b31 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Finnish Foundation of Cardiovascular Research" .
+_:b31 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b32 .
+_:b310 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UmFpdGFrYXJpLCBPbGxpIFQu> .
+_:b310 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b311 .
+_:b311 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TWVsbHN0csO2bSwgRGFu> .
+_:b311 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b312 .
+_:b312 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TG9yZW50em9uLCBNYXR0aWFz> .
+_:b312 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b313 .
+_:b313 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Q2FzYXMsIEp1YW4gUC4=> .
+_:b313 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b314 .
+_:b314 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QmFuZGluZWxsaSwgU3RlZmFuaWU=> .
+_:b314 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b315 .
+_:b315 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TcOkcnosIFdpbmZyaWVk> .
+_:b315 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b316 .
+_:b316 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SXNhYWNzLCBBYXJvbg==> .
+_:b316 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b317 .
+_:b317 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/dmFuIERpamssIEtvIFcu> .
+_:b317 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b318 .
+_:b318 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/dmFuIER1aWpuLCBDb3JuZWxpYSBNLg==> .
+_:b318 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b319 .
+_:b319 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGFycmlzLCBUYW1hcmEgQi4=> .
+_:b319 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b320 .
+_:b32 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Finnish Foundation for Pediatric Research" .
+_:b32 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b33 .
+_:b320 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Qm91Y2hhcmQsIENsYXVkZQ==> .
+_:b320 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b321 .
+_:b321 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QWxsaXNvbiwgTWF0dGhldyBBLg==> .
+_:b321 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b322 .
+_:b322 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Q2hhc21hbiwgRGFuaWVsIEku> .
+_:b322 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b323 .
+_:b323 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/T2hsc3NvbiwgQ2xhZXM=> .
+_:b323 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b324 .
+_:b324 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TGluZCwgTGFycw==> .
+_:b324 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b325 .
+_:b325 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U2NvdHQsIFJvYmVydCBBLg==> .
+_:b325 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b326 .
+_:b326 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TGFuZ2VuYmVyZywgQ2xhdWRpYQ==> .
+_:b326 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b327 .
+_:b327 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/V2FyZWhhbSwgTmljaG9sYXMgSi4=> .
+_:b327 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b328 .
+_:b328 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RmVycnVjY2ksIEx1aWdp> .
+_:b328 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b329 .
+_:b329 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RnJheWxpbmcsIFRpbW90aHkgTS4=> .
+_:b329 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b330 .
+_:b33 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Finnish National Institute for Health and Welfare" .
+_:b33 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b34 .
+_:b330 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UHJhbXN0YWxsZXIsIFBldGVyIFAu> .
+_:b330 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b331 .
+_:b331 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Qm9yZWNraSwgSW5ncmlkIEIu> .
+_:b331 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b332 .
+_:b332 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/V2F0ZXJ3b3J0aCwgRGF3biBNLg==> .
+_:b332 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b333 .
+_:b333 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/QmVyZ21hbm4sIFN2ZW4=> .
+_:b333 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b334 .
+_:b334 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/V2FlYmVyLCBHw6lyYXJk> .
+_:b334 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b335 .
+_:b335 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/Vm9sbGVud2VpZGVyLCBQZXRlcg==> .
+_:b335 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b336 .
+_:b336 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/VmVzdGVyZ2FhcmQsIEhlbnJpaw==> .
+_:b336 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b337 .
+_:b337 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SGFuc2VuLCBUb3JiZW4=> .
+_:b337 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b338 .
+_:b338 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/UGVkZXJzZW4sIE9sdWY=> .
+_:b338 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b339 .
+_:b339 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SHUsIEZyYW5rIEIu> .
+_:b339 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b340 .
+_:b34 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Finnish Special Governmental Subsidy for Health Sciences" .
+_:b34 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b35 .
+_:b340 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://api.ellinet-dev.hbz-nrw.de/adhoc/creator/THVrYcSNLCBNYWph> .
+_:b340 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b341 .
+_:b341 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/R3JhbGxlcnQsIEhhcmFsZA==> .
+_:b341 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b342 .
+_:b342 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U3BlY3RvciwgVGltIEQu> .
+_:b342 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b343 .
+_:b343 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/SnVrZW1hLCBKLlcu> .
+_:b343 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b344 .
+_:b344 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/S2xlaW4sIFJvYmVydCBKLg==> .
+_:b344 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b345 .
+_:b345 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/U2NoYWR0LCBFcmlrIEU=> .
+_:b345 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b346 .
+_:b346 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/RnJhbmtzLCBQYXVsIFcu> .
+_:b346 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b347 .
+_:b347 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TGluZGdyZW4sIENlY2lsaWEgTS4=> .
+_:b347 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b348 .
+_:b348 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TGVpYmVsLCBSdWRvbHBoIEwu> .
+_:b348 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b349 .
+_:b349 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://frl.publisso.de/adhoc/creator/TG9vcywgUnV0aCBKLiBGLg==> .
+_:b349 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:b35 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Finska L\u00E4kares\u00E4llskapet" .
+_:b35 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b36 .
+_:b350 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "https://frl.publisso.de/adhoc/creator/S2lscGVsw6RpbmVuLCBUdW9tYXMgTy4=|https://frl.publisso.de/adhoc/creator/Q2FybGksIEpheW5lIEYuIE1hcnRpbg==|https://frl.publisso.de/adhoc/creator/U2tvd3JvbnNraSwgQWxpY2phIEEu|https://frl.publisso.de/adhoc/creator/U3VuLCBRaQ==|https://frl.publisso.de/adhoc/creator/S3JpZWJlbCwgSmVubmlmZXI=|https://frl.publisso.de/adhoc/creator/RmVpdG9zYSwgTWFyeSBG|https://frl.publisso.de/adhoc/creator/SGVkbWFuLCDDhXNhIEsu|https://frl.publisso.de/adhoc/creator/RHJvbmcsIEFsZXhhbmRlciBXLg==|https://frl.publisso.de/adhoc/creator/SGF5ZXMsIEphbWVzIEUu|https://frl.publisso.de/adhoc/creator/WmhhbywgSmluZ2h1YQ==|https://frl.publisso.de/adhoc/creator/UGVycywgVHVuZSBILg==|https://frl.publisso.de/adhoc/creator/U2NoaWNrLCBVcnN1bGE=|https://frl.publisso.de/adhoc/creator/R3JhcnVwLCBOaWVscw==|https://frl.publisso.de/adhoc/creator/S3V0YWxpaywgWm9sdMOhbg==|https://frl.publisso.de/adhoc/creator/VHJvbXBldCwgU3RlbGxh|https://frl.publisso.de/adhoc/creator/TWFuZ2lubywgTWFzc2ltbw==|https://frl.publisso.de/adhoc/creator/S3Jpc3RpYW5zc29uLCBLYXRp|https://frl.publisso.de/adhoc/creator/QmVla21hbiwgTWFyaWFu|https://frl.publisso.de/adhoc/creator/THl5dGlrw6RpbmVuLCBMZW8tUGVra2E=|https://frl.publisso.de/adhoc/creator/RXJpa3Nzb24sIEpvZWw=|https://frl.publisso.de/adhoc/creator/SGVubmVtYW4sIFBldGVy|https://frl.publisso.de/adhoc/creator/TGFodGksIEphcmk=|https://frl.publisso.de/adhoc/creator/VGFuYWthLCBUb3NoaWtv|https://frl.publisso.de/adhoc/creator/THVhbiwgSmlhbuKAmWFu|https://frl.publisso.de/adhoc/creator/R3JlY28gTSwgRmFiaW9sYSBEZWw=|https://frl.publisso.de/adhoc/creator/UGFza28sIERvcm90YQ==|https://frl.publisso.de/adhoc/creator/UmVuc3Ryw7ZtLCBGcmlkYQ==|https://frl.publisso.de/adhoc/creator/V2lsbGVtcywgU2FyYSBNLg==|https://frl.publisso.de/adhoc/creator/TWFoYWphbiwgQW51Ymhh|https://frl.publisso.de/adhoc/creator/Um9zZSwgTHluZGEgTS4=|https://frl.publisso.de/adhoc/creator/R3VvLCBYaXVxaW5n|https://frl.publisso.de/adhoc/creator/TGl1LCBZb25nbWVp|https://frl.publisso.de/adhoc/creator/S2xlYmVyLCBNYXJjdXMgRS4=|https://frl.publisso.de/adhoc/creator/UMOpcnVzc2UsIExvdWlz|https://frl.publisso.de/adhoc/creator/R2F1bnQsIFRvbQ==|https://frl.publisso.de/adhoc/creator/QWhsdXdhbGlhLCBUYXJ1bnZlZXIgUy4=|https://frl.publisso.de/adhoc/creator/SnUgU3VuZywgWXVu|https://frl.publisso.de/adhoc/creator/UmFtb3MsIFlvbGFuZGUgRi4=|https://frl.publisso.de/adhoc/creator/QW1pbiwgTmFqYWY=|https://frl.publisso.de/adhoc/creator/QW11enUsIEFudG9pbmV0dGU=|https://frl.publisso.de/adhoc/creator/QmFycm9zbywgSW7DqnM=|https://frl.publisso.de/adhoc/creator/QmVsbGlzLCBDbGFpcmU=|https://frl.publisso.de/adhoc/creator/Qmxhbmdlcm8sIEpvaG4=|https://frl.publisso.de/adhoc/creator/QnVja2xleSwgQnJlbmRhbiBNLg==|https://frl.publisso.de/adhoc/creator/QsO2aHJpbmdlciwgU3RlZmFu|https://frl.publisso.de/adhoc/creator/SSBDaGVuLCBZaWktRGVy|https://frl.publisso.de/adhoc/creator/ZGUgQ3JhZW4sIEFudG9uIEouIE4u|https://frl.publisso.de/adhoc/creator/Q3Jvc3NsaW4sIERhdmlkIFIu|https://frl.publisso.de/adhoc/creator/RGFsZSwgQ2Fyb2xpbmUgRS4=|https://frl.publisso.de/adhoc/creator/RGFzdGFuaSwgWmFyaQ==|https://frl.publisso.de/adhoc/creator/RGF5LCBGZWxpeCBSLg==|https://frl.publisso.de/adhoc/creator/RGVlbGVuLCBKb3Jpcw==|https://frl.publisso.de/adhoc/creator/RGVsZ2FkbywgR3JhY2llbGEgRS4=|https://frl.publisso.de/adhoc/creator/RGVtaXJrYW4sIEF5c2U=|https://frl.publisso.de/adhoc/creator/RmludWNhbmUsIEZyYW5jaXMgTS4=|https://frl.publisso.de/adhoc/creator/Rm9yZCwgSWFu|https://frl.publisso.de/adhoc/creator/R2FyY2lhLCBNZWxpc3NhIEUu|https://frl.publisso.de/adhoc/creator/R2llZ2VyLCBDaHJpc3RpYW4=|https://frl.publisso.de/adhoc/creator/R3VzdGFmc3NvbiwgU3RlZmFu|https://frl.publisso.de/adhoc/creator/SGFsbG1hbnMsIEfDtnJhbg==|https://frl.publisso.de/adhoc/creator/SGFua2luc29uLCBTdXNhbiBFLg==|https://frl.publisso.de/adhoc/creator/SGF2dWxpbm5hLCBBa2kgUw==|http://orcid.org/0000-0002-2050-093X|https://frl.publisso.de/adhoc/creator/SGVybmFuZGV6LCBEZW5h|https://frl.publisso.de/adhoc/creator/SGlja3MsIEFuZHJldyBBLg==|https://frl.publisso.de/adhoc/creator/SHVudGVyLCBEYXZpZCBKLg==|https://frl.publisso.de/adhoc/creator/SWxsaWcsIFRob21hcw==|https://frl.publisso.de/adhoc/creator/SW5nZWxzc29uLCBFcmlr|https://frl.publisso.de/adhoc/creator/SW9hbi1GYWNzaW5heSwgQW5kcmVlYQ==|https://frl.publisso.de/adhoc/creator/SmFuc3NvbiwgSm9obi1PbG92|https://frl.publisso.de/adhoc/creator/SmVubnksIE5hbmN5IFMu|https://frl.publisso.de/adhoc/creator/SsO4cmdlbnNlbiwgTWFyaXQgRS4=|https://frl.publisso.de/adhoc/creator/SsO4cmdlbnNlbiwgVG9yYmVu|https://frl.publisso.de/adhoc/creator/S2FybHNzb24sIE1hZ251cw==|https://frl.publisso.de/adhoc/creator/S29lbmlnLCBXb2xmZ2FuZw==|https://frl.publisso.de/adhoc/creator/S3JhZnQsIFBldGVy|https://frl.publisso.de/adhoc/creator/S3dla2tlYm9vbSwgSm9hbm5la2U=|https://frl.publisso.de/adhoc/creator/TGFhdGlrYWluZW4sIFRpaW5h|https://frl.publisso.de/adhoc/creator/TGFkd2lnLCBLYXJsLUhlaW56|https://frl.publisso.de/adhoc/creator/TGVEdWMsIENoYXJsZXMgQS4=|https://frl.publisso.de/adhoc/creator/TG93ZSwgR29yZG9u|https://frl.publisso.de/adhoc/creator/THUsIFlpbmdjaGFuZw==|https://frl.publisso.de/adhoc/creator/TWFycXVlcy1WaWRhbCwgUGVkcm8=|https://frl.publisso.de/adhoc/creator/TWVpc2luZ2VyLCBDaHJpc3Rh|https://frl.publisso.de/adhoc/creator/TWVubmksIENyaXN0aW5h|https://frl.publisso.de/adhoc/creator/TW9ycmlzLCBBbmRyZXcgUC4=|https://frl.publisso.de/adhoc/creator/TXllcnMsIFJpY2hhcmQgSC4=|https://frl.publisso.de/adhoc/creator/TcOkbm5pc3TDtiwgU2F0dQ==|https://frl.publisso.de/adhoc/creator/TmFsbHMsIE1pa2UgQS4=|https://frl.publisso.de/adhoc/creator/UGF0ZXJub3N0ZXIsIExhdmluaWE=|https://frl.publisso.de/adhoc/creator/UGV0ZXJzLCBBbm5ldHRl|https://frl.publisso.de/adhoc/creator/UHJhZGhhbiwgQXJ1bmEgRC4=|https://frl.publisso.de/adhoc/creator/UmFua2luZW4sIFR1b21v|https://frl.publisso.de/adhoc/creator/UmFzbXVzc2VuLVRvcnZpaywgTGF1cmEgSi4=|https://frl.publisso.de/adhoc/creator/UmF0aG1hbm4sIFdvbGZnYW5n|https://frl.publisso.de/adhoc/creator/UmljZSwgVHJldmEgSy4=|https://frl.publisso.de/adhoc/creator/QnJlbnQgUmljaGFyZHMsIEo=|https://frl.publisso.de/adhoc/creator/Umlka2VyLCBQYXVsIE0u|https://frl.publisso.de/adhoc/creator/U2F0dGFyLCBOYXZlZWQ=|https://frl.publisso.de/adhoc/creator/U2F2YWdlLCBEYXZpZCBCLg==|https://frl.publisso.de/adhoc/creator/U8O2ZGVyYmVyZywgU3RlZmFu|https://frl.publisso.de/adhoc/creator/VGltcHNvbiwgTmljaG9sYXMgSi4=|https://frl.publisso.de/adhoc/creator/VmFuZGVucHV0LCBMaWVzYmV0aA==|https://frl.publisso.de/adhoc/creator/dmFuIEhlZW1zdCwgRGlhbmE=|https://frl.publisso.de/adhoc/creator/VWgsIEhhZS1Xb24=|https://frl.publisso.de/adhoc/creator/Vm9obCwgTWFyaWUtQ2xhdWRl|https://frl.publisso.de/adhoc/creator/V2Fsa2VyLCBNYXJr|https://frl.publisso.de/adhoc/creator/V2ljaG1hbm4sIEhlaW56LUVyaWNo|https://frl.publisso.de/adhoc/creator/V2lkw6luLCBFbGlzYWJldGg=|https://frl.publisso.de/adhoc/creator/V29vZCwgQW5kcmV3IFIu|https://frl.publisso.de/adhoc/creator/WWFvLCBKaWU=|https://frl.publisso.de/adhoc/creator/WmVsbGVyLCBUYW5qYQ==|https://frl.publisso.de/adhoc/creator/WmhhbmcsIFlpeWluZw==|https://frl.publisso.de/adhoc/creator/TWV1bGVuYmVsdCwgSW5ncmlk|https://frl.publisso.de/adhoc/creator/S2xvcHBlbmJ1cmcsIE1hcmdyZWV0|https://frl.publisso.de/adhoc/creator/QXN0cnVwLCBBcm5l|https://frl.publisso.de/adhoc/creator/U8O4cmVuc2VuLCBUaG9ya2lsZCBJLiBBLg==|https://frl.publisso.de/adhoc/creator/U2Fyenluc2tpLCBNYXJrIEEu|https://frl.publisso.de/adhoc/creator/UmFvLCBELiBDLg==|https://frl.publisso.de/adhoc/creator/Sm91c2lsYWh0aSwgUGVra2E=|https://frl.publisso.de/adhoc/creator/VmFydGlhaW5lbiwgRXJra2k=|https://frl.publisso.de/adhoc/creator/SG9mbWFuLCBBbGJlcnQ=|https://frl.publisso.de/adhoc/creator/Uml2YWRlbmVpcmEsIEZlcm5hbmRv|https://frl.publisso.de/adhoc/creator/VWl0dGVybGluZGVuLCBBbmRyw6kgRy4=|https://frl.publisso.de/adhoc/creator/S2FqYW50aWUsIEVlcm8=|https://frl.publisso.de/adhoc/creator/T3Ntb25kLCBDbGl2ZQ==|https://frl.publisso.de/adhoc/creator/UGFsb3RpZSwgQWFybm8=|https://frl.publisso.de/adhoc/creator/RXJpa3Nzb24sIEpvaGFuIEcu|https://frl.publisso.de/adhoc/creator/SGVsacO2dmFhcmEsIE1hcmtrdQ==|https://frl.publisso.de/adhoc/creator/S25la3QsIFBhdWwgQi4=|https://frl.publisso.de/adhoc/creator/S29za2luZW4sIFNlcHBv|https://frl.publisso.de/adhoc/creator/SnVsYSwgQW50dGk=|https://frl.publisso.de/adhoc/creator/UGVyb2xhLCBNYXJrdXM=|https://frl.publisso.de/adhoc/creator/SHV1cHBvbmVuLCBSaXN0byBLLg==|https://frl.publisso.de/adhoc/creator/Vmlpa2FyaSwgSm9ybWEgUy4=|https://frl.publisso.de/adhoc/creator/S8OkaMO2bmVuLCBNaWth|https://frl.publisso.de/adhoc/creator/TGVodGltw6RraSwgVGVyaG8=|https://frl.publisso.de/adhoc/creator/UmFpdGFrYXJpLCBPbGxpIFQu|https://frl.publisso.de/adhoc/creator/TWVsbHN0csO2bSwgRGFu|https://frl.publisso.de/adhoc/creator/TG9yZW50em9uLCBNYXR0aWFz|https://frl.publisso.de/adhoc/creator/Q2FzYXMsIEp1YW4gUC4=|https://frl.publisso.de/adhoc/creator/QmFuZGluZWxsaSwgU3RlZmFuaWU=|https://frl.publisso.de/adhoc/creator/TcOkcnosIFdpbmZyaWVk|https://frl.publisso.de/adhoc/creator/SXNhYWNzLCBBYXJvbg==|https://frl.publisso.de/adhoc/creator/dmFuIERpamssIEtvIFcu|https://frl.publisso.de/adhoc/creator/dmFuIER1aWpuLCBDb3JuZWxpYSBNLg==|https://frl.publisso.de/adhoc/creator/SGFycmlzLCBUYW1hcmEgQi4=|https://frl.publisso.de/adhoc/creator/Qm91Y2hhcmQsIENsYXVkZQ==|https://frl.publisso.de/adhoc/creator/QWxsaXNvbiwgTWF0dGhldyBBLg==|https://frl.publisso.de/adhoc/creator/Q2hhc21hbiwgRGFuaWVsIEku|https://frl.publisso.de/adhoc/creator/T2hsc3NvbiwgQ2xhZXM=|https://frl.publisso.de/adhoc/creator/TGluZCwgTGFycw==|https://frl.publisso.de/adhoc/creator/U2NvdHQsIFJvYmVydCBBLg==|https://frl.publisso.de/adhoc/creator/TGFuZ2VuYmVyZywgQ2xhdWRpYQ==|https://frl.publisso.de/adhoc/creator/V2FyZWhhbSwgTmljaG9sYXMgSi4=|https://frl.publisso.de/adhoc/creator/RmVycnVjY2ksIEx1aWdp|https://frl.publisso.de/adhoc/creator/RnJheWxpbmcsIFRpbW90aHkgTS4=|https://frl.publisso.de/adhoc/creator/UHJhbXN0YWxsZXIsIFBldGVyIFAu|https://frl.publisso.de/adhoc/creator/Qm9yZWNraSwgSW5ncmlkIEIu|https://frl.publisso.de/adhoc/creator/V2F0ZXJ3b3J0aCwgRGF3biBNLg==|https://frl.publisso.de/adhoc/creator/QmVyZ21hbm4sIFN2ZW4=|https://frl.publisso.de/adhoc/creator/V2FlYmVyLCBHw6lyYXJk|https://frl.publisso.de/adhoc/creator/Vm9sbGVud2VpZGVyLCBQZXRlcg==|https://frl.publisso.de/adhoc/creator/VmVzdGVyZ2FhcmQsIEhlbnJpaw==|https://frl.publisso.de/adhoc/creator/SGFuc2VuLCBUb3JiZW4=|https://frl.publisso.de/adhoc/creator/UGVkZXJzZW4sIE9sdWY=|https://frl.publisso.de/adhoc/creator/SHUsIEZyYW5rIEIu|https://frl.publisso.de/adhoc/creator/RWxpbmUgU2xhZ2Jvb20sIFA=|https://frl.publisso.de/adhoc/creator/R3JhbGxlcnQsIEhhcmFsZA==|https://frl.publisso.de/adhoc/creator/U3BlY3RvciwgVGltIEQu|https://frl.publisso.de/adhoc/creator/SnVrZW1hLCBKLlcu|https://frl.publisso.de/adhoc/creator/S2xlaW4sIFJvYmVydCBKLg==|https://frl.publisso.de/adhoc/creator/U2NoYWR0LCBFcmlrIEU=|https://frl.publisso.de/adhoc/creator/RnJhbmtzLCBQYXVsIFcu|https://frl.publisso.de/adhoc/creator/TGluZGdyZW4sIENlY2lsaWEgTS4=|https://frl.publisso.de/adhoc/creator/TGVpYmVsLCBSdWRvbHBoIEwu|https://frl.publisso.de/adhoc/creator/TG9vcywgUnV0aCBKLiBGLg==" .
+_:b350 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:b351 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://www.nature.com/articles/ncomms10494#supplementary-information> .
+_:b351 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:b352 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://dx.doi.org/10.1038/ncomms10494> .
+_:b352 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b353 .
+_:b353 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4740377/> .
+_:b353 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:b36 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Folkh\u00E4lsan Research Foundation" .
+_:b36 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b37 .
+_:b37 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Genetic Laboratory of the Department of Internal Medicine, Erasmus MC" .
+_:b37 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b38 .
+_:b38 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "German Center for Diabetes Research (DZD)" .
+_:b38 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b39 .
+_:b39 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "German Federal Ministry of Education and Research" .
+_:b39 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b40 .
+_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Augustinus Foundation" .
+_:b4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b5 .
+_:b40 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "GlaxoSmithKline" .
+_:b40 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b41 .
+_:b41 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "G\u00F6ran Gustafsson Foundation" .
+_:b41 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b42 .
+_:b42 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Heart Foundation of Northern Sweden" .
+_:b42 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b43 .
+_:b43 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Helmholtz Zentrum M\u00FCnchen" .
+_:b43 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b44 .
+_:b44 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Ib Henriksen Foundation" .
+_:b44 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b45 .
+_:b45 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Innovation-Oriented Research Program on Genomics " .
+_:b45 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b46 .
+_:b46 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Italian Ministry of Health " .
+_:b46 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b47 .
+_:b47 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "John W. Barton Sr. Chair in Genetics and Nutrition" .
+_:b47 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b48 .
+_:b48 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Juho Vainio Foundation" .
+_:b48 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b49 .
+_:b49 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "King\u2019s College London" .
+_:b49 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b50 .
+_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Becket Foundation" .
+_:b5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b6 .
+_:b50 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Knut and Alice Wallenberg Foundation" .
+_:b50 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b51 .
+_:b51 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Kuopio, Tampere and Turku University Hospital Medical Funds " .
+_:b51 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b52 .
+_:b52 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Leiden University Medical Centre" .
+_:b52 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b53 .
+_:b53 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Li Ka Shing Foundation" .
+_:b53 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b54 .
+_:b54 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Liv och H\u00E4lsa" .
+_:b54 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b55 .
+_:b55 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Local Government Pensions Institution" .
+_:b55 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b56 .
+_:b56 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Ludwig-Maximilians-Universit\u00E4t" .
+_:b56 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b57 .
+_:b57 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Lundbeck Foundation" .
+_:b57 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b58 .
+_:b58 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Lundberg Foundation" .
+_:b58 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b59 .
+_:b59 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Medical Research Council " .
+_:b59 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b60 .
+_:b6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Bristol-Myers Squibb" .
+_:b6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b7 .
+_:b60 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Medical Research Council-GlaxoSmithKline pilot programme grant " .
+_:b60 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b61 .
+_:b61 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Ministry of Education, Culture and Science of the Netherlands" .
+_:b61 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b62 .
+_:b62 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Ministry of health, Welfare and Sports of the Netherlands" .
+_:b62 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b63 .
+_:b63 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Ministry of Health and Department of Educational Assistance, University and Research of the Autonomous Province of Bolzano" .
+_:b63 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b64 .
+_:b64 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Danish Ministry of Internal Affairs and Health" .
+_:b64 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b65 .
+_:b65 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Munich Center of Health Sciences" .
+_:b65 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b66 .
+_:b66 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Municipality of Rotterdam" .
+_:b66 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b67 .
+_:b67 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "National Cancer Institute " .
+_:b67 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b68 .
+_:b68 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "National Eye Institute" .
+_:b68 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b69 .
+_:b69 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "National Institute on Aging " .
+_:b69 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b70 .
+_:b7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "British Heart Foundation programme " .
+_:b7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b8 .
+_:b70 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "National Institute for Health Research" .
+_:b70 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b71 .
+_:b71 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "National Institutes of Health " .
+_:b71 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b72 .
+_:b72 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Netherlands Brain Foundation (HersenStichting Nederland)" .
+_:b72 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b73 .
+_:b73 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Netherlands Consortium for Healthy Aging " .
+_:b73 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b74 .
+_:b74 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Netherlands Genomics Initiative" .
+_:b74 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b75 .
+_:b75 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Netherlands Heart Foundation " .
+_:b75 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b76 .
+_:b76 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Netherlands Organization for Scientific Research " .
+_:b76 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b77 .
+_:b77 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Netherlands Organization for the Health Research and Development" .
+_:b77 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b78 .
+_:b78 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "National Heart, Lung, and Blood Institute " .
+_:b78 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b79 .
+_:b79 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "National Health Service Foundation Trust" .
+_:b79 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b80 .
+_:b8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Canadian Institutes of Health Research " .
+_:b8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b9 .
+_:b80 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "National Institutes of Diabetes and Digestive and Kidney Diseases " .
+_:b80 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b81 .
+_:b81 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Novo Nordisk" .
+_:b81 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b82 .
+_:b82 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Novo Nordisk Foundation" .
+_:b82 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b83 .
+_:b83 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "New York Obesity Nutrition Research Center Pilot and Feasilibity Grant " .
+_:b83 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b84 .
+_:b84 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Orion-Farmos Research Foundation" .
+_:b84 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b85 .
+_:b85 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Pfizer Inc." .
+_:b85 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b86 .
+_:b86 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Paavo Nurmi Foundation" .
+_:b86 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b87 .
+_:b87 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "P\u00E5hlssons Foundation" .
+_:b87 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b88 .
+_:b88 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Research Foundation of Copenhagen County" .
+_:b88 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b89 .
+_:b89 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Roche Pharmaceuticals" .
+_:b89 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b90 .
+_:b9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Centre for Medical Systems Biology" .
+_:b9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b10 .
+_:b90 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Research Institute for Diseases in the Elderly " .
+_:b90 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b91 .
+_:b91 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Samfundet Folkh\u00E4lsan" .
+_:b91 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b92 .
+_:b92 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Signe and Ane Gyllenberg Foundation" .
+_:b92 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b93 .
+_:b93 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Sigrid Jus\u00E9lius Foundation" .
+_:b93 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b94 .
+_:b94 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Social Insurance Institution of Finland" .
+_:b94 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b95 .
+_:b95 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "South Tyrolean Sparkasse Foundation" .
+_:b95 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b96 .
+_:b96 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Swedish Diabetes Association" .
+_:b96 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b97 .
+_:b97 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Swedish Diabetes Foundation" .
+_:b97 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b98 .
+_:b98 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Swedish Foundation for Strategic Research" .
+_:b98 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b99 .
+_:b99 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "Swedish Heart-Lung Foundation " .
+_:b99 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:b100 .
+<frl:6407884> <http://dbpedia.org/ontology/institution> <http://d-nb.info/gnd/16332572-8> .
+<frl:6407884> <http://hbz-nrw.de/regal#accessScheme> "private" .
+<frl:6407884> <http://hbz-nrw.de/regal#contentType> "article" .
+<frl:6407884> <http://hbz-nrw.de/regal#ddc> <http://dewey.info/class/610/> .
+<frl:6407884> <http://hbz-nrw.de/regal#funding> _:b0 .
+<frl:6407884> <http://hbz-nrw.de/regal#license> <http://creativecommons.org/licenses/by/4.0/> .
+<frl:6407884> <http://hbz-nrw.de/regal#professionalGroup> _:b111 .
+<frl:6407884> <http://hbz-nrw.de/regal#projectId> _:b113 .
+<frl:6407884> <http://hbz-nrw.de/regal#publicationStatus> <http://hbz-nrw.de/regal#original> .
+<frl:6407884> <http://hbz-nrw.de/regal#publicationYear> "2016-02-01" .
+<frl:6407884> <http://hbz-nrw.de/regal#publishScheme> "private" .
+<frl:6407884> <http://hbz-nrw.de/regal#reviewStatus> <http://hbz-nrw.de/regal#peerReviewed> .
+<frl:6407884> <http://purl.org/dc/terms/abstract> "Leptin is an adipocyte-secreted hormone, the circulating levels of which correlate closely with overall adiposity. Although rare mutations in the leptin (LEP) gene are well known to cause leptin deficiency and severe obesity, no common loci regulating circulating leptin levels have been uncovered. Therefore, we performed a genome-wide association study (GWAS) of circulating leptin levels from 32,161 individuals and followed up loci reaching P<10\u22126 in 19,979 additional individuals. We identify five loci robustly associated (P<5 \u00D7 10\u22128) with leptin levels in/near LEP, SLC32A1, GCKR, CCNL1 and FTO. Although the association of the FTO obesity locus with leptin levels is abolished by adjustment for BMI, associations of the four other loci are independent of adiposity. The GCKR locus was found associated with multiple metabolic traits in previous GWAS and the CCNL1 locus with birth weight. Knockdown experiments in mouse adipose tissue explants show convincing evidence for adipogenin, a regulator of adipocyte differentiation, as the novel causal gene in the SLC32A1 locus influencing leptin levels. Our findings provide novel insights into the regulation of leptin production by adipose tissue and open new avenues for examining the influence of variation in leptin levels on adiposity and metabolic health." .
+<frl:6407884> <http://purl.org/dc/terms/bibliographicCitation> "(7):10494" .
+<frl:6407884> <http://purl.org/dc/terms/creator> _:b173 .
+<frl:6407884> <http://purl.org/dc/terms/language> <http://id.loc.gov/vocabulary/iso639-2/eng> .
+<frl:6407884> <http://purl.org/dc/terms/medium> <http://purl.org/lobid/lv#fulltextOnline> .
+<frl:6407884> <http://purl.org/dc/terms/title> "Genome-wide meta-analysis uncovers novel loci influencing circulating leptin levels" .
+<frl:6407884> <http://purl.org/lobid/lv#containedIn> <http://lobid.org/resources/HT016367546#!> .
+<frl:6407884> <http://purl.org/lobid/lv#contributorOrder> _:b350 .
+<frl:6407884> <http://www.openarchives.org/OAI/2.0/itemID> <oai:frl.publisso.de:frl:6407884> .
+<frl:6407884> <http://www.openarchives.org/ore/terms/isDescribedBy> <frl:6407884.rdf> .
+<frl:6407884> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Article> .
+<frl:6407884> <http://xmlns.com/foaf/0.1/isPrimaryTopicOf> <https://repository.publisso.de/resource/frl:6407884/edit> .
+<frl:6407884> <http://xmlns.com/foaf/0.1/primaryTopic> <frl:6407884> .
+<frl:6407884> <info:regal/zettel/additionalMaterial> _:b351 .
+<frl:6407884> <info:regal/zettel/collectionOne> <http://d-nb.info/gnd/16332572-8> .
+<frl:6407884> <info:regal/zettel/publisherVersion> _:b352 .
+<frl:6407884.rdf> <http://hbz-nrw.de/regal#createdBy> "218" .
+<frl:6407884.rdf> <http://hbz-nrw.de/regal#lastModifiedBy> "218" .
+<frl:6407884.rdf> <http://hbz-nrw.de/regal#objectTimestamp> "2018-05-09T07:35:16.000+0000" .
+<frl:6407884.rdf> <http://purl.org/dc/terms/created> "2018-04-26T07:00:39.351+0000" .
+<frl:6407884.rdf> <http://purl.org/dc/terms/modified> "2018-05-09T07:35:16.659+0000" .
+<frl:6407884.rdf> <http://www.openarchives.org/ore/terms/describes> <frl:6407884> .
+<http://creativecommons.org/licenses/by/4.0/> <http://www.w3.org/2004/02/skos/core#prefLabel> "http://creativecommons.org/licenses/by/4.0/" .
+<http://d-nb.info/gnd/16332572-8> <http://d-nb.info/standards/elementset/gnd#preferredNameForTheCorporateBody> "Deutsches Diabetes-Zentrum" .
+<http://d-nb.info/gnd/16332572-8> <http://www.w3.org/2004/02/skos/core#prefLabel> "Deutsches Diabetes-Zentrum" .
+<http://dewey.info/class/610/> <http://www.w3.org/2004/02/skos/core#prefLabel> "Medizin und Gesundheit" .
+<http://dx.doi.org/10.1038/ncomms10494> <http://www.w3.org/2004/02/skos/core#prefLabel> "http://dx.doi.org/10.1038/ncomms10494" .
+<http://hbz-nrw.de/regal#original> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ver\u00F6ffentlichungsversion" .
+<http://hbz-nrw.de/regal#peerReviewed> <http://www.w3.org/2004/02/skos/core#prefLabel> "begutachtet (Peer-reviewed)" .
+<http://id.loc.gov/vocabulary/iso639-2/eng> <http://www.w3.org/2004/02/skos/core#prefLabel> "Englisch" .
+<http://lobid.org/resources/HT016367546#!> <http://www.w3.org/2004/02/skos/core#prefLabel> "Nature Communications" .
+<http://orcid.org/0000-0002-2050-093X> <http://www.w3.org/2004/02/skos/core#prefLabel> "Herder, Christian" .
+<http://purl.org/lobid/lv#fulltextOnline> <http://www.w3.org/2004/02/skos/core#prefLabel> "Online-Volltext" .
+<http://purl.org/ontology/bibo/Article> <http://www.w3.org/2004/02/skos/core#prefLabel> "Artikel" .
+<http://skos.um.es/unescothes/C01771> <http://www.w3.org/2004/02/skos/core#prefLabel> "Gesundheitswesen" .
+<http://skos.um.es/unescothes/C02464> <http://www.w3.org/2004/02/skos/core#prefLabel> "Medizin" .
+<https://frl.publisso.de/adhoc/creator/Q2FybGksIEpheW5lIEYuIE1hcnRpbg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Carli, Jayne F. Martin" .
+<https://frl.publisso.de/adhoc/creator/Q2FzYXMsIEp1YW4gUC4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Casas, Juan P." .
+<https://frl.publisso.de/adhoc/creator/Q2hhc21hbiwgRGFuaWVsIEku> <http://www.w3.org/2004/02/skos/core#prefLabel> "Chasman, Daniel I." .
+<https://frl.publisso.de/adhoc/creator/Q3Jvc3NsaW4sIERhdmlkIFIu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Crosslin, David R." .
+<https://frl.publisso.de/adhoc/creator/QW11enUsIEFudG9pbmV0dGU=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Amuzu, Antoinette" .
+<https://frl.publisso.de/adhoc/creator/QW1pbiwgTmFqYWY=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Amin, Najaf" .
+<https://frl.publisso.de/adhoc/creator/QWhsdXdhbGlhLCBUYXJ1bnZlZXIgUy4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ahluwalia, Tarunveer S." .
+<https://frl.publisso.de/adhoc/creator/QWxsaXNvbiwgTWF0dGhldyBBLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Allison, Matthew A." .
+<https://frl.publisso.de/adhoc/creator/QXN0cnVwLCBBcm5l> <http://www.w3.org/2004/02/skos/core#prefLabel> "Astrup, Arne" .
+<https://frl.publisso.de/adhoc/creator/Qm91Y2hhcmQsIENsYXVkZQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Bouchard, Claude" .
+<https://frl.publisso.de/adhoc/creator/Qm9yZWNraSwgSW5ncmlkIEIu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Borecki, Ingrid B." .
+<https://frl.publisso.de/adhoc/creator/QmFuZGluZWxsaSwgU3RlZmFuaWU=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Bandinelli, Stefanie" .
+<https://frl.publisso.de/adhoc/creator/QmFycm9zbywgSW7DqnM=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Barroso, In\u00EAs" .
+<https://frl.publisso.de/adhoc/creator/QmVla21hbiwgTWFyaWFu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Beekman, Marian" .
+<https://frl.publisso.de/adhoc/creator/QmVsbGlzLCBDbGFpcmU=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Bellis, Claire" .
+<https://frl.publisso.de/adhoc/creator/QmVyZ21hbm4sIFN2ZW4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Bergmann, Sven" .
+<https://frl.publisso.de/adhoc/creator/Qmxhbmdlcm8sIEpvaG4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Blangero, John" .
+<https://frl.publisso.de/adhoc/creator/QnJlbnQgUmljaGFyZHMsIEo=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Brent Richards, J" .
+<https://frl.publisso.de/adhoc/creator/QnVja2xleSwgQnJlbmRhbiBNLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Buckley, Brendan M." .
+<https://frl.publisso.de/adhoc/creator/QsO2aHJpbmdlciwgU3RlZmFu> <http://www.w3.org/2004/02/skos/core#prefLabel> "B\u00F6hringer, Stefan" .
+<https://frl.publisso.de/adhoc/creator/R2F1bnQsIFRvbQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Gaunt, Tom" .
+<https://frl.publisso.de/adhoc/creator/R2FyY2lhLCBNZWxpc3NhIEUu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Garcia, Melissa E." .
+<https://frl.publisso.de/adhoc/creator/R2llZ2VyLCBDaHJpc3RpYW4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Gieger, Christian" .
+<https://frl.publisso.de/adhoc/creator/R3JhbGxlcnQsIEhhcmFsZA==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Grallert, Harald" .
+<https://frl.publisso.de/adhoc/creator/R3JhcnVwLCBOaWVscw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Grarup, Niels" .
+<https://frl.publisso.de/adhoc/creator/R3JlY28gTSwgRmFiaW9sYSBEZWw=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Greco M, Fabiola Del" .
+<https://frl.publisso.de/adhoc/creator/R3VvLCBYaXVxaW5n> <http://www.w3.org/2004/02/skos/core#prefLabel> "Guo, Xiuqing" .
+<https://frl.publisso.de/adhoc/creator/R3VzdGFmc3NvbiwgU3RlZmFu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Gustafsson, Stefan" .
+<https://frl.publisso.de/adhoc/creator/RGF5LCBGZWxpeCBSLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Day, Felix R." .
+<https://frl.publisso.de/adhoc/creator/RGFsZSwgQ2Fyb2xpbmUgRS4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Dale, Caroline E." .
+<https://frl.publisso.de/adhoc/creator/RGFzdGFuaSwgWmFyaQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Dastani, Zari" .
+<https://frl.publisso.de/adhoc/creator/RGVlbGVuLCBKb3Jpcw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Deelen, Joris" .
+<https://frl.publisso.de/adhoc/creator/RGVsZ2FkbywgR3JhY2llbGEgRS4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Delgado, Graciela E." .
+<https://frl.publisso.de/adhoc/creator/RGVtaXJrYW4sIEF5c2U=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Demirkan, Ayse" .
+<https://frl.publisso.de/adhoc/creator/RHJvbmcsIEFsZXhhbmRlciBXLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Drong, Alexander W." .
+<https://frl.publisso.de/adhoc/creator/RWxpbmUgU2xhZ2Jvb20sIFA=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Eline Slagboom, P" .
+<https://frl.publisso.de/adhoc/creator/RXJpa3Nzb24sIEpvZWw=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Eriksson, Joel" .
+<https://frl.publisso.de/adhoc/creator/RXJpa3Nzb24sIEpvaGFuIEcu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Eriksson, Johan G." .
+<https://frl.publisso.de/adhoc/creator/Rm9yZCwgSWFu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ford, Ian" .
+<https://frl.publisso.de/adhoc/creator/RmVpdG9zYSwgTWFyeSBG> <http://www.w3.org/2004/02/skos/core#prefLabel> "Feitosa, Mary F" .
+<https://frl.publisso.de/adhoc/creator/RmVycnVjY2ksIEx1aWdp> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ferrucci, Luigi" .
+<https://frl.publisso.de/adhoc/creator/RmludWNhbmUsIEZyYW5jaXMgTS4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Finucane, Francis M." .
+<https://frl.publisso.de/adhoc/creator/RnJhbmtzLCBQYXVsIFcu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Franks, Paul W." .
+<https://frl.publisso.de/adhoc/creator/RnJheWxpbmcsIFRpbW90aHkgTS4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Frayling, Timothy M." .
+<https://frl.publisso.de/adhoc/creator/S25la3QsIFBhdWwgQi4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Knekt, Paul B." .
+<https://frl.publisso.de/adhoc/creator/S29lbmlnLCBXb2xmZ2FuZw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Koenig, Wolfgang" .
+<https://frl.publisso.de/adhoc/creator/S29za2luZW4sIFNlcHBv> <http://www.w3.org/2004/02/skos/core#prefLabel> "Koskinen, Seppo" .
+<https://frl.publisso.de/adhoc/creator/S2FqYW50aWUsIEVlcm8=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Kajantie, Eero" .
+<https://frl.publisso.de/adhoc/creator/S2FybHNzb24sIE1hZ251cw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Karlsson, Magnus" .
+<https://frl.publisso.de/adhoc/creator/S2lscGVsw6RpbmVuLCBUdW9tYXMgTy4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Kilpel\u00E4inen, Tuomas O." .
+<https://frl.publisso.de/adhoc/creator/S2xlYmVyLCBNYXJjdXMgRS4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Kleber, Marcus E." .
+<https://frl.publisso.de/adhoc/creator/S2xlaW4sIFJvYmVydCBKLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Klein, Robert J." .
+<https://frl.publisso.de/adhoc/creator/S2xvcHBlbmJ1cmcsIE1hcmdyZWV0> <http://www.w3.org/2004/02/skos/core#prefLabel> "Kloppenburg, Margreet" .
+<https://frl.publisso.de/adhoc/creator/S3JhZnQsIFBldGVy> <http://www.w3.org/2004/02/skos/core#prefLabel> "Kraft, Peter" .
+<https://frl.publisso.de/adhoc/creator/S3JpZWJlbCwgSmVubmlmZXI=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Kriebel, Jennifer" .
+<https://frl.publisso.de/adhoc/creator/S3Jpc3RpYW5zc29uLCBLYXRp> <http://www.w3.org/2004/02/skos/core#prefLabel> "Kristiansson, Kati" .
+<https://frl.publisso.de/adhoc/creator/S3V0YWxpaywgWm9sdMOhbg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Kutalik, Zolt\u00E1n" .
+<https://frl.publisso.de/adhoc/creator/S3dla2tlYm9vbSwgSm9hbm5la2U=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Kwekkeboom, Joanneke" .
+<https://frl.publisso.de/adhoc/creator/S8OkaMO2bmVuLCBNaWth> <http://www.w3.org/2004/02/skos/core#prefLabel> "K\u00E4h\u00F6nen, Mika" .
+<https://frl.publisso.de/adhoc/creator/SG9mbWFuLCBBbGJlcnQ=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Hofman, Albert" .
+<https://frl.publisso.de/adhoc/creator/SGF2dWxpbm5hLCBBa2kgUw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Havulinna, Aki S" .
+<https://frl.publisso.de/adhoc/creator/SGF5ZXMsIEphbWVzIEUu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Hayes, James E." .
+<https://frl.publisso.de/adhoc/creator/SGFsbG1hbnMsIEfDtnJhbg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Hallmans, G\u00F6ran" .
+<https://frl.publisso.de/adhoc/creator/SGFua2luc29uLCBTdXNhbiBFLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Hankinson, Susan E." .
+<https://frl.publisso.de/adhoc/creator/SGFuc2VuLCBUb3JiZW4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Hansen, Torben" .
+<https://frl.publisso.de/adhoc/creator/SGFycmlzLCBUYW1hcmEgQi4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Harris, Tamara B." .
+<https://frl.publisso.de/adhoc/creator/SGVkbWFuLCDDhXNhIEsu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Hedman, \u00C5sa K." .
+<https://frl.publisso.de/adhoc/creator/SGVsacO2dmFhcmEsIE1hcmtrdQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Heli\u00F6vaara, Markku" .
+<https://frl.publisso.de/adhoc/creator/SGVubmVtYW4sIFBldGVy> <http://www.w3.org/2004/02/skos/core#prefLabel> "Henneman, Peter" .
+<https://frl.publisso.de/adhoc/creator/SGVybmFuZGV6LCBEZW5h> <http://www.w3.org/2004/02/skos/core#prefLabel> "Hernandez, Dena" .
+<https://frl.publisso.de/adhoc/creator/SGlja3MsIEFuZHJldyBBLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Hicks, Andrew A." .
+<https://frl.publisso.de/adhoc/creator/SHUsIEZyYW5rIEIu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Hu, Frank B." .
+<https://frl.publisso.de/adhoc/creator/SHV1cHBvbmVuLCBSaXN0byBLLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Huupponen, Risto K." .
+<https://frl.publisso.de/adhoc/creator/SHVudGVyLCBEYXZpZCBKLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Hunter, David J." .
+<https://frl.publisso.de/adhoc/creator/SSBDaGVuLCBZaWktRGVy> <http://www.w3.org/2004/02/skos/core#prefLabel> "I Chen, Yii-Der" .
+<https://frl.publisso.de/adhoc/creator/SW5nZWxzc29uLCBFcmlr> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ingelsson, Erik" .
+<https://frl.publisso.de/adhoc/creator/SW9hbi1GYWNzaW5heSwgQW5kcmVlYQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ioan-Facsinay, Andreea" .
+<https://frl.publisso.de/adhoc/creator/SWxsaWcsIFRob21hcw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Illig, Thomas" .
+<https://frl.publisso.de/adhoc/creator/SXNhYWNzLCBBYXJvbg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Isaacs, Aaron" .
+<https://frl.publisso.de/adhoc/creator/Sm91c2lsYWh0aSwgUGVra2E=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Jousilahti, Pekka" .
+<https://frl.publisso.de/adhoc/creator/SmFuc3NvbiwgSm9obi1PbG92> <http://www.w3.org/2004/02/skos/core#prefLabel> "Jansson, John-Olov" .
+<https://frl.publisso.de/adhoc/creator/SmVubnksIE5hbmN5IFMu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Jenny, Nancy S." .
+<https://frl.publisso.de/adhoc/creator/SnUgU3VuZywgWXVu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ju Sung, Yun" .
+<https://frl.publisso.de/adhoc/creator/SnVrZW1hLCBKLlcu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Jukema, J.W." .
+<https://frl.publisso.de/adhoc/creator/SnVsYSwgQW50dGk=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Jula, Antti" .
+<https://frl.publisso.de/adhoc/creator/SsO4cmdlbnNlbiwgTWFyaXQgRS4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "J\u00F8rgensen, Marit E." .
+<https://frl.publisso.de/adhoc/creator/SsO4cmdlbnNlbiwgVG9yYmVu> <http://www.w3.org/2004/02/skos/core#prefLabel> "J\u00F8rgensen, Torben" .
+<https://frl.publisso.de/adhoc/creator/T2hsc3NvbiwgQ2xhZXM=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ohlsson, Claes" .
+<https://frl.publisso.de/adhoc/creator/T3Ntb25kLCBDbGl2ZQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Osmond, Clive" .
+<https://frl.publisso.de/adhoc/creator/TG93ZSwgR29yZG9u> <http://www.w3.org/2004/02/skos/core#prefLabel> "Lowe, Gordon" .
+<https://frl.publisso.de/adhoc/creator/TG9vcywgUnV0aCBKLiBGLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Loos, Ruth J. F." .
+<https://frl.publisso.de/adhoc/creator/TG9yZW50em9uLCBNYXR0aWFz> <http://www.w3.org/2004/02/skos/core#prefLabel> "Lorentzon, Mattias" .
+<https://frl.publisso.de/adhoc/creator/TGFhdGlrYWluZW4sIFRpaW5h> <http://www.w3.org/2004/02/skos/core#prefLabel> "Laatikainen, Tiina" .
+<https://frl.publisso.de/adhoc/creator/TGFkd2lnLCBLYXJsLUhlaW56> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ladwig, Karl-Heinz" .
+<https://frl.publisso.de/adhoc/creator/TGFodGksIEphcmk=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Lahti, Jari" .
+<https://frl.publisso.de/adhoc/creator/TGFuZ2VuYmVyZywgQ2xhdWRpYQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Langenberg, Claudia" .
+<https://frl.publisso.de/adhoc/creator/TGVEdWMsIENoYXJsZXMgQS4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "LeDuc, Charles A." .
+<https://frl.publisso.de/adhoc/creator/TGVodGltw6RraSwgVGVyaG8=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Lehtim\u00E4ki, Terho" .
+<https://frl.publisso.de/adhoc/creator/TGVpYmVsLCBSdWRvbHBoIEwu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Leibel, Rudolph L." .
+<https://frl.publisso.de/adhoc/creator/TGl1LCBZb25nbWVp> <http://www.w3.org/2004/02/skos/core#prefLabel> "Liu, Yongmei" .
+<https://frl.publisso.de/adhoc/creator/TGluZCwgTGFycw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Lind, Lars" .
+<https://frl.publisso.de/adhoc/creator/TGluZGdyZW4sIENlY2lsaWEgTS4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Lindgren, Cecilia M." .
+<https://frl.publisso.de/adhoc/creator/THUsIFlpbmdjaGFuZw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Lu, Yingchang" .
+<https://frl.publisso.de/adhoc/creator/THVhbiwgSmlhbuKAmWFu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Luan, Jian\u2019an" .
+<https://frl.publisso.de/adhoc/creator/THl5dGlrw6RpbmVuLCBMZW8tUGVra2E=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Lyytik\u00E4inen, Leo-Pekka" .
+<https://frl.publisso.de/adhoc/creator/TW9ycmlzLCBBbmRyZXcgUC4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Morris, Andrew P." .
+<https://frl.publisso.de/adhoc/creator/TWFoYWphbiwgQW51Ymhh> <http://www.w3.org/2004/02/skos/core#prefLabel> "Mahajan, Anubha" .
+<https://frl.publisso.de/adhoc/creator/TWFuZ2lubywgTWFzc2ltbw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Mangino, Massimo" .
+<https://frl.publisso.de/adhoc/creator/TWFycXVlcy1WaWRhbCwgUGVkcm8=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Marques-Vidal, Pedro" .
+<https://frl.publisso.de/adhoc/creator/TWV1bGVuYmVsdCwgSW5ncmlk> <http://www.w3.org/2004/02/skos/core#prefLabel> "Meulenbelt, Ingrid" .
+<https://frl.publisso.de/adhoc/creator/TWVpc2luZ2VyLCBDaHJpc3Rh> <http://www.w3.org/2004/02/skos/core#prefLabel> "Meisinger, Christa" .
+<https://frl.publisso.de/adhoc/creator/TWVsbHN0csO2bSwgRGFu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Mellstr\u00F6m, Dan" .
+<https://frl.publisso.de/adhoc/creator/TWVubmksIENyaXN0aW5h> <http://www.w3.org/2004/02/skos/core#prefLabel> "Menni, Cristina" .
+<https://frl.publisso.de/adhoc/creator/TXllcnMsIFJpY2hhcmQgSC4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Myers, Richard H." .
+<https://frl.publisso.de/adhoc/creator/TcOkbm5pc3TDtiwgU2F0dQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "M\u00E4nnist\u00F6, Satu" .
+<https://frl.publisso.de/adhoc/creator/TcOkcnosIFdpbmZyaWVk> <http://www.w3.org/2004/02/skos/core#prefLabel> "M\u00E4rz, Winfried" .
+<https://frl.publisso.de/adhoc/creator/TmFsbHMsIE1pa2UgQS4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Nalls, Mike A." .
+<https://frl.publisso.de/adhoc/creator/U2F0dGFyLCBOYXZlZWQ=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Sattar, Naveed" .
+<https://frl.publisso.de/adhoc/creator/U2F2YWdlLCBEYXZpZCBCLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Savage, David B." .
+<https://frl.publisso.de/adhoc/creator/U2Fyenluc2tpLCBNYXJrIEEu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Sarzynski, Mark A." .
+<https://frl.publisso.de/adhoc/creator/U2NoYWR0LCBFcmlrIEU=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Schadt, Erik E" .
+<https://frl.publisso.de/adhoc/creator/U2NoaWNrLCBVcnN1bGE=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Schick, Ursula" .
+<https://frl.publisso.de/adhoc/creator/U2NvdHQsIFJvYmVydCBBLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Scott, Robert A." .
+<https://frl.publisso.de/adhoc/creator/U2tvd3JvbnNraSwgQWxpY2phIEEu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Skowronski, Alicja A." .
+<https://frl.publisso.de/adhoc/creator/U3BlY3RvciwgVGltIEQu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Spector, Tim D." .
+<https://frl.publisso.de/adhoc/creator/U3VuLCBRaQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Sun, Qi" .
+<https://frl.publisso.de/adhoc/creator/U8O2ZGVyYmVyZywgU3RlZmFu> <http://www.w3.org/2004/02/skos/core#prefLabel> "S\u00F6derberg, Stefan" .
+<https://frl.publisso.de/adhoc/creator/U8O4cmVuc2VuLCBUaG9ya2lsZCBJLiBBLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "S\u00F8rensen, Thorkild I. A." .
+<https://frl.publisso.de/adhoc/creator/UGF0ZXJub3N0ZXIsIExhdmluaWE=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Paternoster, Lavinia" .
+<https://frl.publisso.de/adhoc/creator/UGFsb3RpZSwgQWFybm8=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Palotie, Aarno" .
+<https://frl.publisso.de/adhoc/creator/UGFza28sIERvcm90YQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Pasko, Dorota" .
+<https://frl.publisso.de/adhoc/creator/UGV0ZXJzLCBBbm5ldHRl> <http://www.w3.org/2004/02/skos/core#prefLabel> "Peters, Annette" .
+<https://frl.publisso.de/adhoc/creator/UGVkZXJzZW4sIE9sdWY=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Pedersen, Oluf" .
+<https://frl.publisso.de/adhoc/creator/UGVyb2xhLCBNYXJrdXM=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Perola, Markus" .
+<https://frl.publisso.de/adhoc/creator/UGVycywgVHVuZSBILg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Pers, Tune H." .
+<https://frl.publisso.de/adhoc/creator/UHJhZGhhbiwgQXJ1bmEgRC4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Pradhan, Aruna D." .
+<https://frl.publisso.de/adhoc/creator/UHJhbXN0YWxsZXIsIFBldGVyIFAu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Pramstaller, Peter P." .
+<https://frl.publisso.de/adhoc/creator/UMOpcnVzc2UsIExvdWlz> <http://www.w3.org/2004/02/skos/core#prefLabel> "P\u00E9russe, Louis" .
+<https://frl.publisso.de/adhoc/creator/Um9zZSwgTHluZGEgTS4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Rose, Lynda M." .
+<https://frl.publisso.de/adhoc/creator/UmF0aG1hbm4sIFdvbGZnYW5n> <http://www.w3.org/2004/02/skos/core#prefLabel> "Rathmann, Wolfgang" .
+<https://frl.publisso.de/adhoc/creator/UmFpdGFrYXJpLCBPbGxpIFQu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Raitakari, Olli T." .
+<https://frl.publisso.de/adhoc/creator/UmFtb3MsIFlvbGFuZGUgRi4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ramos, Yolande F." .
+<https://frl.publisso.de/adhoc/creator/UmFua2luZW4sIFR1b21v> <http://www.w3.org/2004/02/skos/core#prefLabel> "Rankinen, Tuomo" .
+<https://frl.publisso.de/adhoc/creator/UmFvLCBELiBDLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Rao, D. C." .
+<https://frl.publisso.de/adhoc/creator/UmFzbXVzc2VuLVRvcnZpaywgTGF1cmEgSi4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Rasmussen-Torvik, Laura J." .
+<https://frl.publisso.de/adhoc/creator/UmVuc3Ryw7ZtLCBGcmlkYQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Renstr\u00F6m, Frida" .
+<https://frl.publisso.de/adhoc/creator/Uml2YWRlbmVpcmEsIEZlcm5hbmRv> <http://www.w3.org/2004/02/skos/core#prefLabel> "Rivadeneira, Fernando" .
+<https://frl.publisso.de/adhoc/creator/UmljZSwgVHJldmEgSy4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Rice, Treva K." .
+<https://frl.publisso.de/adhoc/creator/Umlka2VyLCBQYXVsIE0u> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ridker, Paul M." .
+<https://frl.publisso.de/adhoc/creator/V29vZCwgQW5kcmV3IFIu> <http://www.w3.org/2004/02/skos/core#prefLabel> "Wood, Andrew R." .
+<https://frl.publisso.de/adhoc/creator/V2F0ZXJ3b3J0aCwgRGF3biBNLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Waterworth, Dawn M." .
+<https://frl.publisso.de/adhoc/creator/V2FlYmVyLCBHw6lyYXJk> <http://www.w3.org/2004/02/skos/core#prefLabel> "Waeber, G\u00E9rard" .
+<https://frl.publisso.de/adhoc/creator/V2Fsa2VyLCBNYXJr> <http://www.w3.org/2004/02/skos/core#prefLabel> "Walker, Mark" .
+<https://frl.publisso.de/adhoc/creator/V2FyZWhhbSwgTmljaG9sYXMgSi4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Wareham, Nicholas J." .
+<https://frl.publisso.de/adhoc/creator/V2ljaG1hbm4sIEhlaW56LUVyaWNo> <http://www.w3.org/2004/02/skos/core#prefLabel> "Wichmann, Heinz-Erich" .
+<https://frl.publisso.de/adhoc/creator/V2lkw6luLCBFbGlzYWJldGg=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Wid\u00E9n, Elisabeth" .
+<https://frl.publisso.de/adhoc/creator/V2lsbGVtcywgU2FyYSBNLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Willems, Sara M." .
+<https://frl.publisso.de/adhoc/creator/VGFuYWthLCBUb3NoaWtv> <http://www.w3.org/2004/02/skos/core#prefLabel> "Tanaka, Toshiko" .
+<https://frl.publisso.de/adhoc/creator/VGltcHNvbiwgTmljaG9sYXMgSi4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Timpson, Nicholas J." .
+<https://frl.publisso.de/adhoc/creator/VHJvbXBldCwgU3RlbGxh> <http://www.w3.org/2004/02/skos/core#prefLabel> "Trompet, Stella" .
+<https://frl.publisso.de/adhoc/creator/VWgsIEhhZS1Xb24=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Uh, Hae-Won" .
+<https://frl.publisso.de/adhoc/creator/VWl0dGVybGluZGVuLCBBbmRyw6kgRy4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Uitterlinden, Andr\u00E9 G." .
+<https://frl.publisso.de/adhoc/creator/Vm9obCwgTWFyaWUtQ2xhdWRl> <http://www.w3.org/2004/02/skos/core#prefLabel> "Vohl, Marie-Claude" .
+<https://frl.publisso.de/adhoc/creator/Vm9sbGVud2VpZGVyLCBQZXRlcg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Vollenweider, Peter" .
+<https://frl.publisso.de/adhoc/creator/VmFuZGVucHV0LCBMaWVzYmV0aA==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Vandenput, Liesbeth" .
+<https://frl.publisso.de/adhoc/creator/VmFydGlhaW5lbiwgRXJra2k=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Vartiainen, Erkki" .
+<https://frl.publisso.de/adhoc/creator/VmVzdGVyZ2FhcmQsIEhlbnJpaw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Vestergaard, Henrik" .
+<https://frl.publisso.de/adhoc/creator/Vmlpa2FyaSwgSm9ybWEgUy4=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Viikari, Jorma S." .
+<https://frl.publisso.de/adhoc/creator/WWFvLCBKaWU=> <http://www.w3.org/2004/02/skos/core#prefLabel> "Yao, Jie" .
+<https://frl.publisso.de/adhoc/creator/WmVsbGVyLCBUYW5qYQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Zeller, Tanja" .
+<https://frl.publisso.de/adhoc/creator/WmhhbmcsIFlpeWluZw==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Zhang, Yiying" .
+<https://frl.publisso.de/adhoc/creator/WmhhbywgSmluZ2h1YQ==> <http://www.w3.org/2004/02/skos/core#prefLabel> "Zhao, Jinghua" .
+<https://frl.publisso.de/adhoc/creator/ZGUgQ3JhZW4sIEFudG9uIEouIE4u> <http://www.w3.org/2004/02/skos/core#prefLabel> "de Craen, Anton J. N." .
+<https://frl.publisso.de/adhoc/creator/dmFuIER1aWpuLCBDb3JuZWxpYSBNLg==> <http://www.w3.org/2004/02/skos/core#prefLabel> "van Duijn, Cornelia M." .
+<https://frl.publisso.de/adhoc/creator/dmFuIERpamssIEtvIFcu> <http://www.w3.org/2004/02/skos/core#prefLabel> "van Dijk, Ko W." .
+<https://frl.publisso.de/adhoc/creator/dmFuIEhlZW1zdCwgRGlhbmE=> <http://www.w3.org/2004/02/skos/core#prefLabel> "van Heemst, Diana" .
+<https://repository.publisso.de/resource/frl:6407884/edit> <http://www.w3.org/2004/02/skos/core#prefLabel> "https://repository.publisso.de/resource/frl:6407884/edit" .
+<https://repository.publisso.de/resource/frl:6407884/edit> <http://xmlns.com/foaf/0.1/primaryTopic> <frl:6407884> .
+<https://www.nature.com/articles/ncomms10494#supplementary-information> <http://www.w3.org/2004/02/skos/core#prefLabel> "https://www.nature.com/articles/ncomms10494#supplementary-information" .
+<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4740377/> <http://www.w3.org/2004/02/skos/core#prefLabel> "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4740377/" .
+<oai:frl.publisso.de:frl:6407884> <http://www.w3.org/2004/02/skos/core#prefLabel> "oai:frl.publisso.de:frl:6407884" .
