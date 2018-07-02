@@ -114,7 +114,8 @@ public class ZettelController extends Controller {
 		if (id == null)
 			result = listForms();
 		else {
-			if (id.equals("katalog:monograph")) {
+			if (id.equals("katalog:monograph") || id.equals("katalog:journal")
+					|| id.equals("katalog:webpage")) {
 				id = "katalog:catalog";
 			}
 			ZettelRegister zettelRegister = new ZettelRegister();
