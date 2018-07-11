@@ -10,7 +10,11 @@
 		<p class="error">@myForm.globalError.message</p>
 	} 
 	@helper.form(action = routes.ZettelController.postForm(Catalog.id,dataFormat,documentId,topicId)){
+	
 		@accordion(""){
+			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
+					@smallTextArea(myForm,"title","Manueller/Vorläufiger Titel","",1)
+			}
 			@accordionPanel("Titel Import","catalogsection"){			
 				@ldInputField(myForm,"parallelEdition","Suche","lobid-search",1,ArticleHelper.getLobidLookupEndpoints()){
 				@helpText("parallelEdition")
