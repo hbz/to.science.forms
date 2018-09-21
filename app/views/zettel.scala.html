@@ -30,7 +30,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
 </head>
-<body style="position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px;">
+<!--[if IE]>
+    <body style="position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px;">
+<![endif]-->
+<![if !IE]>
+	<body>
+<![endif]-->
 	<div id="documentId" class="data">@documentId</div>
 	<div id="topicId" class="data">@topicId</div>
 	<div id="formType" class="data">@formType</div>
