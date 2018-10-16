@@ -36,6 +36,8 @@
 <![if !IE]>
 	<body>
 <![endif]-->
+
+
 	<div id="documentId" class="data">@documentId</div>
 	<div id="topicId" class="data">@topicId</div>
 	<div id="formType" class="data">@formType</div>
@@ -55,6 +57,9 @@
 
 <script>
 	$(function() {
+		if(itIsIE11()){
+			$("body").attr("style","position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px;");
+		}
 		enableAutocompletionEndpoints();
 		addActionsToRemoveAndAddButtons();
 		window.addEventListener("message", handleMessage, false);
@@ -65,7 +70,11 @@
 		addGeonamesLookup();
 		addGeonamesReverseLookup();	
 		addActionToCancelButton();
+		
 	});
+function itIsIE11(){
+return !!window.MSInputMethodContext && !!document.documentMode;
+}
 
 	</script>
 </body>
