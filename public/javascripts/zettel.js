@@ -16,26 +16,10 @@ function addAutocompletionWithDynamicEndpoint(autocompleteItem){
 		enableAutocompletion(autocompleteItem,newEndpoint);
 	 });
 }
-function addContributionValues(autocompleteItem){
-	endpoint = autocompleteItem.siblings("select").val();
-	enableNewAutocompletion(autocompleteItem,endpoint);
-	autocompleteItem.siblings("select").change(function(){
-		newEndpoint=$(this).val();
-		enableNewAutocompletion(autocompleteItem,newEndpoint);
-	 });
-}
+
 function enableAutocompletionEndpoints() {
-	$('.lobid-search input').each(function() {
+	$('.search input').each(function() {
 		addAutocompletionWithDynamicEndpoint($(this));
-	});
-	$('.gnd-subject-search input').each(function() {
-		addAutocompletionWithDynamicEndpoint($(this));
-	});
-	$('.gnd-person-search input').each(function() {
-		addAutocompletionWithDynamicEndpoint($(this));
-	});
-	$('.contribution-search').each(function() {
-		addContributionValues($(this));
 	});
 	$('.mydaterangepicker').each(function() {
 		$(this).daterangepicker({
@@ -55,76 +39,9 @@ function enableAutocompletionEndpoints() {
 
 function enableAutocompletion(inputElement,endpoint) {
 	$(inputElement).autocomplete({source:["No Result"]});
-	var gndPerson=	"/tools/zettel/personAutocomplete";
 	var agrovoc=	"/tools/skos-lookup/autocomplete";
-	var orcid=		"/tools/zettel/orcidAutocomplete";
-	var gndSubject=	"/tools/zettel/subjectAutocomplete";
-	var gndTitle = 	"/tools/zettel/lobidAutocomplete";
-	var journal = 	"/tools/zettel/journalAutocomplete";
-	var all = 		"/tools/zettel/allAutocomplete";
-	var book = 		"/tools/zettel/bookAutocomplete";
-	var series = 	"/tools/zettel/seriesAutocomplete";
 	
-	var gndCorporateBody ="/tools/zettel/corporateBodyAutocomplete";
-	
-	
-	if(gndTitle==endpoint){
-		inputElement.autocomplete({
-			select : function(event, ui) {
-				this.value = ui.item.value;
-				$(this).siblings(".input-field-heading").html(
-						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-				$(this).siblings("select").css('display','none');
-				$(this).css('display','none');
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						format : "ids",
-						q: request.term,
-					},
-					success : function(data) {
-						
-						response(data);
-					}
-				});
-			}
-		});
-	}else if(gndCorporateBody == endpoint){
-		inputElement.autocomplete({
-			open: function(event, ui) {
-		        var firstListEntry=$(".ui-corner-all li:first-child a");
-		        firstListEntry.addClass("btn-success");
-		        firstListEntry.append(' <span class="fa fa-plus"></span>');
-		    },
-			select : function(event, ui) {
-				this.value = ui.item.value;
-				$(this).siblings(".input-field-heading").html(
-						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-				$(this).siblings("select").css('display','none');
-				$(this).css('display','none');
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q : request.term,
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}
-	else if(agrovoc == endpoint){
+	if(agrovoc == endpoint){
 		inputElement.autocomplete({
 			select : function(event, ui) {
 				this.value = ui.item.value;
@@ -151,36 +68,7 @@ function enableAutocompletion(inputElement,endpoint) {
 			}
 		});
 	}
-	else if(orcid == endpoint){
-		inputElement.autocomplete({
-			open: function(event, ui) {
-		        var firstListEntry=$(".ui-corner-all li:first-child a");
-		        firstListEntry.addClass("btn-success");
-		        firstListEntry.append(' <span class="fa fa-plus"></span>');
-		    },
-			select : function(event, ui) {
-				this.value = ui.item.value;
-				$(this).siblings(".input-field-heading").html(
-						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-				$(this).siblings("select").css('display','none');
-				$(this).css('display','none');
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q : request.term,
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}else if(journal == endpoint || all == endpoint || book == endpoint || series == endpoint){
+	else {
 		inputElement.autocomplete({
 			select : function(event, ui) {
 				this.value = ui.item.value;
@@ -204,154 +92,7 @@ function enableAutocompletion(inputElement,endpoint) {
 				});
 			}
 		});
-	}else if(gndSubject == endpoint){
-		inputElement.autocomplete({
-			
-			open: function(event, ui) {
-		        var firstListEntry=$(".ui-corner-all li:first-child a");
-		        firstListEntry.remove();
-		    },
-			select : function(event, ui) {
-				this.value = ui.item.value;
-				$(this).siblings(".input-field-heading").html(
-						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-				$(this).siblings("select").css('display','none');
-				$(this).css('display','none');
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q : request.term,
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}else if(gndPerson == endpoint){
-		inputElement.autocomplete({
-			open: function(event, ui) {
-		        var firstListEntry=$(".ui-corner-all li:first-child a");
-		        firstListEntry.addClass("btn-success");
-		        firstListEntry.append(' <span class="fa fa-plus"></span>');
-		    },
-			select : function(event, ui) {
-				this.value = ui.item.value;
-				$(this).siblings(".input-field-heading").html(
-						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-				$(this).siblings("select").css('display','none');
-				$(this).css('display','none');
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q : request.term,
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
 	}
-}
-
-function enableNewAutocompletion(inputElement,endpoint) {
-	$(inputElement).autocomplete({source:["No Result"]});
-	var gndPerson="https://lobid.org/person";
-	var agrovoc="/tools/skos-lookup/autocomplete";
-	var orcid="/tools/zettel/orcidAutocomplete";
-	var gndSubject="/tools/zettel/subjectAutocomplete";
-	var gndTitle = "https://lobid.org/resource";
-	if(gndPerson == endpoint || gndSubject == endpoint || gndTitle==endpoint){
-		$(inputElement).autocomplete();
-		inputElement.autocomplete({
-			select : function(event, ui) {
-				label=ui.item.label;
-				id=ui.item.value;
-				this.value = label;	
-				labelField=$(this).siblings('.label-field').val(id);
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						name: request.term,
-						format : "ids",
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}
-	else if(agrovoc == endpoint){
-		$(inputElement).autocomplete();
-		inputElement.autocomplete({
-			select : function(event, ui) {
-				label=ui.item.label;
-				id=ui.item.value;
-				this.value = label;	
-				labelField=$(this).siblings('.label-field').val(id);
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q:request.term,
-                        lang:"de",
-                        index:"agrovoc"
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}
-	else if(orcid == endpoint){
-		$(inputElement).autocomplete();
-		inputElement.autocomplete({
-			select : function(event, ui) {
-				label=ui.item.label;
-				id=ui.item.value;
-				this.value = label;	
-				labelField=$(this).siblings('.label-field').val(id);
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q : request.term,
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}
-	
-	
 }
 
 function handleMessage(evt) {
