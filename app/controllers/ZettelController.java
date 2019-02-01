@@ -338,11 +338,27 @@ public class ZettelController extends Controller {
 		});
 	}
 
+	public CompletionStage<Result> bookAutocomplete(String q) {
+		return typedAutocomplete(q, "Book");
+	}
+
+	public CompletionStage<Result> seriesAutocomplete(String q) {
+		return typedAutocomplete(q, "Series");
+	}
+
+	public CompletionStage<Result> journalAutocomplete(String q) {
+		return typedAutocomplete(q, "Periodical");
+	}
+
+	public CompletionStage<Result> allAutocomplete(String q) {
+		return typedAutocomplete(q, "*");
+	}
+
 	/**
 	 * @param q a query against lobid
 	 * @return a jsonp result
 	 */
-	public CompletionStage<Result> journalAutocomplete(String q) {
+	public CompletionStage<Result> typedAutocomplete(String q, String type) {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
 						: request().queryString().get("callback");
@@ -350,26 +366,14 @@ public class ZettelController extends Controller {
 		WSRequest request = ws.url(lobidUrl);
 		WSRequest complexRequest =
 				request.setHeader("accept", "application/json").setRequestTimeout(5000)
-						.setQueryParameter("q", q + " AND zdbId:* AND issn:*");
+						.setQueryParameter("q", q + " AND type:" + type);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode hits = response.asJson().at("/member");
 			List<Map<String, String>> result = new ArrayList<>();
 			hits.forEach((hit) -> {
 				String title = hit.at("/title").asText();
-				String publisher =
-						hit.at("/publication").get(0).at("/publishedBy").asText();
-				String issn = "";
-				JsonNode issns = hit.at("/issn");
-				StringBuffer issn_c = new StringBuffer();
-				issns.forEach((issn_i) -> {
-					issn_c.append(issn_i.asText() + ",");
-				});
-				issn = issn_c.substring(0, issn_c.length() - 1);
 				StringBuilder label = new StringBuilder(title);
-				if (issn != null && !issn.isEmpty())
-					label.insert(0, issn + " - ");
-				if (publisher != null && !publisher.isEmpty())
-					label.append(" - Hrsg.: " + publisher);
+				label.append(createLabel(hit));
 				String id = hit.at("/id").asText();
 				Map<String, String> m = new HashMap<>();
 				m.put("label", label.toString());
@@ -382,6 +386,30 @@ public class ZettelController extends Controller {
 					: searchResult;
 			return ok(myResponse);
 		});
+	}
+
+	private String createLabel(JsonNode hit) {
+		StringBuilder label = new StringBuilder();
+		String issn = "";
+
+		JsonNode issns = hit.at("/issn");
+		if (issns != null) {
+			StringBuffer issn_c = new StringBuffer();
+			issns.forEach((issn_i) -> {
+				issn_c.append(issn_i.asText() + ",");
+			});
+			if (issn_c.length() != 0) {
+				issn = issn_c.substring(0, issn_c.length() - 1);
+				if (issn != null && !issn.isEmpty())
+					label.insert(0, issn + " - ");
+			}
+		}
+		JsonNode publisher = hit.at("/publication");
+		if (publisher != null) {
+			label.append(" - Hrsg.: " + publisher.get(0).at("/publishedBy").asText());
+		}
+
+		return label.toString();
 	}
 
 	/**

@@ -248,7 +248,9 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getTitleLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("/tools/zettel/journalAutocomplete", "ZDB");
-		map.put("https://lobid.org/resource", "Aleph");
+		map.put("/tools/zettel/bookAutocomplete", "Buch");
+		map.put("/tools/zettel/seriesAutocomplete", "Serie");
+		map.put("/tools/zettel/allAutocomplete", "Aleph");
 		return map;
 	}
 
