@@ -49,11 +49,6 @@ public class Article extends ZettelModel {
 			"^urn:[a-z0-9][a-z0-9-]{0,31}:([a-z0-9()+,\\-.:=@;$_!*']|%[0-9a-f]{2})+$",
 			Pattern.CASE_INSENSITIVE);
 
-	@Override
-	protected String getType() {
-		return "http://purl.org/ontology/bibo/Article";
-	}
-
 	/**
 	 * The help text url must provide help texts in a certain html form. For each
 	 * field a <div id="fieldName"> must be provided to contain the help text for

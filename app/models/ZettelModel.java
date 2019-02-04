@@ -17,6 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
+import static services.ZettelFields.typeZF;
 import static services.ZettelFields.abstractTextZF;
 import static services.ZettelFields.additionalMaterialZF;
 import static services.ZettelFields.affiliationIndexZF;
@@ -161,12 +162,6 @@ public abstract class ZettelModel {
 	private String documentId;
 	private String topicId;
 
-	/**
-	 * @return the type will be included as rdf type of the resource under field
-	 *         name TYPE
-	 */
-	protected abstract String getType();
-
 	protected abstract List<ValidationError> validate();
 
 	private String id;
@@ -236,6 +231,21 @@ public abstract class ZettelModel {
 	private List<String> fulltextVersion = new ArrayList<>();
 	private List<String> additionalMaterial = new ArrayList<>();
 	private String parallelEdition;
+	private String type = "default";
+
+	@JsonProperty("rdftype")
+	protected String getRdftype() {
+		return type;
+	}
+
+	protected String getType() {
+		return "";
+	}
+
+	@JsonProperty("rdftype")
+	public void setRdftype(String in) {
+		type = in;
+	}
 
 	public String getPublicationYear() {
 		return publicationYear;
@@ -1087,6 +1097,7 @@ public abstract class ZettelModel {
 		dict.put(additionalMaterialZF.uri,
 				(in) -> addAdditionalMaterial((String) in));
 		dict.put(parallelEditionZF.uri, (in) -> setParallelEdition((String) in));
+		dict.put(typeZF.uri, (in) -> setRdftype((String) in));
 
 		return dict;
 	}
@@ -1143,7 +1154,7 @@ public abstract class ZettelModel {
 		Map<String, Object> jsonMap =
 				new ObjectMapper().convertValue(this, HashMap.class);
 		jsonMap.put(ZettelModel.IS_PRIMARY_TOPIC_OF, getIsPrimaryTopicOf());
-		jsonMap.put("rdftype", getType());
+		// jsonMap.put("rdftype", getType());
 		removeEmptyCollections(jsonMap);
 		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
 		return jsonMap;
