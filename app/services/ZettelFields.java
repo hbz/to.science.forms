@@ -179,4 +179,8 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/fulltextVersion");
 	public static Etikett parallelEditionZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#parallelEdition");
+	public static Etikett typeZF = ZettelHelper.etikett
+			.getEtikett("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+	public static Etikett typeHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/typeHeader");
 }

@@ -12,6 +12,10 @@
 	@helper.form(action = routes.ZettelController.postForm(Article.id,dataFormat,documentId,topicId)){
 		<a href="@models.Article.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
+			@accordionPanel(services.ZettelFields.typeHeaderZF.getLabel(),"type-section"){
+				@singleSelect(myForm,"rdftype",services.ZettelFields.typeZF.getLabel()+"*","select-pg",ArticleHelper.getTypeMap(),11)
+				
+			}	
 			@accordionPanel(services.ZettelFields.statusHeaderZF.getLabel(),"publicationStatus-section"){
 				@singleSelect(myForm,"publicationStatus",services.ZettelFields.publicationStatusZF.getLabel()+"*","select-pg",ArticleHelper.getPublicationStatusMap(),11)
 				<br/>

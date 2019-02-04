@@ -104,6 +104,15 @@ public class ArticleHelper {
 		return map;
 	}
 
+	public static LinkedHashMap<String, String> getTypeMap() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put(null, "Bitte wählen Sie...");
+		map.put("http://purl.org/ontology/bibo/Article", "Artikel");
+		map.put("http://purl.org/ontology/bibo/Chapter", "Kapitel");
+		map.put("http://purl.org/ontology/bibo/Proceedings", "Konferenzschrift");
+		return map;
+	}
+
 	public static LinkedHashMap<String, String> getReviewStatusMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(null, "Bitte wählen Sie...");
