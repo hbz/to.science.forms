@@ -36,8 +36,6 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 
 import models.Article;
-import models.Chapter;
-import models.Proceeding;
 import models.ResearchData;
 import models.ZettelModel;
 import play.Configuration;
@@ -240,13 +238,6 @@ public class ZettelController extends Controller {
 								RDFFormat.RDFXML, documentId, topicId));
 			} else if (Article.id.equals(id)) {
 				return formFactory.form(Article.class).fill((Article) zettel.getModel()
-						.deserializeFromRdf(in, RDFFormat.RDFXML, documentId, topicId));
-			} else if (Proceeding.id.equals(id)) {
-				return formFactory.form(Proceeding.class)
-						.fill((Proceeding) zettel.getModel().deserializeFromRdf(in,
-								RDFFormat.RDFXML, documentId, topicId));
-			} else if (Chapter.id.equals(id)) {
-				return formFactory.form(Chapter.class).fill((Chapter) zettel.getModel()
 						.deserializeFromRdf(in, RDFFormat.RDFXML, documentId, topicId));
 			}
 			return null;

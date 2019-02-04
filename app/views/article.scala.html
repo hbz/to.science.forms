@@ -22,12 +22,12 @@
 				@singleSelect(myForm,"reviewStatus",services.ZettelFields.reviewStatusZF.getLabel(),"select-pg",ArticleHelper.getReviewStatusMap(),11)
 			}
 			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
-					@smallTextArea(myForm,"title","Titel"+"*","",1)
+			    @smallTextArea(myForm,"title","Titel"+"*","",1)
 				<br/>
 				@smallTextArea(myForm,"alternative","Alternativer Titel","",2)
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
-   @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",4,ArticleHelper.getPersonLookupEndpoints())
+                @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
 				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"search",14,ArticleHelper.getCorporateBodyLookupEndpoints())
 				<br/>
@@ -49,12 +49,9 @@
 				@multicombobox(myForm,jsonMap,"collectionOne",services.ZettelFields.collectionOneZF.getLabel(),"leibniz-open-search",ArticleHelper.getCollectionOneMap(),15)
 			}
 			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
-				@singleSelect(myForm,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ArticleHelper.getMediumMap(),5)
-				<br/>
 				@singleSelect(myForm,"yearOfCopyright",services.ZettelFields.yearOfCopyrightZF.getLabel(),"datepicker-year",ArticleHelper.getCopyrightYear(),6)
 				<br />
 				@singlefieldText(myForm,"license",services.ZettelFields.licenseZF.getLabel(),"",1)
-
 				<br />
 				@datepicker(myForm,"embargoTime",services.ZettelFields.embargoTimeZF.getLabel(),"datepicker",8)
 			}
