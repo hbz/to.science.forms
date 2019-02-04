@@ -55,12 +55,16 @@ function enableAutocompletionEndpoints() {
 
 function enableAutocompletion(inputElement,endpoint) {
 	$(inputElement).autocomplete({source:["No Result"]});
-	var gndPerson="/tools/zettel/personAutocomplete";
-	var agrovoc="/tools/skos-lookup/autocomplete";
-	var orcid="/tools/zettel/orcidAutocomplete";
-	var gndSubject="/tools/zettel/subjectAutocomplete";
-	var gndTitle = "/tools/zettel/lobidAutocomplete";
-	var journal = "/tools/zettel/journalAutocomplete";
+	var gndPerson=	"/tools/zettel/personAutocomplete";
+	var agrovoc=	"/tools/skos-lookup/autocomplete";
+	var orcid=		"/tools/zettel/orcidAutocomplete";
+	var gndSubject=	"/tools/zettel/subjectAutocomplete";
+	var gndTitle = 	"/tools/zettel/lobidAutocomplete";
+	var journal = 	"/tools/zettel/journalAutocomplete";
+	var all = 		"/tools/zettel/allAutocomplete";
+	var book = 		"/tools/zettel/bookAutocomplete";
+	var series = 	"/tools/zettel/seriesAutocomplete";
+	
 	var gndCorporateBody ="/tools/zettel/corporateBodyAutocomplete";
 	
 	
@@ -176,7 +180,7 @@ function enableAutocompletion(inputElement,endpoint) {
 				});
 			}
 		});
-	}else if(journal == endpoint){
+	}else if(journal == endpoint || all == endpoint || book == endpoint || series == endpoint){
 		inputElement.autocomplete({
 			select : function(event, ui) {
 				this.value = ui.item.value;
