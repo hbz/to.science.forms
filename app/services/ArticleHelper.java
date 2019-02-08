@@ -39,41 +39,118 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getDeweyMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(null, "Bitte wählen Sie...");
+		map.put("http://dewey.info/class/331/", "Arbeitsökonomie (331)");
+		map.put("http://dewey.info/class/344/",
+				"Arbeitsrecht, Sozialrecht, Bildungsrecht, Kulturrecht (344)");
 		map.put("http://dewey.info/class/720/", "Architektur (720)");
+		map.put("http://dewey.info/class/622/",
+				"Bergbau und verwandte Tätigkeiten (622)");
 		map.put("http://dewey.info/class/020/",
 				"Bibliotheks- und Informationswissenschaft (020)");
+		map.put("http://dewey.info/class/572/", "Biochemie (572)");
 		map.put("http://dewey.info/class/570/",
 				"Biowissenschaften, Biologie (570)");
 		map.put("http://dewey.info/class/540/", "Chemie (540)");
 		map.put("http://dewey.info/class/660/",
 				"Chemische Verfahrenstechnik (660)");
+		map.put("http://dewey.info/class/617/",
+				"Chirurgie und verwandte medizinische Fachrichtungen (617)");
+		map.put("http://dewey.info/class/004/",
+				"Datenverarbeitung; Informatik (004)");
+		map.put("http://dewey.info/class/641/", "Essen und Trinken (641)");
+		map.put("http://dewey.info/class/170/", "Ethik (170)");
+		map.put("http://dewey.info/class/633/", "Feld und Plantagenfrüchte (633)");
+		map.put("http://dewey.info/class/635/", "Gartenpflanzen (Gartenbau) (635)");
+		map.put("http://dewey.info/class/576/", "Genetik und Evolution (576)");
 		map.put("http://dewey.info/class/560/", "Fossilien/Paläontologie (560)");
 		map.put("http://dewey.info/class/550/", "Geowissenschaften (550)");
-		map.put("http://dewey.info/class/943/", "Geschichte Deutschlands (943)");
+		map.put("http://dewey.info/class/960/", "Geschichte Afrikas (960)");
+		map.put("http://dewey.info/class/950/",
+				"Geschichte Asiens; des Fernen Ostens (950)");
 		map.put("http://dewey.info/class/940/", "Geschichte Europas (940)");
+		map.put("http://dewey.info/class/943/",
+				"Geschichte Mitteleuropas;Geschichte Deutschlands (943)");
+		map.put("http://dewey.info/class/970/", "Geschichte Nordamerikas (970)");
+		map.put("http://dewey.info/class/980/", "Geschichte Südamerikas (980)");
+		map.put("http://dewey.info/class/663/", "Getränketechnologie (663)");
+		map.put("http://dewey.info/class/618/",
+				"Gynäkologie, Geburtsmedizin, Pädiatrie, Geriatrie (618)");
 		map.put("http://dewey.info/class/640/", "Hauswirtschaft/Familie (640)");
+		map.put("http://dewey.info/class/612/", "Humanphysiologie (612)");
+		map.put("http://dewey.info/class/000/",
+				"Informatik, Informationswissenschaft, allgemeine Werke (000)");
 		map.put("http://dewey.info/class/624/",
 				"Ingenieurbau und Umwelttechnik (624)");
+		map.put("http://dewey.info/class/638/", "Insektenzucht (638)");
+		map.put("http://dewey.info/class/614/",
+				"Inzidenz und Prävention von Krankheiten (614)");
+		map.put("http://dewey.info/class/639/",
+				"Jagd, Fischfang, Naturschutz (639)");
+		map.put("http://dewey.info/class/616/", "Krankheiten (616)");
 		map.put("http://dewey.info/class/710/", "Landschaftsgestaltung (710)");
 		map.put("http://dewey.info/class/630/",
 				"Landwirtschaft, Veterinärmedizin (630)");
+		map.put("http://dewey.info/class/664/", "Lebensmitteltechnologie (664)");
 		map.put("http://dewey.info/class/650/", "Management (650)");
 		map.put("http://dewey.info/class/610/", "Medizin & Gesundheit (610)");
+		map.put("http://dewey.info/class/611/",
+				"Menschliche Anatomie, Zytologie, Histologie (611)");
+		map.put("http://dewey.info/class/579/",
+				"Mikroorganismen, Pilze, Algen (579)");
+		map.put("http://dewey.info/class/637/",
+				"Milchverarbeitung und verwandte Produkte (637)");
 		map.put("http://dewey.info/class/333/7/",
 				"Natürliche Ressourcen,Energie & Umwelt (333.7)");
 		map.put("http://dewey.info/class/500/", "Naturwissenschaften (500)");
+		map.put("http://dewey.info/class/634/",
+				"Obstanlagen, Früchte, Forstwirtschaft (634)");
+		map.put("http://dewey.info/class/577/", "Ökologie (577)");
+		map.put("http://dewey.info/class/561/",
+				"Paläobotanik; fossile Mikroorganismen (561)");
+		map.put("http://dewey.info/class/560/",
+				"Paläontologie; Paläozoologie (560)");
+		map.put("http://dewey.info/class/613/",
+				"Persönliche Gesundheit und Sicherheit (613)");
 		map.put("http://dewey.info/class/580/", "Pflanzen (Botanik) (580)");
+		map.put("http://dewey.info/class/615/", "Pharmakologie, Therapeutik (615)");
+		map.put("http://dewey.info/class/100/",
+				"Philosophie und Psychologie (100)");
 		map.put("http://dewey.info/class/530/", "Physik (530)");
+		map.put("http://dewey.info/class/541/", "Physikalische Chemie (541)");
+		map.put("http://dewey.info/class/571/",
+				"Physiologie und verwandte Themen (571)");
 		map.put("http://dewey.info/class/320/", "Politik (320)");
+		map.put("http://dewey.info/class/362/",
+				"Probleme und Dienste der Sozialhilfe (362)");
 		map.put("http://dewey.info/class/150/", "Psychologie (150)");
+		map.put("http://dewey.info/class/711/", "Raumplanung (711)");
 		map.put("http://dewey.info/class/340/", "Recht (340)");
+		map.put("http://dewey.info/class/628/",
+				"Sanitär und Kommunaltechnik; Umwelttechnik (628)");
+		map.put("http://dewey.info/class/632/",
+				"Schäden, Krankheiten, Schädlinge an Pflanzen (632)");
+		map.put("http://dewey.info/class/152/",
+				"Sinneswahrnehmung, Bewegung, Emotionen, Triebe (152)");
+		map.put("http://dewey.info/class/302/", "Soziale Interaktion (302)");
 		map.put("http://dewey.info/class/360/",
 				"Soziale Probleme, Sozialdienste, Versicherungen (360)");
+		map.put("http://dewey.info/class/361/",
+				"Soziale Probleme und Sozialhilfe im Allgemeinen (361)");
 		map.put("http://dewey.info/class/300/",
 				"Sozialwissenschaften,Soziologie, Athropologie (300)");
+		map.put("http://dewey.info/class/301/", "Soziologie, Anthropologie (301)");
+		map.put("http://dewey.info/class/710/",
+				"Städtebau, Raumplanung, Landschaftsgestaltung (710)");
 		map.put("http://dewey.info/class/600/", "Technik (600)");
+		map.put("http://dewey.info/class/631/",
+				"Techniken, Ausstattung, Materialien (631)");
 		map.put("http://dewey.info/class/590/", "Tiere (Zoologie) (590)");
+		map.put("http://dewey.info/class/154/",
+				"Unterbewusste und bewusstseinsveränderte Zustände (154)");
+		map.put("http://dewey.info/class/368/", "Versicherungen (368)");
+		map.put("http://dewey.info/class/636/", "Viehwirtschaft (636)");
 		map.put("http://dewey.info/class/330/", "Wirtschaft (330)");
+
 		return map;
 	}
 
