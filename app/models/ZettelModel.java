@@ -68,7 +68,7 @@ import static services.ZettelFields.publisherZF;
 import static services.ZettelFields.recordingCoordinatesZF;
 import static services.ZettelFields.recordingLocationZF;
 import static services.ZettelFields.recordingPeriodZF;
-import static services.ZettelFields.redaktorZF;
+import static services.ZettelFields.otherZF;
 import static services.ZettelFields.referenceZF;
 import static services.ZettelFields.reviewStatusZF;
 import static services.ZettelFields.subjectNameZF;
@@ -219,7 +219,7 @@ public abstract class ZettelModel {
 	private String publicationStatus;
 	private String issn;
 	private List<String> editor = new ArrayList<>();
-	private List<String> redaktor = new ArrayList<>();
+	private List<String> other = new ArrayList<>();
 	private List<String> institution = new ArrayList<>();
 	private String publicationYear;
 	private List<String> affiliation = new ArrayList<>();
@@ -854,18 +854,18 @@ public abstract class ZettelModel {
 		editor.add(in);
 	}
 
-	public List<String> getRedaktor() {
-		return redaktor;
+	public List<String> getOther() {
+		return other;
 	}
 
-	public void setRedaktor(List<String> redaktor) {
-		this.redaktor = redaktor;
+	public void setOther(List<String> other) {
+		this.other = other;
 	}
 
-	public void addRedaktor(String in) {
-		if (redaktor == null || redaktor.isEmpty())
-			redaktor = new ArrayList<>();
-		redaktor.add(in);
+	public void addOther(String in) {
+		if (other == null || other.isEmpty())
+			other = new ArrayList<>();
+		other.add(in);
 	}
 
 	public List<String> getInstitution() {
@@ -1086,7 +1086,7 @@ public abstract class ZettelModel {
 				(in) -> setPublicationStatus((String) in));
 		dict.put(issnZF.uri, (in) -> setIssn((String) in));
 		dict.put(editorZF.uri, (in) -> addEditor((String) in));
-		dict.put(redaktorZF.uri, (in) -> addRedaktor((String) in));
+		dict.put(otherZF.uri, (in) -> addOther((String) in));
 		dict.put(institutionZF.uri, (in) -> addInstitution((String) in));
 		dict.put(publicationYearZF.uri, (in) -> setPublicationYear((String) in));
 		dict.put(affiliationZF.uri, (in) -> addAffiliation((String) in));
