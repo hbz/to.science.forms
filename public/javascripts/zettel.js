@@ -126,20 +126,8 @@ function handleMessage(evt) {
 		Cookies.set("cancel",sourceUrl);
 	}
 }
-function destroyGndAutocompletion() {
-	$('.gnd-person-search input').each(function() {
-		$(this).autocomplete('destroy');
-		$(this).removeData('autocomplete');
-	});
-	$('.gnd-subject-search input').each(function() {
-		$(this).autocomplete('destroy');
-		$(this).removeData('autocomplete');
-	});
-	$('.contribution-search input').each(function() {
-		$(this).autocomplete('destroy');
-		$(this).removeData('autocomplete');
-	});
-	$('.lobid-search input').each(function() {
+function destroyAutocompletion() {
+	$('.search input').each(function() {
 		$(this).autocomplete('destroy');
 		$(this).removeData('autocomplete');
 	});
@@ -170,12 +158,10 @@ function addActionsToRemoveAndAddButtons() {
 		var $wrapper = $('.multi-fields', this);
 		$('.multi-fields input', this).addClass("focus");
 		$(".add-field", $(this)).click(function(e) {
-			destroyGndAutocompletion();
+			destroyAutocompletion();
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
 			newField.appendTo($wrapper).find('.input-widget').val('').focus();
-			newField.appendTo($wrapper).find('.gnd-person-search.input-widget').css('display','inline');
-			newField.appendTo($wrapper).find('.lobid-search.input-widget').css('display','inline');
-			newField.appendTo($wrapper).find('.gnd-subject-search.input-widget').css('display','inline');
+			newField.appendTo($wrapper).find('.search.input-widget').css('display','inline');
 			newField.appendTo($wrapper).find('select').css('display','inline');
 			newField.appendTo($wrapper).find('.help-text').css('display','none');
 			newField.appendTo($wrapper).find('.form-control-label').css( 'visibility','hidden');
@@ -192,7 +178,7 @@ function addActionsToRemoveAndAddButtons() {
 				emitResize();
 			}
 			else{
-				destroyGndAutocompletion();
+				destroyAutocompletion();
 				var newField = $('.multi-field:first-child', $wrapper).clone(true);
 				newField.appendTo($wrapper).find('.input-widget').val('').focus();
 				resetIds();
