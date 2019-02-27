@@ -292,7 +292,7 @@ public class ZettelController extends Controller {
 	 * @return the orcid response as json
 	 */
 	public CompletionStage<Result> orcidSearch(String q) {
-		String orcidUrl = "http://pub.orcid.org/search/orcid-bio";
+		String orcidUrl = "https://pub.orcid.org/v2.1/search";
 		WSRequest request = ws.url(orcidUrl);
 		WSRequest complexRequest =
 				request.setRequestTimeout(1000).setQueryParameter("q", q);
@@ -308,7 +308,7 @@ public class ZettelController extends Controller {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
 						: request().queryString().get("callback");
-		String orcidUrl = "http://pub.orcid.org/search/orcid-bio";
+		String orcidUrl = "https://pub.orcid.org/v2.1/search";
 		WSRequest request = ws.url(orcidUrl);
 		WSRequest complexRequest = request.setHeader("accept", "application/json")
 				.setRequestTimeout(5000).setQueryParameter("q",
