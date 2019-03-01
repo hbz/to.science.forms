@@ -14,7 +14,6 @@
 		@accordion(""){
 			@accordionPanel(services.ZettelFields.typeHeaderZF.getLabel(),"type-section"){
 				@singleSelect(myForm,"rdftype",services.ZettelFields.typeZF.getLabel()+"*","select-pg",ArticleHelper.getTypeMap(),11)
-				
 			}	
 			@accordionPanel(services.ZettelFields.statusHeaderZF.getLabel(),"publicationStatus-section"){
 				@singleSelect(myForm,"publicationStatus",services.ZettelFields.publicationStatusZF.getLabel()+"*","select-pg",ArticleHelper.getPublicationStatusMap(),11)
@@ -60,7 +59,7 @@
 				<br />
 				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel()+"*","select-language",ArticleHelper.getLanguageMap(),10)
 				<br />
-				@multiselect(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel()+"*","select-ddc",ArticleHelper.ddc,12)
+				@multicombobox(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel()+"*","select-ddc",ArticleHelper.ddc,12)
 				<br />
 				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"search",13,ArticleHelper.getSubjectLookupEndpoints())
 			}
@@ -71,7 +70,6 @@
 				@multifieldText(myForm,jsonMap,"fulltextVersion",services.ZettelFields.fulltextVersionZF.getLabel(),"",28)
 				<br />
 				@multifieldText(myForm,jsonMap,"additionalMaterial",services.ZettelFields.additionalMaterialZF.getLabel(),"",29)
-
 			}
             @accordionPanel(services.ZettelFields.fundingsHeaderZF.getLabel(),"identifier-section"){
                 <br />

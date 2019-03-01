@@ -109,6 +109,7 @@ function handleMessage(evt) {
 				var containerOfOldform = $('div.container');
 				containerOfOldform.html(newForm);
 				enableAutocompletionEndpoints();
+				enableSelect2();
 				addGeonamesLookup();
 				addGeonamesReverseLookup();
 				addActionsToRemoveAndAddButtons();
@@ -130,6 +131,11 @@ function destroyAutocompletion() {
 	$('.search input').each(function() {
 		$(this).autocomplete('destroy');
 		$(this).removeData('autocomplete');
+	});
+}
+function destroySelect2() {
+	$('.custom-combobox').each(function() {
+		$(this).select2('destroy');
 	});
 }
 
@@ -159,16 +165,20 @@ function addActionsToRemoveAndAddButtons() {
 		$('.multi-fields input', this).addClass("focus");
 		$(".add-field", $(this)).click(function(e) {
 			destroyAutocompletion();
+			destroySelect2();
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
 			newField.appendTo($wrapper).find('.input-widget').val('').focus();
 			newField.appendTo($wrapper).find('.search.input-widget').css('display','inline');
 			newField.appendTo($wrapper).find('select').css('display','inline');
+
+			newField.appendTo($wrapper).find('.custom-combobox').css('display','inline');
 			newField.appendTo($wrapper).find('.help-text').css('display','none');
 			newField.appendTo($wrapper).find('.form-control-label').css( 'visibility','hidden');
 			newField.appendTo($wrapper).find('.inline-help').css('display','none');
 			resetIds();
 			$(newField).find(".input-field-heading").html("");
 			enableAutocompletionEndpoints();
+			enableSelect2();
 			emitResize();
 		});
 		$('.multi-field .remove-field', $wrapper).click(function() {
@@ -179,12 +189,14 @@ function addActionsToRemoveAndAddButtons() {
 			}
 			else{
 				destroyAutocompletion();
+				destroySelect2();
 				var newField = $('.multi-field:first-child', $wrapper).clone(true);
 				newField.appendTo($wrapper).find('.input-widget').val('').focus();
 				resetIds();
 				$(newField).find(".input-field-heading").html("");
 				$(this).parents('.multi-field').remove();
 				enableAutocompletionEndpoints();
+				enableSelect2();
 				emitResize();
 			}
 		});
@@ -472,4 +484,8 @@ function postCancel(target) {
 	}, '*');
 }
 
-	
+function enableSelect2() {
+	$('.custom-combobox').each(function() {
+		$(this).select2();
+	});
+}
