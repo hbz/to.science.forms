@@ -430,6 +430,15 @@ public class ZettelController extends Controller {
 		return lobidResponse(q, filter);
 	}
 
+	/**
+	 * @param q a query against lobid
+	 * @return a jsonp result
+	 */
+	public CompletionStage<Result> conferenceAutocomplete(String q) {
+		String filter = "(type:ConferenceOrEvent)+(type:SeriesOfConferenceOrEvent)";
+		return lobidResponse(q, filter);
+	}
+
 	private CompletionStage<Result> lobidResponse(String q, String filter) {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null

@@ -183,4 +183,6 @@ public class ZettelFields {
 			.getEtikett("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
 	public static Etikett typeHeaderZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/typeHeader");
+	public static Etikett collectionTwoZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionTwo");
 }

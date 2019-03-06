@@ -46,6 +46,9 @@
 				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"search",14,ArticleHelper.getCorporateBodyLookupEndpoints())
 				<br/>
 				@multicombobox(myForm,jsonMap,"collectionOne",services.ZettelFields.collectionOneZF.getLabel(),"leibniz-open-search",ArticleHelper.collectionOne,15)
+			    <br/>
+				@multifieldLd(myForm,jsonMap,"collectionTwo",services.ZettelFields.collectionTwoZF.getLabel(),"search",16,ArticleHelper.getCollectionTwoEndpoints())
+	
 			}
 			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
 				@singleSelect(myForm,"yearOfCopyright",services.ZettelFields.yearOfCopyrightZF.getLabel(),"datepicker-year",ArticleHelper.getCopyrightYear(),6)
