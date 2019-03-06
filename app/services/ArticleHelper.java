@@ -44,6 +44,8 @@ public class ArticleHelper {
 			readCsv("collectionOne.csv");
 
 	public static Map<String, String> ddc = readCsv("ddc.csv");
+	public static Map<String, String> professionalGroup =
+			readCsv("professionalGroup.csv");
 
 	private static CellProcessor[] getProcessors() {
 		final CellProcessor[] processors = new CellProcessor[] { new NotNull(), // URI
@@ -69,24 +71,6 @@ public class ArticleHelper {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	/**
-	 * @return a map that can be used in an html select
-	 */
-	public static LinkedHashMap<String, String> getProfessionalGroupMap() {
-		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
-		map.put("http://skos.um.es/unescothes/C02464", "Medizin");
-		map.put("http://skos.um.es/unescothes/C01771", "Gesundheitswesen");
-		map.put("http://skos.um.es/unescothes/C02780", "Ernährungswissenschaften");
-		map.put("http://skos.um.es/unescothes/C00106", "Agrarwissenschaften");
-		map.put("http://skos.um.es/unescothes/C01397", "Umweltwissenschaften");
-		map.put("http://skos.um.es/unescothes/COL270", "Biologie");
-		map.put("http://skos.um.es/unescothes/C02286",
-				"Bibliotheks- und Informationswissenschaften");
-		map.put("http://skos.um.es/unescothes/C02053", "Interdisziplinär");
-		return map;
 	}
 
 	public static LinkedHashMap<String, String> getPublicationStatusMap() {

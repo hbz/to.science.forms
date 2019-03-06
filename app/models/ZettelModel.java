@@ -80,6 +80,7 @@ import static services.ZettelFields.usageManualZF;
 import static services.ZettelFields.volumeInZF;
 import static services.ZettelFields.yearOfCopyrightZF;
 import static services.ZettelFields.parallelEditionZF;
+import static services.ZettelFields.collectionTwoZF;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -232,6 +233,7 @@ public abstract class ZettelModel {
 	private List<String> additionalMaterial = new ArrayList<>();
 	private String parallelEdition;
 	private String type = "default";
+	private List<String> collectionTwo = new ArrayList<>();
 
 	@JsonProperty("rdftype")
 	protected String getRdftype() {
@@ -1019,6 +1021,20 @@ public abstract class ZettelModel {
 		fulltextVersion.add(in);
 	}
 
+	public List<String> getCollectionTwo() {
+		return collectionTwo;
+	}
+
+	public void setCollectionTwo(List<String> collectionTwo) {
+		this.congressHost = collectionTwo;
+	}
+
+	public void addCollectionTwo(String in) {
+		if (collectionTwo == null || collectionTwo.isEmpty())
+			collectionTwo = new ArrayList<>();
+		collectionTwo.add(in);
+	}
+
 	/**
 	 * @return a map that maps a uri to a setter method
 	 */
@@ -1098,6 +1114,7 @@ public abstract class ZettelModel {
 				(in) -> addAdditionalMaterial((String) in));
 		dict.put(parallelEditionZF.uri, (in) -> setParallelEdition((String) in));
 		dict.put(typeZF.uri, (in) -> setRdftype((String) in));
+		dict.put(collectionTwoZF.uri, (in) -> addCollectionTwo((String) in));
 
 		return dict;
 	}
