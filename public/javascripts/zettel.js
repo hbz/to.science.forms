@@ -162,12 +162,13 @@ function addActionsToRemoveAndAddButtons() {
 	addDatepicker();
 	$('.multi-field-wrapper').each(function() {
 		var $wrapper = $('.multi-fields', this);
+		var $defaultValue = $(this).attr("defaultValue");
 		$('.multi-fields input', this).addClass("focus");
 		$(".add-field", $(this)).click(function(e) {
 			destroyAutocompletion();
 			destroySelect2();
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
-			newField.appendTo($wrapper).find('.input-widget').val('').focus();
+			newField.appendTo($wrapper).find('.input-widget').val($defaultValue).focus();
 			newField.appendTo($wrapper).find('.search.input-widget').css('display','inline');
 			newField.appendTo($wrapper).find('select').css('display','inline');
 			newField.appendTo($wrapper).find('.custom-combobox').css('display','inline');

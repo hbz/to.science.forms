@@ -3,7 +3,7 @@
 @(myForm:Form[models.ZettelModel],jsonMap:Map[String,Object])
 @import tags._ 
 @import services._
-<div class="multi-field-wrapper">
+<div class="multi-field-wrapper" defaultValue="-">
 	<ol class="multi-fields" id="funding">
 		@for(index <- ZettelHelper.getIndex(myForm,jsonMap,"funding") ){
 		<li class="multi-field">
