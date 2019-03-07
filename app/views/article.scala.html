@@ -74,12 +74,8 @@
 				@multifieldText(myForm,jsonMap,"additionalMaterial",services.ZettelFields.additionalMaterialZF.getLabel(),"",29)
 			}
             @accordionPanel(services.ZettelFields.fundingsHeaderZF.getLabel(),"identifier-section"){
-                <br />
-                @multifieldText(myForm,jsonMap,"funding",services.ZettelFields.fundingZF.getLabel(),"",15)
-                <br />
-                @multifieldText(myForm,jsonMap,"projectId",services.ZettelFields.projectIdZF.getLabel(),"",16)
-                <br/>
-                @multifieldText(myForm,jsonMap,"fundingProgram",services.ZettelFields.fundingProgramZF.getLabel(),"",17)
+                @parallelEditingWidget(myForm,jsonMap)
+               
            }
  
 		}

@@ -76,6 +76,62 @@ public class ZettelHelper {
 		return result;
 	}
 
+	public static List<String> getIndex(Form<ZettelModel> form,
+			Map<String, Object> jsonMap, String fieldName) {
+		List<String> result = new ArrayList<>();
+		if (form.hasErrors()) {
+			result = getIndexFromFormData(form, fieldName);
+		} else if (form.value().isPresent()) {
+			result = getIndexFromJsonLd(jsonMap, fieldName);
+		}
+		if (result.isEmpty()) {
+			result.add("0");
+		}
+		return result;
+	}
+
+	private static List<String> getIndexFromFormData(Form<ZettelModel> form,
+			String fieldName) {
+		List<String> result = new ArrayList<>();
+		Map<String, String> formData = form.data();
+		String id = formData.get(fieldName);
+		if (id != null) {
+			result.add(fieldName);
+		} else {
+			for (int i = 0; i < Integer.MAX_VALUE; i++) {
+				id = formData.get("" + i);
+				if (id == null)
+					break;
+				result.add("" + i);
+			}
+		}
+		if (result.isEmpty()) {
+			result.add("");
+		}
+		return result;
+	}
+
+	private static List<String> getIndexFromJsonLd(Map<String, Object> jsonMap,
+			String fieldName) {
+		List<String> result = new ArrayList<>();
+		Object data = jsonMap.get(fieldName);
+		if (data != null) {
+			if (data instanceof Collection<?>) {
+				@SuppressWarnings("unchecked")
+				List<String> dataList = (List<String>) data;
+				for (int i = 0; i < dataList.size(); i++) {
+					result.add("" + i);
+				}
+			} else {
+				play.Logger.debug("No index added to " + fieldName + " with class "
+						+ data.getClass());
+			}
+		} else {
+			play.Logger.debug("No data found for " + fieldName);
+		}
+		return result;
+	}
+
 	private static List<String> getFieldNamesWithIndexFromFormData(
 			Form<ZettelModel> form, String fieldName) {
 		List<String> result = new ArrayList<>();

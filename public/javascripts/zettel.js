@@ -170,10 +170,8 @@ function addActionsToRemoveAndAddButtons() {
 			newField.appendTo($wrapper).find('.input-widget').val('').focus();
 			newField.appendTo($wrapper).find('.search.input-widget').css('display','inline');
 			newField.appendTo($wrapper).find('select').css('display','inline');
-
 			newField.appendTo($wrapper).find('.custom-combobox').css('display','inline');
 			newField.appendTo($wrapper).find('.help-text').css('display','none');
-			newField.appendTo($wrapper).find('.form-control-label').css( 'visibility','hidden');
 			newField.appendTo($wrapper).find('.inline-help').css('display','none');
 			resetIds();
 			$(newField).find(".input-field-heading").html("");
