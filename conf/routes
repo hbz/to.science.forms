@@ -15,3 +15,4 @@ GET 	/personAutocomplete 		controllers.ZettelController.personAutocomplete(q:Str
 GET 	/corporateBodyAutocomplete 	controllers.ZettelController.corporateBodyAutocomplete(q:String?=null)
 GET     /conferenceAutocomplete  	controllers.ZettelController.conferenceAutocomplete(q:String?=null)
 GET 	/lobidAutocomplete 			controllers.ZettelController.lobidAutocomplete(q:String?=null)
+GET 	/localAutocomplete 			controllers.ZettelController.localAutocomplete(q:String?=null)

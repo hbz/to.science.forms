@@ -307,12 +307,6 @@ public class ZettelController extends Controller {
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode hits = response.asJson().at("/result");
 			List<Map<String, String>> result = new ArrayList<>();
-
-			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
-			suggestThisAsNewEntry.put("label", q);
-			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
-					+ "/adhoc/creator/" + MyURLEncoding.encode(q));
-			result.add(suggestThisAsNewEntry);
 			hits.forEach((hit) -> {
 
 				String id = hit.at("/orcid-identifier/uri").asText();
@@ -403,6 +397,28 @@ public class ZettelController extends Controller {
 		return label.toString();
 	}
 
+	public CompletionStage<Result> localAutocomplete(String q) {
+		CompletableFuture<Result> future = new CompletableFuture<>();
+
+		final String[] callback =
+				request() == null || request().queryString() == null ? null
+						: request().queryString().get("callback");
+		List<Map<String, String>> result = new ArrayList<>();
+		Map<String, String> suggestThisAsNewEntry = new HashMap<>();
+		suggestThisAsNewEntry.put("label", q);
+		suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
+				+ "/adhoc/uri/" + MyURLEncoding.encode(q));
+		result.add(suggestThisAsNewEntry);
+
+		String searchResult = ZettelHelper.objectToString(result);
+		String myResponse = callback != null
+				? String.format("/**/%s(%s)", callback[0], searchResult)
+				: searchResult;
+
+		future.complete(ok(myResponse));
+		return future;
+	}
+
 	/**
 	 * @param q a query against lobid
 	 * @return a jsonp result
@@ -454,11 +470,6 @@ public class ZettelController extends Controller {
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
-			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
-			suggestThisAsNewEntry.put("label", q);
-			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
-					+ "/adhoc/creator/" + MyURLEncoding.encode(q));
-			result.add(suggestThisAsNewEntry);
 			root.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
 				label.append(m.at("/label"));
