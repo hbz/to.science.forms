@@ -169,6 +169,7 @@ function addActionsToRemoveAndAddButtons() {
 			destroySelect2();
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
 			newField.appendTo($wrapper).find('.input-widget').val($defaultValue).focus();
+			newField.appendTo($wrapper).find('textArea').val($defaultValue).focus();
 			newField.appendTo($wrapper).find('.search.input-widget').css('display','inline');
 			newField.appendTo($wrapper).find('select').css('display','inline');
 			newField.appendTo($wrapper).find('.custom-combobox').css('display','inline');
