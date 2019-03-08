@@ -85,9 +85,9 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getTypeMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(null, "Bitte wählen Sie...");
-		map.put("http://purl.org/ontology/bibo/Article", "Artikel");
-		map.put("http://purl.org/ontology/bibo/Chapter", "Kapitel");
-		map.put("http://purl.org/ontology/bibo/Proceedings", "Konferenzschrift");
+		map.put("http://purl.org/ontology/bibo/Article", "Zeitschriftenartikel");
+		map.put("http://purl.org/ontology/bibo/Chapter", "Buchkapitel");
+		map.put("http://purl.org/ontology/bibo/Proceedings", "Konferenzbeitrag");
 		return map;
 	}
 
