@@ -79,6 +79,9 @@
                 @parallelEditingWidget(myForm,jsonMap)
                
            }
+            @accordionPanel(services.ZettelFields.additionalNotesHeaderZF.getLabel(),"additionalNotes-section"){
+               	@textArea(myForm,"additionalNotes",services.ZettelFields.additionalNotesZF.getLabel(),"",30)
+           }
  
 		}
 	

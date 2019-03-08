@@ -82,6 +82,7 @@ import static services.ZettelFields.yearOfCopyrightZF;
 import static services.ZettelFields.parallelEditionZF;
 import static services.ZettelFields.collectionTwoZF;
 import static services.ZettelFields.internalReferenceZF;
+import static services.ZettelFields.additionalNotesZF;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -236,6 +237,7 @@ public abstract class ZettelModel {
 	private String type = "default";
 	private List<String> collectionTwo = new ArrayList<>();
 	private List<String> internalReference = new ArrayList<>();
+	private String additionalNotes;
 
 	@JsonProperty("rdftype")
 	protected String getRdftype() {
@@ -1051,6 +1053,14 @@ public abstract class ZettelModel {
 		collectionTwo.add(in);
 	}
 
+	public String getAdditionalNotes() {
+		return additionalNotes;
+	}
+
+	public void setAdditionalNotes(String notes) {
+		this.additionalNotes = notes;
+	}
+
 	/**
 	 * @return a map that maps a uri to a setter method
 	 */
@@ -1134,6 +1144,7 @@ public abstract class ZettelModel {
 		dict.put(internalReferenceZF.uri,
 				(in) -> addInternalReference((String) in));
 
+		dict.put(additionalNotesZF.uri, (in) -> setAdditionalNotes((String) in));
 		return dict;
 	}
 
