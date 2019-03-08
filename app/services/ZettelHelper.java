@@ -256,7 +256,12 @@ public class ZettelHelper {
 	 */
 	public static String getData(Form<ZettelModel> form,
 			String fieldNameWithIndex) {
-		String result = "";
+		return getData(form, fieldNameWithIndex, "");
+	}
+
+	public static String getData(Form<ZettelModel> form,
+			String fieldNameWithIndex, String defaultValue) {
+		String result = defaultValue;
 		try {
 			if (form.value().isPresent() || form.hasErrors()) {
 				int i = parseIndex(fieldNameWithIndex);

@@ -1,10 +1,10 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero
 General Public License *@
-@(myForm:Form[models.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int)(content:Html)
+@(myForm:Form[models.ZettelModel],fieldName:String,fieldLabel:String,classString:String,tabOrderAsInt:Int,defaultValue:String)(content:Html)
 
 @import java.util.stream.Collectors
 @import services._ 
-@myValue=@{ZettelHelper.getData(myForm,fieldName)}
+@myValue=@{ZettelHelper.getData(myForm,fieldName,defaultValue)}
 <div class="first-child-of-multi-field">
 	<div >
 		<label class="form-control-label" for="@fieldName">@fieldLabel</label>

@@ -7,15 +7,15 @@
 	<ol class="multi-fields" id="funding">
 		@for(index <- ZettelHelper.getIndex(myForm,jsonMap,"funding") ){
 		<li class="multi-field">
-                @inputField(myForm,{"funding["+index+"]"},services.ZettelFields.fundingZF.getLabel(),"",15){
+                @inputField(myForm,{"funding["+index+"]"},services.ZettelFields.fundingZF.getLabel(),"",15,"-"){
 			  	@helpText("funding")
 				}
                 <br />
-                @inputField(myForm,{"projectId["+index+"]"},services.ZettelFields.projectIdZF.getLabel(),"",16){
+                @inputField(myForm,{"projectId["+index+"]"},services.ZettelFields.projectIdZF.getLabel(),"",16,"-"){
 			  	@helpText("projectId")
 				}
                 <br/>
-                @inputField(myForm,{"fundingProgram["+index+"]"},services.ZettelFields.fundingProgramZF.getLabel(),"",17){
+                @inputField(myForm,{"fundingProgram["+index+"]"},services.ZettelFields.fundingProgramZF.getLabel(),"",17,"-"){
 			  	@helpText("fundingProgram")
 				}
 			 	<div class="buttonBox">
