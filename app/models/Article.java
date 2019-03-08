@@ -84,6 +84,8 @@ public class Article extends ZettelModel {
 		validate(getLabel("fulltextVersion"), l, errors);
 		l = getAdditionalMaterial();
 		validate(getLabel("additionalMaterial"), l, errors);
+		l = getAdditionalMaterial();
+		validate(getLabel("internalReference"), l, errors);
 		l = Arrays.asList(getLicense());
 		validate(getLabel("license"), l, errors);
 	}

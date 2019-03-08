@@ -81,6 +81,7 @@ import static services.ZettelFields.volumeInZF;
 import static services.ZettelFields.yearOfCopyrightZF;
 import static services.ZettelFields.parallelEditionZF;
 import static services.ZettelFields.collectionTwoZF;
+import static services.ZettelFields.internalReferenceZF;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -234,6 +235,7 @@ public abstract class ZettelModel {
 	private String parallelEdition;
 	private String type = "default";
 	private List<String> collectionTwo = new ArrayList<>();
+	private List<String> internalReference = new ArrayList<>();
 
 	@JsonProperty("rdftype")
 	protected String getRdftype() {
@@ -993,6 +995,20 @@ public abstract class ZettelModel {
 		additionalMaterial.add(in);
 	}
 
+	public List<String> getInternalReference() {
+		return internalReference;
+	}
+
+	public void setInternalReference(List<String> in) {
+		internalReference = in;
+	}
+
+	public void addInternalReference(String in) {
+		if (internalReference == null || internalReference.isEmpty())
+			internalReference = new ArrayList<>();
+		internalReference.add(in);
+	}
+
 	public List<String> getPublisherVersion() {
 		return publisherVersion;
 	}
@@ -1115,6 +1131,8 @@ public abstract class ZettelModel {
 		dict.put(parallelEditionZF.uri, (in) -> setParallelEdition((String) in));
 		dict.put(typeZF.uri, (in) -> setRdftype((String) in));
 		dict.put(collectionTwoZF.uri, (in) -> addCollectionTwo((String) in));
+		dict.put(internalReferenceZF.uri,
+				(in) -> addInternalReference((String) in));
 
 		return dict;
 	}

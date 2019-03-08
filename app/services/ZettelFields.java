@@ -185,4 +185,6 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/typeHeader");
 	public static Etikett collectionTwoZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionTwo");
+	public static Etikett internalReferenceZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/internalReference");
 }
