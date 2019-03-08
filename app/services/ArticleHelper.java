@@ -76,8 +76,8 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getPublicationStatusMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(null, "Bitte wählen Sie...");
-		map.put("http://hbz-nrw.de/regal#original", "Veröffentlichungsversion");
-		map.put("http://hbz-nrw.de/regal#postprint", "Postprint");
+		map.put("http://hbz-nrw.de/regal#original", "Postprint Verlagsversion");
+		map.put("http://hbz-nrw.de/regal#postprint", "Postprint Autorenmanuskript");
 		map.put("http://hbz-nrw.de/regal#preprint", "Preprint");
 		return map;
 	}
