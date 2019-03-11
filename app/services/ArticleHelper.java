@@ -201,24 +201,25 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getPersonLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put("/tools/zettel/orcidAutocomplete", "ORCID");
 		map.put("/tools/zettel/personAutocomplete", "Personen");
 		map.put("/tools/zettel/corporateBodyAutocomplete", "Körperschaften");
-		map.put("/tools/zettel/orcidAutocomplete", "ORCID");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getCollectionTwoEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("/tools/zettel/conferenceAutocomplete", "Kongress");
+		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		return map;
 	}
 
-	public static LinkedHashMap<String, String> getCorporateBodyLookupEndpoints() {
+	public static LinkedHashMap<String, String> getInstitutionLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		map.put("/tools/zettel/corporateBodyAutocomplete", "Körperschaften");
 		map.put("/tools/zettel/personAutocomplete", "Personen");
 		map.put("/tools/zettel/orcidAutocomplete", "ORCID");
+		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		return map;
 	}
 
@@ -246,6 +247,7 @@ public class ArticleHelper {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("/tools/zettel/journalAutocomplete", "ZDB");
 		map.put("/tools/zettel/bookAutocomplete", "Buch");
+		map.put("/tools/zettel/conferenceAutocomplete", "Kongress");
 		map.put("/tools/zettel/seriesAutocomplete", "Serie");
 		map.put("/tools/zettel/allAutocomplete", "Aleph");
 		return map;

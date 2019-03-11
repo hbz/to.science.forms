@@ -27,7 +27,7 @@
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
                 @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
-				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"search",14,ArticleHelper.getCorporateBodyLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"search",14,ArticleHelper.getPersonLookupEndpoints())
 				<br/>
 				@multifieldLd(myForm,jsonMap,"editor",services.ZettelFields.editorZF.getLabel(),"search",4,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
@@ -42,7 +42,7 @@
 				@singlefieldText(myForm,"publicationYear",services.ZettelFields.publicationYearZF.getLabel()+"*","",1)
 			}
 			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collection-section"){
-				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"search",14,ArticleHelper.getCorporateBodyLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"search",14,ArticleHelper.getInstitutionLookupEndpoints())
 			    <br/>
 				@multifieldLd(myForm,jsonMap,"collectionTwo",services.ZettelFields.collectionTwoZF.getLabel(),"search",16,ArticleHelper.getCollectionTwoEndpoints())
 				<br/>
