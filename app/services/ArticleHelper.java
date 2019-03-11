@@ -87,7 +87,7 @@ public class ArticleHelper {
 		map.put(null, "Bitte wählen Sie...");
 		map.put("http://purl.org/ontology/bibo/Article", "Zeitschriftenartikel");
 		map.put("http://purl.org/ontology/bibo/Chapter", "Buchkapitel");
-		map.put("http://purl.org/ontology/bibo/Proceedings", "Konferenzbeitrag");
+		map.put("http://purl.org/ontology/bibo/Proceedings", "Kongressbeitrag");
 		return map;
 	}
 
