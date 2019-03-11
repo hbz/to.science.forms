@@ -451,7 +451,8 @@ public class ZettelController extends Controller {
 	 * @return a jsonp result
 	 */
 	public CompletionStage<Result> conferenceAutocomplete(String q) {
-		String filter = "(type:ConferenceOrEvent)+(type:SeriesOfConferenceOrEvent)";
+		String filter =
+				"(type:ConferenceOrEvent)OR(type:SeriesOfConferenceOrEvent)";
 		return lobidResponse(q, filter);
 	}
 
@@ -465,7 +466,7 @@ public class ZettelController extends Controller {
 				.setQueryParameter("format", "json:suggest")
 				.setQueryParameter("filter", filter)
 				.setHeader("accept", "application/json").setRequestTimeout(5000);
-		play.Logger.info(
+		play.Logger.trace(
 				"GET " + complexRequest.getUrl() + complexRequest.getQueryParameters());
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode root = response.asJson();
