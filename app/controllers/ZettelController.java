@@ -223,6 +223,8 @@ public class ZettelController extends Controller {
 			play.Logger
 					.error("WARN: Can not handle " + request().contentType().get());
 		}
+		play.Logger.debug(String
+				.format("Content of model directyl after bindToForm\n%s", form.get()));
 		play.Logger
 				.debug(String.format("Content of rdf result\n%s", printRdf(form)));
 		return form;

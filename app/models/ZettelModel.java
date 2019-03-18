@@ -226,8 +226,6 @@ public abstract class ZettelModel {
 	private List<String> institution = new ArrayList<>();
 	private String publicationYear;
 	private List<String> affiliation = new ArrayList<>();
-	private List<Contribution> contribution = new ArrayList<>();
-	private Agent agent;
 	private String affiliationIndex;
 	private List<String> collectionOne = new ArrayList<>();
 	private List<String> publisherVersion = new ArrayList<>();
@@ -250,6 +248,7 @@ public abstract class ZettelModel {
 
 	@JsonProperty("rdftype")
 	public void setRdftype(String in) {
+		play.Logger.debug("Add type: " + in);
 		type = in;
 	}
 
@@ -926,28 +925,12 @@ public abstract class ZettelModel {
 		affiliation.add(in);
 	}
 
-	public List<Contribution> getContribution() {
-		return contribution;
-	}
-
-	public void setContribution(List<Contribution> contribution) {
-		this.contribution = contribution;
-	}
-
 	public String getAffiliationIndex() {
 		return affiliationIndex;
 	}
 
 	public void setAffiliationIndex(String affiliationIndex) {
 		this.affiliationIndex = affiliationIndex;
-	}
-
-	public Agent getAgent() {
-		return agent;
-	}
-
-	public void setAgent(Agent agent) {
-		this.agent = agent;
 	}
 
 	public String getParallelEdition() {
