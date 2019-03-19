@@ -232,24 +232,23 @@ public abstract class ZettelModel {
 	private List<String> fulltextVersion = new ArrayList<>();
 	private List<String> additionalMaterial = new ArrayList<>();
 	private String parallelEdition;
-	private String type = "default";
+	private List<String> type = new ArrayList<>();
 	private List<String> collectionTwo = new ArrayList<>();
 	private List<String> internalReference = new ArrayList<>();
 	private String additionalNotes;
 
-	@JsonProperty("rdftype")
-	protected String getRdftype() {
+	public List<String> getRdftype() {
 		return type;
 	}
 
-	protected String getType() {
-		return "";
+	public void setRdftype(List<String> in) {
+		type = in;
 	}
 
-	@JsonProperty("rdftype")
-	public void setRdftype(String in) {
-		play.Logger.debug("Add type: " + in);
-		type = in;
+	public void addType(String in) {
+		if (type == null || type.isEmpty())
+			type = new ArrayList<>();
+		type.add(in);
 	}
 
 	public String getPublicationYear() {
@@ -1122,7 +1121,7 @@ public abstract class ZettelModel {
 		dict.put(additionalMaterialZF.uri,
 				(in) -> addAdditionalMaterial((String) in));
 		dict.put(parallelEditionZF.uri, (in) -> setParallelEdition((String) in));
-		dict.put(typeZF.uri, (in) -> setRdftype((String) in));
+		dict.put(typeZF.uri, (in) -> addType((String) in));
 		dict.put(collectionTwoZF.uri, (in) -> addCollectionTwo((String) in));
 		dict.put(internalReferenceZF.uri,
 				(in) -> addInternalReference((String) in));

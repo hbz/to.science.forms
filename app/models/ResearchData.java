@@ -18,6 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -36,9 +37,8 @@ public class ResearchData extends ZettelModel {
 	 */
 	public final static String id = "katalog:researchData";
 
-	@Override
-	protected String getType() {
-		return "http://hbz-nrw.de/regal#ResearchData";
+	public List<String> getType() {
+		return Arrays.asList("http://hbz-nrw.de/regal#ResearchData");
 	}
 
 	/**

@@ -36,8 +36,7 @@ public class Catalog extends ZettelModel {
 	 */
 	public final static String id = "katalog:catalog";
 
-	@Override
-	protected String getType() {
+	public String getType() {
 		return "Catalog";
 	}
 
