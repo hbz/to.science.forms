@@ -238,6 +238,13 @@ public class ArticleHelper {
 		return map;
 	}
 
+	public static LinkedHashMap<String, String> getFundingLookupEndpoints() {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put("/tools/zettel/crossrefAutocomplete", "CrossRef");
+		return map;
+	}
+
 	public static LinkedHashMap<String, String> getEmptyLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		return map;

@@ -47,6 +47,7 @@ import static services.ZettelFields.embargoTimeZF;
 import static services.ZettelFields.fulltextVersionZF;
 import static services.ZettelFields.fundingProgramZF;
 import static services.ZettelFields.fundingZF;
+import static services.ZettelFields.fundingIdZF;
 import static services.ZettelFields.institutionZF;
 import static services.ZettelFields.isLikeZF;
 import static services.ZettelFields.isbnZF;
@@ -190,6 +191,7 @@ public abstract class ZettelModel {
 	private List<String> urn = new ArrayList<>();
 	private List<String> isLike = new ArrayList<>();
 	private List<String> funding = new ArrayList<>();
+	private List<String> fundingId = new ArrayList<>();
 	private List<String> projectId = new ArrayList<>();
 	private List<String> fundingProgram = new ArrayList<>();
 	private List<String> recordingLocation = new ArrayList<>();
@@ -475,6 +477,14 @@ public abstract class ZettelModel {
 		this.funding = funding;
 	}
 
+	public List<String> getFundingId() {
+		return fundingId;
+	}
+
+	public void setFundingId(List<String> fundingId) {
+		this.fundingId = fundingId;
+	}
+
 	public List<String> getRecordingLocation() {
 		return recordingLocation;
 	}
@@ -571,6 +581,12 @@ public abstract class ZettelModel {
 		if (funding == null || funding.isEmpty())
 			funding = new ArrayList<>();
 		funding.add(in);
+	}
+
+	public void addFundingId(String in) {
+		if (fundingId == null || fundingId.isEmpty())
+			fundingId = new ArrayList<>();
+		fundingId.add(in);
 	}
 
 	public void addDdc(String in) {
@@ -1063,6 +1079,7 @@ public abstract class ZettelModel {
 		dict.put(yearOfCopyrightZF.uri, (in) -> setYearOfCopyright((String) in));
 		dict.put(ddcZF.uri, (in) -> addDdc((String) in));
 		dict.put(fundingZF.uri, (in) -> addFunding((String) in));
+		dict.put(fundingIdZF.uri, (in) -> addFundingId((String) in));
 		dict.put(recordingPeriodZF.uri, (in) -> setRecordingPeriod((String) in));
 		dict.put(recordingLocationZF.uri,
 				(in) -> addRecordingLocation((String) in));

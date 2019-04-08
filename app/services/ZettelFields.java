@@ -59,6 +59,8 @@ public class ZettelFields {
 			.getEtikett("http://www.umbel.org/specifications/vocabulary#isLike");
 	public static Etikett fundingZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#funding");
+	public static Etikett fundingIdZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#fundingId");
 	public static Etikett recordingPeriodZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#recordingPeriod");
 	public static Etikett recordingLocationZF = ZettelHelper.etikett
