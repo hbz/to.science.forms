@@ -5,7 +5,7 @@
 @import services._
 <div class="multi-field-wrapper" defaultValue="-">
 	<ol class="multi-fields" id="funding">
-		@for(index <- ZettelHelper.getIndex(myForm,jsonMap,"funding") ){
+		@for(index <- ZettelHelper.getIndex(myForm,jsonMap,"fundingId") ){
 		<li class="multi-field">
                 @ldInputField(myForm,{"fundingId["+index+"]"},services.ZettelFields.fundingIdZF.getLabel(),"search",15,ArticleHelper.getFundingLookupEndpoints()){
 			  	@helpText("funding")
