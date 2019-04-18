@@ -201,24 +201,23 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getPersonLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
-		map.put("/tools/zettel/orcidAutocomplete", "ORCID");
-		map.put("/tools/zettel/personAutocomplete", "Personen");
-		map.put("/tools/zettel/corporateBodyAutocomplete", "Körperschaften");
+		map.put("/tools/zettel/orcidAutocomplete", "ORCiD");
+		map.put("/tools/zettel/personAutocomplete", "GND (Personen)");
+		map.put("/tools/zettel/corporateBodyAutocomplete", "GND (Körperschaften)");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getCollectionTwoEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/conferenceAutocomplete", "Kongress");
+		map.put("/tools/zettel/conferenceAutocomplete", "GND (Kongress)");
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getInstitutionLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/corporateBodyAutocomplete", "Körperschaften");
-		map.put("/tools/zettel/personAutocomplete", "Personen");
-		map.put("/tools/zettel/orcidAutocomplete", "ORCID");
+		map.put("/tools/zettel/corporateBodyAutocomplete", "GND (Körperschaften)");
+		map.put("/tools/zettel/personAutocomplete", "GND (Personen)");
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		return map;
 	}
@@ -252,10 +251,12 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getTitleLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/journalAutocomplete", "ZDB");
+		map.put(null, "Bitte wählen Sie...");
+		map.put("/tools/zettel/journalAutocomplete", "Zeitschrift");
 		map.put("/tools/zettel/bookAutocomplete", "Buch");
 		map.put("/tools/zettel/conferenceAutocomplete", "Kongress");
-		map.put("/tools/zettel/seriesAutocomplete", "Serie");
+		map.put("/tools/zettel/seriesAutocomplete", "Monogr.ÜO");
+		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		map.put("/tools/zettel/allAutocomplete", "Aleph");
 		return map;
 	}
