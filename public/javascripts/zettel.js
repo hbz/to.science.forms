@@ -90,7 +90,10 @@ function enableAutocompletion(inputElement,endpoint) {
 						response(data);
 					}
 				});
-			}
+			},
+			focus: function( event, ui ) {
+	                $(".ui-autocomplete > li").attr("title", ui.item.desc);
+	        }
 		});
 	}
 }

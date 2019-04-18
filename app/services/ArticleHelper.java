@@ -240,8 +240,8 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getFundingLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("/tools/zettel/crossrefAutocomplete", "CrossRef Funders Registry");
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
-		map.put("/tools/zettel/crossrefAutocomplete", "CrossRef");
 		return map;
 	}
 

@@ -564,21 +564,22 @@ public class ZettelController extends Controller {
 			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
 				label.append(m.at("/name").asText());
-				// label.append(" - ");
-				// JsonNode prefName = m.at("/alt-names");
-				// if (prefName.isArray()) {
-				// prefName.forEach((p) -> {
-				// label.append(p.asText() + ",");
-				// });
-				// label.deleteCharAt(label.length() - 1);
-				// } else {
-				// label.append(prefName.asText());
-				// }
+				StringBuffer altNamesString = new StringBuffer();
+
+				JsonNode altNames = m.at("/alt-names");
+				if (altNames.isArray()) {
+					altNames.forEach((p) -> {
+						altNamesString.append(p.asText() + ",");
+					});
+				} else {
+					altNamesString.append(altNames.asText());
+				}
 
 				String id = m.at("/uri").asText().replaceAll("#!", "");
 				Map<String, String> map = new HashMap<>();
 				map.put("label", label.toString());
 				map.put("value", id);
+				map.put("desc", altNamesString.toString());
 				result.add(map);
 			});
 			String searchResult = ZettelHelper.objectToString(result);
