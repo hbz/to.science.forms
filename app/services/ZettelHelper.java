@@ -191,7 +191,7 @@ public class ZettelHelper {
 	 */
 	public static JsonMessage getEmbeddedJson(Form<?> form, String format) {
 		JsonMessage result = null;
-		play.Logger.debug("Write " + format);
+		// play.Logger.debug("Write " + format);
 		try {
 			if (form.hasErrors()) {
 				result = new JsonMessage(form.errorsAsJson(), 400);
@@ -204,7 +204,7 @@ public class ZettelHelper {
 						if ("xml".equals(format)) {
 							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
 									RDFFormat.RDFXML, "");
-							play.Logger.debug(rdfString);
+							// play.Logger.debug(rdfString);
 							result = new JsonMessage(rdfString, 200);
 						} else if ("ntriples".equals(format)) {
 							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
