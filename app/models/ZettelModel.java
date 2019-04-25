@@ -166,7 +166,7 @@ public abstract class ZettelModel {
 	private String documentId;
 	private String topicId;
 
-	protected abstract List<ValidationError> validate();
+	public abstract List<ValidationError> validate();
 
 	private String id;
 	private String label;
@@ -609,7 +609,7 @@ public abstract class ZettelModel {
 	}
 
 	public void addCreator(String in) {
-		play.Logger.debug("Add creator " + in);
+		// play.Logger.debug("Add creator " + in);
 		if (creator == null || creator.isEmpty())
 			creator = new ArrayList<>();
 		if (in != null && !in.isEmpty())
@@ -1145,13 +1145,6 @@ public abstract class ZettelModel {
 
 		dict.put(additionalNotesZF.uri, (in) -> setAdditionalNotes((String) in));
 		return dict;
-	}
-
-	protected static void addErrorMessage(String fieldName, String message,
-			Supplier<String> getValue, List<ValidationError> errors) {
-		if (getValue.get() == null || getValue.get().isEmpty()) {
-			errors.add(new ValidationError(fieldName, message));
-		}
 	}
 
 	protected static boolean containsNothing(List<String> list) {

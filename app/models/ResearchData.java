@@ -20,6 +20,7 @@ package models;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
@@ -106,5 +107,12 @@ public class ResearchData extends ZettelModel {
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
 		}
 		// editor and redaktor are optional
+	}
+
+	protected void addErrorMessage(String fieldName, String message,
+			Supplier<String> getValue, List<ValidationError> errors) {
+		if (getValue.get() == null || getValue.get().isEmpty()) {
+			errors.add(new ValidationError(fieldName, message));
+		}
 	}
 }

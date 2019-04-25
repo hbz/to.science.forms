@@ -144,12 +144,13 @@ public class ZettelController extends Controller {
 		// + ZettelHelper.objectToString(request().body().asText()));
 		// play.Logger.debug("Content of model-------------\n"
 		// + ZettelHelper.objectToString(zettel.getModel()));
-		play.Logger.debug(String.format("Content of request\n%s\n%s", request(),
-				ZettelHelper.objectToString(request().body().asFormUrlEncoded())));
+		// play.Logger.debug(String.format("Content of request\n%s\n%s", request(),
+		// ZettelHelper.objectToString(request().body().asFormUrlEncoded())));
 
 		ZettelRegister zettelRegister = new ZettelRegister();
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
+		play.Logger.debug("Post data to " + zettel.getId());
 		Form<?> form = bindToForm(zettel, documentId, topicId);
 		result = renderForm(format, documentId, topicId, zettel, form);
 		future.complete(result);
@@ -201,8 +202,8 @@ public class ZettelController extends Controller {
 			} else {
 				result = ok(form.get().toString()).as("application/json");
 			}
-			play.Logger.debug(String.format("Content of model\n%s",
-					((ZettelModel) form.get()).print()));
+			// play.Logger.debug(String.format("Content of model\n%s",
+			// ((ZettelModel) form.get()).print()));
 		}
 		return result;
 	}
@@ -217,14 +218,15 @@ public class ZettelController extends Controller {
 			form.bindFromRequest();
 		} else if ("application/x-www-form-urlencoded"
 				.equals(request().contentType().get())) {
-			play.Logger.debug("Load form from request");
+			play.Logger.debug("Load form from request " + zettel.getModel().getId()
+					+ " ," + zettel.getModel().getClass());
 			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
 		} else {
 			play.Logger
 					.error("WARN: Can not handle " + request().contentType().get());
 		}
-		play.Logger.debug(String
-				.format("Content of model directyl after bindToForm\n%s", form.get()));
+		// play.Logger.debug(String
+		// .format("Content of model directyl after bindToForm\n%s", form.get()));
 		play.Logger
 				.debug(String.format("Content of rdf result\n%s", printRdf(form)));
 		return form;

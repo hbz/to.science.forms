@@ -21,6 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -64,17 +65,31 @@ public class Article extends ZettelModel {
 	@Override
 	public List<ValidationError> validate() {
 		List<ValidationError> errors = new ArrayList<>();
-		validateStatus(errors);
-		validateTitle(errors);
-		validateAuthorship(errors);
-		validateResource(errors);
-		// validateCollection(errors);
-		// validateUpload(errors);
-		validateCataloging(errors);
-		// validateIdentifiers(errors);
-		// validateFunding(errors);
+		validateMandatoryFields(errors);
 		validateURLs(errors);
 		return errors.isEmpty() ? null : errors;
+	}
+
+	private void validateMandatoryFields(List<ValidationError> errors) {
+		// Publikationstyp
+		mandatoryField(getLabel("rdftype"), getRdftype(), errors);
+		// Publikationsstatus
+		mandatoryField(getLabel("publicationStatus"), getPublicationStatus(),
+				errors);
+		// Titel
+		mandatoryField(getLabel("title"), getTitle(), errors);
+		// Autoren
+		validateAuthorship(errors);
+		// Erschienen in
+		mandatoryField(getLabel("containedIn"), getContainedIn(), errors);
+		// Online veröffentlicht
+		mandatoryField(getLabel("publicationYear"), getPublicationYear(), errors);
+		// Sammlung
+		mandatoryField(getLabel("institution"), getInstitution(), errors);
+		// Sprache der Publikation
+		mandatoryField(getLabel("language"), getLanguage(), errors);
+		// Fächerklassifikation
+		mandatoryField(getLabel("ddc"), getDdc(), errors);
 	}
 
 	private void validateURLs(List<ValidationError> errors) {
@@ -88,34 +103,56 @@ public class Article extends ZettelModel {
 		validate(getLabel("internalReference"), l, errors);
 		l = Arrays.asList(getLicense());
 		validate(getLabel("license"), l, errors);
+		l = getCreator();
+		validate(getLabel("creator"), l, errors);
+		l = getContributor();
+		validate(getLabel("contributor"), l, errors);
+		l = getEditor();
+		validate(getLabel("editor"), l, errors);
+		l = getOther();
+		validate(getLabel("Other"), l, errors);
+		l = getContainedIn();
+		validate(getLabel("containedIn"), l, errors);
+		l = getInstitution();
+		validate(getLabel("institution"), l, errors);
+		l = getCollectionOne();
+		validate(getLabel("collectionOne"), l, errors);
+		l = getCollectionTwo();
+		validate(getLabel("collectionTwo"), l, errors);
+		l = getDdc();
+		validate(getLabel("ddc"), l, errors);
+		l = getAdditionalMaterial();
+		validate(getLabel("additionalMaterial"), l, errors);
+		l = getInternalReference();
+		validate(getLabel("internalReference"), l, errors);
+		l = getFundingId();
+		validate(getLabel("fundingId"), l, errors);
 	}
 
-	private void validate(String name, List<String> l,
+	private void validate(String fieldLabel, List<String> fieldContent,
 			List<ValidationError> errors) {
-		if (l == null || l.isEmpty())
+		play.Logger.debug("Validiere " + fieldLabel);
+		if (fieldContent == null || fieldContent.isEmpty())
 			return;
-		l.forEach(v -> {
+		fieldContent.forEach(v -> {
 			if (v != null && !v.isEmpty() && !isValid(v)) {
-				errors.add(new ValidationError(name,
-						"Die Eingabe \"" + v + "\" hat nicht die Form einer URL."));
+				errors.add(new ValidationError(fieldLabel,
+						String.format(
+								"Die Eingabe \"" + v + "\" hat nicht die Form einer URL.",
+								fieldLabel)));
 			}
 		});
 
 	}
 
-	private void validateStatus(List<ValidationError> errors) {
-		addErrorMessage(getLabel("publicationStatus"),
-				String.format("Bitte vergeben Sie einen %s!",
-						getLabel("publicationStatus")),
-				() -> getPublicationStatus(), errors);
-		// reviewStatus is optional
-	}
-
-	private void validateTitle(List<ValidationError> errors) {
-		addErrorMessage(getLabel("title"),
-				String.format("Bitte vergeben Sie einen %s!", getLabel("title")),
-				() -> getTitle(), errors);
-		// alternativeTitle is optional
+	@SuppressWarnings({ "javadoc", "unused" })
+	public boolean isValid(String addr) {
+		try {
+			new URL(addr);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	private void validateAuthorship(List<ValidationError> errors) {
@@ -132,77 +169,26 @@ public class Article extends ZettelModel {
 			errors.add(new ValidationError(getLabel("contributor"),
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
 		}
-		// editor and redaktor are optional
 	}
 
-	private void validateResource(List<ValidationError> errors) {
-		if (containsNothing(getContainedIn())) {
-			setContainedIn(new ArrayList<>());
-			errors.add(new ValidationError(getLabel("containedIn"),
-					"Bitte geben Sie eine Quelle an."));
-		}
-		if (containsNothing(getPublicationYear())) {
-			setPublicationYear("");
-			errors.add(new ValidationError("publicationYear",
-					String.format("Bitte vergeben Sie ein %s!",
-							ZettelFields.publicationYearZF.getLabel())));
+	@SuppressWarnings("static-method")
+	private void mandatoryField(String fieldLabel, List<String> fieldContent,
+			List<ValidationError> errors) {
+
+		if (containsNothing(fieldContent)) {
+			errors.add(new ValidationError(fieldLabel,
+					String.format("Bitte vergeben Sie einen %s!", fieldLabel)));
 		}
 	}
 
-	// private void validateCollection(List<ValidationError> errors) {
-	// // currently no required fields
-	// }
+	@SuppressWarnings("static-method")
+	private void mandatoryField(String fieldLabel, String fieldContent,
+			List<ValidationError> errors) {
 
-	// private void validateUpload(List<ValidationError> errors) {
-	// // addErrorMessage("medium", String.format("Bitte wählen Sie ein %s aus!",
-	// // ZettelFields.mediumZF.getLabel()), () -> getMedium(), errors);
-	// // yearOfCopyright and license are optional
-	// // TODO: embargo should be filled. If it is not, pop up a reminder.
-	// }
-
-	private void validateCataloging(List<ValidationError> errors) {
-		addErrorMessage(getLabel("language"),
-				"Welche Sprache passt am ehesten zu Ihrer Eingabe?",
-				() -> getLanguage(), errors);
-		if (containsNothing(getDdc())) {
-			setDdc(new ArrayList<>());
-			errors.add(new ValidationError(getLabel("ddc"),
-					"Bitte orden Sie Ihre Daten einem Dewey Schlagwort zu!"));
-		}
-		// abstract and subject tags are optional
-	}
-
-	// private void validateIdentifiers(List<ValidationError> errors) {
-	// // if (containsNothing(getUrn())) {
-	// // setUrn(new ArrayList<>());
-	// // errors.add(new ValidationError("urn",
-	// // String.format("Bitte geben Sie eine %s an.",
-	// // ZettelFields.urnZF.getLabel())));
-	// // }
-	// // else{
-	// // for (String urn : getUrn()){
-	// // if (!URN_PATTERN.matcher(urn).matches()){
-	// // errors.add(new ValidationError("urn",
-	// // String.format("Bitte formatieren Sie die %s %s korrekt!",
-	// // ZettelFields.urnZF.getLabel(), urn)));
-	// // }
-	// // }
-	// // }
-	// // // TODO: DOI should be filled. If it is not, pop up a reminder.
-	// }
-
-	// private void validateFunding(List<ValidationError> errors) {
-	// // TODO: funding, projectId and fundingProgram should be filled. If they
-	// are
-	// // not, pop up a reminder.
-	// }
-
-	public boolean isValid(String addr) {
-		try {
-			URL url = new URL(addr);
-			return true;
-		} catch (Exception e) {
-			return false;
+		if (fieldContent == null || fieldContent.isEmpty()) {
+			errors.add(new ValidationError(fieldLabel,
+					String.format("Bitte vergeben Sie einen %s!", fieldLabel)));
 		}
 	}
+
 }

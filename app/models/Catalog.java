@@ -18,6 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package models;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -41,9 +42,15 @@ public class Catalog extends ZettelModel {
 	}
 
 	@Override
-	protected List<ValidationError> validate() {
+	public List<ValidationError> validate() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	protected void addErrorMessage(String fieldName, String message,
+			Supplier<String> getValue, List<ValidationError> errors) {
+		if (getValue.get() == null || getValue.get().isEmpty()) {
+			errors.add(new ValidationError(fieldName, message));
+		}
+	}
 }
