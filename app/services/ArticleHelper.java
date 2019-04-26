@@ -254,10 +254,13 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getTitleLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
-		map.put("/tools/zettel/journalAutocomplete", "Zeitschrift");
-		map.put("/tools/zettel/bookAutocomplete", "Buch");
-		map.put("/tools/zettel/conferenceAutocomplete", "Kongress");
-		map.put("/tools/zettel/seriesAutocomplete", "Monogr.ÜO");
+		map.put("/tools/zettel/journalAutocomplete",
+				"Zeitschrift (ZDB/hbz-Verbundkatalog)");
+		map.put("/tools/zettel/bookAutocomplete", "Buch (hbz-Verbundkatalog)");
+		map.put("/tools/zettel/conferenceAutocomplete",
+				"Kongress (hbz-Verbundkatalog)");
+		map.put("/tools/zettel/seriesAutocomplete",
+				"Monogr. ÜO (hbz-Verbundkatalog)");
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		map.put("/tools/zettel/allAutocomplete", "Aleph");
 		return map;
