@@ -170,14 +170,15 @@ function addActionsToRemoveAndAddButtons() {
 		$(".add-field", $(this)).click(function(e) {
 			destroyAutocompletion();
 			destroySelect2();
+			var $currentEntry=$(this).parents('.multi-field');
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
-			newField.appendTo($wrapper).find('.input-widget').val($defaultValue).focus();
-			newField.appendTo($wrapper).find('textArea').val($defaultValue).focus();
-			newField.appendTo($wrapper).find('.search.input-widget').css('display','inline');
-			newField.appendTo($wrapper).find('select').css('display','inline');
-			newField.appendTo($wrapper).find('.custom-combobox').css('display','inline');
-			newField.appendTo($wrapper).find('.help-text').css('display','none');
-			newField.appendTo($wrapper).find('.inline-help').css('display','none');
+			newField.insertAfter($currentEntry).find('.input-widget').val($defaultValue).focus();
+			newField.insertAfter($currentEntry).find('textArea').val($defaultValue).focus();
+			newField.insertAfter($currentEntry).find('.search.input-widget').css('display','inline');
+			newField.insertAfter($currentEntry).find('select').css('display','inline');
+			newField.insertAfter($currentEntry).find('.custom-combobox').css('display','inline');
+			newField.insertAfter($currentEntry).find('.help-text').css('display','none');
+			newField.insertAfter($currentEntry).find('.inline-help').css('display','none');
 			resetIds();
 			$(newField).find(".input-field-heading").html("");
 			enableAutocompletionEndpoints();
