@@ -591,4 +591,46 @@ public class ZettelController extends Controller {
 			return ok(myResponse);
 		});
 	}
+
+	public CompletionStage<Result> conferenceAlephAutocomplete(String q) {
+		final String[] callback =
+				request() == null || request().queryString() == null ? null
+						: request().queryString().get("callback");
+		String lobidUrl = "https://lobid.org/resources/search";
+		WSRequest request = ws.url(lobidUrl);
+		String queryString = q;
+		WSRequest complexRequest = request.setQueryParameter("q", queryString)
+				.setQueryParameter("format", "json")
+				.setQueryParameter("t", "Proceedings").setRequestTimeout(5000);
+		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
+			JsonNode root = response.asJson();
+			List<Map<String, String>> result = new ArrayList<>();
+			JsonNode member = root.at("/member");
+			member.forEach((m) -> {
+				StringBuffer label = new StringBuffer();
+				label.append(m.at("/hbzId").asText());
+				label.append(" - ");
+				JsonNode prefName = m.at("/title");
+				if (prefName.isArray()) {
+					prefName.forEach((p) -> {
+						label.append(p.asText() + ",");
+					});
+					label.deleteCharAt(label.length() - 1);
+				} else {
+					label.append(prefName.asText());
+				}
+
+				String id = m.at("/id").asText().replaceAll("#!", "");
+				Map<String, String> map = new HashMap<>();
+				map.put("label", label.toString());
+				map.put("value", id);
+				result.add(map);
+			});
+			String searchResult = ZettelHelper.objectToString(result);
+			String myResponse = callback != null
+					? String.format("/**/%s(%s)", callback[0], searchResult)
+					: searchResult;
+			return ok(myResponse);
+		});
+	}
 }

@@ -17,3 +17,4 @@ GET     /conferenceAutocomplete  	controllers.ZettelController.conferenceAutocom
 GET 	/lobidAutocomplete 			controllers.ZettelController.lobidAutocomplete(q:String?=null)
 GET 	/localAutocomplete 			controllers.ZettelController.localAutocomplete(q:String?=null)
 GET 	/crossrefAutocomplete 			controllers.ZettelController.crossrefAutocomplete(q:String?=null)
+GET		/conferenceAlephAutocomplete	controllers.ZettelController.conferenceAlephAutocomplete(q:String?=null)

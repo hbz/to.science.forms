@@ -257,7 +257,7 @@ public class ArticleHelper {
 		map.put("/tools/zettel/journalAutocomplete",
 				"Zeitschrift (ZDB/hbz-Verbundkatalog)");
 		map.put("/tools/zettel/bookAutocomplete", "Buch (hbz-Verbundkatalog)");
-		map.put("/tools/zettel/conferenceAutocomplete",
+		map.put("/tools/zettel/conferenceAlephAutocomplete",
 				"Kongress (hbz-Verbundkatalog)");
 		map.put("/tools/zettel/seriesAutocomplete",
 				"Monogr. ÜO (hbz-Verbundkatalog)");
