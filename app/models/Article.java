@@ -84,8 +84,6 @@ public class Article extends ZettelModel {
 		mandatoryField(getLabel("containedIn"), getContainedIn(), errors);
 		// Online veröffentlicht
 		mandatoryField(getLabel("publicationYear"), getPublicationYear(), errors);
-		// Sammlung
-		mandatoryField(getLabel("institution"), getInstitution(), errors);
 		// Sprache der Publikation
 		mandatoryField(getLabel("language"), getLanguage(), errors);
 		// Fächerklassifikation
@@ -93,40 +91,25 @@ public class Article extends ZettelModel {
 	}
 
 	private void validateURLs(List<ValidationError> errors) {
-		List<String> l = getPublisherVersion();
-		validate(getLabel("publisherVersion"), l, errors);
-		l = getFulltextVersion();
-		validate(getLabel("fulltextVersion"), l, errors);
-		l = getAdditionalMaterial();
-		validate(getLabel("additionalMaterial"), l, errors);
-		l = getAdditionalMaterial();
-		validate(getLabel("internalReference"), l, errors);
-		l = Arrays.asList(getLicense());
-		validate(getLabel("license"), l, errors);
-		l = getCreator();
-		validate(getLabel("creator"), l, errors);
-		l = getContributor();
-		validate(getLabel("contributor"), l, errors);
-		l = getEditor();
-		validate(getLabel("editor"), l, errors);
-		l = getOther();
-		validate(getLabel("Other"), l, errors);
-		l = getContainedIn();
-		validate(getLabel("containedIn"), l, errors);
-		l = getInstitution();
-		validate(getLabel("institution"), l, errors);
-		l = getCollectionOne();
-		validate(getLabel("collectionOne"), l, errors);
-		l = getCollectionTwo();
-		validate(getLabel("collectionTwo"), l, errors);
-		l = getDdc();
-		validate(getLabel("ddc"), l, errors);
-		l = getAdditionalMaterial();
-		validate(getLabel("additionalMaterial"), l, errors);
-		l = getInternalReference();
-		validate(getLabel("internalReference"), l, errors);
-		l = getFundingId();
-		validate(getLabel("fundingId"), l, errors);
+		validate(getLabel("publisherVersion"), getPublisherVersion(), errors);
+		validate(getLabel("fulltextVersion"), getFulltextVersion(), errors);
+		validate(getLabel("additionalMaterial"), getAdditionalMaterial(), errors);
+		validate(getLabel("internalReference"), getAdditionalMaterial(), errors);
+		validate(getLabel("license"), Arrays.asList(getLicense()), errors);
+		validate(getLabel("creator"), getCreator(), errors);
+		validate(getLabel("contributor"), getContributor(), errors);
+		validate(getLabel("editor"), getEditor(), errors);
+		validate(getLabel("Other"), getOther(), errors);
+		validate(getLabel("containedIn"), getContainedIn(), errors);
+		validate(getLabel("institution"), getInstitution(), errors);
+		validate(getLabel("collectionOne"), getCollectionOne(), errors);
+		validate(getLabel("collectionTwo"), getCollectionTwo(), errors);
+		validate(getLabel("ddc"), getDdc(), errors);
+		validate(getLabel("additionalMaterial"), getAdditionalMaterial(), errors);
+		validate(getLabel("internalReference"), getInternalReference(), errors);
+		validate(getLabel("fundingId"), getFundingId(), errors);
+		validate(getLabel("publisherVersion"), getPublisherVersion(), errors);
+		validate(getLabel("fulltextVersion"), getFulltextVersion(), errors);
 	}
 
 	private void validate(String fieldLabel, List<String> fieldContent,
@@ -165,9 +148,9 @@ public class Article extends ZettelModel {
 
 		if (getCreator().isEmpty() && getContributor().isEmpty()) {
 			errors.add(new ValidationError(getLabel("creator"),
-					"Bitte geben Sie einen Autor oder Beteiligten an!"));
+					"Bitte machen sie in einem der folgenden Felder mindestens eine Angabe: \"Autor/in\", \"Mitwirkende/r\"!"));
 			errors.add(new ValidationError(getLabel("contributor"),
-					"Bitte geben Sie einen Autor oder Beteiligten an!"));
+					"Bitte machen sie in einem der folgenden Felder mindestens eine Angabe: \"Autor/in\", \"Mitwirkende/r\"!"));
 		}
 	}
 
@@ -177,7 +160,9 @@ public class Article extends ZettelModel {
 
 		if (containsNothing(fieldContent)) {
 			errors.add(new ValidationError(fieldLabel,
-					String.format("Bitte vergeben Sie einen %s!", fieldLabel)));
+					String.format(
+							"Es ist mindestens ein Eintrag im Feld \"%s\" erforderlich!",
+							fieldLabel)));
 		}
 	}
 
@@ -187,7 +172,7 @@ public class Article extends ZettelModel {
 
 		if (fieldContent == null || fieldContent.isEmpty()) {
 			errors.add(new ValidationError(fieldLabel,
-					String.format("Bitte vergeben Sie einen %s!", fieldLabel)));
+					String.format("Bitte füllen Sie das Feld \"%s\" aus!", fieldLabel)));
 		}
 	}
 
