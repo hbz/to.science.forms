@@ -21,15 +21,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
 
 import play.data.validation.ValidationError;
-import services.ZettelFields;
-import services.ZettelHelper;
 
 /**
  * @author Jan Schnasse
@@ -91,34 +88,36 @@ public class Article extends ZettelModel {
 	}
 
 	private void validateURLs(List<ValidationError> errors) {
-		validate(getLabel("publisherVersion"), getPublisherVersion(), errors);
-		validate(getLabel("fulltextVersion"), getFulltextVersion(), errors);
-		validate(getLabel("additionalMaterial"), getAdditionalMaterial(), errors);
-		validate(getLabel("internalReference"), getAdditionalMaterial(), errors);
-		validate(getLabel("license"), Arrays.asList(getLicense()), errors);
-		validate(getLabel("creator"), getCreator(), errors);
-		validate(getLabel("contributor"), getContributor(), errors);
-		validate(getLabel("editor"), getEditor(), errors);
-		validate(getLabel("Other"), getOther(), errors);
-		validate(getLabel("containedIn"), getContainedIn(), errors);
-		validate(getLabel("institution"), getInstitution(), errors);
-		validate(getLabel("collectionOne"), getCollectionOne(), errors);
-		validate(getLabel("collectionTwo"), getCollectionTwo(), errors);
-		validate(getLabel("ddc"), getDdc(), errors);
-		validate(getLabel("additionalMaterial"), getAdditionalMaterial(), errors);
-		validate(getLabel("internalReference"), getInternalReference(), errors);
-		validate(getLabel("fundingId"), getFundingId(), errors);
-		validate(getLabel("publisherVersion"), getPublisherVersion(), errors);
-		validate(getLabel("fulltextVersion"), getFulltextVersion(), errors);
+		validateUrl(getLabel("publisherVersion"), getPublisherVersion(), errors);
+		validateUrl(getLabel("fulltextVersion"), getFulltextVersion(), errors);
+		validateUrl(getLabel("additionalMaterial"), getAdditionalMaterial(),
+				errors);
+		validateUrl(getLabel("internalReference"), getAdditionalMaterial(), errors);
+		validateUrl(getLabel("license"), Arrays.asList(getLicense()), errors);
+		validateUrl(getLabel("creator"), getCreator(), errors);
+		validateUrl(getLabel("contributor"), getContributor(), errors);
+		validateUrl(getLabel("editor"), getEditor(), errors);
+		validateUrl(getLabel("Other"), getOther(), errors);
+		validateUrl(getLabel("containedIn"), getContainedIn(), errors);
+		validateUrl(getLabel("institution"), getInstitution(), errors);
+		validateUrl(getLabel("collectionOne"), getCollectionOne(), errors);
+		validateUrl(getLabel("collectionTwo"), getCollectionTwo(), errors);
+		validateUrl(getLabel("ddc"), getDdc(), errors);
+		validateUrl(getLabel("additionalMaterial"), getAdditionalMaterial(),
+				errors);
+		validateUrl(getLabel("internalReference"), getInternalReference(), errors);
+		validateUrl(getLabel("fundingId"), getFundingId(), errors);
+		validateUrl(getLabel("publisherVersion"), getPublisherVersion(), errors);
+		validateUrl(getLabel("fulltextVersion"), getFulltextVersion(), errors);
 	}
 
-	private void validate(String fieldLabel, List<String> fieldContent,
+	private void validateUrl(String fieldLabel, List<String> fieldContent,
 			List<ValidationError> errors) {
 		play.Logger.debug("Validiere " + fieldLabel);
 		if (fieldContent == null || fieldContent.isEmpty())
 			return;
 		fieldContent.forEach(v -> {
-			if (v != null && !v.isEmpty() && !isValid(v)) {
+			if (v != null && !v.isEmpty() && !isValidUrl(v)) {
 				errors.add(new ValidationError(fieldLabel,
 						String.format(
 								"Die Eingabe \"" + v + "\" hat nicht die Form einer URL.",
@@ -129,9 +128,13 @@ public class Article extends ZettelModel {
 	}
 
 	@SuppressWarnings({ "javadoc", "unused" })
-	public boolean isValid(String addr) {
+	public boolean isValidUrl(String addr) {
 		try {
-			new URL(addr);
+			if (ZettelModel.ZETTEL_NULL.equals(addr)) {
+				// this is a valid value and will be handled properly
+				return true;
+			}
+			new URL(addr);// throws Exception? return false
 			return true;
 		} catch (Exception e) {
 			return false;
