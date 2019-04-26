@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import models.JsonMessage;
 import models.ZettelModel;
 import play.data.Form;
+import play.data.validation.ValidationError;
 
 /**
  * @author Jan Schnasse
@@ -333,6 +335,50 @@ public class ZettelHelper {
 		} catch (Exception e) {
 			return new HashMap<>();
 		}
+	}
 
+	public static LinkedHashMap<String, List<ValidationError>> sortErrors(
+			Map<String, List<ValidationError>> errors) {
+		LinkedHashMap<String, List<ValidationError>> result = new LinkedHashMap<>();
+		addError(result, errors, "rdftype");
+		addError(result, errors, "publicationStatus");
+		addError(result, errors, "reviewStatus");
+		addError(result, errors, "title");
+		addError(result, errors, "creator");
+		addError(result, errors, "contributor");
+		addError(result, errors, "editor");
+		addError(result, errors, "other");
+		addError(result, errors, "containedIn");
+		addError(result, errors, "bibliographicCitation");
+		addError(result, errors, "publicationYear");
+		addError(result, errors, "institution");
+		addError(result, errors, "collectionTwo");
+		addError(result, errors, "collectionOne");
+		addError(result, errors, "yearOfCopyright");
+		addError(result, errors, "license");
+		addError(result, errors, "embargoTime");
+		addError(result, errors, "abstractText");
+		addError(result, errors, "language");
+		addError(result, errors, "ddc");
+		addError(result, errors, "subject");
+		addError(result, errors, "publisherVersion");
+		addError(result, errors, "fulltextVersion");
+		addError(result, errors, "additionalMaterial");
+		addError(result, errors, "internalReference");
+		addError(result, errors, "fundingId");
+		addError(result, errors, "projectId");
+		addError(result, errors, "fundingProgram");
+		addError(result, errors, "additionalNotes");
+		return result;
+	}
+
+	private static void addError(
+			LinkedHashMap<String, List<ValidationError>> result,
+			Map<String, List<ValidationError>> errors, String field) {
+		String label = etikett.getLabel(field);
+		List<ValidationError> error = errors.get(label);
+		if (error != null && !error.isEmpty()) {
+			result.put(label, error);
+		}
 	}
 }
