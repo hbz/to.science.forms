@@ -93,7 +93,7 @@
 		        <h3>Das Formular enth&auml;lt noch Fehler!</h3>
 		        <table class="fieldErrors">
 		        <tr><th>Feldname</th><th>Fehlermeldung</th></tr>
-		            @for((key, value) <- myForm.errors) {
+		            @for((key, value) <- ZettelHelper.sortErrors(myForm.errors)) {
 		            	<tr>
 		               		<td style="padding-right:10px;"> @key.toString() </td>
 		               		<td>

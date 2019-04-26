@@ -157,6 +157,7 @@ import services.ZettelHelper;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class ZettelModel {
 
+	public static final String ZETTEL_NULL = "info:regal/zettel/null";
 	static final String TYPE = "type";
 	static final String IS_PRIMARY_TOPIC_OF = "isPrimaryTopicOf";
 	static final String PRIMARY_TOPIC = "primaryTopic";
@@ -1151,6 +1152,9 @@ public abstract class ZettelModel {
 		if (list == null || list.isEmpty())
 			return true;
 		for (String i : list) {
+			if (ZETTEL_NULL.equals(i)) {
+				return true;
+			}
 			if (!StringUtils.isEmpty(i)) {
 				return false;
 			}
@@ -1220,7 +1224,7 @@ public abstract class ZettelModel {
 	}
 
 	private boolean removeEmptyCollections(String value) {
-		if (value == null || value.isEmpty())
+		if (value == null || value.isEmpty() || ZETTEL_NULL.equals(value))
 			return true;
 		return false;
 	}

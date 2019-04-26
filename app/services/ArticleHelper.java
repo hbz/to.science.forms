@@ -32,6 +32,8 @@ import org.supercsv.io.CsvMapReader;
 import org.supercsv.io.ICsvMapReader;
 import org.supercsv.prefs.CsvPreference;
 
+import models.ZettelModel;
+
 /**
  * @author Jan Schnasse
  *
@@ -75,7 +77,7 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getPublicationStatusMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
+		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 		map.put("http://hbz-nrw.de/regal#original", "Postprint Verlagsversion");
 		map.put("http://hbz-nrw.de/regal#postprint", "Postprint Autorenmanuskript");
 		map.put("http://hbz-nrw.de/regal#preprint", "Preprint");
@@ -84,7 +86,7 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getTypeMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
+		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 		map.put("http://purl.org/ontology/bibo/Article", "Zeitschriftenartikel");
 		map.put("http://purl.org/ontology/bibo/Chapter", "Buchkapitel");
 		map.put("http://purl.org/ontology/bibo/Proceedings", "Kongressbeitrag");
@@ -93,7 +95,7 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getReviewStatusMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
+		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 		map.put("http://hbz-nrw.de/regal#reviewed", "begutachtet");
 		map.put("http://hbz-nrw.de/regal#peerReviewed",
 				"begutachtet (Peer-reviewed)");
@@ -105,7 +107,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getDataOriginMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
+		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 		map.put("http://hbz-nrw.de/regal#Andere", "Andere");
 		map.put("http://hbz-nrw.de/regal#Interview", "Interview");
 		map.put("http://hbz-nrw.de/regal#Umfrage", "Umfrage");
@@ -140,7 +142,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getMediumMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
+		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 		map.put("http://purl.org/lobid/lv#fulltextOnline", "Volltext");
 		map.put("http://purl.org/dc/terms/LicenseDocument", "Autorenvertrag");
 		map.put("http://id.loc.gov/ontologies/bibframe/supplement", "Beilage");
@@ -171,7 +173,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getLanguageMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
+		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "Deutsch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "Englisch");
 		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");
@@ -251,7 +253,7 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getTitleLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
+		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 		map.put("/tools/zettel/journalAutocomplete", "Zeitschrift");
 		map.put("/tools/zettel/bookAutocomplete", "Buch");
 		map.put("/tools/zettel/conferenceAutocomplete", "Kongress");
