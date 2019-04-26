@@ -27,6 +27,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
 
 import play.data.validation.ValidationError;
+import scala.xml.PrettyPrinter.Item;
+import services.URLUtil;
 
 /**
  * @author Jan Schnasse
@@ -62,9 +64,29 @@ public class Article extends ZettelModel {
 	@Override
 	public List<ValidationError> validate() {
 		List<ValidationError> errors = new ArrayList<>();
+		urlEncodeLinkFields();
 		validateMandatoryFields(errors);
 		validateURLs(errors);
 		return errors.isEmpty() ? null : errors;
+	}
+
+	private void urlEncodeLinkFields() {
+		setPublisherVersion(urlEncode(getPublisherVersion()));
+		setFulltextVersion(urlEncode(getFulltextVersion()));
+		setAdditionalMaterial(urlEncode(getAdditionalMaterial()));
+		setInternalReference(urlEncode(getInternalReference()));
+	}
+
+	private static List<String> urlEncode(List<String> urls) {
+		List<String> encodedUrls = new ArrayList<>();
+		urls.forEach(url -> {
+			try {
+				encodedUrls.add(URLUtil.saveEncode(url));
+			} catch (Exception e) {
+
+			}
+		});
+		return encodedUrls;
 	}
 
 	private void validateMandatoryFields(List<ValidationError> errors) {
@@ -107,8 +129,6 @@ public class Article extends ZettelModel {
 				errors);
 		validateUrl(getLabel("internalReference"), getInternalReference(), errors);
 		validateUrl(getLabel("fundingId"), getFundingId(), errors);
-		validateUrl(getLabel("publisherVersion"), getPublisherVersion(), errors);
-		validateUrl(getLabel("fulltextVersion"), getFulltextVersion(), errors);
 	}
 
 	private void validateUrl(String fieldLabel, List<String> fieldContent,
