@@ -13,16 +13,15 @@ General Public License *@
 	<div class="@classString">
 		<div>
 			<p class="input-field-heading">
-				<b>@ZettelHelper.etikett.getLabelFromEtikettWs(myValue)</b>
-			@if(myValue!=null && !myValue.isEmpty()){
-			<a href="@myValue" target="_blank"><span class="octicon octicon-link-external"></span></a>
-			</p>			
-				<input size="50" class="input-widget @classString" value="@myValue"
-					name="@fieldName" tabindex="@tabOrderAsInt" style="display:none;"/>
-					@if(!lookupEndpoints.isEmpty()){
 				
-						<select class="endpointSelect" style="display:none;">
-						@services.ZettelHelper.getData(myForm,fieldName) match{
+			@if(myValue!=null && !myValue.isEmpty()){
+				@if(myForm.hasErrors){
+				</p>
+					<input size="50" class="input-widget @classString" value="@myValue"
+						name="@fieldName" tabindex="@tabOrderAsInt"/>
+						@if(!lookupEndpoints.isEmpty()){
+							<select class="endpointSelect">
+							@services.ZettelHelper.getData(myForm,fieldName) match{
 								case myValue: String => {
 									@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
 											@if(myValue.equals(i)){
@@ -30,45 +29,73 @@ General Public License *@
 										     }else{
 										      <option value="@i">@lookupEndpoints.get(i)</option>
 										     }
-									}		
-								}
+									}	
+								}	
 								case _ => {
 									@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
 							      		<option value="@i">@lookupEndpoints.get(i)</option>
 							    	}
-								}
-						}
-					  </select>
-				    }
+							    }
+					}
+					        </select>
+					}
 				}else{
-				</p>
-				<input size="50" class="input-widget @classString" value="@myValue"
-					name="@fieldName" tabindex="@tabOrderAsInt"/>
-					@if(!lookupEndpoints.isEmpty()){
-						<select class="endpointSelect">
-				@services.ZettelHelper.getData(myForm,fieldName) match{
-							case myValue: String => {
+				<b>@ZettelHelper.etikett.getLabelFromEtikettWs(myValue)</b>
+					<a href="@myValue" target="_blank"><span class="octicon octicon-link-external"></span></a>
+					</p>			
+						<input size="50" class="input-widget @classString" value="@myValue"
+							name="@fieldName" tabindex="@tabOrderAsInt" style="display:none;"/>
+							@if(!lookupEndpoints.isEmpty()){
+								<select class="endpointSelect" style="display:none;">
+								@services.ZettelHelper.getData(myForm,fieldName) match{
+										case myValue: String => {
+											@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
+													@if(myValue.equals(i)){
+												      <option value="@i" selected>@lookupEndpoints.get(i)</option>
+												     }else{
+												      <option value="@i">@lookupEndpoints.get(i)</option>
+												     }
+											}		
+										}
+										case _ => {
+											@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
+									      		<option value="@i">@lookupEndpoints.get(i)</option>
+									    	}
+										}
+								}
+							  </select>
+						    }
+					}
+				}else{
+					</p>
+					<input size="50" class="input-widget @classString" value="@myValue"
+						name="@fieldName" tabindex="@tabOrderAsInt"/>
+						@if(!lookupEndpoints.isEmpty()){
+							<select class="endpointSelect">
+					@services.ZettelHelper.getData(myForm,fieldName) match{
+								case myValue: String => {
+								
+									@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
+											@if(myValue.equals(i)){
+										      <option value="@i" selected>@lookupEndpoints.get(i)</option>
+										     }else{
+										      <option value="@i">@lookupEndpoints.get(i)</option>
+										     }
+									}	
+									}	
+								
+								case _ => {
 							
-								@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
-										@if(myValue.equals(i)){
-									      <option value="@i" selected>@lookupEndpoints.get(i)</option>
-									     }else{
-									      <option value="@i">@lookupEndpoints.get(i)</option>
-									     }
-								}	
-								}	
+									@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
+							      		<option value="@i">@lookupEndpoints.get(i)</option>
+							    	}
+							    	}
+								
+					}
 							
-							case _ => {
-						
-								@for(i <- lookupEndpoints.keySet().stream().collect(Collectors.toList())){
-						      		<option value="@i">@lookupEndpoints.get(i)</option>
-						    	}
-						    	}
-							
+							</select>
+					}
 				}
-						
-						</select>
-				}}
 				
 				
 		</div>
