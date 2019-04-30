@@ -180,9 +180,13 @@ public class Article extends ZettelModel {
 	@SuppressWarnings("static-method")
 	private void mandatoryField(String fieldName, List<String> fieldContent,
 			List<ValidationError> errors) {
-
+		// containsNothing will also check for pseudo Null values likel ZETTEL_NULL
 		if (containsNothing(fieldContent)) {
 			errors.add(new ValidationError(fieldName,
+					String.format(
+							"Es ist mindestens ein Eintrag im Feld \"%s\" erforderlich!",
+							ZettelHelper.etikett.getLabel(fieldName))));
+			errors.add(new ValidationError(fieldName + "[0]",
 					String.format(
 							"Es ist mindestens ein Eintrag im Feld \"%s\" erforderlich!",
 							ZettelHelper.etikett.getLabel(fieldName))));
@@ -192,11 +196,12 @@ public class Article extends ZettelModel {
 	@SuppressWarnings("static-method")
 	private void mandatoryField(String fieldName, String fieldContent,
 			List<ValidationError> errors) {
-
-		if (fieldContent == null || fieldContent.isEmpty()) {
+		// containsNothing will also check for pseudo Null values likel ZETTEL_NULL
+		if (containsNothing(fieldContent)) {
 			errors.add(new ValidationError(fieldName,
 					String.format("Bitte füllen Sie das Feld \"%s\" aus!",
 							ZettelHelper.etikett.getLabel(fieldName))));
+
 		}
 	}
 

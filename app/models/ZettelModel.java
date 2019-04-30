@@ -1163,7 +1163,7 @@ public abstract class ZettelModel {
 	}
 
 	protected static boolean containsNothing(String value) {
-		return StringUtils.isEmpty(value);
+		return StringUtils.isEmpty(value) || ZETTEL_NULL.equals(value);
 	}
 
 	/**
