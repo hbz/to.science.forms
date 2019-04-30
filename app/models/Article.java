@@ -113,7 +113,7 @@ public class Article extends ZettelModel {
 		validateUrl("creator", getCreator(), errors);
 		validateUrl("contributor", getContributor(), errors);
 		validateUrl("editor", getEditor(), errors);
-		validateUrl("Other", getOther(), errors);
+		validateUrl("other", getOther(), errors);
 		validateUrl("containedIn", getContainedIn(), errors);
 		validateUrl("institution", getInstitution(), errors);
 		validateUrl("collectionOne", getCollectionOne(), errors);
@@ -124,6 +124,7 @@ public class Article extends ZettelModel {
 		validateUrl("additionalMaterial", getAdditionalMaterial(), errors);
 		validateUrl("internalReference", getInternalReference(), errors);
 		validateUrl("fundingId", getFundingId(), errors);
+		validateUrl("subject", getSubject(), errors);
 	}
 
 	private void validateUrl(String fieldName, List<String> fieldContent,
