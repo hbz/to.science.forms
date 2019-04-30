@@ -110,11 +110,6 @@ public class Article extends ZettelModel {
 	}
 
 	private void validateURLs(List<ValidationError> errors) {
-		validateUrl(getLabel("publisherVersion"), getPublisherVersion(), errors);
-		validateUrl(getLabel("fulltextVersion"), getFulltextVersion(), errors);
-		validateUrl(getLabel("additionalMaterial"), getAdditionalMaterial(),
-				errors);
-		validateUrl(getLabel("internalReference"), getAdditionalMaterial(), errors);
 		validateUrl(getLabel("license"), Arrays.asList(getLicense()), errors);
 		validateUrl(getLabel("creator"), getCreator(), errors);
 		validateUrl(getLabel("contributor"), getContributor(), errors);
@@ -125,6 +120,8 @@ public class Article extends ZettelModel {
 		validateUrl(getLabel("collectionOne"), getCollectionOne(), errors);
 		validateUrl(getLabel("collectionTwo"), getCollectionTwo(), errors);
 		validateUrl(getLabel("ddc"), getDdc(), errors);
+		validateUrl(getLabel("publisherVersion"), getPublisherVersion(), errors);
+		validateUrl(getLabel("fulltextVersion"), getFulltextVersion(), errors);
 		validateUrl(getLabel("additionalMaterial"), getAdditionalMaterial(),
 				errors);
 		validateUrl(getLabel("internalReference"), getInternalReference(), errors);
@@ -139,9 +136,8 @@ public class Article extends ZettelModel {
 		fieldContent.forEach(v -> {
 			if (v != null && !v.isEmpty() && !isValidUrl(v)) {
 				errors.add(new ValidationError(fieldLabel,
-						String.format(
-								"Die Eingabe \"" + v + "\" hat nicht die Form einer URL.",
-								fieldLabel)));
+						String.format("Bitte verknüpfen Sie Ihre Eingabe. Die Eingabe \""
+								+ v + "\" hat nicht die Form einer URL.", fieldLabel)));
 			}
 		});
 
