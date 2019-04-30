@@ -29,6 +29,7 @@ import com.typesafe.config.ConfigFactory;
 import play.data.validation.ValidationError;
 import scala.xml.PrettyPrinter.Item;
 import services.URLUtil;
+import services.ZettelHelper;
 
 /**
  * @author Jan Schnasse
@@ -184,7 +185,7 @@ public class Article extends ZettelModel {
 			errors.add(new ValidationError(fieldName,
 					String.format(
 							"Es ist mindestens ein Eintrag im Feld \"%s\" erforderlich!",
-							fieldName)));
+							ZettelHelper.etikett.getLabel(fieldName))));
 		}
 	}
 
@@ -194,7 +195,8 @@ public class Article extends ZettelModel {
 
 		if (fieldContent == null || fieldContent.isEmpty()) {
 			errors.add(new ValidationError(fieldName,
-					String.format("Bitte füllen Sie das Feld \"%s\" aus!", fieldName)));
+					String.format("Bitte füllen Sie das Feld \"%s\" aus!",
+							ZettelHelper.etikett.getLabel(fieldName))));
 		}
 	}
 
