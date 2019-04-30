@@ -91,55 +91,57 @@ public class Article extends ZettelModel {
 
 	private void validateMandatoryFields(List<ValidationError> errors) {
 		// Publikationstyp
-		mandatoryField(getLabel("rdftype"), getRdftype(), errors);
+		mandatoryField("rdftype", getRdftype(), errors);
 		// Publikationsstatus
-		mandatoryField(getLabel("publicationStatus"), getPublicationStatus(),
-				errors);
+		mandatoryField("publicationStatus", getPublicationStatus(), errors);
 		// Titel
-		mandatoryField(getLabel("title"), getTitle(), errors);
+		mandatoryField("title", getTitle(), errors);
 		// Autoren
 		validateAuthorship(errors);
 		// Erschienen in
-		mandatoryField(getLabel("containedIn"), getContainedIn(), errors);
+		mandatoryField("containedIn", getContainedIn(), errors);
 		// Online veröffentlicht
-		mandatoryField(getLabel("publicationYear"), getPublicationYear(), errors);
+		mandatoryField("publicationYear", getPublicationYear(), errors);
 		// Sprache der Publikation
-		mandatoryField(getLabel("language"), getLanguage(), errors);
+		mandatoryField("language", getLanguage(), errors);
 		// Fächerklassifikation
-		mandatoryField(getLabel("ddc"), getDdc(), errors);
+		mandatoryField("ddc", getDdc(), errors);
 	}
 
 	private void validateURLs(List<ValidationError> errors) {
-		validateUrl(getLabel("license"), Arrays.asList(getLicense()), errors);
-		validateUrl(getLabel("creator"), getCreator(), errors);
-		validateUrl(getLabel("contributor"), getContributor(), errors);
-		validateUrl(getLabel("editor"), getEditor(), errors);
-		validateUrl(getLabel("Other"), getOther(), errors);
-		validateUrl(getLabel("containedIn"), getContainedIn(), errors);
-		validateUrl(getLabel("institution"), getInstitution(), errors);
-		validateUrl(getLabel("collectionOne"), getCollectionOne(), errors);
-		validateUrl(getLabel("collectionTwo"), getCollectionTwo(), errors);
-		validateUrl(getLabel("ddc"), getDdc(), errors);
-		validateUrl(getLabel("publisherVersion"), getPublisherVersion(), errors);
-		validateUrl(getLabel("fulltextVersion"), getFulltextVersion(), errors);
-		validateUrl(getLabel("additionalMaterial"), getAdditionalMaterial(),
-				errors);
-		validateUrl(getLabel("internalReference"), getInternalReference(), errors);
-		validateUrl(getLabel("fundingId"), getFundingId(), errors);
+		validateUrl("license", Arrays.asList(getLicense()), errors);
+		validateUrl("creator", getCreator(), errors);
+		validateUrl("contributor", getContributor(), errors);
+		validateUrl("editor", getEditor(), errors);
+		validateUrl("Other", getOther(), errors);
+		validateUrl("containedIn", getContainedIn(), errors);
+		validateUrl("institution", getInstitution(), errors);
+		validateUrl("collectionOne", getCollectionOne(), errors);
+		validateUrl("collectionTwo", getCollectionTwo(), errors);
+		validateUrl("ddc", getDdc(), errors);
+		validateUrl("publisherVersion", getPublisherVersion(), errors);
+		validateUrl("fulltextVersion", getFulltextVersion(), errors);
+		validateUrl("additionalMaterial", getAdditionalMaterial(), errors);
+		validateUrl("internalReference", getInternalReference(), errors);
+		validateUrl("fundingId", getFundingId(), errors);
 	}
 
-	private void validateUrl(String fieldLabel, List<String> fieldContent,
+	private void validateUrl(String fieldName, List<String> fieldContent,
 			List<ValidationError> errors) {
-		play.Logger.debug("Validiere " + fieldLabel);
+		play.Logger.debug("Validiere " + fieldName);
 		if (fieldContent == null || fieldContent.isEmpty())
 			return;
-		fieldContent.forEach(v -> {
+		for (int i = 0; i < fieldContent.size(); i++) {
+			String v = fieldContent.get(i);
 			if (v != null && !v.isEmpty() && !isValidUrl(v)) {
-				errors.add(new ValidationError(fieldLabel,
+				errors.add(new ValidationError(fieldName + "[" + i + "]",
 						String.format("Bitte verknüpfen Sie Ihre Eingabe. Die Eingabe \""
-								+ v + "\" hat nicht die Form einer URL.", fieldLabel)));
+								+ v + "\" hat nicht die Form einer URL.", fieldName)));
+				errors.add(new ValidationError(fieldName,
+						String.format("Bitte verknüpfen Sie Ihre Eingabe. Die Eingabe \""
+								+ v + "\" hat nicht die Form einer URL.", fieldName)));
 			}
-		});
+		}
 
 	}
 
@@ -166,32 +168,32 @@ public class Article extends ZettelModel {
 		}
 
 		if (getCreator().isEmpty() && getContributor().isEmpty()) {
-			errors.add(new ValidationError(getLabel("creator"),
+			errors.add(new ValidationError("creator",
 					"Bitte machen sie in einem der folgenden Felder mindestens eine Angabe: \"Autor/in\", \"Mitwirkende/r\"!"));
-			errors.add(new ValidationError(getLabel("contributor"),
+			errors.add(new ValidationError("contributor",
 					"Bitte machen sie in einem der folgenden Felder mindestens eine Angabe: \"Autor/in\", \"Mitwirkende/r\"!"));
 		}
 	}
 
 	@SuppressWarnings("static-method")
-	private void mandatoryField(String fieldLabel, List<String> fieldContent,
+	private void mandatoryField(String fieldName, List<String> fieldContent,
 			List<ValidationError> errors) {
 
 		if (containsNothing(fieldContent)) {
-			errors.add(new ValidationError(fieldLabel,
+			errors.add(new ValidationError(fieldName,
 					String.format(
 							"Es ist mindestens ein Eintrag im Feld \"%s\" erforderlich!",
-							fieldLabel)));
+							fieldName)));
 		}
 	}
 
 	@SuppressWarnings("static-method")
-	private void mandatoryField(String fieldLabel, String fieldContent,
+	private void mandatoryField(String fieldName, String fieldContent,
 			List<ValidationError> errors) {
 
 		if (fieldContent == null || fieldContent.isEmpty()) {
-			errors.add(new ValidationError(fieldLabel,
-					String.format("Bitte füllen Sie das Feld \"%s\" aus!", fieldLabel)));
+			errors.add(new ValidationError(fieldName,
+					String.format("Bitte füllen Sie das Feld \"%s\" aus!", fieldName)));
 		}
 	}
 

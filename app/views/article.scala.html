@@ -76,7 +76,7 @@
 		
 			}
             @accordionPanel(services.ZettelFields.fundingsHeaderZF.getLabel(),"identifier-section"){
-                @parallelEditingWidget(myForm,jsonMap)
+                @funderEditingWidget(myForm,jsonMap)
                
            }
             @accordionPanel(services.ZettelFields.additionalNotesHeaderZF.getLabel(),"additionalNotes-section"){
@@ -95,7 +95,7 @@
 		        <tr><th>Feldname</th><th>Fehlermeldung</th></tr>
 		            @for((key, value) <- ZettelHelper.sortErrors(myForm.errors)) {
 		            	<tr>
-		               		<td style="padding-right:10px;"> @key.toString() </td>
+		               		<td style="padding-right:10px;">@ZettelHelper.etikett.getLabel(ZettelHelper.getFieldWithoutIndex(key.toString())) </td>
 		               		<td>
 		                    @for(err <- value) {
 		                        @err.message().toString()

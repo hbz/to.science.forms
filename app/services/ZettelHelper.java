@@ -78,6 +78,14 @@ public class ZettelHelper {
 		return result;
 	}
 
+	public static String getFieldWithoutIndex(String fieldWithIndex) {
+		try {
+			return fieldWithIndex.substring(fieldWithIndex.indexOf("["));
+		} catch (Exception e) {
+			return fieldWithIndex;
+		}
+	}
+
 	public static List<String> getIndex(Form<ZettelModel> form,
 			Map<String, Object> jsonMap, String fieldName) {
 		List<String> result = new ArrayList<>();
@@ -101,7 +109,7 @@ public class ZettelHelper {
 			result.add(fieldName);
 		} else {
 			for (int i = 0; i < Integer.MAX_VALUE; i++) {
-				id = formData.get("" + i);
+				id = formData.get(fieldName + "[" + i + "]");
 				if (id == null)
 					break;
 				result.add("" + i);
@@ -375,10 +383,10 @@ public class ZettelHelper {
 	private static void addError(
 			LinkedHashMap<String, List<ValidationError>> result,
 			Map<String, List<ValidationError>> errors, String field) {
-		String label = etikett.getLabel(field);
-		List<ValidationError> error = errors.get(label);
+
+		List<ValidationError> error = errors.get(field);
 		if (error != null && !error.isEmpty()) {
-			result.put(label, error);
+			result.put(field, error);
 		}
 	}
 }

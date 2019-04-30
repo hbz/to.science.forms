@@ -15,7 +15,7 @@ General Public License *@
 			<p class="input-field-heading">
 				
 			@if(myValue!=null && !myValue.isEmpty()){
-				@if(myForm.hasErrors){
+				@if(myForm.errors.contains(fieldName)){
 				</p>
 					<input size="50" class="input-widget @classString" value="@myValue"
 						name="@fieldName" tabindex="@tabOrderAsInt"/>
