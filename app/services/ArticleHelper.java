@@ -227,7 +227,7 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getSubjectLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
-		map.put("/tools/zettel/subjectAutocomplete", "GND");
+		map.put("/tools/zettel/subjectAutocomplete", "GND (Schlagwörter)");
 		map.put("/tools/skos-lookup/autocomplete", "Agrovoc");
 		return map;
 	}
@@ -241,7 +241,7 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getFundingLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/crossrefAutocomplete", "CrossRef Funders Registry");
+		map.put("/tools/zettel/crossrefAutocomplete", "CrossRef Funder Registry");
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		return map;
 	}
