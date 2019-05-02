@@ -172,7 +172,7 @@ public class Article extends ZettelModel {
 		if (getCreator().isEmpty() && getContributor().isEmpty()) {
 			errors.add(new ValidationError("creator",
 					"Bitte machen sie in einem der folgenden Felder mindestens eine Angabe: \"Autor/in\", \"Mitwirkende/r\"!"));
-			errors.add(new ValidationError("contributor",
+			errors.add(new ValidationError("creator[0]",
 					"Bitte machen sie in einem der folgenden Felder mindestens eine Angabe: \"Autor/in\", \"Mitwirkende/r\"!"));
 		}
 	}
