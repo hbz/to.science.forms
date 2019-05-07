@@ -3,7 +3,7 @@
 @import tags._
 @import services._
 
-<div class="multi-field-wrapper">
+<div class="multi-field-wrapper" defaultValue="@ZettelModel.ZETTEL_NULL">
 	<ol class="multi-fields" id="@fieldName">
 		@for(fieldWithIndex <- ZettelHelper.getFieldWithIndex(myForm,jsonMap,fieldName) ){
 		<li class="multi-field">

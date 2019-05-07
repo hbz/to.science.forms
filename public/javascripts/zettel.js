@@ -173,6 +173,7 @@ function addActionsToRemoveAndAddButtons() {
 			var $currentEntry=$(this).parents('.multi-field');
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
 			newField.insertAfter($currentEntry).find('.input-widget').val($defaultValue).focus();
+			newField.insertAfter($currentEntry).find('.custom-combobox').val($defaultValue).focus();
 			newField.insertAfter($currentEntry).find('textArea').val($defaultValue).focus();
 			newField.insertAfter($currentEntry).find('.search.input-widget').css('display','inline');
 			newField.insertAfter($currentEntry).find('select').css('display','inline');
@@ -196,6 +197,7 @@ function addActionsToRemoveAndAddButtons() {
 				destroySelect2();
 				var newField = $('.multi-field:first-child', $wrapper).clone(true);
 				newField.appendTo($wrapper).find('.input-widget').val($defaultValue).focus();
+				newField.appendTo($wrapper).find('.custom-combobox').val($defaultValue).focus();
 				newField.appendTo($wrapper).find('textArea').val($defaultValue).focus();
 				newField.appendTo($wrapper).find('.search.input-widget').css('display','inline');
 				newField.appendTo($wrapper).find('select').css('display','inline');
