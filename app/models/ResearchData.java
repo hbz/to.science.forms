@@ -18,7 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
@@ -36,9 +38,8 @@ public class ResearchData extends ZettelModel {
 	 */
 	public final static String id = "katalog:researchData";
 
-	@Override
-	protected String getType() {
-		return "http://hbz-nrw.de/regal#ResearchData";
+	public List<String> getType() {
+		return Arrays.asList("http://hbz-nrw.de/regal#ResearchData");
 	}
 
 	/**
@@ -106,5 +107,12 @@ public class ResearchData extends ZettelModel {
 					"Bitte geben Sie einen Autor oder Beteiligten an!"));
 		}
 		// editor and redaktor are optional
+	}
+
+	protected void addErrorMessage(String fieldName, String message,
+			Supplier<String> getValue, List<ValidationError> errors) {
+		if (getValue.get() == null || getValue.get().isEmpty()) {
+			errors.add(new ValidationError(fieldName, message));
+		}
 	}
 }

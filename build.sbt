@@ -13,7 +13,8 @@ libraryDependencies ++= Seq(
   "org.eclipse.rdf4j" % "rdf4j-runtime" % "2.0.1",
   "com.github.jsonld-java" % "jsonld-java" % "0.8.3",
   "com.github.hbz" %"lobid-rdf-to-json" % "8dcd67c7aa7f4fb7b53e875ea0561a4fbb951f89",
-  "commons-validator" % "commons-validator" % "1.5.1"
+  "commons-validator" % "commons-validator" % "1.5.1",
+  "net.sf.supercsv" % "super-csv" % "2.4.0"
 )
 
 resolvers += "jitpack" at "https://jitpack.io"

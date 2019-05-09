@@ -36,8 +36,6 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 
 import models.Article;
-import models.Chapter;
-import models.Proceeding;
 import models.ResearchData;
 import models.ZettelModel;
 import play.Configuration;
@@ -146,12 +144,13 @@ public class ZettelController extends Controller {
 		// + ZettelHelper.objectToString(request().body().asText()));
 		// play.Logger.debug("Content of model-------------\n"
 		// + ZettelHelper.objectToString(zettel.getModel()));
-		play.Logger.debug(String.format("Content of request\n%s\n%s", request(),
-				ZettelHelper.objectToString(request().body().asFormUrlEncoded())));
+		// play.Logger.debug(String.format("Content of request\n%s\n%s", request(),
+		// ZettelHelper.objectToString(request().body().asFormUrlEncoded())));
 
 		ZettelRegister zettelRegister = new ZettelRegister();
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		ZettelRegisterEntry zettel = zettelRegister.get(id);
+		play.Logger.debug("Post data to " + zettel.getId());
 		Form<?> form = bindToForm(zettel, documentId, topicId);
 		result = renderForm(format, documentId, topicId, zettel, form);
 		future.complete(result);
@@ -203,8 +202,8 @@ public class ZettelController extends Controller {
 			} else {
 				result = ok(form.get().toString()).as("application/json");
 			}
-			play.Logger.debug(String.format("Content of model\n%s",
-					((ZettelModel) form.get()).print()));
+			// play.Logger.debug(String.format("Content of model\n%s",
+			// ((ZettelModel) form.get()).print()));
 		}
 		return result;
 	}
@@ -219,12 +218,15 @@ public class ZettelController extends Controller {
 			form.bindFromRequest();
 		} else if ("application/x-www-form-urlencoded"
 				.equals(request().contentType().get())) {
-			play.Logger.debug("Load form from request");
+			play.Logger.debug("Load form from request " + zettel.getModel().getId()
+					+ " ," + zettel.getModel().getClass());
 			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
 		} else {
 			play.Logger
 					.error("WARN: Can not handle " + request().contentType().get());
 		}
+		// play.Logger.debug(String
+		// .format("Content of model directyl after bindToForm\n%s", form.get()));
 		play.Logger
 				.debug(String.format("Content of rdf result\n%s", printRdf(form)));
 		return form;
@@ -240,13 +242,6 @@ public class ZettelController extends Controller {
 								RDFFormat.RDFXML, documentId, topicId));
 			} else if (Article.id.equals(id)) {
 				return formFactory.form(Article.class).fill((Article) zettel.getModel()
-						.deserializeFromRdf(in, RDFFormat.RDFXML, documentId, topicId));
-			} else if (Proceeding.id.equals(id)) {
-				return formFactory.form(Proceeding.class)
-						.fill((Proceeding) zettel.getModel().deserializeFromRdf(in,
-								RDFFormat.RDFXML, documentId, topicId));
-			} else if (Chapter.id.equals(id)) {
-				return formFactory.form(Chapter.class).fill((Chapter) zettel.getModel()
 						.deserializeFromRdf(in, RDFFormat.RDFXML, documentId, topicId));
 			}
 			return null;
@@ -316,12 +311,6 @@ public class ZettelController extends Controller {
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode hits = response.asJson().at("/result");
 			List<Map<String, String>> result = new ArrayList<>();
-
-			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
-			suggestThisAsNewEntry.put("label", q);
-			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
-					+ "/adhoc/creator/" + MyURLEncoding.encode(q));
-			result.add(suggestThisAsNewEntry);
 			hits.forEach((hit) -> {
 
 				String id = hit.at("/orcid-identifier/uri").asText();
@@ -412,6 +401,28 @@ public class ZettelController extends Controller {
 		return label.toString();
 	}
 
+	public CompletionStage<Result> localAutocomplete(String q) {
+		CompletableFuture<Result> future = new CompletableFuture<>();
+
+		final String[] callback =
+				request() == null || request().queryString() == null ? null
+						: request().queryString().get("callback");
+		List<Map<String, String>> result = new ArrayList<>();
+		Map<String, String> suggestThisAsNewEntry = new HashMap<>();
+		suggestThisAsNewEntry.put("label", q);
+		suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
+				+ "/adhoc/uri/" + MyURLEncoding.encode(q));
+		result.add(suggestThisAsNewEntry);
+
+		String searchResult = ZettelHelper.objectToString(result);
+		String myResponse = callback != null
+				? String.format("/**/%s(%s)", callback[0], searchResult)
+				: searchResult;
+
+		future.complete(ok(myResponse));
+		return future;
+	}
+
 	/**
 	 * @param q a query against lobid
 	 * @return a jsonp result
@@ -439,6 +450,16 @@ public class ZettelController extends Controller {
 		return lobidResponse(q, filter);
 	}
 
+	/**
+	 * @param q a query against lobid
+	 * @return a jsonp result
+	 */
+	public CompletionStage<Result> conferenceAutocomplete(String q) {
+		String filter =
+				"(type:ConferenceOrEvent)OR(type:SeriesOfConferenceOrEvent)";
+		return lobidResponse(q, filter);
+	}
+
 	private CompletionStage<Result> lobidResponse(String q, String filter) {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
@@ -449,16 +470,11 @@ public class ZettelController extends Controller {
 				.setQueryParameter("format", "json:suggest")
 				.setQueryParameter("filter", filter)
 				.setHeader("accept", "application/json").setRequestTimeout(5000);
-		play.Logger.info(
+		play.Logger.trace(
 				"GET " + complexRequest.getUrl() + complexRequest.getQueryParameters());
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
-			Map<String, String> suggestThisAsNewEntry = new HashMap<>();
-			suggestThisAsNewEntry.put("label", q);
-			suggestThisAsNewEntry.put("value", configuration.getString("regalApi")
-					+ "/adhoc/creator/" + MyURLEncoding.encode(q));
-			result.add(suggestThisAsNewEntry);
 			root.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
 				label.append(m.at("/label"));
@@ -498,6 +514,94 @@ public class ZettelController extends Controller {
 		String queryString = q;
 		WSRequest complexRequest = request.setQueryParameter("q", queryString)
 				.setQueryParameter("format", "json").setRequestTimeout(5000);
+		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
+			JsonNode root = response.asJson();
+			List<Map<String, String>> result = new ArrayList<>();
+			JsonNode member = root.at("/member");
+			member.forEach((m) -> {
+				StringBuffer label = new StringBuffer();
+				label.append(m.at("/hbzId").asText());
+				label.append(" - ");
+				JsonNode prefName = m.at("/title");
+				if (prefName.isArray()) {
+					prefName.forEach((p) -> {
+						label.append(p.asText() + ",");
+					});
+					label.deleteCharAt(label.length() - 1);
+				} else {
+					label.append(prefName.asText());
+				}
+
+				String id = m.at("/id").asText().replaceAll("#!", "");
+				Map<String, String> map = new HashMap<>();
+				map.put("label", label.toString());
+				map.put("value", id);
+				result.add(map);
+			});
+			String searchResult = ZettelHelper.objectToString(result);
+			String myResponse = callback != null
+					? String.format("/**/%s(%s)", callback[0], searchResult)
+					: searchResult;
+			return ok(myResponse);
+		});
+	}
+
+	/**
+	 * @param q a query against lobid
+	 * @return a jsonp result
+	 */
+	public CompletionStage<Result> crossrefAutocomplete(String q) {
+		final String[] callback =
+				request() == null || request().queryString() == null ? null
+						: request().queryString().get("callback");
+		String lobidUrl = "https://api.crossref.org/funders";
+		WSRequest request = ws.url(lobidUrl);
+		String queryString = q;
+		WSRequest complexRequest =
+				request.setQueryParameter("query", queryString).setRequestTimeout(5000);
+		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
+			JsonNode root = response.asJson();
+			List<Map<String, String>> result = new ArrayList<>();
+			JsonNode member = root.at("/message/items");
+			member.forEach((m) -> {
+				StringBuffer label = new StringBuffer();
+				label.append(m.at("/name").asText());
+				StringBuffer altNamesString = new StringBuffer();
+
+				JsonNode altNames = m.at("/alt-names");
+				if (altNames.isArray()) {
+					altNames.forEach((p) -> {
+						altNamesString.append(p.asText() + ",");
+					});
+				} else {
+					altNamesString.append(altNames.asText());
+				}
+
+				String id = m.at("/uri").asText().replaceAll("#!", "");
+				Map<String, String> map = new HashMap<>();
+				map.put("label", label.toString());
+				map.put("value", id);
+				map.put("desc", altNamesString.toString());
+				result.add(map);
+			});
+			String searchResult = ZettelHelper.objectToString(result);
+			String myResponse = callback != null
+					? String.format("/**/%s(%s)", callback[0], searchResult)
+					: searchResult;
+			return ok(myResponse);
+		});
+	}
+
+	public CompletionStage<Result> conferenceAlephAutocomplete(String q) {
+		final String[] callback =
+				request() == null || request().queryString() == null ? null
+						: request().queryString().get("callback");
+		String lobidUrl = "https://lobid.org/resources/search";
+		WSRequest request = ws.url(lobidUrl);
+		String queryString = q;
+		WSRequest complexRequest = request.setQueryParameter("q", queryString)
+				.setQueryParameter("format", "json")
+				.setQueryParameter("t", "Proceedings").setRequestTimeout(5000);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();

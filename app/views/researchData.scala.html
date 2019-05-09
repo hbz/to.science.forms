@@ -17,7 +17,7 @@
 				@singlefieldText(myForm,"alternative",services.ZettelFields.alternativeTitleZF.getLabel(),"",2)
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
-				@multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"gnd-person-search",4,ResearchDataHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",4,ResearchDataHelper.getPersonLookupEndpoints())
 			<br/>
 				@multifieldText(myForm,jsonMap,"creatorName",services.ZettelFields.creatorNameZF.getLabel(),"free-text",4)
 			}
@@ -41,12 +41,12 @@
 				<br />
 				@multiselect(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel(),"select-ddc",ResearchDataHelper.getDeweyMap(),12)
 				<br />
-				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"gnd-subject-search",13,ResearchDataHelper.getSubjectLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"search",13,ResearchDataHelper.getSubjectLookupEndpoints())
 				<br />
 				@multifieldText(myForm,jsonMap,"subjectName",services.ZettelFields.subjectNameZF.getLabel(),"free-text",13)
 			}
 			@accordionPanel(services.ZettelFields.contributorsHeaderZF.getLabel(),"contributor-section"){
-				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"gnd-person-search",14,ResearchDataHelper.getPersonLookupEndpoints())
+				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"search",14,ResearchDataHelper.getPersonLookupEndpoints())
 				<br/>
 				@multifieldText(myForm,jsonMap,"contributorName",services.ZettelFields.contributorNameZF.getLabel(),"free-text",4)
 				<br /> 

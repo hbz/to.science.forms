@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import models.JsonMessage;
 import models.ZettelModel;
 import play.data.Form;
+import play.data.validation.ValidationError;
 
 /**
  * @author Jan Schnasse
@@ -72,6 +74,70 @@ public class ZettelHelper {
 		}
 		if (result.isEmpty()) {
 			result.add(fieldName + "[0]");
+		}
+		return result;
+	}
+
+	public static String getFieldWithoutIndex(String fieldWithIndex) {
+		try {
+			return fieldWithIndex.substring(fieldWithIndex.indexOf("["));
+		} catch (Exception e) {
+			return fieldWithIndex;
+		}
+	}
+
+	public static List<String> getIndex(Form<ZettelModel> form,
+			Map<String, Object> jsonMap, String fieldName) {
+		List<String> result = new ArrayList<>();
+		if (form.hasErrors()) {
+			result = getIndexFromFormData(form, fieldName);
+		} else if (form.value().isPresent()) {
+			result = getIndexFromJsonLd(jsonMap, fieldName);
+		}
+		if (result.isEmpty()) {
+			result.add("0");
+		}
+		return result;
+	}
+
+	private static List<String> getIndexFromFormData(Form<ZettelModel> form,
+			String fieldName) {
+		List<String> result = new ArrayList<>();
+		Map<String, String> formData = form.data();
+		String id = formData.get(fieldName);
+		if (id != null) {
+			result.add(fieldName);
+		} else {
+			for (int i = 0; i < Integer.MAX_VALUE; i++) {
+				id = formData.get(fieldName + "[" + i + "]");
+				if (id == null)
+					break;
+				result.add("" + i);
+			}
+		}
+		if (result.isEmpty()) {
+			result.add("");
+		}
+		return result;
+	}
+
+	private static List<String> getIndexFromJsonLd(Map<String, Object> jsonMap,
+			String fieldName) {
+		List<String> result = new ArrayList<>();
+		Object data = jsonMap.get(fieldName);
+		if (data != null) {
+			if (data instanceof Collection<?>) {
+				@SuppressWarnings("unchecked")
+				List<String> dataList = (List<String>) data;
+				for (int i = 0; i < dataList.size(); i++) {
+					result.add("" + i);
+				}
+			} else {
+				play.Logger.debug("No index added to " + fieldName + " with class "
+						+ data.getClass());
+			}
+		} else {
+			play.Logger.debug("No data found for " + fieldName);
 		}
 		return result;
 	}
@@ -135,7 +201,7 @@ public class ZettelHelper {
 	 */
 	public static JsonMessage getEmbeddedJson(Form<?> form, String format) {
 		JsonMessage result = null;
-		play.Logger.debug("Write " + format);
+		// play.Logger.debug("Write " + format);
 		try {
 			if (form.hasErrors()) {
 				result = new JsonMessage(form.errorsAsJson(), 400);
@@ -148,7 +214,7 @@ public class ZettelHelper {
 						if ("xml".equals(format)) {
 							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
 									RDFFormat.RDFXML, "");
-							play.Logger.debug(rdfString);
+							// play.Logger.debug(rdfString);
 							result = new JsonMessage(rdfString, 200);
 						} else if ("ntriples".equals(format)) {
 							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
@@ -200,7 +266,12 @@ public class ZettelHelper {
 	 */
 	public static String getData(Form<ZettelModel> form,
 			String fieldNameWithIndex) {
-		String result = "";
+		return getData(form, fieldNameWithIndex, "");
+	}
+
+	public static String getData(Form<ZettelModel> form,
+			String fieldNameWithIndex, String defaultValue) {
+		String result = defaultValue;
 		try {
 			if (form.value().isPresent() || form.hasErrors()) {
 				int i = parseIndex(fieldNameWithIndex);
@@ -272,6 +343,50 @@ public class ZettelHelper {
 		} catch (Exception e) {
 			return new HashMap<>();
 		}
+	}
 
+	public static LinkedHashMap<String, List<ValidationError>> sortErrors(
+			Map<String, List<ValidationError>> errors) {
+		LinkedHashMap<String, List<ValidationError>> result = new LinkedHashMap<>();
+		addError(result, errors, "rdftype");
+		addError(result, errors, "publicationStatus");
+		addError(result, errors, "reviewStatus");
+		addError(result, errors, "title");
+		addError(result, errors, "creator");
+		addError(result, errors, "contributor");
+		addError(result, errors, "editor");
+		addError(result, errors, "other");
+		addError(result, errors, "containedIn");
+		addError(result, errors, "bibliographicCitation");
+		addError(result, errors, "publicationYear");
+		addError(result, errors, "institution");
+		addError(result, errors, "collectionTwo");
+		addError(result, errors, "collectionOne");
+		addError(result, errors, "yearOfCopyright");
+		addError(result, errors, "license");
+		addError(result, errors, "embargoTime");
+		addError(result, errors, "abstractText");
+		addError(result, errors, "language");
+		addError(result, errors, "ddc");
+		addError(result, errors, "subject");
+		addError(result, errors, "publisherVersion");
+		addError(result, errors, "fulltextVersion");
+		addError(result, errors, "additionalMaterial");
+		addError(result, errors, "internalReference");
+		addError(result, errors, "fundingId");
+		addError(result, errors, "projectId");
+		addError(result, errors, "fundingProgram");
+		addError(result, errors, "additionalNotes");
+		return result;
+	}
+
+	private static void addError(
+			LinkedHashMap<String, List<ValidationError>> result,
+			Map<String, List<ValidationError>> errors, String field) {
+
+		List<ValidationError> error = errors.get(field);
+		if (error != null && !error.isEmpty()) {
+			result.put(field, error);
+		}
 	}
 }

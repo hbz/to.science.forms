@@ -17,6 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
+import static services.ZettelFields.typeZF;
 import static services.ZettelFields.abstractTextZF;
 import static services.ZettelFields.additionalMaterialZF;
 import static services.ZettelFields.affiliationIndexZF;
@@ -46,6 +47,7 @@ import static services.ZettelFields.embargoTimeZF;
 import static services.ZettelFields.fulltextVersionZF;
 import static services.ZettelFields.fundingProgramZF;
 import static services.ZettelFields.fundingZF;
+import static services.ZettelFields.fundingIdZF;
 import static services.ZettelFields.institutionZF;
 import static services.ZettelFields.isLikeZF;
 import static services.ZettelFields.isbnZF;
@@ -67,7 +69,7 @@ import static services.ZettelFields.publisherZF;
 import static services.ZettelFields.recordingCoordinatesZF;
 import static services.ZettelFields.recordingLocationZF;
 import static services.ZettelFields.recordingPeriodZF;
-import static services.ZettelFields.redaktorZF;
+import static services.ZettelFields.otherZF;
 import static services.ZettelFields.referenceZF;
 import static services.ZettelFields.reviewStatusZF;
 import static services.ZettelFields.subjectNameZF;
@@ -79,6 +81,9 @@ import static services.ZettelFields.usageManualZF;
 import static services.ZettelFields.volumeInZF;
 import static services.ZettelFields.yearOfCopyrightZF;
 import static services.ZettelFields.parallelEditionZF;
+import static services.ZettelFields.collectionTwoZF;
+import static services.ZettelFields.internalReferenceZF;
+import static services.ZettelFields.additionalNotesZF;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -152,6 +157,7 @@ import services.ZettelHelper;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class ZettelModel {
 
+	public static final String ZETTEL_NULL = "info:regal/zettel/null";
 	static final String TYPE = "type";
 	static final String IS_PRIMARY_TOPIC_OF = "isPrimaryTopicOf";
 	static final String PRIMARY_TOPIC = "primaryTopic";
@@ -161,13 +167,7 @@ public abstract class ZettelModel {
 	private String documentId;
 	private String topicId;
 
-	/**
-	 * @return the type will be included as rdf type of the resource under field
-	 *         name TYPE
-	 */
-	protected abstract String getType();
-
-	protected abstract List<ValidationError> validate();
+	public abstract List<ValidationError> validate();
 
 	private String id;
 	private String label;
@@ -192,6 +192,7 @@ public abstract class ZettelModel {
 	private List<String> urn = new ArrayList<>();
 	private List<String> isLike = new ArrayList<>();
 	private List<String> funding = new ArrayList<>();
+	private List<String> fundingId = new ArrayList<>();
 	private List<String> projectId = new ArrayList<>();
 	private List<String> fundingProgram = new ArrayList<>();
 	private List<String> recordingLocation = new ArrayList<>();
@@ -224,18 +225,34 @@ public abstract class ZettelModel {
 	private String publicationStatus;
 	private String issn;
 	private List<String> editor = new ArrayList<>();
-	private List<String> redaktor = new ArrayList<>();
+	private List<String> other = new ArrayList<>();
 	private List<String> institution = new ArrayList<>();
 	private String publicationYear;
 	private List<String> affiliation = new ArrayList<>();
-	private List<Contribution> contribution = new ArrayList<>();
-	private Agent agent;
 	private String affiliationIndex;
 	private List<String> collectionOne = new ArrayList<>();
 	private List<String> publisherVersion = new ArrayList<>();
 	private List<String> fulltextVersion = new ArrayList<>();
 	private List<String> additionalMaterial = new ArrayList<>();
 	private String parallelEdition;
+	private List<String> type = new ArrayList<>();
+	private List<String> collectionTwo = new ArrayList<>();
+	private List<String> internalReference = new ArrayList<>();
+	private String additionalNotes;
+
+	public List<String> getRdftype() {
+		return type;
+	}
+
+	public void setRdftype(List<String> in) {
+		type = in;
+	}
+
+	public void addType(String in) {
+		if (type == null || type.isEmpty())
+			type = new ArrayList<>();
+		type.add(in);
+	}
 
 	public String getPublicationYear() {
 		return publicationYear;
@@ -461,6 +478,14 @@ public abstract class ZettelModel {
 		this.funding = funding;
 	}
 
+	public List<String> getFundingId() {
+		return fundingId;
+	}
+
+	public void setFundingId(List<String> fundingId) {
+		this.fundingId = fundingId;
+	}
+
 	public List<String> getRecordingLocation() {
 		return recordingLocation;
 	}
@@ -559,6 +584,12 @@ public abstract class ZettelModel {
 		funding.add(in);
 	}
 
+	public void addFundingId(String in) {
+		if (fundingId == null || fundingId.isEmpty())
+			fundingId = new ArrayList<>();
+		fundingId.add(in);
+	}
+
 	public void addDdc(String in) {
 		if (ddc == null || ddc.isEmpty())
 			ddc = new ArrayList<>();
@@ -579,7 +610,7 @@ public abstract class ZettelModel {
 	}
 
 	public void addCreator(String in) {
-		play.Logger.debug("Add creator " + in);
+		// play.Logger.debug("Add creator " + in);
 		if (creator == null || creator.isEmpty())
 			creator = new ArrayList<>();
 		if (in != null && !in.isEmpty())
@@ -844,18 +875,18 @@ public abstract class ZettelModel {
 		editor.add(in);
 	}
 
-	public List<String> getRedaktor() {
-		return redaktor;
+	public List<String> getOther() {
+		return other;
 	}
 
-	public void setRedaktor(List<String> redaktor) {
-		this.redaktor = redaktor;
+	public void setOther(List<String> other) {
+		this.other = other;
 	}
 
-	public void addRedaktor(String in) {
-		if (redaktor == null || redaktor.isEmpty())
-			redaktor = new ArrayList<>();
-		redaktor.add(in);
+	public void addOther(String in) {
+		if (other == null || other.isEmpty())
+			other = new ArrayList<>();
+		other.add(in);
 	}
 
 	public List<String> getInstitution() {
@@ -910,28 +941,12 @@ public abstract class ZettelModel {
 		affiliation.add(in);
 	}
 
-	public List<Contribution> getContribution() {
-		return contribution;
-	}
-
-	public void setContribution(List<Contribution> contribution) {
-		this.contribution = contribution;
-	}
-
 	public String getAffiliationIndex() {
 		return affiliationIndex;
 	}
 
 	public void setAffiliationIndex(String affiliationIndex) {
 		this.affiliationIndex = affiliationIndex;
-	}
-
-	public Agent getAgent() {
-		return agent;
-	}
-
-	public void setAgent(Agent agent) {
-		this.agent = agent;
 	}
 
 	public String getParallelEdition() {
@@ -981,6 +996,20 @@ public abstract class ZettelModel {
 		additionalMaterial.add(in);
 	}
 
+	public List<String> getInternalReference() {
+		return internalReference;
+	}
+
+	public void setInternalReference(List<String> in) {
+		internalReference = in;
+	}
+
+	public void addInternalReference(String in) {
+		if (internalReference == null || internalReference.isEmpty())
+			internalReference = new ArrayList<>();
+		internalReference.add(in);
+	}
+
 	public List<String> getPublisherVersion() {
 		return publisherVersion;
 	}
@@ -1009,6 +1038,28 @@ public abstract class ZettelModel {
 		fulltextVersion.add(in);
 	}
 
+	public List<String> getCollectionTwo() {
+		return collectionTwo;
+	}
+
+	public void setCollectionTwo(List<String> collectionTwo) {
+		this.congressHost = collectionTwo;
+	}
+
+	public void addCollectionTwo(String in) {
+		if (collectionTwo == null || collectionTwo.isEmpty())
+			collectionTwo = new ArrayList<>();
+		collectionTwo.add(in);
+	}
+
+	public String getAdditionalNotes() {
+		return additionalNotes;
+	}
+
+	public void setAdditionalNotes(String notes) {
+		this.additionalNotes = notes;
+	}
+
 	/**
 	 * @return a map that maps a uri to a setter method
 	 */
@@ -1029,6 +1080,7 @@ public abstract class ZettelModel {
 		dict.put(yearOfCopyrightZF.uri, (in) -> setYearOfCopyright((String) in));
 		dict.put(ddcZF.uri, (in) -> addDdc((String) in));
 		dict.put(fundingZF.uri, (in) -> addFunding((String) in));
+		dict.put(fundingIdZF.uri, (in) -> addFundingId((String) in));
 		dict.put(recordingPeriodZF.uri, (in) -> setRecordingPeriod((String) in));
 		dict.put(recordingLocationZF.uri,
 				(in) -> addRecordingLocation((String) in));
@@ -1076,7 +1128,7 @@ public abstract class ZettelModel {
 				(in) -> setPublicationStatus((String) in));
 		dict.put(issnZF.uri, (in) -> setIssn((String) in));
 		dict.put(editorZF.uri, (in) -> addEditor((String) in));
-		dict.put(redaktorZF.uri, (in) -> addRedaktor((String) in));
+		dict.put(otherZF.uri, (in) -> addOther((String) in));
 		dict.put(institutionZF.uri, (in) -> addInstitution((String) in));
 		dict.put(publicationYearZF.uri, (in) -> setPublicationYear((String) in));
 		dict.put(affiliationZF.uri, (in) -> addAffiliation((String) in));
@@ -1087,21 +1139,22 @@ public abstract class ZettelModel {
 		dict.put(additionalMaterialZF.uri,
 				(in) -> addAdditionalMaterial((String) in));
 		dict.put(parallelEditionZF.uri, (in) -> setParallelEdition((String) in));
+		dict.put(typeZF.uri, (in) -> addType((String) in));
+		dict.put(collectionTwoZF.uri, (in) -> addCollectionTwo((String) in));
+		dict.put(internalReferenceZF.uri,
+				(in) -> addInternalReference((String) in));
 
+		dict.put(additionalNotesZF.uri, (in) -> setAdditionalNotes((String) in));
 		return dict;
-	}
-
-	protected static void addErrorMessage(String fieldName, String message,
-			Supplier<String> getValue, List<ValidationError> errors) {
-		if (getValue.get() == null || getValue.get().isEmpty()) {
-			errors.add(new ValidationError(fieldName, message));
-		}
 	}
 
 	protected static boolean containsNothing(List<String> list) {
 		if (list == null || list.isEmpty())
 			return true;
 		for (String i : list) {
+			if (ZETTEL_NULL.equals(i)) {
+				return true;
+			}
 			if (!StringUtils.isEmpty(i)) {
 				return false;
 			}
@@ -1110,7 +1163,7 @@ public abstract class ZettelModel {
 	}
 
 	protected static boolean containsNothing(String value) {
-		return StringUtils.isEmpty(value);
+		return StringUtils.isEmpty(value) || ZETTEL_NULL.equals(value);
 	}
 
 	/**
@@ -1143,7 +1196,7 @@ public abstract class ZettelModel {
 		Map<String, Object> jsonMap =
 				new ObjectMapper().convertValue(this, HashMap.class);
 		jsonMap.put(ZettelModel.IS_PRIMARY_TOPIC_OF, getIsPrimaryTopicOf());
-		jsonMap.put("rdftype", getType());
+		// jsonMap.put("rdftype", getType());
 		removeEmptyCollections(jsonMap);
 		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
 		return jsonMap;
@@ -1171,7 +1224,7 @@ public abstract class ZettelModel {
 	}
 
 	private boolean removeEmptyCollections(String value) {
-		if (value == null || value.isEmpty())
+		if (value == null || value.isEmpty() || ZETTEL_NULL.equals(value))
 			return true;
 		return false;
 	}

@@ -16,26 +16,10 @@ function addAutocompletionWithDynamicEndpoint(autocompleteItem){
 		enableAutocompletion(autocompleteItem,newEndpoint);
 	 });
 }
-function addContributionValues(autocompleteItem){
-	endpoint = autocompleteItem.siblings("select").val();
-	enableNewAutocompletion(autocompleteItem,endpoint);
-	autocompleteItem.siblings("select").change(function(){
-		newEndpoint=$(this).val();
-		enableNewAutocompletion(autocompleteItem,newEndpoint);
-	 });
-}
+
 function enableAutocompletionEndpoints() {
-	$('.lobid-search input').each(function() {
+	$('.search input').each(function() {
 		addAutocompletionWithDynamicEndpoint($(this));
-	});
-	$('.gnd-subject-search input').each(function() {
-		addAutocompletionWithDynamicEndpoint($(this));
-	});
-	$('.gnd-person-search input').each(function() {
-		addAutocompletionWithDynamicEndpoint($(this));
-	});
-	$('.contribution-search').each(function() {
-		addContributionValues($(this));
 	});
 	$('.mydaterangepicker').each(function() {
 		$(this).daterangepicker({
@@ -55,76 +39,9 @@ function enableAutocompletionEndpoints() {
 
 function enableAutocompletion(inputElement,endpoint) {
 	$(inputElement).autocomplete({source:["No Result"]});
-	var gndPerson=	"/tools/zettel/personAutocomplete";
 	var agrovoc=	"/tools/skos-lookup/autocomplete";
-	var orcid=		"/tools/zettel/orcidAutocomplete";
-	var gndSubject=	"/tools/zettel/subjectAutocomplete";
-	var gndTitle = 	"/tools/zettel/lobidAutocomplete";
-	var journal = 	"/tools/zettel/journalAutocomplete";
-	var all = 		"/tools/zettel/allAutocomplete";
-	var book = 		"/tools/zettel/bookAutocomplete";
-	var series = 	"/tools/zettel/seriesAutocomplete";
 	
-	var gndCorporateBody ="/tools/zettel/corporateBodyAutocomplete";
-	
-	
-	if(gndTitle==endpoint){
-		inputElement.autocomplete({
-			select : function(event, ui) {
-				this.value = ui.item.value;
-				$(this).siblings(".input-field-heading").html(
-						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-				$(this).siblings("select").css('display','none');
-				$(this).css('display','none');
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						format : "ids",
-						q: request.term,
-					},
-					success : function(data) {
-						
-						response(data);
-					}
-				});
-			}
-		});
-	}else if(gndCorporateBody == endpoint){
-		inputElement.autocomplete({
-			open: function(event, ui) {
-		        var firstListEntry=$(".ui-corner-all li:first-child a");
-		        firstListEntry.addClass("btn-success");
-		        firstListEntry.append(' <span class="fa fa-plus"></span>');
-		    },
-			select : function(event, ui) {
-				this.value = ui.item.value;
-				$(this).siblings(".input-field-heading").html(
-						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-				$(this).siblings("select").css('display','none');
-				$(this).css('display','none');
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q : request.term,
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}
-	else if(agrovoc == endpoint){
+	if(agrovoc == endpoint){
 		inputElement.autocomplete({
 			select : function(event, ui) {
 				this.value = ui.item.value;
@@ -151,36 +68,7 @@ function enableAutocompletion(inputElement,endpoint) {
 			}
 		});
 	}
-	else if(orcid == endpoint){
-		inputElement.autocomplete({
-			open: function(event, ui) {
-		        var firstListEntry=$(".ui-corner-all li:first-child a");
-		        firstListEntry.addClass("btn-success");
-		        firstListEntry.append(' <span class="fa fa-plus"></span>');
-		    },
-			select : function(event, ui) {
-				this.value = ui.item.value;
-				$(this).siblings(".input-field-heading").html(
-						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-				$(this).siblings("select").css('display','none');
-				$(this).css('display','none');
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q : request.term,
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}else if(journal == endpoint || all == endpoint || book == endpoint || series == endpoint){
+	else {
 		inputElement.autocomplete({
 			select : function(event, ui) {
 				this.value = ui.item.value;
@@ -202,156 +90,12 @@ function enableAutocompletion(inputElement,endpoint) {
 						response(data);
 					}
 				});
-			}
-		});
-	}else if(gndSubject == endpoint){
-		inputElement.autocomplete({
-			
-			open: function(event, ui) {
-		        var firstListEntry=$(".ui-corner-all li:first-child a");
-		        firstListEntry.remove();
-		    },
-			select : function(event, ui) {
-				this.value = ui.item.value;
-				$(this).siblings(".input-field-heading").html(
-						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-				$(this).siblings("select").css('display','none');
-				$(this).css('display','none');
-				emitResize();
-				return false;
 			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q : request.term,
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}else if(gndPerson == endpoint){
-		inputElement.autocomplete({
-			open: function(event, ui) {
-		        var firstListEntry=$(".ui-corner-all li:first-child a");
-		        firstListEntry.addClass("btn-success");
-		        firstListEntry.append(' <span class="fa fa-plus"></span>');
-		    },
-			select : function(event, ui) {
-				this.value = ui.item.value;
-				$(this).siblings(".input-field-heading").html(
-						"<b>" + ui.item.label + " </b><a href=\""+ ui.item.value +"\" target=\"_blank\"><span class=\"octicon octicon-link-external\"></span></a>");
-				$(this).siblings("select").css('display','none');
-				$(this).css('display','none');
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q : request.term,
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
+			focus: function( event, ui ) {
+	                $(".ui-autocomplete > li").attr("title", ui.item.desc);
+	        }
 		});
 	}
-}
-
-function enableNewAutocompletion(inputElement,endpoint) {
-	$(inputElement).autocomplete({source:["No Result"]});
-	var gndPerson="https://lobid.org/person";
-	var agrovoc="/tools/skos-lookup/autocomplete";
-	var orcid="/tools/zettel/orcidAutocomplete";
-	var gndSubject="/tools/zettel/subjectAutocomplete";
-	var gndTitle = "https://lobid.org/resource";
-	if(gndPerson == endpoint || gndSubject == endpoint || gndTitle==endpoint){
-		$(inputElement).autocomplete();
-		inputElement.autocomplete({
-			select : function(event, ui) {
-				label=ui.item.label;
-				id=ui.item.value;
-				this.value = label;	
-				labelField=$(this).siblings('.label-field').val(id);
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						name: request.term,
-						format : "ids",
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}
-	else if(agrovoc == endpoint){
-		$(inputElement).autocomplete();
-		inputElement.autocomplete({
-			select : function(event, ui) {
-				label=ui.item.label;
-				id=ui.item.value;
-				this.value = label;	
-				labelField=$(this).siblings('.label-field').val(id);
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q:request.term,
-                        lang:"de",
-                        index:"agrovoc"
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}
-	else if(orcid == endpoint){
-		$(inputElement).autocomplete();
-		inputElement.autocomplete({
-			select : function(event, ui) {
-				label=ui.item.label;
-				id=ui.item.value;
-				this.value = label;	
-				labelField=$(this).siblings('.label-field').val(id);
-				emitResize();
-				return false;
-			},
-			source : function(request, response) {	
-				$.ajax({
-					url : endpoint,
-					dataType : "jsonp",
-					data : {
-						q : request.term,
-					},
-					success : function(data) {
-						response(data);
-					}
-				});
-			}
-		});
-	}
-	
-	
 }
 
 function handleMessage(evt) {
@@ -368,6 +112,7 @@ function handleMessage(evt) {
 				var containerOfOldform = $('div.container');
 				containerOfOldform.html(newForm);
 				enableAutocompletionEndpoints();
+				enableSelect2();
 				addGeonamesLookup();
 				addGeonamesReverseLookup();
 				addActionsToRemoveAndAddButtons();
@@ -385,22 +130,15 @@ function handleMessage(evt) {
 		Cookies.set("cancel",sourceUrl);
 	}
 }
-function destroyGndAutocompletion() {
-	$('.gnd-person-search input').each(function() {
+function destroyAutocompletion() {
+	$('.search input').each(function() {
 		$(this).autocomplete('destroy');
 		$(this).removeData('autocomplete');
 	});
-	$('.gnd-subject-search input').each(function() {
-		$(this).autocomplete('destroy');
-		$(this).removeData('autocomplete');
-	});
-	$('.contribution-search input').each(function() {
-		$(this).autocomplete('destroy');
-		$(this).removeData('autocomplete');
-	});
-	$('.lobid-search input').each(function() {
-		$(this).autocomplete('destroy');
-		$(this).removeData('autocomplete');
+}
+function destroySelect2() {
+	$('.custom-combobox').each(function() {
+		$(this).select2('destroy');
 	});
 }
 
@@ -427,21 +165,25 @@ function addActionsToRemoveAndAddButtons() {
 	addDatepicker();
 	$('.multi-field-wrapper').each(function() {
 		var $wrapper = $('.multi-fields', this);
+		var $defaultValue = $(this).attr("defaultValue");
 		$('.multi-fields input', this).addClass("focus");
 		$(".add-field", $(this)).click(function(e) {
-			destroyGndAutocompletion();
+			destroyAutocompletion();
+			destroySelect2();
+			var $currentEntry=$(this).parents('.multi-field');
 			var newField = $('.multi-field:first-child', $wrapper).clone(true);
-			newField.appendTo($wrapper).find('.input-widget').val('').focus();
-			newField.appendTo($wrapper).find('.gnd-person-search.input-widget').css('display','inline');
-			newField.appendTo($wrapper).find('.lobid-search.input-widget').css('display','inline');
-			newField.appendTo($wrapper).find('.gnd-subject-search.input-widget').css('display','inline');
-			newField.appendTo($wrapper).find('select').css('display','inline');
-			newField.appendTo($wrapper).find('.help-text').css('display','none');
-			newField.appendTo($wrapper).find('.form-control-label').css( 'visibility','hidden');
-			newField.appendTo($wrapper).find('.inline-help').css('display','none');
+			newField.insertAfter($currentEntry).find('.input-widget').val($defaultValue).focus();
+			newField.insertAfter($currentEntry).find('.custom-combobox').val($defaultValue).focus();
+			newField.insertAfter($currentEntry).find('textArea').val($defaultValue).focus();
+			newField.insertAfter($currentEntry).find('.search.input-widget').css('display','inline');
+			newField.insertAfter($currentEntry).find('select').css('display','inline');
+			newField.insertAfter($currentEntry).find('.custom-combobox').css('display','inline');
+			newField.insertAfter($currentEntry).find('.help-text').css('display','none');
+			newField.insertAfter($currentEntry).find('.inline-help').css('display','none');
 			resetIds();
 			$(newField).find(".input-field-heading").html("");
 			enableAutocompletionEndpoints();
+			enableSelect2();
 			emitResize();
 		});
 		$('.multi-field .remove-field', $wrapper).click(function() {
@@ -451,13 +193,20 @@ function addActionsToRemoveAndAddButtons() {
 				emitResize();
 			}
 			else{
-				destroyGndAutocompletion();
+				destroyAutocompletion();
+				destroySelect2();
 				var newField = $('.multi-field:first-child', $wrapper).clone(true);
-				newField.appendTo($wrapper).find('.input-widget').val('').focus();
+				newField.appendTo($wrapper).find('.input-widget').val($defaultValue).focus();
+				newField.appendTo($wrapper).find('.custom-combobox').val($defaultValue).focus();
+				newField.appendTo($wrapper).find('textArea').val($defaultValue).focus();
+				newField.appendTo($wrapper).find('.search.input-widget').css('display','inline');
+				newField.appendTo($wrapper).find('select').css('display','inline');
+				newField.appendTo($wrapper).find('.custom-combobox').css('display','inline');
 				resetIds();
 				$(newField).find(".input-field-heading").html("");
 				$(this).parents('.multi-field').remove();
 				enableAutocompletionEndpoints();
+				enableSelect2();
 				emitResize();
 			}
 		});
@@ -745,4 +494,8 @@ function postCancel(target) {
 	}, '*');
 }
 
-	
+function enableSelect2() {
+	$('.custom-combobox').each(function() {
+		$(this).select2();
+	});
+}

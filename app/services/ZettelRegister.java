@@ -34,9 +34,7 @@ public class ZettelRegister {
 
 	public ZettelRegister() {
 		register(new ResearchDataZettel());
-		register(new ProceedingZettel());
 		register(new ArticleZettel());
-		register(new ChapterZettel());
 		register(new CatalogZettel());
 		/**
 		 * register additional forms

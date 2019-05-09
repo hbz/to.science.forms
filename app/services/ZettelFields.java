@@ -59,6 +59,8 @@ public class ZettelFields {
 			.getEtikett("http://www.umbel.org/specifications/vocabulary#isLike");
 	public static Etikett fundingZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#funding");
+	public static Etikett fundingIdZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#fundingId");
 	public static Etikett recordingPeriodZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#recordingPeriod");
 	public static Etikett recordingLocationZF = ZettelHelper.etikett
@@ -131,8 +133,8 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#congressNumber");
 	public static Etikett congressHostZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#congressHost");
-	public static Etikett redaktorZF = ZettelHelper.etikett
-			.getEtikett("http://id.loc.gov/vocabulary/relators/red");
+	public static Etikett otherZF = ZettelHelper.etikett
+			.getEtikett("http://id.loc.gov/vocabulary/relators/oth");
 	public static Etikett editorZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/ontology/bibo/editor");
 	public static Etikett institutionZF = ZettelHelper.etikett
@@ -179,4 +181,16 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/fulltextVersion");
 	public static Etikett parallelEditionZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#parallelEdition");
+	public static Etikett typeZF = ZettelHelper.etikett
+			.getEtikett("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+	public static Etikett typeHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/typeHeader");
+	public static Etikett collectionTwoZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionTwo");
+	public static Etikett internalReferenceZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/internalReference");
+	public static Etikett additionalNotesHeaderZF = ZettelHelper.etikett
+			.getEtikett("info:regal/zettel/additionalNotesHeader");
+	public static Etikett additionalNotesZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/additionalNotes");
 }

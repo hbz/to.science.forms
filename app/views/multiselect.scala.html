@@ -9,10 +9,7 @@
 		<li class="multi-field">
 			
 			 @select(myForm,fieldWithIndex,fieldLabel,classString,map,tabOrderAsInt){
-			   <button type="button" class="inline-help" name="@fieldName">
-								<span class="fa fa-question-circle" />
-				</button>
-   				
+				@helpText(fieldName)	
 			 }
 			 
 					<div class="btn-group">
@@ -26,7 +23,5 @@
 		</li>
 		}
 	</ol>
-	 			<div class="help-text" name="@fieldName" style="display:none">
-					<button name="@fieldName" type="button" class="close-help" style="float:right"><span class="fa fa-times-circle"/></button>
-				</div>
+	 		
 </div>

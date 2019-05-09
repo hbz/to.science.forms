@@ -36,6 +36,8 @@ Go to http://localhost:9000/tools/zettel
 
 [Find a complete example](https://github.com/hbz/zettel/blob/master/app/views/client.scala.html) on how to embedd a zettel form to your application, using javascript.
 
+<img src="zettel-flos.png" alt="Diagram about zettel data flow" style="width: 800px;"/>
+
 You can include a zettel form using iframes
 
 	<iframe src="http://localhost:9000/tools/zettel/forms?id=katalog:data" width="100%"
