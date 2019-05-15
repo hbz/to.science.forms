@@ -17,13 +17,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import play.data.validation.ValidationError;
-import models.ZettelModel;
 
 /**
  * @author Jan Schnasse
@@ -43,14 +44,47 @@ public class Catalog extends ZettelModel {
 
 	@Override
 	public List<ValidationError> validate() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ValidationError> errors = new ArrayList<>();
+		validateURLs(errors);
+		return errors.isEmpty() ? null : errors;
 	}
 
-	protected void addErrorMessage(String fieldName, String message,
-			Supplier<String> getValue, List<ValidationError> errors) {
-		if (getValue.get() == null || getValue.get().isEmpty()) {
-			errors.add(new ValidationError(fieldName, message));
+	private void validateURLs(List<ValidationError> errors) {
+		validateUrl("parallelEdition", Arrays.asList(getParallelEdition()), errors);
+
+	}
+
+	private void validateUrl(String fieldName, List<String> fieldContent,
+			List<ValidationError> errors) {
+		play.Logger.debug("Validiere " + fieldName);
+		if (fieldContent == null || fieldContent.isEmpty())
+			return;
+		for (int i = 0; i < fieldContent.size(); i++) {
+			String v = fieldContent.get(i);
+			if (v != null && !v.isEmpty() && !isValidUrl(v)) {
+				errors.add(new ValidationError(fieldName + "[" + i + "]",
+						String.format("Bitte verknüpfen Sie Ihre Eingabe. Die Eingabe \""
+								+ v + "\" hat nicht die Form einer URL.", fieldName)));
+				errors.add(new ValidationError(fieldName,
+						String.format("Bitte verknüpfen Sie Ihre Eingabe. Die Eingabe \""
+								+ v + "\" hat nicht die Form einer URL.", fieldName)));
+			}
+		}
+
+	}
+
+	@SuppressWarnings({ "javadoc", "unused" })
+	public boolean isValidUrl(String addr) {
+		try {
+			if (ZettelModel.ZETTEL_NULL.equals(addr)) {
+				// this is a valid value and will be handled properly
+				return true;
+			}
+			new URL(addr);// throws Exception? return false
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
 	}
+
 }
