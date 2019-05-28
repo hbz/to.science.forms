@@ -352,6 +352,7 @@ public class ZettelHelper {
 		addError(result, errors, "publicationStatus");
 		addError(result, errors, "reviewStatus");
 		addError(result, errors, "title");
+		addError(result, errors, "alternative");
 		addError(result, errors, "creator");
 		addError(result, errors, "contributor");
 		addError(result, errors, "editor");
@@ -377,6 +378,42 @@ public class ZettelHelper {
 		addError(result, errors, "projectId");
 		addError(result, errors, "fundingProgram");
 		addError(result, errors, "additionalNotes");
+		return result;
+	}
+
+	public static LinkedHashMap<String, List<ValidationError>> sortErrorsForResearchData(
+			Map<String, List<ValidationError>> errors) {
+		LinkedHashMap<String, List<ValidationError>> result = new LinkedHashMap<>();
+		addError(result, errors, "title");
+		addError(result, errors, "alternative");
+		addError(result, errors, "creator");
+		addError(result, errors, "contributor");
+		addError(result, errors, "other");
+		addError(result, errors, "medium");
+		addError(result, errors, "yearOfCopyright");
+		addError(result, errors, "license");
+		addError(result, errors, "embargoTime");
+		addError(result, errors, "language");
+		addError(result, errors, "description");
+		addError(result, errors, "usageManual");
+		addError(result, errors, "ddc");
+		addError(result, errors, "subject");
+		addError(result, errors, "fundingId");
+		addError(result, errors, "projectId");
+		addError(result, errors, "fundingProgram");
+		addError(result, errors, "dataOrigin");
+		addError(result, errors, "recordingPeriod");
+		addError(result, errors, "recordingLocation");
+		addError(result, errors, "recordingCoordinates");
+		addError(result, errors, "reference");
+		addError(result, errors, "associatedPublication");
+		addError(result, errors, "associatedDataset");
+		addError(result, errors, "nextVersion");
+		addError(result, errors, "previousVersion");
+		addError(result, errors, "urn");
+		addError(result, errors, "doi");
+		addError(result, errors, "isLike");
+
 		return result;
 	}
 
