@@ -102,7 +102,7 @@ public class ResearchData extends ZettelModel {
 		validateUrl("contributor", getContributor(), errors);
 		validateUrl("other", getOther(), errors);
 		validateUrl("ddc", getDdc(), errors);
-		validateUrl("reference", getPublisherVersion(), errors);
+		validateUrl("reference", getReference(), errors);
 		validateUrl("associatedPublication", getAssociatedPublication(), errors);
 		validateUrl("associatedDataset", getAssociatedDataset(), errors);
 		validateUrl("nextVersion", Arrays.asList(getNextVersion()), errors);
