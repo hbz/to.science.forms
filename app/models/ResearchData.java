@@ -21,7 +21,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.ConfigFactory;
@@ -108,7 +107,6 @@ public class ResearchData extends ZettelModel {
 		validateUrl("nextVersion", Arrays.asList(getNextVersion()), errors);
 		validateUrl("previousVersion", Arrays.asList(getPreviousVersion()), errors);
 		validateUrl("urn", getUrn(), errors);
-		validateUrl("doi", getDoi(), errors);
 		validateUrl("isLike", getIsLike(), errors);
 	}
 
