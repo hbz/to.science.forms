@@ -137,11 +137,11 @@ public class Article extends ZettelModel {
 			String v = fieldContent.get(i);
 			if (v != null && !v.isEmpty() && !isValidUrl(v)) {
 				errors.add(new ValidationError(fieldName + "[" + i + "]",
-						String.format("Bitte verknüpfen Sie Ihre Eingabe. Die Eingabe \""
-								+ v + "\" hat nicht die Form einer URL.", fieldName)));
+						"Bitte verknüpfen Sie Ihre Eingabe. Die Eingabe \"" + v
+								+ "\" hat nicht die Form einer URL."));
 				errors.add(new ValidationError(fieldName,
-						String.format("Bitte verknüpfen Sie Ihre Eingabe. Die Eingabe \""
-								+ v + "\" hat nicht die Form einer URL.", fieldName)));
+						"Bitte verknüpfen Sie Ihre Eingabe. Die Eingabe \"" + v
+								+ "\" hat nicht die Form einer URL."));
 			}
 		}
 
