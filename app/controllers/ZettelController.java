@@ -306,8 +306,7 @@ public class ZettelController extends Controller {
 		String orcidUrl = "https://pub.orcid.org/v3.0/search-expanded";
 		WSRequest request = ws.url(orcidUrl);
 		WSRequest complexRequest = request.setHeader("accept", "application/json")
-				.setRequestTimeout(5000).setQueryParameter("q",
-						"given-names:" + q + " OR family-names:" + q + " OR orcid:" + q);
+				.setRequestTimeout(5000).setQueryParameter("q", q);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode hits = response.asJson().at("/result");
 			List<Map<String, String>> result = new ArrayList<>();
