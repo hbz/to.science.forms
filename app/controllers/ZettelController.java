@@ -303,7 +303,7 @@ public class ZettelController extends Controller {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
 						: request().queryString().get("callback");
-		String orcidUrl = "https://pub.orcid.org/v3.0/search-expanded";
+		String orcidUrl = "https://pub.orcid.org/v3.0/expanded-search";
 		WSRequest request = ws.url(orcidUrl);
 		WSRequest complexRequest = request.setHeader("accept", "application/json")
 				.setRequestTimeout(5000).setQueryParameter("q", q);
