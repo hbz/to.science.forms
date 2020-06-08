@@ -312,9 +312,9 @@ public class ZettelController extends Controller {
 			List<Map<String, String>> result = new ArrayList<>();
 			hits.forEach((hit) -> {
 
-				String id = hit.at("/result-expanded/orcid-id").asText();
-				String lastName = hit.at("/result-expanded/family-names").asText();
-				String firstName = hit.at("/result-expanded/given-names").asText();
+				String id = hit.at("/expanded-result/orcid-id").asText();
+				String lastName = hit.at("/expanded-result/family-names").asText();
+				String firstName = hit.at("/expanded-result/given-names").asText();
 				Map<String, String> m = new HashMap<>();
 				m.put("label", lastName + ", " + firstName);
 				m.put("value", id);
