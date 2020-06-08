@@ -316,8 +316,8 @@ public class ZettelController extends Controller {
 				String lastName = hit.at("/family-names").asText();
 				String firstName = hit.at("/given-names").asText();
 				Map<String, String> m = new HashMap<>();
-				m.put("label", lastName + ", " + firstName);
-				m.put("value", id);
+				m.put("label", lastName + ", " + firstName + " | " + id);
+				m.put("value", "https://orcid.org/" + id);
 				result.add(m);
 			});
 			String searchResult = ZettelHelper.objectToString(result);
