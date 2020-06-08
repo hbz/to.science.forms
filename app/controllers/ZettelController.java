@@ -308,13 +308,13 @@ public class ZettelController extends Controller {
 		WSRequest complexRequest = request.setHeader("accept", "application/json")
 				.setRequestTimeout(5000).setQueryParameter("q", q);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
-			JsonNode hits = response.asJson().at("/result");
+			JsonNode hits = response.asJson().at("/expanded-result");
 			List<Map<String, String>> result = new ArrayList<>();
 			hits.forEach((hit) -> {
 
-				String id = hit.at("/expanded-result/orcid-id").asText();
-				String lastName = hit.at("/expanded-result/family-names").asText();
-				String firstName = hit.at("/expanded-result/given-names").asText();
+				String id = hit.at("/orcid-id").asText();
+				String lastName = hit.at("/family-names").asText();
+				String firstName = hit.at("/given-names").asText();
 				Map<String, String> m = new HashMap<>();
 				m.put("label", lastName + ", " + firstName);
 				m.put("value", id);
