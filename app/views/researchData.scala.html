@@ -32,6 +32,13 @@
 				<br />
 				@datepicker(myForm,"embargoTime",services.ZettelFields.embargoTimeZF.getLabel(),"datepicker",9)
 			}
+			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collection-section"){
+				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"search",13,ArticleHelper.getInstitutionLookupEndpoints())
+			    <br/>
+				@multifieldLd(myForm,jsonMap,"collectionTwo",services.ZettelFields.collectionTwoZF.getLabel(),"search",14,ArticleHelper.getCollectionTwoEndpoints())
+				<br/>
+				@multicombobox(myForm,jsonMap,"collectionOne",services.ZettelFields.collectionOneZF.getLabel(),"leibniz-open-search",ArticleHelper.collectionOne,15)
+			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel(),"select-language",ResearchDataHelper.getLanguageMap(),10)
 				<br/>
