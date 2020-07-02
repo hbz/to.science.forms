@@ -23,6 +23,9 @@
 				<br/>
 			    @multifieldLd(myForm,jsonMap,"other",services.ZettelFields.otherZF.getLabel(),"search",5,ArticleHelper.getPersonLookupEndpoints())		    
 			}
+			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collection-section"){
+				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"search",13,ArticleHelper.getInstitutionLookupEndpoints())
+			}
 			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
 				@singleSelect(myForm,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ResearchDataHelper.getMediumMap(),6)
 				<br/>
