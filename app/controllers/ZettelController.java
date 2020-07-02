@@ -303,20 +303,21 @@ public class ZettelController extends Controller {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
 						: request().queryString().get("callback");
-		String orcidUrl = "https://pub.orcid.org/v2.1/search";
+		String orcidUrl = "https://pub.orcid.org/v3.0/expanded-search";
 		WSRequest request = ws.url(orcidUrl);
 		WSRequest complexRequest = request.setHeader("accept", "application/json")
-				.setRequestTimeout(5000).setQueryParameter("q",
-						"family-name:" + q + " OR given-names:" + q + " OR orcid:" + q);
+				.setRequestTimeout(5000).setQueryParameter("q", q);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
-			JsonNode hits = response.asJson().at("/result");
+			JsonNode hits = response.asJson().at("/expanded-result");
 			List<Map<String, String>> result = new ArrayList<>();
 			hits.forEach((hit) -> {
 
-				String id = hit.at("/orcid-identifier/uri").asText();
+				String id = hit.at("/orcid-id").asText();
+				String lastName = hit.at("/family-names").asText();
+				String firstName = hit.at("/given-names").asText();
 				Map<String, String> m = new HashMap<>();
-				m.put("label", id);
-				m.put("value", id);
+				m.put("label", lastName + ", " + firstName + " | " + id);
+				m.put("value", "https://orcid.org/" + id);
 				result.add(m);
 			});
 			String searchResult = ZettelHelper.objectToString(result);
