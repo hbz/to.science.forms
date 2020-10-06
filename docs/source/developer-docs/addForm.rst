@@ -1,0 +1,4 @@
+Neues Formular-Feld in Maske integrieren
+========================================
+
+Die Einbindung neuer Formularfelder erfolgt durch nachnutzung der bestehenden Templates.  

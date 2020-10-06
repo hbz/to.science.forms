@@ -33,6 +33,7 @@ public class ZettelRegister {
 	Map<String, ZettelRegisterEntry> register = new HashMap<>();
 
 	public ZettelRegister() {
+		register(new ResearchDataKtblZettel());
 		register(new ResearchDataZettel());
 		register(new ArticleZettel());
 		register(new CatalogZettel());
