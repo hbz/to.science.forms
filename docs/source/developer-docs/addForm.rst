@@ -18,4 +18,3 @@ um neue Formular-Felder. Beispiel:
 
 1. Zunächst wird ein Akkordion als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.  
 2. Ein MultifeldText-Formular wird festgelegt. 
-Java-Klassen app/services/ZettelFields und .  

@@ -77,15 +77,9 @@
 				<br />
 				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",26)
 			}
-			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
-				<br />
-				@multifieldText(myForm,jsonMap,"urn",services.ZettelFields.urnZF.getLabel(),"",34)
-				<br />
-				@multifieldText(myForm,jsonMap,"doi",services.ZettelFields.doiZF.getLabel(),"",35)
-				<br />
-				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",36)
-			}
 			@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),"ktbl-section"){
+				<br />
+				@multicombobox(myForm,jsonMap,"livestock",services.ZettelFields.livestockZF.getLabel()+"*","select-livestock",KtblDataHelper.livestock,43)
 				<br />
 				@multifieldText(myForm,jsonMap,"urn",services.ZettelFields.urnZF.getLabel(),"",47)
 				<br />
