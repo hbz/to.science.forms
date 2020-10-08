@@ -189,7 +189,7 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionTwo");
 	public static Etikett internalReferenceZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/internalReference");
-	public static Etikett additionalNotesHeaderZF = ZettelHelper.etikett
+	public static Etikett additionalNotesZF = ZettelHelper.etikett
 			.getEtikett("info:regal/zettel/additionalNotesHeader");
 	public static Etikett ktblEmiMinZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/ktblEmiMin");
