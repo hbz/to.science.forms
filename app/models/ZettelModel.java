@@ -238,7 +238,6 @@ public abstract class ZettelModel {
 	private List<String> type = new ArrayList<>();
 	private List<String> collectionTwo = new ArrayList<>();
 	private List<String> internalReference = new ArrayList<>();
-	private String additionalNotes;
 
 	public List<String> getRdftype() {
 		return type;
