@@ -17,13 +17,13 @@ public class KtblDataHelper {
 	
 
 	public LinkedHashMap<String,String> getLivestock() {
-		LinkedHashMap<String,String> livestockMap = new LinkedHashMap<String,String>();
+		LinkedHashMap<String,String> livestock = new LinkedHashMap<String,String>();
 		
-		Map livestock = loadPropertiesFile("ktbl.livestock.properties", new Properties());
+		Map livestockProp = loadPropertiesFile("ktbl.livestock.properties", new Properties());
 		
-		livestockMap.putAll(livestock);
+		livestock.putAll(livestockProp);
 		
-		return livestockMap;
+		return livestock;
 	}
 
 	public static Properties loadPropertiesFile(String fName, Properties properties) {
