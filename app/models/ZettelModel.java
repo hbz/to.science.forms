@@ -239,6 +239,8 @@ public abstract class ZettelModel {
 	private List<String> collectionTwo = new ArrayList<>();
 	private List<String> internalReference = new ArrayList<>();
 	private String additionalNotes;
+	private List<String> livestock = new ArrayList<>();
+	private List<String> lShandling = new ArrayList<>();
 
 	public List<String> getRdftype() {
 		return type;
