@@ -4,7 +4,7 @@
 @import tags._ 
 @import services._
 @jsonMap=@{ZettelHelper.getJsonMap(myForm)}
-@zettel("Forschungsdaten",myForm,dataFormat,documentId,topicId,formType) {
+@zettel("ForschungsdatenKTBL",myForm,dataFormat,documentId,topicId,formType) {
 	@if(myForm.hasGlobalErrors) {
 		<p class="error">@myForm.globalError.message</p>
 	} 

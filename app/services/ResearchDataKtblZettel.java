@@ -21,7 +21,7 @@ import models.ResearchDataKtbl;
 import models.ZettelModel;
 import play.data.Form;
 import play.twirl.api.Content;
-import views.html.researchData;
+import views.html.researchDataKtbl;
 
 /**
  * @author Jan Schnasse
