@@ -77,6 +77,14 @@
 				<br />
 				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",26)
 			}
+			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"ktbl-section"){
+				<br />
+				@multifieldText(myForm,jsonMap,"urn",services.ZettelFields.livestockZF.getLabel(),"",27)
+				<br />
+				@multifieldText(myForm,jsonMap,"doi",services.ZettelFields.lShandlingZF.getLabel(),"",28)
+				<br />
+				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",29)
+			}
 		}
 		@if(myForm.hasErrors) {
 		    <div class="alert alert-error">

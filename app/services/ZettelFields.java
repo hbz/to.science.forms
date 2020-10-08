@@ -191,6 +191,11 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/internalReference");
 	public static Etikett additionalNotesHeaderZF = ZettelHelper.etikett
 			.getEtikett("info:regal/zettel/additionalNotesHeader");
-	public static Etikett additionalNotesZF =
-			ZettelHelper.etikett.getEtikett("info:regal/zettel/additionalNotes");
+	public static Etikett ktblEmiMinZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/ktblEmiMin");
+	public static Etikett livestockZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/livestock");
+	public static Etikett lShandlingZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/lShandling");
+
 }

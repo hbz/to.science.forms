@@ -1,24 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<html lang="de">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Neue Erfassungsmaske erstellen &#8212; zettelDocs 0.0.1 Dokumentation</title>
     <link rel="stylesheet" href="../_static/hbz.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/translations.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="Neues Formular-Feld in Maske integrieren" href="addForm.html" />
-    <link rel="prev" title="Welcome to zettelDocs’s documentation!" href="../index.html" />
+    <link rel="next" title="Neue Formularfelder in Maske integrieren" href="addForm.html" />
+    <link rel="prev" title="Willkommen zur Dokumentation von Zettel" href="../index.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
@@ -34,12 +33,13 @@
           <a href="../genindex.html" title="Stichwortverzeichnis"
              accesskey="I">Index</a></li>
         <li class="right" >
-          <a href="addForm.html" title="Neues Formular-Feld in Maske integrieren"
+          <a href="addForm.html" title="Neue Formularfelder in Maske integrieren"
              accesskey="N">weiter</a> |</li>
         <li class="right" >
-          <a href="../index.html" title="Welcome to zettelDocs’s documentation!"
+          <a href="../index.html" title="Willkommen zur Dokumentation von Zettel"
              accesskey="P">zurück</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">zettelDocs 0.0.1 Dokumentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">zettelDocs 0.0.1 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Neue Erfassungsmaske erstellen</a></li> 
       </ul>
     </div>  
 
@@ -50,18 +50,21 @@
             
   <div class="section" id="neue-erfassungsmaske-erstellen">
 <h1>Neue Erfassungsmaske erstellen<a class="headerlink" href="#neue-erfassungsmaske-erstellen" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Aufsetzend auf einer geeigneten Maske erfolgt die Erstellung einer neuen Maske am einfachsten durch Kopieren und
-anschließendes Anpassen der benötigten Dateien.</p>
+<p>Aufsetzend auf einer geeigneten Maske erfolgt die Erstellung einer neuen Maske am einfachsten durch Kopieren und  anschließendes Anpassen der benötigten Dateien.</p>
 <p>Unter /app/models/ befinden sich die einzelnen Modelle für die Eingabemasken. Diese erweitern die Klasse ZettelModel.
 Wird eine neue Maske angelegt, so ist dafür ein neues Model entweder als Java-Klasse zu erzeugen, die die Klasse ZettelModel erbt,
-oder durch kopieren und Anpassen einer bestehenden Klasse (z.B. ResearchData.java)</p>
+oder einfacher durch Kopieren und Anpassen einer bestehenden Klasse (z.B. ResearchData.java zu ResearchDataKtbl.java).</p>
 <ol class="arabic simple">
-<li>In der neuen Klasse müssen nun die Variablen, die den Klassennamen enthalten entsprechend angepasst werden</li>
-<li>Die neue Klasse muss anschließend in der Klasse ZettelRegister unter app/services/ eingetragen werden. Das erfolgt innerhalb des Constructors der Klasse.</li>
+<li><p>In der neuen Klasse müssen nun die Variablen, die den Klassennamen enthalten entsprechend angepasst werden</p></li>
+<li><p>Die neue Klasse muss anschließend in der Klasse ZettelRegister unter app/services/ eingetragen werden. Das erfolgt innerhalb des Constructors der Klasse.</p></li>
+<li><p>In app/services/ muss zusätzlich eine Klasse erstellt werden, die dem neuen Model entspricht (z.B. ResearchDataKtblZettel.java).</p></li>
 </ol>
+<p>Innerhalb des nue erstellten Models (app/models/ResearchDataKtbl.java) wird zunächst nur festgelegt, wie die Felder angezeigt werden und ob sie z.B. verpflichtend sind.
+Die Einbeziehung neuer Formularfelder erfolgt erst jetzt.</p>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -69,10 +72,10 @@ oder durch kopieren und Anpassen einer bestehenden Klasse (z.B. ResearchData.jav
         <div class="sphinxsidebarwrapper">
   <h4>Vorheriges Thema</h4>
   <p class="topless"><a href="../index.html"
-                        title="vorheriges Kapitel">Welcome to zettelDocs’s documentation!</a></p>
+                        title="vorheriges Kapitel">Willkommen zur Dokumentation von Zettel</a></p>
   <h4>Nächstes Thema</h4>
   <p class="topless"><a href="addForm.html"
-                        title="nächstes Kapitel">Neues Formular-Feld in Maske integrieren</a></p>
+                        title="nächstes Kapitel">Neue Formularfelder in Maske integrieren</a></p>
   <div role="note" aria-label="source link">
     <h3>Diese Seite</h3>
     <ul class="this-page-menu">
@@ -81,17 +84,15 @@ oder durch kopieren und Anpassen einer bestehenden Klasse (z.B. ResearchData.jav
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Schnellsuche</h3>
+  <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Los" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -103,17 +104,18 @@ oder durch kopieren und Anpassen einer bestehenden Klasse (z.B. ResearchData.jav
           <a href="../genindex.html" title="Stichwortverzeichnis"
              >Index</a></li>
         <li class="right" >
-          <a href="addForm.html" title="Neues Formular-Feld in Maske integrieren"
+          <a href="addForm.html" title="Neue Formularfelder in Maske integrieren"
              >weiter</a> |</li>
         <li class="right" >
-          <a href="../index.html" title="Welcome to zettelDocs’s documentation!"
+          <a href="../index.html" title="Willkommen zur Dokumentation von Zettel"
              >zurück</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">zettelDocs 0.0.1 Dokumentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">zettelDocs 0.0.1 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Neue Erfassungsmaske erstellen</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Andres Quast.
-      Mit <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6 erstellt.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>
