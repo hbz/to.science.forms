@@ -16,7 +16,7 @@ import java.util.Properties;
 public class KtblDataHelper {
 	
 
-	public LinkedHashMap<String,String> getLivestockType() {
+	public static LinkedHashMap<String,String> getLivestockType() {
 		LinkedHashMap<String,String> livestock = new LinkedHashMap<String,String>();
 		
 		Map livestockProp = loadPropertiesFile("ktbl.livestock.properties", new Properties());
