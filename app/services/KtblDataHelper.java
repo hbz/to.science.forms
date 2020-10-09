@@ -23,16 +23,12 @@ public class KtblDataHelper {
 		
 		Map livestockProp = loadPropertiesFile("ktbl.livestock.properties", new Properties());
 		
-		if(livestockProp != null) {
-			livestock.putAll(livestockProp);
-		} else {
 			livestock.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 			livestock.put("info.ktbl.livestock.cattle.de", "Rind");
 			livestock.put("info.ktbl.livestock.pork.de", "Schwein");
 			livestock.put("info.ktbl.livestock.chicken.de", "Huhn");
 			livestock.put("info.ktbl.livestock.turkey.de", "Pute");
 			livestock.put("info.ktbl.livestock.duck.de", "Ente");
-		}
 		
 		
 		
