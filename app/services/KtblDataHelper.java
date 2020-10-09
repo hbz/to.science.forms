@@ -37,7 +37,7 @@ public class KtblDataHelper {
 
 	public static Properties loadPropertiesFile(String fName, Properties properties) {
 		try (InputStream propStream = Thread.currentThread().getContextClassLoader()
-				.getResourceAsStream("conf/" + fName)) {
+				.getResourceAsStream(fName)) {
 			properties.load(propStream);
 		} catch (IOException e) {
 			e.printStackTrace();
