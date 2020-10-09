@@ -21,15 +21,15 @@ public class KtblDataHelper {
 	public static LinkedHashMap<String,String> getLivestockType() {
 		LinkedHashMap<String,String> livestock = new LinkedHashMap<String,String>();
 		
-		//Map livestockProp = loadPropertiesFile("ktbl.livestock.properties", new Properties());
+		Map livestockProp = loadPropertiesFile("ktbl.livestock.properties", new Properties());
 		
-			livestock.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
+		/*	livestock.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 			livestock.put("info.ktbl.livestock.cattle.de", "Rind");
 			livestock.put("info.ktbl.livestock.pork.de", "Schwein");
 			livestock.put("info.ktbl.livestock.chicken.de", "Huhn");
 			livestock.put("info.ktbl.livestock.turkey.de", "Pute");
 			livestock.put("info.ktbl.livestock.duck.de", "Ente");
-		
+		*/
 		
 		
 		return livestock;
@@ -41,7 +41,12 @@ public class KtblDataHelper {
 			properties.load(propStream);
 		} catch (IOException e) {
 			System.out.println(e.getStackTrace());
-			return null;
+			Properties defaultProperties = new Properties();
+			defaultProperties.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
+			defaultProperties.put("info.ktbl.livestock.cattle.de", "Rind");
+			defaultProperties.put("info.ktbl.livestock.pork.de", "Schwein");
+			
+			return defaultProperties;
 		}
 		return properties;
 	}
