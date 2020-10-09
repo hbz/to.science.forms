@@ -21,7 +21,7 @@ public class KtblDataHelper {
 	public static LinkedHashMap<String,String> getLivestockType() {
 		LinkedHashMap<String,String> livestock = new LinkedHashMap<String,String>();
 		
-		Map livestockProp = loadPropertiesFile("ktbl.livestock.properties", new Properties());
+		//Map livestockProp = loadPropertiesFile("ktbl.livestock.properties", new Properties());
 		
 			livestock.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 			livestock.put("info.ktbl.livestock.cattle.de", "Rind");
