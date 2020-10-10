@@ -16,6 +16,7 @@
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Bisher verfügbare Formulartypen" href="availableForms.html" />
     <link rel="prev" title="Neue Erfassungsmaske erstellen" href="createNewFormMask.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
@@ -31,6 +32,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="Stichwortverzeichnis"
              accesskey="I">Index</a></li>
+        <li class="right" >
+          <a href="availableForms.html" title="Bisher verfügbare Formulartypen"
+             accesskey="N">weiter</a> |</li>
         <li class="right" >
           <a href="createNewFormMask.html" title="Neue Erfassungsmaske erstellen"
              accesskey="P">zurück</a> |</li>
@@ -50,7 +54,27 @@
 um neue Formular-Felder. Beispiel:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),&quot;ktbl-section&quot;){
         <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
-        @singleSelect(myForm,&quot;livestock&quot;,services.ZettelFields.livestockZF.getLabel(),&quot;select-livestock&quot;,GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;, &quot;info.ktbl.livestock&quot;),11)
+        @singleSelect(myForm,&quot;livestock&quot;,services.ZettelFields.livestockZF.getLabel(),&quot;select-livestock&quot;,KtblDataHelper.getLivestockType(),11)
+        <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+}
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Zunächst wird ein Akkordion als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.</p></li>
+<li><p>Ein &#64;singleSelect wird angelegt. Hierbei ist zu beachten die, dass die Klassen und Methodenaufrufe existieren. Dafür muss</p></li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>in der Klasse services.ZettelFields eine neue Etikett-Instanz livestockZF vereinbart werden. Bisher existiert für jeden für ein Formularfeld benötigten Bezeichner eine explizit in der Klasse ZettelFields vereinbarte (hardcodierte) Etikett-Instanz.</p></li>
+<li><p>In einer der Helper-Klassen eine neue spezifische Methode z.B. KtblDataHelper.getLivestockType() erzeugt werden.</p></li>
+<li><p>Bisher wurden fast immer auch die Auswahloptionen in der Klasse als HashMap untergebracht. Dadurch muss die gesamte Zettel-Applikation neu erzeugt werden, wenn sich an den Auswahloptionen etwas ändert.</p></li>
+</ol>
+</div></blockquote>
+<p>Am Beispiel der Anlage des multiselects-Formularfelds soll eine <em>neue vereinfachte</em> Möglichkeit gezeigt werden, neue Formularfelder anzulegen.</p>
+<p>Beispiel:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),&quot;ktbl-section&quot;){
+        <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+        @singleSelect(myForm,&quot;livestock&quot;,services.ZettelFields.livestockZF.getLabel(),&quot;select-livestock&quot;,KtblDataHelper.getLivestockType(),11)
         <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
         @multiselect(myForm,jsonMap,&quot;dataOrigin&quot;,services.ZettelFields.dataOriginZF.getLabel(),&quot;select-dataOrigin&quot;,GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;, &quot;info.ktbl.livestock&quot;),112)
         <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
@@ -58,9 +82,43 @@ um neue Formular-Felder. Beispiel:</p>
 </pre></div>
 </div>
 <ol class="arabic simple">
-<li><p>Zunächst wird ein Akkordion als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.</p></li>
-<li><p>Ein &#64;singleSelect</p></li>
+<li><p>Ein &#64;multiselect wird angelegt. Hierbei ist zu beachten, dass die Klassen und Methodenaufrufe existieren. Dafür muss</p></li>
 </ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>in der Klasse services.ZettelFields eine neue Etikett-Instanz livestockZF vereinbart werden. <em>Es soll im nächsten Schritt versucht werden, auch hier generischen Code einzuführen, der auf hardcodierte Etikett-Instanzen verzichtet.</em></p></li>
+<li><p>Die generische Klasse GenericDataHelper mit der generischen Methode .getFieldSelectValues(„Dateiname“, „NamensPattern“)[#]  erzeugt werden.</p></li>
+<li><p>Eine Konfigurations-Datei mit Dateiname entsprechend der Vorgaben der Properties-Klasse im Verzeichnis conf angelegt werden. Durch den NamensPattern ist es möglich, für ein Formularfeld nur bestimmte Werte aus dieser Datei zu übernehmen. Es kann aber auch für jedes Formularfeld eine eigene Datei angelegt werden.</p></li>
+</ol>
+</div></blockquote>
+<p>Das folgende Beispiel zeigt die Konfigurationsdatei für mehrere Formularfelder, sowie eine erste (nicht funktionale) Implementierung für unterschiedliche Sprachen.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Tierart
+info.ktbl.livestock.de.cattle=Rind
+info.ktbl.livestock.de.swine=Schwein
+info.ktbl.livestock.de.hens=Huhn
+info.ktbl.livestock.de.turkey=Pute
+info.ktbl.livestock.de.duck=Ente
+info.ktbl.livestock.en.cattle=Cattle
+info.ktbl.livestock.fr.cattle=Bovin
+# Produktionsrichtung
+info.ktbl.livestock.cattle.de.diary_farming=Milchviehhaltung
+info.ktbl.livestock.cattle.de.calf_fattening=Kälbermast
+# Lüftung
+info.ktbl.ventilation.de.enforced_ventilation=zwangsgelüftet
+info.ktbl.ventilation.de.self_ventilation=freigelüftet
+info.ktbl.ventilation.de.combined_ventilation=kombinierte Lüftung
+# Emmissionen
+info.ktbl.emmision.de.ammonium=Ammoniak (NH&lt;sub&gt;2&lt;/sub&gt;)
+info.ktbl.emission.de.carbondioxide=Kohlendioxid (C0&lt;sub&gt;2&lt;/sub&gt;)
+info.ktbl.emission.de.diammoniumoxide=Lachgas (N&lt;sup&gt;2&lt;/sup&gt;O)
+info.ktbl.emission.de.methane=Methan (CH&lt;sub&gt;4&lt;/sub&gt;O)
+info.ktbl.emission.de.smells=Geruch
+info.ktbl.emission.de.particle=Partikel (Staub)
+info.ktbl.emission.de.biogene_aerosole=Bioaerosole
+info.ktbl.emission.de.others=andere
+</pre></div>
+</div>
+<p>[#] Das NamensPattern für die Auswahl der Tierart lautet im Beispiel „info.ktbl.livestock“. Die Sprachvariable trennt das NamensPattern von den Auswahloptionen.</p>
 </div>
 
 
@@ -73,6 +131,9 @@ um neue Formular-Felder. Beispiel:</p>
   <h4>Vorheriges Thema</h4>
   <p class="topless"><a href="createNewFormMask.html"
                         title="vorheriges Kapitel">Neue Erfassungsmaske erstellen</a></p>
+  <h4>Nächstes Thema</h4>
+  <p class="topless"><a href="availableForms.html"
+                        title="nächstes Kapitel">Bisher verfügbare Formulartypen</a></p>
   <div role="note" aria-label="source link">
     <h3>Diese Seite</h3>
     <ul class="this-page-menu">
@@ -100,6 +161,9 @@ um neue Formular-Felder. Beispiel:</p>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="Stichwortverzeichnis"
              >Index</a></li>
+        <li class="right" >
+          <a href="availableForms.html" title="Bisher verfügbare Formulartypen"
+             >weiter</a> |</li>
         <li class="right" >
           <a href="createNewFormMask.html" title="Neue Erfassungsmaske erstellen"
              >zurück</a> |</li>
