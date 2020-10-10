@@ -79,13 +79,10 @@
 			}
 			@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),"ktbl-section"){
 				<br />
-				@singleSelect(myForm,"livestock",services.ZettelFields.livestockZF.getLabel(),"select-livestock",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.livestock.cattle"),40)
+				@singleSelect(myForm,"livestock",services.ZettelFields.livestockZF.getLabel(),"select-livestock",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.livestock"),40)
 				<br />
-				@multifieldText(myForm,jsonMap,"urn",services.ZettelFields.urnZF.getLabel(),"",47)
+				@singleSelect(myForm,"livestock",services.ZettelFields.livestockZF.getLabel(),"select-ventilation",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.ventilation"),41)
 				<br />
-				@multifieldText(myForm,jsonMap,"doi",services.ZettelFields.doiZF.getLabel(),"",48)
-				<br />
-				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",49)
 			}
 		}
 		@if(myForm.hasErrors) {
