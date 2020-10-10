@@ -81,7 +81,9 @@
 				<br />
 				@singleSelect(myForm,"livestock",services.ZettelFields.livestockZF.getLabel(),"select-livestock",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.livestock"),40)
 				<br />
-				@singleSelect(myForm,"livestock",services.ZettelFields.livestockZF.getLabel(),"select-ventilation",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.ventilation"),41)
+				@singleSelect(myForm,"ventilation",services.ZettelFields.livestockZF.getLabel(),"select-ventilation",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.ventilation"),41)
+				<br />
+				@multielect(myForm, jsonMap, "emissions",services.ZettelFields.emissionsZF.getLabel(),"select-ventilation",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.emission"),42)
 				<br />
 			}
 		}

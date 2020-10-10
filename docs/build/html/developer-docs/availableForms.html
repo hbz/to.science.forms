@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bisher verfügbare Formulartypen &#8212; zettelDocs 0.0.1 Dokumentation</title>
+    <link rel="stylesheet" href="../_static/hbz.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="prev" title="Neue Formularfelder in Maske integrieren" href="addForm.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Stichwortverzeichnis"
+             accesskey="I">Index</a></li>
+        <li class="right" >
+          <a href="addForm.html" title="Neue Formularfelder in Maske integrieren"
+             accesskey="P">zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">zettelDocs 0.0.1 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Bisher verfügbare Formulartypen</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bisher-verfugbare-formulartypen">
+<h1>Bisher verfügbare Formulartypen<a class="headerlink" href="#bisher-verfugbare-formulartypen" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die verschiedenen Formulartypen sind bisher nicht dokumentiert, es wird hier versucht, eine Kurzübersicht zu geben.
+Alle Formulartypen verweisen jeweils auf Templates im Verzeichnis views. In den Templates gibt es weitere Informationen z.B. zu den Parametertypen, die ich hier zunächst weglasse.</p>
+<div class="section" id="singleselect">
+<h2>singleSelect<a class="headerlink" href="#singleselect" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Template: views/singleSelect.scala.html</p>
+<p>Parameter aus dem Beispiel:</p>
+<ul class="simple">
+<li><p>myForm = Verweis auf die verwendete Model (zumeist model.ZettelModel) ?</p></li>
+<li><p>livestock = Name des Forms ?</p></li>
+<li><p>services.ZettelFields.livestockZF.getLabel() = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett-Service erfragt und abholt.</p></li>
+<li><p>GenericDataHelper.getFieldSelectValues(„ktbl.livestock.properties“, „info.ktbl.livestock“) = Statische Methode einer Helper-Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.</p></li>
+<li><p>11 = ist die Position des neuen Formularfeldes im Erfassungsformular. Hiermit ist die Reihenfolge der Formulare steuerbar.</p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@singleSelect(myForm,&quot;livestock&quot;,services.ZettelFields.livestockZF.getLabel(),&quot;select-livestock&quot;,GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;, &quot;info.ktbl.livestock&quot;),11)
+</pre></div>
+</div>
+<p><em>singleSelect</em> erzeugt ein Auswahl-Formular mit der Möglichkeit eine Option auszuwählen. Äquivalent zu &lt;select&gt; in html:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;cars&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;cars&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;volvo&quot;</span><span class="p">&gt;</span>Volvo<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;saab&quot;</span><span class="p">&gt;</span>Saab<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;fiat&quot;</span><span class="p">&gt;</span>Fiat<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;audi&quot;</span><span class="p">&gt;</span>Audi<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><em>singleSelect</em> gibt wohl keine Möglichkeit eine Option als Vorausgewählt zu markieren. Ebenso habe ich bisher keine Möglichkeit entdeckt, mehr als eine Option im Auswahlfeld sichtbar zu machen.</p>
+</div>
+<div class="section" id="multiselect">
+<h2>multiselect<a class="headerlink" href="#multiselect" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Template: views/multiselect.scala.html</p>
+<p>Parameter aus dem Beispiel:</p>
+<ul class="simple">
+<li><p>myForm =  Verweis auf das verwendete Model (zumeist model.ZettelModel) ?</p></li>
+<li><p>livestock =  Name des Forms ?</p></li>
+<li><p>services.ZettelFields.livestockZF.getLabel() = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett-Service erfragt und abholt.</p></li>
+<li><p>GenericDataHelper.getFieldSelectValues(„ktbl.livestock.properties“, „info.ktbl.livestock“) = Statische Methode einer Helper-Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.</p></li>
+<li><p>11 = ist die Position des neuen Formularfeldes im Erfassungsformular. Hiermit ist die Reihenfolge der Formulare steuerbar.</p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@multiselect(myForm, myMap, &quot;livestock&quot;,services.ZettelFields.livestockZF.getLabel(),&quot;select-livestock&quot;,GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;, &quot;info.ktbl.livestock&quot;),11)
+</pre></div>
+</div>
+<p><em>multiselect</em> erzeugt zunächst ein Auswahl-Formular mit der Möglichkeit eine Option auszuwählen. Äquivalent zu &lt;select&gt; in html.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;cars&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;cars&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;volvo&quot;</span><span class="p">&gt;</span>Volvo<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;saab&quot;</span><span class="p">&gt;</span>Saab<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;fiat&quot;</span><span class="p">&gt;</span>Fiat<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;audi&quot;</span><span class="p">&gt;</span>Audi<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Zusätzlich erzeugt multiselect aber auch noch Buttons mit denen die Nutzenden bei Bedarf weitere dieser Felder im Formular erzeugen können oder löschen können. Damit ist eine Mehrfachauswahl zu einem Feld möglich</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Inhaltsverzeichnis</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Bisher verfügbare Formulartypen</a><ul>
+<li><a class="reference internal" href="#singleselect">singleSelect</a></li>
+<li><a class="reference internal" href="#multiselect">multiselect</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Vorheriges Thema</h4>
+  <p class="topless"><a href="addForm.html"
+                        title="vorheriges Kapitel">Neue Formularfelder in Maske integrieren</a></p>
+  <div role="note" aria-label="source link">
+    <h3>Diese Seite</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/developer-docs/availableForms.rst.txt"
+            rel="nofollow">Quellcode anzeigen</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Stichwortverzeichnis"
+             >Index</a></li>
+        <li class="right" >
+          <a href="addForm.html" title="Neue Formularfelder in Maske integrieren"
+             >zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">zettelDocs 0.0.1 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Bisher verfügbare Formulartypen</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Andres Quast.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

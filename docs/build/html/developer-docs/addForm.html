@@ -48,18 +48,19 @@
 <h1>Neue Formularfelder in Maske integrieren<a class="headerlink" href="#neue-formularfelder-in-maske-integrieren" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala-Views unter app/views/ (z.B. reserachDataKtbl.scala.html)
 um neue Formular-Felder. Beispiel:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),&quot;ktbl-section&quot;){
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),&quot;ktbl-section&quot;){
         <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
-        @multifieldText(myForm,jsonMap,&quot;urn&quot;,services.ZettelFields.urnZF.getLabel(),&quot;&quot;,24)
+        @singleSelect(myForm,&quot;livestock&quot;,services.ZettelFields.livestockZF.getLabel(),&quot;select-livestock&quot;,GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;, &quot;info.ktbl.livestock&quot;),11)
         <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
-        @multifieldText(myForm,jsonMap,&quot;doi&quot;,services.ZettelFields.doiZF.getLabel(),&quot;&quot;,25)
+        @multiselect(myForm,jsonMap,&quot;dataOrigin&quot;,services.ZettelFields.dataOriginZF.getLabel(),&quot;select-dataOrigin&quot;,GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;, &quot;info.ktbl.livestock&quot;),112)
         <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
-        @multifieldText(myForm,jsonMap,&quot;isLike&quot;,services.ZettelFields.isLikeZF.getLabel(),&quot;&quot;,26)
 }
 </pre></div>
 </div>
-<p>Zunächst wird ein Akkordion als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.
-Java-Klassen app/services/ZettelFields und .</p>
+<ol class="arabic simple">
+<li><p>Zunächst wird ein Akkordion als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.</p></li>
+<li><p>Ein &#64;singleSelect</p></li>
+</ol>
 </div>
 
 
