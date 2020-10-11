@@ -3,15 +3,7 @@
  */
 package services;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Enumeration;
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Properties;
-
-import zetteltest.PropertiesFileUtil;
-
 
 /**
  * @author aquast

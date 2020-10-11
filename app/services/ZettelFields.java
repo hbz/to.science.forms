@@ -18,6 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package services;
 
 import de.hbz.lobid.helper.Etikett;
+import java.util.HashMap;
 
 /**
  * @author Jan Schnasse
