@@ -206,7 +206,7 @@ public class ZettelFields {
 		
 	public static String getEtikettByName(String etikettName, String etikettUri) {
 		
-		etiketts.put(etikettName, ZettelHelper.etikett.getEtikett(etikettUri))
+		etiketts.put(etikettName, ZettelHelper.etikett.getEtikett(etikettUri));
 		return etiketts.get(etikettName).getLabel();
 	}
 
