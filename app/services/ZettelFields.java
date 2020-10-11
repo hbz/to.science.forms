@@ -203,10 +203,9 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/lShandling");
 
 	
-	private HashMap<String, Etikett> etiketts = new HashMap();
+	private static HashMap<String, Etikett> etiketts = new HashMap();
 		
 	public static String getEtikettByName(String etikettName, String etikettUri) {
-		
 		etiketts.put(etikettName, ZettelHelper.etikett.getEtikett(etikettUri));
 		return etiketts.get(etikettName).getLabel();
 	}
