@@ -25,6 +25,7 @@ import de.hbz.lobid.helper.Etikett;
  */
 @SuppressWarnings("javadoc")
 public class ZettelFields {
+	
 	public static Etikett creatorZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/creator");
 	public static Etikett contributorZF =
@@ -199,5 +200,15 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/livestock");
 	public static Etikett lShandlingZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/lShandling");
+
+	
+	private HashMap<String, Etikett> etiketts = new HashMap();
+		
+	public static String getEtikettByName(String etikettName, String etikettUri) {
+		
+		etiketts.put(etikettName, ZettelHelper.etikett.getEtikett(etikettUri))
+		return etiketts.get(etikettName).getLabel();
+	}
+
 
 }
