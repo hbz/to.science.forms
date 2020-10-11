@@ -1,7 +1,7 @@
 Neue Formularfelder in Maske integrieren
 ========================================
 
-Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala-Views unter app/views/ (z.B. reserachDataKtbl.scala.html) 
+Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala-Views unter app/views/ (z.B. ``researchDataKtbl.scala.html``) 
 um neue Formular-Felder. Beispiel:
 
 .. code:: html
@@ -17,11 +17,11 @@ um neue Formular-Felder. Beispiel:
 
 1. Zunächst wird ein Akkordion als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.  
 
-2. Ein @singleSelect wird angelegt. Hierbei ist zu beachten die, dass die Klassen und Methodenaufrufe existieren. Dafür muss
+2. Ein ``@singleSelect`` wird angelegt. Hierbei ist zu beachten die, dass die Klassen und Methodenaufrufe existieren. Dafür muss
 
-  a) in der Klasse services.ZettelFields eine neue Etikett-Instanz livestockZF vereinbart werden. Bisher existiert für jeden für ein Formularfeld benötigten Bezeichner eine explizit in der Klasse ZettelFields vereinbarte (hardcodierte) Etikett-Instanz.
+  a) in der Klasse ``services.ZettelFields`` eine neue Etikett-Instanz livestockZF vereinbart werden. Bisher existiert für jeden für ein Formularfeld benötigten Bezeichner eine explizit in der Klasse ZettelFields vereinbarte (hardcodierte) Etikett-Instanz.
   
-  b) In einer der Helper-Klassen eine neue spezifische Methode z.B. KtblDataHelper.getLivestockType() erzeugt werden. 
+  b) In einer der Helper-Klassen eine neue spezifische Methode z.B. ``KtblDataHelper.getLivestockType()`` erzeugt werden. 
   
   c) Bisher wurden fast immer auch die Auswahloptionen in der Klasse als HashMap untergebracht. Dadurch muss die gesamte Zettel-Applikation neu erzeugt werden, wenn sich an den Auswahloptionen etwas ändert.
 
@@ -39,11 +39,11 @@ Beispiel:
 				<br />
 			}
 
-1. Ein @multiselect wird angelegt. Hierbei ist zu beachten, dass die Klassen und Methodenaufrufe existieren. Dafür muss
+1. Ein ``@multiselect`` wird angelegt. Hierbei ist zu beachten, dass die Klassen und Methodenaufrufe existieren. Dafür muss
   
-  a) in der Klasse services.ZettelFields eine neue Etikett-Instanz livestockZF vereinbart werden. *Es soll im nächsten Schritt versucht werden, auch hier generischen Code einzuführen, der auf hardcodierte Etikett-Instanzen verzichtet.*
+  a) in der Klasse ``services.ZettelFields`` eine neue Etikett-Instanz livestockZF vereinbart werden. **Es soll im nächsten Schritt versucht werden, auch hier generischen Code einzuführen, der auf hardcodierte Etikett-Instanzen verzichtet.**
   
-  b) Die generische Klasse GenericDataHelper mit der generischen Methode .getFieldSelectValues("Dateiname", "NamensPattern")[#]  erzeugt werden. 
+  b) Die generische Klasse GenericDataHelper mit der generischen Methode ``.getFieldSelectValues("Dateiname", "NamensPattern")`` [#]_  erzeugt werden. 
   
   c) Eine Konfigurations-Datei mit Dateiname entsprechend der Vorgaben der Properties-Klasse im Verzeichnis conf angelegt werden. Durch den NamensPattern ist es möglich, für ein Formularfeld nur bestimmte Werte aus dieser Datei zu übernehmen. Es kann aber auch für jedes Formularfeld eine eigene Datei angelegt werden. 
   
@@ -77,6 +77,7 @@ Das folgende Beispiel zeigt die Konfigurationsdatei für mehrere Formularfelder,
 	info.ktbl.emission.de.biogene_aerosole=Bioaerosole
 	info.ktbl.emission.de.others=andere
 
+Text hier
  
-[#] Das NamensPattern für die Auswahl der Tierart lautet im Beispiel "info.ktbl.livestock". Die Sprachvariable trennt das NamensPattern von den Auswahloptionen.
+ .. [#] Das NamensPattern für die Auswahl der Tierart lautet im Beispiel ``info.ktbl.livestock``. Die Sprachvariable trennt das NamensPattern von den Auswahloptionen.
   

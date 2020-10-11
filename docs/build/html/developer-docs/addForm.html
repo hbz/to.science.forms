@@ -50,7 +50,7 @@
             
   <div class="section" id="neue-formularfelder-in-maske-integrieren">
 <h1>Neue Formularfelder in Maske integrieren<a class="headerlink" href="#neue-formularfelder-in-maske-integrieren" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala-Views unter app/views/ (z.B. reserachDataKtbl.scala.html)
+<p>Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala-Views unter app/views/ (z.B. <code class="docutils literal notranslate"><span class="pre">researchDataKtbl.scala.html</span></code>)
 um neue Formular-Felder. Beispiel:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),&quot;ktbl-section&quot;){
         <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
@@ -61,12 +61,12 @@ um neue Formular-Felder. Beispiel:</p>
 </div>
 <ol class="arabic simple">
 <li><p>Zunächst wird ein Akkordion als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.</p></li>
-<li><p>Ein &#64;singleSelect wird angelegt. Hierbei ist zu beachten die, dass die Klassen und Methodenaufrufe existieren. Dafür muss</p></li>
+<li><p>Ein <code class="docutils literal notranslate"><span class="pre">&#64;singleSelect</span></code> wird angelegt. Hierbei ist zu beachten die, dass die Klassen und Methodenaufrufe existieren. Dafür muss</p></li>
 </ol>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li><p>in der Klasse services.ZettelFields eine neue Etikett-Instanz livestockZF vereinbart werden. Bisher existiert für jeden für ein Formularfeld benötigten Bezeichner eine explizit in der Klasse ZettelFields vereinbarte (hardcodierte) Etikett-Instanz.</p></li>
-<li><p>In einer der Helper-Klassen eine neue spezifische Methode z.B. KtblDataHelper.getLivestockType() erzeugt werden.</p></li>
+<li><p>in der Klasse <code class="docutils literal notranslate"><span class="pre">services.ZettelFields</span></code> eine neue Etikett-Instanz livestockZF vereinbart werden. Bisher existiert für jeden für ein Formularfeld benötigten Bezeichner eine explizit in der Klasse ZettelFields vereinbarte (hardcodierte) Etikett-Instanz.</p></li>
+<li><p>In einer der Helper-Klassen eine neue spezifische Methode z.B. <code class="docutils literal notranslate"><span class="pre">KtblDataHelper.getLivestockType()</span></code> erzeugt werden.</p></li>
 <li><p>Bisher wurden fast immer auch die Auswahloptionen in der Klasse als HashMap untergebracht. Dadurch muss die gesamte Zettel-Applikation neu erzeugt werden, wenn sich an den Auswahloptionen etwas ändert.</p></li>
 </ol>
 </div></blockquote>
@@ -82,12 +82,12 @@ um neue Formular-Felder. Beispiel:</p>
 </pre></div>
 </div>
 <ol class="arabic simple">
-<li><p>Ein &#64;multiselect wird angelegt. Hierbei ist zu beachten, dass die Klassen und Methodenaufrufe existieren. Dafür muss</p></li>
+<li><p>Ein <code class="docutils literal notranslate"><span class="pre">&#64;multiselect</span></code> wird angelegt. Hierbei ist zu beachten, dass die Klassen und Methodenaufrufe existieren. Dafür muss</p></li>
 </ol>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li><p>in der Klasse services.ZettelFields eine neue Etikett-Instanz livestockZF vereinbart werden. <em>Es soll im nächsten Schritt versucht werden, auch hier generischen Code einzuführen, der auf hardcodierte Etikett-Instanzen verzichtet.</em></p></li>
-<li><p>Die generische Klasse GenericDataHelper mit der generischen Methode .getFieldSelectValues(„Dateiname“, „NamensPattern“)[#]  erzeugt werden.</p></li>
+<li><p>in der Klasse <code class="docutils literal notranslate"><span class="pre">services.ZettelFields</span></code> eine neue Etikett-Instanz livestockZF vereinbart werden. <strong>Es soll im nächsten Schritt versucht werden, auch hier generischen Code einzuführen, der auf hardcodierte Etikett-Instanzen verzichtet.</strong></p></li>
+<li><p>Die generische Klasse GenericDataHelper mit der generischen Methode <code class="docutils literal notranslate"><span class="pre">.getFieldSelectValues(&quot;Dateiname&quot;,</span> <span class="pre">&quot;NamensPattern&quot;)</span></code> <a class="footnote-reference brackets" href="#id2" id="id1">1</a>  erzeugt werden.</p></li>
 <li><p>Eine Konfigurations-Datei mit Dateiname entsprechend der Vorgaben der Properties-Klasse im Verzeichnis conf angelegt werden. Durch den NamensPattern ist es möglich, für ein Formularfeld nur bestimmte Werte aus dieser Datei zu übernehmen. Es kann aber auch für jedes Formularfeld eine eigene Datei angelegt werden.</p></li>
 </ol>
 </div></blockquote>
@@ -118,7 +118,14 @@ info.ktbl.emission.de.biogene_aerosole=Bioaerosole
 info.ktbl.emission.de.others=andere
 </pre></div>
 </div>
-<p>[#] Das NamensPattern für die Auswahl der Tierart lautet im Beispiel „info.ktbl.livestock“. Die Sprachvariable trennt das NamensPattern von den Auswahloptionen.</p>
+<p>Text hier</p>
+<blockquote>
+<div><dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Das NamensPattern für die Auswahl der Tierart lautet im Beispiel <code class="docutils literal notranslate"><span class="pre">info.ktbl.livestock</span></code>. Die Sprachvariable trennt das NamensPattern von den Auswahloptionen.</p>
+</dd>
+</dl>
+</div></blockquote>
 </div>
 
 
