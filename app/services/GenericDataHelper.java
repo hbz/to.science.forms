@@ -28,7 +28,7 @@ public class GenericDataHelper {
 		Iterator<String> fit = fieldSet.iterator();
 		while(fit.hasNext()) {
 			String key = fit.next();
-			if( key.startsWith(fieldPattern)) {
+			if( key.startsWith(fieldPattern + "." + lang)) {
 				genericFieldMap.put(key, fieldMap.get(key));
 			}
 		}
