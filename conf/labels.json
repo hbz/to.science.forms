@@ -22980,5 +22980,49 @@
 		"multilangLabel": {
 			
 		}
+	},
+		{
+		"uri": "info:regal/zettel/livestock",
+		"comment": "",
+		"label": "Tierart",
+		"icon": "",
+		"name": "Tierart",
+		"referenceType": "String",
+		"container": "",
+		"weight": "1",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},
+		{
+		"uri": "info.ktbl.ventilation.de.ventilation",
+		"comment": "",
+		"label": "Lüftungsart",
+		"icon": "",
+		"name": "",
+		"referenceType": "String",
+		"container": "",
+		"weight": "1",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},
+		{
+		"uri": "info.ktbl.emission.de.emissions",
+		"comment": "",
+		"label": "Emissionen",
+		"icon": "",
+		"name": "",
+		"referenceType": "String",
+		"container": "",
+		"weight": "1",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
 	}
+	
+	
 ]
