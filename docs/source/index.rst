@@ -14,8 +14,3 @@ Willkommen zur Dokumentation von Zettel
    developer-docs/addForm
    developer-docs/availableForms
    
-
-Suche
-=====
-
-* :ref:`search`

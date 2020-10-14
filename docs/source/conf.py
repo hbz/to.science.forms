@@ -19,14 +19,14 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'zettelDocs'
+project = 'Zettel'
 copyright = '2020, Andres Quast'
 author = 'Andres Quast'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '0.9.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -108,7 +108,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'zettelDocsdoc'
+htmlhelp_basename = 'ZettelDoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -116,7 +116,7 @@ htmlhelp_basename = 'zettelDocsdoc'
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
-    # 'papersize': 'letterpaper',
+    # 'papersize': 'a4paper',
 
     # The font size ('10pt', '11pt' or '12pt').
     #
@@ -135,7 +135,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'zettelDocs.tex', 'zettelDocs Documentation',
+    (master_doc, 'zettelDocs.tex', 'Zettel Dokumentation',
      'Andres Quast', 'manual'),
 ]
 

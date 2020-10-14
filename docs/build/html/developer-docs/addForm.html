@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Neue Formularfelder in Maske integrieren &#8212; zettelDocs 0.0.1 Dokumentation</title>
+    <title>Neue Formularfelder in Maske integrieren &#8212; Zettel 0.9.1 Dokumentation</title>
     <link rel="stylesheet" href="../_static/hbz.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="createNewFormMask.html" title="Neue Erfassungsmaske erstellen"
              accesskey="P">zurück</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">zettelDocs 0.0.1 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Zettel 0.9.1 Dokumentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Neue Formularfelder in Maske integrieren</a></li> 
       </ul>
     </div>  
@@ -50,7 +50,27 @@
             
   <div class="section" id="neue-formularfelder-in-maske-integrieren">
 <h1>Neue Formularfelder in Maske integrieren<a class="headerlink" href="#neue-formularfelder-in-maske-integrieren" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala-Views unter app/views/ (z.B. <code class="docutils literal notranslate"><span class="pre">researchDataKtbl.scala.html</span></code>)
+<p>Dieses Kapitel befasst sich ausschließlich mit der Einrichtung von neuen Formularfeldern im Modul Zettel und der Anbindung von Etikett zur Bereitstellung der benötigten Label.
+Nicht beschrieben wird, wie die Auswertung der neuen Formularfelder in der Regal-Api erfolgt. Dieses Thema wird in einem separatenKapitel bzw. in der Regal-Api Dokumentation aufgegriffen.</p>
+<div class="section" id="bisherige-umsetzung">
+<h2>Bisherige Umsetzung<a class="headerlink" href="#bisherige-umsetzung" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="liste-der-im-beispiel-anzupassenden-dateien">
+<h3>Liste der im Beispiel anzupassenden Dateien<a class="headerlink" href="#liste-der-im-beispiel-anzupassenden-dateien" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">app/views/ResearchDataKtbl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">services/ZettelFields</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">services/KtblDataHelper</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conf/info.ktbl.livestock.properties</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conf/labels.json</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="umsetzungsweg">
+<h3>Umsetzungsweg<a class="headerlink" href="#umsetzungsweg" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="figure align-default" id="id9">
+<img alt="../_images/AccordionPanel.png" src="../_images/AccordionPanel.png" />
+<p class="caption"><span class="caption-text">Beispiel eines Formularbereichs mit zwei singleFields und einem multifield</span><a class="headerlink" href="#id9" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala-Views unter <code class="docutils literal notranslate"><span class="pre">app/views/</span></code> (z.B. <code class="docutils literal notranslate"><span class="pre">researchDataKtbl.scala.html</span></code>)
 um neue Formular-Felder. Beispiel:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),&quot;ktbl-section&quot;){
         <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
@@ -60,38 +80,86 @@ um neue Formular-Felder. Beispiel:</p>
 </pre></div>
 </div>
 <ol class="arabic simple">
-<li><p>Zunächst wird ein Akkordion als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.</p></li>
-<li><p>Ein <code class="docutils literal notranslate"><span class="pre">&#64;singleSelect</span></code> wird angelegt. Hierbei ist zu beachten die, dass die Klassen und Methodenaufrufe existieren. Dafür muss</p></li>
+<li><p>Zunächst wird ein <code class="docutils literal notranslate"><span class="pre">&#64;accordionPanel</span></code> als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion-Panel ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.</p></li>
+<li><p>Ein <code class="docutils literal notranslate"><span class="pre">&#64;singleSelect</span></code> wird angelegt. Hierbei ist zu beachten, dass die hier definierten Klassen und Methodenaufrufe auch existieren. Dafür ist bisher</p></li>
 </ol>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li><p>in der Klasse <code class="docutils literal notranslate"><span class="pre">services.ZettelFields</span></code> eine neue Etikett-Instanz livestockZF vereinbart werden. Bisher existiert für jeden für ein Formularfeld benötigten Bezeichner eine explizit in der Klasse ZettelFields vereinbarte (hardcodierte) Etikett-Instanz.</p></li>
+<li><p>in der Klasse <code class="docutils literal notranslate"><span class="pre">services.ZettelFields</span></code> eine neue Etikett-Instanz livestockZF anzulegen. <em>Bisher muss also für jeden in einem Formularfeld benötigten Bezeichner eine (hardcodierte) Etikett-Instanz in der Klasse ``service.ZettelFields`` deklariert werden.</em></p></li>
 <li><p>In einer der Helper-Klassen eine neue spezifische Methode z.B. <code class="docutils literal notranslate"><span class="pre">KtblDataHelper.getLivestockType()</span></code> erzeugt werden.</p></li>
-<li><p>Bisher wurden fast immer auch die Auswahloptionen in der Klasse als HashMap untergebracht. Dadurch muss die gesamte Zettel-Applikation neu erzeugt werden, wenn sich an den Auswahloptionen etwas ändert.</p></li>
+<li><p>Bisher wurden fast immer auch die möglichen Auswahloptionen für <code class="docutils literal notranslate"><span class="pre">&#64;singleSelect</span></code> in der Klasse <code class="docutils literal notranslate"><span class="pre">services.ZettelFields</span></code> als HashMap untergebracht. Dadurch muss die gesamte Zettel-Applikation neu erzeugt werden, wenn sich an den Auswahloptionen etwas ändert.</p></li>
 </ol>
 </div></blockquote>
-<p>Am Beispiel der Anlage des multiselects-Formularfelds soll eine <em>neue vereinfachte</em> Möglichkeit gezeigt werden, neue Formularfelder anzulegen.</p>
-<p>Beispiel:</p>
+<ol class="arabic simple" start="3">
+<li><p>In der Datei <code class="docutils literal notranslate"><span class="pre">conf.labels.json</span></code> muss für den Bezeichner des neuen Feldes ein Json-Etikett angehängt werden, der über die neu angelegte Methode (z.B. <code class="docutils literal notranslate"><span class="pre">services.ZettelFields.livestockZF.getLabel()</span></code> angesprochen wird.</p></li>
+</ol>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s">&quot;uri&quot;</span><span class="p">:</span> <span class="s">&quot;info:regal/zettel/ktblHeader&quot;</span><span class="p">,</span>
+        <span class="s">&quot;comment&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+        <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;Angaben für EmiMin-Daten&quot;</span><span class="p">,</span>
+        <span class="s">&quot;icon&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+        <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+        <span class="s">&quot;referenceType&quot;</span><span class="p">:</span> <span class="s">&quot;String&quot;</span><span class="p">,</span>
+        <span class="s">&quot;container&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+        <span class="s">&quot;weight&quot;</span><span class="p">:</span> <span class="s">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;CONTEXT&quot;</span><span class="p">,</span>
+        <span class="s">&quot;multilangLabel&quot;</span><span class="p">:</span> <span class="p">{</span>
+
+        <span class="p">}</span>
+<span class="p">},</span>
+        <span class="p">{</span>
+        <span class="s">&quot;uri&quot;</span><span class="p">:</span> <span class="s">&quot;info:regal/zettel/livestock&quot;</span><span class="p">,</span>
+        <span class="s">&quot;comment&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+        <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;Tierart&quot;</span><span class="p">,</span>
+        <span class="s">&quot;icon&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+        <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Tierart&quot;</span><span class="p">,</span>
+        <span class="s">&quot;referenceType&quot;</span><span class="p">:</span> <span class="s">&quot;String&quot;</span><span class="p">,</span>
+        <span class="s">&quot;container&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+        <span class="s">&quot;weight&quot;</span><span class="p">:</span> <span class="s">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;CONTEXT&quot;</span><span class="p">,</span>
+        <span class="s">&quot;multilangLabel&quot;</span><span class="p">:</span> <span class="p">{</span>
+
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="vereinfachte-umsetzung-mit-generischen-klassen-und-methoden">
+<h2>Vereinfachte Umsetzung mit generischen Klassen und Methoden<a class="headerlink" href="#vereinfachte-umsetzung-mit-generischen-klassen-und-methoden" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Am Beispiel der Anlage des multiselects-Formularfelds soll eine <strong>neue vereinfachte</strong> Möglichkeit vorgestellt werden, um neue Formularfelder anzulegen.</p>
+<div class="section" id="id1">
+<h3>Liste der im Beispiel anzupassenden Dateien<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">app/views/ResearchDataKtbl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conf/info.ktbl.livestock.properties</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conf/labels.json</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>Umsetzungsweg<a class="headerlink" href="#id2" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala-Views unter <code class="docutils literal notranslate"><span class="pre">app/views/</span></code> (z.B. <code class="docutils literal notranslate"><span class="pre">researchDataKtbl.scala.html</span></code>)
+um neue Formular-Felder. Beispiel:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),&quot;ktbl-section&quot;){
-        <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
-        @singleSelect(myForm,&quot;livestock&quot;,services.ZettelFields.livestockZF.getLabel(),&quot;select-livestock&quot;,KtblDataHelper.getLivestockType(),11)
-        <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
-        @multiselect(myForm,jsonMap,&quot;dataOrigin&quot;,services.ZettelFields.dataOriginZF.getLabel(),&quot;select-dataOrigin&quot;,GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;, &quot;info.ktbl.livestock&quot;),112)
+
+        [...]
+
+        @multiselect(myForm, jsonMap, &quot;emissions&quot;, services.ZettelFields.getEtikettByName(&quot;emissionsZF&quot;, &quot;info.ktbl.emission.de.emissions&quot;),&quot;select-emissions&quot;,GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;, &quot;info.ktbl.emission&quot;),42)
         <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
 }
 </pre></div>
 </div>
 <ol class="arabic simple">
-<li><p>Ein <code class="docutils literal notranslate"><span class="pre">&#64;multiselect</span></code> wird angelegt. Hierbei ist zu beachten, dass die Klassen und Methodenaufrufe existieren. Dafür muss</p></li>
+<li><p>Ein <code class="docutils literal notranslate"><span class="pre">&#64;multiselect</span></code> wird angelegt. Hierbei ist zu beachten, dass die Klassen und Methodenaufrufe existieren. Dafür wird</p></li>
 </ol>
 <blockquote>
 <div><ol class="loweralpha simple">
-<li><p>in der Klasse <code class="docutils literal notranslate"><span class="pre">services.ZettelFields</span></code> eine neue Etikett-Instanz livestockZF vereinbart werden. <strong>Es soll im nächsten Schritt versucht werden, auch hier generischen Code einzuführen, der auf hardcodierte Etikett-Instanzen verzichtet.</strong></p></li>
-<li><p>Die generische Klasse GenericDataHelper mit der generischen Methode <code class="docutils literal notranslate"><span class="pre">.getFieldSelectValues(&quot;Dateiname&quot;,</span> <span class="pre">&quot;NamensPattern&quot;)</span></code> <a class="footnote-reference brackets" href="#id2" id="id1">1</a>  erzeugt werden.</p></li>
-<li><p>Eine Konfigurations-Datei mit Dateiname entsprechend der Vorgaben der Properties-Klasse im Verzeichnis conf angelegt werden. Durch den NamensPattern ist es möglich, für ein Formularfeld nur bestimmte Werte aus dieser Datei zu übernehmen. Es kann aber auch für jedes Formularfeld eine eigene Datei angelegt werden.</p></li>
+<li><p>eine neue generische Methode <code class="docutils literal notranslate"><span class="pre">services.ZettelFields.getEtikettByName(&quot;emissionsZF&quot;,</span> <span class="pre">&quot;info.ktbl.emission.de.emissions&quot;)</span></code> aufgerufen, die die benötigte Etikett-Instanz „on the fly erzeugt“.</p></li>
+<li><p>die generische Klasse GenericDataHelper mit der generischen Methode <code class="docutils literal notranslate"><span class="pre">.getFieldSelectValues(&quot;Dateiname&quot;,</span> <span class="pre">&quot;NamensPattern&quot;)</span></code> <a class="footnote-reference brackets" href="#id6" id="id3">1</a>  aufgerufen.</p></li>
+<li><p>Eine Konfigurations-Datei <code class="docutils literal notranslate"><span class="pre">conf/Dateiname</span></code> angelegt <a class="footnote-reference brackets" href="#id7" id="id4">2</a>. Diese enthält als Schlüssel Literale, die mit dem NamensPattern beginnen <a class="footnote-reference brackets" href="#id8" id="id5">3</a>.</p></li>
 </ol>
 </div></blockquote>
-<p>Das folgende Beispiel zeigt die Konfigurationsdatei für mehrere Formularfelder, sowie eine erste (nicht funktionale) Implementierung für unterschiedliche Sprachen.</p>
+<p>Das folgende Beispiel zeigt die Konfigurationsdatei für mehrere Formularfelder, inklusive einer ersten Vorbereitung für unterschiedliche Sprachen.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Tierart
 info.ktbl.livestock.de.cattle=Rind
 info.ktbl.livestock.de.swine=Schwein
@@ -107,11 +175,11 @@ info.ktbl.livestock.cattle.de.calf_fattening=Kälbermast
 info.ktbl.ventilation.de.enforced_ventilation=zwangsgelüftet
 info.ktbl.ventilation.de.self_ventilation=freigelüftet
 info.ktbl.ventilation.de.combined_ventilation=kombinierte Lüftung
-# Emmissionen
-info.ktbl.emmision.de.ammonium=Ammoniak (NH&lt;sub&gt;2&lt;/sub&gt;)
-info.ktbl.emission.de.carbondioxide=Kohlendioxid (C0&lt;sub&gt;2&lt;/sub&gt;)
-info.ktbl.emission.de.diammoniumoxide=Lachgas (N&lt;sup&gt;2&lt;/sup&gt;O)
-info.ktbl.emission.de.methane=Methan (CH&lt;sub&gt;4&lt;/sub&gt;O)
+# Emissionen
+info.ktbl.emission.de.ammonia=Ammoniak (NH2)
+info.ktbl.emission.de.carbondioxide=Kohlendioxid (C02)
+info.ktbl.emission.de.diammoniumoxide=Lachgas (N2O)
+info.ktbl.emission.de.methane=Methan (CH4O)
 info.ktbl.emission.de.smells=Geruch
 info.ktbl.emission.de.particle=Partikel (Staub)
 info.ktbl.emission.de.biogene_aerosole=Bioaerosole
@@ -121,11 +189,19 @@ info.ktbl.emission.de.others=andere
 <p>Text hier</p>
 <blockquote>
 <div><dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
 <dd><p>Das NamensPattern für die Auswahl der Tierart lautet im Beispiel <code class="docutils literal notranslate"><span class="pre">info.ktbl.livestock</span></code>. Die Sprachvariable trennt das NamensPattern von den Auswahloptionen.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
+<dd><p>Die Datei enthält Schlüssel-Werte-Paare, die durch ein <code class="docutils literal notranslate"><span class="pre">=</span></code> getrennt werden. Das Verhalten beim Einlesend er Datei orientiert sich an der <code class="docutils literal notranslate"><span class="pre">Properties</span></code>-Klasse aus <code class="docutils literal notranslate"><span class="pre">java.utils</span></code></p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id5">3</a></span></dt>
+<dd><p>Durch den NamensPattern ist es möglich, für ein Formularfeld nur bestimmte Werte aus dieser Datei zu übernehmen. Es kann aber auch für jedes Formularfeld eine eigene Datei angelegt werden.</p>
 </dd>
 </dl>
 </div></blockquote>
+</div>
+</div>
 </div>
 
 
@@ -135,6 +211,23 @@ info.ktbl.emission.de.others=andere
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Inhaltsverzeichnis</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Neue Formularfelder in Maske integrieren</a><ul>
+<li><a class="reference internal" href="#bisherige-umsetzung">Bisherige Umsetzung</a><ul>
+<li><a class="reference internal" href="#liste-der-im-beispiel-anzupassenden-dateien">Liste der im Beispiel anzupassenden Dateien</a></li>
+<li><a class="reference internal" href="#umsetzungsweg">Umsetzungsweg</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vereinfachte-umsetzung-mit-generischen-klassen-und-methoden">Vereinfachte Umsetzung mit generischen Klassen und Methoden</a><ul>
+<li><a class="reference internal" href="#id1">Liste der im Beispiel anzupassenden Dateien</a></li>
+<li><a class="reference internal" href="#id2">Umsetzungsweg</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   <h4>Vorheriges Thema</h4>
   <p class="topless"><a href="createNewFormMask.html"
                         title="vorheriges Kapitel">Neue Erfassungsmaske erstellen</a></p>
@@ -174,7 +267,7 @@ info.ktbl.emission.de.others=andere
         <li class="right" >
           <a href="createNewFormMask.html" title="Neue Erfassungsmaske erstellen"
              >zurück</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">zettelDocs 0.0.1 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Zettel 0.9.1 Dokumentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Neue Formularfelder in Maske integrieren</a></li> 
       </ul>
     </div>
