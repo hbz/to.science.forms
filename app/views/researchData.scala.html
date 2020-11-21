@@ -85,6 +85,10 @@
 				<br />
 				@multiselect(myForm, jsonMap, "emissions", services.ZettelFields.getEtikettByName("emissionsZF", "info.ktbl.emission.de.emissions"),"select-emissions",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.emission"),42)
 				<br />
+				@multiselect(myForm, jsonMap, "emissionreducing", services.ZettelFields.getEtikettByName("emissionsReducingZF", "info.ktbl.emissionreduce.de.emissionreduce"),"select-emissions",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.emissionreduce"),43)
+				<br />
+				@singleSelect(myForm,"projecttitle",services.ZettelFields.projecttitleZF.getLabel(),"select-projecttitle",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.projecttitle"),44)
+				<br />
 			}
 		}
 		@if(myForm.hasErrors) {
