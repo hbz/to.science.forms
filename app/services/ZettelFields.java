@@ -201,6 +201,8 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/livestock");
 	public static Etikett lShandlingZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/lShandling");
+	public static Etikett projecttitleZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/ktblProjectTitle");
 
 	
 	private static HashMap<String, Etikett> etiketts = new HashMap();
