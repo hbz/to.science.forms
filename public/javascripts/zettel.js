@@ -228,6 +228,10 @@ function addActionsToRemoveAndAddButtons() {
 	});
 }
 
+function selectAvailableOptionsViaPreceedingForm(){
+	
+}
+
 function emitEvent() {
 	var target = parent.postMessage ? parent
 			: (parent.document.postMessage ? parent.document : undefined);
