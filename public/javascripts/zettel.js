@@ -229,7 +229,8 @@ function addActionsToRemoveAndAddButtons() {
 }
 
 function selectAvailableOptionsViaPreceedingForm(){
-	
+	var livestockSelected = $('select[name="livestock"] option:selected').attr("value");
+	$(".select-livestock").append("<p>Teste: " + livestockSelected + "</p>")
 }
 
 function emitEvent() {
