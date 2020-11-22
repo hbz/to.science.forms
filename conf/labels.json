@@ -23052,6 +23052,20 @@
 		}
 	},
 		{
+		"uri": "info.ktbl.emissionreduce@de",
+		"comment": "",
+		"label": "Emissionsminderungsverfahren",
+		"icon": "",
+		"name": "",
+		"referenceType": "String",
+		"container": "",
+		"weight": "1",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},
+		{
 		"uri": "info.ktbl.emission@de",
 		"comment": "",
 		"label": "Emissionen",
