@@ -22996,7 +22996,49 @@
 		}
 	},
 		{
-		"uri": "info.ktbl.ventilation.de.ventilation",
+		"uri": "info.ktbl.treatment@de",
+		"comment": "",
+		"label": "Produktionsrichtung",
+		"icon": "",
+		"name": "",
+		"referenceType": "String",
+		"container": "",
+		"weight": "1",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},
+		{
+		"uri": "info.ktbl.treatmentdetail@de",
+		"comment": "",
+		"label": "Weitere Spezifikationen",
+		"icon": "",
+		"name": "",
+		"referenceType": "String",
+		"container": "",
+		"weight": "1",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},
+		{
+		"uri": "info.ktbl.housing@de",
+		"comment": "",
+		"label": "Haltungsverfahren",
+		"icon": "",
+		"name": "",
+		"referenceType": "String",
+		"container": "",
+		"weight": "1",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},
+		{
+		"uri": "info.ktbl.ventilation@de",
 		"comment": "",
 		"label": "Lüftungsart",
 		"icon": "",
@@ -23010,7 +23052,7 @@
 		}
 	},
 		{
-		"uri": "info.ktbl.emission.de.emissions",
+		"uri": "info.ktbl.emission@de",
 		"comment": "",
 		"label": "Emissionen",
 		"icon": "",
