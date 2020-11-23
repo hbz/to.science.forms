@@ -228,9 +228,44 @@ function addActionsToRemoveAndAddButtons() {
 	});
 }
 
-function selectAvailableOptionsViaPreceedingForm(){
-	var livestockSelected = $('select[name="livestock"] option:selected').attr("value");
-	$(".select-livestock").append("<p>Teste: " + livestockSelected + "</p>")
+// This function is for ktbl only. 
+// It selects the treatment options to be selected according to the animal type 
+function ktblDetermineTreatment() {
+	
+	$('select[name="livestock"]').click(function(){
+	    var selTreatment = $('select[name="treatment"] option').hide();
+
+	    var selLivestock = $('select[name="livestock"]').val();    
+	    
+	    $('footer').append("<p>Ausgesuchte Option: " + selLivestock +"</p>");
+
+	    if(selLivestock.match('cattle') !== null){
+	    
+	        var treatment = $('option[value*="cattle"]').show();
+	        
+	    }
+	    if(selLivestock.match('swine') !== null){
+	    
+	        var treatment = $('option[value*="swine"]').show();
+	    
+	    }
+	    if(selLivestock.match('hens') !== null){
+	    
+	        var treatment = $('option[value*="hens"]').show();
+	        
+	    }
+	    if(selLivestock.match('turkey') !== null){
+	    
+	        var treatment = $('option[value*="turkey"]').show();
+
+	        
+	    }
+	    if(selLivestock.match('duck') !== null){
+	    
+	        var treatment = $('option[value*="duck"]').show();
+	    
+	    }
+	});
 }
 
 function emitEvent() {
