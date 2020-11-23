@@ -234,39 +234,137 @@ function ktblDetermineTreatment() {
 	
 	$('select[name="livestock"]').click(function(){
 	    var selTreatment = $('select[name="treatment"] option').hide();
-
 	    var selLivestock = $('select[name="livestock"]').val();    
 	    
-	    $('footer').append("<p>Ausgesuchte Option: " + selLivestock +"</p>");
-
 	    if(selLivestock.match('cattle') !== null){
-	    
-	        var treatment = $('option[value*="cattle"]').show();
-	        
+  	        var treatment = $('option[value*="cattle"]').show();        
 	    }
+	    
 	    if(selLivestock.match('swine') !== null){
-	    
 	        var treatment = $('option[value*="swine"]').show();
-	    
 	    }
+	    
 	    if(selLivestock.match('hens') !== null){
-	    
 	        var treatment = $('option[value*="hens"]').show();
-	        
 	    }
+	    
 	    if(selLivestock.match('turkey') !== null){
-	    
 	        var treatment = $('option[value*="turkey"]').show();
-
-	        
 	    }
+
 	    if(selLivestock.match('duck') !== null){
-	    
 	        var treatment = $('option[value*="duck"]').show();
-	    
 	    }
 	});
 }
+
+//This function is for ktbl only. 
+//It selects the treatmentDetail options to be selected according to the animal type 
+function ktblDetermineTreatmentDetail() {
+	
+	$('select[name="livestock"]').click(function(){
+	    var selTreatmentDetail = $('select[name="treatmentdetail"] option').hide();
+	    var selLivestock = $('select[name="livestock"]').val();    
+	    
+	    if(selLivestock.match('cattle') !== null){
+	        var treatment = $('option[value*="cattle"]').show();        
+	    }
+	    
+	    if(selLivestock.match('swine') !== null){
+	        var treatment = $('option[value*="swine"]').show();
+	    }
+	    
+	    if(selLivestock.match('hens') !== null){
+	        var treatment = $('option[value*="hens"]').show();
+	    }
+	    
+	    if(selLivestock.match('turkey') !== null){
+	        var treatment = $('option[value*="turkey"]').show();
+	    }
+
+	    if(selLivestock.match('duck') !== null){
+	        var treatment = $('option[value*="duck"]').show();
+	    }
+	});
+}
+
+//This function is for ktbl only. 
+//It selects the treatmentDetail options to be selected according to the animal type 
+function ktblDetermineHousingDetail() {
+	
+	$('select[name="treatment"]').click(function(){
+	    var selHousing = $('select[name="housing"] option').hide();
+	    var selTreatment = $('select[name="treatment"]').val();    
+	    
+	    if(selTreatment.match('diary_farming') !== null){
+	        var housing = $('option[value*="diary_farming"]').show();        
+	    }
+
+	    if(selTreatment.match('cattle_farming') !== null){
+	        var housing = $('option[value*="cattle_farming"]').show();        
+	    }
+
+	    if(selTreatment.match('calf_farming') !== null){
+	        var housing = $('option[value*="calf_farming"]').show();        
+	    }
+
+	    if(selTreatment.match('calf_fattening') !== null){
+	        var housing = $('option[value*="calf_fattening"]').show();        
+	    }
+
+	    if(selTreatment.match('cattle_fattening') !== null){
+	        var housing = $('option[value*="cattle_fattening"]').show();        
+	    }
+
+	    if(selTreatment.match('sucking_cow_farming') !== null){
+	        var housing = $('option[value*="sucking_cow_farming"]').show();        
+	    }
+
+	    if(selTreatment.match('sucking_pig_production') !== null){
+	        var housing = $('option[value*="sucking_pig_production"]').show();        
+	    }
+
+	    if(selTreatment.match('sucking_pig_farming') !== null){
+	        var housing = $('option[value*="sucking_pig_farming"]').show();        
+	    }
+
+	    if(selTreatment.match('swine_fattening') !== null){
+	        var housing = $('option[value*="swine_fattening"]').show();        
+	    }
+
+	    if(selTreatment.match('layer_farming') !== null){
+	        var housing = $('option[value*="layer_farming"]').show();        
+	    }
+
+	    if(selTreatment.match('chick_breeding') !== null){
+	        var housing = $('option[value*="chick_breeding"]').show();        
+	    }
+
+	    if(selTreatment.match('hens_fattening') !== null){
+	        var housing = $('option[value*="hens_fattening"]').show();        
+	    }
+
+	    if(selTreatment.match('turkey_fattening') !== null){
+	        var housing = $('option[value*="turkey_fattening"]').show();        
+	    }
+
+	    if(selTreatment.match('turkey_breeding') !== null){
+	        var housing = $('option[value*="turkey_breeding"]').show();        
+	    }
+
+	    if(selTreatment.match('duck_fattening') !== null){
+	        var housing = $('option[value*="duck_fattening"]').show();        
+	    }
+
+	    if(selTreatment.match('turkey_breeding') !== null){
+	        var housing = $('option[value*="duck_breeding"]').show();        
+	    }
+
+	
+	});
+}
+
+
 
 function emitEvent() {
 	var target = parent.postMessage ? parent
