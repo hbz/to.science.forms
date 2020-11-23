@@ -256,12 +256,7 @@ function ktblDetermineTreatment() {
 	        var treatment = $('option[value*="duck"]').show();
 	    }
 	});
-}
 
-//This function is for ktbl only. 
-//It selects the treatmentDetail options to be selected according to the animal type 
-function ktblDetermineTreatmentDetail() {
-	
 	$('select[name="livestock"]').click(function(){
 	    var selTreatmentDetail = $('select[name="treatmentdetail"] option').hide();
 	    var selLivestock = $('select[name="livestock"]').val();    
@@ -286,12 +281,7 @@ function ktblDetermineTreatmentDetail() {
 	        var treatment = $('option[value*="duck"]').show();
 	    }
 	});
-}
 
-//This function is for ktbl only. 
-//It selects the treatmentDetail options to be selected according to the animal type 
-function ktblDetermineHousingDetail() {
-	
 	$('select[name="treatment"]').click(function(){
 	    var selHousing = $('select[name="housing"] option').hide();
 	    var selTreatment = $('select[name="treatment"]').val();    
