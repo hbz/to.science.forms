@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<ncx version="2005-1" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta name="dtb:uid" content="unknown"/>
+    <meta name="dtb:depth" content="3"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text>Zettel</text>
+  </docTitle>
+  <navMap>    
+    <navPoint id="navPoint1" playOrder="1">
+      <navLabel>
+        <text>Willkommen zur Dokumentation von Zettel</text>
+      </navLabel>
+      <content src="index.xhtml" />  
+    </navPoint>
+    <navPoint id="navPoint2" playOrder="2">
+      <navLabel>
+        <text>Neue Erfassungsmaske erstellen</text>
+      </navLabel>
+      <content src="developer-docs/createNewFormMask.xhtml" />  
+    </navPoint>
+    <navPoint id="navPoint3" playOrder="3">
+      <navLabel>
+        <text>Neue Formularfelder in Maske integrieren</text>
+      </navLabel>
+      <content src="developer-docs/addForm.xhtml" />  
+      <navPoint id="navPoint4" playOrder="3">
+        <navLabel>
+          <text>Neue Formularfelder in Maske integrieren</text>
+        </navLabel>
+        <content src="developer-docs/addForm.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint5" playOrder="4">
+        <navLabel>
+          <text>Bisherige Umsetzung</text>
+        </navLabel>
+        <content src="developer-docs/addForm.xhtml#bisherige-umsetzung" />  
+        <navPoint id="navPoint6" playOrder="4">
+          <navLabel>
+            <text>Bisherige Umsetzung</text>
+          </navLabel>
+          <content src="developer-docs/addForm.xhtml#bisherige-umsetzung" />  
+        </navPoint>
+        <navPoint id="navPoint7" playOrder="5">
+          <navLabel>
+            <text>Liste der im Beispiel anzupassenden Dateien</text>
+          </navLabel>
+          <content src="developer-docs/addForm.xhtml#liste-der-im-beispiel-anzupassenden-dateien" />  
+        </navPoint>
+        <navPoint id="navPoint8" playOrder="6">
+          <navLabel>
+            <text>Umsetzungsweg</text>
+          </navLabel>
+          <content src="developer-docs/addForm.xhtml#umsetzungsweg" />  
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint9" playOrder="7">
+        <navLabel>
+          <text>Vereinfachte Umsetzung mit generischen Klassen und Methoden</text>
+        </navLabel>
+        <content src="developer-docs/addForm.xhtml#vereinfachte-umsetzung-mit-generischen-klassen-und-methoden" />  
+        <navPoint id="navPoint10" playOrder="7">
+          <navLabel>
+            <text>Vereinfachte Umsetzung mit generischen Klassen und Methoden</text>
+          </navLabel>
+          <content src="developer-docs/addForm.xhtml#vereinfachte-umsetzung-mit-generischen-klassen-und-methoden" />  
+        </navPoint>
+        <navPoint id="navPoint11" playOrder="8">
+          <navLabel>
+            <text>Liste der im Beispiel anzupassenden Dateien</text>
+          </navLabel>
+          <content src="developer-docs/addForm.xhtml#id1" />  
+        </navPoint>
+        <navPoint id="navPoint12" playOrder="9">
+          <navLabel>
+            <text>Umsetzungsweg</text>
+          </navLabel>
+          <content src="developer-docs/addForm.xhtml#id2" />  
+        </navPoint>
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint13" playOrder="10">
+      <navLabel>
+        <text>Bisher verfügbare Formulartypen</text>
+      </navLabel>
+      <content src="developer-docs/availableForms.xhtml" />  
+      <navPoint id="navPoint14" playOrder="10">
+        <navLabel>
+          <text>Bisher verfügbare Formulartypen</text>
+        </navLabel>
+        <content src="developer-docs/availableForms.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint15" playOrder="11">
+        <navLabel>
+          <text>singleSelect</text>
+        </navLabel>
+        <content src="developer-docs/availableForms.xhtml#singleselect" />  
+      </navPoint>
+      <navPoint id="navPoint16" playOrder="12">
+        <navLabel>
+          <text>multiselect</text>
+        </navLabel>
+        <content src="developer-docs/availableForms.xhtml#multiselect" />  
+      </navPoint>
+    </navPoint>
+  </navMap>
+</ncx>
