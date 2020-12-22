@@ -555,11 +555,13 @@ public class ZettelController extends Controller {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
 						: request().queryString().get("callback");
-		String lobidUrl = "https://api.crossref.org/funders";
-		WSRequest request = ws.url(lobidUrl);
+		String crossrefUrl = configuration.getString("crossrefFundersApiUrl");
+		int crossrefTimeout = configuration.getInt("crossrefFundersApiTimeout");
+		String crossrefUserAgent = configuration.getString("crossrefFundersApiUserAgent");
+		WSRequest request = ws.url(crossrefUrl);
 		String queryString = q;
 		WSRequest complexRequest =
-				request.setQueryParameter("query", queryString).setRequestTimeout(5000);
+				request.setQueryParameter("query", queryString).setRequestTimeout(crossrefTimeout).setHeader("User-Agent", crossrefUserAgent);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
