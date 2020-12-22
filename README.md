@@ -166,16 +166,18 @@ start
 
 # Update
 
-	rm -rf /tmp/zettel
+	rm -rf /tmp/to.science.forms
 	cd /tmp
-	git clone https://github.com/hbz/zettel
-	cd /tmp/zettel
+	git clone https://github.com/hbz/to.science.forms
+	cd /tmp/to.science.forms
 	/opt/activator-1.3.2-minimal/activator dist
 	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
 	unzip zettel-1.0-SNAPSHOT.zip
 	cp /opt/zettel/conf/application.conf /tmp/zettel-1.0-SNAPSHOT/conf
 	sudo service zettel stop
+	ps -eaf | grep zettel
+	# evtl kill <pid>, falls Zettel noch nicht weg ist!
 	rm -rf /opt/zettel/*
 	mv /tmp/zettel-1.0-SNAPSHOT/* /opt/zettel/
 	sudo service zettel start
