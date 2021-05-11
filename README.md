@@ -115,8 +115,8 @@ Comming soon...
 
 ## Download
 	cd /tmp
-	git clone https://github.com/hbz/zettel
-	cd zettel
+	git clone https://github.com/hbz/to.science.forms
+	cd to.science.forms
 	
 ## Run
 
@@ -126,14 +126,14 @@ Go to http://localhost:9000/tools/zettel
 
 ## Install 
 
-	cd /tmp/zettel
-	/opt/activator-1.3.2-minimal/activator dist
+	cd /tmp/to.science.forms
+	/opt/regal/bin/activator/bin/activator dist
 	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
 	unzip zettel-1.0-SNAPSHOT.zip
-	mv zettel-1.0-SNAPSHOT /opt/zettel
+	mv zettel-1.0-SNAPSHOT /opt/regal/apps/to.science.forms
 
-edit /opt/zettel/conf/application.conf
+edit /opt/regal/apps/to.science.forms/conf/application.conf
 
 	contextUrl="http://localhost:9002/tools/etikett/context.json"
 	etikettService="http://api.localhost:9002/tools/etikett"
@@ -143,26 +143,29 @@ edit /opt/zettel/conf/application.conf
 
 edit startscript
 
-	sudo cp /tmp/zettel/install/zettel.tmpl /etc/init.d/zettel
-	sudo chmod u+x /etc/init.d/zettel
-	sudo editor /etc/init.d/zettel
+	sudo cp /tmp/to.science.forms/install/zettel.tmpl /etc/init.d/to.science.forms
+	sudo chmod u+x /etc/init.d/to.science.forms
+	sudo editor /etc/init.d/to.science.forms
 
 set the following vars
 
-	JAVA_HOME=/opt/java
-	HOME="/opt/zettel"
-	USER="user to run zettel"
-	GROUP="user to run zettel"
-	SECRET=`uuidgen` # generate a secret e.g. using uuidgen
-	PORT=9000
+        NAME=to.science.forms
+        DESC="Zettel form provider"
+        JAVA_HOME=/opt/jdk
+        JAVA_OPTS="-XX:+HeapDumpOnOutOfMemoryError"
+        HOME="/opt/regal/apps/to.science.forms"
+        USER="user to run forms"
+        GROUP="group of user to run forms"
+        SECRET=`uuidgen` # generate a secret e.g. using uuidgen
+        PORT=9003 # match with your apache.conf
 
 include into system start and shutdown
 
-	sudo update-rc.d zettel defaults 99 20
+	sudo update-rc.d to.science.forms defaults 99 20
 
 start
 
-	sudo service zettel start
+	sudo service to.science.forms start
 
 # Update
 
