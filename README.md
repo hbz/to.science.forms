@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6c5d27fea7924d259663ff95221bdadc)](https://app.codacy.com/gh/hbz/to.science.forms?utm_source=github.com&utm_medium=referral&utm_content=hbz/to.science.forms&utm_campaign=Badge_Grade_Settings)
 [![Travis Ci](https://travis-ci.org/hbz/zettel.svg?branch=master)](https://travis-ci.org/hbz/zettel)
 
 ![to.science Logo](/doc/resources/images/to.science.svg "to.science Logo")
