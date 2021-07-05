@@ -240,12 +240,12 @@ function ktblDetermineTreatment() {
   	        var treatment = $('option[value*="cattle"]').show();        
 	    }
 	    
-	    if(selLivestock.match('swine') !== null){
-	        var treatment = $('option[value*="swine"]').show();
+	    if(selLivestock.match('pig') !== null){
+	        var treatment = $('option[value*="pig"]').show();
 	    }
 	    
-	    if(selLivestock.match('hens') !== null){
-	        var treatment = $('option[value*="hens"]').show();
+	    if(selLivestock.match('chicken') !== null){
+	        var treatment = $('option[value*="chicken"]').show();
 	    }
 	    
 	    if(selLivestock.match('turkey') !== null){
@@ -265,12 +265,12 @@ function ktblDetermineTreatment() {
 	        var treatment = $('option[value*="cattle"]').show();        
 	    }
 	    
-	    if(selLivestock.match('swine') !== null){
-	        var treatment = $('option[value*="swine"]').show();
+	    if(selLivestock.match('pig') !== null){
+	        var treatment = $('option[value*="pig"]').show();
 	    }
 	    
-	    if(selLivestock.match('hens') !== null){
-	        var treatment = $('option[value*="hens"]').show();
+	    if(selLivestock.match('chicken') !== null){
+	        var treatment = $('option[value*="chicken"]').show();
 	    }
 	    
 	    if(selLivestock.match('turkey') !== null){
@@ -310,16 +310,16 @@ function ktblDetermineTreatment() {
 	        var housing = $('option[value*="sucking_cow_farming"]').show();        
 	    }
 
-	    if(selTreatment.match('sucking_pig_production') !== null){
-	        var housing = $('option[value*="sucking_pig_production"]').show();        
+	    if(selTreatment.match('piglet_production') !== null){
+	        var housing = $('option[value*="piglet_production"]').show();        
 	    }
 
-	    if(selTreatment.match('sucking_pig_farming') !== null){
-	        var housing = $('option[value*="sucking_pig_farming"]').show();        
+	    if(selTreatment.match('piglet_farming') !== null){
+	        var housing = $('option[value*="piglet_farming"]').show();        
 	    }
 
-	    if(selTreatment.match('swine_fattening') !== null){
-	        var housing = $('option[value*="swine_fattening"]').show();        
+	    if(selTreatment.match('pig_fattening') !== null){
+	        var housing = $('option[value*="pig_fattening"]').show();        
 	    }
 
 	    if(selTreatment.match('layer_farming') !== null){
@@ -330,8 +330,8 @@ function ktblDetermineTreatment() {
 	        var housing = $('option[value*="chick_breeding"]').show();        
 	    }
 
-	    if(selTreatment.match('hens_fattening') !== null){
-	        var housing = $('option[value*="hens_fattening"]').show();        
+	    if(selTreatment.match('chicken_fattening') !== null){
+	        var housing = $('option[value*="chicken_fattening"]').show();        
 	    }
 
 	    if(selTreatment.match('turkey_fattening') !== null){
@@ -346,7 +346,7 @@ function ktblDetermineTreatment() {
 	        var housing = $('option[value*="duck_fattening"]').show();        
 	    }
 
-	    if(selTreatment.match('turkey_breeding') !== null){
+	    if(selTreatment.match('duck_breeding') !== null){
 	        var housing = $('option[value*="duck_breeding"]').show();        
 	    }
 
