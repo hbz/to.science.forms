@@ -345,11 +345,6 @@ function ktblDetermineTreatment() {
 	    if(selTreatment.match('duck_fattening') !== null){
 	        var housing = $('option[value*="duck_fattening"]').show();        
 	    }
-
-	    if(selTreatment.match('duck_breeding') !== null){
-	        var housing = $('option[value*="duck_breeding"]').show();        
-	    }
-
 	
 	});
 }
