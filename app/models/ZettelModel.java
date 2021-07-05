@@ -1267,12 +1267,12 @@ public abstract class ZettelModel {
 
 		dict.put(livestockZF.uri, (in) -> setLivestock((String) in));
 		dict.put(treatmentZF.uri, (in) -> setTreatment((String) in));
-		dict.put(housingZF.uri, (in) -> setHousing((String) in));
-		dict.put(ventilationZF.uri, (in) -> setHousing((String) in));
+		dict.put(housingZF.uri, (in) -> addHousing((String) in));
+		dict.put(ventilationZF.uri, (in) -> setVentilation((String) in));
 		dict.put(emissionprobeZF.uri, (in) -> addEmissionprobe((String) in));
 		dict.put(emissionZF.uri, (in) -> addEmission((String) in));
 		dict.put(emissionreducingZF.uri, (in) -> addEmissionreducing((String) in));
-		dict.put(projecttitleZF.uri, (in) -> setHousing((String) in));
+		dict.put(projecttitleZF.uri, (in) -> setProjecttitle((String) in));
 		return dict;
 	}
 
