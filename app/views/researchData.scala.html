@@ -83,7 +83,7 @@
 				<br />
 				@singleSelect(myForm,"treatment",services.ZettelFields.treatmentZF.getLabel(),"select-treatment",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.treatment"),40)
 				<br />
-				@singleSelect(myForm,"housing",services.ZettelFields.housingZF.getLabel(),"select-housing",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.housing"),40)
+				@multiselect(myForm, jsonMap, "housing",  services.ZettelFields.getEtikettByName("housingZF", "info.ktbl.housing@de"), "select-ventilation", "select-housing",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.housing"),40)
 				<br />
 				@singleSelect(myForm,"treatmentdetail",services.ZettelFields.treatmentdetailZF.getLabel(),"select-treatmentdetail",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.treatmentdetail"),40)
 				<br />
