@@ -23068,7 +23068,7 @@
 		{
 		"uri": "info.ktbl.emissionprobe@de",
 		"comment": "",
-		"label": "Emissionsminderungsverfahren",
+		"label": "Emissionsmessverfahren",
 		"icon": "",
 		"name": "",
 		"referenceType": "String",
@@ -23092,6 +23092,20 @@
 		"multilangLabel": {
 			
 		}
+	},
+    {
+    "uri": "info.ktbl.projecttitle@de",
+    "comment": "",
+    "label": "Projektzugehörigkeit",
+    "icon": "",
+    "name": "",
+    "referenceType": "String",
+    "container": "",
+    "weight": "1",
+    "type": "CONTEXT",
+    "multilangLabel": {
+      
+    }
 	}
 	
 	
