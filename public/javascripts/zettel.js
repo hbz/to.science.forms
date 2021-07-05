@@ -318,6 +318,10 @@ function ktblDetermineTreatment() {
 	        var housing = $('option[value*="piglet_farming"]').show();        
 	    }
 
+      if(selTreatment.match('piglet_raising') !== null){
+          var housing = $('option[value*="piglet_raising"]').show();        
+      }
+
 	    if(selTreatment.match('pig_fattening') !== null){
 	        var housing = $('option[value*="pig_fattening"]').show();        
 	    }
