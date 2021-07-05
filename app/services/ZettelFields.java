@@ -199,14 +199,22 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/ktblHeader");
 	public static Etikett livestockZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/livestock");
-	public static Etikett projecttitleZF =
-			ZettelHelper.etikett.getEtikett("info.ktbl.projecttitle@de");
 	public static Etikett treatmentZF =
 			ZettelHelper.etikett.getEtikett("info.ktbl.treatment@de");
 	public static Etikett housingZF =
 			ZettelHelper.etikett.getEtikett("info.ktbl.housing@de");
 	public static Etikett treatmentdetailZF =
 			ZettelHelper.etikett.getEtikett("info.ktbl.treatmentdetail@de");
+	public static Etikett emissionprobeZF =
+			ZettelHelper.etikett.getEtikett("info.ktbl.emissionprobe@de");
+	public static Etikett ventilationZF =
+			ZettelHelper.etikett.getEtikett("info.ktbl.ventilation@de");
+	public static Etikett emissionZF =
+			ZettelHelper.etikett.getEtikett("info.ktbl.emission@de");
+	public static Etikett emissionreducingZF =
+			ZettelHelper.etikett.getEtikett("info.ktbl.emissionreducing@de");
+	public static Etikett projecttitleZF =
+			ZettelHelper.etikett.getEtikett("info.ktbl.projecttitle@de");
 
 	
 	private static HashMap<String, Etikett> etiketts = new HashMap();

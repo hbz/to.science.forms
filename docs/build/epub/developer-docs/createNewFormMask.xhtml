@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>Neue Erfassungsmaske erstellen</title>
+    <link rel="stylesheet" href="../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="neue-erfassungsmaske-erstellen">
+<h1>Neue Erfassungsmaske erstellen</h1>
+<p>Aufsetzend auf einer geeigneten Maske erfolgt die Erstellung einer neuen Maske am einfachsten durch Kopieren und  anschließendes Anpassen der benötigten Dateien.</p>
+<p>Unter <code class="docutils literal notranslate"><span class="pre">/app/models/</span></code> befinden sich die einzelnen Modelle für die Eingabemasken. Diese erweitern die Klasse <code class="docutils literal notranslate"><span class="pre">ZettelModel</span></code>.
+Wird eine neue Maske angelegt, so ist dafür ein neues Model entweder als Java-Klasse zu erzeugen, die die Klasse <code class="docutils literal notranslate"><span class="pre">ZettelModel</span></code> erbt,
+oder einfacher durch Kopieren und Anpassen einer bestehenden Klasse (z.B. <code class="docutils literal notranslate"><span class="pre">ResearchData.java</span></code> zu <code class="docutils literal notranslate"><span class="pre">ResearchDataKtbl.java</span></code>).</p>
+<ol class="arabic simple">
+<li><p>In der neuen Klasse müssen nun die Variablen, die den Klassennamen enthalten entsprechend angepasst werden</p></li>
+<li><p>Die neue Klasse muss anschließend in der Klasse <code class="docutils literal notranslate"><span class="pre">ZettelRegister</span></code> unter <code class="docutils literal notranslate"><span class="pre">app/services/</span></code> eingetragen werden. Das erfolgt innerhalb des Constructors der Klasse.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">app/services/</span></code> muss zusätzlich eine Klasse erstellt werden, die dem neuen Model entspricht (z.B. <code class="docutils literal notranslate"><span class="pre">ResearchDataKtblZettel.java</span></code>).</p></li>
+</ol>
+<p>Innerhalb des nun erstellten Models (<code class="docutils literal notranslate"><span class="pre">app/models/ResearchDataKtbl.java</span></code>) wird zunächst nur festgelegt, wie die Felder angezeigt werden und ob sie z.B. verpflichtend sind.
+Die Einbeziehung neuer Formularfelder erfolgt erst jetzt.</p>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

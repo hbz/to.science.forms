@@ -8,58 +8,33 @@
 \PassOptionsToPackage{warn}{textcomp}
 \usepackage[utf8]{inputenc}
 \ifdefined\DeclareUnicodeCharacter
-% support both utf8 and utf8x syntaxes
-  \ifdefined\DeclareUnicodeCharacterAsOptional
-    \def\sphinxDUC#1{\DeclareUnicodeCharacter{"#1}}
-  \else
-    \let\sphinxDUC\DeclareUnicodeCharacter
-  \fi
-  \sphinxDUC{00A0}{\nobreakspace}
-  \sphinxDUC{2500}{\sphinxunichar{2500}}
-  \sphinxDUC{2502}{\sphinxunichar{2502}}
-  \sphinxDUC{2514}{\sphinxunichar{2514}}
-  \sphinxDUC{251C}{\sphinxunichar{251C}}
-  \sphinxDUC{2572}{\textbackslash}
+ \ifdefined\DeclareUnicodeCharacterAsOptional
+  \DeclareUnicodeCharacter{"00A0}{\nobreakspace}
+  \DeclareUnicodeCharacter{"2500}{\sphinxunichar{2500}}
+  \DeclareUnicodeCharacter{"2502}{\sphinxunichar{2502}}
+  \DeclareUnicodeCharacter{"2514}{\sphinxunichar{2514}}
+  \DeclareUnicodeCharacter{"251C}{\sphinxunichar{251C}}
+  \DeclareUnicodeCharacter{"2572}{\textbackslash}
+ \else
+  \DeclareUnicodeCharacter{00A0}{\nobreakspace}
+  \DeclareUnicodeCharacter{2500}{\sphinxunichar{2500}}
+  \DeclareUnicodeCharacter{2502}{\sphinxunichar{2502}}
+  \DeclareUnicodeCharacter{2514}{\sphinxunichar{2514}}
+  \DeclareUnicodeCharacter{251C}{\sphinxunichar{251C}}
+  \DeclareUnicodeCharacter{2572}{\textbackslash}
+ \fi
 \fi
 \usepackage{cmap}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amstext}
 \usepackage{babel}
-
-
-
 \usepackage{times}
-\expandafter\ifx\csname T@LGR\endcsname\relax
-\else
-% LGR was declared as font encoding
-  \substitutefont{LGR}{\rmdefault}{cmr}
-  \substitutefont{LGR}{\sfdefault}{cmss}
-  \substitutefont{LGR}{\ttdefault}{cmtt}
-\fi
-\expandafter\ifx\csname T@X2\endcsname\relax
-  \expandafter\ifx\csname T@T2A\endcsname\relax
-  \else
-  % T2A was declared as font encoding
-    \substitutefont{T2A}{\rmdefault}{cmr}
-    \substitutefont{T2A}{\sfdefault}{cmss}
-    \substitutefont{T2A}{\ttdefault}{cmtt}
-  \fi
-\else
-% X2 was declared as font encoding
-  \substitutefont{X2}{\rmdefault}{cmr}
-  \substitutefont{X2}{\sfdefault}{cmss}
-  \substitutefont{X2}{\ttdefault}{cmtt}
-\fi
-
-
 \usepackage[Sonny]{fncychap}
 \ChNameVar{\Large\normalfont\sffamily}
 \ChTitleVar{\Large\normalfont\sffamily}
 \usepackage{sphinx}
 
-\fvset{fontsize=\small}
 \usepackage{geometry}
-
 
 % Include hyperref last.
 \usepackage{hyperref}
@@ -67,33 +42,36 @@
 \usepackage{hypcap}% it must be loaded after hyperref.
 % Set up styles of URL: it should be placed after hyperref.
 \urlstyle{same}
-
 \addto\captionsngerman{\renewcommand{\contentsname}{Inhalt:}}
 
-\usepackage{sphinxmessages}
+\addto\captionsngerman{\renewcommand{\figurename}{Abb.}}
+\addto\captionsngerman{\renewcommand{\tablename}{Tab.}}
+\addto\captionsngerman{\renewcommand{\literalblockname}{Quellcode}}
+
+\addto\captionsngerman{\renewcommand{\literalblockcontinuedname}{Fortsetzung der vorherigen Seite}}
+\addto\captionsngerman{\renewcommand{\literalblockcontinuesname}{Fortsetzung auf der nächsten Seite}}
+
+\addto\extrasngerman{\def\pageautorefname{Seite}}
+
 \setcounter{tocdepth}{1}
 
 
 
 \title{Zettel Dokumentation}
-\date{13.10.2020}
+\date{15.10.2020}
 \release{0.9.1}
 \author{Andres Quast}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
 \makeindex
-\begin{document}
 
+\begin{document}
 \ifdefined\shorthandoff
   \ifnum\catcode`\=\string=\active\shorthandoff{=}\fi
   \ifnum\catcode`\"=\active\shorthandoff{"}\fi
 \fi
-
-\pagestyle{empty}
-\sphinxmaketitle
-\pagestyle{plain}
+\maketitle
 \sphinxtableofcontents
-\pagestyle{normal}
 \phantomsection\label{\detokenize{index::doc}}
 
 
@@ -103,10 +81,9 @@
 Aufsetzend auf einer geeigneten Maske erfolgt die Erstellung einer neuen Maske am einfachsten durch Kopieren und  anschließendes Anpassen der benötigten Dateien.
 
 Unter \sphinxcode{\sphinxupquote{/app/models/}} befinden sich die einzelnen Modelle für die Eingabemasken. Diese erweitern die Klasse \sphinxcode{\sphinxupquote{ZettelModel}}.
-Wird eine neue Maske angelegt, so ist dafür ein neues Model entweder als Java\sphinxhyphen{}Klasse zu erzeugen, die die Klasse \sphinxcode{\sphinxupquote{ZettelModel}} erbt,
+Wird eine neue Maske angelegt, so ist dafür ein neues Model entweder als Java-Klasse zu erzeugen, die die Klasse \sphinxcode{\sphinxupquote{ZettelModel}} erbt,
 oder einfacher durch Kopieren und Anpassen einer bestehenden Klasse (z.B. \sphinxcode{\sphinxupquote{ResearchData.java}} zu \sphinxcode{\sphinxupquote{ResearchDataKtbl.java}}).
 \begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{)}%
 \item {} 
 In der neuen Klasse müssen nun die Variablen, die den Klassennamen enthalten entsprechend angepasst werden
 
@@ -125,7 +102,7 @@ Die Einbeziehung neuer Formularfelder erfolgt erst jetzt.
 \chapter{Neue Formularfelder in Maske integrieren}
 \label{\detokenize{developer-docs/addForm:neue-formularfelder-in-maske-integrieren}}\label{\detokenize{developer-docs/addForm::doc}}
 Dieses Kapitel befasst sich ausschließlich mit der Einrichtung von neuen Formularfeldern im Modul Zettel und der Anbindung von Etikett zur Bereitstellung der benötigten Label.
-Nicht beschrieben wird, wie die Auswertung der neuen Formularfelder in der Regal\sphinxhyphen{}Api erfolgt. Dieses Thema wird in einem separatenKapitel bzw. in der Regal\sphinxhyphen{}Api Dokumentation aufgegriffen.
+Nicht beschrieben wird, wie die Auswertung der neuen Formularfelder in der Regal-Api erfolgt. Dieses Thema wird in einem separatenKapitel bzw. in der Regal-Api Dokumentation aufgegriffen.
 
 
 \section{Bisherige Umsetzung}
@@ -160,71 +137,70 @@ Nicht beschrieben wird, wie die Auswertung der neuen Formularfelder in der Regal
 \noindent\sphinxincludegraphics{{AccordionPanel}.png}
 \caption{Beispiel eines Formularbereichs mit zwei singleFields und einem multifield}\label{\detokenize{developer-docs/addForm:id9}}\end{figure}
 
-Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala\sphinxhyphen{}Views unter \sphinxcode{\sphinxupquote{app/views/}} (z.B. \sphinxcode{\sphinxupquote{researchDataKtbl.scala.html}})
-um neue Formular\sphinxhyphen{}Felder. Beispiel:
+Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala-Views unter \sphinxcode{\sphinxupquote{app/views/}} (z.B. \sphinxcode{\sphinxupquote{researchDataKtbl.scala.html}})
+um neue Formular-Felder. Beispiel:
 
+\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),\PYGZdq{}ktbl\PYGZhy{}section\PYGZdq{})\PYGZob{}
-        \PYG{p}{\PYGZlt{}}\PYG{n+nt}{br} \PYG{p}{/}\PYG{p}{\PYGZgt{}}
-        @singleSelect(myForm,\PYGZdq{}livestock\PYGZdq{},services.ZettelFields.livestockZF.getLabel(),\PYGZdq{}select\PYGZhy{}livestock\PYGZdq{},KtblDataHelper.getLivestockType(),11)
-        \PYG{p}{\PYGZlt{}}\PYG{n+nt}{br} \PYG{p}{/}\PYG{p}{\PYGZgt{}}
-\PYGZcb{}
+\PYG{n+nd}{@accordionPanel}\PYG{p}{(}\PYG{n}{services}\PYG{o}{.}\PYG{n}{ZettelFields}\PYG{o}{.}\PYG{n}{ktblHeaderZF}\PYG{o}{.}\PYG{n}{getLabel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ktbl\PYGZhy{}section}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{\PYGZob{}}
+        \PYG{o}{\PYGZlt{}}\PYG{n}{br} \PYG{o}{/}\PYG{o}{\PYGZgt{}}
+        \PYG{n+nd}{@singleSelect}\PYG{p}{(}\PYG{n}{myForm}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{livestock}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{services}\PYG{o}{.}\PYG{n}{ZettelFields}\PYG{o}{.}\PYG{n}{livestockZF}\PYG{o}{.}\PYG{n}{getLabel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{select\PYGZhy{}livestock}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{KtblDataHelper}\PYG{o}{.}\PYG{n}{getLivestockType}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{11}\PYG{p}{)}
+        \PYG{o}{\PYGZlt{}}\PYG{n}{br} \PYG{o}{/}\PYG{o}{\PYGZgt{}}
+\PYG{p}{\PYGZcb{}}
 \end{sphinxVerbatim}
 \begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
-Zunächst wird ein \sphinxcode{\sphinxupquote{@accordionPanel}} als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion\sphinxhyphen{}Panel ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.
+Zunächst wird ein \sphinxcode{\sphinxupquote{@accordionPanel}} als übergreifende Maske für die neuen Formularfelder vereinbart. Das Akkordion-Panel ermöglicht, die Formularfelder eingeklappt oder ausgeklappt anzuzeigen.
 
 \item {} 
 Ein \sphinxcode{\sphinxupquote{@singleSelect}} wird angelegt. Hierbei ist zu beachten, dass die hier definierten Klassen und Methodenaufrufe auch existieren. Dafür ist bisher
 
 \end{enumerate}
 \begin{enumerate}
-\sphinxsetlistlabels{\alph}{enumi}{enumii}{}{)}%
 \item {} 
-in der Klasse \sphinxcode{\sphinxupquote{services.ZettelFields}} eine neue Etikett\sphinxhyphen{}Instanz livestockZF anzulegen. \sphinxstyleemphasis{Bisher muss also für jeden in einem Formularfeld benötigten Bezeichner eine (hardcodierte) Etikett\sphinxhyphen{}Instanz in der Klasse \textasciigrave{}\textasciigrave{}service.ZettelFields\textasciigrave{}\textasciigrave{} deklariert werden.}
+in der Klasse \sphinxcode{\sphinxupquote{services.ZettelFields}} eine neue Etikett-Instanz livestockZF anzulegen. \sphinxstyleemphasis{Bisher muss also für jeden in einem Formularfeld benötigten Bezeichner eine (hardcodierte) Etikett-Instanz in der Klasse {}`{}`service.ZettelFields{}`{}` deklariert werden.}
 
 \item {} 
-In einer der Helper\sphinxhyphen{}Klassen eine neue spezifische Methode z.B. \sphinxcode{\sphinxupquote{KtblDataHelper.getLivestockType()}} erzeugt werden.
+In einer der Helper-Klassen eine neue spezifische Methode z.B. \sphinxcode{\sphinxupquote{KtblDataHelper.getLivestockType()}} erzeugt werden.
 
 \item {} 
-Bisher wurden fast immer auch die möglichen Auswahloptionen für \sphinxcode{\sphinxupquote{@singleSelect}} in der Klasse \sphinxcode{\sphinxupquote{services.ZettelFields}} als HashMap untergebracht. Dadurch muss die gesamte Zettel\sphinxhyphen{}Applikation neu erzeugt werden, wenn sich an den Auswahloptionen etwas ändert.
+Bisher wurden fast immer auch die möglichen Auswahloptionen für \sphinxcode{\sphinxupquote{@singleSelect}} in der Klasse \sphinxcode{\sphinxupquote{services.ZettelFields}} als HashMap untergebracht. Dadurch muss die gesamte Zettel-Applikation neu erzeugt werden, wenn sich an den Auswahloptionen etwas ändert.
 
 \end{enumerate}
 \begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \setcounter{enumi}{2}
 \item {} 
-In der Datei \sphinxcode{\sphinxupquote{conf.labels.json}} muss für den Bezeichner des neuen Feldes ein Json\sphinxhyphen{}Etikett angehängt werden, der über die neu angelegte Methode (z.B. \sphinxcode{\sphinxupquote{services.ZettelFields.livestockZF.getLabel()}} angesprochen wird.
+In der Datei \sphinxcode{\sphinxupquote{conf.labels.json}} muss für den Bezeichner des neuen Feldes ein Json-Etikett angehängt werden, der über die neu angelegte Methode (z.B. \sphinxcode{\sphinxupquote{services.ZettelFields.livestockZF.getLabel()}} angesprochen wird.
 
 \end{enumerate}
 
+\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{p}{\PYGZob{}}
-        \PYG{l+s}{\PYGZdq{}uri\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}info:regal/zettel/ktblHeader\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}comment\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}label\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}Angaben für EmiMin\PYGZhy{}Daten\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}icon\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}referenceType\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}String\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}container\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}weight\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}type\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}CONTEXT\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}multilangLabel\PYGZdq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{uri}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{info:regal/zettel/ktblHeader}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{comment}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{label}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Angaben für EmiMin\PYGZhy{}Daten}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{icon}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{name}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{referenceType}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{String}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{container}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{weight}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{type}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{CONTEXT}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{multilangLabel}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
 
         \PYG{p}{\PYGZcb{}}
 \PYG{p}{\PYGZcb{}}\PYG{p}{,}
         \PYG{p}{\PYGZob{}}
-        \PYG{l+s}{\PYGZdq{}uri\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}info:regal/zettel/livestock\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}comment\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}label\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}Tierart\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}icon\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}name\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}Tierart\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}referenceType\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}String\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}container\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}weight\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}type\PYGZdq{}}\PYG{p}{:} \PYG{l+s}{\PYGZdq{}CONTEXT\PYGZdq{}}\PYG{p}{,}
-        \PYG{l+s}{\PYGZdq{}multilangLabel\PYGZdq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{uri}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{info:regal/zettel/livestock}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{comment}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{label}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Tierart}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{icon}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{name}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Tierart}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{referenceType}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{String}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{container}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{weight}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{type}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{CONTEXT}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{multilangLabel}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{p}{\PYGZob{}}
 
         \PYG{p}{\PYGZcb{}}
 \PYG{p}{\PYGZcb{}}
@@ -233,7 +209,7 @@ In der Datei \sphinxcode{\sphinxupquote{conf.labels.json}} muss für den Bezeich
 
 \section{Vereinfachte Umsetzung mit generischen Klassen und Methoden}
 \label{\detokenize{developer-docs/addForm:vereinfachte-umsetzung-mit-generischen-klassen-und-methoden}}
-Am Beispiel der Anlage des multiselects\sphinxhyphen{}Formularfelds soll eine \sphinxstylestrong{neue vereinfachte} Möglichkeit vorgestellt werden, um neue Formularfelder anzulegen.
+Am Beispiel der Anlage des multiselects-Formularfelds soll eine \sphinxstylestrong{neue vereinfachte} Möglichkeit vorgestellt werden, um neue Formularfelder anzulegen.
 
 
 \subsection{Liste der im Beispiel anzupassenden Dateien}
@@ -252,28 +228,27 @@ Am Beispiel der Anlage des multiselects\sphinxhyphen{}Formularfelds soll eine \s
 
 \subsection{Umsetzungsweg}
 \label{\detokenize{developer-docs/addForm:id2}}
-Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala\sphinxhyphen{}Views unter \sphinxcode{\sphinxupquote{app/views/}} (z.B. \sphinxcode{\sphinxupquote{researchDataKtbl.scala.html}})
-um neue Formular\sphinxhyphen{}Felder. Beispiel:
+Die Einbindung neuer Formularfelder erfolgt zunächst durch Ergänzung des entsprechenden Scala-Views unter \sphinxcode{\sphinxupquote{app/views/}} (z.B. \sphinxcode{\sphinxupquote{researchDataKtbl.scala.html}})
+um neue Formular-Felder. Beispiel:
 
+\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),\PYGZdq{}ktbl\PYGZhy{}section\PYGZdq{})\PYGZob{}
+\PYG{n+nd}{@accordionPanel}\PYG{p}{(}\PYG{n}{services}\PYG{o}{.}\PYG{n}{ZettelFields}\PYG{o}{.}\PYG{n}{ktblHeaderZF}\PYG{o}{.}\PYG{n}{getLabel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ktbl\PYGZhy{}section}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{\PYGZob{}}
 
-        [...]
+        \PYG{p}{[}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}\PYG{p}{]}
 
-        @multiselect(myForm, jsonMap, \PYGZdq{}emissions\PYGZdq{}, services.ZettelFields.getEtikettByName(\PYGZdq{}emissionsZF\PYGZdq{}, \PYGZdq{}info.ktbl.emission.de.emissions\PYGZdq{}),\PYGZdq{}select\PYGZhy{}emissions\PYGZdq{},GenericDataHelper.getFieldSelectValues(\PYGZdq{}ktbl.livestock.properties\PYGZdq{}, \PYGZdq{}info.ktbl.emission\PYGZdq{}),42)
-        \PYG{p}{\PYGZlt{}}\PYG{n+nt}{br} \PYG{p}{/}\PYG{p}{\PYGZgt{}}
-\PYGZcb{}
+        \PYG{n+nd}{@multiselect}\PYG{p}{(}\PYG{n}{myForm}\PYG{p}{,} \PYG{n}{jsonMap}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{emissions}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{services}\PYG{o}{.}\PYG{n}{ZettelFields}\PYG{o}{.}\PYG{n}{getEtikettByName}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{emissionsZF}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{info.ktbl.emission.de.emissions}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{select\PYGZhy{}emissions}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{GenericDataHelper}\PYG{o}{.}\PYG{n}{getFieldSelectValues}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ktbl.livestock.properties}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{info.ktbl.emission}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{42}\PYG{p}{)}
+        \PYG{o}{\PYGZlt{}}\PYG{n}{br} \PYG{o}{/}\PYG{o}{\PYGZgt{}}
+\PYG{p}{\PYGZcb{}}
 \end{sphinxVerbatim}
 \begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 Ein \sphinxcode{\sphinxupquote{@multiselect}} wird angelegt. Hierbei ist zu beachten, dass die Klassen und Methodenaufrufe existieren. Dafür wird
 
 \end{enumerate}
 \begin{enumerate}
-\sphinxsetlistlabels{\alph}{enumi}{enumii}{}{)}%
 \item {} 
-eine neue generische Methode \sphinxcode{\sphinxupquote{services.ZettelFields.getEtikettByName("emissionsZF", "info.ktbl.emission.de.emissions")}} aufgerufen, die die benötigte Etikett\sphinxhyphen{}Instanz „on the fly erzeugt“.
+eine neue generische Methode \sphinxcode{\sphinxupquote{services.ZettelFields.getEtikettByName("emissionsZF", "info.ktbl.emission.de.emissions")}} aufgerufen, die die benötigte Etikett-Instanz „on the fly erzeugt“.
 
 \item {} 
 die generische Klasse GenericDataHelper mit der generischen Methode \sphinxcode{\sphinxupquote{.getFieldSelectValues("Dateiname", "NamensPattern")}} %
@@ -283,9 +258,9 @@ Das NamensPattern für die Auswahl der Tierart lautet im Beispiel \sphinxcode{\s
 \end{footnote}  aufgerufen.
 
 \item {} 
-Eine Konfigurations\sphinxhyphen{}Datei \sphinxcode{\sphinxupquote{conf/Dateiname}} angelegt %
+Eine Konfigurations-Datei \sphinxcode{\sphinxupquote{conf/Dateiname}} angelegt %
 \begin{footnote}[2]\sphinxAtStartFootnote
-Die Datei enthält Schlüssel\sphinxhyphen{}Werte\sphinxhyphen{}Paare, die durch ein \sphinxcode{\sphinxupquote{=}} getrennt werden. Das Verhalten beim Einlesend er Datei orientiert sich an der \sphinxcode{\sphinxupquote{Properties}}\sphinxhyphen{}Klasse aus \sphinxcode{\sphinxupquote{java.utils}}
+Die Datei enthält Schlüssel-Werte-Paare, die durch ein \sphinxcode{\sphinxupquote{=}} getrennt werden. Das Verhalten beim Einlesend er Datei orientiert sich an der \sphinxcode{\sphinxupquote{Properties}}-Klasse aus \sphinxcode{\sphinxupquote{java.utils}}
 %
 \end{footnote}. Diese enthält als Schlüssel Literale, die mit dem NamensPattern beginnen %
 \begin{footnote}[3]\sphinxAtStartFootnote
@@ -297,31 +272,32 @@ Durch den NamensPattern ist es möglich, für ein Formularfeld nur bestimmte Wer
 
 Das folgende Beispiel zeigt die Konfigurationsdatei für mehrere Formularfelder, inklusive einer ersten Vorbereitung für unterschiedliche Sprachen.
 
+\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZsh{} Tierart
-info.ktbl.livestock.de.cattle=Rind
-info.ktbl.livestock.de.swine=Schwein
-info.ktbl.livestock.de.hens=Huhn
-info.ktbl.livestock.de.turkey=Pute
-info.ktbl.livestock.de.duck=Ente
-info.ktbl.livestock.en.cattle=Cattle
-info.ktbl.livestock.fr.cattle=Bovin
-\PYGZsh{} Produktionsrichtung
-info.ktbl.livestock.cattle.de.diary\PYGZus{}farming=Milchviehhaltung
-info.ktbl.livestock.cattle.de.calf\PYGZus{}fattening=Kälbermast
-\PYGZsh{} Lüftung
-info.ktbl.ventilation.de.enforced\PYGZus{}ventilation=zwangsgelüftet
-info.ktbl.ventilation.de.self\PYGZus{}ventilation=freigelüftet
-info.ktbl.ventilation.de.combined\PYGZus{}ventilation=kombinierte Lüftung
-\PYGZsh{} Emissionen
-info.ktbl.emission.de.ammonia=Ammoniak (NH2)
-info.ktbl.emission.de.carbondioxide=Kohlendioxid (C02)
-info.ktbl.emission.de.diammoniumoxide=Lachgas (N2O)
-info.ktbl.emission.de.methane=Methan (CH4O)
-info.ktbl.emission.de.smells=Geruch
-info.ktbl.emission.de.particle=Partikel (Staub)
-info.ktbl.emission.de.biogene\PYGZus{}aerosole=Bioaerosole
-info.ktbl.emission.de.others=andere
+\PYG{c+c1}{\PYGZsh{} Tierart}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{livestock}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{cattle}\PYG{o}{=}\PYG{n}{Rind}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{livestock}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{swine}\PYG{o}{=}\PYG{n}{Schwein}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{livestock}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{hens}\PYG{o}{=}\PYG{n}{Huhn}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{livestock}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{turkey}\PYG{o}{=}\PYG{n}{Pute}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{livestock}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{duck}\PYG{o}{=}\PYG{n}{Ente}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{livestock}\PYG{o}{.}\PYG{n}{en}\PYG{o}{.}\PYG{n}{cattle}\PYG{o}{=}\PYG{n}{Cattle}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{livestock}\PYG{o}{.}\PYG{n}{fr}\PYG{o}{.}\PYG{n}{cattle}\PYG{o}{=}\PYG{n}{Bovin}
+\PYG{c+c1}{\PYGZsh{} Produktionsrichtung}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{livestock}\PYG{o}{.}\PYG{n}{cattle}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{diary\PYGZus{}farming}\PYG{o}{=}\PYG{n}{Milchviehhaltung}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{livestock}\PYG{o}{.}\PYG{n}{cattle}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{calf\PYGZus{}fattening}\PYG{o}{=}\PYG{n}{Kälbermast}
+\PYG{c+c1}{\PYGZsh{} Lüftung}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{ventilation}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{enforced\PYGZus{}ventilation}\PYG{o}{=}\PYG{n}{zwangsgelüftet}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{ventilation}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{self\PYGZus{}ventilation}\PYG{o}{=}\PYG{n}{freigelüftet}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{ventilation}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{combined\PYGZus{}ventilation}\PYG{o}{=}\PYG{n}{kombinierte} \PYG{n}{Lüftung}
+\PYG{c+c1}{\PYGZsh{} Emissionen}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{emission}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{ammonia}\PYG{o}{=}\PYG{n}{Ammoniak} \PYG{p}{(}\PYG{n}{NH2}\PYG{p}{)}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{emission}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{carbondioxide}\PYG{o}{=}\PYG{n}{Kohlendioxid} \PYG{p}{(}\PYG{n}{C02}\PYG{p}{)}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{emission}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{diammoniumoxide}\PYG{o}{=}\PYG{n}{Lachgas} \PYG{p}{(}\PYG{n}{N2O}\PYG{p}{)}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{emission}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{methane}\PYG{o}{=}\PYG{n}{Methan} \PYG{p}{(}\PYG{n}{CH4O}\PYG{p}{)}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{emission}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{smells}\PYG{o}{=}\PYG{n}{Geruch}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{emission}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{particle}\PYG{o}{=}\PYG{n}{Partikel} \PYG{p}{(}\PYG{n}{Staub}\PYG{p}{)}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{emission}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{biogene\PYGZus{}aerosole}\PYG{o}{=}\PYG{n}{Bioaerosole}
+\PYG{n}{info}\PYG{o}{.}\PYG{n}{ktbl}\PYG{o}{.}\PYG{n}{emission}\PYG{o}{.}\PYG{n}{de}\PYG{o}{.}\PYG{n}{others}\PYG{o}{=}\PYG{n}{andere}
 \end{sphinxVerbatim}
 
 Text hier
@@ -348,29 +324,31 @@ Parameter aus dem Beispiel:
 \sphinxcode{\sphinxupquote{livestock}} = Name des Forms ?
 
 \item {} 
-\sphinxcode{\sphinxupquote{services.ZettelFields.livestockZF.getLabel()}} = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett\sphinxhyphen{}Service erfragt und abholt.
+\sphinxcode{\sphinxupquote{services.ZettelFields.livestockZF.getLabel()}} = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett-Service erfragt und abholt.
 
 \item {} 
-\sphinxcode{\sphinxupquote{GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.livestock")}} = Statische Methode einer Helper\sphinxhyphen{}Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.
+\sphinxcode{\sphinxupquote{GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.livestock")}} = Statische Methode einer Helper-Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.
 
 \item {} 
 \sphinxcode{\sphinxupquote{11}} = ist die Position des neuen Formularfeldes im Erfassungsformular. Hiermit ist die Reihenfolge der Formulare steuerbar.
 
 \end{itemize}
 
+\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-@singleSelect(myForm,\PYGZdq{}livestock\PYGZdq{},services.ZettelFields.livestockZF.getLabel(),\PYGZdq{}select\PYGZhy{}livestock\PYGZdq{},GenericDataHelper.getFieldSelectValues(\PYGZdq{}ktbl.livestock.properties\PYGZdq{}, \PYGZdq{}info.ktbl.livestock\PYGZdq{}),11)
+\PYG{n+nd}{@singleSelect}\PYG{p}{(}\PYG{n}{myForm}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{livestock}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{services}\PYG{o}{.}\PYG{n}{ZettelFields}\PYG{o}{.}\PYG{n}{livestockZF}\PYG{o}{.}\PYG{n}{getLabel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{select\PYGZhy{}livestock}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{GenericDataHelper}\PYG{o}{.}\PYG{n}{getFieldSelectValues}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ktbl.livestock.properties}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{info.ktbl.livestock}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{11}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\sphinxcode{\sphinxupquote{@singleSelect}} erzeugt ein Auswahl\sphinxhyphen{}Formular mit der Möglichkeit eine Option auszuwählen. Äquivalent zu \textless{}select\textgreater{} in html:
+\sphinxcode{\sphinxupquote{@singleSelect}} erzeugt ein Auswahl-Formular mit der Möglichkeit eine Option auszuwählen. Äquivalent zu \textless{}select\textgreater{} in html:
 
+\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{p}{\PYGZlt{}}\PYG{n+nt}{select} \PYG{n+na}{id}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}cars\PYGZdq{}} \PYG{n+na}{name}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}cars\PYGZdq{}} \PYG{n+na}{size}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{p}{\PYGZgt{}}
-    \PYG{p}{\PYGZlt{}}\PYG{n+nt}{option} \PYG{n+na}{value}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}volvo\PYGZdq{}}\PYG{p}{\PYGZgt{}}Volvo\PYG{p}{\PYGZlt{}}\PYG{p}{/}\PYG{n+nt}{option}\PYG{p}{\PYGZgt{}}
-    \PYG{p}{\PYGZlt{}}\PYG{n+nt}{option} \PYG{n+na}{value}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}saab\PYGZdq{}}\PYG{p}{\PYGZgt{}}Saab\PYG{p}{\PYGZlt{}}\PYG{p}{/}\PYG{n+nt}{option}\PYG{p}{\PYGZgt{}}
-    \PYG{p}{\PYGZlt{}}\PYG{n+nt}{option} \PYG{n+na}{value}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}fiat\PYGZdq{}}\PYG{p}{\PYGZgt{}}Fiat\PYG{p}{\PYGZlt{}}\PYG{p}{/}\PYG{n+nt}{option}\PYG{p}{\PYGZgt{}}
-    \PYG{p}{\PYGZlt{}}\PYG{n+nt}{option} \PYG{n+na}{value}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}audi\PYGZdq{}}\PYG{p}{\PYGZgt{}}Audi\PYG{p}{\PYGZlt{}}\PYG{p}{/}\PYG{n+nt}{option}\PYG{p}{\PYGZgt{}}
-  \PYG{p}{\PYGZlt{}}\PYG{p}{/}\PYG{n+nt}{select}\PYG{p}{\PYGZgt{}}
+\PYG{o}{\PYGZlt{}}\PYG{n}{select} \PYG{n+nb}{id}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cars}\PYG{l+s+s2}{\PYGZdq{}} \PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cars}\PYG{l+s+s2}{\PYGZdq{}} \PYG{n}{size}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZgt{}}
+    \PYG{o}{\PYGZlt{}}\PYG{n}{option} \PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{volvo}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZgt{}}\PYG{n}{Volvo}\PYG{o}{\PYGZlt{}}\PYG{o}{/}\PYG{n}{option}\PYG{o}{\PYGZgt{}}
+    \PYG{o}{\PYGZlt{}}\PYG{n}{option} \PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{saab}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZgt{}}\PYG{n}{Saab}\PYG{o}{\PYGZlt{}}\PYG{o}{/}\PYG{n}{option}\PYG{o}{\PYGZgt{}}
+    \PYG{o}{\PYGZlt{}}\PYG{n}{option} \PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{fiat}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZgt{}}\PYG{n}{Fiat}\PYG{o}{\PYGZlt{}}\PYG{o}{/}\PYG{n}{option}\PYG{o}{\PYGZgt{}}
+    \PYG{o}{\PYGZlt{}}\PYG{n}{option} \PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{audi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZgt{}}\PYG{n}{Audi}\PYG{o}{\PYGZlt{}}\PYG{o}{/}\PYG{n}{option}\PYG{o}{\PYGZgt{}}
+  \PYG{o}{\PYGZlt{}}\PYG{o}{/}\PYG{n}{select}\PYG{o}{\PYGZgt{}}
 \end{sphinxVerbatim}
 
 \sphinxcode{\sphinxupquote{singleSelect}} gibt wohl keine Möglichkeit eine Option als Vorausgewählt zu markieren. Ebenso habe ich bisher keine Möglichkeit entdeckt, mehr als eine Option im Auswahlfeld sichtbar zu machen.
@@ -389,29 +367,31 @@ Parameter aus dem Beispiel:
 \sphinxcode{\sphinxupquote{livestock}} =  Name des Forms ?
 
 \item {} 
-\sphinxcode{\sphinxupquote{services.ZettelFields.livestockZF.getLabel()}} = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett\sphinxhyphen{}Service erfragt und abholt.
+\sphinxcode{\sphinxupquote{services.ZettelFields.livestockZF.getLabel()}} = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett-Service erfragt und abholt.
 
 \item {} 
-\sphinxcode{\sphinxupquote{GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.livestock")}} = Statische Methode einer Helper\sphinxhyphen{}Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.
+\sphinxcode{\sphinxupquote{GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.livestock")}} = Statische Methode einer Helper-Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.
 
 \item {} 
 \sphinxcode{\sphinxupquote{11}} = ist die Position des neuen Formularfeldes im Erfassungsformular. Hiermit ist die Reihenfolge der Formulare steuerbar.
 
 \end{itemize}
 
+\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-@multiselect(myForm, myMap, \PYGZdq{}livestock\PYGZdq{},services.ZettelFields.livestockZF.getLabel(),\PYGZdq{}select\PYGZhy{}livestock\PYGZdq{},GenericDataHelper.getFieldSelectValues(\PYGZdq{}ktbl.livestock.properties\PYGZdq{}, \PYGZdq{}info.ktbl.livestock\PYGZdq{}),11)
+\PYG{n+nd}{@multiselect}\PYG{p}{(}\PYG{n}{myForm}\PYG{p}{,} \PYG{n}{myMap}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{livestock}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{services}\PYG{o}{.}\PYG{n}{ZettelFields}\PYG{o}{.}\PYG{n}{livestockZF}\PYG{o}{.}\PYG{n}{getLabel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{select\PYGZhy{}livestock}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{GenericDataHelper}\PYG{o}{.}\PYG{n}{getFieldSelectValues}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ktbl.livestock.properties}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{info.ktbl.livestock}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{11}\PYG{p}{)}
 \end{sphinxVerbatim}
 
-\sphinxcode{\sphinxupquote{@multiselect}} erzeugt zunächst ein Auswahl\sphinxhyphen{}Formular mit der Möglichkeit eine Option auszuwählen. Äquivalent zu \textless{}select\textgreater{} in html.
+\sphinxcode{\sphinxupquote{@multiselect}} erzeugt zunächst ein Auswahl-Formular mit der Möglichkeit eine Option auszuwählen. Äquivalent zu \textless{}select\textgreater{} in html.
 
+\fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{p}{\PYGZlt{}}\PYG{n+nt}{select} \PYG{n+na}{id}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}cars\PYGZdq{}} \PYG{n+na}{name}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}cars\PYGZdq{}} \PYG{n+na}{size}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{p}{\PYGZgt{}}
-    \PYG{p}{\PYGZlt{}}\PYG{n+nt}{option} \PYG{n+na}{value}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}volvo\PYGZdq{}}\PYG{p}{\PYGZgt{}}Volvo\PYG{p}{\PYGZlt{}}\PYG{p}{/}\PYG{n+nt}{option}\PYG{p}{\PYGZgt{}}
-    \PYG{p}{\PYGZlt{}}\PYG{n+nt}{option} \PYG{n+na}{value}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}saab\PYGZdq{}}\PYG{p}{\PYGZgt{}}Saab\PYG{p}{\PYGZlt{}}\PYG{p}{/}\PYG{n+nt}{option}\PYG{p}{\PYGZgt{}}
-    \PYG{p}{\PYGZlt{}}\PYG{n+nt}{option} \PYG{n+na}{value}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}fiat\PYGZdq{}}\PYG{p}{\PYGZgt{}}Fiat\PYG{p}{\PYGZlt{}}\PYG{p}{/}\PYG{n+nt}{option}\PYG{p}{\PYGZgt{}}
-    \PYG{p}{\PYGZlt{}}\PYG{n+nt}{option} \PYG{n+na}{value}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}audi\PYGZdq{}}\PYG{p}{\PYGZgt{}}Audi\PYG{p}{\PYGZlt{}}\PYG{p}{/}\PYG{n+nt}{option}\PYG{p}{\PYGZgt{}}
-  \PYG{p}{\PYGZlt{}}\PYG{p}{/}\PYG{n+nt}{select}\PYG{p}{\PYGZgt{}}
+\PYG{o}{\PYGZlt{}}\PYG{n}{select} \PYG{n+nb}{id}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cars}\PYG{l+s+s2}{\PYGZdq{}} \PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cars}\PYG{l+s+s2}{\PYGZdq{}} \PYG{n}{size}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZgt{}}
+    \PYG{o}{\PYGZlt{}}\PYG{n}{option} \PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{volvo}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZgt{}}\PYG{n}{Volvo}\PYG{o}{\PYGZlt{}}\PYG{o}{/}\PYG{n}{option}\PYG{o}{\PYGZgt{}}
+    \PYG{o}{\PYGZlt{}}\PYG{n}{option} \PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{saab}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZgt{}}\PYG{n}{Saab}\PYG{o}{\PYGZlt{}}\PYG{o}{/}\PYG{n}{option}\PYG{o}{\PYGZgt{}}
+    \PYG{o}{\PYGZlt{}}\PYG{n}{option} \PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{fiat}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZgt{}}\PYG{n}{Fiat}\PYG{o}{\PYGZlt{}}\PYG{o}{/}\PYG{n}{option}\PYG{o}{\PYGZgt{}}
+    \PYG{o}{\PYGZlt{}}\PYG{n}{option} \PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{audi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{\PYGZgt{}}\PYG{n}{Audi}\PYG{o}{\PYGZlt{}}\PYG{o}{/}\PYG{n}{option}\PYG{o}{\PYGZgt{}}
+  \PYG{o}{\PYGZlt{}}\PYG{o}{/}\PYG{n}{select}\PYG{o}{\PYGZgt{}}
 \end{sphinxVerbatim}
 
 Zusätzlich erzeugt \sphinxcode{\sphinxupquote{multiselect}} aber auch noch Buttons mit denen die Nutzenden bei Bedarf weitere dieser Felder im Formular erzeugen können oder löschen können. Damit ist eine Mehrfachauswahl zu einem Feld möglich

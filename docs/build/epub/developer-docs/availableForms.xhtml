@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bisher verfügbare Formulartypen</title>
+    <link rel="stylesheet" href="../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bisher-verfugbare-formulartypen">
+<h1>Bisher verfügbare Formulartypen</h1>
+<p>Die verschiedenen Formulartypen sind bisher nicht dokumentiert, es wird hier versucht, eine Kurzübersicht zu geben.
+Alle Formulartypen verweisen jeweils auf Templates im Verzeichnis views. In den Templates gibt es weitere Informationen z.B. zu den Parametertypen, die ich hier zunächst weglasse.</p>
+<div class="section" id="singleselect">
+<h2>singleSelect</h2>
+<p>Template: <code class="docutils literal notranslate"><span class="pre">views/singleSelect.scala.html</span></code></p>
+<p>Parameter aus dem Beispiel:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">myForm</span></code> = Verweis auf die verwendete Model (zumeist <code class="docutils literal notranslate"><span class="pre">model.ZettelModel</span></code>) ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">livestock</span></code> = Name des Forms ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">services.ZettelFields.livestockZF.getLabel()</span></code> = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett-Service erfragt und abholt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;,</span> <span class="pre">&quot;info.ktbl.livestock&quot;)</span></code> = Statische Methode einer Helper-Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">11</span></code> = ist die Position des neuen Formularfeldes im Erfassungsformular. Hiermit ist die Reihenfolge der Formulare steuerbar.</p></li>
+</ul>
+<div class="code html highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@singleSelect</span><span class="p">(</span><span class="n">myForm</span><span class="p">,</span><span class="s2">&quot;livestock&quot;</span><span class="p">,</span><span class="n">services</span><span class="o">.</span><span class="n">ZettelFields</span><span class="o">.</span><span class="n">livestockZF</span><span class="o">.</span><span class="n">getLabel</span><span class="p">(),</span><span class="s2">&quot;select-livestock&quot;</span><span class="p">,</span><span class="n">GenericDataHelper</span><span class="o">.</span><span class="n">getFieldSelectValues</span><span class="p">(</span><span class="s2">&quot;ktbl.livestock.properties&quot;</span><span class="p">,</span> <span class="s2">&quot;info.ktbl.livestock&quot;</span><span class="p">),</span><span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;singleSelect</span></code> erzeugt ein Auswahl-Formular mit der Möglichkeit eine Option auszuwählen. Äquivalent zu &lt;select&gt; in html:</p>
+<div class="code html highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">select</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cars&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cars&quot;</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;volvo&quot;</span><span class="o">&gt;</span><span class="n">Volvo</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;saab&quot;</span><span class="o">&gt;</span><span class="n">Saab</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;fiat&quot;</span><span class="o">&gt;</span><span class="n">Fiat</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;audi&quot;</span><span class="o">&gt;</span><span class="n">Audi</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">select</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">singleSelect</span></code> gibt wohl keine Möglichkeit eine Option als Vorausgewählt zu markieren. Ebenso habe ich bisher keine Möglichkeit entdeckt, mehr als eine Option im Auswahlfeld sichtbar zu machen.</p>
+</div>
+<div class="section" id="multiselect">
+<h2>multiselect</h2>
+<p>Template: <code class="docutils literal notranslate"><span class="pre">views/multiselect.scala.html</span></code></p>
+<p>Parameter aus dem Beispiel:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">myForm</span></code> =  Verweis auf das verwendete Model (zumeist model.ZettelModel) ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">livestock</span></code> =  Name des Forms ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">services.ZettelFields.livestockZF.getLabel()</span></code> = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett-Service erfragt und abholt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;,</span> <span class="pre">&quot;info.ktbl.livestock&quot;)</span></code> = Statische Methode einer Helper-Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">11</span></code> = ist die Position des neuen Formularfeldes im Erfassungsformular. Hiermit ist die Reihenfolge der Formulare steuerbar.</p></li>
+</ul>
+<div class="code html highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@multiselect</span><span class="p">(</span><span class="n">myForm</span><span class="p">,</span> <span class="n">myMap</span><span class="p">,</span> <span class="s2">&quot;livestock&quot;</span><span class="p">,</span><span class="n">services</span><span class="o">.</span><span class="n">ZettelFields</span><span class="o">.</span><span class="n">livestockZF</span><span class="o">.</span><span class="n">getLabel</span><span class="p">(),</span><span class="s2">&quot;select-livestock&quot;</span><span class="p">,</span><span class="n">GenericDataHelper</span><span class="o">.</span><span class="n">getFieldSelectValues</span><span class="p">(</span><span class="s2">&quot;ktbl.livestock.properties&quot;</span><span class="p">,</span> <span class="s2">&quot;info.ktbl.livestock&quot;</span><span class="p">),</span><span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;multiselect</span></code> erzeugt zunächst ein Auswahl-Formular mit der Möglichkeit eine Option auszuwählen. Äquivalent zu &lt;select&gt; in html.</p>
+<div class="code html highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">select</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cars&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cars&quot;</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;volvo&quot;</span><span class="o">&gt;</span><span class="n">Volvo</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;saab&quot;</span><span class="o">&gt;</span><span class="n">Saab</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;fiat&quot;</span><span class="o">&gt;</span><span class="n">Fiat</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;audi&quot;</span><span class="o">&gt;</span><span class="n">Audi</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">select</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Zusätzlich erzeugt <code class="docutils literal notranslate"><span class="pre">multiselect</span></code> aber auch noch Buttons mit denen die Nutzenden bei Bedarf weitere dieser Felder im Formular erzeugen können oder löschen können. Damit ist eine Mehrfachauswahl zu einem Feld möglich</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

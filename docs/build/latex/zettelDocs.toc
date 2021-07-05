@@ -1,12 +1,12 @@
-\babel@toc {ngerman}{}
-\contentsline {chapter}{\numberline {1}Neue Erfassungsmaske erstellen}{1}{chapter.1}%
-\contentsline {chapter}{\numberline {2}Neue Formularfelder in Maske integrieren}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Bisherige Umsetzung}{3}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Liste der im Beispiel anzupassenden Dateien}{3}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Umsetzungsweg}{3}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Vereinfachte Umsetzung mit generischen Klassen und Methoden}{5}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Liste der im Beispiel anzupassenden Dateien}{5}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Umsetzungsweg}{5}{subsection.2.2.2}%
-\contentsline {chapter}{\numberline {3}Bisher verfügbare Formulartypen}{7}{chapter.3}%
-\contentsline {section}{\numberline {3.1}singleSelect}{7}{section.3.1}%
-\contentsline {section}{\numberline {3.2}multiselect}{8}{section.3.2}%
+\select@language {ngerman}
+\contentsline {chapter}{\numberline {1}Neue Erfassungsmaske erstellen}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Neue Formularfelder in Maske integrieren}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Bisherige Umsetzung}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Liste der im Beispiel anzupassenden Dateien}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Umsetzungsweg}{3}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Vereinfachte Umsetzung mit generischen Klassen und Methoden}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Liste der im Beispiel anzupassenden Dateien}{5}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Umsetzungsweg}{5}{subsection.2.2.2}
+\contentsline {chapter}{\numberline {3}Bisher verf\IeC {\"u}gbare Formulartypen}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}singleSelect}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}multiselect}{8}{section.3.2}

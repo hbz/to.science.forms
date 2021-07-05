@@ -1,19 +1,20 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html lang="de">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Bisher verfügbare Formulartypen &#8212; Zettel 0.9.1 Dokumentation</title>
     <link rel="stylesheet" href="../_static/hbz.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="prev" title="Neue Formularfelder in Maske integrieren" href="addForm.html" />
@@ -34,8 +35,7 @@
         <li class="right" >
           <a href="addForm.html" title="Neue Formularfelder in Maske integrieren"
              accesskey="P">zurück</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Zettel 0.9.1 Dokumentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Bisher verfügbare Formulartypen</a></li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Zettel 0.9.1 Dokumentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -53,22 +53,22 @@ Alle Formulartypen verweisen jeweils auf Templates im Verzeichnis views. In den 
 <p>Template: <code class="docutils literal notranslate"><span class="pre">views/singleSelect.scala.html</span></code></p>
 <p>Parameter aus dem Beispiel:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">myForm</span></code> = Verweis auf die verwendete Model (zumeist <code class="docutils literal notranslate"><span class="pre">model.ZettelModel</span></code>) ?</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">livestock</span></code> = Name des Forms ?</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">services.ZettelFields.livestockZF.getLabel()</span></code> = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett-Service erfragt und abholt.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;,</span> <span class="pre">&quot;info.ktbl.livestock&quot;)</span></code> = Statische Methode einer Helper-Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">11</span></code> = ist die Position des neuen Formularfeldes im Erfassungsformular. Hiermit ist die Reihenfolge der Formulare steuerbar.</p></li>
+<li><code class="docutils literal notranslate"><span class="pre">myForm</span></code> = Verweis auf die verwendete Model (zumeist <code class="docutils literal notranslate"><span class="pre">model.ZettelModel</span></code>) ?</li>
+<li><code class="docutils literal notranslate"><span class="pre">livestock</span></code> = Name des Forms ?</li>
+<li><code class="docutils literal notranslate"><span class="pre">services.ZettelFields.livestockZF.getLabel()</span></code> = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett-Service erfragt und abholt.</li>
+<li><code class="docutils literal notranslate"><span class="pre">GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;,</span> <span class="pre">&quot;info.ktbl.livestock&quot;)</span></code> = Statische Methode einer Helper-Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.</li>
+<li><code class="docutils literal notranslate"><span class="pre">11</span></code> = ist die Position des neuen Formularfeldes im Erfassungsformular. Hiermit ist die Reihenfolge der Formulare steuerbar.</li>
 </ul>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@singleSelect(myForm,&quot;livestock&quot;,services.ZettelFields.livestockZF.getLabel(),&quot;select-livestock&quot;,GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;, &quot;info.ktbl.livestock&quot;),11)
+<div class="code html highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@singleSelect</span><span class="p">(</span><span class="n">myForm</span><span class="p">,</span><span class="s2">&quot;livestock&quot;</span><span class="p">,</span><span class="n">services</span><span class="o">.</span><span class="n">ZettelFields</span><span class="o">.</span><span class="n">livestockZF</span><span class="o">.</span><span class="n">getLabel</span><span class="p">(),</span><span class="s2">&quot;select-livestock&quot;</span><span class="p">,</span><span class="n">GenericDataHelper</span><span class="o">.</span><span class="n">getFieldSelectValues</span><span class="p">(</span><span class="s2">&quot;ktbl.livestock.properties&quot;</span><span class="p">,</span> <span class="s2">&quot;info.ktbl.livestock&quot;</span><span class="p">),</span><span class="mi">11</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">&#64;singleSelect</span></code> erzeugt ein Auswahl-Formular mit der Möglichkeit eine Option auszuwählen. Äquivalent zu &lt;select&gt; in html:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;cars&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;cars&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;volvo&quot;</span><span class="p">&gt;</span>Volvo<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;saab&quot;</span><span class="p">&gt;</span>Saab<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;fiat&quot;</span><span class="p">&gt;</span>Fiat<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;audi&quot;</span><span class="p">&gt;</span>Audi<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+<div class="code html highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">select</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cars&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cars&quot;</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;volvo&quot;</span><span class="o">&gt;</span><span class="n">Volvo</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;saab&quot;</span><span class="o">&gt;</span><span class="n">Saab</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;fiat&quot;</span><span class="o">&gt;</span><span class="n">Fiat</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;audi&quot;</span><span class="o">&gt;</span><span class="n">Audi</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">select</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">singleSelect</span></code> gibt wohl keine Möglichkeit eine Option als Vorausgewählt zu markieren. Ebenso habe ich bisher keine Möglichkeit entdeckt, mehr als eine Option im Auswahlfeld sichtbar zu machen.</p>
@@ -78,22 +78,22 @@ Alle Formulartypen verweisen jeweils auf Templates im Verzeichnis views. In den 
 <p>Template: <code class="docutils literal notranslate"><span class="pre">views/multiselect.scala.html</span></code></p>
 <p>Parameter aus dem Beispiel:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">myForm</span></code> =  Verweis auf das verwendete Model (zumeist model.ZettelModel) ?</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">livestock</span></code> =  Name des Forms ?</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">services.ZettelFields.livestockZF.getLabel()</span></code> = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett-Service erfragt und abholt.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;,</span> <span class="pre">&quot;info.ktbl.livestock&quot;)</span></code> = Statische Methode einer Helper-Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">11</span></code> = ist die Position des neuen Formularfeldes im Erfassungsformular. Hiermit ist die Reihenfolge der Formulare steuerbar.</p></li>
+<li><code class="docutils literal notranslate"><span class="pre">myForm</span></code> =  Verweis auf das verwendete Model (zumeist model.ZettelModel) ?</li>
+<li><code class="docutils literal notranslate"><span class="pre">livestock</span></code> =  Name des Forms ?</li>
+<li><code class="docutils literal notranslate"><span class="pre">services.ZettelFields.livestockZF.getLabel()</span></code> = Methode der Klasse ZettelFields, die den Label des Feldes livestockZF beim Etikett-Service erfragt und abholt.</li>
+<li><code class="docutils literal notranslate"><span class="pre">GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;,</span> <span class="pre">&quot;info.ktbl.livestock&quot;)</span></code> = Statische Methode einer Helper-Klasse, die die zur Auswahl stehenden Werte erfragt und abholt.</li>
+<li><code class="docutils literal notranslate"><span class="pre">11</span></code> = ist die Position des neuen Formularfeldes im Erfassungsformular. Hiermit ist die Reihenfolge der Formulare steuerbar.</li>
 </ul>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@multiselect(myForm, myMap, &quot;livestock&quot;,services.ZettelFields.livestockZF.getLabel(),&quot;select-livestock&quot;,GenericDataHelper.getFieldSelectValues(&quot;ktbl.livestock.properties&quot;, &quot;info.ktbl.livestock&quot;),11)
+<div class="code html highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@multiselect</span><span class="p">(</span><span class="n">myForm</span><span class="p">,</span> <span class="n">myMap</span><span class="p">,</span> <span class="s2">&quot;livestock&quot;</span><span class="p">,</span><span class="n">services</span><span class="o">.</span><span class="n">ZettelFields</span><span class="o">.</span><span class="n">livestockZF</span><span class="o">.</span><span class="n">getLabel</span><span class="p">(),</span><span class="s2">&quot;select-livestock&quot;</span><span class="p">,</span><span class="n">GenericDataHelper</span><span class="o">.</span><span class="n">getFieldSelectValues</span><span class="p">(</span><span class="s2">&quot;ktbl.livestock.properties&quot;</span><span class="p">,</span> <span class="s2">&quot;info.ktbl.livestock&quot;</span><span class="p">),</span><span class="mi">11</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">&#64;multiselect</span></code> erzeugt zunächst ein Auswahl-Formular mit der Möglichkeit eine Option auszuwählen. Äquivalent zu &lt;select&gt; in html.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;cars&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;cars&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;volvo&quot;</span><span class="p">&gt;</span>Volvo<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;saab&quot;</span><span class="p">&gt;</span>Saab<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;fiat&quot;</span><span class="p">&gt;</span>Fiat<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;audi&quot;</span><span class="p">&gt;</span>Audi<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+<div class="code html highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">select</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;cars&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cars&quot;</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;volvo&quot;</span><span class="o">&gt;</span><span class="n">Volvo</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;saab&quot;</span><span class="o">&gt;</span><span class="n">Saab</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;fiat&quot;</span><span class="o">&gt;</span><span class="n">Fiat</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;audi&quot;</span><span class="o">&gt;</span><span class="n">Audi</span><span class="o">&lt;/</span><span class="n">option</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">select</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Zusätzlich erzeugt <code class="docutils literal notranslate"><span class="pre">multiselect</span></code> aber auch noch Buttons mit denen die Nutzenden bei Bedarf weitere dieser Felder im Formular erzeugen können oder löschen können. Damit ist eine Mehrfachauswahl zu einem Feld möglich</p>
@@ -101,13 +101,12 @@ Alle Formulartypen verweisen jeweils auf Templates im Verzeichnis views. In den 
 </div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Inhaltsverzeichnis</a></h3>
+  <h3><a href="../index.html">Inhalt</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Bisher verfügbare Formulartypen</a><ul>
 <li><a class="reference internal" href="#singleselect">singleSelect</a></li>
@@ -127,15 +126,17 @@ Alle Formulartypen verweisen jeweils auf Templates im Verzeichnis views. In den 
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Schnellsuche</h3>
+  <h3>Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" />
       <input type="submit" value="Los" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -149,13 +150,12 @@ Alle Formulartypen verweisen jeweils auf Templates im Verzeichnis views. In den 
         <li class="right" >
           <a href="addForm.html" title="Neue Formularfelder in Maske integrieren"
              >zurück</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Zettel 0.9.1 Dokumentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Bisher verfügbare Formulartypen</a></li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Zettel 0.9.1 Dokumentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Andres Quast.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+      Mit <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6 erstellt.
     </div>
   </body>
 </html>

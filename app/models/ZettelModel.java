@@ -85,6 +85,16 @@ import static services.ZettelFields.collectionTwoZF;
 import static services.ZettelFields.internalReferenceZF;
 import static services.ZettelFields.additionalNotesZF;
 
+import static services.ZettelFields.livestockZF;
+import static services.ZettelFields.treatmentZF;
+import static services.ZettelFields.housingZF;
+import static services.ZettelFields.treatmentdetailZF;
+import static services.ZettelFields.ventilationZF;
+import static services.ZettelFields.emissionprobeZF;
+import static services.ZettelFields.emissionZF;
+import static services.ZettelFields.emissionreducingZF;
+import static services.ZettelFields.projecttitleZF;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -239,8 +249,18 @@ public abstract class ZettelModel {
 	private List<String> collectionTwo = new ArrayList<>();
 	private List<String> internalReference = new ArrayList<>();
 	private String additionalNotes;
-	private List<String> livestock = new ArrayList<>();
-	private List<String> lShandling = new ArrayList<>();
+
+	//ktbl associated variables for ResearchDataForm 
+	private String livestock;
+	private String treatment;
+	private String housing;
+	private String treatmentdetail;
+	private String ventilation;
+	private List<String> emissionprobe = new ArrayList<String>();
+	private List<String> emission = new ArrayList<String>();
+	private List<String> emissionreducing = new ArrayList<String>();
+	private String projecttitle;
+	
 
 	public List<String> getRdftype() {
 		return type;
@@ -1061,6 +1081,97 @@ public abstract class ZettelModel {
 	public void setAdditionalNotes(String notes) {
 		this.additionalNotes = notes;
 	}
+	
+	public String getLivestock() {
+		return livestock;
+	}
+
+	public void setLivestock(String livestock) {
+		this.livestock = livestock;
+	}
+
+	public String getTreatment() {
+		return treatment;
+	}
+
+	public void setTreatment(String treatment) {
+		this.treatment = treatment;
+	}
+
+	public String getHousing() {
+		return housing;
+	}
+
+	public void setHousing(String housing) {
+		this.housing = housing;
+	}
+
+	public String getTreatmentdetail() {
+		return treatmentdetail;
+	}
+
+	public void setTreatmentdetail(String treatmentdetail) {
+		this.treatmentdetail = treatmentdetail;
+	}
+
+	public String getVentilation() {
+		return ventilation;
+	}
+
+	public void setVentilation(String ventilation) {
+		this.ventilation = ventilation;
+	}
+
+	public List<String> getEmissionprobe() {
+		return emissionprobe;
+	}
+
+	public void setEmissionprobe(List<String> emissionprobe) {
+		this.emissionprobe = emissionprobe;
+	}
+
+	public void addEmissionprobe(String in) {
+		if (emissionprobe == null || emissionprobe.isEmpty())
+			emissionprobe = new ArrayList<>();
+		emissionprobe.add(in);
+	}
+
+	public List<String> getEmission() {
+		return emission;
+	}
+
+	public void setEmission(List<String> emission) {
+		this.emission = emission;
+	}
+
+	public void addEmission(String in) {
+		if (emission == null || emission.isEmpty())
+			emission = new ArrayList<>();
+		emission.add(in);
+	}
+	
+	public List<String> getEmissionreducing() {
+		return emissionreducing;
+	}
+
+	public void setEmissionreducing(List<String> emissionreducing) {
+		this.emissionreducing = emissionreducing;
+	}
+
+	public void addEmissionreducing(String in) {
+		if (emissionreducing == null || emissionreducing.isEmpty())
+			emissionreducing = new ArrayList<>();
+		emissionreducing.add(in);
+	}
+	
+	public String getProjecttitle() {
+		return projecttitle;
+	}
+
+	public void setProjecttitle(String projecttitle) {
+		this.projecttitle = projecttitle;
+	}
+
 
 	/**
 	 * @return a map that maps a uri to a setter method
@@ -1147,6 +1258,15 @@ public abstract class ZettelModel {
 				(in) -> addInternalReference((String) in));
 
 		dict.put(additionalNotesZF.uri, (in) -> setAdditionalNotes((String) in));
+
+		dict.put(livestockZF.uri, (in) -> setLivestock((String) in));
+		dict.put(treatmentZF.uri, (in) -> setTreatment((String) in));
+		dict.put(housingZF.uri, (in) -> setHousing((String) in));
+		dict.put(ventilationZF.uri, (in) -> setHousing((String) in));
+		dict.put(emissionprobeZF.uri, (in) -> addEmissionprobe((String) in));
+		dict.put(emissionZF.uri, (in) -> addEmission((String) in));
+		dict.put(emissionreducingZF.uri, (in) -> addEmissionreducing((String) in));
+		dict.put(projecttitleZF.uri, (in) -> setHousing((String) in));
 		return dict;
 	}
 
@@ -1312,4 +1432,5 @@ public abstract class ZettelModel {
 	protected String getLabel(String name) {
 		return ZettelHelper.etikett.getLabel(name);
 	}
+
 }
