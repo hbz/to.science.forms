@@ -233,7 +233,7 @@ function addActionsToRemoveAndAddButtons() {
 function ktblDetermineTreatment() {
 	
 	$('select[name="livestock"]').click(function(){
-	    var selTreatment = $('select[name="treatment"] option').hide();
+	    var selTreatment = $('select[name^="treatment"] option').hide();
 	    var selLivestock = $('select[name="livestock"]').val();    
 	    
 	    if(selLivestock.match('cattle') !== null){
