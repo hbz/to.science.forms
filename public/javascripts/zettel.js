@@ -284,7 +284,7 @@ function ktblDetermineTreatment() {
 
 	$('select[name="treatment"]').click(function(){
 	    var selHousing = $('select[name^="housing"] option').hide();
-	    var selTreatment = $('select[name="treatment"]').val();    
+	    var selTreatment = $('select[name^="treatment"]').val();    
 	    
 	    if(selTreatment.match('diary_farming') !== null){
 	        var housing = $('option[value*="diary_farming"]').show();        
