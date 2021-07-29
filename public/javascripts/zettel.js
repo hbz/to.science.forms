@@ -258,10 +258,11 @@ function ktblDetermineTreatment() {
 	    }
 	});
 
-  // Auswahlfeld: Weitere Spezifikation des Haltungsverfahrens
-  $('select[name="livestock"]').click(function(){
+  // Auswahlfeld: Haltungsverfahren
+  $('select[name^="treatment"]').each(function ( index ) { 
+    $(this).click(function(){
       var selHousing = $('select[name^="housing"] option').hide();
-      var selTreatment = $('select[name^="treatment"]').val();    
+      var selTreatment = $(this).val();    
       
       if(selTreatment.match('diary_farming') !== null){
           var housing = $('option[value*="diary_farming"]').show();        
@@ -326,6 +327,7 @@ function ktblDetermineTreatment() {
       if(selTreatment.match('duck_fattening') !== null){
           var housing = $('option[value*="duck_fattening"]').show();        
       }
+      });
   
   });
 
