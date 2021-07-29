@@ -232,6 +232,7 @@ function addActionsToRemoveAndAddButtons() {
 // It selects the treatment options to be selected according to the animal type 
 function ktblDetermineTreatment() {
 	
+  // Auswahlfeld: Produktionsrichtung
 	$('select[name="livestock"]').click(function(){
 	    var selTreatment = $('select[name^="treatment"] option').hide();
 	    var selLivestock = $('select[name="livestock"]').val();    
@@ -257,7 +258,79 @@ function ktblDetermineTreatment() {
 	    }
 	});
 
-	$('select[name="livestock"]').click(function(){
+  // Auswahlfeld: Weitere Spezifikation des Haltungsverfahrens
+  $('select[name^="treatment"]').click(function(){
+      var selHousing = $('select[name^="housing"] option').hide();
+      var selTreatment = $('select[name^="treatment"]').val();    
+      
+      if(selTreatment.match('diary_farming') !== null){
+          var housing = $('option[value*="diary_farming"]').show();        
+      }
+
+      if(selTreatment.match('cattle_farming') !== null){
+          var housing = $('option[value*="cattle_farming"]').show();        
+      }
+
+      if(selTreatment.match('calf_farming') !== null){
+          var housing = $('option[value*="calf_farming"]').show();        
+      }
+
+      if(selTreatment.match('calf_fattening') !== null){
+          var housing = $('option[value*="calf_fattening"]').show();        
+      }
+
+      if(selTreatment.match('cattle_fattening') !== null){
+          var housing = $('option[value*="cattle_fattening"]').show();        
+      }
+
+      if(selTreatment.match('sucking_cow_farming') !== null){
+          var housing = $('option[value*="sucking_cow_farming"]').show();        
+      }
+
+      if(selTreatment.match('piglet_production') !== null){
+          var housing = $('option[value*="piglet_production"]').show();        
+      }
+
+      if(selTreatment.match('piglet_farming') !== null){
+          var housing = $('option[value*="piglet_farming"]').show();        
+      }
+
+      if(selTreatment.match('piglet_raising') !== null){
+          var housing = $('option[value*="piglet_raising"]').show();        
+      }
+
+      if(selTreatment.match('pig_fattening') !== null){
+          var housing = $('option[value*="pig_fattening"]').show();        
+      }
+
+      if(selTreatment.match('layer_farming') !== null){
+          var housing = $('option[value*="layer_farming"]').show();        
+      }
+
+      if(selTreatment.match('chick_breeding') !== null){
+          var housing = $('option[value*="chick_breeding"]').show();        
+      }
+
+      if(selTreatment.match('chicken_fattening') !== null){
+          var housing = $('option[value*="chicken_fattening"]').show();        
+      }
+
+      if(selTreatment.match('turkey_fattening') !== null){
+          var housing = $('option[value*="turkey_fattening"]').show();        
+      }
+
+      if(selTreatment.match('turkey_breeding') !== null){
+          var housing = $('option[value*="turkey_breeding"]').show();        
+      }
+
+      if(selTreatment.match('duck_fattening') !== null){
+          var housing = $('option[value*="duck_fattening"]').show();        
+      }
+  
+  });
+
+	// Auswahlfeld: Weitere Spezifikation des Haltungsverfahrens
+  $('select[name="livestock"]').click(function(){
 	    var selTreatmentDetail = $('select[name="treatmentdetail"] option').hide();
 	    var selLivestock = $('select[name="livestock"]').val();    
 	    
@@ -282,75 +355,6 @@ function ktblDetermineTreatment() {
 	    }
 	});
 
-	$('select[name="treatment"]').click(function(){
-	    var selHousing = $('select[name^="housing"] option').hide();
-	    var selTreatment = $('select[name^="treatment"]').val();    
-	    
-	    if(selTreatment.match('diary_farming') !== null){
-	        var housing = $('option[value*="diary_farming"]').show();        
-	    }
-
-	    if(selTreatment.match('cattle_farming') !== null){
-	        var housing = $('option[value*="cattle_farming"]').show();        
-	    }
-
-	    if(selTreatment.match('calf_farming') !== null){
-	        var housing = $('option[value*="calf_farming"]').show();        
-	    }
-
-	    if(selTreatment.match('calf_fattening') !== null){
-	        var housing = $('option[value*="calf_fattening"]').show();        
-	    }
-
-	    if(selTreatment.match('cattle_fattening') !== null){
-	        var housing = $('option[value*="cattle_fattening"]').show();        
-	    }
-
-	    if(selTreatment.match('sucking_cow_farming') !== null){
-	        var housing = $('option[value*="sucking_cow_farming"]').show();        
-	    }
-
-	    if(selTreatment.match('piglet_production') !== null){
-	        var housing = $('option[value*="piglet_production"]').show();        
-	    }
-
-	    if(selTreatment.match('piglet_farming') !== null){
-	        var housing = $('option[value*="piglet_farming"]').show();        
-	    }
-
-      if(selTreatment.match('piglet_raising') !== null){
-          var housing = $('option[value*="piglet_raising"]').show();        
-      }
-
-	    if(selTreatment.match('pig_fattening') !== null){
-	        var housing = $('option[value*="pig_fattening"]').show();        
-	    }
-
-	    if(selTreatment.match('layer_farming') !== null){
-	        var housing = $('option[value*="layer_farming"]').show();        
-	    }
-
-	    if(selTreatment.match('chick_breeding') !== null){
-	        var housing = $('option[value*="chick_breeding"]').show();        
-	    }
-
-	    if(selTreatment.match('chicken_fattening') !== null){
-	        var housing = $('option[value*="chicken_fattening"]').show();        
-	    }
-
-	    if(selTreatment.match('turkey_fattening') !== null){
-	        var housing = $('option[value*="turkey_fattening"]').show();        
-	    }
-
-	    if(selTreatment.match('turkey_breeding') !== null){
-	        var housing = $('option[value*="turkey_breeding"]').show();        
-	    }
-
-	    if(selTreatment.match('duck_fattening') !== null){
-	        var housing = $('option[value*="duck_fattening"]').show();        
-	    }
-	
-	});
 }
 
 
