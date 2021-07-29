@@ -259,7 +259,7 @@ function ktblDetermineTreatment() {
 	});
 
   // Auswahlfeld: Weitere Spezifikation des Haltungsverfahrens
-  $('select[name^="treatment"]').click(function(){
+  $('select[name="livestock"]').click(function(){
       var selHousing = $('select[name^="housing"] option').hide();
       var selTreatment = $('select[name^="treatment"]').val();    
       
