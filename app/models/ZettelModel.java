@@ -1090,17 +1090,17 @@ public abstract class ZettelModel {
 		this.livestock = livestock;
 	}
 
-	public void addHousing(String in) {
-		if (housing == null || housing.isEmpty())
-			housing = new ArrayList<>();
-		housing.add(in);
-	}
+	
 	public void addTreatment(String in) {
 		if (treatment == null || treatment.isEmpty())
 			treatment = new ArrayList<>();
 		treatment.add(in);
 	}
 
+	public List<String> getTreatment(){
+		return this.treatment;
+	}
+	
 	public void setTreatment(List<String> treatment) {
 		this.treatment = treatment;
 	}
