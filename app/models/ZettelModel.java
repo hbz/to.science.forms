@@ -1273,7 +1273,7 @@ public abstract class ZettelModel {
 		dict.put(additionalNotesZF.uri, (in) -> setAdditionalNotes((String) in));
 
 		dict.put(livestockZF.uri, (in) -> setLivestock((String) in));
-		dict.put(treatmentZF.uri, (in) -> setTreatment((String) in));
+		dict.put(treatmentZF.uri, (in) -> addTreatment((String) in));
 		dict.put(housingZF.uri, (in) -> addHousing((String) in));
 		dict.put(ventilationZF.uri, (in) -> setVentilation((String) in));
 		dict.put(emissionprobeZF.uri, (in) -> addEmissionprobe((String) in));
