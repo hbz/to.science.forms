@@ -252,7 +252,7 @@ public abstract class ZettelModel {
 
 	//ktbl associated variables for ResearchDataForm 
 	private String livestock;
-	private String treatment;
+	private List<String> treatment = new ArrayList<String>();
 	private List<String> housing = new ArrayList<String>();
 	private String treatmentdetail;
 	private String ventilation;
@@ -1090,11 +1090,18 @@ public abstract class ZettelModel {
 		this.livestock = livestock;
 	}
 
-	public String getTreatment() {
-		return treatment;
+	public void addHousing(String in) {
+		if (housing == null || housing.isEmpty())
+			housing = new ArrayList<>();
+		housing.add(in);
+	}
+	public void addTreatment(String in) {
+		if (treatment == null || treatment.isEmpty())
+			treatment = new ArrayList<>();
+		treatment.add(in);
 	}
 
-	public void setTreatment(String treatment) {
+	public void setTreatment(List<String> treatment) {
 		this.treatment = treatment;
 	}
 
