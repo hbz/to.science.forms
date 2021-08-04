@@ -99,7 +99,7 @@ function enableAutocompletion(inputElement,endpoint) {
 }
 
 function handleMessage(evt) {
-	if (evt.data.action == 'postDataToZettel' && evt.data.message != 0) {
+	if (evt.data.action === 'postDataToZettel' && evt.data.message !== 0) {
 		$.ajax({
 			type : 'POST',
 			url : "/tools/zettel/forms?" + evt.data.queryParam,
@@ -227,6 +227,139 @@ function addActionsToRemoveAndAddButtons() {
 
 	});
 }
+
+// This function is for ktbl only. 
+// It selects the treatment options to be selected according to the animal type 
+function ktblDetermineTreatment() {
+	
+  // Auswahlfeld: Produktionsrichtung
+	$('select[name="livestock"]').click(function(){
+	    var selTreatment = $('select[name^="treatment"] option').hide();
+	    var selLivestock = $('select[name="livestock"]').val();    
+	    
+	    if(selLivestock.match('cattle') !== null){
+  	        var treatment = $('option[value*="cattle"]').show();        
+	    }
+	    
+	    if(selLivestock.match('pig') !== null){
+	        var treatment = $('option[value*="pig"]').show();
+	    }
+	    
+	    if(selLivestock.match('chicken') !== null){
+	        var treatment = $('option[value*="chicken"]').show();
+	    }
+	    
+	    if(selLivestock.match('turkey') !== null){
+	        var treatment = $('option[value*="turkey"]').show();
+	    }
+
+	    if(selLivestock.match('duck') !== null){
+	        var treatment = $('option[value*="duck"]').show();
+	    }
+	});
+
+  // Auswahlfeld: Haltungsverfahren
+  $('select[name^="treatment"]').each(function ( index ) { 
+    $(this).click(function(){
+      var selHousing = $('select[name^="housing"] option').hide();
+      var selTreatment = $(this).val();    
+      
+      if(selTreatment.match('diary_farming') !== null){
+          var housing = $('option[value*="diary_farming"]').show();        
+      }
+
+      if(selTreatment.match('cattle_farming') !== null){
+          var housing = $('option[value*="cattle_farming"]').show();        
+      }
+
+      if(selTreatment.match('calf_farming') !== null){
+          var housing = $('option[value*="calf_farming"]').show();        
+      }
+
+      if(selTreatment.match('calf_fattening') !== null){
+          var housing = $('option[value*="calf_fattening"]').show();        
+      }
+
+      if(selTreatment.match('cattle_fattening') !== null){
+          var housing = $('option[value*="cattle_fattening"]').show();        
+      }
+
+      if(selTreatment.match('sucking_cow_farming') !== null){
+          var housing = $('option[value*="sucking_cow_farming"]').show();        
+      }
+
+      if(selTreatment.match('piglet_production') !== null){
+          var housing = $('option[value*="piglet_production"]').show();        
+      }
+
+      if(selTreatment.match('piglet_farming') !== null){
+          var housing = $('option[value*="piglet_farming"]').show();        
+      }
+
+      if(selTreatment.match('piglet_raising') !== null){
+          var housing = $('option[value*="piglet_raising"]').show();        
+      }
+
+      if(selTreatment.match('pig_fattening') !== null){
+          var housing = $('option[value*="pig_fattening"]').show();        
+      }
+
+      if(selTreatment.match('layer_farming') !== null){
+          var housing = $('option[value*="layer_farming"]').show();        
+      }
+
+      if(selTreatment.match('chick_breeding') !== null){
+          var housing = $('option[value*="chick_breeding"]').show();        
+      }
+
+      if(selTreatment.match('chicken_fattening') !== null){
+          var housing = $('option[value*="chicken_fattening"]').show();        
+      }
+
+      if(selTreatment.match('turkey_fattening') !== null){
+          var housing = $('option[value*="turkey_fattening"]').show();        
+      }
+
+      if(selTreatment.match('turkey_breeding') !== null){
+          var housing = $('option[value*="turkey_breeding"]').show();        
+      }
+
+      if(selTreatment.match('duck_fattening') !== null){
+          var housing = $('option[value*="duck_fattening"]').show();        
+      }
+      });
+  
+  });
+
+	// Auswahlfeld: Weitere Spezifikation des Haltungsverfahrens
+  $('select[name="livestock"]').click(function(){
+	    var selTreatmentDetail = $('select[name="treatmentdetail"] option').hide();
+	    var selLivestock = $('select[name="livestock"]').val();    
+	    
+	    if(selLivestock.match('cattle') !== null){
+	        var treatment = $('option[value*="cattle"]').show();        
+	    }
+	    
+	    if(selLivestock.match('pig') !== null){
+	        var treatment = $('option[value*="pig"]').show();
+	    }
+	    
+	    if(selLivestock.match('chicken') !== null){
+	        var treatment = $('option[value*="chicken"]').show();
+	    }
+	    
+	    if(selLivestock.match('turkey') !== null){
+	        var treatment = $('option[value*="turkey"]').show();
+	    }
+
+	    if(selLivestock.match('duck') !== null){
+	        var treatment = $('option[value*="duck"]').show();
+	    }
+	});
+
+}
+
+
 
 function emitEvent() {
 	var target = parent.postMessage ? parent

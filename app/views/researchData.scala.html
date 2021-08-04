@@ -77,6 +77,27 @@
 				<br />
 				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",26)
 			}
+			@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),"ktbl-section"){
+				<br />
+				@singleSelect(myForm,"livestock",services.ZettelFields.livestockZF.getLabel(),"select-livestock",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.livestock"),40)
+				<br />
+        @singleSelect(myForm,"ventilation",services.ZettelFields.getEtikettByName("ventilationZF", "info.ktbl.ventilation@de"),"select-ventilation",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.ventilation"),41)
+        <br />
+        @multiselect(myForm, jsonMap, "treatment", services.ZettelFields.getEtikettByName("treatmentZF", "info.ktbl.treatment@de"), "select-treatment", GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.treatment"),40)
+        <br />
+				@multiselect(myForm, jsonMap, "housing", services.ZettelFields.getEtikettByName("housingZF", "info.ktbl.housing@de"), "select-housing", GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.housing"),40)
+				<br />
+				@singleSelect(myForm,"treatmentdetail",services.ZettelFields.treatmentdetailZF.getLabel(),"select-treatmentdetail",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.treatmentdetail"),40)
+				<br />
+				@multiselect(myForm, jsonMap, "emissionprobe", services.ZettelFields.getEtikettByName("emissionsprobeZF", "info.ktbl.emissionprobe@de"),"select-emissionprobe",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.emissionprobe"),42)
+				<br />
+				@multiselect(myForm, jsonMap, "emission", services.ZettelFields.getEtikettByName("emissionsZF", "info.ktbl.emission@de"),"select-emission",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.emission"),42)
+				<br />
+				@multiselect(myForm, jsonMap, "emissionreducing", services.ZettelFields.getEtikettByName("emissionsReducingZF", "info.ktbl.emissionreduce@de"),"select-emissions",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.emissionreduce"),43)
+				<br />
+				@singleSelect(myForm,"projecttitle",services.ZettelFields.projecttitleZF.getLabel(),"select-projecttitle",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.projecttitle"),44)
+				<br />
+			}
 		}
 		@if(myForm.hasErrors) {
 		    <div class="alert alert-error">
