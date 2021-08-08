@@ -20616,6 +20616,20 @@
 		}
 	},
 	{
+		"uri": "http://hbz-nrw.de/regal#fundingId",
+		"comment": "",
+		"label": "Förderer",
+		"icon": "fa fa-bars",
+		"name": "fundingId",
+		"referenceType": "String",
+		"container": "@set",
+		"weight": "900",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},
+	{
 		"uri": "http://hbz-nrw.de/regal#fundingProgram",
 		"comment": "",
 		"label": "Förderprogramm",
