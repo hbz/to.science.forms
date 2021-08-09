@@ -1,4 +1,4 @@
-name := """zettel"""
+name := """ToolboxOpenScience-Forms"""
 
 version := "1.0-SNAPSHOT"
 
