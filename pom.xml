@@ -7,19 +7,22 @@
 	<artifactId>Forms</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>ToolboxOpenScience-Forms</name>
-	<packaging>play2</packaging>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<encoding>UTF-8</encoding>
 		<scala.version>2.12.6</scala.version>
-		<play2.version>2.6.0</play2.version>
+		<play2scala.version>2.12</play2scala.version>
+		<play2.version>2.6.7</play2.version>
 		<jar.plugin.version>3.1.0</jar.plugin.version>
 		<sbt-compiler.plugin.version>1.0.0</sbt-compiler.plugin.version>
 		<play2.plugin.version>1.0.0-rc5</play2.plugin.version>
-		<twirl.plugin.version>1.1.1</twirl.plugin.version>
+		<twirl.plugin.version>1.2.0</twirl.plugin.version>
+		<twirl.version>1.5.1</twirl.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -28,10 +31,103 @@
 			<version>${scala.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.scalatestplus.play</groupId>
+			<artifactId>scalatestplus-play_${play2scala.version}</artifactId>
+			<version>4.0.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.typesafe.play</groupId>
-			<artifactId>play-server_2.12</artifactId>
+			<artifactId>play-server_${play2scala.version}</artifactId>
 			<version>${play2.version}</version>
 			<type>maven-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>twirl-api_2.12</artifactId>
+			<version>${twirl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-java_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>filters-helpers_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-akka-http-server_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-logback_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-ws_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.play2-maven-plugin</groupId>
+			<artifactId>play2-provider-api</artifactId>
+			<version>${play2.plugin.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-jdbc_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-jdbc-evolutions_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-test_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-java-forms_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-guice_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-json_2.12</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+
+		<!-- Work around for deprecated WS-Class, has to be replaced by Injected 
+			Class, Method see: https://www.playframework.com/documentation/2.6.x/WSMigration26 -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-ahc-ws_${play2scala.version}</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -57,21 +153,6 @@
 			<version>2.2.2</version>
 		</dependency>
 		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>play-json_2.12</artifactId>
-			<version>${play2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>twirl-api_2.12</artifactId>
-			<version>1.5.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>play-java_2.12</artifactId>
-			<version>${play2.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>javax.el-api</artifactId>
 			<version>3.0.0</version>
@@ -81,62 +162,41 @@
 			<artifactId>xml-apis</artifactId>
 			<version>1.4.01</version>
 		</dependency>
-		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>filters-helpers_2.12</artifactId>
-			<version>${play2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>play-netty-server_2.12</artifactId>
-			<version>${play2.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>play_2.12</artifactId>
-			<version>${play2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>play-logback_2.12</artifactId>
-			<version>${play2.version}</version>
-			<scope>runtime</scope>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.typesafe.play/play-ws -->
 		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>play-ws_2.12</artifactId>
-			<version>${play2.version}</version>
+			<groupId>net.sf.supercsv</groupId>
+			<artifactId>super-csv</artifactId>
+			<version>2.4.0</version>
 		</dependency>
 		<dependency>
-			<groupId>com.google.code.play2-maven-plugin</groupId>
-			<artifactId>play2-provider-api</artifactId>
-			<version>${play2.plugin.version}</version>
-			<type>pom</type>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.5.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>play-jdbc_2.12</artifactId>
-			<version>${play2.version}</version>
+			<groupId>com.github.jsonld-java</groupId>
+			<artifactId>jsonld-java</artifactId>
+			<version>0.8.3</version>
 		</dependency>
 		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>play-jdbc-evolutions_2.12</artifactId>
-			<version>${play2.version}</version>
-		</dependency>
-		<!-- only if there are JUnit tests in the project -->
-		<dependency>
-			<groupId>com.typesafe.play</groupId>
-			<artifactId>play-test_2.12</artifactId>
-			<version>${play2.version}</version>
-			<scope>test</scope>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.scalatestplus.play</groupId>
-			<artifactId>scalatestplus-play_2.12</artifactId>
-			<version>4.0.1</version>
-			<scope>test</scope>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.hbz.lobid-to-json</groupId>
+			<artifactId>lobid-to-json</artifactId>
+			<version>0.1.1</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -153,16 +213,99 @@
 		</resources>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<skipMain>true</skipMain> <!-- skip compile -->
+					<skip>true</skip> <!-- skip testCompile -->
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>com.google.code.sbt-compiler-maven-plugin</groupId>
 				<artifactId>sbt-compiler-maven-plugin</artifactId>
 				<version>${sbt-compiler.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>default-sbt-compile</id>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>com.google.code.play2-maven-plugin</groupId>
 				<artifactId>play2-maven-plugin</artifactId>
 				<version>${play2.plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+					<routesGenerator>injected</routesGenerator>
+					<serverJvmArgs>-Dplay.evolutions.db.default.autoApply=true</serverJvmArgs>
+					<templateAdditionalImports>play.data._
+						play.core.j.PlayFormsMagicForJava._</templateAdditionalImports>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.jakewharton.twirl</groupId>
+				<artifactId>twirl-maven-plugin</artifactId>
+				<version>${twirl.plugin.version}</version>
+				<configuration>
+					<templateDirectory>${project.basedir}/app</templateDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>eclipse</id>
+
+			<activation>
+				<property>
+					<name>m2e.version</name> <!-- for automatic profile activation -->
+				</property>
+			</activation>
+
+			<build>
+				<directory>${project.basedir}/target-eclipse</directory>
+
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>3.5.1</version>
+						<configuration>
+							<skipMain>true</skipMain>
+							<skip>true</skip>
+							<source>1.8</source>
+							<target>1.8</target>
+						</configuration>
+						<executions>
+							<execution>
+								<id>default-compile</id>
+								<goals>
+									<goal>compile</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>default-testCompile</id>
+								<goals>
+									<goal>testCompile</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

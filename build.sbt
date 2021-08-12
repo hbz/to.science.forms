@@ -1,10 +1,10 @@
 name := """ToolboxOpenScience-Forms"""
 
-version := "1.0-SNAPSHOT"
+version := "1.0-BETA"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.12.7"
 
 libraryDependencies ++= Seq(
   javaJdbc,
@@ -18,6 +18,8 @@ libraryDependencies ++= Seq(
 )
 
 resolvers += "jitpack" at "https://jitpack.io"
+
+TwirlKeys.templateImports += ""
 
 EclipseKeys.preTasks := Seq(compile in Compile)
 EclipseKeys.projectFlavor := EclipseProjectFlavor.Java           // Java project. Don't expect Scala IDE

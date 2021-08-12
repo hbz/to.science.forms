@@ -1,15 +1,14 @@
 	@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@ 
 
-@(myForm:Form[models.ZettelModel],dataFormat:String,documentId:String,topicId:String,formType:String)
+@(myForm:play.data.Form[models.ZettelModel],dataFormat:String,documentId:String,topicId:String,formType:String)
 @import tags._ 
 @import services._
-
 @jsonMap=@{ZettelHelper.getJsonMap(myForm)}
 @zettel("Artikel",myForm,dataFormat,documentId,topicId,formType) {
 	@if(myForm.hasGlobalErrors) {
 		<p class="error">@myForm.globalError.message</p>
 	} 
-	@helper.form(action = routes.ZettelController.postForm(Article.id,dataFormat,documentId,topicId)){
+	@helper.form(action = controllers.ZettelController.postForm(Article.id,dataFormat,documentId,topicId)){
 		<a href="@models.Article.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
 			@accordionPanel(services.ZettelFields.statusHeaderZF.getLabel(),"publicationStatus-section"){

@@ -1,6 +1,6 @@
 @* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@ 
 
-@(myForm:Form[models.ZettelModel],dataFormat:String,documentId:String,topicId:String,formType:String)
+@this(myForm:play.data.Form[models.ZettelModel],dataFormat:String,documentId:String,topicId:String,formType:String)
 @import tags._ 
 @import services._
 @jsonMap=@{ZettelHelper.getJsonMap(myForm)}
