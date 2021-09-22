@@ -141,6 +141,11 @@ edit /opt/toscience/to.science.forms/conf/application.conf
 	etikettPwd=admin
 	zettel.researchData.helpText="http://localhost/node/2"
 
+to connect to a to.science.api also edit the following vars:
+
+	application.toscience.url="http://localhost"
+  	application.toscience.url.api="http://api.localhost"
+
 edit startscript
 
 	sudo cp /tmp/to.science.forms/install/zettel.tmpl /etc/init.d/to.science.forms
