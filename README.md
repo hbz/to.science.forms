@@ -131,9 +131,9 @@ Go to http://localhost:9000/tools/zettel
 	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
 	unzip zettel-1.0-SNAPSHOT.zip
-	mv zettel-1.0-SNAPSHOT /opt/regal/apps/to.science.forms
+	mv zettel-1.0-SNAPSHOT /opt/toscience/to.science.forms
 
-edit /opt/regal/apps/to.science.forms/conf/application.conf
+edit /opt/toscience/to.science.forms/conf/application.conf
 
 	contextUrl="http://localhost:9002/tools/etikett/context.json"
 	etikettService="http://api.localhost:9002/tools/etikett"
@@ -153,7 +153,7 @@ set the following vars
         DESC="Zettel form provider"
         JAVA_HOME=/opt/jdk
         JAVA_OPTS="-XX:+HeapDumpOnOutOfMemoryError"
-        HOME="/opt/regal/apps/to.science.forms"
+        HOME="/opt/toscience/to.science.forms"
         USER="user to run forms"
         GROUP="group of user to run forms"
         SECRET=`uuidgen` # generate a secret e.g. using uuidgen
