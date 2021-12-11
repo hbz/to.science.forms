@@ -188,8 +188,7 @@ public class ZettelHelper {
 	 * Returns a html fragment like <code>
 	 * <div id="embeddedJson" 
 	 * 	class="success-true" 
-	 * 	style=
-	"display:none">{"some":"json","data":"from","your":"form","model":"end"}</div>
+	 * 	style="display:none">{"some":"json","data":"from","your":"form","model":"end"}</div>
 	 * </code> If form validation has been successful class attribute is set to
 	 * 'success-true' or 'success-false' if not. In case of success the div
 	 * contains a json-ld representation of the forms underlying model. In case of

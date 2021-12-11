@@ -30,7 +30,7 @@
 				@singlefieldText(myForm,"license",services.ZettelFields.licenseZF.getLabel(),"",17)
 			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
-				@multicombobox(myForm,jsonMap,"language",services.ZettelFields.languageZF.getLabel()+"*","select-language",ArticleHelper.getLanguageMap(),21)
+				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel()+"*","select-language",ArticleHelper.getLanguageMap(),20)
 			}	
 		}
 		@if(myForm.hasErrors) {
