@@ -12,9 +12,7 @@
 		<a href="@models.ResearchData.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
 			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
-			    @smallTextArea(myForm,"title","Titel"+"*","",1)
-				<br/>
-				@smallTextArea(myForm,"alternative","Alternativer Titel","",2)
+			    @smallTextArea(myForm,"title","Titel des Materials"+"*","",1)
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
                 @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints())
@@ -23,14 +21,20 @@
 				<br/>
 			    @multifieldLd(myForm,jsonMap,"other",services.ZettelFields.otherZF.getLabel(),"search",5,ArticleHelper.getPersonLookupEndpoints())		    
 			}
-			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
-				<br />
-				@multifieldText(myForm,jsonMap,"urn",services.ZettelFields.urnZF.getLabel(),"",24)
-				<br />
-				@multifieldText(myForm,jsonMap,"doi",services.ZettelFields.doiZF.getLabel(),"",25)
-				<br />
-				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",26)
+			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
+				@multiTextArea(myForm,jsonMap,"abstractText",services.ZettelFields.abstractTextZF.getLabel(),"",19)
 			}
+			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
+				@singlefieldText(myForm,"license",services.ZettelFields.licenseZF.getLabel(),"",17)
+			}
+			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
+				@multicombobox(myForm,jsonMap,"language",services.ZettelFields.languageZF.getLabel()+"*","select-language",ArticleHelper.getLanguageMap(),21)
+				<br />
+
+			}
+			
+			
+			
 		}
 		@if(myForm.hasErrors) {
 		    <div class="alert alert-error">
