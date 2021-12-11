@@ -36,6 +36,12 @@
 			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel()+"*","select-language",ArticleHelper.getLanguageMap(),20)
+			}
+			
+			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
+				@singleSelect(myForm,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ResearchDataHelper.getMediumMap(),6)
+				<br/>
+				@singleSelect(myForm,"yearOfCopyright",services.ZettelFields.yearOfCopyrightZF.getLabel(),"datepicker-year",ResearchDataHelper.getCopyrightYear(),7)
 			}	
 		}
 		@if(myForm.hasErrors) {
