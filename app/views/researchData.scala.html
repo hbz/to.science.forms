@@ -23,6 +23,11 @@
 				<br/>
 			    @multifieldLd(myForm,jsonMap,"other",services.ZettelFields.otherZF.getLabel(),"search",5,ArticleHelper.getPersonLookupEndpoints())		    
 			}
+			
+			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collection-section"){
+				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"search",13,ArticleHelper.getInstitutionLookupEndpoints())
+			}
+			
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@multiTextArea(myForm,jsonMap,"abstractText",services.ZettelFields.abstractTextZF.getLabel(),"",19)
 			}
