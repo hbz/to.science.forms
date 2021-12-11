@@ -90,9 +90,6 @@ public class ResearchData extends ZettelModel {
 		// Autoren
 		validateAuthorship(errors);
 		// Sprache der Publikation
-		mandatoryField("language", getLanguage(), errors);
-		// Fächerklassifikation
-		mandatoryField("ddc", getDdc(), errors);
 	}
 
 	private void validateURLs(List<ValidationError> errors) {
@@ -100,14 +97,6 @@ public class ResearchData extends ZettelModel {
 		validateUrl("creator", getCreator(), errors);
 		validateUrl("contributor", getContributor(), errors);
 		validateUrl("other", getOther(), errors);
-		validateUrl("ddc", getDdc(), errors);
-		validateUrl("reference", getReference(), errors);
-		validateUrl("associatedPublication", getAssociatedPublication(), errors);
-		validateUrl("associatedDataset", getAssociatedDataset(), errors);
-		validateUrl("nextVersion", Arrays.asList(getNextVersion()), errors);
-		validateUrl("previousVersion", Arrays.asList(getPreviousVersion()), errors);
-		validateUrl("urn", getUrn(), errors);
-		validateUrl("isLike", getIsLike(), errors);
 	}
 
 	private void validateUrl(String fieldName, List<String> fieldContent,
