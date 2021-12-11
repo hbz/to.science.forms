@@ -17,6 +17,8 @@
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
                 @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
+                @multicombobox(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"select-affiliation",3,ResearchDataHelper.getAffiliationMap())
+			    <br/>
 				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"search",4,ArticleHelper.getPersonLookupEndpoints())
 				<br/>
 			    @multifieldLd(myForm,jsonMap,"other",services.ZettelFields.otherZF.getLabel(),"search",5,ArticleHelper.getPersonLookupEndpoints())		    
@@ -29,8 +31,6 @@
 			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@multicombobox(myForm,jsonMap,"language",services.ZettelFields.languageZF.getLabel()+"*","select-language",ArticleHelper.getLanguageMap(),21)
-				<br />
-
 			}
 			
 			

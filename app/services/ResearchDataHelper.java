@@ -178,7 +178,72 @@ public class ResearchDataHelper {
 		return map;
 	}
 
-	/**
+  /**
+   * @return a map that can be used in an html select
+   */
+  public static LinkedHashMap<String, String> getAffiliationMap() {
+    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    map.put(null, "Bitte wählen Sie...");
+    map.put("https://ror.org/00613ak93", "Bergische Universität Wuppertal");
+    map.put("https://ror.org/0189raq88", "Deutsche Sporthochschule Köln");
+    map.put("https://ror.org/03vz3qc29", "Evangelische Hochschule Rheinland-Westfalen-Lippe");
+    map.put("https://ror.org/00edvg943", "Fachhochschule Bielefeld");
+    map.put("https://ror.org/03dv91853", "Fachhochschule Dortmund");
+    map.put("https://ror.org/04t5phd24", "Fachhochschule Südwestfalen");
+    map.put("https://ror.org/04tkkr536", "FernUniversität in Hagen");
+    map.put("https://ror.org/04tqgg260", "FH Aachen");
+    map.put("https://ror.org/00pv45a02", "FH Münster");
+    map.put("https://ror.org/03gf02c22", "Folkwang Universität der Künste");
+    map.put("https://ror.org/024z2rq82", "Heinrich-Heine-Universität Düsseldorf");
+    map.put("https://ror.org/04x02q560", "Hochschule Bochum");
+    map.put("https://ror.org/04m2anh63", "Hochschule Bonn-Rhein-Sieg");
+    map.put("https://ror.org/00ftx0026", "Hochschule Düsseldorf");
+    map.put("https://ror.org/03hj8rz96", "Hochschule für Gesundheit");
+    map.put("https://ror.org/03y02pg02", "Hochschule für Musik Detmold");
+    map.put("https://ror.org/05256tw11", "Hochschule für Musik und Tanz Köln");
+    map.put("https://ror.org/001rdde17", "Hochschule Hamm-Lippstadt");
+    map.put("https://ror.org/027b9qx26", "Hochschule Niederrhein");
+    map.put("https://ror.org/04wdt0z89", "Hochschule Rhein-Waal");
+    map.put("https://ror.org/02nkxrq89", "Hochschule Ruhr West");
+    map.put("https://ror.org/024nr0776", "Katholische Hochschule Nordrhein-Westfalen");
+    map.put("https://ror.org/040d40q10", "Kunstakademie Düsseldorf");
+    map.put("https://ror.org/00ztzxf77", "Kunstakademie Münster");
+    map.put("https://ror.org/00f2wje32", "Kunsthochschule für Medien Köln");
+    map.put("https://ror.org/00txhpa83", "Rheinische Fachhochschule Köln");
+    map.put("https://ror.org/041nas322", "Rheinische Friedrich-Wilhelms-Universität Bonn");
+    map.put("https://ror.org/04e1yzk82", "Robert-Schumann-Hochschule Düsseldorf");
+    map.put("https://ror.org/04tsk2644", "Ruhr-Universität Bochum");
+    map.put("https://ror.org/04xfq0f34", "RWTH Aachen");
+    map.put("https://ror.org/033jd5r25", "Technische Hochschule Georg Agricola");
+    map.put("https://ror.org/014nnvj65", "Technische Hochschule Köln");
+    map.put("https://ror.org/04eka8j06", "Technische Hochschule Ostwestfalen-Lippe");
+    map.put("https://ror.org/01k97gp34", "Technische Universität Dortmund");
+    map.put("https://ror.org/02hpadn98", "Universität Bielefeld");
+    map.put("https://ror.org/04mz5ra38", "Universität Duisburg-Essen");
+    map.put("https://ror.org/058kzsd48", "Universität Paderborn");
+    map.put("https://ror.org/02azyry73", "Universität Siegen");
+    map.put("https://ror.org/00yq55g44", "Universität Witten/Herdecke");
+    map.put("https://ror.org/00rcxh774", "Universität zu Köln");
+    map.put("https://ror.org/04p7ekn23", "Westfälische Hochschule Gelsenkirchen Bocholt Recklinghausen");
+    map.put("https://ror.org/00pd74e08", "Westfälische Wilhelms-Universität Münster");
+
+    return map;
+  }
+
+  /**
+   * @return a map that can be used in an html select
+   */
+  public static LinkedHashMap<String, String> getHonoricPrefixMap() {
+    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    map.put(null, "Bitte wählen Sie...");
+    map.put("http://hbz-nrw.de/toscience#noPrefix", "keine Angabe");
+    map.put("http://hbz-nrw.de/toscience#dr", "Dr. ");
+    map.put("http://hbz-nrw.de/toscience#prof", "Prof. ");
+    return map;
+  }
+
+  
+  /**
 	 * @return a map of yyyy strings with the last hundred years descending from
 	 *         today
 	 */
