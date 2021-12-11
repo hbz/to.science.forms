@@ -29,7 +29,7 @@
 			}
 			
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
-				@multiTextArea(myForm,jsonMap,"description",services.ZettelFields.descriptionZF.getLabel(),"",19)
+				@textArea(myForm,"description",services.ZettelFields.descriptionZF.getLabel(),"",11)
 			}
 			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
 				@singlefieldText(myForm,"license",services.ZettelFields.licenseZF.getLabel(),"",17)
