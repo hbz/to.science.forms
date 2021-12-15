@@ -165,6 +165,7 @@ public class ResearchDataHelper {
 	/**
 	 * @return a map that can be used in an html select
 	 */
+	//TODO check if unnecessary duplicate from ArticleHelper
 	public static LinkedHashMap<String, String> getLanguageMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(null, "Bitte wählen Sie...");
