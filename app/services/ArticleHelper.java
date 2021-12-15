@@ -171,6 +171,7 @@ public class ArticleHelper {
 	/**
 	 * @return a map that can be used in an html select
 	 */
+	//TODO: check for duplicate in ResearchDataHelper
 	public static LinkedHashMap<String, String> getLanguageMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
