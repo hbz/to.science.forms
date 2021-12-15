@@ -168,11 +168,11 @@ public class ResearchDataHelper {
 	public static LinkedHashMap<String, String> getLanguageMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(null, "Bitte wählen Sie...");
-		map.put("http://id.loc.gov/vocabulary/iso639-1/de", "Deutsch");
-		map.put("http://id.loc.gov/vocabulary/iso639-1/en", "Englisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-1/fr", "Französisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-1/sp", "Spanisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-1/it", "Italienisch");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "Deutsch");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "Englisch");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/spa", "Spanisch");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/ita", "Italienisch");
 		return map;
 	}
 
