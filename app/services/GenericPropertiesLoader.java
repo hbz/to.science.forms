@@ -29,6 +29,7 @@ public class GenericPropertiesLoader {
 			while(vocabEnum.hasMoreElements()) {
 				String key = (String) vocabEnum.nextElement();
 				vocabMap.put(key, vocabProp.getProperty(key));
+				play.Logger.info(vocabProp.getProperty(key));
 			}
 			
 			//vocabMap.putAll(vocabProp);
