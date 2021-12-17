@@ -6,7 +6,9 @@ package services;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.Properties;
+
 
 /**
  * @author aquast
@@ -16,20 +18,19 @@ import java.util.Properties;
 public class GenericPropertiesLoader {
 
 	public Map<String, String> loadVocabMap(String propertiesFileName) {
-		Map<String, String> vocabMap = null;
+		Map<String, String> vocabMap = new LinkedHashMap<>();
 		Properties vocabProp = new Properties();
 		String propertiesPath = play.Play.application().resource(propertiesFileName).getPath();
 
-		// InputStream is = get;
 		try {
 			vocabProp.load(loadPropertiesFromFile(propertiesPath));
+			vocabProp.putAll(vocabMap);
+			return vocabMap;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		vocabProp.putAll(vocabMap);
-		return vocabMap;
-
+		return null;
 	}
 
 	private InputStream loadPropertiesFromFile(String propertiesPath) {
