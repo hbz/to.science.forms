@@ -3,8 +3,10 @@
  */
 package services;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 import java.util.Map;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
@@ -38,18 +40,17 @@ public class GenericPropertiesLoader {
 			play.Logger.info(vocabMap.get("00n3mcd10"));
 			return vocabMap;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			play.Logger.error(e.getMessage());
 		}
 		return null;
 	}
 
-	private InputStream loadPropertiesFromFile(String propertiesPath) {
-		try (InputStream propStream = Thread.currentThread().getContextClassLoader()
-				.getResourceAsStream(propertiesPath)) {
-			return propStream;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+	private Reader loadPropertiesFromFile(String propertiesPath) {
+		try (Reader propReader = new FileReader(propertiesPath)) {
+			return propReader;
+		} catch (IOException e) {
+			e.printStackTrace();
+			play.Logger.error(e.getMessage());
 		}
 		return null;
 	};
