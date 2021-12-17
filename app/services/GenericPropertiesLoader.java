@@ -24,7 +24,7 @@ public class GenericPropertiesLoader {
 		Map<String, String> vocabMap = new LinkedHashMap<>();
 		Properties vocabProp = new Properties();
 		String propertiesPath = play.Play.application().resource(propertiesFileName).getPath();
-		play.Logger.info(propertiesPath);
+		play.Logger.info("Path of Properties file: " + propertiesPath);
 		try {
 			vocabProp.load(loadPropertiesFromFile(propertiesPath));
 			play.Logger.info("Properties file as " + vocabProp.size() + "elements");
@@ -32,7 +32,7 @@ public class GenericPropertiesLoader {
 			while(vocabEnum.hasMoreElements()) {
 				String key = (String) vocabEnum.nextElement();
 				vocabMap.put(key, vocabProp.getProperty(key));
-				play.Logger.info(vocabProp.getProperty(key));
+				play.Logger.info("Found value at file: "+  vocabProp.getProperty(key));
 			}
 			
 			//vocabMap.putAll(vocabProp);
