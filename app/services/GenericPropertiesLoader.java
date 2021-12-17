@@ -22,17 +22,14 @@ public class GenericPropertiesLoader {
 		Properties vocabProp = new Properties();
 		String propertiesPath = play.Play.application().resource(propertiesFileName).getPath();
 		play.Logger.info(propertiesPath);
-		//System.out.println(propertiesPath.toPath());
-		/*
 		try {
 			vocabProp.load(loadPropertiesFromFile(propertiesPath));
-			vocabProp.putAll(vocabMap);
-			return vocabMap;
+			//vocabProp.putAll(vocabMap);
+			//return vocabMap;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
 		return null;
 	}
 
