@@ -21,12 +21,12 @@ public class GenericPropertiesLoader {
 		Map<String, String> vocabMap = new LinkedHashMap<>();
 		Properties vocabProp = new Properties();
 		String propertiesPath = play.Play.application().resource(propertiesFileName).getPath();
-
+		System.out.println(propertiesPath.toPath());
 		try {
 			vocabProp.load(loadPropertiesFromFile(propertiesPath));
 			vocabProp.putAll(vocabMap);
 			return vocabMap;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
