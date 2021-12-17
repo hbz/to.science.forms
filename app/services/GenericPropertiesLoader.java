@@ -32,9 +32,9 @@ public class GenericPropertiesLoader {
 
 	}
 
-	private InputStream loadPropertiesFromFile(String propertiesFileName) {
+	private InputStream loadPropertiesFromFile(String propertiesPath) {
 		try (InputStream propStream = Thread.currentThread().getContextClassLoader()
-				.getResourceAsStream("conf/" + propertiesFileName)) {
+				.getResourceAsStream(propertiesPath)) {
 			return propStream;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
