@@ -183,7 +183,7 @@ public class ResearchDataHelper {
   public static LinkedHashMap<String, String> getAffiliationMap() {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
-    GenericPropertiesLoader GenProp = newGenericPropertiesLoader();
+    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
     map.putAll(GenProp.loadVocabMap("ResearchOrganizationsRegistry-de.properties"));
     /*
     map.put("https://ror.org/00613ak93", "Bergische Universität Wuppertal");
