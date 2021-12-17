@@ -24,7 +24,7 @@ public class GenericPropertiesLoader {
 		play.Logger.info(propertiesPath);
 		try {
 			vocabProp.load(loadPropertiesFromFile(propertiesPath));
-			//vocabProp.putAll(vocabMap);
+			vocabProp.putAll(vocabMap);
 			//return vocabMap;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
