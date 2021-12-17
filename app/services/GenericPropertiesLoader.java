@@ -25,6 +25,7 @@ public class GenericPropertiesLoader {
 		play.Logger.info(propertiesPath);
 		try {
 			vocabProp.load(loadPropertiesFromFile(propertiesPath));
+			play.Logger.info("Properties file as " + vocabProp.size() + "elements");
 			Enumeration<Object> vocabEnum = vocabProp.keys();
 			while(vocabEnum.hasMoreElements()) {
 				String key = (String) vocabEnum.nextElement();
