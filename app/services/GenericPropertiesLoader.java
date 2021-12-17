@@ -26,7 +26,7 @@ public class GenericPropertiesLoader {
 		String propertiesPath = play.Play.application().resource(propertiesFileName).getPath();
 		play.Logger.info("Path of Properties file: " + propertiesPath);
 		try {
-			vocabProp.load(loadPropertiesFromFile(propertiesPath));
+			vocabProp = loadPropertiesFromFile(propertiesPath);
 			play.Logger.info("Properties file as " + vocabProp.size() + "elements");
 			Enumeration<Object> vocabEnum = vocabProp.keys();
 			while(vocabEnum.hasMoreElements()) {
@@ -45,12 +45,14 @@ public class GenericPropertiesLoader {
 		return null;
 	}
 
-	private Reader loadPropertiesFromFile(String propertiesPath) {
+	private Properties loadPropertiesFromFile(String propertiesPath) {
+		Properties prop = new Properties();
 		try (Reader propReader = new FileReader(propertiesPath)) {
-			return propReader;
+			prop.load(propReader);
+			return prop;
 		} catch (IOException e) {
 			e.printStackTrace();
-			play.Logger.error(e.getMessage());
+			play.Logger.error(e.getStackTrace());
 		}
 		return null;
 	};
