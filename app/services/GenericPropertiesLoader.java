@@ -52,7 +52,6 @@ public class GenericPropertiesLoader {
 			return prop;
 		} catch (IOException e) {
 			e.printStackTrace();
-			play.Logger.error(e.getStackTrace());
 		}
 		return null;
 	};
