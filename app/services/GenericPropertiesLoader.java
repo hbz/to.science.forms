@@ -18,9 +18,11 @@ public class GenericPropertiesLoader {
 	public Map<String, String> loadVocabMap(String propertiesFileName) {
 		Map<String, String> vocabMap = null;
 		Properties vocabProp = new Properties();
+		String propertiesPath = play.Play.application().resource(propertiesFileName).getPath();
+
 		// InputStream is = get;
 		try {
-			vocabProp.load(loadPropertiesFromFile(propertiesFileName));
+			vocabProp.load(loadPropertiesFromFile(propertiesPath));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

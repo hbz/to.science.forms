@@ -184,8 +184,10 @@ public class ResearchDataHelper {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("ResearchOrganizationsRegistry-de.properties"));
-    /*
+    if(GenProp.loadVocabMap("ResearchOrganizationsRegistry-de.properties")!=null) {
+        map.putAll(GenProp.loadVocabMap("ResearchOrganizationsRegistry-de.properties"));
+        }
+    else {
     map.put("https://ror.org/00613ak93", "Bergische Universität Wuppertal");
     map.put("https://ror.org/0189raq88", "Deutsche Sporthochschule Köln");
     map.put("https://ror.org/03vz3qc29", "Evangelische Hochschule Rheinland-Westfalen-Lippe");
@@ -228,7 +230,7 @@ public class ResearchDataHelper {
     map.put("https://ror.org/00rcxh774", "Universität zu Köln");
     map.put("https://ror.org/04p7ekn23", "Westfälische Hochschule Gelsenkirchen Bocholt Recklinghausen");
     map.put("https://ror.org/00pd74e08", "Westfälische Wilhelms-Universität Münster");
-	*/
+    }
     return map;
   }
 
