@@ -6,6 +6,7 @@ package services;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.Properties;
 
@@ -24,10 +25,16 @@ public class GenericPropertiesLoader {
 		play.Logger.info(propertiesPath);
 		try {
 			vocabProp.load(loadPropertiesFromFile(propertiesPath));
-			vocabMap.putAll(vocabProp);
+			Enumeration<Object> vocabEnum = vocabProp.keys();
+			while(vocabEnum.hasMoreElements()) {
+				String key = (String) vocabEnum.nextElement();
+				vocabMap.put(key, vocabProp.getProperty(key));
+			}
+			
+			//vocabMap.putAll(vocabProp);
 			play.Logger.info(vocabMap.toString());
 			play.Logger.info(vocabMap.get("00n3mcd10"));
-			//return vocabMap;
+			return vocabMap;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
