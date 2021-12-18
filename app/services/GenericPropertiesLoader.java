@@ -3,6 +3,7 @@
  */
 package services;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,29 +21,11 @@ import java.util.Properties;
  */
 public class GenericPropertiesLoader {
 
-	public Map<String, String> loadVocabMap(String propertiesFileName) {
+	public Map<String, String> loadVocabularyMap(String propertiesFileName) {
 		Map<String, String> vocabMap = new LinkedHashMap<>();
-		Properties vocabProp = new Properties();
 		String propertiesPath = play.Play.application().resource(propertiesFileName).getPath();
-		play.Logger.info("Path of Properties file: " + propertiesPath);
-		try {
-			vocabProp = loadPropertiesFromFile(propertiesPath);
-			play.Logger.info("Properties file as " + vocabProp.size() + "elements");
-			Enumeration<Object> vocabEnum = vocabProp.keys();
-			while(vocabEnum.hasMoreElements()) {
-				String key = (String) vocabEnum.nextElement();
-				vocabMap.put(key, vocabProp.getProperty(key));
-				play.Logger.info("Found value at file: "+  vocabProp.getProperty(key));
-			}
-			
-			//vocabMap.putAll(vocabProp);
-			play.Logger.info(vocabMap.toString());
-			play.Logger.info(vocabMap.get("00n3mcd10"));
-			return vocabMap;
-		} catch (Exception e) {
-			play.Logger.error(e.getMessage());
-		}
-		return null;
+		vocabMap = loadMapFromFile(propertiesPath);
+		return vocabMap;
 	}
 
 	private Properties loadPropertiesFromFile(String propertiesPath) {
@@ -50,6 +33,21 @@ public class GenericPropertiesLoader {
 		try (Reader propReader = new FileReader(propertiesPath)) {
 			prop.load(propReader);
 			return prop;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	};
+	private LinkedHashMap<String,String> loadMapFromFile(String propertiesPath) {
+		LinkedHashMap<String,String> map = new LinkedHashMap<>();
+		try (Reader propReader = new FileReader(propertiesPath)) {
+			BufferedReader br = new BufferedReader(propReader);
+			String line = null;
+			while((line=br.readLine())!=null) {
+				String[] keyValue = line.split("=");
+				map.put(keyValue[0], keyValue[1]);	
+			}			
+			return map;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
