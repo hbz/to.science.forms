@@ -24,15 +24,11 @@
 			    @multifieldLd(myForm,jsonMap,"other",services.ZettelFields.otherZF.getLabel(),"search",5,ArticleHelper.getPersonLookupEndpoints())		    
 			}
 			
-			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collection-section"){
-				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"search",13,ArticleHelper.getInstitutionLookupEndpoints())
-			}
-			
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@textArea(myForm,"description",services.ZettelFields.descriptionZF.getLabel(),"",11)
 			}
 			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
-				@singlefieldText(myForm,"license",services.ZettelFields.licenseZF.getLabel(),"",17)
+				@singleSelect(myForm,"license",services.ZettelFields.licenseZF.getLabel(),"select-licence",ResearchDataHelper.getLicenseMap(),17)
 			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel()+"*","select-language",ArticleHelper.getLanguageMap(),20)

@@ -43,6 +43,7 @@ public class GenericPropertiesLoader {
 		}
 		return null;
 	};
+
 	private LinkedHashMap<String,String> loadMapFromFile(String propertiesPath) {
 		LinkedHashMap<String,String> map = new LinkedHashMap<>();
 		try {
@@ -50,10 +51,8 @@ public class GenericPropertiesLoader {
 			BufferedReader br = new BufferedReader(propReader);
 			String line = null;
 			while((line=br.readLine())!=null) {
-				play.Logger.info("eingelesene Zeile: " + line);
 				String[] keyValue = line.split("=");
 				map.put(keyValue[0], keyValue[1]);
-				play.Logger.info(map.get(keyValue[0]));
 			}
 			br.close();
 			return map;
