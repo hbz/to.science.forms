@@ -90,32 +90,24 @@ public class ResearchDataHelper {
 	 * @return a map that can be used in an html select
 	 */
 	public static LinkedHashMap<String, String> getLicenseMap() {
-		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-    map.put("https://creativecommons.org/publicdomain/zero/1.0/",
-        "CC0 1.0 Universal (Public Domain Dedication)");
-		map.put("https://creativecommons.org/licenses/by/4.0/", "CC BY 4.0");
-		map.put("https://creativecommons.org/licenses/by-sa/4.0/", "CC BY-SA 4.0");
-    map.put("https://creativecommons.org/licenses/by-nc/4.0/", "CC BY-NC 4.0");
-    map.put("https://creativecommons.org/licenses/by-nc-sa/4.0/", "CC BY-NC-SA 4.0");
-    map.put("https://creativecommons.org/licenses/by-nd/4.0/", "CC BY-ND 4.0");
-    map.put("https://creativecommons.org/licenses/by-nc-nd/4.0/", "CC BY-NC-ND 4.0");	
-		return map;
-	}
+    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    map.put(null, "Bitte wählen Sie...");
+    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
+    map.putAll(GenProp.loadVocabMap("Licenses-de.properties"));
+    return map;
+  }
 
 	/**
 	 * @return a map that can be used in an html select
 	 */
 	//TODO check if unnecessary duplicate from ArticleHelper
 	public static LinkedHashMap<String, String> getLanguageMap() {
-		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "Deutsch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "Englisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/spa", "Spanisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/ita", "Italienisch");
-		return map;
-	}
+    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    map.put(null, "Bitte wählen Sie...");
+    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
+    map.putAll(GenProp.loadVocabMap("Language-de.properties"));
+    return map;
+  }
 
   /**
    * @return a map of NRW-Hochschulen that can be used in an html select
