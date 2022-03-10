@@ -38,6 +38,8 @@
 				@singleSelect(myForm,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ResearchDataHelper.getMediumMap(),6)
 				<br/>
 				@singleSelect(myForm,"yearOfCopyright",services.ZettelFields.yearOfCopyrightZF.getLabel(),"datepicker-year",ResearchDataHelper.getCopyrightYear(),7)
+				<br/>
+			    @multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"search",22,ArticleHelper.getSubjectLookupEndpoints())
 			}	
 		}
 		@if(myForm.hasErrors) {
