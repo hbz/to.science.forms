@@ -184,7 +184,7 @@ public abstract class ZettelModel {
 	private List<String> professionalGroup;
 	private String embargoTime;
 	private List<String> ddc = new ArrayList<>();
-	private String language;
+  private List<String> language = new ArrayList<>();
 	private String medium;
 	private List<String> dataOrigin = new ArrayList<>();
 	private List<String> subject = new ArrayList<>();
@@ -424,15 +424,21 @@ public abstract class ZettelModel {
 		this.ddc = ddc;
 	}
 
-	public String getLanguage() {
+	public List<String> getLanguage() {
 		return language;
 	}
 
-	public void setLanguage(String language) {
+	public void setLanguage(List<String> language) {
 		this.language = language;
 	}
 
-	public List<String> getSubject() {
+  public void addLanguage(String language) {
+    if ( this.language== null | this.language.isEmpty()) {
+      this.language = new ArrayList<String>();
+    }
+  }
+
+  public List<String> getSubject() {
 		return subject;
 	}
 
@@ -1071,7 +1077,7 @@ public abstract class ZettelModel {
 		dict.put(contributorZF.uri, (in) -> addContributor((String) in));
 		dict.put(dataOriginZF.uri, (in) -> addDataOrigin((String) in));
 		dict.put(embargoTimeZF.uri, (in) -> setEmbargoTime((String) in));
-		dict.put(languageZF.uri, (in) -> setLanguage((String) in));
+		dict.put(languageZF.uri, (in) -> addLanguage((String) in));
 		dict.put(licenseZF.uri, (in) -> setLicense((String) in));
 		dict.put(mediumZF.uri, (in) -> setMedium((String) in));
 		dict.put(professionalGroupZF.uri,
