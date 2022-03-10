@@ -432,10 +432,11 @@ public abstract class ZettelModel {
 		this.language = language;
 	}
 
-  public void addLanguage(String language) {
+  public void addLanguage(String in) {
     if ( this.language== null | this.language.isEmpty()) {
       this.language = new ArrayList<String>();
     }
+    this.language.add(in);
   }
 
   public List<String> getSubject() {
