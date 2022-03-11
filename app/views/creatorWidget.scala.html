@@ -1,0 +1,38 @@
+@* Copyright 2016 Jan Schnasse, hbz. Licensed under the GNU Affero General Public License *@ 
+
+@(myForm:Form[models.ZettelModel],jsonMap:Map[String,Object])
+@import tags._ 
+@import services._
+<div class="multi-field-wrapper" defaultValue="-">
+	<ol class="multi-fields" id="creator">
+	
+		@for(index <- ZettelHelper.getIndex(myForm,jsonMap,"creator") ){
+				<li class="multi-field">
+		                @ldInputField(myForm,{"creator["+index+"]"},services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints(){
+					  	@helpText("creator")
+						}
+		                <br />
+		                @inputField(myForm,{"institution["+index+"]"},services.ZettelFields.institutionZF.getLabel(),"search",4,ResearchDataHelper.getAffiliationMap()){
+					  	@helpText("institution")
+						}
+					 	<div class="buttonBox">
+					 	
+							<div class="btn-group">
+								<button type="button" class="add-field" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-plus-circle"/></button>
+								<button type="button" class="remove-field" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-minus-circle"/></button>
+							</div>	
+							<div class="btn-group">
+								<button type="button" class="moveUp" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-arrow-circle-up"/></button>
+								<button type="button" class="moveDown" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-arrow-circle-down"/></button>
+							</div>	
+						</div>
+						<div>
+						</div>
+					<br/>
+					<!-- do not insert elements after the following div, unless you want to modify moveDown implementation in zettel.js -->
+				</li>
+			
+		}
+	</ol>
+	
+</div>

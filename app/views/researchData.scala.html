@@ -15,9 +15,7 @@
 			    @smallTextArea(myForm,"title","Titel des Materials"+"*","",1)
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
-                @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints())
-			    <br/>
-                @multicombobox(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"select-affiliation",ResearchDataHelper.getAffiliationMap(),5)
+                @creatorWidget(myForm,jsonMap)
 			    <br/>
 				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"search",4,ArticleHelper.getPersonLookupEndpoints())
 				<br/>
