@@ -187,7 +187,7 @@ public abstract class ZettelModel {
 	private String embargoTime;
 	private List<String> ddc = new ArrayList<>();
   private List<String> language = new ArrayList<>();
-	private String medium;
+	private List<String> medium = new ArrayList<>();
 	private List<String> dataOrigin = new ArrayList<>();
 	private List<String> subject = new ArrayList<>();
 	private List<String> doi = new ArrayList<>();
@@ -457,13 +457,20 @@ public abstract class ZettelModel {
 		this.subject = subject;
 	}
 
-	public String getMedium() {
+	public List<String> getMedium() {
 		return medium;
 	}
 
-	public void setMedium(String medium) {
+	public void setMedium(List<String>  medium) {
 		this.medium = medium;
 	}
+
+	public void addMedium(String in) {
+    if (medium ==null | medium.isEmpty()) {
+      medium = new ArrayList<>();
+    }
+	  this.medium.add(in);
+  }
 
 	public List<String> getDataOrigin() {
 		return dataOrigin;
@@ -1091,7 +1098,7 @@ public abstract class ZettelModel {
 		dict.put(embargoTimeZF.uri, (in) -> setEmbargoTime((String) in));
 		dict.put(languageZF.uri, (in) -> addLanguage((String) in));
 		dict.put(licenseZF.uri, (in) -> setLicense((String) in));
-		dict.put(mediumZF.uri, (in) -> setMedium((String) in));
+		dict.put(mediumZF.uri, (in) -> addMedium((String) in));
 		dict.put(professionalGroupZF.uri,
 				(in) -> addProfessionalGroup((String) in));
 		dict.put(subjectZF.uri, (in) -> addSubject((String) in));
