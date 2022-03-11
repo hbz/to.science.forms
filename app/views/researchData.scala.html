@@ -17,9 +17,9 @@
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
                 @creatorWidget(myForm,jsonMap)
 			    <br/>
-				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"search",4,ArticleHelper.getPersonLookupEndpoints())
-				<br/>
-			    @multifieldLd(myForm,jsonMap,"other",services.ZettelFields.otherZF.getLabel(),"search",5,ArticleHelper.getPersonLookupEndpoints())		    
+                @contributorWidget(myForm,jsonMap)
+			    <br/>
+                @otherWidget(myForm,jsonMap)
 			}
 			
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){

@@ -29,6 +29,8 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/creator");
 	public static Etikett contributorZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/contributor");
+  public static Etikett academicTitleZF =
+      ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#academicTitle");
 	public static Etikett titleZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/title");
 	public static Etikett dataOriginZF =

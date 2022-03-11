@@ -135,7 +135,7 @@ public class ResearchDataHelper {
   /**
    * @return a map that can be used in an html select
    */
-  public static LinkedHashMap<String, String> getHonoricPrefixMap() {
+  public static LinkedHashMap<String, String> getAcademicTitleMap() {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
     map.put("http://hbz-nrw.de/toscience#noPrefix", "keine Angabe");

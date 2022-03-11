@@ -4,12 +4,12 @@
 @import tags._ 
 @import services._
 <div class="multi-field-wrapper" defaultValue="-">
-	<ol class="multi-fields" id="creator">
+	<ol class="multi-fields" id="other">
 	
-		@for(index <- ZettelHelper.getIndex(myForm,jsonMap,"creator") ){
+		@for(index <- ZettelHelper.getIndex(myForm,jsonMap,"other") ){
 				<li class="multi-field">
-		                @ldInputField(myForm,{"creator["+index+"]"},services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints()){
-					  	@helpText("creator")
+		                @ldInputField(myForm,{"other["+index+"]"},services.ZettelFields.otherZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints()){
+					  	@helpText("other")
 						}
 		                <br />
 		                @singleSelect(myForm,{"affiliation["+index+"]"},services.ZettelFields.affiliationZF.getLabel(),"affiliation-select",ResearchDataHelper.getAffiliationMap(),4)
