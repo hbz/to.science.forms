@@ -12,7 +12,7 @@
 					  	@helpText("creator")
 						}
 		                <br />
-		                @inputField(myForm,{"institution["+index+"]"},services.ZettelFields.institutionZF.getLabel(),"search",4,ResearchDataHelper.getAffiliationMap()){
+		                @multifieldLd(myForm,jsonMap,{"institution["+index+"]"},"institution",services.ZettelFields.institutionZF.getLabel(),"search",4,ArticleHelper.getAffiliationMap())
 					  	@helpText("institution")
 						}
 					 	<div class="buttonBox">
