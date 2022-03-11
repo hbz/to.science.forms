@@ -12,8 +12,8 @@
 					  	@helpText("creator")
 						}
 		                <br />
-		                @multifieldLd(myForm,jsonMap,{"institution["+index+"]"},services.ZettelFields.institutionZF.getLabel(),"search",4,ResearchDataHelper.getAffiliationMap())
-					 	<div class="buttonBox">
+		                @singleSelect(myForm,{"institution["+index+"]"},services.ZettelFields.institutionZF.getLabel(),"affiliation-select",ResearchDataHelper.getAffiliationMap(),4)
+		              	<div class="buttonBox">
 					 	
 							<div class="btn-group">
 								<button type="button" class="add-field" style="background:none;border:0;padding:0px;width:24px; text-align:center; vertical-align:middle"><span class="fa fa-plus-circle"/></button>
