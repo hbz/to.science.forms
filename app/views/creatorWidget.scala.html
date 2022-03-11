@@ -8,7 +8,7 @@
 	
 		@for(index <- ZettelHelper.getIndex(myForm,jsonMap,"creator") ){
 				<li class="multi-field">
-		                @ldInputField(myForm,{"creator["+index+"]"},services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints(){
+		                @ldInputField(myForm,{"creator["+index+"]"},services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints()){
 					  	@helpText("creator")
 						}
 		                <br />
