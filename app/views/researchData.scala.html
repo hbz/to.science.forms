@@ -29,12 +29,12 @@
 				@singleSelect(myForm,"license",services.ZettelFields.licenseZF.getLabel(),"select-licence",ResearchDataHelper.getLicenseMap(),17)
 			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
-				@multicombobox(myForm,jsonMap,"language",services.ZettelFields.languageZF.getLabel(),"select-language",ArticleHelper.getLanguageMap,21)
+				@multicombobox(myForm,jsonMap,"language",services.ZettelFields.languageZF.getLabel(),"select-language",ResearchDataHelper.getLanguageMap(),21)
 			
 			}
 			
 			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
-				@singleSelect(myForm,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ResearchDataHelper.getMediumMap(),6)
+				@multicombobox(myForm,jsonMap,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ResearchDataHelper.getMediumMap(),5)
 				<br/>
 				@singleSelect(myForm,"yearOfCopyright",services.ZettelFields.yearOfCopyrightZF.getLabel(),"datepicker-year",ResearchDataHelper.getCopyrightYear(),7)
 				<br/>
