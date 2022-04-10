@@ -179,7 +179,8 @@ public abstract class ZettelModel {
 	private String alternative;
 	private List<String> creator = new ArrayList<>();
 	private List<String> contributor = new ArrayList<>();
-  private String academicTitle;
+  private List<String> academicTitle;
+  private String academicTitleIndex;
 	private String yearOfCopyright;
 	private String license;
 	private String description;
@@ -372,13 +373,29 @@ public abstract class ZettelModel {
 		this.creator = author;
 	}
 
-  public String getAcademicTitle() {
-    return academicTitle;
+  public void addAcademicTitle(String academicTitle) {
+    if(this.academicTitle == null) {
+      this.academicTitle = new ArrayList<String>();
+    }
+    this.academicTitle.add(academicTitle);
   }
 
-  public void setAcademicTitle(String academicTitle) {
+  public void setAcademicTitle(List<String>  academicTitle ) {
     this.academicTitle = academicTitle;
   }
+
+  public String getAcademicTitleIndex() {
+    return academicTitleIndex;
+  }
+
+  public void setAcademicTitleIndex(String academicTitleIndex) {
+    this.academicTitleIndex = academicTitleIndex;
+  }
+  
+  public List<String> getAcademicTitle(){
+    return this.academicTitle;
+  }
+
 
   public String getYearOfCopyright() {
 		return yearOfCopyright;
@@ -1085,7 +1102,7 @@ public abstract class ZettelModel {
 	}
 
 	/**
-	 * @return a map that maps a uri to a setter method
+	 * @return a map that maps an uri to a setter method
 	 */
 	protected Map<String, Consumer<Object>> getMappingForDeserialization() {
 		String regalApi = Play.application().configuration().getString("regalApi");

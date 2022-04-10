@@ -208,6 +208,16 @@ public class ZettelController extends Controller {
 		return result;
 	}
 
+	/**
+	 * binds a rdf datastream to the appropriate form (via play.data.formFactory).
+	 * rdf datastream is acquired either from existing rdf file (loadRdf) or from http request
+	 * (bindFromRequest).
+	 * Due to form validation bindFromRequest is needed to re-render form with all form data applied from form user    
+	 * @param zettel
+	 * @param documentId
+	 * @param topicId
+	 * @return
+	 */
 	private Form<?> bindToForm(ZettelRegisterEntry zettel, String documentId,
 			String topicId) {
 		Form<?> form = null;
@@ -226,12 +236,22 @@ public class ZettelController extends Controller {
 					.error("WARN: Can not handle " + request().contentType().get());
 		}
 		// play.Logger.debug(String
-		// .format("Content of model directyl after bindToForm\n%s", form.get()));
+		// .format("Content of model directly after bindToForm\n%s", form.get()));
 		play.Logger
 				.debug(String.format("Content of rdf result\n%s", printRdf(form)));
 		return form;
 	}
 
+	/**
+	 * loads and deserialize rdf-Datastream from file. Puts values from rdf-Datastream into applicable form.
+	 * CAVEAT: Method in current form is only applicable for article or researchData form.  
+	 * @param asText
+	 * @param zettel
+	 * @param documentId
+	 * @param topicId
+	 * @return
+	 */
+	// TODO: replace if construct with an more generic way to find the correct form
 	private Form<?> loadRdf(String asText, ZettelRegisterEntry zettel,
 			String documentId, String topicId) {
 		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
