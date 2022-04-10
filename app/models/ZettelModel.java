@@ -1110,7 +1110,7 @@ public abstract class ZettelModel {
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
 		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
 		dict.put(contributorZF.uri, (in) -> addContributor((String) in));
-		dict.put(academicTitleZF.uri, (in) -> setAcademicTitle((String) in));
+		dict.put(academicTitleZF.uri, (in) -> addAcademicTitle((String) in));
     dict.put(dataOriginZF.uri, (in) -> addDataOrigin((String) in));
 		dict.put(embargoTimeZF.uri, (in) -> setEmbargoTime((String) in));
 		dict.put(languageZF.uri, (in) -> addLanguage((String) in));
