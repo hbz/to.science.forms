@@ -20,6 +20,7 @@ package models;
 import static services.ZettelFields.typeZF;
 import static services.ZettelFields.abstractTextZF;
 import static services.ZettelFields.academicTitleZF;
+import static services.ZettelFields.academicTitleIndexZF;
 import static services.ZettelFields.additionalMaterialZF;
 import static services.ZettelFields.affiliationIndexZF;
 import static services.ZettelFields.affiliationZF;
@@ -384,6 +385,10 @@ public abstract class ZettelModel {
     this.academicTitle = academicTitle;
   }
 
+  public List<String> getAcademicTitle(){
+    return this.academicTitle;
+  }
+
   public String getAcademicTitleIndex() {
     return academicTitleIndex;
   }
@@ -392,11 +397,6 @@ public abstract class ZettelModel {
     this.academicTitleIndex = academicTitleIndex;
   }
   
-  public List<String> getAcademicTitle(){
-    return this.academicTitle;
-  }
-
-
   public String getYearOfCopyright() {
 		return yearOfCopyright;
 	}
@@ -1111,6 +1111,7 @@ public abstract class ZettelModel {
 		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
 		dict.put(contributorZF.uri, (in) -> addContributor((String) in));
 		dict.put(academicTitleZF.uri, (in) -> addAcademicTitle((String) in));
+    dict.put(academicTitleIndexZF.uri, (in) -> setAcademicTitleIndex((String) in));
     dict.put(dataOriginZF.uri, (in) -> addDataOrigin((String) in));
 		dict.put(embargoTimeZF.uri, (in) -> setEmbargoTime((String) in));
 		dict.put(languageZF.uri, (in) -> addLanguage((String) in));
