@@ -251,7 +251,7 @@ public class ZettelController extends Controller {
 	 * @param topicId
 	 * @return
 	 */
-	// TODO: replace if construct with an more generic way to find the correct form
+	// TODO: replace if-construct for finding the correct form
 	private Form<?> loadRdf(String asText, ZettelRegisterEntry zettel,
 			String documentId, String topicId) {
 		try (InputStream in = new ByteArrayInputStream(asText.getBytes("utf-8"))) {
