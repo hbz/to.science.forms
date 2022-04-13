@@ -44,7 +44,7 @@ public class Article extends ZettelModel {
 	public final static String id = "katalog:article";
 
 	/**
-	 * Thanks Simon G.! http://stackoverflow.com/a/5492927/4420271
+	 * Thanks Simon G.! https://stackoverflow.com/a/5492927/4420271
 	 */
 	public final static Pattern URN_PATTERN = Pattern.compile(
 			"^urn:[a-z0-9][a-z0-9-]{0,31}:([a-z0-9()+,\\-.:=@;$_!*']|%[0-9a-f]{2})+$",
@@ -147,6 +147,11 @@ public class Article extends ZettelModel {
 
 	}
 
+	/**
+	 * checks if the string provided by a form field applies to an URL 
+	 * @param addr
+	 * @return boolean
+	 */
 	@SuppressWarnings({ "javadoc", "unused" })
 	public boolean isValidUrl(String addr) {
 		try {
