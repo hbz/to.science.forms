@@ -94,6 +94,9 @@ public class ZettelController extends Controller {
 	}
 
 	/**
+	 * This methods gets a form (Formular) with the specified Formular-ID (id)
+	 * for the Ressource documentId. 
+	 * Das Ergebnis wird vom Frontend direkt im Tab "Bearbeiten" (/edit) angezeigt
 	 * @param id if null list all available forms otherwise render the requested
 	 *          form.
 	 * @param format ask for certain format. supports xml,ntriples and json
@@ -106,6 +109,7 @@ public class ZettelController extends Controller {
 	 */
 	public CompletionStage<Result> getForms(String id, String format,
 			String documentId, String topicId) {
+		play.Logger.debug("BEGIN Methode getForms. id="+id+"; documentId="+documentId);
 		setHeaders();
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
@@ -118,7 +122,9 @@ public class ZettelController extends Controller {
 			}
 			ZettelRegister zettelRegister = new ZettelRegister();
 			ZettelRegisterEntry zettel = zettelRegister.get(id);
+			play.Logger.debug("BEGIN renderFrom");
 			result = renderForm(zettel, format, documentId, topicId);
+			play.Logger.debug("ENDE renderFrom");
 		}
 		future.complete(result);
 		return future;
@@ -284,7 +290,14 @@ public class ZettelController extends Controller {
 
 	private Result renderForm(ZettelRegisterEntry zettel, String format,
 			String documentId, String topicId) {
+		play.Logger.debug(zettel.getModel().getClass().toString());
 		Form<?> form = formFactory.form(zettel.getModel().getClass());
+		if( form == null ) {
+			play.Logger.error("Formular ist Null!!");
+			throw new RuntimeException("Formular ist Null!!");
+		}
+		// String jsonldString = form.get().toString();
+		// play.Logger.debug("jsonld-String:"+jsonldString);
 		return ok(zettel.render(form, format, documentId, topicId));
 	}
 

@@ -36,6 +36,7 @@ import models.JsonMessage;
 import models.ZettelModel;
 import play.data.Form;
 import play.data.validation.ValidationError;
+import play.Logger;
 
 /**
  * @author Jan Schnasse
@@ -200,12 +201,15 @@ public class ZettelHelper {
 	 */
 	public static JsonMessage getEmbeddedJson(Form<?> form, String format) {
 		JsonMessage result = null;
-		// play.Logger.debug("Write " + format);
+		play.Logger.debug("Write " + format);
 		try {
 			if (form.hasErrors()) {
 				result = new JsonMessage(form.errorsAsJson(), 400);
 			} else {
+				play.Logger.debug("getEmbeddedJson: form has no errors");
+				play.Logger.debug("form.get().toString()="+form.get().toString());
 				if (form.get() != null) {
+					play.Logger.debug("form.get().toString()="+form.get().toString());
 					String jsonldString = form.get().toString();
 					jsonldString = jsonldString.replace("%", "%25");
 					try (InputStream in =
@@ -337,9 +341,11 @@ public class ZettelHelper {
 	 * @return a jsonlike map
 	 */
 	public static Map<String, Object> getJsonMap(Form<ZettelModel> form) {
+		play.Logger.debug("BEGINN ZettelHelper.getJsonMap");
 		try {
 			return form.value().get().serializeToMap();
 		} catch (Exception e) {
+			play.Logger.error("ERROR ZettelHelper.getJsonMap");
 			return new HashMap<>();
 		}
 	}
@@ -403,7 +409,7 @@ public class ZettelHelper {
 		addError(result, errors, "dataOrigin");
 		addError(result, errors, "recordingPeriod");
 		addError(result, errors, "recordingLocation");
-		addError(result, errors, "recordingCoordinates");
+		addError(result, errors, "recordin)gCoordinates");
 		addError(result, errors, "reference");
 		addError(result, errors, "associatedPublication");
 		addError(result, errors, "associatedDataset");

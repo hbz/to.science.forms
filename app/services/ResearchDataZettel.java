@@ -45,6 +45,9 @@ public class ResearchDataZettel implements ZettelRegisterEntry {
 	@Override
 	public Content render(Form<?> form, String format, String documentId,
 			String topicId) {
+		play.Logger.debug("BEGINN ResearchDataZettel.render");
+		// String jsonldString = form.get().toString();
+		// play.Logger.debug("jsonld-String:"+jsonldString);
 		return researchData.render((Form<ZettelModel>) form, format, documentId,
 				topicId, getId());
 	}

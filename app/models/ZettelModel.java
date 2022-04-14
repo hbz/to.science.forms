@@ -1216,6 +1216,7 @@ public abstract class ZettelModel {
 	 */
 	public ZettelModel deserializeFromRdf(InputStream in, RDFFormat format,
 			String myDocumentId, String myTopicId) {
+		play.Logger.debug("BEGINN Methode deserializeFromRdf");
 		this.documentId = myDocumentId;
 		this.topicId = myTopicId;
 		Map<String, Consumer<Object>> dict = getMappingForDeserialization();
@@ -1236,12 +1237,14 @@ public abstract class ZettelModel {
 	 * @return json ld map for this model
 	 */
 	public Map<String, Object> serializeToMap() {
+		play.Logger.debug("BEGINN ZettelModel.serializeToMap");
 		Map<String, Object> jsonMap =
 				new ObjectMapper().convertValue(this, HashMap.class);
 		jsonMap.put(ZettelModel.IS_PRIMARY_TOPIC_OF, getIsPrimaryTopicOf());
 		// jsonMap.put("rdftype", getType());
 		removeEmptyCollections(jsonMap);
 		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
+		play.Logger.debug("jsonMap="+jsonMap.toString());
 		return jsonMap;
 	}
 
