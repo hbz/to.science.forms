@@ -222,6 +222,8 @@ public class ZettelController extends Controller {
 			String topicId) {
 		Form<?> form = null;
 		if ("application/rdf+xml".equals(request().contentType().get())) {
+      play.Logger.debug("Send Request to " + request().uri());
+      play.Logger.debug("Response is " +XmlUtils.docToString(request().body().asXml()));
 			play.Logger.debug("Load form from rdf");
 			form = loadRdf(XmlUtils.docToString(request().body().asXml()), zettel,
 					documentId, topicId);
