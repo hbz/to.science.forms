@@ -374,11 +374,11 @@ public abstract class ZettelModel {
 		this.creator = author;
 	}
 
-  public void addAcademicTitle(String academicTitle) {
-    if(this.academicTitle == null) {
+  public void addAcademicTitle(String academicDegree) {
+    if(academicTitle == null || academicTitle.isEmpty()) {
       this.academicTitle = new ArrayList<String>();
     }
-    this.academicTitle.add(academicTitle);
+    academicTitle.add(academicDegree);
   }
 
   public void setAcademicTitle(List<String>  academicTitle ) {
