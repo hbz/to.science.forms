@@ -207,6 +207,7 @@ public class ZettelHelper {
 			} else {
 				if (form.get() != null) {
 					String jsonldString = form.get().toString();
+					play.Logger.debug("Inhalt von embeddedJson: " + jsonldString);
 					jsonldString = jsonldString.replace("%", "%25");
 					try (InputStream in =
 							new ByteArrayInputStream(jsonldString.getBytes("utf-8"))) {

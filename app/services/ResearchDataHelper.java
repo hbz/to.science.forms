@@ -138,9 +138,8 @@ public class ResearchDataHelper {
   public static LinkedHashMap<String, String> getAcademicTitleMap() {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
-    map.put("http://hbz-nrw.de/toscience#noPrefix", "keine Angabe");
-    map.put("http://hbz-nrw.de/toscience#dr", "Dr. ");
-    map.put("http://hbz-nrw.de/toscience#prof", "Prof. ");
+    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
+    map.putAll(GenProp.loadVocabMap("AcademicDegree-de.properties"));
     return map;
   }
 

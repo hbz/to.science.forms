@@ -16011,7 +16011,7 @@
 	},
 	{
 		"uri": "http://id.loc.gov/vocabulary/iso639-2/deu",
-		"label": "deutsch",
+		"label": "Deutsch",
 		"name": "deu",
 		"referenceType": "String",
 		"weight": "1000",
