@@ -17566,7 +17566,7 @@
 		"comment": "",
 		"label": "Akademischer Grad",
 		"icon": "",
-		"name": "Akademischer Grad",
+		"name": "academicDegree",
 		"referenceType": "String",
 		"container": "@list",
 		"weight": "5",
@@ -17574,11 +17574,11 @@
 		"multilangLabel": {}
 	},
 	{
-		"uri": "http://hbz-nrw.de/regal#academicTitleIndex",
+		"uri": "http://hbz-nrw.de/regal#academicDegreeIndex",
 		"comment": "",
-		"label": "academicTitleIndex",
+		"label": "academicDegreeIndex",
 		"icon": "",
-		"name": "academicTitleIndex",
+		"name": "academicDegreeIndex",
 		"referenceType": "String",
 		"container": "@list",
 		"weight": "5",

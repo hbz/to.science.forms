@@ -19,8 +19,8 @@ package models;
 
 import static services.ZettelFields.typeZF;
 import static services.ZettelFields.abstractTextZF;
-import static services.ZettelFields.academicTitleZF;
-import static services.ZettelFields.academicTitleIndexZF;
+import static services.ZettelFields.academicDegreeZF;
+import static services.ZettelFields.academicDegreeIndexZF;
 import static services.ZettelFields.additionalMaterialZF;
 import static services.ZettelFields.affiliationIndexZF;
 import static services.ZettelFields.affiliationZF;
@@ -180,8 +180,8 @@ public abstract class ZettelModel {
 	private String alternative;
 	private List<String> creator = new ArrayList<>();
 	private List<String> contributor = new ArrayList<>();
-  private List<String> academicTitle;
-  private String academicTitleIndex;
+  private List<String> academicDegree = new ArrayList<>();
+  private String academicDegreeIndex;
 	private String yearOfCopyright;
 	private String license;
 	private String description;
@@ -374,27 +374,27 @@ public abstract class ZettelModel {
 		this.creator = author;
 	}
 
-  public void addAcademicTitle(String academicDegree) {
-    if(academicTitle == null || academicTitle.isEmpty()) {
-      this.academicTitle = new ArrayList<String>();
+  public void addAcademicDegree(String AcademicDegree) {
+    if(academicDegree == null || academicDegree.isEmpty()) {
+      this.academicDegree = new ArrayList<String>();
     }
-    academicTitle.add(academicDegree);
+    academicDegree.add(AcademicDegree);
   }
 
-  public void setAcademicTitle(List<String>  academicTitle ) {
-    this.academicTitle = academicTitle;
+  public List<String> getAcademicDegree(){
+    return this.academicDegree;
   }
 
-  public List<String> getAcademicTitle(){
-    return this.academicTitle;
+  public void setAcademicDegree(List<String> AcademicDegree ) {
+    this.academicDegree = academicDegree;
   }
 
-  public String getAcademicTitleIndex() {
-    return academicTitleIndex;
+  public String getAcademicDegreeIndex() {
+    return academicDegreeIndex;
   }
 
-  public void setAcademicTitleIndex(String academicTitleIndex) {
-    this.academicTitleIndex = academicTitleIndex;
+  public void setAcademicDegreeIndex(String academicDegreeIndex) {
+    this.academicDegreeIndex = academicDegreeIndex;
   }
   
   public String getYearOfCopyright() {
@@ -1110,8 +1110,8 @@ public abstract class ZettelModel {
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
 		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
 		dict.put(contributorZF.uri, (in) -> addContributor((String) in));
-		dict.put(academicTitleZF.uri, (in) -> addAcademicTitle((String) in));
-    dict.put(academicTitleIndexZF.uri, (in) -> setAcademicTitleIndex((String) in));
+		dict.put(academicDegreeZF.uri, (in) -> addAcademicDegree((String) in));
+    dict.put(academicDegreeIndexZF.uri, (in) -> setAcademicDegreeIndex((String) in));
     dict.put(dataOriginZF.uri, (in) -> addDataOrigin((String) in));
 		dict.put(embargoTimeZF.uri, (in) -> setEmbargoTime((String) in));
 		dict.put(languageZF.uri, (in) -> addLanguage((String) in));

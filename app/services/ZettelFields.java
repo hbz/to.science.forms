@@ -29,10 +29,10 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/creator");
 	public static Etikett contributorZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/contributor");
-  public static Etikett academicTitleZF =
+  public static Etikett academicDegreeZF =
       ZettelHelper.etikett.getEtikett("https://d-nb.info/standards/elementset/gnd#academicDegree");
-  public static Etikett academicTitleIndexZF = ZettelHelper.etikett
-      .getEtikett("http://hbz-nrw.de/regal#academicTitleIndex");
+  public static Etikett academicDegreeIndexZF = ZettelHelper.etikett
+      .getEtikett("http://hbz-nrw.de/regal#academicDegreeIndex");
 	public static Etikett titleZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/title");
 	public static Etikett dataOriginZF =
