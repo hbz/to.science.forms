@@ -187,6 +187,15 @@ public class ZettelController extends Controller {
 		return future;
 	}
 
+	/**
+	 * @param format an information which mimetype the metadata stream has   
+	 * @param documentId a representation of the object model (e.g. ArticleModel) the object applies to. 
+	 *                   Required to generate an appropriate form according to this specific model
+	 * @param topicId 
+	 * @param zettel
+	 * @param form
+	 * @return
+	 */
 	private static Result renderForm(String format, String documentId,
 			String topicId, ZettelRegisterEntry zettel, Form<?> form) {
 		Result result;

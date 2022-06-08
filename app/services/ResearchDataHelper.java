@@ -137,7 +137,7 @@ public class ResearchDataHelper {
    */
   public static LinkedHashMap<String, String> getAcademicDegreeMap() {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
-    map.put(null, "Bitte wählen Sie...");
+    map.put("https://d-nb.info/standards/elementset/gnd#academicDegree/unkown", "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
     map.putAll(GenProp.loadVocabMap("AcademicDegree-de.properties"));
     return map;
