@@ -182,12 +182,12 @@ start
 	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
 	unzip zettel-1.0-SNAPSHOT.zip
-	cp /opt/zettel/conf/application.conf /tmp/zettel-1.0-SNAPSHOT/conf
+	cp /opt/to.science.forms/conf/application.conf /tmp/zettel-1.0-SNAPSHOT/conf
 	sudo service zettel stop
 	ps -eaf | grep zettel
 	# evtl kill <pid>, falls Zettel noch nicht weg ist!
-	rm -rf /opt/zettel/*
-	mv /tmp/zettel-1.0-SNAPSHOT/* /opt/zettel/
+	rm -rf /opt/to.science.forms/*
+	mv /tmp/zettel-1.0-SNAPSHOT/* /opt/to.science.forms/
 	sudo service zettel start
 
 # License
