@@ -178,6 +178,8 @@ start
 	cd /tmp
 	git clone https://github.com/hbz/to.science.forms
 	cd /tmp/to.science.forms
+	git checkout <gewünschte Branch>  ## z.B. master oder master-orca
+	git log | head > /tmp/formsVERSION   ## um Buchführung zu haben, was denn nun installiert wurde !
 	/opt/activator-1.3.2-minimal/activator dist
 	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
@@ -188,6 +190,8 @@ start
 	# evtl kill <pid>, falls Zettel noch nicht weg ist!
 	rm -rf /opt/to.science.forms/*
 	mv /tmp/zettel-1.0-SNAPSHOT/* /opt/to.science.forms/
+	cd /opt/to.science.forms
+	mv /tmp/formsVERSION VERSION
 	sudo service zettel start
 
 # License
