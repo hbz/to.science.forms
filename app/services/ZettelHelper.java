@@ -100,7 +100,20 @@ public class ZettelHelper {
 		return result;
 	}
 
-  /**
+	
+	public int getIndexSize(Form<ZettelModel> form, Map<String, Object> jsonMap, String fieldName) {
+	  int size = 0;
+
+    if (form.hasErrors()) {
+      size = getIndexFromFormData(form, fieldName, 0).size();
+    } else if (form.value().isPresent()) {
+      size = getIndexFromJsonLd(jsonMap, fieldName, 0).size();
+    }
+	  return size;
+	}
+	
+	
+	/**
    * @param form the scala form in use
    * @param jsonMap the jsonMap as base of the form
    * @param fieldName the fieldName name of the current field to index 
