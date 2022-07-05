@@ -5,7 +5,7 @@
 @import services._
 <div class="multi-field-wrapper" defaultValue="-">
 	<ol class="multi-fields" id="contributor">
-		@(creatorIndexSize : services.ZettelHelper(myForm,jsonMap,"creator")
+		@(creatorIndexSize : services.ZettelHelper(myForm,jsonMap,"creator"))
 		@for(index <- ZettelHelper.getIndexWithSuccessor(myForm,jsonMap,"contributor", "creator") ){
 				<li class="multi-field">
 		                @ldInputField(myForm,{"contributor["+index+"]"},services.ZettelFields.contributorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints()){
