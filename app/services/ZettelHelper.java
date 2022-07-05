@@ -90,9 +90,9 @@ public class ZettelHelper {
 			Map<String, Object> jsonMap, String fieldName) {
 		List<String> result = new ArrayList<>();
 		if (form.hasErrors()) {
-			result = getIndexFromFormData(form, fieldName);
+			result = getIndexFromFormData(form, fieldName, 0);
 		} else if (form.value().isPresent()) {
-			result = getIndexFromJsonLd(jsonMap, fieldName);
+			result = getIndexFromJsonLd(jsonMap, fieldName, 0);
 		}
 		if (result.isEmpty()) {
 			result.add("0");
@@ -100,8 +100,31 @@ public class ZettelHelper {
 		return result;
 	}
 
+  /**
+   * @param form the scala form in use
+   * @param jsonMap the jsonMap as base of the form
+   * @param fieldName the fieldName name of the current field to index 
+   * @param successorFieldName the fieldName of the field which index size should be added  
+   * @return
+   */
+  public static List<String> getIndexWithSuccessor(Form<ZettelModel> form,
+      Map<String, Object> jsonMap, String fieldName, String successorFieldName) {
+    List<String> result = new ArrayList<>();
+    if (form.hasErrors()) {
+      int successor = getIndexFromFormData(form, fieldName, 0).size();
+      result = getIndexFromFormData(form, fieldName, successor);
+    } else if (form.value().isPresent()) {
+      int successor = getIndexFromJsonLd(jsonMap, fieldName, 0).size();
+      result = getIndexFromJsonLd(jsonMap, fieldName, successor);
+    }
+    if (result.isEmpty()) {
+      result.add("0");
+    }
+    return result;
+  }
+
 	private static List<String> getIndexFromFormData(Form<ZettelModel> form,
-			String fieldName) {
+			String fieldName, int successor) {
 		List<String> result = new ArrayList<>();
 		Map<String, String> formData = form.data();
 		String id = formData.get(fieldName);
@@ -112,6 +135,7 @@ public class ZettelHelper {
 				id = formData.get(fieldName + "[" + i + "]");
 				if (id == null)
 					break;
+				i = i + successor;
 				result.add("" + i);
 			}
 		}
@@ -122,7 +146,7 @@ public class ZettelHelper {
 	}
 
 	private static List<String> getIndexFromJsonLd(Map<String, Object> jsonMap,
-			String fieldName) {
+			String fieldName, int successor) {
 		List<String> result = new ArrayList<>();
 		Object data = jsonMap.get(fieldName);
 		if (data != null) {
@@ -130,7 +154,8 @@ public class ZettelHelper {
 				@SuppressWarnings("unchecked")
 				List<String> dataList = (List<String>) data;
 				for (int i = 0; i < dataList.size(); i++) {
-					result.add("" + i);
+					i = i + successor;
+				  result.add("" + i);
 				}
 			} else {
 				play.Logger.debug("No index added to " + fieldName + " with class "

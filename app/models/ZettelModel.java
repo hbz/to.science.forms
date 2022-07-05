@@ -401,29 +401,6 @@ public abstract class ZettelModel {
     this.academicDegreeIndex = academicDegreeIndex;
   }
   
-  public void addAcademicDegreeContrib(String AcademicDegreeContrib) {
-    if(academicDegreeContrib == null || academicDegreeContrib.isEmpty()) {
-      this.academicDegreeContrib = new ArrayList<String>();
-    }
-    academicDegreeContrib.add(AcademicDegreeContrib);
-  }
-
-  public List<String> getAcademicDegreeContrib(){
-    return this.academicDegreeContrib;
-  }
-
-  public void setAcademicDegreeContrib(List<String> AcademicDegreeContrib ) {
-    this.academicDegreeContrib = AcademicDegreeContrib;
-  }
-
-  public String getAcademicDegreeContribIndex() {
-    return academicDegreeContribIndex;
-  }
-
-  public void setAcademicDegreeContribIndex(String academicDegreeContribIndex) {
-    this.academicDegreeContribIndex = academicDegreeContribIndex;
-  }
-
   public String getYearOfCopyright() {
 		return yearOfCopyright;
 	}
@@ -1139,8 +1116,6 @@ public abstract class ZettelModel {
 		dict.put(contributorZF.uri, (in) -> addContributor((String) in));
 		dict.put(academicDegreeZF.uri, (in) -> addAcademicDegree((String) in));
     dict.put(academicDegreeIndexZF.uri, (in) -> setAcademicDegreeIndex((String) in));
-    dict.put(academicDegreeContribZF.uri, (in) -> addAcademicDegreeContrib((String) in));
-    dict.put(academicDegreeContribIndexZF.uri, (in) -> setAcademicDegreeContribIndex((String) in));
     dict.put(dataOriginZF.uri, (in) -> addDataOrigin((String) in));
 		dict.put(embargoTimeZF.uri, (in) -> setEmbargoTime((String) in));
 		dict.put(languageZF.uri, (in) -> addLanguage((String) in));

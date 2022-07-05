@@ -6,7 +6,7 @@
 <div class="multi-field-wrapper" defaultValue="-">
 	<ol class="multi-fields" id="contributor">
 	
-		@for(index <- ZettelHelper.getIndex(myForm,jsonMap,"contributor") ){
+		@for(index <- ZettelHelper.getIndexWithSuccessor(myForm,jsonMap,"contributor", "creator") ){
 				<li class="multi-field">
 		                @ldInputField(myForm,{"contributor["+index+"]"},services.ZettelFields.contributorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints()){
 					  	@helpText("contributor")
@@ -14,7 +14,7 @@
 		                <br />
 		                @singleSelect(myForm,{"affiliation["+index+"]"},services.ZettelFields.affiliationZF.getLabel(),"affiliation-select",ResearchDataHelper.getAffiliationMap(),4)
 		              	<br >
-		              	@singleSelect(myForm,{"academicDegreeContrib["+index+"]"},services.ZettelFields.academicDegreeContribZF.getLabel(),"academicDegree-select",ResearchDataHelper.getAcademicDegreeMap(),5)
+		              	@singleSelect(myForm,{"academicDegree["+index+"]"},services.ZettelFields.academicDegreeZF.getLabel(),"academicDegree-select",ResearchDataHelper.getAcademicDegreeMap(),5)
 		              	<div class="buttonBox">
 					 	
 							<div class="btn-group">

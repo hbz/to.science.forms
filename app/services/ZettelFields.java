@@ -33,10 +33,6 @@ public class ZettelFields {
       ZettelHelper.etikett.getEtikett("https://d-nb.info/standards/elementset/gnd#academicDegree");
   public static Etikett academicDegreeIndexZF = ZettelHelper.etikett
       .getEtikett("http://hbz-nrw.de/regal#academicDegreeIndex");
-  public static Etikett academicDegreeContribZF =
-      ZettelHelper.etikett.getEtikett("https://d-nb.info/standards/elementset/gnd#academicDegree");
-  public static Etikett academicDegreeContribIndexZF = ZettelHelper.etikett
-      .getEtikett("http://hbz-nrw.de/regal#academicDegreeIndex");
 	public static Etikett titleZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/title");
 	public static Etikett dataOriginZF =
