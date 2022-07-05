@@ -101,7 +101,7 @@ public class ZettelHelper {
 	}
 
 	
-	public int getIndexSize(Form<ZettelModel> form, Map<String, Object> jsonMap, String fieldName) {
+	public static int getIndexSize(Form<ZettelModel> form, Map<String, Object> jsonMap, String fieldName) {
 	  int size = 0;
 
     if (form.hasErrors()) {
