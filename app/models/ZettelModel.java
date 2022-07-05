@@ -21,8 +21,6 @@ import static services.ZettelFields.typeZF;
 import static services.ZettelFields.abstractTextZF;
 import static services.ZettelFields.academicDegreeZF;
 import static services.ZettelFields.academicDegreeIndexZF;
-import static services.ZettelFields.academicDegreeContribZF;
-import static services.ZettelFields.academicDegreeContribIndexZF;
 import static services.ZettelFields.additionalMaterialZF;
 import static services.ZettelFields.affiliationIndexZF;
 import static services.ZettelFields.affiliationZF;
