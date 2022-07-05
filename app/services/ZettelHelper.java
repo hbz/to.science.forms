@@ -111,10 +111,10 @@ public class ZettelHelper {
       Map<String, Object> jsonMap, String fieldName, String successorFieldName) {
     List<String> result = new ArrayList<>();
     if (form.hasErrors()) {
-      int successor = getIndexFromFormData(form, fieldName, 0).size();
+      int successor = getIndexFromFormData(form, successorFieldName, 0).size();
       result = getIndexFromFormData(form, fieldName, successor);
     } else if (form.value().isPresent()) {
-      int successor = getIndexFromJsonLd(jsonMap, fieldName, 0).size();
+      int successor = getIndexFromJsonLd(jsonMap, successorFieldName, 0).size();
       result = getIndexFromJsonLd(jsonMap, fieldName, successor);
     }
     if (result.isEmpty()) {
