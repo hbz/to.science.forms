@@ -179,7 +179,7 @@ public abstract class ZettelModel {
 	private List<String> creator = new ArrayList<>();
 	private List<String> contributor = new ArrayList<>();
 	private String yearOfCopyright;
-	private String license = "Dieses Dokument darf zu eigenen wissenschaftlichen Zwecken und zum Privatgebrauch gespeichert und kopiert werden. Sie dürfen dieses Dokument nicht für öffentliche oder kommerzielle Zwecke vervielfältigen, öffentlich ausstellen, aufführen, vertreiben oder anderweitig nutzen. // This document may be saved and copied for your personal and scholarly purposes. You may not copy it for public or commercial purposes, exhibit, perform, distribute or otherwise use the document in public.";
+	private String license;
 	private String description;
 	private List<String> professionalGroup;
 	private String embargoTime;
