@@ -46,7 +46,9 @@ import static services.ZettelFields.descriptionZF;
 import static services.ZettelFields.doiZF;
 import static services.ZettelFields.editorZF;
 import static services.ZettelFields.embargoTimeZF;
+import static services.ZettelFields.fieldZF;
 import static services.ZettelFields.fulltextVersionZF;
+import static services.ZettelFields.funderZF;
 import static services.ZettelFields.fundingProgramZF;
 import static services.ZettelFields.fundingZF;
 import static services.ZettelFields.fundingIdZF;
@@ -57,7 +59,6 @@ import static services.ZettelFields.issnZF;
 import static services.ZettelFields.issueZF;
 import static services.ZettelFields.languageZF;
 import static services.ZettelFields.licenseZF;
-import static services.ZettelFields.funderZF;
 import static services.ZettelFields.mediumZF;
 import static services.ZettelFields.nextVersionZF;
 import static services.ZettelFields.pagesZF;
@@ -184,8 +185,9 @@ public abstract class ZettelModel {
   private List<String> academicDegree = new ArrayList<>();
   private String academicDegreeIndex;
 	private String yearOfCopyright;
-	private String license;
+	private String field;
 	private String funder;
+	private String license;
 	private String description;
 	private List<String> professionalGroup;
 	private String embargoTime;
@@ -406,13 +408,13 @@ public abstract class ZettelModel {
 	public void setYearOfCopyright(String yearOfCopyright) {
 		this.yearOfCopyright = yearOfCopyright;
 	}
-
-	public String getLicense() {
-		return license;
+	
+	public String getField() {
+		return field;
 	}
 
-	public void setLicense(String license) {
-		this.license = license;
+	public void setField(String field) {
+		this.field = field;
 	}
 	
 	public String getFunder() {
@@ -422,6 +424,15 @@ public abstract class ZettelModel {
 	public void setFunder(String funder) {
 		this.funder = funder;
 	}	
+
+	public String getLicense() {
+		return license;
+	}
+
+	public void setLicense(String license) {
+		this.license = license;
+	}
+	
 	
 	public List<String> getDoi() {
 		return doi;
@@ -1127,6 +1138,7 @@ public abstract class ZettelModel {
 		dict.put(languageZF.uri, (in) -> addLanguage((String) in));
 		dict.put(licenseZF.uri, (in) -> setLicense((String) in));
 		dict.put(funderZF.uri, (in) -> setFunder((String) in));
+		dict.put(fieldZF.uri, (in) -> setField((String) in));
 		dict.put(mediumZF.uri, (in) -> addMedium((String) in));
 		dict.put(professionalGroupZF.uri,
 				(in) -> addProfessionalGroup((String) in));

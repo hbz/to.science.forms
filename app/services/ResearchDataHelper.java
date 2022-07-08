@@ -107,7 +107,14 @@ public class ResearchDataHelper {
     map.putAll(GenProp.loadVocabMap("Funder.properties"));
     return map;
   }
-
+	
+	public static LinkedHashMap<String, String> getFieldMap() {
+	    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+	    map.put(null, "Bitte wählen Sie...");
+	    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
+	    map.putAll(GenProp.loadVocabMap("Fields-de.properties"));
+	    return map;
+	  }
 	/**
 	 * @return a map that can be used in an html select
 	 */
