@@ -413,7 +413,7 @@ public abstract class ZettelModel {
 		return department;
 	}
 
-	public void setField(String field) {
+	public void setDepartment(String department) {
 		this.department = department;
 	}
 	
