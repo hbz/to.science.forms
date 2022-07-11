@@ -46,7 +46,7 @@ import static services.ZettelFields.descriptionZF;
 import static services.ZettelFields.doiZF;
 import static services.ZettelFields.editorZF;
 import static services.ZettelFields.embargoTimeZF;
-import static services.ZettelFields.fieldZF;
+import static services.ZettelFields.departmentZF;
 import static services.ZettelFields.fulltextVersionZF;
 import static services.ZettelFields.funderZF;
 import static services.ZettelFields.fundingProgramZF;
@@ -185,7 +185,7 @@ public abstract class ZettelModel {
   private List<String> academicDegree = new ArrayList<>();
   private String academicDegreeIndex;
 	private String yearOfCopyright;
-	private String field;
+	private String department;
 	private String funder;
 	private String license;
 	private String description;
@@ -409,12 +409,12 @@ public abstract class ZettelModel {
 		this.yearOfCopyright = yearOfCopyright;
 	}
 	
-	public String getField() {
-		return field;
+	public String getDepartment() {
+		return department;
 	}
 
 	public void setField(String field) {
-		this.field = field;
+		this.department = department;
 	}
 	
 	public String getFunder() {
@@ -1138,7 +1138,7 @@ public abstract class ZettelModel {
 		dict.put(languageZF.uri, (in) -> addLanguage((String) in));
 		dict.put(licenseZF.uri, (in) -> setLicense((String) in));
 		dict.put(funderZF.uri, (in) -> setFunder((String) in));
-		dict.put(fieldZF.uri, (in) -> setField((String) in));
+		dict.put(departmentZF.uri, (in) -> setDepartment((String) in));
 		dict.put(mediumZF.uri, (in) -> addMedium((String) in));
 		dict.put(professionalGroupZF.uri,
 				(in) -> addProfessionalGroup((String) in));

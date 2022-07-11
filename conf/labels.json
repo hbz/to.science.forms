@@ -17586,6 +17586,18 @@
 		"multilangLabel": {}
 	},
 	{
+		"uri": "https://www.dh.nrw/kooperationen",
+		"comment": "",
+		"label": "Förderprogramm",
+		"icon": "",
+		"name": "funder",
+		"referenceType": "String",
+		"container": "",
+		"weight": "5",
+		"type": "CONTEXT",
+		"multilangLabel": {}
+	},
+	{
 		"uri": "http://www.w3.org/2007/05/powder-s#describedby",
 		"label": "Beschrieben durch",
 		"name": "describedby",

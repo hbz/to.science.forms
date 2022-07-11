@@ -45,10 +45,10 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/language");
 	public static Etikett licenseZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#license");
-	public static Etikett fieldZF =
-			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#field");
+	public static Etikett departmentZF =
+			ZettelHelper.etikett.getEtikett("https://w3id.org/kim/hochschulfaechersystematik");
 	public static Etikett funderZF =
-			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#funder");
+			ZettelHelper.etikett.getEtikett("https://www.dh.nrw/kooperationen");
 	public static Etikett professionalGroupZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#professionalGroup");
 	public static Etikett subjectZF =
