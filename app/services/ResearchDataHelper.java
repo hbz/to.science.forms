@@ -108,6 +108,9 @@ public class ResearchDataHelper {
     return map;
   }
 	
+	/**
+	 * @return a map that can be used in an html select
+	 */
 	public static LinkedHashMap<String, String> getDepartmentMap() {
 	    LinkedHashMap<String, String> map = new LinkedHashMap<>();
 	    map.put(null, "Bitte wählen Sie...");

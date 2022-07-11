@@ -185,7 +185,8 @@ public abstract class ZettelModel {
   private List<String> academicDegree = new ArrayList<>();
   private String academicDegreeIndex;
 	private String yearOfCopyright;
-	private String department;
+  private List<String> department = new ArrayList<>();
+  private String departmentIndex;
 	private String funder;
 	private String license;
 	private String description;
@@ -408,14 +409,29 @@ public abstract class ZettelModel {
 	public void setYearOfCopyright(String yearOfCopyright) {
 		this.yearOfCopyright = yearOfCopyright;
 	}
+
+	public void addDepartment(String Department) {
+		if(department == null || department.isEmpty()) {
+			this.department = new ArrayList<String>();
+		}
+		department.add(Department);
+	}
 	
-	public String getDepartment() {
+	public List<String> getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(String department) {
+	public void setDepartment(List<String> Department) {
 		this.department = department;
 	}
+	
+//	public String getDepartmentIndex() {
+//		return departmentIndex;
+//	}
+	
+//	public void setDepartmentIndex(String departmentIndex) {
+//		this.departmentIndex = departmentIndex;
+//	}
 	
 	public String getFunder() {
 		return funder;

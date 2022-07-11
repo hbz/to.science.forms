@@ -27,7 +27,7 @@
 				@singleSelect(myForm,"license",services.ZettelFields.licenseZF.getLabel(),"select-licence",ResearchDataHelper.getLicenseMap(),17)
 			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
-				@singleSelect(myForm,"department",services.ZettelFields.departmentZF.getLabel(),"select-department",ResearchDataHelper.getDepartmentMap(),17)
+				@multicombobox(myForm,jsonMap."department",services.ZettelFields.departmentZF.getLabel(),"select-department",ResearchDataHelper.getDepartmentMap(),17)
 			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@multicombobox(myForm,jsonMap,"language",services.ZettelFields.languageZF.getLabel(),"select-language",ResearchDataHelper.getLanguageMap(),21)
