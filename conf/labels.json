@@ -17597,6 +17597,18 @@
 		"type": "CONTEXT",
 		"multilangLabel": {}
 	},
+		{
+		"uri": "https://w3id.org/kim/hochschulfaechersystematik",
+		"comment": "",
+		"label": "Fachbereich",
+		"icon": "",
+		"name": "department",
+		"referenceType": "String",
+		"container": "",
+		"weight": "5",
+		"type": "CONTEXT",
+		"multilangLabel": {}
+	},
 	{
 		"uri": "http://www.w3.org/2007/05/powder-s#describedby",
 		"label": "Beschrieben durch",
