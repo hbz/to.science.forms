@@ -108,7 +108,7 @@ public class ResearchDataHelper {
     return map;
   }
 	
-	public static LinkedHashMap<String, String> geDepartmentMap() {
+	public static LinkedHashMap<String, String> getDepartmentMap() {
 	    LinkedHashMap<String, String> map = new LinkedHashMap<>();
 	    map.put(null, "Bitte wählen Sie...");
 	    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
