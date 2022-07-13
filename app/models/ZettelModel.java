@@ -46,7 +46,9 @@ import static services.ZettelFields.descriptionZF;
 import static services.ZettelFields.doiZF;
 import static services.ZettelFields.editorZF;
 import static services.ZettelFields.embargoTimeZF;
+import static services.ZettelFields.departmentZF;
 import static services.ZettelFields.fulltextVersionZF;
+import static services.ZettelFields.funderZF;
 import static services.ZettelFields.fundingProgramZF;
 import static services.ZettelFields.fundingZF;
 import static services.ZettelFields.fundingIdZF;
@@ -183,6 +185,9 @@ public abstract class ZettelModel {
   private List<String> academicDegree = new ArrayList<>();
   private String academicDegreeIndex;
 	private String yearOfCopyright;
+  private List<String> department = new ArrayList<>();
+  private String departmentIndex;
+	private String funder;
 	private String license;
 	private String description;
 	private List<String> professionalGroup;
@@ -405,6 +410,37 @@ public abstract class ZettelModel {
 		this.yearOfCopyright = yearOfCopyright;
 	}
 
+	public void addDepartment(String Department) {
+		if(department == null || department.isEmpty()) {
+			this.department = new ArrayList<String>();
+		}
+		department.add(Department);
+	}
+	
+	public List<String> getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(List<String> Department) {
+		this.department = department;
+	}
+	
+//	public String getDepartmentIndex() {
+//		return departmentIndex;
+//	}
+	
+//	public void setDepartmentIndex(String departmentIndex) {
+//		this.departmentIndex = departmentIndex;
+//	}
+	
+	public String getFunder() {
+		return funder;
+	}
+
+	public void setFunder(String funder) {
+		this.funder = funder;
+	}	
+
 	public String getLicense() {
 		return license;
 	}
@@ -412,7 +448,8 @@ public abstract class ZettelModel {
 	public void setLicense(String license) {
 		this.license = license;
 	}
-
+	
+	
 	public List<String> getDoi() {
 		return doi;
 	}
@@ -1116,6 +1153,8 @@ public abstract class ZettelModel {
 		dict.put(embargoTimeZF.uri, (in) -> setEmbargoTime((String) in));
 		dict.put(languageZF.uri, (in) -> addLanguage((String) in));
 		dict.put(licenseZF.uri, (in) -> setLicense((String) in));
+		dict.put(funderZF.uri, (in) -> setFunder((String) in));
+		dict.put(departmentZF.uri, (in) -> addDepartment((String) in));
 		dict.put(mediumZF.uri, (in) -> addMedium((String) in));
 		dict.put(professionalGroupZF.uri,
 				(in) -> addProfessionalGroup((String) in));
