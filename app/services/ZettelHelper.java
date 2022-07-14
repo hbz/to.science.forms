@@ -117,17 +117,17 @@ public class ZettelHelper {
    * @param form the scala form in use
    * @param jsonMap the jsonMap as base of the form
    * @param fieldName the fieldName name of the current field to index 
-   * @param successorFieldName the fieldName of the field which index size should be added  
+   * @param predecessorFieldName the fieldName of the field which index size should be added  
    * @return
    */
-  public static List<String> getIndexWithSuccessor(Form<ZettelModel> form,
-      Map<String, Object> jsonMap, String fieldName, String successorFieldName) {
+  public static List<String> getIndexWithPredecessor(Form<ZettelModel> form,
+      Map<String, Object> jsonMap, String fieldName, String predecessorFieldName) {
     List<String> result = new ArrayList<>();
     if (form.hasErrors()) {
-      int successor = getIndexFromFormData(form, successorFieldName, 0).size();
+      int successor = getIndexFromFormData(form, predecessorFieldName, 0).size();
       result = getIndexFromFormData(form, fieldName, successor);
     } else if (form.value().isPresent()) {
-      int successor = getIndexFromJsonLd(jsonMap, successorFieldName, 0).size();
+      int successor = getIndexFromJsonLd(jsonMap, predecessorFieldName, 0).size();
       result = getIndexFromJsonLd(jsonMap, fieldName, successor);
     }
     if (result.isEmpty()) {
