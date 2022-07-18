@@ -37,7 +37,13 @@ import static services.ZettelFields.congressTitleZF;
 import static services.ZettelFields.containedInZF;
 import static services.ZettelFields.contributorNameZF;
 import static services.ZettelFields.contributorOrderZF;
+
 import static services.ZettelFields.contributorZF;
+import static services.ZettelFields.contributorAcademicDegreeZF;
+import static services.ZettelFields.contributorAcademicDegreeIndexZF;
+import static services.ZettelFields.contributorAffiliationZF;
+import static services.ZettelFields.contributorAffiliationIndexZF;
+
 import static services.ZettelFields.creatorNameZF;
 import static services.ZettelFields.creatorZF;
 import static services.ZettelFields.dataOriginZF;
@@ -181,7 +187,13 @@ public abstract class ZettelModel {
 	private String titleLanguage;
 	private String alternative;
 	private List<String> creator = new ArrayList<>();
+	
 	private List<String> contributor = new ArrayList<>();
+	private List<String> contributorAffiliation = new ArrayList<>();
+	private String contributorAffiliationIndex;
+	private List<String> contributorAcademicDegree = new ArrayList<>();
+	private String contributorAcademicDegreeIndex;
+	
   private List<String> academicDegree = new ArrayList<>();
   private String academicDegreeIndex;
 	private String yearOfCopyright;
@@ -540,14 +552,63 @@ public abstract class ZettelModel {
 		dataOrigin.add(in);
 	}
 
+	
 	public List<String> getContributor() {
 		return contributor;
 	}
-
+	
+///////////////////////////////
 	public void setContributor(List<String> contributor) {
 		this.contributor = contributor;
 	}
+	
+	public void addContributorAcademicDegree(String ContributorAcademicDegree) {
+		if(contributorAcademicDegree == null || contributorAcademicDegree.isEmpty()) {
+			this.contributorAcademicDegree = new ArrayList<String>();
+		}
+		contributorAcademicDegree.add(ContributorAcademicDegree);
+	}
+	
+	public List<String> getContributorAcademicDegree(){
+	    return this.contributorAcademicDegree;
+	}
+	
+	public void setContributorAcademicDegree(List<String> ContributorAcademicDegree ) {
+		this.contributorAcademicDegree = contributorAcademicDegree;
+	}
+	
+	public String getContributorAcademicDegreeIndex() {
+		return contributorAcademicDegreeIndex;
+	}
 
+	public void setContributorAcademicDegreeIndex(String contributorAcademicDegreeIndex) {
+		this.contributorAcademicDegreeIndex = contributorAcademicDegreeIndex;
+	}
+	
+	public void addContributorAffiliation(String in) {
+		if (contributorAffiliation == null || contributorAffiliation.isEmpty())
+			contributorAffiliation = new ArrayList<>();
+		contributorAffiliation.add(in);
+	}	
+	
+	public List<String> getContributorAffiliation() {
+		return contributorAffiliation;
+	}
+
+	public void setContributorAffiliation(List<String> contributorAffiliation) {
+		this.contributorAffiliation = contributorAffiliation;
+	}
+
+	public String getContributorAffiliationIndex() {
+		return contributorAffiliationIndex;
+	}
+
+	public void setContributorAffiliationIndex(String affiliationIndex) {
+		this.contributorAffiliationIndex = affiliationIndex;
+	}
+///////////////////
+	
+	
 	public List<String> getFunding() {
 		return funding;
 	}
@@ -1146,7 +1207,13 @@ public abstract class ZettelModel {
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
 		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
+		
 		dict.put(contributorZF.uri, (in) -> addContributor((String) in));
+		dict.put(contributorAcademicDegreeZF.uri, (in) -> addContributorAcademicDegree((String) in));
+	    dict.put(contributorAcademicDegreeIndexZF.uri, (in) -> setContributorAcademicDegreeIndex((String) in));
+		dict.put(contributorAffiliationZF.uri, (in) -> addContributorAffiliation((String) in));
+		dict.put(contributorAffiliationIndexZF.uri, (in) -> setContributorAffiliationIndex((String) in));
+		
 		dict.put(academicDegreeZF.uri, (in) -> addAcademicDegree((String) in));
     dict.put(academicDegreeIndexZF.uri, (in) -> setAcademicDegreeIndex((String) in));
     dict.put(dataOriginZF.uri, (in) -> addDataOrigin((String) in));
