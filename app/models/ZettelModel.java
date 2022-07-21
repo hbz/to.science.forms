@@ -603,8 +603,8 @@ public abstract class ZettelModel {
 		return contributorAffiliationIndex;
 	}
 
-	public void setContributorAffiliationIndex(String affiliationIndex) {
-		this.contributorAffiliationIndex = affiliationIndex;
+	public void setContributorAffiliationIndex(String contributorAffiliationIndex) {
+		this.contributorAffiliationIndex = contributorAffiliationIndex;
 	}
 ///////////////////
 	

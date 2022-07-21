@@ -17598,7 +17598,7 @@
 		"multilangLabel": {}
 	},
 	{
-		"uri": "http://hbz-nrw.de/regal#academicDegreeIndex",
+		"uri": "http://hbz-nrw.de/regal#contributorAcademicDegreeIndex",
 		"comment": "",
 		"label": "contributorAcademicDegreeIndex",
 		"icon": "",
@@ -17622,7 +17622,7 @@
 		"multilangLabel": {}
 	},
 	{
-		"uri": "http://hbz-nrw.de/regal#affiliationIndex",
+		"uri": "http://hbz-nrw.de/regal#contributorAffiliationIndex",
 		"comment": "",
 		"label": "contributorAffiliationIndex",
 		"icon": "",
