@@ -391,18 +391,18 @@ public abstract class ZettelModel {
 		this.creator = author;
 	}
 
-  public void addAcademicDegree(String AcademicDegree) {
+  public void addAcademicDegree(String in) {
     if(academicDegree == null || academicDegree.isEmpty()) {
       this.academicDegree = new ArrayList<String>();
     }
-    academicDegree.add(AcademicDegree);
+    this.academicDegree.add(in);
   }
 
   public List<String> getAcademicDegree(){
     return this.academicDegree;
   }
 
-  public void setAcademicDegree(List<String> AcademicDegree ) {
+  public void setAcademicDegree(List<String> academicDegree ) {
     this.academicDegree = academicDegree;
   }
 
@@ -422,18 +422,18 @@ public abstract class ZettelModel {
 		this.yearOfCopyright = yearOfCopyright;
 	}
 
-	public void addDepartment(String Department) {
+	public void addDepartment(String in) {
 		if(department == null || department.isEmpty()) {
 			this.department = new ArrayList<String>();
 		}
-		department.add(Department);
+		department.add(in);
 	}
 	
 	public List<String> getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(List<String> Department) {
+	public void setDepartment(List<String> department) {
 		this.department = department;
 	}
 	
@@ -553,27 +553,28 @@ public abstract class ZettelModel {
 	}
 
 	
+///////////////////////////////
+
 	public List<String> getContributor() {
 		return contributor;
 	}
 	
-///////////////////////////////
 	public void setContributor(List<String> contributor) {
 		this.contributor = contributor;
 	}
 	
-	public void addContributorAcademicDegree(String ContributorAcademicDegree) {
+	public void addContributorAcademicDegree(String in) {
 		if(contributorAcademicDegree == null || contributorAcademicDegree.isEmpty()) {
 			this.contributorAcademicDegree = new ArrayList<String>();
 		}
-		contributorAcademicDegree.add(ContributorAcademicDegree);
+		contributorAcademicDegree.add(in);
 	}
 	
 	public List<String> getContributorAcademicDegree(){
 	    return this.contributorAcademicDegree;
 	}
 	
-	public void setContributorAcademicDegree(List<String> ContributorAcademicDegree ) {
+	public void setContributorAcademicDegree(List<String> contributorAcademicDegree ) {
 		this.contributorAcademicDegree = contributorAcademicDegree;
 	}
 	
@@ -586,7 +587,7 @@ public abstract class ZettelModel {
 	}
 	
 	public void addContributorAffiliation(String in) {
-		if (contributorAffiliation == null || contributorAffiliation.isEmpty())
+		if (contributorAffiliation == null || contributorAffiliation.isEmpty()) 
 			contributorAffiliation = new ArrayList<>();
 		contributorAffiliation.add(in);
 	}	
