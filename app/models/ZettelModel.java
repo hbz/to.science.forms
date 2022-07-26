@@ -393,9 +393,9 @@ public abstract class ZettelModel {
 
   public void addAcademicDegree(String in) {
     if(academicDegree == null || academicDegree.isEmpty()) {
-      this.academicDegree = new ArrayList<String>();
+      academicDegree = new ArrayList<String>();
     }
-    this.academicDegree.add(in);
+    academicDegree.add(in);
   }
 
   public List<String> getAcademicDegree(){
@@ -565,7 +565,7 @@ public abstract class ZettelModel {
 	
 	public void addContributorAcademicDegree(String in) {
 		if(contributorAcademicDegree == null || contributorAcademicDegree.isEmpty()) {
-			this.contributorAcademicDegree = new ArrayList<String>();
+			contributorAcademicDegree = new ArrayList<String>();
 		}
 		contributorAcademicDegree.add(in);
 	}
