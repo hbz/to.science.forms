@@ -17586,7 +17586,7 @@
 		"multilangLabel": {}
 	},
 	{
-		"uri": "https://d-nb.info/standards/elementset/gnd#contributorAcademicDegree",
+		"uri": "http://hbz-nrw.de/regal#contributorAcademicDegree",
 		"comment": "",
 		"label": "Akademischer Grad",
 		"icon": "",
@@ -17610,7 +17610,7 @@
 		"multilangLabel": {}
 	},
 	{
-		"uri": "http://www.w3.org/2006/vcard/ns#contributorAdr",
+		"uri": "http://hbz-nrw.de/regal#contributorAffiliation",
 		"comment": "",
 		"label": "Hochschule",
 		"icon": "",
