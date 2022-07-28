@@ -552,9 +552,6 @@ public abstract class ZettelModel {
 		dataOrigin.add(in);
 	}
 
-	
-///////////////////////////////
-
 	public List<String> getContributor() {
 		return contributor;
 	}
@@ -607,8 +604,6 @@ public abstract class ZettelModel {
 	public void setContributorAffiliationIndex(String contributorAffiliationIndex) {
 		this.contributorAffiliationIndex = contributorAffiliationIndex;
 	}
-///////////////////
-	
 	
 	public List<String> getFunding() {
 		return funding;
