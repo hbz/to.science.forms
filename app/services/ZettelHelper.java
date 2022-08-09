@@ -211,7 +211,7 @@ public class ZettelHelper {
 					play.Logger.debug("Inhalt von embeddedJson: " + jsonldString);
 					jsonldString = jsonldString.replace("%", "%25");
 					try {
-					  InputStream inS = new ByteArrayInputStream(jsonldString.getBytes("utf-8"));
+					  InputStream in = new ByteArrayInputStream(jsonldString.getBytes("utf-8"));
 					  if ("xml".equals(format)) {
 							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
 									RDFFormat.RDFXML, "");
