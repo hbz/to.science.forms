@@ -187,6 +187,10 @@ public abstract class ZettelModel {
 	private String titleLanguage;
 	private String alternative;
 	private List<String> creator = new ArrayList<>();
+  private List<String> creatorAffiliation = new ArrayList<>();
+  private String creatorAffiliationIndex;
+  private List<String> creatorAcademicDegree = new ArrayList<>();
+  private String creatorAcademicDegreeIndex;
 	
 	private List<String> contributor = new ArrayList<>();
 	private List<String> contributorAffiliation = new ArrayList<>();
@@ -390,7 +394,52 @@ public abstract class ZettelModel {
 	public void setCreator(List<String> author) {
 		this.creator = author;
 	}
+  public List<String> getCreatorAffiliation() {
+    return creatorAffiliation;
+  }
 
+  public void setCreatorAffiliation(List<String> creatorAffiliation) {
+    this.creatorAffiliation = creatorAffiliation;
+  }
+
+  public void addCreatorAffiliation(String in) {
+    if (creatorAffiliation == null || creatorAffiliation.isEmpty())
+      creatorAffiliation = new ArrayList<>();
+    creatorAffiliation.add(in);
+  }
+
+  public String getCreatorAffiliationIndex() {
+    return affiliationIndex;
+  }
+
+  public void setCreatorAffiliationIndex(String creatorAffiliationIndex) {
+    this.creatorAffiliationIndex = creatorAffiliationIndex;
+  }
+
+
+  public void addCreatorAcademicDegree(String in) {
+    if(creatorAcademicDegree == null || creatorAcademicDegree.isEmpty()) {
+      creatorAcademicDegree = new ArrayList<String>();
+    }
+    creatorAcademicDegree.add(in);
+  }
+
+  public List<String> getCreatorAcademicDegree(){
+    return this.creatorAcademicDegree;
+  }
+
+  public void setCreatorAcademicDegree(List<String> creatorAcademicDegree ) {
+    this.creatorAcademicDegree = creatorAcademicDegree;
+  }
+
+  public String getCreatorAcademicDegreeIndex() {
+    return creatorAcademicDegreeIndex;
+  }
+
+  public void setCreatorAcademicDegreeIndex(String creatorAcademicDegreeIndex) {
+    this.creatorAcademicDegreeIndex = creatorAcademicDegreeIndex;
+  }
+  
   public void addAcademicDegree(String in) {
     if(academicDegree == null || academicDegree.isEmpty()) {
       academicDegree = new ArrayList<String>();
