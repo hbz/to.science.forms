@@ -140,8 +140,8 @@ public class ResearchDataHelper {
     map.putAll(GenProp.loadVocabMap("ResearchOrganizationsRegistry-de.properties"));
     return map;
   }
-
-  /**
+  
+   /**
    * @return a map of NRW-Hochschulen that can be used in an html select
    */
   public static LinkedHashMap<String, String> getMediumMap() {
@@ -163,8 +163,7 @@ public class ResearchDataHelper {
     map.putAll(GenProp.loadVocabMap("AcademicDegree-de.properties"));
     return map;
   }
-
-  
+ 
   /**
 	 * @return a map of yyyy strings with the last hundred years descending from
 	 *         today

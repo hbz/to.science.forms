@@ -27,8 +27,27 @@ import de.hbz.lobid.helper.Etikett;
 public class ZettelFields {
 	public static Etikett creatorZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/creator");
+  public static Etikett creatorAffiliationZF =
+      ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#creatorAffiliation");
+  public static Etikett creatorAffiliationIndexZF = ZettelHelper.etikett
+      .getEtikett("http://hbz-nrw.de/regal#creatorAffiliationIndex");
+  public static Etikett creatorAcademicDegreeZF =
+          ZettelHelper.etikett.getEtikett("https://d-nb.info/standards/elementset/gnd#academicDegree");
+    public static Etikett creatorAcademicDegreeIndexZF = ZettelHelper.etikett
+          .getEtikett("https://d-nb.info/standards/elementset/gnd#academicDegreeIndex");
+	
 	public static Etikett contributorZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/contributor");
+	public static Etikett contributorAffiliationZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#contributorAffiliation");
+	public static Etikett contributorAffiliationIndexZF = ZettelHelper.etikett
+			.getEtikett("http://hbz-nrw.de/regal#contributorAffiliationIndex");
+	public static Etikett contributorAcademicDegreeZF =
+		      ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#contributorAcademicDegree");
+    public static Etikett contributorAcademicDegreeIndexZF = ZettelHelper.etikett
+		      .getEtikett("http://hbz-nrw.de/regal#contributorAcademicDegreeIndex");
+	
+	
   public static Etikett academicDegreeZF =
       ZettelHelper.etikett.getEtikett("https://d-nb.info/standards/elementset/gnd#academicDegree");
   public static Etikett academicDegreeIndexZF = ZettelHelper.etikett

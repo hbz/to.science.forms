@@ -18,6 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package services;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -209,9 +210,9 @@ public class ZettelHelper {
 					String jsonldString = form.get().toString();
 					play.Logger.debug("Inhalt von embeddedJson: " + jsonldString);
 					jsonldString = jsonldString.replace("%", "%25");
-					try (InputStream in =
-							new ByteArrayInputStream(jsonldString.getBytes("utf-8"))) {
-						if ("xml".equals(format)) {
+					try {
+					  InputStream in = new ByteArrayInputStream(jsonldString.getBytes("utf-8"));
+					  if ("xml".equals(format)) {
 							String rdfString = RdfUtils.readRdfToString(in, RDFFormat.JSONLD,
 									RDFFormat.RDFXML, "");
 							// play.Logger.debug(rdfString);
@@ -224,6 +225,9 @@ public class ZettelHelper {
 							result = new JsonMessage(
 									((ZettelModel) form.get()).serializeToMap(), 200);
 						}
+					}
+					catch (IOException ioE) {
+					  play.Logger.error(ioE.getMessage());
 					}
 				}
 			}

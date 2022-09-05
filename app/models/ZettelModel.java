@@ -37,7 +37,13 @@ import static services.ZettelFields.congressTitleZF;
 import static services.ZettelFields.containedInZF;
 import static services.ZettelFields.contributorNameZF;
 import static services.ZettelFields.contributorOrderZF;
+
 import static services.ZettelFields.contributorZF;
+import static services.ZettelFields.contributorAcademicDegreeZF;
+import static services.ZettelFields.contributorAcademicDegreeIndexZF;
+import static services.ZettelFields.contributorAffiliationZF;
+import static services.ZettelFields.contributorAffiliationIndexZF;
+
 import static services.ZettelFields.creatorNameZF;
 import static services.ZettelFields.creatorZF;
 import static services.ZettelFields.dataOriginZF;
@@ -181,7 +187,17 @@ public abstract class ZettelModel {
 	private String titleLanguage;
 	private String alternative;
 	private List<String> creator = new ArrayList<>();
+  private List<String> creatorAffiliation = new ArrayList<>();
+  private String creatorAffiliationIndex;
+  private List<String> creatorAcademicDegree = new ArrayList<>();
+  private String creatorAcademicDegreeIndex;
+	
 	private List<String> contributor = new ArrayList<>();
+	private List<String> contributorAffiliation = new ArrayList<>();
+	private String contributorAffiliationIndex;
+	private List<String> contributorAcademicDegree = new ArrayList<>();
+	private String contributorAcademicDegreeIndex;
+	
   private List<String> academicDegree = new ArrayList<>();
   private String academicDegreeIndex;
 	private String yearOfCopyright;
@@ -378,19 +394,64 @@ public abstract class ZettelModel {
 	public void setCreator(List<String> author) {
 		this.creator = author;
 	}
+  public List<String> getCreatorAffiliation() {
+    return creatorAffiliation;
+  }
 
-  public void addAcademicDegree(String AcademicDegree) {
-    if(academicDegree == null || academicDegree.isEmpty()) {
-      this.academicDegree = new ArrayList<String>();
+  public void setCreatorAffiliation(List<String> creatorAffiliation) {
+    this.creatorAffiliation = creatorAffiliation;
+  }
+
+  public void addCreatorAffiliation(String in) {
+    if (creatorAffiliation == null || creatorAffiliation.isEmpty())
+      creatorAffiliation = new ArrayList<>();
+    creatorAffiliation.add(in);
+  }
+
+  public String getCreatorAffiliationIndex() {
+    return affiliationIndex;
+  }
+
+  public void setCreatorAffiliationIndex(String creatorAffiliationIndex) {
+    this.creatorAffiliationIndex = creatorAffiliationIndex;
+  }
+
+
+  public void addCreatorAcademicDegree(String in) {
+    if(creatorAcademicDegree == null || creatorAcademicDegree.isEmpty()) {
+      creatorAcademicDegree = new ArrayList<String>();
     }
-    academicDegree.add(AcademicDegree);
+    creatorAcademicDegree.add(in);
+  }
+
+  public List<String> getCreatorAcademicDegree(){
+    return this.creatorAcademicDegree;
+  }
+
+  public void setCreatorAcademicDegree(List<String> creatorAcademicDegree ) {
+    this.creatorAcademicDegree = creatorAcademicDegree;
+  }
+
+  public String getCreatorAcademicDegreeIndex() {
+    return creatorAcademicDegreeIndex;
+  }
+
+  public void setCreatorAcademicDegreeIndex(String creatorAcademicDegreeIndex) {
+    this.creatorAcademicDegreeIndex = creatorAcademicDegreeIndex;
+  }
+  
+  public void addAcademicDegree(String in) {
+    if(academicDegree == null || academicDegree.isEmpty()) {
+      academicDegree = new ArrayList<String>();
+    }
+    academicDegree.add(in);
   }
 
   public List<String> getAcademicDegree(){
     return this.academicDegree;
   }
 
-  public void setAcademicDegree(List<String> AcademicDegree ) {
+  public void setAcademicDegree(List<String> academicDegree ) {
     this.academicDegree = academicDegree;
   }
 
@@ -410,18 +471,18 @@ public abstract class ZettelModel {
 		this.yearOfCopyright = yearOfCopyright;
 	}
 
-	public void addDepartment(String Department) {
+	public void addDepartment(String in) {
 		if(department == null || department.isEmpty()) {
 			this.department = new ArrayList<String>();
 		}
-		department.add(Department);
+		department.add(in);
 	}
 	
 	public List<String> getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(List<String> Department) {
+	public void setDepartment(List<String> department) {
 		this.department = department;
 	}
 	
@@ -543,11 +604,56 @@ public abstract class ZettelModel {
 	public List<String> getContributor() {
 		return contributor;
 	}
-
+	
 	public void setContributor(List<String> contributor) {
 		this.contributor = contributor;
 	}
+	
+	public void addContributorAcademicDegree(String in) {
+		if(contributorAcademicDegree == null || contributorAcademicDegree.isEmpty()) {
+			contributorAcademicDegree = new ArrayList<String>();
+		}
+		contributorAcademicDegree.add(in);
+	}
+	
+	public List<String> getContributorAcademicDegree(){
+	    return this.contributorAcademicDegree;
+	}
+	
+	public void setContributorAcademicDegree(List<String> contributorAcademicDegree ) {
+		this.contributorAcademicDegree = contributorAcademicDegree;
+	}
+	
+	public String getContributorAcademicDegreeIndex() {
+		return contributorAcademicDegreeIndex;
+	}
 
+	public void setContributorAcademicDegreeIndex(String contributorAcademicDegreeIndex) {
+		this.contributorAcademicDegreeIndex = contributorAcademicDegreeIndex;
+	}
+	
+	public void addContributorAffiliation(String in) {
+		if (contributorAffiliation == null || contributorAffiliation.isEmpty()) 
+			contributorAffiliation = new ArrayList<>();
+		contributorAffiliation.add(in);
+	}	
+	
+	public List<String> getContributorAffiliation() {
+		return contributorAffiliation;
+	}
+
+	public void setContributorAffiliation(List<String> contributorAffiliation) {
+		this.contributorAffiliation = contributorAffiliation;
+	}
+
+	public String getContributorAffiliationIndex() {
+		return contributorAffiliationIndex;
+	}
+
+	public void setContributorAffiliationIndex(String contributorAffiliationIndex) {
+		this.contributorAffiliationIndex = contributorAffiliationIndex;
+	}
+	
 	public List<String> getFunding() {
 		return funding;
 	}
@@ -1146,7 +1252,13 @@ public abstract class ZettelModel {
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
 		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
+		
 		dict.put(contributorZF.uri, (in) -> addContributor((String) in));
+		dict.put(contributorAcademicDegreeZF.uri, (in) -> addContributorAcademicDegree((String) in));
+	    dict.put(contributorAcademicDegreeIndexZF.uri, (in) -> setContributorAcademicDegreeIndex((String) in));
+		dict.put(contributorAffiliationZF.uri, (in) -> addContributorAffiliation((String) in));
+		dict.put(contributorAffiliationIndexZF.uri, (in) -> setContributorAffiliationIndex((String) in));
+		
 		dict.put(academicDegreeZF.uri, (in) -> addAcademicDegree((String) in));
     dict.put(academicDegreeIndexZF.uri, (in) -> setAcademicDegreeIndex((String) in));
     dict.put(dataOriginZF.uri, (in) -> addDataOrigin((String) in));
