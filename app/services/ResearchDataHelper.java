@@ -148,7 +148,7 @@ public class ResearchDataHelper {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("CreatorResearchOrganizationsRegistry-de.properties"));
+    map.putAll(GenProp.loadVocabMap("creatorResearchOrganizationsRegistry-de.properties"));
     return map;
   }
   
@@ -159,7 +159,7 @@ public class ResearchDataHelper {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("ContributorResearchOrganizationsRegistry-de.properties"));
+    map.putAll(GenProp.loadVocabMap("contributorResearchOrganizationsRegistry-de.properties"));
     return map;
   }
   
