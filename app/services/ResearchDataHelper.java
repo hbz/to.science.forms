@@ -141,6 +141,28 @@ public class ResearchDataHelper {
     return map;
   }
   
+  /**
+   * @return a map of NRW-Hochschulen that can be used in an html select
+   */
+  public static LinkedHashMap<String, String> getCreatorAffiliationMap() {
+    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    map.put(null, "Bitte wählen Sie...");
+    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
+    map.putAll(GenProp.loadVocabMap("CreatorResearchOrganizationsRegistry-de.properties"));
+    return map;
+  }
+  
+  /**
+   * @return a map of NRW-Hochschulen that can be used in an html select
+   */
+  public static LinkedHashMap<String, String> getContributorAffiliationMap() {
+    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    map.put(null, "Bitte wählen Sie...");
+    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
+    map.putAll(GenProp.loadVocabMap("ContributorResearchOrganizationsRegistry-de.properties"));
+    return map;
+  }
+  
    /**
    * @return a map of NRW-Hochschulen that can be used in an html select
    */
@@ -161,6 +183,28 @@ public class ResearchDataHelper {
     map.put("https://d-nb.info/standards/elementset/gnd#academicDegree/unkown", "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
     map.putAll(GenProp.loadVocabMap("AcademicDegree-de.properties"));
+    return map;
+  }
+ 
+  /**
+   * @return a map that can be used in an html select
+   */
+  public static LinkedHashMap<String, String> getContributorAcademicDegreeMap() {
+    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    map.put("http://hbz-nrw.de/regal#unkown", "Bitte wählen Sie...");
+    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
+    map.putAll(GenProp.loadVocabMap("ContributorAcademicDegree-de.properties"));
+    return map;
+  }
+ 
+  /**
+   * @return a map that can be used in an html select
+   */
+  public static LinkedHashMap<String, String> getCreatorAcademicDegreeMap() {
+    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    map.put("http://hbz-nrw.de/regal#unkown", "Bitte wählen Sie...");
+    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
+    map.putAll(GenProp.loadVocabMap("CreatorAcademicDegree-de.properties"));
     return map;
   }
  
