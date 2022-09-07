@@ -32,9 +32,9 @@ public class ZettelFields {
   public static Etikett creatorAffiliationIndexZF = ZettelHelper.etikett
       .getEtikett("http://hbz-nrw.de/regal#creatorAffiliationIndex");
   public static Etikett creatorAcademicDegreeZF =
-          ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#academicDegree");
+          ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#creatorAcademicDegree");
     public static Etikett creatorAcademicDegreeIndexZF = ZettelHelper.etikett
-          .getEtikett("http://hbz-nrw.de/regal#academicDegreeIndex");
+          .getEtikett("http://hbz-nrw.de/regal#creatorAcademicDegreeIndex");
 	
 	public static Etikett contributorZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/contributor");
