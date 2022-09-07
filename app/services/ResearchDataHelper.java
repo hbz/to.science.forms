@@ -191,7 +191,7 @@ public class ResearchDataHelper {
    */
   public static LinkedHashMap<String, String> getContributorAcademicDegreeMap() {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
-    map.put("http://hbz-nrw.de/regal#unkown", "Bitte wählen Sie...");
+    map.put("http://hbz-nrw.de/regal#academicDegree/unkown", "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
     map.putAll(GenProp.loadVocabMap("contributorAcademicDegree-de.properties"));
     return map;
@@ -202,7 +202,7 @@ public class ResearchDataHelper {
    */
   public static LinkedHashMap<String, String> getCreatorAcademicDegreeMap() {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
-    map.put("http://hbz-nrw.de/regal#unkown", "Bitte wählen Sie...");
+    map.put("http://hbz-nrw.de/regal#academicDegree/unkown", "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
     map.putAll(GenProp.loadVocabMap("creatorAcademicDegree-de.properties"));
     return map;
