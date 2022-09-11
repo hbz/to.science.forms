@@ -7321,11 +7321,11 @@
 		"multilangLabel": {}
 	},
 	{
-		"uri": "http://hbz-nrw.de/regal#creatorAffiliationIndex",
+		"uri": "http://hbz-nrw.de/regal#authorAffiliationIndex",
 		"comment": "",
 		"label": "AdressIndex",
 		"icon": "",
-		"name": "creatorAffiliationIndex",
+		"name": "authorAffiliationIndex",
 		"referenceType": "String",
 		"container": "",
 		"weight": "9",
@@ -24794,11 +24794,11 @@
 		"multilangLabel": {}
 	},
 	{
-		"uri": "http://hbz-nrw.de#creatorAffiliation",
+		"uri": "http://hbz-nrw.de#authorAffiliation",
 		"comment": "",
 		"label": "Hochschule",
 		"icon": "",
-		"name": "creatorAffiliation",
+		"name": "authorAffiliation",
 		"referenceType": "String",
 		"container": "@list",
 		"weight": "5",
@@ -24830,11 +24830,11 @@
 		"multilangLabel": {}
 	},
 	{
-		"uri": "http://hbz-nrw.de/rergal#creatorAcademicDegree",
+		"uri": "http://hbz-nrw.de/rergal#authorAcademicDegree",
 		"comment": "",
 		"label": "Akademischer Grad",
 		"icon": "",
-		"name": "creatorAcademicDegree",
+		"name": "authorAcademicDegree",
 		"referenceType": "String",
 		"container": "@list",
 		"weight": "5",
@@ -24842,11 +24842,11 @@
 		"multilangLabel": {}
 	},
 	{
-		"uri": "http://hbz-nrw.de/regal#creatorAcademicDegreeIndex",
+		"uri": "http://hbz-nrw.de/regal#authorAcademicDegreeIndex",
 		"comment": "",
-		"label": "creatorAcademicDegreeIndex",
+		"label": "authorAcademicDegreeIndex",
 		"icon": "",
-		"name": "creatorAcademicDegreeIndex",
+		"name": "authorAcademicDegreeIndex",
 		"referenceType": "String",
 		"container": "@list",
 		"weight": "5",

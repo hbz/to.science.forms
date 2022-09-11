@@ -12,9 +12,9 @@
 					  	@helpText("creator")
 						}
 		                <br />
-		                @singleSelect(myForm,{"creatorAffiliation["+index+"]"},services.ZettelFields.creatorAffiliationZF.getLabel(),"creator-affiliation-select",ResearchDataHelper.getCreatorAffiliationMap(),4)
+		                @singleSelect(myForm,{"authorAffiliation["+index+"]"},services.ZettelFields.authorAffiliationZF.getLabel(),"creator-affiliation-select",ResearchDataHelper.getAgentAffiliationMap("creator"),4)
 		              	<br >
-		              	@singleSelect(myForm,{"creatorAcademicDegree["+index+"]"},services.ZettelFields.creatorAcademicDegreeZF.getLabel(),"creator-academicDegree-select",ResearchDataHelper.getCreatorAcademicDegreeMap(),5)
+		              	@singleSelect(myForm,{"authorAcademicDegree["+index+"]"},services.ZettelFields.authorAcademicDegreeZF.getLabel(),"creator-academicDegree-select",ResearchDataHelper.getAgentAcademicDegreeMap("creator"),5)
 		              	<div class="buttonBox">
 					 	
 							<div class="btn-group">

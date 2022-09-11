@@ -144,26 +144,17 @@ public class ResearchDataHelper {
   /**
    * @return a map of NRW-Hochschulen that can be used in an html select
    */
-  public static LinkedHashMap<String, String> getCreatorAffiliationMap() {
+  public static LinkedHashMap<String, String> getAgentAffiliationMap(String agentType) {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("creatorResearchOrganizationsRegistry-de.properties"));
+    map.putAll(GenProp.loadVocabMap(agentType + "ResearchOrganizationsRegistry-de.properties"));
     return map;
   }
+  
+
   
   /**
-   * @return a map of NRW-Hochschulen that can be used in an html select
-   */
-  public static LinkedHashMap<String, String> getContributorAffiliationMap() {
-    LinkedHashMap<String, String> map = new LinkedHashMap<>();
-    map.put(null, "Bitte wählen Sie...");
-    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("contributorResearchOrganizationsRegistry-de.properties"));
-    return map;
-  }
-  
-   /**
    * @return a map of NRW-Hochschulen that can be used in an html select
    */
   public static LinkedHashMap<String, String> getMediumMap() {
@@ -189,22 +180,11 @@ public class ResearchDataHelper {
   /**
    * @return a map that can be used in an html select
    */
-  public static LinkedHashMap<String, String> getContributorAcademicDegreeMap() {
+  public static LinkedHashMap<String, String> getAgentAcademicDegreeMap(String agentType) {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put("http://hbz-nrw.de/regal#academicDegree/unkown", "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("contributorAcademicDegree-de.properties"));
-    return map;
-  }
- 
-  /**
-   * @return a map that can be used in an html select
-   */
-  public static LinkedHashMap<String, String> getCreatorAcademicDegreeMap() {
-    LinkedHashMap<String, String> map = new LinkedHashMap<>();
-    map.put("http://hbz-nrw.de/regal#academicDegree/unkown", "Bitte wählen Sie...");
-    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("creatorAcademicDegree-de.properties"));
+    map.putAll(GenProp.loadVocabMap(agentType + "AcademicDegree-de.properties"));
     return map;
   }
  
