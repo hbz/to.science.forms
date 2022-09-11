@@ -187,10 +187,10 @@ public abstract class ZettelModel {
 	private String titleLanguage;
 	private String alternative;
 	private List<String> creator = new ArrayList<>();
-  private List<String> authorAffiliation = new ArrayList<>();
-  private String authorAffiliationIndex;
-  private List<String> authorAcademicDegree = new ArrayList<>();
-  private String authorAcademicDegreeIndex;
+  private List<String> creatorAffiliation = new ArrayList<>();
+  private String creatorAffiliationIndex;
+  private List<String> creatorAcademicDegree = new ArrayList<>();
+  private String creatorAcademicDegreeIndex;
 	
 	private List<String> contributor = new ArrayList<>();
 	private List<String> contributorAffiliation = new ArrayList<>();
@@ -395,49 +395,49 @@ public abstract class ZettelModel {
 		this.creator = author;
 	}
   public List<String> getCreatorAffiliation() {
-    return authorAffiliation;
+    return creatorAffiliation;
   }
 
-  public void setCreatorAffiliation(List<String> authorAffiliation) {
-    this.authorAffiliation = authorAffiliation;
+  public void setCreatorAffiliation(List<String> creatorAffiliation) {
+    this.creatorAffiliation = creatorAffiliation;
   }
 
   public void addCreatorAffiliation(String in) {
-    if (authorAffiliation == null || authorAffiliation.isEmpty())
-      authorAffiliation = new ArrayList<>();
-    authorAffiliation.add(in);
+    if (creatorAffiliation == null || creatorAffiliation.isEmpty())
+      creatorAffiliation = new ArrayList<>();
+    creatorAffiliation.add(in);
   }
 
   public String getCreatorAffiliationIndex() {
     return affiliationIndex;
   }
 
-  public void setCreatorAffiliationIndex(String authorAffiliationIndex) {
-    this.authorAffiliationIndex = authorAffiliationIndex;
+  public void setCreatorAffiliationIndex(String creatorAffiliationIndex) {
+    this.creatorAffiliationIndex = creatorAffiliationIndex;
   }
 
 
   public void addCreatorAcademicDegree(String in) {
-    if(authorAcademicDegree == null || authorAcademicDegree.isEmpty()) {
-      authorAcademicDegree = new ArrayList<String>();
+    if(creatorAcademicDegree == null || creatorAcademicDegree.isEmpty()) {
+      creatorAcademicDegree = new ArrayList<String>();
     }
-    authorAcademicDegree.add(in);
+    creatorAcademicDegree.add(in);
   }
 
   public List<String> getCreatorAcademicDegree(){
-    return this.authorAcademicDegree;
+    return this.creatorAcademicDegree;
   }
 
-  public void setCreatorAcademicDegree(List<String> authorAcademicDegree ) {
-    this.authorAcademicDegree = authorAcademicDegree;
+  public void setCreatorAcademicDegree(List<String> creatorAcademicDegree ) {
+    this.creatorAcademicDegree = creatorAcademicDegree;
   }
 
   public String getCreatorAcademicDegreeIndex() {
-    return authorAcademicDegreeIndex;
+    return creatorAcademicDegreeIndex;
   }
 
-  public void setCreatorAcademicDegreeIndex(String authorAcademicDegreeIndex) {
-    this.authorAcademicDegreeIndex = authorAcademicDegreeIndex;
+  public void setCreatorAcademicDegreeIndex(String creatorAcademicDegreeIndex) {
+    this.creatorAcademicDegreeIndex = creatorAcademicDegreeIndex;
   }
   
   public void addAcademicDegree(String in) {

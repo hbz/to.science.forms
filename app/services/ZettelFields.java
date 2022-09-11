@@ -27,14 +27,14 @@ import de.hbz.lobid.helper.Etikett;
 public class ZettelFields {
 	public static Etikett creatorZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/creator");
-  public static Etikett authorAffiliationZF =
-      ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#authorAffiliation");
-  public static Etikett authorAffiliationIndexZF = ZettelHelper.etikett
-      .getEtikett("http://hbz-nrw.de/regal#authorAffiliationIndex");
-  public static Etikett authorAcademicDegreeZF =
-          ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#authorAcademicDegree");
-    public static Etikett authorAcademicDegreeIndexZF = ZettelHelper.etikett
-          .getEtikett("http://hbz-nrw.de/regal#authorAcademicDegreeIndex");
+  public static Etikett creatorAffiliationZF =
+      ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#creatorAffiliation");
+  public static Etikett creatorAffiliationIndexZF = ZettelHelper.etikett
+      .getEtikett("http://hbz-nrw.de/regal#creatorAffiliationIndex");
+  public static Etikett creatorAcademicDegreeZF =
+          ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#creatorAcademicDegree");
+    public static Etikett creatorAcademicDegreeIndexZF = ZettelHelper.etikett
+          .getEtikett("http://hbz-nrw.de/regal#creatorAcademicDegreeIndex");
 	
 	public static Etikett contributorZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/contributor");
