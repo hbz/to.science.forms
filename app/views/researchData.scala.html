@@ -15,9 +15,9 @@
 			    @smallTextArea(myForm,"title","Titel des Materials"+"*","",1)
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
-                @contributorWidget(myForm,jsonMap)
-                <br/>
                 @creatorWidget(myForm,jsonMap)
+                <br/>
+                @contributorWidget(myForm,jsonMap)
 			}
 			
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
