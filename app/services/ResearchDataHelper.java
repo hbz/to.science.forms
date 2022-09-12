@@ -141,7 +141,20 @@ public class ResearchDataHelper {
     return map;
   }
   
-   /**
+  /**
+   * @return a map of NRW-Hochschulen that can be used in an html select
+   */
+  public static LinkedHashMap<String, String> getAgentAffiliationMap(String agentType) {
+    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    map.put(null, "Bitte wählen Sie...");
+    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
+    map.putAll(GenProp.loadVocabMap(agentType + "ResearchOrganizationsRegistry-de.properties"));
+    return map;
+  }
+  
+
+  
+  /**
    * @return a map of NRW-Hochschulen that can be used in an html select
    */
   public static LinkedHashMap<String, String> getMediumMap() {
@@ -161,6 +174,17 @@ public class ResearchDataHelper {
     map.put("https://d-nb.info/standards/elementset/gnd#academicDegree/unkown", "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
     map.putAll(GenProp.loadVocabMap("AcademicDegree-de.properties"));
+    return map;
+  }
+ 
+  /**
+   * @return a map that can be used in an html select
+   */
+  public static LinkedHashMap<String, String> getAgentAcademicDegreeMap(String agentType) {
+    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    map.put("http://hbz-nrw.de/regal#academicDegree/unkown", "Bitte wählen Sie...");
+    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
+    map.putAll(GenProp.loadVocabMap(agentType + "AcademicDegree-de.properties"));
     return map;
   }
  

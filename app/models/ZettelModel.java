@@ -44,8 +44,13 @@ import static services.ZettelFields.contributorAcademicDegreeIndexZF;
 import static services.ZettelFields.contributorAffiliationZF;
 import static services.ZettelFields.contributorAffiliationIndexZF;
 
-import static services.ZettelFields.creatorNameZF;
 import static services.ZettelFields.creatorZF;
+import static services.ZettelFields.creatorAcademicDegreeZF;
+import static services.ZettelFields.creatorAcademicDegreeIndexZF;
+import static services.ZettelFields.creatorAffiliationZF;
+import static services.ZettelFields.creatorAffiliationIndexZF;
+
+import static services.ZettelFields.creatorNameZF;
 import static services.ZettelFields.dataOriginZF;
 import static services.ZettelFields.ddcZF;
 import static services.ZettelFields.descriptionZF;
@@ -186,6 +191,7 @@ public abstract class ZettelModel {
 	private String title;
 	private String titleLanguage;
 	private String alternative;
+
 	private List<String> creator = new ArrayList<>();
   private List<String> creatorAffiliation = new ArrayList<>();
   private String creatorAffiliationIndex;
@@ -409,7 +415,7 @@ public abstract class ZettelModel {
   }
 
   public String getCreatorAffiliationIndex() {
-    return affiliationIndex;
+    return creatorAffiliationIndex;
   }
 
   public void setCreatorAffiliationIndex(String creatorAffiliationIndex) {
@@ -1252,6 +1258,10 @@ public abstract class ZettelModel {
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
 		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
+    dict.put(creatorAcademicDegreeZF.uri, (in) -> addCreatorAcademicDegree((String) in));
+    dict.put(creatorAcademicDegreeIndexZF.uri, (in) -> setCreatorAcademicDegreeIndex((String) in));
+    dict.put(creatorAffiliationZF.uri, (in) -> addCreatorAffiliation((String) in));
+    dict.put(creatorAffiliationIndexZF.uri, (in) -> setCreatorAffiliationIndex((String) in));
 		
 		dict.put(contributorZF.uri, (in) -> addContributor((String) in));
 		dict.put(contributorAcademicDegreeZF.uri, (in) -> addContributorAcademicDegree((String) in));
@@ -1476,7 +1486,7 @@ public abstract class ZettelModel {
 		if (rdf_O instanceof BNode) {
 			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), RdfUtils.first,
 					consumer);
-		} else if (RdfUtils.nil.equals(rdf_O)) {
+		} else if (RdfUtils.nil.equals(rdf_O.toString())) {
 			return;
 		} else {
 			try {

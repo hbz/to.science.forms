@@ -231,15 +231,15 @@ public class ZettelController extends Controller {
 			String topicId) {
 		Form<?> form = null;
 		if ("application/rdf+xml".equals(request().contentType().get())) {
+      play.Logger.debug("Load form from rdf requested from api");
       play.Logger.debug("Send Request to " + request().uri());
-      play.Logger.debug("Response is " +XmlUtils.docToString(request().body().asXml()));
-			play.Logger.debug("Load form from rdf");
+      play.Logger.debug("Response is \n" + XmlUtils.docToString(request().body().asXml()));
 			form = loadRdf(XmlUtils.docToString(request().body().asXml()), zettel,
 					documentId, topicId);
 			form.bindFromRequest();
 		} else if ("application/x-www-form-urlencoded"
 				.equals(request().contentType().get())) {
-			play.Logger.debug("Load form from request " + zettel.getModel().getId()
+			play.Logger.debug("Load form from request as " + zettel.getModel().getId()
 					+ " ," + zettel.getModel().getClass());
 			form = formFactory.form(zettel.getModel().getClass()).bindFromRequest();
 		} else {
