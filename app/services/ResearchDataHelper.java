@@ -93,7 +93,7 @@ public class ResearchDataHelper {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("Licenses-de.properties"));
+    map.putAll(GenProp.loadVocabMap("license-de.properties"));
     return map;
   }
 	
@@ -104,7 +104,7 @@ public class ResearchDataHelper {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("Funder.properties"));
+    map.putAll(GenProp.loadVocabMap("funder-de.properties"));
     return map;
   }
 	
@@ -115,7 +115,7 @@ public class ResearchDataHelper {
 	    LinkedHashMap<String, String> map = new LinkedHashMap<>();
 	    map.put(null, "Bitte wählen Sie...");
 	    GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-	    map.putAll(GenProp.loadVocabMap("Department-de.properties"));
+	    map.putAll(GenProp.loadVocabMap("department-de.properties"));
 	    return map;
 	  }
 	/**
@@ -126,7 +126,7 @@ public class ResearchDataHelper {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("Language-de.properties"));
+    map.putAll(GenProp.loadVocabMap("language-de.properties"));
     return map;
   }
 
@@ -137,7 +137,7 @@ public class ResearchDataHelper {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("ResearchOrganizationsRegistry-de.properties"));
+    map.putAll(GenProp.loadVocabMap("affiliation-de.properties"));
     return map;
   }
   
@@ -161,7 +161,7 @@ public class ResearchDataHelper {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put(null, "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("OrcaMedientypen-de.properties"));
+    map.putAll(GenProp.loadVocabMap("medium-de.properties"));
     return map;
   }
 
@@ -173,7 +173,7 @@ public class ResearchDataHelper {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put("https://d-nb.info/standards/elementset/gnd#academicDegree/unkown", "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap("AcademicDegree-de.properties"));
+    map.putAll(GenProp.loadVocabMap("academicDegree-de.properties"));
     return map;
   }
  
@@ -184,7 +184,7 @@ public class ResearchDataHelper {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
     map.put("http://hbz-nrw.de/regal#academicDegree/unkown", "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
-    map.putAll(GenProp.loadVocabMap(agentType + "AcademicDegree-de.properties"));
+    map.putAll(GenProp.loadVocabMap(agentType + "academicDegree-de.properties"));
     return map;
   }
  
