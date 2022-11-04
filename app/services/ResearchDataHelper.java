@@ -146,7 +146,7 @@ public class ResearchDataHelper {
    */
   public static LinkedHashMap<String, String> getAgentAffiliationMap(String agentType) {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
-    map.put(null, "Bitte wählen Sie...");
+    map.put("http://hbz-nrw.de/regal#affiliation/unknown", "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
     map.putAll(GenProp.loadVocabMap(agentType + "ResearchOrganizationsRegistry-de.properties"));
     return map;
