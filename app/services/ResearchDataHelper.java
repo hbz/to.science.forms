@@ -133,16 +133,16 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getMediumMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
+		map.put(null, "Please select...");
 		map.put("http://purl.org/ontology/bibo/AudioDocument", "Audio");
-		map.put("http://rdvocab.info/termList/RDACarrierType/1050", "Video");
-		map.put("http://purl.org/ontology/bibo/Image", "Bild");
-		map.put("http://pbcore.org/vocabularies/instantiationMediaType#text",
-				"Text");
-		map.put("http://purl.org/dc/dcmitype/Dataset", "Datensatz");
+		map.put("http://purl.org/dc/dcmitype/Dataset", "Dataset");
+		map.put("http://purl.org/ontology/bibo/Image", "Image");
+		map.put("http://purl.org/lobid/lv#Miscellaneous", "Miscellaneous");
 		map.put("http://pbcore.org/vocabularies/instantiationMediaType#software",
 				"Software");
-		map.put("http://purl.org/lobid/lv#Miscellaneous", "Andere");
+		map.put("http://rdvocab.info/termList/RDACarrierType/1050", "Video");
+		map.put("http://pbcore.org/vocabularies/instantiationMediaType#text",
+				"Text");
 		return map;
 	}
 
@@ -151,14 +151,10 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getLicenseMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("http://opendatacommons.org/licenses/by/1.0/",
-				"ODC By - Open Data Commons (empfohlen) ");
-		map.put("https://creativecommons.org/licenses/by/4.0", "CC BY 4.0");
+		map.put("https://creativecommons.org/licenses/by/4.0", "CC BY 4.0 (Recommended)");
 		map.put("https://creativecommons.org/publicdomain/zero/1.0/", "CC0 1.0");
 		map.put("http://opendatacommons.org/licenses/odbl/1-0/",
 				"ODbL (Open Database License)");
-		map.put("http://opendatacommons.org/licenses/pddl/1.0/",
-				"PDDL (Public Domain Dedication and License)");
 		map.put("http://www.gnu.org/licenses/gpl-3.0.de.html",
 				"GNU GPL (GNU General Public Licence)");
 		return map;
@@ -169,12 +165,12 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getLanguageMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "Deutsch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "Englisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/spa", "Spanisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/ita", "Italienisch");
+		map.put(null, "Please select...");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "English");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "French");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "German");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/ita", "Italian");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/spa", "Spanish");
 		return map;
 	}
 

@@ -12,9 +12,9 @@
 		<a href="@models.ResearchData.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
 			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
-			    @smallTextArea(myForm,"title","Titel"+"*","",1)
+			    @smallTextArea(myForm,"title","Title"+"*","",1)
 				<br/>
-				@smallTextArea(myForm,"alternative","Alternativer Titel","",2)
+				@smallTextArea(myForm,"alternative","Alternative title","",2)
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
                 @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints())

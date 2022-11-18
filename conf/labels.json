@@ -9603,7 +9603,7 @@
 	{
 		"uri": "http://purl.org/dc/dcmitype/Dataset",
 		"comment": "",
-		"label": "Datensatz",
+		"label": "Dataset",
 		"icon": "",
 		"name": "Dataset",
 		"container": "",
@@ -9706,7 +9706,7 @@
 	{
 		"uri": "http://purl.org/lobid/lv#Miscellaneous",
 		"comment": "",
-		"label": "Sonstige",
+		"label": "Miscellaneous",
 		"icon": "",
 		"name": "Miscellaneous",
 		"container": "",
@@ -18545,7 +18545,7 @@
 	},
 	{
 		"uri": "http://purl.org/ontology/bibo/Image",
-		"label": "Bild",
+		"label": "Image",
 		"icon": "fa fa-file-image-o",
 		"name": "Image",
 		"type": "STORE",
@@ -19497,7 +19497,7 @@
 	{
 		"uri": "info:regal/zettel/catalogingHeader",
 		"comment": "",
-		"label": "Inhaltliche Angaben",
+		"label": "Content information",
 		"icon": "",
 		"name": "",
 		"container": "",
@@ -19509,7 +19509,7 @@
 	},
 	{
 		"uri": "info:regal/zettel/collectionHeader",
-		"label": "Zuordnung zur Sammlung",
+		"label": "Assignment to the collection",
 		"referenceType": "String",
 		"type": "STORE",
 		"multilangLabel": {
@@ -19528,7 +19528,7 @@
 	{
 		"uri": "info:regal/zettel/fundingsHeader",
 		"comment": "",
-		"label": "Angaben zur Förderung",
+		"label": "Funding information",
 		"icon": "",
 		"name": "",
 		"container": "",
@@ -19541,7 +19541,7 @@
 	{
 		"uri": "info:regal/zettel/identifiersHeader",
 		"comment": "",
-		"label": "Externe Referenzen",
+		"label": "External references",
 		"icon": "",
 		"name": "",
 		"container": "",
@@ -19930,7 +19930,7 @@
 	},
 	{
 		"uri": "info:regal/zettel/observationHeader",
-		"label": "Erfassung",
+		"label": "Recording",
 		"referenceType": "String",
 		"type": "STORE",
 		"multilangLabel": {
@@ -19939,7 +19939,7 @@
 	},
 	{
 		"uri": "info:regal/zettel/publicationsHeader",
-		"label": "Zugehörige Publikationen",
+		"label": "Associated publications",
 		"referenceType": "String",
 		"type": "STORE",
 		"multilangLabel": {
@@ -19958,7 +19958,7 @@
 	{
 		"uri": "info:regal/zettel/titleHeader",
 		"comment": "",
-		"label": "Titelangaben",
+		"label": "Title information",
 		"icon": "",
 		"name": "",
 		"container": "",
@@ -19970,7 +19970,7 @@
 	},
 	{
 		"uri": "info:regal/zettel/uploadHeader",
-		"label": "Dateiupload",
+		"label": "File upload",
 		"referenceType": "String",
 		"type": "STORE",
 		"multilangLabel": {
@@ -20397,7 +20397,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#associatedDataset",
 		"comment": "",
-		"label": "Zugehöriges Dataset",
+		"label": "Associated dataset",
 		"icon": "fa fa-bars",
 		"name": "associatedDataset",
 		"referenceType": "String",
@@ -20411,7 +20411,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#associatedPublication",
 		"comment": "",
-		"label": "Zugehörige Textpublikation",
+		"label": "Associated text publication",
 		"icon": "fa fa-bars",
 		"name": "associatedPublication",
 		"referenceType": "String",
@@ -20548,7 +20548,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#dataOrigin",
 		"comment": "",
-		"label": "Erhebungsform",
+		"label": "Type of data collection",
 		"icon": "fa fa-sitemap",
 		"name": "dataOrigin",
 		"referenceType": "@id",
@@ -20562,7 +20562,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#ddc",
 		"comment": "",
-		"label": "Fächerklassifikation (DDC)",
+		"label": "Subject classification (DDC)",
 		"icon": "fa fa-tag",
 		"name": "ddc",
 		"referenceType": "@id",
@@ -20618,7 +20618,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#fundingId",
 		"comment": "",
-		"label": "Förderer",
+		"label": "Funder",
 		"icon": "fa fa-bars",
 		"name": "fundingId",
 		"referenceType": "String",
@@ -20632,7 +20632,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#fundingProgram",
 		"comment": "",
-		"label": "Förderprogramm",
+		"label": "Funding program",
 		"icon": "fa fa-bars",
 		"name": "fundingProgram",
 		"referenceType": "String",
@@ -20735,7 +20735,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#license",
 		"comment": "",
-		"label": "Lizenz",
+		"label": "License",
 		"icon": "fa fa-bars",
 		"name": "license",
 		"referenceType": "@id",
@@ -20760,7 +20760,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#nextVersion",
 		"comment": "",
-		"label": "Nachfolger Version",
+		"label": "Next version",
 		"icon": "fa fa-bars",
 		"name": "nextVersion",
 		"referenceType": "String",
@@ -20816,7 +20816,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#previousVersion",
 		"comment": "",
-		"label": "Vorgänger Version",
+		"label": "Previous version",
 		"icon": "fa fa-bars",
 		"name": "previousVersion",
 		"referenceType": "String",
@@ -20844,7 +20844,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#projectId",
 		"comment": "",
-		"label": "Projekt-ID",
+		"label": "Project-ID",
 		"icon": "",
 		"name": "projectId",
 		"referenceType": "String",
@@ -20914,7 +20914,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#recordingLocation",
 		"comment": "",
-		"label": "Erfassungsort",
+		"label": "Recording location",
 		"icon": "fa fa-bars",
 		"name": "recordingLocation",
 		"referenceType": "@id",
@@ -20928,7 +20928,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#recordingPeriod",
 		"comment": "",
-		"label": "Erfassungszeitraum",
+		"label": "Recording period",
 		"icon": "fa fa-bars",
 		"name": "recordingPeriod",
 		"referenceType": "String",
@@ -20942,7 +20942,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#reference",
 		"comment": "",
-		"label": "Quelle",
+		"label": "Source",
 		"icon": "fa fa-bars",
 		"name": "reference",
 		"referenceType": "String",
@@ -20998,7 +20998,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#usageManual",
 		"comment": "",
-		"label": "Hinweise zur Nutzung",
+		"label": "Usage manual",
 		"icon": "",
 		"name": "usageManual",
 		"referenceType": "String",
@@ -21040,7 +21040,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#yearOfCopyright",
 		"comment": "",
-		"label": "Copyrightjahr",
+		"label": "Year of copyright",
 		"icon": "fa fa-bars",
 		"name": "yearOfCopyright",
 		"referenceType": "String",
@@ -21502,7 +21502,7 @@
 	{
 		"uri": "http://purl.org/dc/elements/1.1/creator",
 		"comment": "",
-		"label": "Autor",
+		"label": "Creator",
 		"icon": "",
 		"name": "creatorName",
 		"referenceType": "String",
@@ -21572,7 +21572,7 @@
 	{
 		"uri": "http://purl.org/dc/terms/alternative",
 		"comment": "",
-		"label": "Titelzusatz",
+		"label": "Alternative title",
 		"icon": "",
 		"name": "alternative",
 		"referenceType": "String",
@@ -21600,7 +21600,7 @@
 	{
 		"uri": "http://purl.org/dc/terms/contributor",
 		"comment": "",
-		"label": "Mitwirkende",
+		"label": "Contributor",
 		"icon": "",
 		"name": "contributor",
 		"referenceType": "@id",
@@ -21611,6 +21611,20 @@
 			
 		}
 	},
+	{
+		"uri": "http://id.loc.gov/vocabulary/relators/oth",
+		"comment": "",
+		"label": "Other",
+		"icon": "",
+		"name": "other",
+		"referenceType": "@id",
+		"container": "@list",
+		"weight": "50",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},	
 	{
 		"uri": "http://purl.org/dc/terms/created",
 		"label": "Erstellt am",
@@ -21625,7 +21639,7 @@
 	{
 		"uri": "http://purl.org/dc/terms/creator",
 		"comment": "",
-		"label": "Autor",
+		"label": "Creator",
 		"icon": "",
 		"name": "creator",
 		"referenceType": "@id",
@@ -21638,7 +21652,7 @@
 	},
 	{
 		"uri": "http://purl.org/dc/terms/description",
-		"label": "Beschreibung",
+		"label": "Description",
 		"name": "description",
 		"referenceType": "String",
 		"container": "@set",
@@ -21742,7 +21756,7 @@
 	{
 		"uri": "http://purl.org/dc/terms/language",
 		"comment": "",
-		"label": "Sprache der Publikation",
+		"label": "Language of the publication",
 		"icon": "",
 		"name": "language",
 		"referenceType": "@id",
@@ -21756,7 +21770,7 @@
 	{
 		"uri": "http://purl.org/dc/terms/medium",
 		"comment": "",
-		"label": "Art der Datei",
+		"label": "Medium",
 		"icon": "",
 		"name": "medium",
 		"referenceType": "@id",
@@ -21812,7 +21826,7 @@
 	{
 		"uri": "http://purl.org/dc/terms/subject",
 		"comment": "",
-		"label": "Normierte Schlagwörter",
+		"label": "Normalized keywords",
 		"icon": "fa fa-tag",
 		"name": "subject",
 		"referenceType": "@id",
@@ -21838,7 +21852,7 @@
 	{
 		"uri": "http://purl.org/dc/terms/title",
 		"comment": "",
-		"label": "Titel",
+		"label": "Title",
 		"icon": "",
 		"name": "title",
 		"referenceType": "String",
@@ -22113,7 +22127,7 @@
 	},
 	{
 		"uri": "http://purl.org/lobid/lv#subjectLocation",
-		"label": "Geokoordinaten",
+		"label": "Geocoordinates",
 		"name": "subjectLocation",
 		"referenceType": "String",
 		"container": "@set",
@@ -22654,7 +22668,7 @@
 	{
 		"uri": "http://umbel.org/umbel#isLike",
 		"comment": "",
-		"label": "ähnlich zu",
+		"label": "Is like",
 		"icon": "fa fa-link",
 		"name": "isLike",
 		"referenceType": "@id",
@@ -22928,7 +22942,7 @@
 	{
 		"uri": "info:regal/zettel/creatorshipHeader",
 		"comment": "",
-		"label": "Urheberschaft",
+		"label": "Creatorship",
 		"icon": "",
 		"name": "",
 		"referenceType": "String",
@@ -22998,7 +23012,7 @@
 		{
 		"uri": "info:regal/zettel/livestock",
 		"comment": "",
-		"label": "Tierart",
+		"label": "Animal breed",
 		"icon": "",
 		"name": "Tierart",
 		"referenceType": "String",
@@ -23012,7 +23026,7 @@
 		{
 		"uri": "info.ktbl.treatment@de",
 		"comment": "",
-		"label": "Produktionsrichtung",
+		"label": "Livestock production",
 		"icon": "",
 		"name": "",
 		"referenceType": "String",
@@ -23026,7 +23040,7 @@
 		{
 		"uri": "info.ktbl.treatmentdetail@de",
 		"comment": "",
-		"label": "Weitere Spezifikationen des Haltungsverfahrens",
+		"label": "Additional specifications of housing systems",
 		"icon": "",
 		"name": "",
 		"referenceType": "String",
@@ -23040,7 +23054,7 @@
 		{
 		"uri": "info.ktbl.housing@de",
 		"comment": "",
-		"label": "Haltungsverfahren",
+		"label": "Housing systems",
 		"icon": "",
 		"name": "",
 		"referenceType": "String",
@@ -23054,7 +23068,7 @@
 		{
 		"uri": "info.ktbl.ventilation@de",
 		"comment": "",
-		"label": "Lüftungsart",
+		"label": "Ventilation system",
 		"icon": "",
 		"name": "",
 		"referenceType": "String",
@@ -23082,7 +23096,7 @@
 		{
 		"uri": "info.ktbl.emissionprobe@de",
 		"comment": "",
-		"label": "Emissionsmessverfahren",
+		"label": "Emission measurement techniques",
 		"icon": "",
 		"name": "",
 		"referenceType": "String",
@@ -23096,7 +23110,7 @@
 		{
 		"uri": "info.ktbl.emission@de",
 		"comment": "",
-		"label": "Emissionen",
+		"label": "Emissions",
 		"icon": "",
 		"name": "",
 		"referenceType": "String",
@@ -23110,7 +23124,7 @@
     {
     "uri": "info.ktbl.projecttitle@de",
     "comment": "",
-    "label": "Projektzugehörigkeit",
+    "label": "Project title",
     "icon": "",
     "name": "",
     "referenceType": "String",
