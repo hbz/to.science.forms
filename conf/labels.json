@@ -23024,7 +23024,7 @@
 		}
 	},
 		{
-		"uri": "info.ktbl.treatment@de",
+		"uri": "info.ktbl.treatment@en",
 		"comment": "",
 		"label": "Livestock production",
 		"icon": "",
@@ -23038,7 +23038,7 @@
 		}
 	},
 		{
-		"uri": "info.ktbl.treatmentdetail@de",
+		"uri": "info.ktbl.treatmentdetail@en",
 		"comment": "",
 		"label": "Additional specifications of housing systems",
 		"icon": "",
@@ -23052,7 +23052,7 @@
 		}
 	},
 		{
-		"uri": "info.ktbl.housing@de",
+		"uri": "info.ktbl.housing@en",
 		"comment": "",
 		"label": "Housing systems",
 		"icon": "",
@@ -23066,7 +23066,7 @@
 		}
 	},
 		{
-		"uri": "info.ktbl.ventilation@de",
+		"uri": "info.ktbl.ventilation@en",
 		"comment": "",
 		"label": "Ventilation system",
 		"icon": "",
@@ -23080,7 +23080,7 @@
 		}
 	},
 		{
-		"uri": "info.ktbl.emissionreduce@de",
+		"uri": "info.ktbl.emissionreduce@en",
 		"comment": "",
 		"label": "Emissionsminderungsverfahren",
 		"icon": "",
@@ -23094,7 +23094,7 @@
 		}
 	},
 		{
-		"uri": "info.ktbl.emissionprobe@de",
+		"uri": "info.ktbl.emissionprobe@en",
 		"comment": "",
 		"label": "Emission measurement techniques",
 		"icon": "",
@@ -23108,7 +23108,7 @@
 		}
 	},
 		{
-		"uri": "info.ktbl.emission@de",
+		"uri": "info.ktbl.emission@en",
 		"comment": "",
 		"label": "Emissions",
 		"icon": "",
@@ -23122,7 +23122,7 @@
 		}
 	},
     {
-    "uri": "info.ktbl.projecttitle@de",
+    "uri": "info.ktbl.projecttitle@en",
     "comment": "",
     "label": "Project title",
     "icon": "",

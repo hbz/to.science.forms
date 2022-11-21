@@ -98,33 +98,37 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getDataOriginMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
-		map.put("http://hbz-nrw.de/regal#Andere", "Andere");
-		map.put("http://hbz-nrw.de/regal#Interview", "Interview");
-		map.put("http://hbz-nrw.de/regal#Umfrage", "Umfrage");
-		map.put("http://hbz-nrw.de/regal#Anamnese", "Anamnese");
-		map.put("http://hbz-nrw.de/regal#Exploration", "Exploration");
-		map.put("http://hbz-nrw.de/regal#Probe", "Probe");
-		map.put("http://hbz-nrw.de/regal#Gewebeprobe", "Gewebeprobe");
-		map.put("http://hbz-nrw.de/regal#Flaechenmischprobe", "Flächenmischprobe");
-		map.put("http://hbz-nrw.de/regal#Bodenbohrung", "Bodenbohrung");
-		map.put("http://hbz-nrw.de/regal#apparativeUntersuchung",
-				"apparative Untersuchung");
-		map.put("http://hbz-nrw.de/regal#koerperlicheUntersuchung",
-				"körperliche Untersuchung");
-		map.put("http://hbz-nrw.de/regal#Feldbeobachtung", "Feldbeobachtung");
-		map.put("http://hbz-nrw.de/regal#Laborbeobachtung", "Laborbeobachtung");
-		map.put("http://hbz-nrw.de/regal#Analyse", "Analyse");
-		map.put("http://hbz-nrw.de/regal#Genomsequenzierung", "Genomsequenzierung");
-		map.put("http://hbz-nrw.de/regal#Messung", "Messung");
-		map.put("http://hbz-nrw.de/regal#Berechnung", "Berechnung");
+		map.put(null, "Please select...");
+		map.put("http://hbz-nrw.de/regal#AirDispersionModelling", "Air dispersion modelling");
+		map.put("http://hbz-nrw.de/regal#Analysis", "Analysis");
+		map.put("http://hbz-nrw.de/regal#Anamnesis", "Anamnesis");
+		map.put("http://hbz-nrw.de/regal#Borehole", "Borehole");
+		map.put("http://hbz-nrw.de/regal#Calculation", "Calculation");
+		map.put("http://hbz-nrw.de/regal#Cohort study", "Cohort study");
+		map.put("http://hbz-nrw.de/regal#CrossSectionalStudy", "Cross-sectional study");
 		map.put("http://hbz-nrw.de/regal#Evaluation", "Evaluation");
-		map.put("http://hbz-nrw.de/regal#Querschnittstudie", "Querschnittstudie");
-		map.put("http://hbz-nrw.de/regal#Langzeitstudie", "Langzeitstudie");
-		map.put("http://hbz-nrw.de/regal#Interventionsstudie",
-				"Interventionsstudie");
-		map.put("http://hbz-nrw.de/regal#Kohortenstudie", "Kohortenstudie");
+		map.put("http://hbz-nrw.de/regal#Exploration", "Exploration");
+		map.put("http://hbz-nrw.de/regal#FieldObservation", "Field observation");
+		map.put("http://hbz-nrw.de/regal#GenomSequencing", "Genome sequencing");
+		map.put("http://hbz-nrw.de/regal#InstrumentalExamination",
+				"Instrumental examination");
+		map.put("http://hbz-nrw.de/regal#InterventionalStudy",
+				"Interventional study");
+		map.put("http://hbz-nrw.de/regal#Interview", "Interview");
+		map.put("http://hbz-nrw.de/regal#LaboratoryObservation", "Laboratory observation");
+		map.put("http://hbz-nrw.de/regal#LongTermStudy", "Long-term study");
+		map.put("http://hbz-nrw.de/regal#Measurement", "Measurement");
+		map.put("http://hbz-nrw.de/regal#MeasurementExSitu", "Measurement  ex situ");
+		map.put("http://hbz-nrw.de/regal#MeasurementInSitu", "Measurement  in situ");
+		map.put("http://hbz-nrw.de/regal#Other", "Other");
+		map.put("http://hbz-nrw.de/regal#PhysicalExamination",
+				"Physical examination");
+		map.put("http://hbz-nrw.de/regal#ReverseDispersionModelling", "Reverse dispersion modelling");
+		map.put("http://hbz-nrw.de/regal#Sample", "Sample");
 		map.put("http://hbz-nrw.de/regal#Simulation", "Simulation");
+		map.put("http://hbz-nrw.de/regal#SurfaceCompositeSample", "Surface composite sample");
+		map.put("http://hbz-nrw.de/regal#Survey", "Survey");
+		map.put("http://hbz-nrw.de/regal#TissueSample", "Tissue sample");
 		return map;
 	}
 
