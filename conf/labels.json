@@ -19552,6 +19552,19 @@
 		}
 	},
 	{
+		"uri": "info:regal/zettel/additionalNotesHeader",
+		"comment": "",
+		"label": "Additional notes",
+		"icon": "",
+		"name": "",
+		"container": "",
+		"weight": "",
+		"type": "STORE",
+		"multilangLabel": {
+			
+		}
+	},		
+	{
 		"uri": "info:regal/zettel/leibniz/org/BIPS",
 		"comment": "",
 		"label": "Leibniz-Institut für Präventionsforschung und Epidemiologie",
@@ -19948,7 +19961,7 @@
 	},
 	{
 		"uri": "info:regal/zettel/statusHeader",
-		"label": "Angaben zur Publikation",
+		"label": "Publication information",
 		"referenceType": "String",
 		"type": "STORE",
 		"multilangLabel": {
@@ -20643,6 +20656,20 @@
 			
 		}
 	},
+		{
+		"uri": "info:regal/zettel/additionalNotes",
+		"comment": "",
+		"label": "Additional notes",
+		"icon": "fa fa-bars",
+		"name": "additionalNotes",
+		"referenceType": "String",
+		"container": "",
+		"weight": "100",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},
 	{
 		"uri": "http://hbz-nrw.de/regal#hasData",
 		"comment": "",
@@ -20858,7 +20885,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#publicationStatus",
 		"comment": "**HELLO**",
-		"label": "Publikationsstatus",
+		"label": "Publication status",
 		"icon": "",
 		"name": "publicationStatus",
 		"referenceType": "@id",
@@ -20872,7 +20899,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#publicationYear",
 		"comment": "",
-		"label": "Erscheinungsjahr",
+		"label": "Publication year",
 		"icon": "",
 		"name": "publicationYear",
 		"referenceType": "String",
@@ -20970,7 +20997,7 @@
 	{
 		"uri": "http://hbz-nrw.de/regal#reviewStatus",
 		"comment": "",
-		"label": "Begutachtungsstatus",
+		"label": "Review status",
 		"icon": "",
 		"name": "reviewStatus",
 		"referenceType": "@id",
@@ -21558,7 +21585,7 @@
 	{
 		"uri": "http://purl.org/dc/terms/abstract",
 		"comment": "",
-		"label": "Inhaltsangabe",
+		"label": "Abstract",
 		"icon": "",
 		"name": "abstractText",
 		"referenceType": "String",
@@ -21586,7 +21613,7 @@
 	{
 		"uri": "http://purl.org/dc/terms/bibliographicCitation",
 		"comment": "",
-		"label": "Quelle",
+		"label": "Bibliographic citation",
 		"icon": "",
 		"name": "bibliographicCitation",
 		"referenceType": "String",
@@ -21880,7 +21907,7 @@
 	{
 		"uri": "http://purl.org/lobid/lv#containedIn",
 		"comment": "**HELLO**",
-		"label": "Erschienen als",
+		"label": "Published as",
 		"icon": "",
 		"name": "containedIn",
 		"referenceType": "@id",
@@ -22250,7 +22277,7 @@
 	{
 		"uri": "http://purl.org/ontology/bibo/editor",
 		"comment": "",
-		"label": "Herausgeber",
+		"label": "Editor",
 		"icon": "",
 		"name": "editor",
 		"referenceType": "@id",
@@ -22760,7 +22787,7 @@
 	{
 		"uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
 		"comment": "",
-		"label": "Typ",
+		"label": "Type",
 		"icon": "",
 		"name": "rdftype",
 		"referenceType": "@id",
@@ -22914,9 +22941,23 @@
 	{
 		"uri": "info:regal/zettel/additionalMaterial",
 		"comment": "",
-		"label": "Ergänzendes Material",
+		"label": "Additional material",
 		"icon": "",
 		"name": "additionalMaterial",
+		"referenceType": "@id",
+		"container": "@list",
+		"weight": "4003",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},
+		{
+		"uri": "info:regal/zettel/internalReference",
+		"comment": "",
+		"label": "Internal reference",
+		"icon": "",
+		"name": "internalReference",
 		"referenceType": "@id",
 		"container": "@list",
 		"weight": "4003",
@@ -22931,6 +22972,20 @@
 		"label": "Leibniz Organisation",
 		"icon": "",
 		"name": "collectionOne",
+		"referenceType": "@id",
+		"container": "",
+		"weight": "141",
+		"type": "CONTEXT",
+		"multilangLabel": {
+			
+		}
+	},
+		{
+		"uri": "info:regal/zettel/collectionTwo",
+		"comment": "",
+		"label": "German National Library",
+		"icon": "",
+		"name": "collectionTwo",
 		"referenceType": "@id",
 		"container": "",
 		"weight": "141",
@@ -22956,7 +23011,7 @@
 	{
 		"uri": "info:regal/zettel/fulltextVersion",
 		"comment": "",
-		"label": "Volltext",
+		"label": "Fulltext",
 		"icon": "",
 		"name": "fulltextVersion",
 		"referenceType": "@id",
@@ -22970,7 +23025,7 @@
 	{
 		"uri": "info:regal/zettel/publisherVersion",
 		"comment": "",
-		"label": "Verlagsversion",
+		"label": "Publisher version",
 		"icon": "",
 		"name": "publisherVersion",
 		"referenceType": "@id",
@@ -22984,7 +23039,7 @@
 	{
 		"uri": "info:regal/zettel/resourceHeader",
 		"comment": "",
-		"label": "Angaben zur Quelle",
+		"label": "Source information",
 		"icon": "",
 		"name": "",
 		"referenceType": "String",
@@ -22998,7 +23053,7 @@
 	{
 		"uri": "info:regal/zettel/ktblHeader",
 		"comment": "",
-		"label": "Angaben für EmiMin-Daten",
+		"label": "EmiMin-Data information",
 		"icon": "",
 		"name": "",
 		"referenceType": "String",

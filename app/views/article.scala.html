@@ -20,9 +20,9 @@
 				@singleSelect(myForm,"reviewStatus",services.ZettelFields.reviewStatusZF.getLabel(),"select-pg",ArticleHelper.getReviewStatusMap(),3)
 			}
 			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
-			    @smallTextArea(myForm,"title","Titel"+"*","",4)
+			    @smallTextArea(myForm,"title","Title"+"*","",4)
 				<br/>
-				@smallTextArea(myForm,"alternative","Alternativer Titel","",5)
+				@smallTextArea(myForm,"alternative","Alternative title","",5)
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
                 @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",6,ArticleHelper.getPersonLookupEndpoints())

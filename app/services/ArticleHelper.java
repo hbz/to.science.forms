@@ -77,28 +77,27 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getPublicationStatusMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
-		map.put("http://hbz-nrw.de/regal#original", "Postprint Verlagsversion");
-		map.put("http://hbz-nrw.de/regal#postprint", "Postprint Autorenmanuskript");
+		map.put(ZettelModel.ZETTEL_NULL, "Please select...");
+		map.put("http://hbz-nrw.de/regal#postprint", "Postprint author manuscript");
+		map.put("http://hbz-nrw.de/regal#original", "Postprint publisher version");
 		map.put("http://hbz-nrw.de/regal#preprint", "Preprint");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getTypeMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
-		map.put("http://purl.org/ontology/bibo/Article", "Zeitschriftenartikel");
-		map.put("http://purl.org/ontology/bibo/Chapter", "Buchkapitel");
-		map.put("http://purl.org/ontology/bibo/Proceedings", "Kongressbeitrag");
+		map.put(ZettelModel.ZETTEL_NULL, "Please select...");
+		map.put("http://purl.org/ontology/bibo/Article", "Article");
+		map.put("http://purl.org/ontology/bibo/Chapter", "Chapter");
+		map.put("http://purl.org/ontology/bibo/Proceedings", "Proceedings");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getReviewStatusMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
-		map.put("http://hbz-nrw.de/regal#reviewed", "begutachtet");
-		map.put("http://hbz-nrw.de/regal#peerReviewed",
-				"begutachtet (Peer-reviewed)");
+		map.put(ZettelModel.ZETTEL_NULL, "Please select...");
+		map.put("http://hbz-nrw.de/regal#reviewed", "Reviewed");
+		map.put("http://hbz-nrw.de/regal#peerReviewed", "Peer-reviewed");
 		return map;
 	}
 
@@ -169,12 +168,12 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getLanguageMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "Deutsch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "Englisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "Französisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/spa", "Spanisch");
-		map.put("http://id.loc.gov/vocabulary/iso639-2/ita", "Italienisch");
+		map.put(ZettelModel.ZETTEL_NULL, "Please select...");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/eng", "English");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/fra", "French");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/ger", "German");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/ita", "Italian");
+		map.put("http://id.loc.gov/vocabulary/iso639-2/spa", "Spanish");
 		return map;
 	}
 
@@ -184,7 +183,7 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getCopyrightYear() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(null, "Bitte wählen Sie...");
+		map.put(null, "Please select...");
 		List<LocalDate> years =
 				Stream.iterate(LocalDate.now(), date -> date.minusYears(1)).limit(100)
 						.collect(Collectors.toList());
@@ -249,16 +248,13 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getTitleLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
-		map.put("/tools/zettel/journalAutocomplete",
-				"Zeitschrift (ZDB/hbz-Verbundkatalog)");
-		map.put("/tools/zettel/bookAutocomplete", "Buch (hbz-Verbundkatalog)");
-		map.put("/tools/zettel/conferenceAlephAutocomplete",
-				"Kongress (hbz-Verbundkatalog)");
-		map.put("/tools/zettel/seriesAutocomplete",
-				"Monogr. ÜO (hbz-Verbundkatalog)");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put(ZettelModel.ZETTEL_NULL, "Please select...");
 		map.put("/tools/zettel/allAutocomplete", "Aleph");
+		map.put("/tools/zettel/bookAutocomplete", "Book (hbz-Verbundkatalog)");
+		map.put("/tools/zettel/conferenceAlephAutocomplete", "Conference (hbz-Verbundkatalog)");
+		map.put("/tools/zettel/journalAutocomplete", "Journal (ZDB/hbz-Verbundkatalog)");
+		map.put("/tools/zettel/seriesAutocomplete", "Series (hbz-Verbundkatalog)");
+		map.put("/tools/zettel/localAutocomplete", "Local");
 		return map;
 	}
 
