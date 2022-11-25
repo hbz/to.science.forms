@@ -17,8 +17,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
-import de.hbz.lobid.helper.Etikett;
 import java.util.HashMap;
+
+import de.hbz.lobid.helper.Etikett;
 
 /**
  * @author Jan Schnasse
@@ -200,21 +201,21 @@ public class ZettelFields {
 	public static Etikett livestockZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/livestock");
 	public static Etikett treatmentZF =
-			ZettelHelper.etikett.getEtikett("info.ktbl.treatment@de");
+			ZettelHelper.etikett.getEtikett("info.ktbl.treatment@en");
 	public static Etikett housingZF =
-			ZettelHelper.etikett.getEtikett("info.ktbl.housing@de");
+			ZettelHelper.etikett.getEtikett("info.ktbl.housing@en");
 	public static Etikett treatmentdetailZF =
-			ZettelHelper.etikett.getEtikett("info.ktbl.treatmentdetail@de");
+			ZettelHelper.etikett.getEtikett("info.ktbl.treatmentdetail@en");
 	public static Etikett emissionprobeZF =
-			ZettelHelper.etikett.getEtikett("info.ktbl.emissionprobe@de");
+			ZettelHelper.etikett.getEtikett("info.ktbl.emissionprobe@en");
 	public static Etikett ventilationZF =
-			ZettelHelper.etikett.getEtikett("info.ktbl.ventilation@de");
+			ZettelHelper.etikett.getEtikett("info.ktbl.ventilation@en");
 	public static Etikett emissionZF =
-			ZettelHelper.etikett.getEtikett("info.ktbl.emission@de");
+			ZettelHelper.etikett.getEtikett("info.ktbl.emission@en");
 	public static Etikett emissionreducingZF =
-			ZettelHelper.etikett.getEtikett("info.ktbl.emissionreducing@de");
+			ZettelHelper.etikett.getEtikett("info.ktbl.emissionreducing@en");
 	public static Etikett projecttitleZF =
-			ZettelHelper.etikett.getEtikett("info.ktbl.projecttitle@de");
+			ZettelHelper.etikett.getEtikett("info.ktbl.projecttitle@en");
 
 	
 	private static HashMap<String, Etikett> etiketts = new HashMap();
