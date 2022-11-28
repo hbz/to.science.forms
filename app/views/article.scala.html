@@ -60,6 +60,8 @@
 				<br />
 				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel()+"*","select-language",ArticleHelper.getLanguageMap(),20)
 				<br />
+				@textArea(myForm," citationNotice",services.ZettelFields.recordingPeriodZF.getLabel(),"",45)
+				<br />				
 				@multicombobox(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel()+"*","select-ddc",ArticleHelper.ddc,21)
 				<br />
 				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"search",22,ArticleHelper.getSubjectLookupEndpoints())

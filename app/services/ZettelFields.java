@@ -98,6 +98,8 @@ public class ZettelFields {
 			.getEtikett("http://purl.org/dc/elements/1.1/subject");
 	public static Etikett usageManualZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#usageManual");
+	public static Etikett citationNoticeZF =
+			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#citationNotice");
 	public static Etikett contributorNameZF = ZettelHelper.etikett
 			.getEtikett("http://purl.org/dc/elements/1.1/contributor");
 	public static Etikett reviewStatusZF =
