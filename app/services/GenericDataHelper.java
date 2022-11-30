@@ -14,12 +14,12 @@ import java.util.Set;
  */
 public class GenericDataHelper {
 	
-	private static String lang = "de";
+	private static String lang = "en";
 	
 	public static LinkedHashMap<String,String> getFieldSelectValues(String fileName, String fieldPattern) {
 		LinkedHashMap<String,String> genericFieldMap = new LinkedHashMap<String,String>();
 
-		genericFieldMap.put("ZettelModel.ZETTEL_NULL", "Bitte wählen Sie...");
+		genericFieldMap.put("ZettelModel.ZETTEL_NULL", "Please select...");
 		
 		LinkedHashMap<String,String> fieldMap = new LinkedHashMap<String,String>();
 		fieldMap.putAll(PropertiesFileUtil.loadPropertiesFileSequence(genericFieldMap, fileName));
