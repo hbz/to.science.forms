@@ -17,9 +17,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package models;
 
+import static services.ZettelFields.typeZF; 
 import static services.ZettelFields.abstractTextZF;
 import static services.ZettelFields.additionalMaterialZF;
-import static services.ZettelFields.additionalNotesZF;
 import static services.ZettelFields.affiliationIndexZF;
 import static services.ZettelFields.affiliationZF;
 import static services.ZettelFields.alternativeTitleZF;
@@ -28,7 +28,6 @@ import static services.ZettelFields.associatedDatasetZF;
 import static services.ZettelFields.associatedPublicationZF;
 import static services.ZettelFields.bibliographicCitationZF;
 import static services.ZettelFields.collectionOneZF;
-import static services.ZettelFields.collectionTwoZF;
 import static services.ZettelFields.congressDurationZF;
 import static services.ZettelFields.congressHostZF;
 import static services.ZettelFields.congressLocationZF;
@@ -36,7 +35,7 @@ import static services.ZettelFields.congressTitleZF;
 import static services.ZettelFields.containedInZF;
 import static services.ZettelFields.contributorNameZF;
 import static services.ZettelFields.contributorOrderZF;
-import static services.ZettelFields.contributorZF;
+import static services.ZettelFields.contributorZF; 
 import static services.ZettelFields.creatorNameZF;
 import static services.ZettelFields.creatorZF;
 import static services.ZettelFields.dataOriginZF;
@@ -45,32 +44,23 @@ import static services.ZettelFields.descriptionZF;
 import static services.ZettelFields.doiZF;
 import static services.ZettelFields.editorZF;
 import static services.ZettelFields.embargoTimeZF;
-import static services.ZettelFields.emissionZF;
-import static services.ZettelFields.emissionprobeZF;
-import static services.ZettelFields.emissionreducingZF;
 import static services.ZettelFields.fulltextVersionZF;
-import static services.ZettelFields.fundingIdZF;
 import static services.ZettelFields.fundingProgramZF;
 import static services.ZettelFields.fundingZF;
-import static services.ZettelFields.housingZF;
+import static services.ZettelFields.fundingIdZF;
 import static services.ZettelFields.institutionZF;
-import static services.ZettelFields.internalReferenceZF;
 import static services.ZettelFields.isLikeZF;
 import static services.ZettelFields.isbnZF;
 import static services.ZettelFields.issnZF;
 import static services.ZettelFields.issueZF;
 import static services.ZettelFields.languageZF;
 import static services.ZettelFields.licenseZF;
-import static services.ZettelFields.livestockZF;
 import static services.ZettelFields.mediumZF;
 import static services.ZettelFields.nextVersionZF;
-import static services.ZettelFields.otherZF;
 import static services.ZettelFields.pagesZF;
-import static services.ZettelFields.parallelEditionZF;
 import static services.ZettelFields.previousVersionZF;
 import static services.ZettelFields.professionalGroupZF;
 import static services.ZettelFields.projectIdZF;
-import static services.ZettelFields.projecttitleZF;
 import static services.ZettelFields.publicationPlaceZF;
 import static services.ZettelFields.publicationStatusZF;
 import static services.ZettelFields.publicationYearZF;
@@ -79,19 +69,31 @@ import static services.ZettelFields.publisherZF;
 import static services.ZettelFields.recordingCoordinatesZF;
 import static services.ZettelFields.recordingLocationZF;
 import static services.ZettelFields.recordingPeriodZF;
+import static services.ZettelFields.otherZF;
 import static services.ZettelFields.referenceZF;
 import static services.ZettelFields.reviewStatusZF;
 import static services.ZettelFields.subjectNameZF;
 import static services.ZettelFields.subjectZF;
 import static services.ZettelFields.titleLanguageZF;
 import static services.ZettelFields.titleZF;
-import static services.ZettelFields.treatmentZF;
-import static services.ZettelFields.typeZF;
 import static services.ZettelFields.urnZF;
 import static services.ZettelFields.usageManualZF;
-import static services.ZettelFields.ventilationZF;
 import static services.ZettelFields.volumeInZF;
 import static services.ZettelFields.yearOfCopyrightZF;
+import static services.ZettelFields.parallelEditionZF;
+import static services.ZettelFields.collectionTwoZF;
+import static services.ZettelFields.internalReferenceZF;
+import static services.ZettelFields.additionalNotesZF;
+
+import static services.ZettelFields.livestockZF;
+import static services.ZettelFields.treatmentZF;
+import static services.ZettelFields.housingZF;
+import static services.ZettelFields.treatmentdetailZF;
+import static services.ZettelFields.ventilationZF;
+import static services.ZettelFields.emissionprobeZF;
+import static services.ZettelFields.emissionZF;
+import static services.ZettelFields.emissionreducingZF;
+import static services.ZettelFields.projecttitleZF; 
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -102,9 +104,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-import org.apache.ivy.util.StringUtils;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.rdf4j.model.BNode;
+import org.eclipse.rdf4j.model.Statement;
 import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.rio.RDFFormat;
 
@@ -788,7 +796,7 @@ public abstract class ZettelModel {
 	public void setUsageManual(String usageManual) {
 		this.usageManual = usageManual;
 	}
-	
+
 	public void setContributorName(List<String> contributorName) {
 		this.contributor = contributorName;
 	}
