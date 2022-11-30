@@ -20967,20 +20967,6 @@
 		}
 	},
 	{
-		"uri": "http://hbz-nrw.de/regal#citationNotice",
-		"comment": "",
-		"label": "Citation notice",
-		"icon": "fa fa-bars",
-		"name": "citationNotice",
-		"referenceType": "String",
-		"container": "",
-		"weight": "900",
-		"type": "CONTEXT",
-		"multilangLabel": {
-			
-		}
-	},	
-	{
 		"uri": "http://hbz-nrw.de/regal#reference",
 		"comment": "",
 		"label": "Source",

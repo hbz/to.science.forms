@@ -396,7 +396,6 @@ public class ZettelHelper {
 		addError(result, errors, "language");
 		addError(result, errors, "description");
 		addError(result, errors, "usageManual");
-		addError(result, errors, "citationNotice");
 		addError(result, errors, "ddc");
 		addError(result, errors, "subject");
 		addError(result, errors, "fundingId");

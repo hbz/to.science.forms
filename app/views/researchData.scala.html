@@ -42,8 +42,6 @@
 				<br />
 				@textArea(myForm,"usageManual",services.ZettelFields.usageManualZF.getLabel(),"",12)
 				<br />
-				@textArea(myForm,"citationNotice",services.ZettelFields.citationNoticeZF.getLabel(),"",45)
-				<br />
 				@multicombobox(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel()+"*","select-ddc",ArticleHelper.ddc,13)
 				<br />
 				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"search",14,ArticleHelper.getSubjectLookupEndpoints())			
@@ -89,7 +87,7 @@
         <br />
 				@multiselect(myForm, jsonMap, "housing", services.ZettelFields.getEtikettByName("housingZF", "info.ktbl.housing@en"), "select-housing", GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.housing"),40)
 				<br />
-				@multiSelect(myForm,"treatmentdetail",services.ZettelFields.treatmentdetailZF.getLabel(),"select-treatmentdetail",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.treatmentdetail"),40)
+				@singleSelect(myForm,"treatmentdetail",services.ZettelFields.treatmentdetailZF.getLabel(),"select-treatmentdetail",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.treatmentdetail"),40)
 				<br />
 				@multiselect(myForm, jsonMap, "emissionprobe", services.ZettelFields.getEtikettByName("emissionsprobeZF", "info.ktbl.emissionprobe@en"),"select-emissionprobe",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.emissionprobe"),42)
 				<br />

@@ -208,7 +208,6 @@ public abstract class ZettelModel {
 	private List<String> reference = new ArrayList<>();
 	private List<String> subjectName;
 	private String usageManual;
-	private String citationNotice;
 	private String reviewStatus;
 	private String congressTitle;
 	private String congressLocation;
@@ -789,14 +788,6 @@ public abstract class ZettelModel {
 	public void setUsageManual(String usageManual) {
 		this.usageManual = usageManual;
 	}
-
-	public String getCitationNotice() {
-		return citationNotice;
-	}
-
-	public void setCitationNotice(String citationNotice) {
-		this.citationNotice = citationNotice;
-	}
 	
 	public void setContributorName(List<String> contributorName) {
 		this.contributor = contributorName;
@@ -1230,7 +1221,6 @@ public abstract class ZettelModel {
 				(in) -> addAssociatedDataset((String) in));
 		dict.put(referenceZF.uri, (in) -> addReference((String) in));
 		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
-		dict.put(citationNoticeZF.uri, (in) -> setCitationNotice((String) in));
 		dict.put(subjectNameZF.uri, (in) -> setSubjectName((String) in));
 		dict.put(creatorNameZF.uri, (in) -> addCreatorName(
 				regalApi + "/adhoc/creator/" + MyURLEncoding.encode((String) in)));
