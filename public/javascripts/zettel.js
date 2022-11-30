@@ -234,7 +234,7 @@ function ktblDetermineTreatment() {
 	
   // Auswahlfeld: Produktionsrichtung
 	$('select[name="livestock"]').click(function(){
-	    var selTreatment = $('select[name^="treatment"] option').show();
+	    var selTreatment = $('select[name^="treatment"] option').hide();
 	    var selLivestock = $('select[name="livestock"]').val();    
 	    
 	    if(selLivestock.match('cattle') !== null){
@@ -261,7 +261,7 @@ function ktblDetermineTreatment() {
   // Auswahlfeld: Haltungsverfahren
   $('select[name^="treatment"]').each(function ( index ) { 
     $(this).click(function(){
-      var selHousing = $('select[name^="housing"] option').show();
+      var selHousing = $('select[name^="housing"] option').hide();
       var selTreatment = $(this).val();    
       
       if(selTreatment.match('diary_farming') !== null){
@@ -333,7 +333,7 @@ function ktblDetermineTreatment() {
 
 	// Auswahlfeld: Weitere Spezifikation des Haltungsverfahrens
   $('select[name="livestock"]').click(function(){
-	    var selTreatmentDetail = $('select[name="treatmentdetail"] option').show();
+	    var selTreatmentDetail = $('select[name="treatmentdetail"] option').hide();
 	    var selLivestock = $('select[name="livestock"]').val();    
 	    
 	    if(selLivestock.match('cattle') !== null){
