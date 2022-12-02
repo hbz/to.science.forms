@@ -254,7 +254,7 @@ public abstract class ZettelModel {
 	private String livestock;
 	private List<String> treatment = new ArrayList<String>();
 	private List<String> housing = new ArrayList<String>();
-	private String treatmentdetail;
+	private List<String> treatmentdetail = new ArrayList<String>();
 	private String ventilation;
 	private List<String> emissionprobe = new ArrayList<String>();
 	private List<String> emission = new ArrayList<String>();
@@ -1118,12 +1118,18 @@ public abstract class ZettelModel {
 	public void setHousing(List<String> housing) {
 		this.housing = housing;
 	}
+	
+	public void addTreatmentdetail(String in) {
+		if (treatmentdetail == null || treatmentdetail.isEmpty())
+			treatmentdetail = new ArrayList<>();
+		treatmentdetail.add(in);
+	}
 
-	public String getTreatmentdetail() {
+	public List<String> getTreatmentdetail() {
 		return treatmentdetail;
 	}
 
-	public void setTreatmentdetail(String treatmentdetail) {
+	public void setTreatmentdetail(List<String> treatmentdetail) {
 		this.treatmentdetail = treatmentdetail;
 	}
 
@@ -1273,7 +1279,8 @@ public abstract class ZettelModel {
 		dict.put(additionalNotesZF.uri, (in) -> setAdditionalNotes((String) in));
 
 		dict.put(livestockZF.uri, (in) -> setLivestock((String) in));
-		dict.put(treatmentZF.uri, (in) -> addTreatment((String) in));
+		dict.put(treatmentZF.uri, (in) -> addTreatment((String) in)); 
+		dict.put(treatmentdetailZF.uri, (in) -> addTreatmentdetail((String) in));
 		dict.put(housingZF.uri, (in) -> addHousing((String) in));
 		dict.put(ventilationZF.uri, (in) -> setVentilation((String) in));
 		dict.put(emissionprobeZF.uri, (in) -> addEmissionprobe((String) in));
