@@ -143,7 +143,7 @@ public class ZettelFields {
 	public static Etikett institutionZF = ZettelHelper.etikett
 			.getEtikett("http://dbpedia.org/ontology/institution");
 	public static Etikett issuedZF = ZettelHelper.etikett
-			.getEtikett("http://hbz-nrw.de/regal#issued");
+			.getEtikett("http://purl.org/dc/terms/issued");
 	public static Etikett publicationYearZF = ZettelHelper.etikett
 			.getEtikett("http://hbz-nrw.de/regal#publicationYear");
 	public static Etikett contributionZF =
