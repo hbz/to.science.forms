@@ -101,6 +101,8 @@ public class Article extends ZettelModel {
 		validateAuthorship(errors);
 		// Erschienen in
 		mandatoryField("containedIn", getContainedIn(), errors);
+		// Erscheinungsjahr
+		mandatoryField("issued", getIssued(), errors);
 		// Online veröffentlicht
 		mandatoryField("publicationYear", getPublicationYear(), errors);
 		// Sprache der Publikation
