@@ -2,6 +2,8 @@
 #
 # /etc/init.d/regal-api 
 # Modified by Jan Schnasse schnasse@gmx.de
+# Mofified by Ingolf Kuss, hbz-NRW
+# - Anpassungen für SLES-Server, 06.12.2022
 #
 # Written by Miquel van Smoorenburg <miquels@cistron.nl>.
 # Modified for Debian GNU/Linux by Ian Murdock <imurdock@gnu.ai.mit.edu>.
@@ -29,14 +31,14 @@ set -e
 #Variables can be overwritten with $DEFAULT 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 NAME=zettel
-DESC="Zettel form provider"
-JAVA_HOME=/opt/java
+DESC="Forms Formular provider"
+JAVA_HOME=/opt/jdk
 JAVA_OPTS="-XX:+HeapDumpOnOutOfMemoryError"
-HOME="/opt/zettel"
-USER="cpt"
-GROUP="cpt"
+HOME="/opt/toscience/apps/to.science.forms"
+USER="toscience"
+GROUP="users"
 SECRET=`uuidgen`
-PORT=9000
+PORT=9003
 
 export JAVA_HOME
 export JAVA_OPTS
@@ -56,8 +58,6 @@ if [ -r /etc/default/locale ]; then
 export LANG
 fi
  
-. /lib/lsb/init-functions
- 
 if [ -r /etc/default/rcS ]; then
 . /etc/default/rcS
 fi  
@@ -71,9 +71,8 @@ fi
    
 app_start() {
 	set +e
-	start-stop-daemon --start -b -u "$USER" -g "$GROUP" \
-		-c "$USER" -p "$PID" \
-		-x /bin/bash -- -c "$BIN -Dconfig.file=$HOME/conf/application.conf -Dapplication.secret=$SECRET -Dhttp.port=$PORT"
+	start_daemon -u "$USER" -g "$GROUP" -p "$PID" \
+                /bin/bash -c "$BIN -Dconfig.file=$HOME/conf/application.conf -Dapplication.secret=$SECRET -Dapplication.home=$HOME -Dhttp.port=$PORT"
 	status="$?"
 	set +a -e
 	return $status
@@ -82,19 +81,17 @@ app_start() {
 case "$1" in
 start)
 	if [ -z "$JAVA_HOME" ]; then
-		log_failure_msg "no JDK found - please set JAVA_HOME"
+		echo "ERROR: no JDK found - please set JAVA_HOME"
 		exit 1
 	fi
 	 
 	if [ ! -d "$HOME/conf" ]; then
-		log_failure_msg "invalid HOME: $HOME"
+		echo "ERROR: invalid HOME: $HOME"
 		exit 1
 	fi
 	 
-	log_daemon_msg "Starting $DESC" "$NAME"
-	if start-stop-daemon --test --start --pidfile "$PID" \
-	--user $USER --exec "$JAVA_HOME/bin/java" \
-	>/dev/null; then
+	echo "INFO: Starting $DESC" "$NAME"
+	if start_daemon -p "$PID" -u $USER $JAVA_HOME/bin/java -version >/dev/null; then
 		app_start
 		app_start_status="$?"
 	    	sleep 5  
@@ -102,58 +99,54 @@ start)
 			if [ -f "$PID" ]; then
 				rm -f "$PID"
 			fi
-			log_end_msg 1
+			exit 1
 		else
-			log_end_msg 0
+			exit 0
 		fi
-		log_end_msg 0
+		exit 0
 	else
-		log_progress_msg "(already running)"
-		log_end_msg 0
+		echo "PROGRESS (already running)"
+		exit 0
 	fi
 ;;
 stop)
-	log_daemon_msg "Stopping $DESC" "$NAME"
+	echo "INFO: Stopping $DESC" "$NAME"
 	set +e
 	if [ -f "$PID" ]; then
-		start-stop-daemon --stop --pidfile "$PID" \
-		--user "$USER" \
-		--retry=TERM/20/KILL/5 >/dev/null
+		killproc -p "$PID" -t5 >/dev/null
 	if [ $? -eq 1 ]; then
-		log_progress_msg "$DESC is not running but pid file exists, cleaning up"
+		echo "PROGRESS: $DESC is not running but pid file exists, cleaning up"
 	elif [ $? -eq 3 ]; then
 		PID="`cat $PID`"
-		log_failure_msg "Failed to stop $NAME (pid $PID)"
+		echo "ERROR: Failed to stop $NAME (pid $PID)"
 		exit 1
 	fi
 		rm -f "$PID"
 	else
-		log_progress_msg "(not running)"
+		echo "PROGRESS (not running)"
 	fi
-		log_end_msg 0
+		echo 0
 	set -e
 ;;
 status)
 	set +e
-	start-stop-daemon --test --start --pidfile "$PID" \
-	--user $USER --exec "$JAVA_HOME/bin/java" \
-	>/dev/null 2>&1
+	start_daemon -p "$PID" -u $USER $JAVA_HOME/bin/java >/dev/null 2>&1
 	if [ "$?" = "0" ]; then
 	 
 		if [ -f "$PID" ]; then
-			log_success_msg "$DESC is not running, but pid file exists."
+			echo "SUCCESS $DESC is not running, but pid file exists."
 			exit 1
 		else
-			log_success_msg "$DESC is not running."
+			echo "SUCCESS $DESC is not running."
 			exit 3
 		fi
 	else
-		log_success_msg "$DESC is running with pid `cat $PID`"
+		echo "SUCCESS: $DESC is running with pid `cat $PID`"
 	fi
 		set -e
 	;;
 *)
-	log_success_msg "Usage: $0 {start|stop|restart|status}"
+	echo "SUCCESS: Usage: $0 {start|stop|restart|status}"
 	exit 1
 ;;
 esac
