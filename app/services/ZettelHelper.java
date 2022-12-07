@@ -359,7 +359,7 @@ public class ZettelHelper {
 		addError(result, errors, "other");
 		addError(result, errors, "containedIn");
 		addError(result, errors, "bibliographicCitation");
-		addErroe(result, errors, "citationReference");
+		addError(result, errors, "citationReference");
 		addError(result, errors, "issued");
 		addError(result, errors, "publicationYear");
 		addError(result, errors, "institution");
