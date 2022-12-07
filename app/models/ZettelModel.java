@@ -1272,7 +1272,7 @@ public abstract class ZettelModel {
 		dict.put(containedInZF.uri, (in) -> addContainedIn((String) in));
 		dict.put(bibliographicCitationZF.uri,
 				(in) -> setBibliographicCitation((String) in));
-		dict.put(citationReferenceZF.uri, (in) -> setCitationReferenceZF((String) in));
+		dict.put(citationReferenceZF.uri, (in) -> setCitationReference((String) in));
 		dict.put(congressHostZF.uri, (in) -> addCongressHost((String) in));
 		dict.put(volumeInZF.uri, (in) -> setVolumeIn((String) in));
 		dict.put(issueZF.uri, (in) -> setIssue((String) in));
