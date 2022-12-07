@@ -27,6 +27,7 @@ import static services.ZettelFields.articleNumberZF;
 import static services.ZettelFields.associatedDatasetZF;
 import static services.ZettelFields.associatedPublicationZF;
 import static services.ZettelFields.bibliographicCitationZF;
+import static services.ZettelFields.citationReferenceZF;
 import static services.ZettelFields.collectionOneZF;
 import static services.ZettelFields.congressDurationZF;
 import static services.ZettelFields.congressHostZF;
@@ -229,6 +230,7 @@ public abstract class ZettelModel {
 	private List<String> abstractText = new ArrayList<>();
 	private List<String> containedIn = new ArrayList<>();
 	private String bibliographicCitation;
+	private String citationReference;
 	private String volumeIn;
 	private String issue;
 	private String pages;
@@ -385,6 +387,14 @@ public abstract class ZettelModel {
 
 	public void setBibliographicCitation(String bibliographicCitation) {
 		this.bibliographicCitation = bibliographicCitation;
+	}
+	
+	public String getCitationReference() {
+		return citationReference;
+	}
+	
+	public void setCitationReference(String citationReference) {
+		this.citationReference = citationReference;
 	}
 
 	public String getTitle() {
@@ -1262,6 +1272,7 @@ public abstract class ZettelModel {
 		dict.put(containedInZF.uri, (in) -> addContainedIn((String) in));
 		dict.put(bibliographicCitationZF.uri,
 				(in) -> setBibliographicCitation((String) in));
+		dict.put(citationReferenceZF.uri, (in) -> setCitationReferenceZF((String) in));
 		dict.put(congressHostZF.uri, (in) -> addCongressHost((String) in));
 		dict.put(volumeInZF.uri, (in) -> setVolumeIn((String) in));
 		dict.put(issueZF.uri, (in) -> setIssue((String) in));

@@ -120,6 +120,8 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("http://purl.org/lobid/lv#containedIn");
 	public static Etikett bibliographicCitationZF = ZettelHelper.etikett
 			.getEtikett("http://purl.org/dc/terms/bibliographicCitation");
+	public static Etikett citationReferenceZF = ZettelHelper.etikett
+			.getEtikett("http://purl.org/dc/terms/references");
 	public static Etikett volumeInZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#volumeIn");
 	public static Etikett issueZF =
