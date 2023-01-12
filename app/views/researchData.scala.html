@@ -24,7 +24,7 @@
 			    @multifieldLd(myForm,jsonMap,"other",services.ZettelFields.otherZF.getLabel(),"search",5,ArticleHelper.getPersonLookupEndpoints())		    
 			}
 			@accordionPanel(services.ZettelFields.resourceHeaderZF.getLabel(),"upload-section"){
-				@singlefieldText(myForm,"publicationYear",services.ZettelFields.publicationYearZF.getLabel()+"*","",12)
+				@singlefieldText(myForm,"issued",services.ZettelFields.issuedZF.getLabel()+"*","",12)
 			}
 			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collection-section"){
 				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"search",13,ArticleHelper.getInstitutionLookupEndpoints())
