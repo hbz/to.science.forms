@@ -216,7 +216,7 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info.ktbl.ventilation@en");
 	public static Etikett emissionZF =
 			ZettelHelper.etikett.getEtikett("info.ktbl.emission@en");
-	public static Etikett emissionreducingZF =
+	public static Etikett emissionreduceZF =
 			ZettelHelper.etikett.getEtikett("info.ktbl.emissionreduce@en");
 	public static Etikett projecttitleZF =
 			ZettelHelper.etikett.getEtikett("info.ktbl.projecttitle@en");

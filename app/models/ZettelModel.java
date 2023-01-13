@@ -94,7 +94,7 @@ import static services.ZettelFields.treatmentdetailZF;
 import static services.ZettelFields.ventilationZF;
 import static services.ZettelFields.emissionprobeZF;
 import static services.ZettelFields.emissionZF;
-import static services.ZettelFields.emissionreducingZF;
+import static services.ZettelFields.emissionreduceZF;
 import static services.ZettelFields.projecttitleZF; 
 
 import java.io.InputStream;
@@ -262,7 +262,7 @@ public abstract class ZettelModel {
 	private String ventilation;
 	private List<String> emissionprobe = new ArrayList<String>();
 	private List<String> emission = new ArrayList<String>();
-	private List<String> emissionreducing = new ArrayList<String>();
+	private List<String> emissionreduce = new ArrayList<String>();
 	private String projecttitle;
 	
 
@@ -1190,18 +1190,18 @@ public abstract class ZettelModel {
 		emission.add(in);
 	}
 	
-	public List<String> getEmissionreducing() {
-		return emissionreducing;
+	public List<String> getEmissionreduce() {
+		return emissionreduce;
 	}
 
-	public void setEmissionreducing(List<String> emissionreducing) {
-		this.emissionreducing = emissionreducing;
+	public void setEmissionreduce(List<String> emissionreduce) {
+		this.emissionreduce = emissionreduce;
 	}
 
-	public void addEmissionreducing(String in) {
-		if (emissionreducing == null || emissionreducing.isEmpty())
-			emissionreducing = new ArrayList<>();
-		emissionreducing.add(in);
+	public void addEmissionreduce(String in) {
+		if (emissionreduce == null || emissionreduce.isEmpty())
+			emissionreduce = new ArrayList<>();
+		emissionreduce.add(in);
 	}
 	
 	public String getProjecttitle() {
@@ -1308,7 +1308,7 @@ public abstract class ZettelModel {
 		dict.put(ventilationZF.uri, (in) -> setVentilation((String) in));
 		dict.put(emissionprobeZF.uri, (in) -> addEmissionprobe((String) in));
 		dict.put(emissionZF.uri, (in) -> addEmission((String) in));
-		dict.put(emissionreducingZF.uri, (in) -> addEmissionreducing((String) in));
+		dict.put(emissionreduceZF.uri, (in) -> addEmissionreduce((String) in));
 		dict.put(projecttitleZF.uri, (in) -> setProjecttitle((String) in));
 		return dict;
 	}
