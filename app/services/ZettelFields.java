@@ -203,7 +203,7 @@ public class ZettelFields {
 	public static Etikett ktblHeaderZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/ktblHeader");
 	public static Etikett livestockZF =
-			ZettelHelper.etikett.getEtikett("info:regal/zettel/livestock");
+			ZettelHelper.etikett.getEtikett("info.ktbl.livestock@en");
 	public static Etikett treatmentZF =
 			ZettelHelper.etikett.getEtikett("info.ktbl.treatment@en");
 	public static Etikett housingZF =
