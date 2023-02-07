@@ -99,6 +99,8 @@ import static services.ZettelFields.parallelEditionZF;
 import static services.ZettelFields.collectionTwoZF;
 import static services.ZettelFields.internalReferenceZF;
 import static services.ZettelFields.additionalNotesZF;
+import static services.ZettelFields.ilias_LinkZF;
+import static services.ZettelFields.moodle_LinkZF;
 
 import java.io.InputStream;
 import java.util.ArrayList;
