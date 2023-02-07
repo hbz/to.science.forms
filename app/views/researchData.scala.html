@@ -36,12 +36,9 @@
 			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@singleSelect(myForm,"funder",services.ZettelFields.funderZF.getLabel(),"select-funder",ResearchDataHelper.getFunderMap(),20)
-				<!-- OSU-112 -->
-				@smallTextArea(myForm,"ilias_Link","Ilias"+"*","",1)
-			    @smallTextArea(myForm,"moodle_Link","Moodle"+"*","",1)	
+					
 			}
 					
-			
 			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
 				@multicombobox(myForm,jsonMap,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ResearchDataHelper.getMediumMap(),5)
 				<br/>
@@ -49,6 +46,11 @@
 				<br/>
 			    @multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"search",22,ArticleHelper.getSubjectLookupEndpoints())
 			}	
+			
+			@accordionPanel(services.ZettelFields.iliasMoodleHeaderZF.getLabel(),"iliasMoodle-section"){
+				@smallTextArea(myForm,"ilias_Link","Ilias"+"","",1)
+			    @smallTextArea(myForm,"moodle_Link","Moodle"+"","",1)
+			}
 		}
 		@if(myForm.hasErrors) {
 		    <div class="alert alert-error">

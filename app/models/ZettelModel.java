@@ -102,6 +102,7 @@ import static services.ZettelFields.additionalNotesZF;
 import static services.ZettelFields.ilias_LinkZF;
 import static services.ZettelFields.moodle_LinkZF;
 
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
