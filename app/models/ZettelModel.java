@@ -1278,9 +1278,9 @@ public abstract class ZettelModel {
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
 		
 		//OSU-112
-		dict.put(ilias_LinkZF.uri, (in) -> setTitle((String) in));
+		dict.put(ilias_LinkZF.uri, (in) -> setIlias_Link((String) in));
 		//OSU-112
-		dict.put(moodle_LinkZF.uri, (in) -> setTitle((String) in));
+		dict.put(moodle_LinkZF.uri, (in) -> setMoodle_Link((String) in));
 		
 		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
     dict.put(creatorAcademicDegreeZF.uri, (in) -> addCreatorAcademicDegree((String) in));
