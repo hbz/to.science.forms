@@ -36,13 +36,11 @@
 			}
 			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
 				@singleSelect(myForm,"funder",services.ZettelFields.funderZF.getLabel(),"select-funder",ResearchDataHelper.getFunderMap(),20)
+				<!-- OSU-112 -->
+				@smallTextArea(myForm,"ilias_Link","Ilias"+"*","",1)
+			    @smallTextArea(myForm,"moodle_Link","Moodle"+"*","",1)	
 			}
-			<!-- OSU-112 -->
-			@accordionPanel(services.ZettelFields.iliasAndMoodleZF.getLabel(),"iliasAndMoodle-section"){
-			    @smallTextArea(myForm,"ilias_Link","Ilias"+"*","",1)
-			    @smallTextArea(myForm,"moodle_Link","Moodle"+"*","",1)			    
-			}
-			
+					
 			
 			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
 				@multicombobox(myForm,jsonMap,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ResearchDataHelper.getMediumMap(),5)

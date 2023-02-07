@@ -229,8 +229,6 @@ public class ZettelFields {
 			.getEtikett("info:regal/zettel/additionalNotesHeader");
 	public static Etikett additionalNotesZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/additionalNotes");
-	// OSU-112
-	public static Etikett iliasAndMoodleZF =
-			ZettelHelper.etikett.getEtikett("info:regal/zettel/iliasAndMoodle");
+	
 	
 }
