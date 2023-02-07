@@ -20,9 +20,9 @@
 				@singleSelect(myForm,"reviewStatus",services.ZettelFields.reviewStatusZF.getLabel(),"select-pg",ArticleHelper.getReviewStatusMap(),3)
 			}
 			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
-			    @smallTextArea(myForm,"title","Title"+"*","",4)
+			    @smallTextArea(myForm,"title","Titel"+"*","",4)
 				<br/>
-				@smallTextArea(myForm,"alternative","Alternative title","",5)
+				@smallTextArea(myForm,"alternative","Alternativer Titel","",5)
 			}
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
                 @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",6,ArticleHelper.getPersonLookupEndpoints())
@@ -39,10 +39,9 @@
 				<br/>
 				@singlefieldText(myForm,"bibliographicCitation",services.ZettelFields.bibliographicCitationZF.getLabel(),"",11)
 				<br/>
-				@singlefieldText(myForm,"issued",services.ZettelFields.issuedZF.getLabel()+"*","",12)
-				<br/>
 				@singlefieldText(myForm,"publicationYear",services.ZettelFields.publicationYearZF.getLabel()+"*","",12)
-				
+				<br/>
+				@singlefieldText(myForm,"issued",services.ZettelFields.issuedZF.getLabel()+"*","",12)	
 			}
 			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collection-section"){
 				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"search",13,ArticleHelper.getInstitutionLookupEndpoints())

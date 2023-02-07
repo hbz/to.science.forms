@@ -45,7 +45,7 @@
 				<br />
 				@textArea(myForm,"usageManual",services.ZettelFields.usageManualZF.getLabel(),"",12)
 				<br />
-				@multicombobox(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel()+"*","select-ddc",ArticleHelper.ddc,13)
+				@multicombobox(myForm,jsonMap,"ddc",services.ZettelFields.ddcZF.getLabel()+"*","select-ddc",ResearchDataHelper.ddc,13)
 				<br />
 				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"search",14,ArticleHelper.getSubjectLookupEndpoints())			
 			}

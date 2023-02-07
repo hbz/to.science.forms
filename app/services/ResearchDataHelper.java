@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,6 +32,8 @@ import java.util.stream.Stream;
 
 @SuppressWarnings("javadoc")
 public class ResearchDataHelper {
+	
+	public static Map<String, String> ddc = readCsv("ddcEN.csv");
 
 	/**
 	 * @return a map that can be used in an html select
@@ -161,6 +164,8 @@ public class ResearchDataHelper {
 				"ODbL (Open Database License)");
 		map.put("http://www.gnu.org/licenses/gpl-3.0.de.html",
 				"GNU GPL (GNU General Public Licence)");
+		map.put("https://opensource.org/licenses/MIT",
+				"MIT Licence)");
 		return map;
 	}
 
