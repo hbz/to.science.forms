@@ -54,6 +54,13 @@ public class ZettelFields {
       .getEtikett("http://hbz-nrw.de/regal#academicDegreeIndex");
 	public static Etikett titleZF =
 			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/title");
+	//OSU-112
+	public static Etikett ilias_LinkZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/ilias_Link");
+	//OSU-112
+	public static Etikett moodle_LinkZF =
+			ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/moodle_Link");
+	
 	public static Etikett dataOriginZF =
 			ZettelHelper.etikett.getEtikett("http://hbz-nrw.de/regal#dataOrigin");
 	public static Etikett abstractTextZF =
@@ -222,4 +229,8 @@ public class ZettelFields {
 			.getEtikett("info:regal/zettel/additionalNotesHeader");
 	public static Etikett additionalNotesZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/additionalNotes");
+	// OSU-112
+	public static Etikett iliasAndMoodleZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/iliasAndMoodle");
+	
 }
