@@ -99,6 +99,9 @@ import static services.ZettelFields.parallelEditionZF;
 import static services.ZettelFields.collectionTwoZF;
 import static services.ZettelFields.internalReferenceZF;
 import static services.ZettelFields.additionalNotesZF;
+import static services.ZettelFields.ilias_LinkZF;
+import static services.ZettelFields.moodle_LinkZF;
+
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -189,6 +192,8 @@ public abstract class ZettelModel {
 	private String role;
 
 	private String title;
+	private String moodle_Link;
+	private String ilias_Link;
 	private String titleLanguage;
 	private String alternative;
 
@@ -391,6 +396,23 @@ public abstract class ZettelModel {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+
+	public String getMoodle_Link() {
+		return moodle_Link;
+	}
+
+	public void setMoodle_Link(String moodle_Link) {
+		this.moodle_Link = moodle_Link;
+	}
+
+	public String getIlias_Link() {
+		return ilias_Link;
+	}
+
+	public void setIlias_Link(String ilias_Link) {
+		this.ilias_Link = ilias_Link;
 	}
 
 	public List<String> getCreator() {
@@ -1257,6 +1279,12 @@ public abstract class ZettelModel {
 		String regalApi = Play.application().configuration().getString("regalApi");
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
+		
+		//OSU-112
+		dict.put(ilias_LinkZF.uri, (in) -> setIlias_Link((String) in));
+		//OSU-112
+		dict.put(moodle_LinkZF.uri, (in) -> setMoodle_Link((String) in));
+		
 		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
     dict.put(creatorAcademicDegreeZF.uri, (in) -> addCreatorAcademicDegree((String) in));
     dict.put(creatorAcademicDegreeIndexZF.uri, (in) -> setCreatorAcademicDegreeIndex((String) in));
