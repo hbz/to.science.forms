@@ -17,6 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package services;
 
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
@@ -34,6 +35,25 @@ import java.util.stream.Stream;
 public class ResearchDataHelper {
 	
 	public static Map<String, String> ddc = readCsv("ddcEN.csv");
+	
+	private static Map<String, String> readCsv(String resource) {
+		String path = play.Play.application().resource(resource).getPath();
+		play.Logger.info("Read " + resource + " from " + path);
+		Map<String, String> result = new LinkedHashMap<>();
+		try (ICsvMapReader reader = new CsvMapReader(new FileReader(path),
+				new CsvPreference.Builder('"', ',', "\n").build());) {
+			String[] header = reader.getHeader(true);
+			CellProcessor[] processors = getProcessors();
+			Map<String, Object> rec;
+			while ((rec = reader.read(header, processors)) != null) {
+				result.put(rec.get("URI").toString(), rec.get("Label").toString());
+			}
+			play.Logger.info(result + "");
+			return result;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	/**
 	 * @return a map that can be used in an html select
