@@ -179,6 +179,9 @@ start
 	cd /tmp
 	git clone https://github.com/hbz/to.science.forms
 	cd /tmp/to.science.forms
+	# change to java version 1.6+
+	sudo update-alternatives --config java
+	export JAVA_HOME=/opt/jdk1.8.0_201
 	/opt/activator-1.3.2-minimal/activator dist
 	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
