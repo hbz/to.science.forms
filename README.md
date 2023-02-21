@@ -195,6 +195,10 @@ start
 	mv /tmp/zettel-1.0-SNAPSHOT/* /opt/zettel/
 	sudo service zettel start
 	tail /opt/zettel/conf/application.conf
+	# change java version back to 11
+	sudo update-alternatives --config java
+	change-java-version
+	# JAVA_HOME muss wieder auf /opt/jdk zeigen, und /opt/jdk muss auf eine Version Java 11 zeigen.
 
 # License
 
