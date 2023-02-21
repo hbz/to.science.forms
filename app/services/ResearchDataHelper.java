@@ -26,6 +26,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.supercsv.cellprocessor.constraint.NotNull;
+import org.supercsv.cellprocessor.ift.CellProcessor;
+import org.supercsv.io.CsvMapReader;
+import org.supercsv.io.ICsvMapReader;
+import org.supercsv.prefs.CsvPreference;
+
 /**
  * @author Jan Schnasse
  *
@@ -35,6 +41,13 @@ import java.util.stream.Stream;
 public class ResearchDataHelper {
 	
 	public static Map<String, String> ddc = readCsv("ddcEN.csv");
+	
+	private static CellProcessor[] getProcessors() {
+		final CellProcessor[] processors = new CellProcessor[] { new NotNull(), // URI
+				new NotNull(), // Label
+		};
+		return processors;
+	}
 	
 	private static Map<String, String> readCsv(String resource) {
 		String path = play.Play.application().resource(resource).getPath();
