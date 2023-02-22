@@ -182,7 +182,7 @@ public abstract class ZettelModel {
 	public abstract List<ValidationError> validate();
 
 	private String id;
-	private String label;
+	private String [] label = new String[2];
 	private String role;
 
 	private String title;
@@ -954,11 +954,11 @@ public abstract class ZettelModel {
 		this.id = id;
 	}
 
-	public String getLabel() {
-		return label;
+	public String getLabel(int i) {
+		return label[i];
 	}
 
-	public void setLabel(String label) {
+	public void setLabel(String[] label) {
 		this.label = label;
 	}
 
