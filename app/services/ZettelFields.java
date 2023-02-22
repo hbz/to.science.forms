@@ -162,26 +162,26 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/creatorshipHeader");
 	public static Etikett resourceHeaderZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/resourceHeader");
+	public static Etikett collectionHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionHeader");
 	public static Etikett uploadHeaderZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/uploadHeader");
 	public static Etikett catalogingHeaderZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/catalogingHeader");
-	public static Etikett contributorsHeaderZF =
-			ZettelHelper.etikett.getEtikett("info:regal/zettel/contributorsHeader");
 	public static Etikett identifiersHeaderZF =
-			ZettelHelper.etikett.getEtikett("info:regal/zettel/identifiersHeader");
-	public static Etikett collectionHeaderZF =
-			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionHeader");
-	public static Etikett publicationsHeaderZF =
-			ZettelHelper.etikett.getEtikett("info:regal/zettel/publicationsHeader");
-	public static Etikett observationHeaderZF =
-			ZettelHelper.etikett.getEtikett("info:regal/zettel/observationHeader");
-	public static Etikett collectionOneZF =
-			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionOne");
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/identifiersHeader");	
 	public static Etikett fundingsHeaderZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/fundingsHeader");
 	public static Etikett additionalMaterialZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/additionalMaterial");
+	public static Etikett publicationsHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/publicationsHeader");
+	public static Etikett observationHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/observationHeader");
+	public static Etikett contributorsHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/contributorsHeader");
+	public static Etikett collectionOneZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionOne");
 	public static Etikett publisherVersionZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/publisherVersion");
 	public static Etikett fulltextVersionZF =
@@ -220,6 +220,32 @@ public class ZettelFields {
 			ZettelHelper.etikett.getEtikett("info.ktbl.emissionreduce@en");
 	public static Etikett projecttitleZF =
 			ZettelHelper.etikett.getEtikett("info.ktbl.projecttitle@en");
+	
+	// For researchData.scale English labels
+	public static Etikett statusHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/statusHeaderEn");
+	public static Etikett titleHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/titleHeaderEn");
+	public static Etikett creatorshipHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/creatorshipHeaderEn");
+	public static Etikett resourceHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/resourceHeaderEn");
+	public static Etikett collectionHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/collectionHeaderEn");
+	public static Etikett uploadHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/uploadHeaderEn");
+	public static Etikett catalogingHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/catalogingHeaderEn");
+	public static Etikett identifiersHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/identifiersHeaderEn");	
+	public static Etikett fundingsHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/fundingsHeaderEn");
+	public static Etikett additionalMaterialEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/additionalMaterialEn");
+	public static Etikett publicationsHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/publicationsHeader");
+	public static Etikett observationHeaderEnZF =
+			ZettelHelper.etikett.getEtikett("info:regal/zettel/observationHeader");
 
 	
 	private static HashMap<String, Etikett> etiketts = new HashMap();

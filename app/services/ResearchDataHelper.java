@@ -198,7 +198,7 @@ public class ResearchDataHelper {
 		map.put("http://www.gnu.org/licenses/gpl-3.0.de.html",
 				"GNU GPL (GNU General Public Licence)");
 		map.put("https://opensource.org/licenses/MIT",
-				"MIT Licence)");
+				"MIT Licence");
 		return map;
 	}
 

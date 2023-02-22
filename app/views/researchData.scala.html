@@ -11,25 +11,25 @@
 	@helper.form(action = routes.ZettelController.postForm(ResearchData.id,dataFormat,documentId,topicId)){
 		<a href="@models.ResearchData.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
-			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
+			@accordionPanel(services.ZettelFields.titleHeaderEnZF.getLabel(),"title-section"){
 			    @smallTextArea(myForm,"title","Title"+"*","",1)
 				<br/>
 				@smallTextArea(myForm,"alternative","Alternative title","",2)
 			}
-			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
+			@accordionPanel(services.ZettelFields.creatorshipHeaderEnZF.getLabel(),"creator-section"){
                 @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
 				@multifieldLd(myForm,jsonMap,"contributor",services.ZettelFields.contributorZF.getLabel(),"search",4,ArticleHelper.getPersonLookupEndpoints())
 				<br/>
 			    @multifieldLd(myForm,jsonMap,"other",services.ZettelFields.otherZF.getLabel(),"search",5,ArticleHelper.getPersonLookupEndpoints())		    
 			}
-			@accordionPanel(services.ZettelFields.resourceHeaderZF.getLabel(),"upload-section"){
+			@accordionPanel(services.ZettelFields.resourceHeaderEnZF.getLabel(),"upload-section"){
 				@singlefieldText(myForm,"issued",services.ZettelFields.issuedZF.getLabel()+"*","",12)
 			}
-			@accordionPanel(services.ZettelFields.collectionHeaderZF.getLabel(),"collection-section"){
+			@accordionPanel(services.ZettelFields.collectionHeaderEnZF.getLabel(),"collection-section"){
 				@multifieldLd(myForm,jsonMap,"institution",services.ZettelFields.institutionZF.getLabel(),"search",13,ArticleHelper.getInstitutionLookupEndpoints())
 			}
-			@accordionPanel(services.ZettelFields.uploadHeaderZF.getLabel(),"upload-section"){
+			@accordionPanel(services.ZettelFields.uploadHeaderEnZF.getLabel(),"upload-section"){
 				@singleSelect(myForm,"medium",services.ZettelFields.mediumZF.getLabel(),"select-medium",ResearchDataHelper.getMediumMap(),6)
 				<br/>
 				@singleSelect(myForm,"yearOfCopyright",services.ZettelFields.yearOfCopyrightZF.getLabel(),"datepicker-year",ResearchDataHelper.getCopyrightYear(),7)
@@ -38,7 +38,7 @@
 				<br />
 				@datepicker(myForm,"embargoTime",services.ZettelFields.embargoTimeZF.getLabel(),"datepicker",9)
 			}
-			@accordionPanel(services.ZettelFields.catalogingHeaderZF.getLabel(),"cataloging-section"){
+			@accordionPanel(services.ZettelFields.catalogingHeaderEnZF.getLabel(),"cataloging-section"){
 				@singleSelect(myForm,"language",services.ZettelFields.languageZF.getLabel(),"select-language",ResearchDataHelper.getLanguageMap(),10)
 				<br/>
 				@textArea(myForm,"description",services.ZettelFields.descriptionZF.getLabel(),"",11)
@@ -49,10 +49,10 @@
 				<br />
 				@multifieldLd(myForm,jsonMap,"subject",services.ZettelFields.subjectZF.getLabel(),"search",14,ArticleHelper.getSubjectLookupEndpoints())			
 			}
-			@accordionPanel(services.ZettelFields.fundingsHeaderZF.getLabel(),"identifier-section"){
+			@accordionPanel(services.ZettelFields.fundingsHeadeEnrZF.getLabel(),"identifier-section"){
                 @funderEditingWidget(myForm,jsonMap)
             }
-			@accordionPanel(services.ZettelFields.observationHeaderZF.getLabel(),"recording-section"){
+			@accordionPanel(services.ZettelFields.observationHeaderEnZF.getLabel(),"recording-section"){
 				@multiselect(myForm,jsonMap,"dataOrigin",services.ZettelFields.dataOriginZF.getLabel(),"select-dataOrigin",ResearchDataHelper.getDataOriginMap(),15)
 				<br />
 				@textArea(myForm,"recordingPeriod",services.ZettelFields.recordingPeriodZF.getLabel(),"",16)
@@ -61,7 +61,7 @@
 				<br />
 				@multifieldLd(myForm,jsonMap,"recordingCoordinates",services.ZettelFields.recordingCoordinatesZF.getLabel(),"geonames-reverse-lookup",18,ResearchDataHelper.getEmptyLookupEndpoints())
 			}
-			@accordionPanel(services.ZettelFields.publicationsHeaderZF.getLabel(),"link-section"){
+			@accordionPanel(services.ZettelFields.publicationsHeaderEnZF.getLabel(),"link-section"){
 			    @multifieldText(myForm,jsonMap,"reference",services.ZettelFields.referenceZF.getLabel(),"",19)
 				<br />
 				@multifieldText(myForm,jsonMap,"associatedPublication",services.ZettelFields.associatedPublicationZF.getLabel(),"",20)
@@ -72,7 +72,7 @@
 				<br />	<br />
 				@singlefieldText(myForm,"previousVersion",services.ZettelFields.previousVersionZF.getLabel(),"",23)
 			}
-			@accordionPanel(services.ZettelFields.identifiersHeaderZF.getLabel(),"identifier-section"){
+			@accordionPanel(services.ZettelFields.identifiersHeaderEnZF.getLabel(),"identifier-section"){
 				<br />
 				@multifieldText(myForm,jsonMap,"urn",services.ZettelFields.urnZF.getLabel(),"",24)
 				<br />
@@ -84,10 +84,10 @@
 				<br />
 				@singleSelect(myForm,"livestock",services.ZettelFields.livestockZF.getLabel(),"select-livestock",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.livestock"),40)
 				<br />
-        @singleSelect(myForm,"ventilation",services.ZettelFields.getEtikettByName("ventilationZF", "info.ktbl.ventilation@en"),"select-ventilation",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.ventilation"),41)
-        <br />
-        @multiselect(myForm, jsonMap, "treatment", services.ZettelFields.getEtikettByName("treatmentZF", "info.ktbl.treatment@en"), "select-treatment", GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.treatment"),40)
-        <br />
+       			@singleSelect(myForm,"ventilation",services.ZettelFields.getEtikettByName("ventilationZF", "info.ktbl.ventilation@en"),"select-ventilation",GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.ventilation"),41)
+       			<br />
+        		@multiselect(myForm, jsonMap, "treatment", services.ZettelFields.getEtikettByName("treatmentZF", "info.ktbl.treatment@en"), "select-treatment", GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.treatment"),40)
+        		<br />
 				@multiselect(myForm, jsonMap, "housing", services.ZettelFields.getEtikettByName("housingZF", "info.ktbl.housing@en"), "select-housing", GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.housing"),40)
 				<br />
 				@multiselect(myForm, jsonMap, "treatmentdetail", services.ZettelFields.getEtikettByName("treatmentdetailZF", "info.ktbl.treatmentdetail@en"), "select-treatmentdetail", GenericDataHelper.getFieldSelectValues("ktbl.livestock.properties", "info.ktbl.treatmentdetail"),40)
