@@ -389,6 +389,7 @@ public class ZettelHelper {
 		addError(result, errors, "creator");
 		addError(result, errors, "contributor");
 		addError(result, errors, "other");
+		addError(result, errors, "issued");
 		addError(result, errors, "medium");
 		addError(result, errors, "yearOfCopyright");
 		addError(result, errors, "license");
