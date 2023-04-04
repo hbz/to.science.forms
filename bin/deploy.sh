@@ -13,6 +13,6 @@ deployingApp="to.science.forms"
 #     branch="$1"
 # fi
 
-cd /opt/toscience/src/$deployingApp
+cd /opt/toscience/git/$deployingApp
 # git pull origin $branch
 /opt/toscience/activator/activator dist

@@ -5,9 +5,9 @@ Before=
 PartOf=
   
 [Service]
-EnvironmentFile=/etc/toscience/forms.conf/application.conf
-PIDFile=/opt/toscience/apps/to.science.forms/RUNNING_PID
-WorkingDirectory=/opt/toscience/apps/to.science.forms
+EnvironmentFile=/etc/toscience/forms/application.conf
+PIDFile=/opt/toscience/toscience-forms/RUNNING_PID
+WorkingDirectory=/opt/toscience/toscience-forms
 Restart=on-failure
 User=toscience
 Group=users
