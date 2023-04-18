@@ -1,7 +1,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9808c99193c54f38a003cc5cb46e0369)](https://app.codacy.com/gh/hbz/to.science.forms?utm_source=github.com&utm_medium=referral&utm_content=hbz/to.science.formss&utm_campaign=Badge_Grade_Settings)
 [![Travis Ci](https://travis-ci.org/hbz/zettel.svg?branch=master)](https://travis-ci.org/hbz/zettel)
 
-![to.science Logo](/doc/resources/images/to.science.svg "to.science Logo")
+![to.science Logo](to.science-small.png "to.science Logo")
 # About
 to.science-forms is a webservice to generate html forms for different media types. You can use the forms in your own website to generate valid json-ld data for your own usage [learn more](#add-zettel-to-an-existing-web-application). 
 
