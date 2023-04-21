@@ -53,6 +53,7 @@ import static services.ZettelFields.isLikeZF;
 import static services.ZettelFields.isbnZF;
 import static services.ZettelFields.issnZF;
 import static services.ZettelFields.issueZF;
+import static services.ZettelFields.issuedZF;
 import static services.ZettelFields.languageZF;
 import static services.ZettelFields.licenseZF;
 import static services.ZettelFields.mediumZF;
@@ -228,6 +229,7 @@ public abstract class ZettelModel {
 	private List<String> other = new ArrayList<>();
 	private List<String> institution = new ArrayList<>();
 	private String publicationYear;
+	private String issued;
 	private List<String> affiliation = new ArrayList<>();
 	private String affiliationIndex;
 	private List<String> collectionOne = new ArrayList<>();
@@ -252,6 +254,14 @@ public abstract class ZettelModel {
 		if (type == null || type.isEmpty())
 			type = new ArrayList<>();
 		type.add(in);
+	}
+	
+	public String getIssued() {
+		return issued;
+	}
+
+	public void setIssued(String issued) {
+		this.issued = issued;
 	}
 
 	public String getPublicationYear() {
@@ -1130,6 +1140,7 @@ public abstract class ZettelModel {
 		dict.put(editorZF.uri, (in) -> addEditor((String) in));
 		dict.put(otherZF.uri, (in) -> addOther((String) in));
 		dict.put(institutionZF.uri, (in) -> addInstitution((String) in));
+		dict.put(issuedZF.uri, (in) -> setIssued((String) in));
 		dict.put(publicationYearZF.uri, (in) -> setPublicationYear((String) in));
 		dict.put(affiliationZF.uri, (in) -> addAffiliation((String) in));
 		dict.put(affiliationIndexZF.uri, (in) -> setAffiliationIndex((String) in));

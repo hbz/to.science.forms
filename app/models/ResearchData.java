@@ -93,6 +93,8 @@ public class ResearchData extends ZettelModel {
 		mandatoryField("language", getLanguage(), errors);
 		// Fächerklassifikation
 		mandatoryField("ddc", getDdc(), errors);
+	// Erscheinungsjahr
+		mandatoryField("issued",getIssued(), errors);
 	}
 
 	private void validateURLs(List<ValidationError> errors) {

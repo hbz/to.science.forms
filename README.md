@@ -1,7 +1,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9808c99193c54f38a003cc5cb46e0369)](https://app.codacy.com/gh/hbz/to.science.forms?utm_source=github.com&utm_medium=referral&utm_content=hbz/to.science.formss&utm_campaign=Badge_Grade_Settings)
 [![Travis Ci](https://travis-ci.org/hbz/zettel.svg?branch=master)](https://travis-ci.org/hbz/zettel)
 
-![to.science Logo](/doc/resources/images/to.science.svg "to.science Logo")
+![to.science Logo](to.science-small.png "to.science Logo")
 # About
 to.science-forms is a webservice to generate html forms for different media types. You can use the forms in your own website to generate valid json-ld data for your own usage [learn more](#add-zettel-to-an-existing-web-application). 
 
@@ -179,17 +179,26 @@ start
 	cd /tmp
 	git clone https://github.com/hbz/to.science.forms
 	cd /tmp/to.science.forms
+	# change to java version 1.6+
+	sudo update-alternatives --config java
+	export JAVA_HOME=/opt/jdk1.8.0_201
 	/opt/activator-1.3.2-minimal/activator dist
 	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
 	unzip zettel-1.0-SNAPSHOT.zip
-	cp /opt/zettel/conf/application.conf /tmp/zettel-1.0-SNAPSHOT/conf
+	rm -r /tmp/zettel-1.0-SNAPSHOT/conf
+	ln -s /etc/to.science/forms.conf /tmp/zettel-1.0-SNAPSHOT/conf
 	sudo service zettel stop
 	ps -eaf | grep zettel
 	# evtl kill <pid>, falls Zettel noch nicht weg ist!
 	rm -rf /opt/zettel/*
 	mv /tmp/zettel-1.0-SNAPSHOT/* /opt/zettel/
 	sudo service zettel start
+	tail /opt/zettel/conf/application.conf
+	# change java version back to 11
+	sudo update-alternatives --config java
+	change-java-version
+	# JAVA_HOME muss wieder auf /opt/jdk zeigen, und /opt/jdk muss auf eine Version Java 11 zeigen.
 
 # License
 
