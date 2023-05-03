@@ -182,7 +182,7 @@ public class ResearchDataHelper {
    */
   public static LinkedHashMap<String, String> getAgentAcademicDegreeMap(String agentType) {
     LinkedHashMap<String, String> map = new LinkedHashMap<>();
-    map.put("http://hbz-nrw.de/regal#academicDegree/unkown", "Bitte wählen Sie...");
+    map.put("Keine Angabe", "Bitte wählen Sie...");
     GenericPropertiesLoader GenProp = new GenericPropertiesLoader();
     map.putAll(GenProp.loadVocabMap(agentType + "AcademicDegree-de.properties"));
     return map;
