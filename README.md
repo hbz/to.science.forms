@@ -179,6 +179,8 @@ start
 	cd /tmp
 	git clone https://github.com/hbz/to.science.forms
 	cd /tmp/to.science.forms
+ 	rm -r conf
+  	ln -s /etc/to.science/forms.conf  conf
 	# change to java version 1.6+
 	sudo update-alternatives --config java
 	export JAVA_HOME=/opt/jdk1.8.0_201
