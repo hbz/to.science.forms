@@ -6,7 +6,7 @@
 			 @inputField(myForm,fieldName,fieldLabel, classString,tabOrderAsInt,""){
 	 
 			     @if(fieldName=="publicationYear"){
-			       @inputField(myForm("publicationYear"), 'fieldLabel -> "Online veröffentlicht*", 'placeholder -> "yyyy-mm-dd")
+			       @inputField(myForm,"publicationYear","Online veröffentlicht*", classString,tabOrderAsInt,"",'_placeholder -> "yyyy-mm-dd")
 			      }
 			      
 			  	 @helpText(fieldName)
