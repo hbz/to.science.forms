@@ -4,10 +4,11 @@
 @import services._
 
 			 @inputField(myForm,fieldName,fieldLabel, classString,tabOrderAsInt,""){
-			 
-			 @if(fieldName=="publicationYear"){
-			 @inputField(myForm("publicationYear"), 'fieldLabel -> "Online veröffentlicht*", 'placeholder -> "yyyy-mm-dd")
+	 
+			     @if(fieldName=="publicationYear"){
+			       @inputField(myForm("publicationYear"), 'fieldLabel -> "Online veröffentlicht*", 'placeholder -> "yyyy-mm-dd")
+			      }
+			      
+			  	 @helpText(fieldName)
 			 }
-			  	@helpText(fieldName)
-				}
 			 	
