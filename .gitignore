@@ -15,4 +15,3 @@ dist
 /project/*-shim.sbt
 /activator*
 /*~
-/bin
