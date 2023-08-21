@@ -1,0 +1,25 @@
+[Unit]
+Description=Toscience Forms
+After=toscience-labels.target
+Before=
+PartOf=
+  
+[Service]
+EnvironmentFile=/etc/toscience/forms/application.conf
+PIDFile=/opt/toscience/toscience-forms/RUNNING_PID
+WorkingDirectory=/opt/toscience/toscience-forms
+Restart=on-failure
+User=toscience
+Group=users
+Type=notify
+PrivateTmp=true
+ExecStart=/opt/toscience/conf/toscience-forms start
+ExecReload=/opt/toscience/conf/toscience-forms start
+ExecStop=/opt/toscience/conf/toscience-forms stop
+KillMode=mixed
+TasksMax=infinity
+NotifyAccess=all
+  
+[Install]
+WantedBy=
+Alias=zettel.service

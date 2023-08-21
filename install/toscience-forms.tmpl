@@ -1,0 +1,154 @@
+#!/bin/sh
+#
+# /etc/init.d/regal-api 
+# Modified by Jan Schnasse schnasse@gmx.de
+# Mofified by Ingolf Kuss, hbz-NRW
+# - Anpassungen für SLES-Server, 06.12.2022
+#
+# Written by Miquel van Smoorenburg <miquels@cistron.nl>.
+# Modified for Debian GNU/Linux by Ian Murdock <imurdock@gnu.ai.mit.edu>.
+# Modified for Tomcat by Stefan Gybas <sgybas@debian.org>.
+# Modified for Tomcat6 by Thierry Carrez <thierry.carrez@ubuntu.com>.
+# Additional improvements by Jason Brittain <jason.brittain@mulesoft.com>.
+#
+# Originally from Ubuntu
+# Tweaked for tomcat7 by Christopher Bayliss <christopher.bayliss@glasgow.ac.uk>.
+#
+### BEGIN INIT INFO
+# Provides: tomcat7
+# Required-Start: $local_fs $remote_fs $network
+# Required-Stop: $local_fs $remote_fs $network
+# Should-Start: $named
+# Should-Stop: $named
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start Tomcat.
+# Description: Start the Tomcat servlet engine.
+### END INIT INFO
+ 
+set -e
+
+#Variables can be overwritten with $DEFAULT 
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+NAME=zettel
+DESC="Forms Formular provider"
+JAVA_HOME=/opt/jdk
+JAVA_OPTS="-XX:+HeapDumpOnOutOfMemoryError"
+HOME="/opt/toscience/toscience-forms"
+USER="toscience"
+GROUP="users"
+SECRET=`uuidgen`
+PORT=9003
+
+export JAVA_HOME
+export JAVA_OPTS
+
+#Variables in accordance to standard play 2.2.x layout 
+DEFAULT=/etc/default/$NAME
+PID="$HOME/RUNNING_PID"
+BIN="$HOME/bin/$NAME"
+
+if [ `id -u` -ne 0 ]; then
+echo "You need root privileges to run this script"
+exit 1
+fi
+
+if [ -r /etc/default/locale ]; then
+. /etc/default/locale
+export LANG
+fi
+ 
+if [ -r /etc/default/rcS ]; then
+. /etc/default/rcS
+fi  
+
+# End of variables that can be overwritten in $DEFAULT
+ 
+# overwrite settings from default file
+if [ -f "$DEFAULT" ]; then
+. "$DEFAULT"
+fi
+   
+app_start() {
+	set +e
+	start_daemon -u "$USER" -g "$GROUP" -p "$PID" \
+                /bin/bash -c "$BIN -Dconfig.file=$HOME/conf/application.conf -Dapplication.secret=$SECRET -Dapplication.home=$HOME -Dhttp.port=$PORT"
+	status="$?"
+	set +a -e
+	return $status
+}
+ 
+case "$1" in
+start)
+	if [ -z "$JAVA_HOME" ]; then
+		echo "ERROR: no JDK found - please set JAVA_HOME"
+		exit 1
+	fi
+	 
+	if [ ! -d "$HOME/conf" ]; then
+		echo "ERROR: invalid HOME: $HOME"
+		exit 1
+	fi
+	 
+	echo "INFO: Starting $DESC" "$NAME"
+	if start_daemon -p "$PID" -u $USER $JAVA_HOME/bin/java -version >/dev/null; then
+		app_start
+		app_start_status="$?"
+	    	sleep 5  
+		if [ $app_start_status -ne 0 ] ; then
+			if [ -f "$PID" ]; then
+				rm -f "$PID"
+			fi
+			exit 1
+		else
+			exit 0
+		fi
+		exit 0
+	else
+		echo "PROGRESS (already running)"
+		exit 0
+	fi
+;;
+stop)
+	echo "INFO: Stopping $DESC" "$NAME"
+	set +e
+	if [ -f "$PID" ]; then
+		killproc -p "$PID" -t5 >/dev/null
+	if [ $? -eq 1 ]; then
+		echo "PROGRESS: $DESC is not running but pid file exists, cleaning up"
+	elif [ $? -eq 3 ]; then
+		PID="`cat $PID`"
+		echo "ERROR: Failed to stop $NAME (pid $PID)"
+		exit 1
+	fi
+		rm -f "$PID"
+	else
+		echo "PROGRESS (not running)"
+	fi
+		echo 0
+	set -e
+;;
+status)
+	set +e
+	start_daemon -p "$PID" -u $USER $JAVA_HOME/bin/java >/dev/null 2>&1
+	if [ "$?" = "0" ]; then
+	 
+		if [ -f "$PID" ]; then
+			echo "SUCCESS $DESC is not running, but pid file exists."
+			exit 1
+		else
+			echo "SUCCESS $DESC is not running."
+			exit 3
+		fi
+	else
+		echo "SUCCESS: $DESC is running with pid `cat $PID`"
+	fi
+		set -e
+	;;
+*)
+	echo "SUCCESS: Usage: $0 {start|stop|restart|status}"
+	exit 1
+;;
+esac
+ 
+exit 0 

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if (( $EUID == 0 )); then
+    echo "Don't run as root!"
+    exit
+fi
+
 export TERM=xterm-color
 deployingApp="to.science.forms"
 branch=$(git status | grep 'On branch' | cut -d ' ' -f3)
