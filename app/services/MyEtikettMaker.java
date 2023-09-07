@@ -16,9 +16,12 @@
  */
 package services;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,12 +45,12 @@ import play.libs.ws.WSResponse;
  */
 public class MyEtikettMaker implements EtikettMakerInterface {
 
-	private final String etikettUrl =
-			ConfigFactory.load().getString("etikettService");
-	private final String etikettUser =
-			ConfigFactory.load().getString("etikettUser");
-	private final String etikettPwd =
-			ConfigFactory.load().getString("etikettPwd");
+	private final String etikettUrl = ConfigFactory.load()
+			.getString("etikettService");
+	private final String etikettUser = ConfigFactory.load()
+			.getString("etikettUser");
+	private final String etikettPwd = ConfigFactory.load()
+			.getString("etikettPwd");
 	private static final String PREF_LABEL = "prefLabel";
 	private static final String TYPE = "@type";
 	private static final String ID = "@id";
@@ -113,9 +116,10 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 	}
 
 	/**
-	 * @param e an etikett to create a json name from
-	 * @return The short name of the e.uri uses String.split on first index of '#'
-	 *         or last index of '/'
+	 * @param e
+	 *            an etikett to create a json name from
+	 * @return The short name of the e.uri uses String.split on first index of
+	 *         '#' or last index of '/'
 	 */
 	public String getJsonName(Etikett e) {
 		String result = null;
@@ -143,8 +147,8 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 		Map<String, Object> pmap;
 		Map<String, Object> cmap = new HashMap<>();
 		for (Etikett l : getValues()) {
-			if ("class".equals(l.getReferenceType()) || l.getReferenceType() == null
-					|| l.getName() == null)
+			if ("class".equals(l.getReferenceType())
+					|| l.getReferenceType() == null || l.getName() == null)
 				continue;
 			pmap = new HashMap<>();
 			pmap.put("@id", l.getUri());
@@ -218,27 +222,51 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 	 * provide a label for a given uri. If no deployment is available the plain
 	 * uri is returned.
 	 * 
-	 * @param uri a uri somewhere in the net
+	 * @param uri
+	 *            a uri somewhere in the net
 	 * @return a label for the uri
 	 */
 	public String getLabelFromEtikettWs(String uri) {
-		try (WSClient client = WS.newClient(80)) {
+		try {
 			if (uri == null || uri.isEmpty())
 				return uri;
+
+			BufferedReader in = null;
+			StringBuffer response = null;
 			// play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
-			WSResponse response = client.url(etikettUrl)
-					.setAuth(etikettUser, etikettPwd, WSAuthScheme.BASIC)
-					.setQueryParameter("column", "label").setQueryParameter("url", uri)
-					.setFollowRedirects(true).get().toCompletableFuture().get();
-			try (InputStreamReader input =
-					new InputStreamReader(response.getBodyAsStream(), Charsets.UTF_8)) {
-				String content = CharStreams.toString(input);
-				// play.Logger.debug(content);
-				return content;
+			String auth = etikettUser + ":" + etikettPwd;
+			play.Logger.debug("etikettUser = " + etikettUser
+					+ " , etikettPwd = " + etikettPwd);
+			String authHeaderValue = "Basic "
+					+ Base64.getEncoder().encodeToString(auth.getBytes());
+			play.Logger.debug("uri = " + uri);
+			URL url = new URL("http://localhost:9002/tools/etikett?url=" + uri
+					+ "&column=label");
+			play.Logger.debug("url = " + url.toString());
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			con.setRequestProperty("Authorization", authHeaderValue);
+			con.setRequestProperty("Accept", "text/plain");
+			int responseCode = con.getResponseCode();
+			play.Logger.debug(
+					"GET Response Code :: = " + String.valueOf(responseCode));
+			if (responseCode == HttpURLConnection.HTTP_OK) { // success
+				in = new BufferedReader(
+						new InputStreamReader(con.getInputStream()));
+				String inputLine;
+				response = new StringBuffer();
+				while ((inputLine = in.readLine()) != null) {
+					response.append(inputLine);
+				}
 			}
+			in.close();
+			play.Logger.debug("response = " + response.toString());
+			con.disconnect();
+			return response.toString();
+
 		} catch (Exception e) {
 			play.Logger.warn("Not able to get label for " + uri);
-			// play.Logger.debug("", e.getMessage());
+			play.Logger.debug("Exception in getLabelFromEtikettWs");
 			return uri;
 		}
 	}
