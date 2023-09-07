@@ -513,7 +513,7 @@ public class ZettelController extends Controller {
 		String lobidUrl = "https://lobid.org/resources/search";
 		WSRequest request = ws.url(lobidUrl);
 		String queryString = q;
-		WSRequest complexRequest = request.setQueryParameter("q", queryString)
+		WSRequest complexRequest = request.setQueryParameter("q", queryString+"+hbzId%3A"+queryString+"*+almaMmsId%3A"+queryString+"*+zdbId%3A"+queryString+"*")
 				.setQueryParameter("format", "json").setRequestTimeout(5000);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode root = response.asJson();
@@ -521,7 +521,24 @@ public class ZettelController extends Controller {
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
 				StringBuffer label = new StringBuffer();
-				label.append(m.at("/hbzId").asText());
+				String id = m.at("/id").asText().replaceAll("#!", "");
+				try {
+					// Es wird immer die lobid Ressource-ID angezeigt
+					String[] parts = id.split("/");
+					label.append(parts[parts.length -1]);
+				} catch (Exception e) {
+					play.Logger.debug("id "+id+" enthält keinen \"/\", also auch keine ID.");
+				}
+				/**
+				 * alternativ werden auch hbz-ID oder ZDB-ID angezeigt, falls vorhanden 
+				if(m.at("/hbzId").asText()!=null) {
+					label.append(m.at("/hbzId").asText());
+				} else if(m.at("/zdbId").asText()!=null) {
+					label.append(m.at("/zdbId").asText());	
+				} else if(m.at("/almaMmsId").asText()!=null) {
+					label.append(m.at("/almaMmsId").asText());
+				}
+				*/
 				label.append(" - ");
 				JsonNode prefName = m.at("/title");
 				if (prefName.isArray()) {
@@ -533,7 +550,6 @@ public class ZettelController extends Controller {
 					label.append(prefName.asText());
 				}
 
-				String id = m.at("/id").asText().replaceAll("#!", "");
 				Map<String, String> map = new HashMap<>();
 				map.put("label", label.toString());
 				map.put("value", id);
