@@ -512,9 +512,10 @@ public class ZettelController extends Controller {
 						: request().queryString().get("callback");
 		String lobidUrl = "https://lobid.org/resources/search";
 		WSRequest request = ws.url(lobidUrl);
-		String queryString = q;
-		WSRequest complexRequest = request.setQueryParameter("q", queryString+"+hbzId%3A"+queryString+"*+almaMmsId%3A"+queryString+"*+zdbId%3A"+queryString+"*")
+		String queryString = q+" hbzId%3A"+q+"* almaMmsId%3A"+q+"* zdbId%3A"+q+"*";
+		WSRequest complexRequest = request.setQueryParameter("q", queryString)
 				.setQueryParameter("format", "json").setRequestTimeout(5000);
+		play.Logger.debug("queryString: "+queryString);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
