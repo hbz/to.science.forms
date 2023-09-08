@@ -199,7 +199,7 @@ start
 	rm -rf /opt/zettel/*
 	mv /tmp/zettel-1.0-SNAPSHOT/* /opt/zettel/
 	sudo service zettel start
-	tail /opt/zettel/conf/application.conf
+	tail /opt/zettel/logs/application.log
 	# change java version back to 11
 	sudo update-alternatives --config java
 	change-java-version
