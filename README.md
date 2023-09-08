@@ -185,6 +185,9 @@ start
 	sudo update-alternatives --config java
 	export JAVA_HOME=/opt/jdk1.8.0_201
 	/opt/activator-1.3.2-minimal/activator dist
+ 	# wenn das wg. fehlender Abhängigkeiten fehlschlägt und diese auch nicht heruntergeladen werden können, mal da .sbt-Verzeichnis entfernen, dann noch einmal versuchen:
+   		rm -r $HOME/.sbt
+     		/opt/activator-1.3.2-minimal/activator dist
 	cp target/universal/zettel-1.0-SNAPSHOT.zip  /tmp
 	cd /tmp
 	unzip zettel-1.0-SNAPSHOT.zip
