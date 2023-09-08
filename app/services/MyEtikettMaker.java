@@ -230,19 +230,25 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 		try {
 			if (uri == null || uri.isEmpty())
 				return uri;
-
+			
+			if (uri.endsWith("#!"))
+				uri = uri.substring(0, uri.length() - 2);
+			
 			BufferedReader in = null;
 			StringBuffer response = null;
-			// play.Logger.debug(etikettUrl + "?url=" + uri + "&column=label");
+			
+			// Basic Auth
 			String auth = etikettUser + ":" + etikettPwd;
 			play.Logger.debug("etikettUser = " + etikettUser
 					+ " , etikettPwd = " + etikettPwd);
 			String authHeaderValue = "Basic "
 					+ Base64.getEncoder().encodeToString(auth.getBytes());
+			
 			play.Logger.debug("uri = " + uri);
 			URL url = new URL("http://localhost:9002/tools/etikett?url=" + uri
 					+ "&column=label");
 			play.Logger.debug("url = " + url.toString());
+			
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setRequestProperty("Authorization", authHeaderValue);
