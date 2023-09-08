@@ -512,32 +512,44 @@ public class ZettelController extends Controller {
 						: request().queryString().get("callback");
 		String lobidUrl = "https://lobid.org/resources/search";
 		WSRequest request = ws.url(lobidUrl);
-		String queryString = q;
+		String queryString = "hbzId:"+q+"* almaMmsId:"+q+"* zdbId:"+q+"*";
 		WSRequest complexRequest = request.setQueryParameter("q", queryString)
 				.setQueryParameter("format", "json").setRequestTimeout(5000);
+		play.Logger.debug("queryString: "+queryString);
 		return complexRequest.setFollowRedirects(true).get().thenApply(response -> {
 			JsonNode root = response.asJson();
 			List<Map<String, String>> result = new ArrayList<>();
 			JsonNode member = root.at("/member");
 			member.forEach((m) -> {
-				StringBuffer label = new StringBuffer();
-				label.append(m.at("/hbzId").asText());
-				label.append(" - ");
-				JsonNode prefName = m.at("/title");
-				if (prefName.isArray()) {
-					prefName.forEach((p) -> {
-						label.append(p.asText() + ",");
-					});
-					label.deleteCharAt(label.length() - 1);
-				} else {
-					label.append(prefName.asText());
+				String uri = m.at("/id").asText().replaceAll("#!", "");
+				// Ermittle ID
+				String id = " ";
+				try {
+					// Es wird immer die lobid Ressource-ID angezeigt
+					String[] parts = uri.split("/");
+					id = parts[parts.length -1];
+				} catch (Exception e) {
+					play.Logger.debug("uri "+uri+" enthält keinen \"/\", also auch keine ID.");
 				}
-
-				String id = m.at("/id").asText().replaceAll("#!", "");
-				Map<String, String> map = new HashMap<>();
-				map.put("label", label.toString());
-				map.put("value", id);
-				result.add(map);
+				// "Herausfiltern" von unerwünschten (!) IDs:
+				if(!id.startsWith("RPB")) {
+					StringBuffer label = new StringBuffer();
+					label.append(id);
+					label.append(" - ");
+					JsonNode prefName = m.at("/title");
+					if (prefName.isArray()) {
+						prefName.forEach((p) -> {
+							label.append(p.asText() + ",");
+						});
+						label.deleteCharAt(label.length() - 1);
+					} else {
+						label.append(prefName.asText());
+					}
+					Map<String, String> map = new HashMap<>();
+					map.put("label", label.toString());
+					map.put("value", uri);
+					result.add(map);
+				}
 			});
 			String searchResult = ZettelHelper.objectToString(result);
 			String myResponse = callback != null
