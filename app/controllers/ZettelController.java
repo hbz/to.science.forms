@@ -512,7 +512,7 @@ public class ZettelController extends Controller {
 						: request().queryString().get("callback");
 		String lobidUrl = "https://lobid.org/resources/search";
 		WSRequest request = ws.url(lobidUrl);
-		String queryString = "hbzId%3A"+q+"* almaMmsId%3A"+q+"* zdbId%3A"+q+"*";
+		String queryString = "hbzId:"+q+"* almaMmsId:"+q+"* zdbId:"+q+"*";
 		WSRequest complexRequest = request.setQueryParameter("q", queryString)
 				.setQueryParameter("format", "json").setRequestTimeout(5000);
 		play.Logger.debug("queryString: "+queryString);
