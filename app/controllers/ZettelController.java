@@ -512,7 +512,7 @@ public class ZettelController extends Controller {
 						: request().queryString().get("callback");
 		String lobidUrl = "https://lobid.org/resources/search";
 		WSRequest request = ws.url(lobidUrl);
-		String queryString = q+" hbzId%3A"+q+"* almaMmsId%3A"+q+"* zdbId%3A"+q+"*";
+		String queryString = "hbzId%3A"+q+"* almaMmsId%3A"+q+"* zdbId%3A"+q+"*";
 		WSRequest complexRequest = request.setQueryParameter("q", queryString)
 				.setQueryParameter("format", "json").setRequestTimeout(5000);
 		play.Logger.debug("queryString: "+queryString);
@@ -533,22 +533,22 @@ public class ZettelController extends Controller {
 				}
 				// "Herausfiltern" von unerwünschten (!) IDs:
 				if(!id.startsWith("RPB")) {
-				StringBuffer label = new StringBuffer();
-				label.append(id);
-				label.append(" - ");
-				JsonNode prefName = m.at("/title");
-				if (prefName.isArray()) {
-					prefName.forEach((p) -> {
-						label.append(p.asText() + ",");
-					});
-					label.deleteCharAt(label.length() - 1);
-				} else {
-					label.append(prefName.asText());
-				}
-				Map<String, String> map = new HashMap<>();
-				map.put("label", label.toString());
-				map.put("value", uri);
-				result.add(map);
+					StringBuffer label = new StringBuffer();
+					label.append(id);
+					label.append(" - ");
+					JsonNode prefName = m.at("/title");
+					if (prefName.isArray()) {
+						prefName.forEach((p) -> {
+							label.append(p.asText() + ",");
+						});
+						label.deleteCharAt(label.length() - 1);
+					} else {
+						label.append(prefName.asText());
+					}
+					Map<String, String> map = new HashMap<>();
+					map.put("label", label.toString());
+					map.put("value", uri);
+					result.add(map);
 				}
 			});
 			String searchResult = ZettelHelper.objectToString(result);
