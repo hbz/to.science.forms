@@ -14,7 +14,7 @@ GET 	/subjectAutocomplete 		controllers.ZettelController.subjectAutocomplete(q:S
 GET 	/personAutocomplete 		controllers.ZettelController.personAutocomplete(q:String?=null)
 GET 	/corporateBodyAutocomplete 	controllers.ZettelController.corporateBodyAutocomplete(q:String?=null)
 GET     /conferenceAutocomplete  	controllers.ZettelController.conferenceAutocomplete(q:String?=null)
-GET 	/lobidAutocomplete 			controllers.ZettelController.lobidAutocomplete(q:String?=null)
+GET 	/lobidAutocomplete 			controllers.ZettelController.lobidAutocomplete(q:String?=null,titleSearch:Boolean?=true)
 GET 	/localAutocomplete 			controllers.ZettelController.localAutocomplete(q:String?=null)
 GET 	/crossrefAutocomplete 			controllers.ZettelController.crossrefAutocomplete(q:String?=null)
 GET		/conferenceAlephAutocomplete	controllers.ZettelController.conferenceAlephAutocomplete(q:String?=null)
