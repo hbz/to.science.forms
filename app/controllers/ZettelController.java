@@ -527,7 +527,7 @@ public class ZettelController extends Controller {
 		if( titleSearch == true) {
 			queryString = queryString.concat(q);
 		}
-		queryString = queryString.concat("hbzId:"+q+"* almaMmsId:"+q+"* zdbId:"+q+"*");
+		queryString = queryString.concat(" hbzId:"+q+"* almaMmsId:"+q+"* zdbId:"+q+"*");
 		WSRequest complexRequest = request.setQueryParameter("q", queryString)
 				.setQueryParameter("format", "json").setRequestTimeout(5000);
 		play.Logger.debug("queryString: "+queryString);
