@@ -42,15 +42,15 @@ import models.ZettelModel;
 @SuppressWarnings("javadoc")
 public class ArticleHelper {
 
-	public static Map<String, String> collectionOne =
-			readCsv("collectionOne.csv");
+	public static Map<String, String> collectionOne = readCsv(
+			"collectionOne.csv");
 
 	public static Map<String, String> ddc = readCsv("ddc.csv");
-	public static Map<String, String> professionalGroup =
-			readCsv("professionalGroup.csv");
+	public static Map<String, String> professionalGroup = readCsv(
+			"professionalGroup.csv");
 
 	private static CellProcessor[] getProcessors() {
-		final CellProcessor[] processors = new CellProcessor[] { new NotNull(), // URI
+		final CellProcessor[] processors = new CellProcessor[]{new NotNull(), // URI
 				new NotNull(), // Label
 		};
 		return processors;
@@ -66,7 +66,8 @@ public class ArticleHelper {
 			CellProcessor[] processors = getProcessors();
 			Map<String, Object> rec;
 			while ((rec = reader.read(header, processors)) != null) {
-				result.put(rec.get("URI").toString(), rec.get("Label").toString());
+				result.put(rec.get("URI").toString(),
+						rec.get("Label").toString());
 			}
 			play.Logger.info(result + "");
 			return result;
@@ -79,7 +80,8 @@ public class ArticleHelper {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
 		map.put("http://hbz-nrw.de/regal#original", "Postprint Verlagsversion");
-		map.put("http://hbz-nrw.de/regal#postprint", "Postprint Autorenmanuskript");
+		map.put("http://hbz-nrw.de/regal#postprint",
+				"Postprint Autorenmanuskript");
 		map.put("http://hbz-nrw.de/regal#preprint", "Preprint");
 		return map;
 	}
@@ -87,7 +89,8 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getTypeMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
-		map.put("http://purl.org/ontology/bibo/Article", "Zeitschriftenartikel");
+		map.put("http://purl.org/ontology/bibo/Article",
+				"Zeitschriftenartikel");
 		map.put("http://purl.org/ontology/bibo/Chapter", "Buchkapitel");
 		map.put("http://purl.org/ontology/bibo/Proceedings", "Kongressbeitrag");
 		return map;
@@ -115,7 +118,8 @@ public class ArticleHelper {
 		map.put("http://hbz-nrw.de/regal#Exploration", "Exploration");
 		map.put("http://hbz-nrw.de/regal#Probe", "Probe");
 		map.put("http://hbz-nrw.de/regal#Gewebeprobe", "Gewebeprobe");
-		map.put("http://hbz-nrw.de/regal#Flaechenmischprobe", "Flächenmischprobe");
+		map.put("http://hbz-nrw.de/regal#Flaechenmischprobe",
+				"Flächenmischprobe");
 		map.put("http://hbz-nrw.de/regal#Bodenbohrung", "Bodenbohrung");
 		map.put("http://hbz-nrw.de/regal#apparativeUntersuchung",
 				"apparative Untersuchung");
@@ -124,11 +128,13 @@ public class ArticleHelper {
 		map.put("http://hbz-nrw.de/regal#Feldbeobachtung", "Feldbeobachtung");
 		map.put("http://hbz-nrw.de/regal#Laborbeobachtung", "Laborbeobachtung");
 		map.put("http://hbz-nrw.de/regal#Analyse", "Analyse");
-		map.put("http://hbz-nrw.de/regal#Genomsequenzierung", "Genomsequenzierung");
+		map.put("http://hbz-nrw.de/regal#Genomsequenzierung",
+				"Genomsequenzierung");
 		map.put("http://hbz-nrw.de/regal#Messung", "Messung");
 		map.put("http://hbz-nrw.de/regal#Berechnung", "Berechnung");
 		map.put("http://hbz-nrw.de/regal#Evaluation", "Evaluation");
-		map.put("http://hbz-nrw.de/regal#Querschnittstudie", "Querschnittstudie");
+		map.put("http://hbz-nrw.de/regal#Querschnittstudie",
+				"Querschnittstudie");
 		map.put("http://hbz-nrw.de/regal#Langzeitstudie", "Langzeitstudie");
 		map.put("http://hbz-nrw.de/regal#Interventionsstudie",
 				"Interventionsstudie");
@@ -155,16 +161,17 @@ public class ArticleHelper {
 	 */
 	public static LinkedHashMap<String, String> getLicenseMap() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("http://opendatacommons.org/licenses/by/1.0/",
-				"ODC By - Open Data Commons (empfohlen) ");
-		map.put("https://creativecommons.org/licenses/by/4.0", "CC BY 4.0");
-		map.put("https://creativecommons.org/publicdomain/zero/1.0/", "CC0 1.0");
-		map.put("http://opendatacommons.org/licenses/odbl/1-0/",
-				"ODbL (Open Database License)");
-		map.put("http://opendatacommons.org/licenses/pddl/1.0/",
-				"PDDL (Public Domain Dedication and License)");
+
+		map.put("https://creativecommons.org/licenses/by/4.0",
+				"CC BY 4.0 (empfohlen)");
+		map.put("https://creativecommons.org/publicdomain/zero/1.0/",
+				"CC0 1.0");
 		map.put("http://www.gnu.org/licenses/gpl-3.0.de.html",
 				"GNU GPL (GNU General Public Licence)");
+		map.put("http://opendatacommons.org/licenses/odbl/1-0/",
+				"ODbL (Open Database License)");
+		map.put("https://mit-license.org", "MIT License");
+
 		return map;
 	}
 
@@ -189,9 +196,9 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getCopyrightYear() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(null, "Bitte wählen Sie...");
-		List<LocalDate> years =
-				Stream.iterate(LocalDate.now(), date -> date.minusYears(1)).limit(100)
-						.collect(Collectors.toList());
+		List<LocalDate> years = Stream
+				.iterate(LocalDate.now(), date -> date.minusYears(1)).limit(100)
+				.collect(Collectors.toList());
 		for (LocalDate d : years) {
 			String ds = d.format(DateTimeFormatter.ofPattern("yyyy"));
 			map.put(ds, ds);
@@ -205,7 +212,8 @@ public class ArticleHelper {
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		map.put("/tools/zettel/orcidAutocomplete", "ORCiD");
 		map.put("/tools/zettel/personAutocomplete", "GND (Personen)");
-		map.put("/tools/zettel/corporateBodyAutocomplete", "GND (Körperschaften)");
+		map.put("/tools/zettel/corporateBodyAutocomplete",
+				"GND (Körperschaften)");
 		return map;
 	}
 
@@ -218,7 +226,8 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getInstitutionLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/corporateBodyAutocomplete", "GND (Körperschaften)");
+		map.put("/tools/zettel/corporateBodyAutocomplete",
+				"GND (Körperschaften)");
 		map.put("/tools/zettel/personAutocomplete", "GND (Personen)");
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		return map;
@@ -241,7 +250,8 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getFundingLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/crossrefAutocomplete", "CrossRef Funder Registry");
+		map.put("/tools/zettel/crossrefAutocomplete",
+				"CrossRef Funder Registry");
 		map.put("/tools/zettel/localAutocomplete", "Lokal");
 		return map;
 	}
@@ -288,7 +298,8 @@ public class ArticleHelper {
 		map.put("http://id.loc.gov/vocabulary/relators/drt", "Regie");
 		map.put("http://id.loc.gov/vocabulary/relators/dte", "Gewidmet");
 		map.put("http://id.loc.gov/vocabulary/relators/egr", "Stecher/in");
-		map.put("http://id.loc.gov/vocabulary/relators/hnr", "Gefeierte Person");
+		map.put("http://id.loc.gov/vocabulary/relators/hnr",
+				"Gefeierte Person");
 		map.put("http://id.loc.gov/vocabulary/relators/ill", "Illustration");
 		map.put("http://id.loc.gov/vocabulary/relators/ive", "Interviewte/r");
 		map.put("http://id.loc.gov/vocabulary/relators/ivr", "Interviewer/in");
