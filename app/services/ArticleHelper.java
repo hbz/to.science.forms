@@ -170,7 +170,7 @@ public class ArticleHelper {
 				"GNU GPL (GNU General Public Licence)");
 		map.put("http://opendatacommons.org/licenses/odbl/1-0/",
 				"ODbL (Open Database License)");
-		map.put("https://mit-license.org", "MIT License");
+		map.put("https://opensource.org/license/MIT", "MIT License");
 
 		return map;
 	}
