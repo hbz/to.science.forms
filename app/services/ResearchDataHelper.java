@@ -56,7 +56,8 @@ public class ResearchDataHelper {
 		map.put("http://dewey.info/class/540/", "540 Chemie");
 		map.put("http://dewey.info/class/550/", "550 Geowissenschaften");
 		map.put("http://dewey.info/class/560/", "560 Fossilien/Paläontologie");
-		map.put("http://dewey.info/class/570/", "570 Biowissenschaften, Biologie");
+		map.put("http://dewey.info/class/570/",
+				"570 Biowissenschaften, Biologie");
 		map.put("http://dewey.info/class/580/", "580 Pflanzen (Botanik)");
 		map.put("http://dewey.info/class/590/", "590 Tiere (Zoologie)");
 		map.put("http://dewey.info/class/600/", "600 Technik");
@@ -67,7 +68,8 @@ public class ResearchDataHelper {
 				"630 Landwirtschaft, Veterinärmedizin");
 		map.put("http://dewey.info/class/640/", "640 Hauswirtschaft/Familie");
 		map.put("http://dewey.info/class/650/", "650 Management");
-		map.put("http://dewey.info/class/660/", "660 Chemische Verfahrenstechnik");
+		map.put("http://dewey.info/class/660/",
+				"660 Chemische Verfahrenstechnik");
 		map.put("http://dewey.info/class/710/", "710 Landschaftsgestaltung");
 		map.put("http://dewey.info/class/720/", "720 Architektur");
 		map.put("http://dewey.info/class/940/", "940 Geschichte Europas");
@@ -83,7 +85,8 @@ public class ResearchDataHelper {
 		map.put(null, "Bitte wählen Sie...");
 		map.put("http://skos.um.es/unescothes/C02464", "Medizin");
 		map.put("http://skos.um.es/unescothes/C01771", "Gesundheitswesen");
-		map.put("http://skos.um.es/unescothes/C02780", "Ernährungswissenschaften");
+		map.put("http://skos.um.es/unescothes/C02780",
+				"Ernährungswissenschaften");
 		map.put("http://skos.um.es/unescothes/C00106", "Agrarwissenschaften");
 		map.put("http://skos.um.es/unescothes/C01397", "Umweltwissenschaften");
 		map.put("http://skos.um.es/unescothes/COL270", "Biologie");
@@ -106,7 +109,8 @@ public class ResearchDataHelper {
 		map.put("http://hbz-nrw.de/regal#Exploration", "Exploration");
 		map.put("http://hbz-nrw.de/regal#Probe", "Probe");
 		map.put("http://hbz-nrw.de/regal#Gewebeprobe", "Gewebeprobe");
-		map.put("http://hbz-nrw.de/regal#Flaechenmischprobe", "Flächenmischprobe");
+		map.put("http://hbz-nrw.de/regal#Flaechenmischprobe",
+				"Flächenmischprobe");
 		map.put("http://hbz-nrw.de/regal#Bodenbohrung", "Bodenbohrung");
 		map.put("http://hbz-nrw.de/regal#apparativeUntersuchung",
 				"apparative Untersuchung");
@@ -115,11 +119,13 @@ public class ResearchDataHelper {
 		map.put("http://hbz-nrw.de/regal#Feldbeobachtung", "Feldbeobachtung");
 		map.put("http://hbz-nrw.de/regal#Laborbeobachtung", "Laborbeobachtung");
 		map.put("http://hbz-nrw.de/regal#Analyse", "Analyse");
-		map.put("http://hbz-nrw.de/regal#Genomsequenzierung", "Genomsequenzierung");
+		map.put("http://hbz-nrw.de/regal#Genomsequenzierung",
+				"Genomsequenzierung");
 		map.put("http://hbz-nrw.de/regal#Messung", "Messung");
 		map.put("http://hbz-nrw.de/regal#Berechnung", "Berechnung");
 		map.put("http://hbz-nrw.de/regal#Evaluation", "Evaluation");
-		map.put("http://hbz-nrw.de/regal#Querschnittstudie", "Querschnittstudie");
+		map.put("http://hbz-nrw.de/regal#Querschnittstudie",
+				"Querschnittstudie");
 		map.put("http://hbz-nrw.de/regal#Langzeitstudie", "Langzeitstudie");
 		map.put("http://hbz-nrw.de/regal#Interventionsstudie",
 				"Interventionsstudie");
@@ -153,11 +159,15 @@ public class ResearchDataHelper {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("https://creativecommons.org/licenses/by/4.0",
 				"CC BY 4.0 (empfohlen)");
-		map.put("https://creativecommons.org/publicdomain/zero/1.0/", "CC0 1.0");
-		map.put("http://opendatacommons.org/licenses/odbl/1-0/",
-				"ODbL (Open Database License)");
+		map.put("https://creativecommons.org/publicdomain/zero/1.0/",
+				"CC0 1.0");
+
 		map.put("http://www.gnu.org/licenses/gpl-3.0.de.html",
-				"GNU GPL (GNU General Public Licence)");
+				"GNU GPL 3.0");
+
+		map.put("http://opendatacommons.org/licenses/odbl/1-0/",
+				"ODbL");
+
 		map.put("https://opensource.org/license/MIT", "MIT License");
 		return map;
 	}
@@ -182,9 +192,9 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getCopyrightYear() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		List<LocalDate> years =
-				Stream.iterate(LocalDate.now(), date -> date.minusYears(1)).limit(100)
-						.collect(Collectors.toList());
+		List<LocalDate> years = Stream
+				.iterate(LocalDate.now(), date -> date.minusYears(1)).limit(100)
+				.collect(Collectors.toList());
 		for (LocalDate d : years) {
 			String ds = d.format(DateTimeFormatter.ofPattern("yyyy"));
 			map.put(ds, ds);

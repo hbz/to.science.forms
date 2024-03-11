@@ -167,9 +167,9 @@ public class ArticleHelper {
 		map.put("https://creativecommons.org/publicdomain/zero/1.0/",
 				"CC0 1.0");
 		map.put("http://www.gnu.org/licenses/gpl-3.0.de.html",
-				"GNU GPL (GNU General Public Licence)");
+				"GNU GPL 3.0");
 		map.put("http://opendatacommons.org/licenses/odbl/1-0/",
-				"ODbL (Open Database License)");
+				"ODbL");
 		map.put("https://opensource.org/license/MIT", "MIT License");
 
 		return map;
