@@ -195,4 +195,25 @@ public class ZettelFields {
 			.getEtikett("info:regal/zettel/additionalNotesHeader");
 	public static Etikett additionalNotesZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/additionalNotes");
+	// KTBL
+	public static Etikett ktblHeaderZF =
+			ZettelHelper.etikett.getEtikett("info:toscience/zettel/ktblHeader");
+	public static Etikett livestockZF =
+			ZettelHelper.etikett.getEtikett("info:toscience/zettel/livestock");
+	public static Etikett ventilationZF =
+			ZettelHelper.etikett.getEtikett("info:toscience/zettel/ventilation");
+	public static Etikett treatmentZF =
+			ZettelHelper.etikett.getEtikett("info:toscience/zettel/treatment");
+	public static Etikett housingZF =
+			ZettelHelper.etikett.getEtikett("info:toscience/zettel/housing");
+	public static Etikett treatment_detailZF =
+			ZettelHelper.etikett.getEtikett("info:toscience/zettel/treatment_detail");	
+	public static Etikett emissionsprobeZF =
+			ZettelHelper.etikett.getEtikett("info:toscience/zettel/emissionprobe");
+	public static Etikett emissionZF =
+			ZettelHelper.etikett.getEtikett("info:toscience/zettel/emission");
+	public static Etikett emission_reducingZF =
+			ZettelHelper.etikett.getEtikett("info:toscience/zettel/emission_reducing");
+	public static Etikett project_titleZF =
+			ZettelHelper.etikett.getEtikett("info:toscience/zettel/project_title");
 }
