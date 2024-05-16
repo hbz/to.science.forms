@@ -195,4 +195,27 @@ public class ZettelFields {
 			.getEtikett("info:regal/zettel/additionalNotesHeader");
 	public static Etikett additionalNotesZF =
 			ZettelHelper.etikett.getEtikett("info:regal/zettel/additionalNotes");
+	// KTBL
+		public static Etikett ktblHeaderZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/ktblHeader");
+		public static Etikett livestockZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/livestock");
+		public static Etikett ventilationZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/ventilation");
+		public static Etikett treatmentZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/treatment");
+		public static Etikett housingZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/housing");
+		public static Etikett treatment_detailZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/treatment_detail");	
+		public static Etikett emissionsprobeZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/emissionprobe");
+		public static Etikett emissionZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/emission");
+		public static Etikett emission_reducingZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/emission_reducing");
+		public static Etikett project_titleZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/project_title");
+		public static Etikett test_designZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/test_design");
 }

@@ -86,6 +86,19 @@ import static services.ZettelFields.collectionTwoZF;
 import static services.ZettelFields.internalReferenceZF;
 import static services.ZettelFields.additionalNotesZF;
 
+//KTBL
+import static services.ZettelFields.ktblHeaderZF;
+import static services.ZettelFields.livestockZF;
+import static services.ZettelFields.ventilationZF;
+import static services.ZettelFields.treatmentZF;
+import static services.ZettelFields.housingZF;
+import static services.ZettelFields.treatment_detailZF;
+import static services.ZettelFields.emissionsprobeZF;
+import static services.ZettelFields.emissionZF;
+import static services.ZettelFields.emission_reducingZF;
+import static services.ZettelFields.project_titleZF;
+import static services.ZettelFields.test_designZF;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -241,6 +254,108 @@ public abstract class ZettelModel {
 	private List<String> collectionTwo = new ArrayList<>();
 	private List<String> internalReference = new ArrayList<>();
 	private String additionalNotes;
+	// KTBL
+	private String ktbl;
+	private String livestock;
+	private String ventilation;
+	private String treatment;
+	private String housing;
+	private String treatment_detail;
+	private String emissionprobe;
+	private String emission;
+	private String emission_reducing;
+	private String project_title;
+	private String test_design;
+	
+	
+
+	public String getTest_design() {
+		return test_design;
+	}
+
+	public void setTest_design(String test_design) {
+		this.test_design = test_design;
+	}
+
+	public String getKtbl() {
+		return ktbl;
+	}
+
+	public void setKtbl(String ktbl) {
+		this.ktbl = ktbl;
+	}
+
+	public String getLivestock() {
+		return livestock;
+	}
+
+	public void setLivestock(String livestock) {
+		this.livestock = livestock;
+	}
+
+	public String getVentilation() {
+		return ventilation;
+	}
+
+	public void setVentilation(String ventilation) {
+		this.ventilation = ventilation;
+	}
+
+	public String getTreatment() {
+		return treatment;
+	}
+
+	public void setTreatment(String treatment) {
+		this.treatment = treatment;
+	}
+
+	public String getHousing() {
+		return housing;
+	}
+
+	public void setHousing(String housing) {
+		this.housing = housing;
+	}
+
+	public String getTreatment_detail() {
+		return treatment_detail;
+	}
+
+	public void setTreatment_detail(String treatment_detail) {
+		this.treatment_detail = treatment_detail;
+	}
+
+	public String getEmissionprobe() {
+		return emissionprobe;
+	}
+
+	public void setEmissionprobe(String emissionprobe) {
+		this.emissionprobe = emissionprobe;
+	}
+
+	public String getEmission() {
+		return emission;
+	}
+
+	public void setEmission(String emission) {
+		this.emission = emission;
+	}
+
+	public String getEmission_reducing() {
+		return emission_reducing;
+	}
+
+	public void setEmission_reducing(String emission_reducing) {
+		this.emission_reducing = emission_reducing;
+	}
+
+	public String getProject_title() {
+		return project_title;
+	}
+
+	public void setProject_title(String project_title) {
+		this.project_title = project_title;
+	}
 
 	public List<String> getRdftype() {
 		return type;
@@ -255,7 +370,7 @@ public abstract class ZettelModel {
 			type = new ArrayList<>();
 		type.add(in);
 	}
-	
+
 	public String getIssued() {
 		return issued;
 	}
@@ -1074,7 +1189,8 @@ public abstract class ZettelModel {
 	 * @return a map that maps a uri to a setter method
 	 */
 	protected Map<String, Consumer<Object>> getMappingForDeserialization() {
-		String regalApi = Play.application().configuration().getString("regalApi");
+		String regalApi = Play.application().configuration()
+				.getString("regalApi");
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
 		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
@@ -1087,21 +1203,25 @@ public abstract class ZettelModel {
 		dict.put(professionalGroupZF.uri,
 				(in) -> addProfessionalGroup((String) in));
 		dict.put(subjectZF.uri, (in) -> addSubject((String) in));
-		dict.put(yearOfCopyrightZF.uri, (in) -> setYearOfCopyright((String) in));
+		dict.put(yearOfCopyrightZF.uri,
+				(in) -> setYearOfCopyright((String) in));
 		dict.put(ddcZF.uri, (in) -> addDdc((String) in));
 		dict.put(fundingZF.uri, (in) -> addFunding((String) in));
 		dict.put(fundingIdZF.uri, (in) -> addFundingId((String) in));
-		dict.put(recordingPeriodZF.uri, (in) -> setRecordingPeriod((String) in));
+		dict.put(recordingPeriodZF.uri,
+				(in) -> setRecordingPeriod((String) in));
 		dict.put(recordingLocationZF.uri,
 				(in) -> addRecordingLocation((String) in));
 		dict.put(recordingCoordinatesZF.uri,
 				(in) -> addRecordingCoordinates((String) in));
 		dict.put(nextVersionZF.uri, (in) -> setNextVersion((String) in));
-		dict.put(previousVersionZF.uri, (in) -> setPreviousVersion((String) in));
+		dict.put(previousVersionZF.uri,
+				(in) -> setPreviousVersion((String) in));
 		dict.put(doiZF.uri, (in) -> addDoi((String) in));
 		dict.put(urnZF.uri, (in) -> addUrn((String) in));
 		dict.put(isLikeZF.uri, (in) -> addIsLike((String) in));
-		dict.put(contributorOrderZF.uri, (in) -> addContributorOrder((String) in));
+		dict.put(contributorOrderZF.uri,
+				(in) -> addContributorOrder((String) in));
 		dict.put(alternativeTitleZF.uri, (in) -> setAlternative((String) in));
 		dict.put(titleLanguageZF.uri, (in) -> setTitleLanguage((String) in));
 		dict.put(descriptionZF.uri, (in) -> setDescription((String) in));
@@ -1114,17 +1234,20 @@ public abstract class ZettelModel {
 		dict.put(referenceZF.uri, (in) -> addReference((String) in));
 		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
 		dict.put(subjectNameZF.uri, (in) -> setSubjectName((String) in));
-		dict.put(creatorNameZF.uri, (in) -> addCreatorName(
-				regalApi + "/adhoc/creator/" + MyURLEncoding.encode((String) in)));
-		dict.put(contributorNameZF.uri, (in) -> addContributorName(
-				regalApi + "/adhoc/contributor/" + MyURLEncoding.encode((String) in)));
+		dict.put(creatorNameZF.uri, (in) -> addCreatorName(regalApi
+				+ "/adhoc/creator/" + MyURLEncoding.encode((String) in)));
+		dict.put(contributorNameZF.uri, (in) -> addContributorName(regalApi
+				+ "/adhoc/contributor/" + MyURLEncoding.encode((String) in)));
 		dict.put(reviewStatusZF.uri, (in) -> setReviewStatus((String) in));
 		dict.put(congressTitleZF.uri, (in) -> setCongressTitle((String) in));
-		dict.put(congressLocationZF.uri, (in) -> setCongressLocation((String) in));
-		dict.put(congressDurationZF.uri, (in) -> addCongressDuration((String) in));
+		dict.put(congressLocationZF.uri,
+				(in) -> setCongressLocation((String) in));
+		dict.put(congressDurationZF.uri,
+				(in) -> addCongressDuration((String) in));
 		dict.put(isbnZF.uri, (in) -> setIsbn((String) in));
 		dict.put(publisherZF.uri, (in) -> setPublisher((String) in));
-		dict.put(publicationPlaceZF.uri, (in) -> setPublicationPlace((String) in));
+		dict.put(publicationPlaceZF.uri,
+				(in) -> setPublicationPlace((String) in));
 		dict.put(abstractTextZF.uri, (in) -> addAbstractText((String) in));
 		dict.put(containedInZF.uri, (in) -> addContainedIn((String) in));
 		dict.put(bibliographicCitationZF.uri,
@@ -1141,21 +1264,48 @@ public abstract class ZettelModel {
 		dict.put(otherZF.uri, (in) -> addOther((String) in));
 		dict.put(institutionZF.uri, (in) -> addInstitution((String) in));
 		dict.put(issuedZF.uri, (in) -> setIssued((String) in));
-		dict.put(publicationYearZF.uri, (in) -> setPublicationYear((String) in));
+		dict.put(publicationYearZF.uri,
+				(in) -> setPublicationYear((String) in));
 		dict.put(affiliationZF.uri, (in) -> addAffiliation((String) in));
-		dict.put(affiliationIndexZF.uri, (in) -> setAffiliationIndex((String) in));
+		dict.put(affiliationIndexZF.uri,
+				(in) -> setAffiliationIndex((String) in));
 		dict.put(collectionOneZF.uri, (in) -> addCollectionOne((String) in));
-		dict.put(fulltextVersionZF.uri, (in) -> addFulltextVersion((String) in));
-		dict.put(publisherVersionZF.uri, (in) -> addPublisherVersion((String) in));
+		dict.put(fulltextVersionZF.uri,
+				(in) -> addFulltextVersion((String) in));
+		dict.put(publisherVersionZF.uri,
+				(in) -> addPublisherVersion((String) in));
 		dict.put(additionalMaterialZF.uri,
 				(in) -> addAdditionalMaterial((String) in));
-		dict.put(parallelEditionZF.uri, (in) -> setParallelEdition((String) in));
+		dict.put(parallelEditionZF.uri,
+				(in) -> setParallelEdition((String) in));
 		dict.put(typeZF.uri, (in) -> addType((String) in));
 		dict.put(collectionTwoZF.uri, (in) -> addCollectionTwo((String) in));
 		dict.put(internalReferenceZF.uri,
 				(in) -> addInternalReference((String) in));
 
-		dict.put(additionalNotesZF.uri, (in) -> setAdditionalNotes((String) in));
+		dict.put(additionalNotesZF.uri,
+				(in) -> setAdditionalNotes((String) in));
+		
+		// KTBL
+		dict.put(livestockZF.uri,
+				(in) -> setLivestock((String) in));
+		dict.put(ventilationZF.uri,
+				(in) -> setVentilation((String) in));
+		dict.put(treatmentZF.uri,
+				(in) -> setTreatment((String) in));
+		dict.put(treatment_detailZF.uri,
+				(in) -> setTreatment_detail((String) in));
+		dict.put(emissionsprobeZF.uri,
+				(in) -> setEmissionprobe((String) in));
+		dict.put(emissionZF.uri,
+				(in) -> setEmission((String) in));
+		dict.put(emission_reducingZF.uri,
+				(in) -> setEmission_reducing((String) in));
+		dict.put(project_titleZF.uri,
+				(in) -> setProject_title((String) in));
+		dict.put(test_designZF.uri,
+				(in) -> setTest_design((String) in));
+		
 		return dict;
 	}
 
@@ -1178,8 +1328,10 @@ public abstract class ZettelModel {
 	}
 
 	/**
-	 * @param in input stream with rdf data
-	 * @param format format of the rdf serialization
+	 * @param in
+	 *            input stream with rdf data
+	 * @param format
+	 *            format of the rdf serialization
 	 * @return the rdf data loaded to a ZettelModel
 	 */
 	public ZettelModel deserializeFromRdf(InputStream in, RDFFormat format,
@@ -1187,8 +1339,8 @@ public abstract class ZettelModel {
 		this.documentId = myDocumentId;
 		this.topicId = myTopicId;
 		Map<String, Consumer<Object>> dict = getMappingForDeserialization();
-		Collection<Statement> graph =
-				RdfUtils.readRdfToGraph(in, format, getDocumentId());
+		Collection<Statement> graph = RdfUtils.readRdfToGraph(in, format,
+				getDocumentId());
 		graph.forEach((st) -> {
 			if (!"".equals(st.getObject().stringValue())) {
 				String rdf_P = st.getPredicate().stringValue();
@@ -1204,12 +1356,13 @@ public abstract class ZettelModel {
 	 * @return json ld map for this model
 	 */
 	public Map<String, Object> serializeToMap() {
-		Map<String, Object> jsonMap =
-				new ObjectMapper().convertValue(this, HashMap.class);
+		Map<String, Object> jsonMap = new ObjectMapper().convertValue(this,
+				HashMap.class);
 		jsonMap.put(ZettelModel.IS_PRIMARY_TOPIC_OF, getIsPrimaryTopicOf());
 		// jsonMap.put("rdftype", getType());
 		removeEmptyCollections(jsonMap);
-		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
+		jsonMap.put("@context",
+				ZettelHelper.etikett.getContext().get("@context"));
 		return jsonMap;
 	}
 
@@ -1223,7 +1376,8 @@ public abstract class ZettelModel {
 				r = removeEmptyCollections(
 						(java.util.Map<String, Object>) e.getValue());
 			else if (e.getValue() instanceof java.util.List<?>)
-				r = removeEmptyCollections((java.util.List<Object>) e.getValue());
+				r = removeEmptyCollections(
+						(java.util.List<Object>) e.getValue());
 			else if (e.getValue() instanceof String) {
 				r = removeEmptyCollections((String) e.getValue());
 			}
@@ -1266,22 +1420,24 @@ public abstract class ZettelModel {
 	}
 
 	/**
-	 * @param documentId provide your id as URIto get proper rdf.
+	 * @param documentId
+	 *            provide your id as URIto get proper rdf.
 	 */
 	public void setDocumentId(String documentId) {
 		this.documentId = documentId;
 	}
 
 	/**
-	 * @return the id of the actual thing that is described by the resource. Must
-	 *         be an URI.
+	 * @return the id of the actual thing that is described by the resource.
+	 *         Must be an URI.
 	 */
 	public String getTopicId() {
 		return topicId;
 	}
 
 	/**
-	 * @param topicId provide an id of what is described by your resource as URI.
+	 * @param topicId
+	 *            provide an id of what is described by your resource as URI.
 	 */
 	public void setTopicId(String topicId) {
 		this.topicId = topicId;
@@ -1291,8 +1447,8 @@ public abstract class ZettelModel {
 			Consumer<Object> consumer) {
 		Value rdf_O = st.getObject();
 		if (rdf_O instanceof BNode) {
-			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), RdfUtils.first,
-					consumer);
+			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(),
+					RdfUtils.first, consumer);
 		} else if (RdfUtils.nil.equals(rdf_O)) {
 			return;
 		} else {

@@ -80,6 +80,29 @@
 				<br />
 				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",26)
 			}
+			<!-- KTBL -->
+			@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),"ktbl-section"){
+				<br/>
+				@singleSelect(myForm,"livestock",services.ZettelFields.livestockZF.getLabel(),"",ResearchDataHelper.getLivestockMap(),27)
+				<br/>
+				@singleSelect(myForm,"ventilation","Ventilation","select-ventilation",ResearchDataHelper.getVentilationMap(),28)
+				<br />
+				@multiselect(myForm,jsonMap,"treatment",services.ZettelFields.treatmentZF.getLabel(),"",ResearchDataHelper.getTreatmentMap(),29)	
+			    <br />
+			   	@multiselect(myForm,jsonMap,"housing",services.ZettelFields.housingZF.getLabel(),"",ResearchDataHelper.getHousingtMap(),30)	
+			    <br />
+			    @singleSelect(myForm,"treatment-detail",services.ZettelFields.treatment_detailZF.getLabel(),"",ResearchDataHelper.getTreatmentDetailMap(),31)
+				<br />
+				@multiselect(myForm,jsonMap,"emissionsprobe",services.ZettelFields.emissionsprobeZF.getLabel(),"",ResearchDataHelper.getEmissionsprobeMap(),32)	
+				<br />
+				@multiselect(myForm,jsonMap,"emission",services.ZettelFields.emissionZF.getLabel(),"",ResearchDataHelper.getEmissionMap(),33)	
+				<br />
+				@multiselect(myForm,jsonMap,"emission_reducing",services.ZettelFields.emission_reducingZF.getLabel(),"",ResearchDataHelper.getEmissionReducingMap(),34)	
+				<br />
+				@smallTextArea(myForm,"project_title",services.ZettelFields.project_titleZF.getLabel(),"",35)
+				<br />
+				@smallTextArea(myForm,"test_design",services.ZettelFields.project_titleZF.getLabel(),"",36) // wird editiert.
+				}
 		}
 		@if(myForm.hasErrors) {
 		    <div class="alert alert-error">

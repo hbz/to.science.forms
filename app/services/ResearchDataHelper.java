@@ -213,4 +213,75 @@ public class ResearchDataHelper {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		return map;
 	}
+	
+	// KTBL-Maps
+
+		public static LinkedHashMap<String, String> getLivestockMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("pig", "pig");
+			map.put("Other", "Other");
+			return map;	
+		}
+		
+		public static LinkedHashMap<String, String> getVentilationMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("Ventilation_1", "Ventilation_1");
+			map.put("Ventilation_2", "Ventilation_2");
+			map.put("Other", "Other");
+			return map;	
+		}
+		public static LinkedHashMap<String, String> getTreatmentMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("treatment_1", "treatment_1");
+			map.put("treatment_2", "treatment_2");
+			map.put("Other", "Other");
+			return map;	
+		}
+		
+		public static LinkedHashMap<String, String> getHousingtMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("housing_1", "housing_1");
+			map.put("housing_2", "housing_2");
+			map.put("Other", "Other");
+			return map;	
+		}
+		public static LinkedHashMap<String, String> getTreatmentDetailMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("treatmentDetail_1", "treatmentDetail_1");
+			map.put("treatmentDetail_2", "treatmentDetail_2");
+			map.put("Other", "Other");
+			return map;	
+		}
+		public static LinkedHashMap<String, String> getEmissionsprobeMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("emissionsprobe_1", "emissionsprobe_1");
+			map.put("emissionsprobe_2", "emissionsprobe_2");
+			map.put("Other", "Other");
+			return map;	
+		}
+		
+		public static LinkedHashMap<String, String> getEmissionMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("emission_1", "emission_1");
+			map.put("emission_2", "emission_2");
+			map.put("Other", "Other");
+			return map;	
+		}
+		
+		public static LinkedHashMap<String, String> getEmissionReducingMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("emission_reducing_1", "emission_reducing_1");
+			map.put("emission_reducing_2", "emission_reducing_2");
+			map.put("Other", "Other");
+			return map;	
+		}
+	
 }
