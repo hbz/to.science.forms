@@ -9,6 +9,7 @@ dist
 /*.iml
 /out
 /.idea_modules
+/.ideal_modules
 /.classpath
 /.project
 /RUNNING_PID
