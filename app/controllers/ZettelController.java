@@ -503,16 +503,31 @@ public class ZettelController extends Controller {
 	}
 
 	/**
-	 * @param q a query against lobid
+	 * Performs a query against lobid resources and returns hits in the form of an autocompletion dropdown list.
+	 * @param q a query String against lobid resources
 	 * @return a jsonp result
 	 */
 	public CompletionStage<Result> lobidAutocomplete(String q) {
+		return lobidAutocomplete(q, false);
+	}
+	
+	/**
+	 *  Performs a query against lobid resources and returns hits in the form of an autocompletion dropdown list.
+	 * @param q a query String against lobid resources
+	 * @param whether a title search shall be performed or not. If not, the search will be only over IDs.
+	 * @return a jsonp result
+	 */
+	public CompletionStage<Result> lobidAutocomplete(String q, boolean titleSearch) {
 		final String[] callback =
 				request() == null || request().queryString() == null ? null
 						: request().queryString().get("callback");
 		String lobidUrl = "https://lobid.org/resources/search";
 		WSRequest request = ws.url(lobidUrl);
-		String queryString = "hbzId:"+q+"* almaMmsId:"+q+"* zdbId:"+q+"*";
+		String queryString = "";
+		if( titleSearch == true) {
+			queryString = queryString.concat(q);
+		}
+		queryString = queryString.concat(" hbzId:"+q+"* almaMmsId:"+q+"* zdbId:"+q+"*");
 		WSRequest complexRequest = request.setQueryParameter("q", queryString)
 				.setQueryParameter("format", "json").setRequestTimeout(5000);
 		play.Logger.debug("queryString: "+queryString);
