@@ -1293,6 +1293,8 @@ public abstract class ZettelModel {
 				(in) -> setVentilation((String) in));
 		dict.put(treatmentZF.uri,
 				(in) -> setTreatment((String) in));
+		dict.put(housingZF.uri,
+				(in) -> setHousing((String) in));
 		dict.put(treatment_detailZF.uri,
 				(in) -> setTreatment_detail((String) in));
 		dict.put(emissionsprobeZF.uri,
