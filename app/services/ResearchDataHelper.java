@@ -251,7 +251,7 @@ public class ResearchDataHelper {
 			map.put(null, "Please select...");
 			map.put("housing_systems_1", "Housing_systems_1");
 			map.put("housing_systems_2", "Housing_systems_2");
-			//map.put("Other", "Other");
+			map.put("other", "other");
 			return map;	
 		}
 		public static LinkedHashMap<String, String> getAdditionalHousingSystemsMap() {
@@ -263,25 +263,7 @@ public class ResearchDataHelper {
 			return map;	
 		}
 		
-		
-		
-		public static LinkedHashMap<String, String> getTreatmentDetailMap() {
-			LinkedHashMap<String, String> map = new LinkedHashMap<>();
-			map.put(null, "Please select...");
-			map.put("treatmentDetail_1", "treatmentDetail_1");
-			map.put("treatmentDetail_2", "treatmentDetail_2");
-			map.put("Other", "Other");
-			return map;	
-		}
-		public static LinkedHashMap<String, String> getEmissionsprobeMap() {
-			LinkedHashMap<String, String> map = new LinkedHashMap<>();
-			map.put(null, "Please select...");
-			map.put("emissionsprobe_1", "emissionsprobe_1");
-			map.put("emissionsprobe_2", "emissionsprobe_2");
-			map.put("Other", "Other");
-			return map;	
-		}
-		
+
 		public static LinkedHashMap<String, String> getEmissionsMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
 			map.put(null, "Please select...");
@@ -292,7 +274,7 @@ public class ResearchDataHelper {
 			map.put("odour", "ODOUR");
 			map.put("particles", "Particles (dust)");
 			map.put("bioaerosols", "Bioaerosols");
-			map.put("others", "Other");	
+			map.put("others", "other");	
 			return map;	
 		}
 		
@@ -318,7 +300,7 @@ public class ResearchDataHelper {
 			map.put("air cleaning (AC)", "Air Cleaning (AC)");
 			map.put("incoming air cooling (IAC)", "Incoming Air Cooling (IAC)");
 			map.put("manure drying (MD)", "Manure Drying (MD)");
-			map.put("Other", "Other");
+			map.put("other", "other");
 			return map;	
 		}
 		
@@ -417,6 +399,7 @@ public class ResearchDataHelper {
 		}
 		public static LinkedHashMap<String, String> getEmiMeasurementTechniquesMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
 			map.put("concentration measurement", "Concentration Measurement");
 			map.put("volume flow measurement", "Volume Flow Measurement");
 			map.put("tracer gas method", "Tracer Gas Method");
