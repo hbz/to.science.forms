@@ -198,22 +198,23 @@ public class ZettelFields {
 	// KTBL
 		public static Etikett ktblHeaderZF =
 				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/ktblHeader");
-		public static Etikett livestockZF =
-				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/livestock");
-		public static Etikett ventilationZF =
-				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/ventilation");
-		public static Etikett treatmentZF =
-				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/treatment");
-		public static Etikett housingZF =
-				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/housing");
-		public static Etikett treatment_detailZF =
-				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/treatment_detail");	
-		public static Etikett emissionsprobeZF =
-				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/emissionprobe");
-		public static Etikett emissionZF =
+		public static Etikett livestock_categoryZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/livestock_category");
+		public static Etikett livestock_productionZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/livestock_production");
+		public static Etikett ventilation_systemZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/ventilation_system");
+		public static Etikett housing_systemsZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/housing_systems");	
+		public static Etikett additional_housing_systemsZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/additional_housing_systems");
+		public static Etikett emissionsZF =
 				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/emission");
-		public static Etikett emission_reducingZF =
-				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/emission_reducing");
+		public static Etikett emission_reduction_methodsZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/emission_reduction_methods");
+		public static Etikett emi_measurement_techniquesZF =
+				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/emi_measurement_techniques");
+		
 		public static Etikett project_titleZF =
 				ZettelHelper.etikett.getEtikett("http://purl.org/dc/terms/project_title");
 		public static Etikett test_designZF =

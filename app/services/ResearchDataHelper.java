@@ -216,39 +216,55 @@ public class ResearchDataHelper {
 	
 	// KTBL-Maps
 
-		public static LinkedHashMap<String, String> getLivestockMap() {
+		public static LinkedHashMap<String, String> getLivestockCategoryMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
 			map.put(null, "Please select...");
-			map.put("pig", "pig");
-			map.put("Other", "Other");
+			map.put("cattle", "Cattle");
+			map.put("pig", "Pig");
+			map.put("chicken", "Chicken");
+			map.put("turkey", "Turkey");
+			map.put("duck", "Duck");
+			return map;	
+		}
+		public static LinkedHashMap<String, String> getLivestockProductionMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("cattle", "Cattle");
+			map.put("pig", "Pig");
+			map.put("chicken", "Chicken");
+			map.put("turkey", "Turkey");
+			map.put("duck", "Duck");
 			return map;	
 		}
 		
-		public static LinkedHashMap<String, String> getVentilationMap() {
+		public static LinkedHashMap<String, String> getVentilationSystemMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
 			map.put(null, "Please select...");
-			map.put("Ventilation_1", "Ventilation_1");
-			map.put("Ventilation_2", "Ventilation_2");
-			map.put("Other", "Other");
+			map.put("natural ventilation", "Natural Ventilation");
+			map.put("forced ventilation", "Forced Ventilation");
+			map.put("hybrid ventilation", "Hybrid Ventilation");
 			return map;	
 		}
-		public static LinkedHashMap<String, String> getTreatmentMap() {
+			
+		public static LinkedHashMap<String, String> getHousing_systemstMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
 			map.put(null, "Please select...");
-			map.put("treatment_1", "treatment_1");
-			map.put("treatment_2", "treatment_2");
-			map.put("Other", "Other");
+			map.put("housing_systems_1", "Housing_systems_1");
+			map.put("housing_systems_2", "Housing_systems_2");
+			//map.put("Other", "Other");
+			return map;	
+		}
+		public static LinkedHashMap<String, String> getAdditionalHousingSystemsMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("additional_housing_systems_1", "Additional_housing_systems_1");
+			map.put("additional_housing_systems_2", "Additional_housing_systems_2");
+			//map.put("Other", "Other");
 			return map;	
 		}
 		
-		public static LinkedHashMap<String, String> getHousingtMap() {
-			LinkedHashMap<String, String> map = new LinkedHashMap<>();
-			map.put(null, "Please select...");
-			map.put("housing_1", "housing_1");
-			map.put("housing_2", "housing_2");
-			map.put("Other", "Other");
-			return map;	
-		}
+		
+		
 		public static LinkedHashMap<String, String> getTreatmentDetailMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
 			map.put(null, "Please select...");
@@ -266,22 +282,158 @@ public class ResearchDataHelper {
 			return map;	
 		}
 		
-		public static LinkedHashMap<String, String> getEmissionMap() {
+		public static LinkedHashMap<String, String> getEmissionsMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
 			map.put(null, "Please select...");
-			map.put("emission_1", "emission_1");
-			map.put("emission_2", "emission_2");
+			map.put("nh3", "NH3 (ammonia)");
+			map.put("co2", "CO2 (carbon dioxide)");
+			map.put("n20", "N2O (nitrous oxide)");
+			map.put("CH4", "CH4 (methane)");
+			map.put("odour", "ODOUR");
+			map.put("particles", "Particles (dust)");
+			map.put("bioaerosols", "Bioaerosols");
+			map.put("others", "Other");	
+			return map;	
+		}
+		
+		public static LinkedHashMap<String, String> getEmissionReducingMethodsMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Please select...");
+			map.put("feed supplements (FS)", "Feed Supplements");
+			map.put("manure belt (MB)", "Manure Belt (MB)");
+			map.put("slurry cooling (SC)", "Slurry Cooling (SC)");
+			map.put("grooved floor with finger scraper (GFFS)", "Grooved Floor With Finger Scraper (GFFS)");
+			map.put("slurry channel reduction (SCR)", "Slurry Channel Reduction (SCR)");
+			map.put("litter aeration (LA)", "Litter Aeration (LA)");
+			map.put("slurry treatment whey (W)", "Slurry Treatment Whey (W)");
+			map.put("urease inhibitor (UI)", "Urease Inhibitor (UI)");
+			map.put("nutrition reduced feeding (NRF)", "Nutrition Reduced Feeding (NRF)");
+			map.put("reduced slat ratio (RSR)", "Reduced Slat Ratio (RSR)");
+			map.put("faeces urine separation (FUS)", "Faeces Urine Separation (FUS)");
+			map.put("underfloor scraper (US)", "Underfloor Scraper (US)");
+			map.put("above floor scraper (AFS)", "Above Floor Scraper (AFS)");
+			map.put("increased manure removal interval (IMRI)", "Increased Manure Removal Interval (IMRI)");
+			map.put("slurry channel flushing system (SCFS)", "Slurry Channel Flushing System (SCFS)");
+			map.put("slurry acidification (SA)", "Slurry Acidification (SA)");
+			map.put("air cleaning (AC)", "Air Cleaning (AC)");
+			map.put("incoming air cooling (IAC)", "Incoming Air Cooling (IAC)");
+			map.put("manure drying (MD)", "Manure Drying (MD)");
 			map.put("Other", "Other");
 			return map;	
 		}
 		
-		public static LinkedHashMap<String, String> getEmissionReducingMap() {
+		public static LinkedHashMap<String, String> getCattleMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
-			map.put(null, "Please select...");
-			map.put("emission_reducing_1", "emission_reducing_1");
-			map.put("emission_reducing_2", "emission_reducing_2");
-			map.put("Other", "Other");
+			map.put("dairy cattle farming", "dairy cattle farming");
+			map.put("young cattle farming", "young cattle farming");
+			map.put("calf raising", "calf raising");
+			map.put("calf fattening", "calf fattening");
+			map.put("cattle fattening", "cattle fattening");
+			map.put("suckler cow farming", "suckler cow farming");
 			return map;	
 		}
+		public static LinkedHashMap<String, String> getPigMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("piglet production", "piglet production");
+			map.put("piglet raising", "piglet raising");
+			map.put("pig fattening", "pig fattening");
+			return map;
+		}
+		
+		public static LinkedHashMap<String, String> getChickenMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("laying hen farming", "laying hen farming");
+			map.put("young hen farming", "young hen farming");
+			map.put("broiler fattening", "broiler fattening");
+			return map;
+		}	
+		public static LinkedHashMap<String, String> getTurkeyMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("turkey fattening", "turkey fattening");
+			map.put("turkey raising", "turkey raising");
+			return map;
+		}
+		public static LinkedHashMap<String, String> getDiaryCattleFarmingMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("cubicle housing", "cubicle housing");
+			map.put("loose housing system with single type flooring", "loose housing system with single type flooring");
+			map.put("loose housing system with two type flooring", "loose housing system with two type flooring");
+			map.put("others", "others");
+			return map;
+		}
+		public static LinkedHashMap<String, String> getYoungCattleFarmingMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("cubicle housing", "cubicle housing");
+			map.put("loose housing system with single type flooring", "loose housing system with single type flooring");
+			map.put("loose housing system with two type flooring", "loose housing system with two type flooring");
+			map.put("others", "others");
+			return map;
+		}
+		public static LinkedHashMap<String, String> getCalfRaisingMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("calf boxes", "calf boxes");
+			map.put("igloo or hut housing", "igloo or hut housing");
+			map.put("loose housing system with single type flooring", "loose housing system with single type flooring");
+			map.put("loose housing system with two type flooring", "loose housing system with two type flooring");
+			map.put("others", "others");
+			return map;
+		}
+		public static LinkedHashMap<String, String> getCalfFatteningMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("loose housing system with single type flooring", "loose housing system with single type flooring");
+			map.put("loose housing system with two type flooring", "loose housing system with two type flooring");
+			map.put("others", "others");
+			return map;
+		}
+		public static LinkedHashMap<String, String> getSucklerCowFarmingMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("loose housing system with single type flooring", "loose housing system with single type flooring");
+			map.put("loose housing system with two type flooring", "loose housing system with two type flooring");
+			map.put("others", "others");
+			return map;
+		}
+		
+		public static LinkedHashMap<String, String> getPigFatteningMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("single area pen", "single area pen");
+			map.put("multiple area pen", "multiple area pen");
+			map.put("others", "others");
+			return map;
+		}
+		public static LinkedHashMap<String, String> getPigletProductionMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("farrowing area, single area pen", "farrowing area, single area pen");
+			map.put("farrowing area, multiple area pen", "farrowing area, multiple area pen");
+			map.put("waiting and mating area, multiple area pen", "waiting and mating area, multiple area pen");
+			map.put("others", "others");
+			return map;
+		}
+		public static LinkedHashMap<String, String> getPigletRaisingMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("single area pen", "farrowing area, single area pen");
+			map.put("multiple area pen", "farrowing area, multiple area pen");
+			map.put("others", "others");
+			return map;
+		}
+		public static LinkedHashMap<String, String> getEmiMeasurementTechniquesMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("concentration measurement", "Concentration Measurement");
+			map.put("volume flow measurement", "Volume Flow Measurement");
+			map.put("tracer gas method", "Tracer Gas Method");
+			map.put("static chamber measurements", "Static Chamber Measurements");
+			map.put("dynamic chamber measurements", "Dynamic Chamber Measurements");
+			map.put("others", "others");
+			return map;
+		}
+		public static LinkedHashMap<String, String> getLayingHenFarmingMap() {
+			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put("floor housing", "floor housing");
+			map.put("floor housing with aviaries", "floor housing with aviaries");
+			map.put("mobile housing", "mobile housing");
+			map.put("others", "others");
+			return map;
+		}
+		
+		
 	
 }

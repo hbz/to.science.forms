@@ -81,27 +81,27 @@
 				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",26)
 			}
 			<!-- KTBL -->
-			@accordionPanel(services.ZettelFields.ktblHeaderZF.getLabel(),"ktbl-section"){
+			@accordionPanel("KTBL","ktbl-section"){
+				<br />
+				@smallTextArea(myForm,"project_title","Project Title","",27)
+				<br />
+				@smallTextArea(myForm,"test_design","Test Design","",28)
 				<br/>
-				@singleSelect(myForm,"livestock",services.ZettelFields.livestockZF.getLabel(),"",ResearchDataHelper.getLivestockMap(),27)
+				@singleSelect(myForm,"livestock_category","Livestock Category","",ResearchDataHelper.getLivestockCategoryMap(),29)
 				<br/>
-				@singleSelect(myForm,"ventilation","Ventilation","select-ventilation",ResearchDataHelper.getVentilationMap(),28)
-				<br />
-				@multiselect(myForm,jsonMap,"treatment",services.ZettelFields.treatmentZF.getLabel(),"",ResearchDataHelper.getTreatmentMap(),29)	
+				@singleSelect(myForm,"livestock_production","Livestock production","",ResearchDataHelper.getLivestockProductionMap(),30)
+				<br/>
+				@singleSelect(myForm,"ventilation_system","Ventilation System","select-ventilation",ResearchDataHelper.getVentilationSystemMap(),31)	
 			    <br />
-			   	@multiselect(myForm,jsonMap,"housing",services.ZettelFields.housingZF.getLabel(),"",ResearchDataHelper.getHousingtMap(),30)	
-			    <br />
-			    @singleSelect(myForm,"treatment-detail",services.ZettelFields.treatment_detailZF.getLabel(),"",ResearchDataHelper.getTreatmentDetailMap(),31)
+			   	@singleselect(myForm,"housing_systems","Housing Systems","select-housing",ResearchDataHelper.getHousing_systemstMap(),32)	   
 				<br />
-				@multiselect(myForm,jsonMap,"emissionsprobe",services.ZettelFields.emissionsprobeZF.getLabel(),"",ResearchDataHelper.getEmissionsprobeMap(),32)	
+				@multiselect(myForm,jsonMap,"dditional_housing_systems","Additional Housing Systems","select-housing",ResearchDataHelper.getAdditionalHousingSystemsMap(),33)	
 				<br />
-				@multiselect(myForm,jsonMap,"emission",services.ZettelFields.emissionZF.getLabel(),"",ResearchDataHelper.getEmissionMap(),33)	
+				@multiselect(myForm,jsonMap,"emissions","Emissions","",ResearchDataHelper.getEmissionsMap(),35)	
 				<br />
-				@multiselect(myForm,jsonMap,"emission_reducing",services.ZettelFields.emission_reducingZF.getLabel(),"",ResearchDataHelper.getEmissionReducingMap(),34)	
+				@multiselect(myForm,jsonMap,"emission_reduction_methods","Emission Reduction Methods","",ResearchDataHelper.getEmissionReducingMethodsMap(),36)
 				<br />
-				@smallTextArea(myForm,"project_title",services.ZettelFields.project_titleZF.getLabel(),"",35)
-				<br />
-				@smallTextArea(myForm,"test_design",services.ZettelFields.test_designZF.getLabel(),"",36)
+				@multiselect(myForm,jsonMap,"emi_measurement_techniques","Emission Measurement Techniques","",ResearchDataHelper.getEmiMeasurementTechniquesMap,37)	
 				}
 		}
 		@if(myForm.hasErrors) {
