@@ -87,7 +87,7 @@ import static services.ZettelFields.internalReferenceZF;
 import static services.ZettelFields.additionalNotesZF;
 
 //KTBL
-import static services.ZettelFields.ktblHeaderZF;
+//import static services.ZettelFields.ktblHeaderZF;
 import static services.ZettelFields.livestock_categoryZF;
 import static services.ZettelFields.ventilation_systemZF;
 import static services.ZettelFields.housing_systemsZF;
@@ -1305,25 +1305,25 @@ public abstract class ZettelModel {
 				(in) -> addInternalReference((String) in));
 		dict.put(additionalNotesZF.uri,
 				(in) -> setAdditionalNotes((String) in));
-		// KTBL
+		
+		// KTBL		
+		dict.put(project_titleZF.uri, (in) -> setProject_title((String) in));		
+		dict.put(test_designZF.uri, (in) -> setTest_design((String) in));		
 		dict.put(livestock_categoryZF.uri,
 				(in) -> setLivestock_category((String) in));
+		dict.put(livestock_productionZF.uri,
+				(in) -> setLivestock_production((String) in));		
 		dict.put(ventilation_systemZF.uri,
 				(in) -> setVentilation_system((String) in));
-		dict.put(livestock_productionZF.uri,
-				(in) -> setLivestock_production((String) in));
 		dict.put(housing_systemsZF.uri,
-				(in) -> setHousing_systems((String) in));
+				(in) -> setHousing_systems((String) in));		
 		dict.put(additional_housing_systemsZF.uri,
-				(in) -> addAdditional_housing_systems((String) in));
-		dict.put(emissionsZF.uri, (in) -> addEmissions((String) in));
+				(in) -> addAdditional_housing_systems((String) in));		
+		dict.put(emissionsZF.uri, (in) -> addEmissions((String) in));		
 		dict.put(emission_reduction_methodsZF.uri,
-				(in) -> addEmission_reduction_methods((String) in));
+				(in) -> addEmission_reduction_methods((String) in));		
 		dict.put(emi_measurement_techniquesZF.uri,
-				(in) -> addEmi_measurement_techniques((String) in));
-		dict.put(project_titleZF.uri, (in) -> setProject_title((String) in));
-		dict.put(test_designZF.uri, (in) -> setTest_design((String) in));
-
+				(in) -> addEmi_measurement_techniques((String) in));		
 		return dict;
 	}
 

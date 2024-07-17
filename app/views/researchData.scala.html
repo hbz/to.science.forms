@@ -83,9 +83,9 @@
 			<!-- KTBL -->
 			@accordionPanel("KTBL","ktbl-section"){
 				<br />
-				@smallTextArea(myForm,"project_title","Project Title","",27)
+				@singleSelect(myForm,"project_title","Project Title","",ResearchDataHelper.getProjectTitleMap(),27)
 				<br />
-				@smallTextArea(myForm,"test_design","Test Design","",28)
+				@singleSelect(myForm,"test_design","Test Design","",ResearchDataHelper.getTestDesignMap(),28)
 				<br/>
 				@singleSelect(myForm,"livestock_category","Livestock Category","",ResearchDataHelper.getLivestockCategoryMap(),29)
 				<br/>
