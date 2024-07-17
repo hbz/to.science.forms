@@ -376,7 +376,7 @@ public class ResearchDataHelper {
 		}
 		
 		
-		public static LinkedHashMap<String, String> getProjectTitleMa() {
+		public static LinkedHashMap<String, String> getProjectTitleMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
 			map.put("EMIMIN", "EmiMin");
 			map.put("EMIDAT", "EmiDat");
