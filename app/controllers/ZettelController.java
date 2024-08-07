@@ -18,7 +18,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package controllers;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -663,4 +666,22 @@ public class ZettelController extends Controller {
 			return ok(myResponse);
 		});
 	}
+	
+	public static String callDataStreamEndpoint(String pid, String datastream) {
+	    String url = "http://localhost:8080/fedora/objects/" + pid + "/datastreams/" + datastream + "/content";
+	    try {
+	        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+	        connection.setRequestMethod("GET");
+	        int responseCode = connection.getResponseCode();
+	        if (responseCode == HttpURLConnection.HTTP_OK) {
+	            return "YES";
+	        } else {
+	            return "NO";
+	        }
+	    } catch (IOException e) {
+	        play.Logger.debug("Connection to " + url + " failed", e);
+	        return "NO";
+	    }
+	}
+	
 }

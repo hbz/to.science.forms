@@ -4,18 +4,24 @@
 @import tags._ 
 @import services._
 @jsonMap=@{ZettelHelper.getJsonMap(myForm)}
+@import controllers.ZettelController.callDataStreamEndpoint
+
+
+
 @zettel("Forschungsdaten",myForm,dataFormat,documentId,topicId,formType) {
 	@if(myForm.hasGlobalErrors) {
 		<p class="error">@myForm.globalError.message</p>
 	} 
 	@helper.form(action = routes.ZettelController.postForm(ResearchData.id,dataFormat,documentId,topicId)){
+		
 		<a href="@models.ResearchData.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
 			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
 			    @smallTextArea(myForm,"title","Titel"+"*","",1)
 				<br/>
 				@smallTextArea(myForm,"alternative","Alternativer Titel","",2)
-			}
+		}
+
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
                 @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
@@ -80,7 +86,8 @@
 				<br />
 				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",26)
 			}
-			<!-- KTBL -->
+
+			@if(controllers.ZettelController.callDataStreamEndpoint(ZettelHelper.getJsonMap(myForm).get("@id")+"", "ktbl")=="YES"){
 			@accordionPanel("KTBL","ktbl-section"){
 				<br />
 				@singleSelect(myForm,"project_title","Project Title","",ResearchDataHelper.getProjectTitleMap(),27)
@@ -92,7 +99,7 @@
 				@singleSelect(myForm,"livestock_production","Livestock Production","",ResearchDataHelper.getLivestockProductionMap(),30)
 				<br/>
 				@singleSelect(myForm,"ventilation_system","Ventilation System","select-ventilation",ResearchDataHelper.getVentilationSystemMap(),31)	
-			    <br />
+			   	 <br />
 			   	@singleSelect(myForm,"housing_systems","Housing Systems","select-housing",ResearchDataHelper.getHousing_systemstMap(),32)	   
 				<br />
 				@multiselect(myForm,jsonMap,"additional_housing_systems","Additional Housing Systems","select-housing",ResearchDataHelper.getAdditionalHousingSystemsMap(),33)	
@@ -103,6 +110,15 @@
 				<br />
 				@multiselect(myForm,jsonMap,"emi_measurement_techniques","Emission Measurement Techniques","",ResearchDataHelper.getEmiMeasurementTechniquesMap(),37)	
 				}
+			}else{
+				<script>
+  				document.addEventListener('DOMContentLoaded', function() {
+    				var panel = document.querySelector('#ktbl-section');
+    				panel.disabled = true;
+    				panel.innerHTML = '';});
+				</script>
+			}
+		
 		}
 		@if(myForm.hasErrors) {
 		    <div class="alert alert-error">
@@ -136,5 +152,63 @@
 				<input type="submit" value="Save" class="btn btn-success" />
 			</div>
 		</div>
-	} 
+
+
+
+<script>
+
+  var ready = (callback) => {
+  if (document.readyState != "loading") callback();
+  else document.addEventListener("DOMContentLoaded", callback);
+}
+ 
+ready(() => {
+
+ markSelectedLivestockCategory();
+  document.getElementById('livestock_category').addEventListener('change', function() { 
+markSelectedLivestockCategory();
+});
+
+ 
+});
+
+function markSelectedLivestockCategory() {
+
+      var livestockCategory = document.getElementById('livestock_category').value;
+      console.log("wert von livestock: "+livestockCategory);
+     var livestockProductionOptions = document.getElementById('livestock_production').getElementsByTagName('option');
+
+    // Standardfarbe für alle Elemente zurücksetzen
+    for (var i = 0; i < livestockProductionOptions.length; i++) {
+        livestockProductionOptions[i].style.color = ''; 
+    }
+
+for (var j = 0; j < livestockProductionOptions.length; j++) {
+        livestockProductionOptions[j].disabled = true; // Restliche Elemente deaktivieren
+    }
+    // Markierung basierend auf livestockCategory setzen
+    if (livestockCategory === 'cattle') {
+        for (var i = 0; i < 6; i++) {
+		livestockProductionOptions[i].disabled=false;
+        }
+    } else if (livestockCategory === 'pig') {
+        for (var i = 6; i < 9; i++) {
+		livestockProductionOptions[i].disabled=false;
+
+        }} else if (livestockCategory === 'chicken') {
+            for (var i = 9; i < 12; i++) {
+		livestockProductionOptions[i].disabled=false;
+
+            }
+        } else if (livestockCategory === 'turkey') {
+            for (var i = 12; i < 14; i++) {
+		livestockProductionOptions[i].disabled=false;
+
+            }
+        } else if (livestockCategory === 'duck') {
+           livestockProductionOptions[livestockProductionOptions.length - 1].disabled=false;
+        }
+}
+</script>
+}	
 }
