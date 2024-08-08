@@ -292,7 +292,7 @@ public class ResearchDataHelper {
 			map.put("nh3", "NH3 (ammonia)");
 			map.put("co2", "CO2 (carbon dioxide)");
 			map.put("n2o", "N2O (nitrous oxide)");
-			map.put("CH4", "CH4 (methane)");
+			map.put("ch4", "CH4 (methane)");
 			map.put("odour", "ODOUR");
 			map.put("particles", "Particles (dust)");
 			map.put("bioaerosols", "Bioaerosols");
