@@ -218,7 +218,7 @@ public class ResearchDataHelper {
 
 		public static LinkedHashMap<String, String> getLivestockCategoryMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
-			//map.put(null, "Please select...");
+			map.put(null, "Bitte wählen Sie...");
 			map.put("cattle", "cattle");
 			map.put("pig", "pig");
 			map.put("chicken", "chicken");
@@ -228,6 +228,7 @@ public class ResearchDataHelper {
 		}
 		public static LinkedHashMap<String, String> getLivestockProductionMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Bitte wählen Sie...");
 			map.put("dairy_cattle_farming", "dairy cattle farming");
 			map.put("young_cattle_farming", "young cattle farming");
 			map.put("calf_raising", "calf raising");
@@ -248,6 +249,7 @@ public class ResearchDataHelper {
 		
 		public static LinkedHashMap<String, String> getVentilationSystemMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Bitte wählen Sie...");
 			map.put("natural_ventilation_system", "natural ventilation");
 			map.put("forced_ventilation_system", "forced ventilation");
 			map.put("hybrid_ventilation_system", "hybrid ventilation");
@@ -256,6 +258,7 @@ public class ResearchDataHelper {
 			
 		public static LinkedHashMap<String, String> getHousing_systemstMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Bitte wählen Sie...");
 			map.put("cubicle_h", "cubicle housing");
 			map.put("loose_h_1_type_floor", "loose housing system with single type flooring");
 			map.put("loose_h_2_type_floor", "loose housing system with two type flooring");
@@ -274,6 +277,7 @@ public class ResearchDataHelper {
 		}
 		public static LinkedHashMap<String, String> getAdditionalHousingSystemsMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Bitte wählen Sie...");
 			map.put("solid_manure", "solid manure");
 			map.put("liquid_manure", "liquid manure");
 			map.put("solid_floor", "solid floor");
@@ -289,6 +293,7 @@ public class ResearchDataHelper {
 
 		public static LinkedHashMap<String, String> getEmissionsMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Bitte wählen Sie...");
 			map.put("nh3", "NH3 (ammonia)");
 			map.put("co2", "CO2 (carbon dioxide)");
 			map.put("n2o", "N2O (nitrous oxide)");
@@ -302,7 +307,7 @@ public class ResearchDataHelper {
 		
 		public static LinkedHashMap<String, String> getEmissionReducingMethodsMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
-			
+			map.put(null, "Bitte wählen Sie...");
 			map.put("feed_supplements", "feed supplements (FS)");
 			map.put("manure_belt", "manure belt (MB)");
 			map.put("slurry_cooling", "slurry cooling (SC)");			
@@ -330,6 +335,7 @@ public class ResearchDataHelper {
 					
 		public static LinkedHashMap<String, String> getEmiMeasurementTechniquesMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Bitte wählen Sie...");
 			map.put("concentration_measurement", "Concentration Measurement");
 			map.put("volume_flow_measurement", "Volume Flow Measurement");
 			map.put("tracer_gas_method", "Tracer Gas Method");
@@ -341,6 +347,7 @@ public class ResearchDataHelper {
 		
 		public static LinkedHashMap<String, String> getProjectTitleMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Bitte wählen Sie...");
 			map.put("emimin", "EmiMin");
 			map.put("emidat", "EmiDat");
 			map.put("emimod", "EmiMod");
@@ -349,6 +356,7 @@ public class ResearchDataHelper {
 		
 		public static LinkedHashMap<String, String> getTestDesignMap() {
 			LinkedHashMap<String, String> map = new LinkedHashMap<>();
+			map.put(null, "Bitte wählen Sie...");
 			map.put("case_control", "case control");
 			map.put("multi_site", "multi site");
 			return map;
