@@ -190,28 +190,31 @@ function markSelectedLivestockCategory() {
 for (var j = 0; j < livestockProductionOptions.length; j++) {
         livestockProductionOptions[j].disabled = true; // Restliche Elemente deaktivieren
     }
+	livestockProductionOptions[0].disabled=false;
+
     // Markierung basierend auf livestockCategory setzen
     if (livestockCategory === 'cattle') {
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < 7; i++) {
 		livestockProductionOptions[i].disabled=false;
         }
     } else if (livestockCategory === 'pig') {
-        for (var i = 6; i < 9; i++) {
+        for (var i = 7; i < 10; i++) {
 		livestockProductionOptions[i].disabled=false;
 
         }} else if (livestockCategory === 'chicken') {
-            for (var i = 9; i < 12; i++) {
+            for (var i = 10; i < 13; i++) {
 		livestockProductionOptions[i].disabled=false;
 
             }
         } else if (livestockCategory === 'turkey') {
-            for (var i = 12; i < 14; i++) {
+            for (var i = 13; i < 15; i++) {
 		livestockProductionOptions[i].disabled=false;
 
             }
         } else if (livestockCategory === 'duck') {
            livestockProductionOptions[livestockProductionOptions.length - 1].disabled=false;
         }
+
 }
 
 function updateHousingSystemsOptions() {
@@ -219,10 +222,12 @@ function updateHousingSystemsOptions() {
   const housingSystemsOptions = document.getElementById('housing_systems').getElementsByTagName('option');
   const enabledOptions = getEnabledHousingOptions(selectedLivestockProduction);
 
-  // Deaktiviere alle Optionen zunächst
+  // Deaktiviere alle Optionen zunÃ¤chst
   for (let i = 0; i < housingSystemsOptions.length; i++) {
     housingSystemsOptions[i].disabled = true;
   }
+
+  housingSystemsOptions[0].disabled = false;
 
   // Aktiviere die richtigen Optionen
   for (let i = 0; i < housingSystemsOptions.length; i++) {
@@ -276,6 +281,8 @@ function updateAdditionalHousingOptions() {
     for (let i = 0; i < dropdownOptions.length; i++) {
       dropdownOptions[i].disabled = true;
     }
+	dropdownOptions[0].disabled = false;
+
     for (let i = 0; i < dropdownOptions.length; i++) {
       if (enabledAdditionalHousingOptions.has(dropdownOptions[i].value)) {
         dropdownOptions[i].disabled = false;
