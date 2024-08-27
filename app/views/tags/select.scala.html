@@ -11,7 +11,7 @@
 				<div>
 					<div class="@classString">
 					 	<fieldset>
-						    <select name="@fieldName" id="select-input" class="input-widget" tabindex=@tabOrderAsInt>
+						    <select name="@fieldName" id="@fieldName" class="input-widget" tabindex=@tabOrderAsInt>
 						    @services.ZettelHelper.getData(myForm,fieldName) match{
 							case myValue: String => {
 								@for(i <- map.keySet().stream().collect(Collectors.toList())){

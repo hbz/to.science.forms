@@ -86,6 +86,20 @@ import static services.ZettelFields.collectionTwoZF;
 import static services.ZettelFields.internalReferenceZF;
 import static services.ZettelFields.additionalNotesZF;
 
+//KTBL
+//import static services.ZettelFields.ktblHeaderZF;
+import static services.ZettelFields.livestock_categoryZF;
+import static services.ZettelFields.ventilation_systemZF;
+import static services.ZettelFields.housing_systemsZF;
+import static services.ZettelFields.emissionsZF;
+import static services.ZettelFields.emission_reduction_methodsZF;
+import static services.ZettelFields.project_titleZF;
+import static services.ZettelFields.test_designZF;
+import static services.ZettelFields.livestock_productionZF;
+import static services.ZettelFields.additional_housing_systemsZF;
+import static services.ZettelFields.emi_measurement_techniquesZF;
+
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -241,6 +255,128 @@ public abstract class ZettelModel {
 	private List<String> collectionTwo = new ArrayList<>();
 	private List<String> internalReference = new ArrayList<>();
 	private String additionalNotes;
+	// KTBL
+	private String ktbl;
+	private String livestock_category;
+	private String livestock_production;
+	private String ventilation_system;
+	private String housing_systems;
+	private String project_title;
+	private String test_design;
+	private List<String> additional_housing_systems;
+	private List<String> emi_measurement_techniques;
+	private List<String> emission_reduction_methods;
+	private List<String> emissions;
+
+	public List<String> getEmissions() {
+		return emissions;
+	}
+	public void setEmissions(List<String> emissions) {
+		this.emissions = emissions;
+	}
+	public void addEmissions(String in) {
+		if (emissions == null || emissions.isEmpty())
+			emissions = new ArrayList<>();
+		emissions.add(in);
+	}
+	public String getLivestock_production() {
+		return livestock_production;
+	}
+	public void setLivestock_production(String in) {
+		this.livestock_production = in;
+	}
+
+	public String getVentilation_system() {
+		return ventilation_system;
+	}
+
+	public void setVentilation_system(String in) {
+		this.ventilation_system = in;
+	}
+	public List<String> getEmission_reduction_methods() {
+		return emission_reduction_methods;
+	}
+
+	public void setEmission_reduction_methods(List<String> in) {
+		this.emission_reduction_methods = in;
+	}
+
+	public void addEmission_reduction_methods(String in) {
+		if (emission_reduction_methods == null
+				|| emission_reduction_methods.isEmpty())
+			emission_reduction_methods = new ArrayList<>();
+		emission_reduction_methods.add(in);
+	}
+
+	public List<String> getEmi_measurement_techniques() {
+		return emi_measurement_techniques;
+	}
+
+	public void setEmi_measurement_techniques(List<String> in) {
+		this.emi_measurement_techniques = in;
+	}
+
+	public void addEmi_measurement_techniques(String in) {
+		if (emi_measurement_techniques == null
+				|| emi_measurement_techniques.isEmpty())
+			emi_measurement_techniques = new ArrayList<>();
+		emi_measurement_techniques.add(in);
+	}
+
+	public List<String> getAdditional_housing_systems() {
+		return additional_housing_systems;
+	}
+
+	public void setAdditional_housing_systems(List<String> in) {
+		this.additional_housing_systems = in;
+	}
+
+	public void addAdditional_housing_systems(String in) {
+		if (additional_housing_systems == null
+				|| additional_housing_systems.isEmpty())
+			additional_housing_systems = new ArrayList<>();
+		additional_housing_systems.add(in);
+	}
+
+	public String getTest_design() {
+		return test_design;
+	}
+
+	public void setTest_design(String test_design) {
+		this.test_design = test_design;
+	}
+
+	public String getKtbl() {
+		return ktbl;
+	}
+
+	public void setKtbl(String ktbl) {
+		this.ktbl = ktbl;
+	}
+
+	public String getLivestock_category() {
+		return livestock_category;
+	}
+
+	public void setLivestock_category(String livestock) {
+		this.livestock_category = livestock;
+	}
+
+	public String getHousing_systems() {
+		return housing_systems;
+	}
+
+	public void setHousing_systems(String housing) {
+		this.housing_systems = housing;
+	}
+
+	public String getProject_title() {
+		return project_title;
+	}
+
+	public void setProject_title(String project_title) {
+		this.project_title = project_title;
+	}
 
 	public List<String> getRdftype() {
 		return type;
@@ -255,7 +391,7 @@ public abstract class ZettelModel {
 			type = new ArrayList<>();
 		type.add(in);
 	}
-	
+
 	public String getIssued() {
 		return issued;
 	}
@@ -1147,15 +1283,32 @@ public abstract class ZettelModel {
 		dict.put(collectionOneZF.uri, (in) -> addCollectionOne((String) in));
 		dict.put(fulltextVersionZF.uri, (in) -> addFulltextVersion((String) in));
 		dict.put(publisherVersionZF.uri, (in) -> addPublisherVersion((String) in));
-		dict.put(additionalMaterialZF.uri,
-				(in) -> addAdditionalMaterial((String) in));
+		dict.put(additionalMaterialZF.uri, (in) -> addAdditionalMaterial((String) in));
 		dict.put(parallelEditionZF.uri, (in) -> setParallelEdition((String) in));
 		dict.put(typeZF.uri, (in) -> addType((String) in));
 		dict.put(collectionTwoZF.uri, (in) -> addCollectionTwo((String) in));
 		dict.put(internalReferenceZF.uri,
 				(in) -> addInternalReference((String) in));
-
 		dict.put(additionalNotesZF.uri, (in) -> setAdditionalNotes((String) in));
+		
+		// KTBL		
+		dict.put(project_titleZF.uri, (in) -> setProject_title((String) in));		
+		dict.put(test_designZF.uri, (in) -> setTest_design((String) in));		
+		dict.put(livestock_categoryZF.uri,
+				(in) -> setLivestock_category((String) in));
+		dict.put(livestock_productionZF.uri,
+				(in) -> setLivestock_production((String) in));		
+		dict.put(ventilation_systemZF.uri,
+				(in) -> setVentilation_system((String) in));
+		dict.put(housing_systemsZF.uri,
+				(in) -> setHousing_systems((String) in));		
+		dict.put(additional_housing_systemsZF.uri,
+				(in) -> addAdditional_housing_systems((String) in));		
+		dict.put(emissionsZF.uri, (in) -> addEmissions((String) in));		
+		dict.put(emission_reduction_methodsZF.uri,
+				(in) -> addEmission_reduction_methods((String) in));		
+		dict.put(emi_measurement_techniquesZF.uri,
+				(in) -> addEmi_measurement_techniques((String) in));		
 		return dict;
 	}
 
@@ -1273,8 +1426,8 @@ public abstract class ZettelModel {
 	}
 
 	/**
-	 * @return the id of the actual thing that is described by the resource. Must
-	 *         be an URI.
+	 * @return the id of the actual thing that is described by the resource.
+	 *         Must be an URI.
 	 */
 	public String getTopicId() {
 		return topicId;

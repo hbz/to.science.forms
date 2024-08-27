@@ -4,18 +4,24 @@
 @import tags._ 
 @import services._
 @jsonMap=@{ZettelHelper.getJsonMap(myForm)}
+@import controllers.ZettelController.callDataStreamEndpoint
+
+
+
 @zettel("Forschungsdaten",myForm,dataFormat,documentId,topicId,formType) {
 	@if(myForm.hasGlobalErrors) {
 		<p class="error">@myForm.globalError.message</p>
 	} 
 	@helper.form(action = routes.ZettelController.postForm(ResearchData.id,dataFormat,documentId,topicId)){
+		
 		<a href="@models.ResearchData.getHelpTextUrl()" id="helpTextUrl" style="float:right" target="blank">Hilfe</a>
 		@accordion(""){
 			@accordionPanel(services.ZettelFields.titleHeaderZF.getLabel(),"title-section"){
 			    @smallTextArea(myForm,"title","Titel"+"*","",1)
 				<br/>
 				@smallTextArea(myForm,"alternative","Alternativer Titel","",2)
-			}
+		}
+
 			@accordionPanel(services.ZettelFields.creatorshipHeaderZF.getLabel(),"creator-section"){
                 @multifieldLd(myForm,jsonMap,"creator",services.ZettelFields.creatorZF.getLabel(),"search",3,ArticleHelper.getPersonLookupEndpoints())
 			    <br/>
@@ -80,6 +86,39 @@
 				<br />
 				@multifieldText(myForm,jsonMap,"isLike",services.ZettelFields.isLikeZF.getLabel(),"",26)
 			}
+
+			@if(controllers.ZettelController.callDataStreamEndpoint(ZettelHelper.getJsonMap(myForm).get("@id")+"", "ktbl")=="YES"){
+			@accordionPanel("KTBL","ktbl-section"){
+				<br />
+				@singleSelect(myForm,"project_title","Project Title","",ResearchDataHelper.getProjectTitleMap(),27)
+				<br />
+				@singleSelect(myForm,"test_design","Test Design","",ResearchDataHelper.getTestDesignMap(),28)
+				<br/>
+				@singleSelect(myForm,"livestock_category","Livestock Category","",ResearchDataHelper.getLivestockCategoryMap(),29)
+				<br/>
+				@singleSelect(myForm,"livestock_production","Livestock Production","",ResearchDataHelper.getLivestockProductionMap(),30)
+				<br/>
+				@singleSelect(myForm,"ventilation_system","Ventilation System","select-ventilation",ResearchDataHelper.getVentilationSystemMap(),31)	
+			   	 <br />
+			   	@singleSelect(myForm,"housing_systems","Housing Systems","select-housing",ResearchDataHelper.getHousing_systemstMap(),32)	   
+				<br />
+				@multiselect(myForm,jsonMap,"additional_housing_systems","Additional Housing Systems","select-housing",ResearchDataHelper.getAdditionalHousingSystemsMap(),33)	
+				<br />
+				@multiselect(myForm,jsonMap,"emissions","Emissions","",ResearchDataHelper.getEmissionsMap(),35)	
+				<br />
+				@multiselect(myForm,jsonMap,"emission_reduction_methods","Emission Reduction Methods","",ResearchDataHelper.getEmissionReducingMethodsMap(),36)
+				<br />
+				@multiselect(myForm,jsonMap,"emi_measurement_techniques","Emission Measurement Techniques","",ResearchDataHelper.getEmiMeasurementTechniquesMap(),37)	
+				}
+			}else{
+				<script>
+  				document.addEventListener('DOMContentLoaded', function() {
+    				var panel = document.querySelector('#ktbl-section');
+    				panel.disabled = true;
+    				panel.innerHTML = '';});
+				</script>
+			}
+		
 		}
 		@if(myForm.hasErrors) {
 		    <div class="alert alert-error">
@@ -113,5 +152,166 @@
 				<input type="submit" value="Save" class="btn btn-success" />
 			</div>
 		</div>
-	} 
+
+
+
+<script>
+
+  var ready = (callback) => {
+  if (document.readyState != "loading") callback();
+  else document.addEventListener("DOMContentLoaded", callback);
+}
+ 
+ready(() => {
+
+  markSelectedLivestockCategory();
+  updateHousingSystemsOptions();
+  updateAdditionalHousingOptions()
+  document.getElementById('livestock_category').addEventListener('change', function() { 
+  markSelectedLivestockCategory();
+  updateAdditionalHousingOptions()
+  
+});
+
+  document.getElementById('livestock_production').addEventListener('change', function() { 
+  updateHousingSystemsOptions();
+});
+
+
+ 
+});
+
+function markSelectedLivestockCategory() {
+      var livestockCategory = document.getElementById('livestock_category').value;
+      console.log("wert von livestock: "+livestockCategory);
+     var livestockProductionOptions = document.getElementById('livestock_production').getElementsByTagName('option');
+
+
+for (var j = 0; j < livestockProductionOptions.length; j++) {
+        livestockProductionOptions[j].disabled = true; // Restliche Elemente deaktivieren
+    }
+	livestockProductionOptions[0].disabled=false;
+
+    // Markierung basierend auf livestockCategory setzen
+    if (livestockCategory === 'cattle') {
+        for (var i = 0; i < 7; i++) {
+		livestockProductionOptions[i].disabled=false;
+        }
+    } else if (livestockCategory === 'pig') {
+        for (var i = 7; i < 10; i++) {
+		livestockProductionOptions[i].disabled=false;
+
+        }} else if (livestockCategory === 'chicken') {
+            for (var i = 10; i < 13; i++) {
+		livestockProductionOptions[i].disabled=false;
+
+            }
+        } else if (livestockCategory === 'turkey') {
+            for (var i = 13; i < 15; i++) {
+		livestockProductionOptions[i].disabled=false;
+
+            }
+        } else if (livestockCategory === 'duck') {
+           livestockProductionOptions[livestockProductionOptions.length - 1].disabled=false;
+        }
+
+}
+
+function updateHousingSystemsOptions() {
+  const selectedLivestockProduction = document.getElementById('livestock_production').value;
+  const housingSystemsOptions = document.getElementById('housing_systems').getElementsByTagName('option');
+  const enabledOptions = getEnabledHousingOptions(selectedLivestockProduction);
+
+  // Deaktiviere alle Optionen zunÃ¤chst
+  for (let i = 0; i < housingSystemsOptions.length; i++) {
+    housingSystemsOptions[i].disabled = true;
+  }
+
+  housingSystemsOptions[0].disabled = false;
+
+  // Aktiviere die richtigen Optionen
+  for (let i = 0; i < housingSystemsOptions.length; i++) {
+    if (enabledOptions.has(housingSystemsOptions[i].value)) {
+      housingSystemsOptions[i].disabled = false;
+    }
+  }
+}
+
+function getEnabledHousingOptions(selectedLivestockProduction) {
+  const enabledOptions = new Set([
+    'others',
+    ...(selectedLivestockProduction === 'dairy_cattle_farming' || selectedLivestockProduction === 'young_cattle_farming' || selectedLivestockProduction === 'cattle_fattening'
+      ? ['cubicle_h', 'loose_h_1_type_floor', 'loose_h_2_type_floor']
+      : []),
+    ...(selectedLivestockProduction === 'calf_raising'
+      ? ['calf_boxes_h', 'igloo_or_hut_h', 'loose_h_1_type_floor', 'loose_h_2_type_floor']
+      : []),
+    ...(selectedLivestockProduction === 'calf_fattening' || selectedLivestockProduction === 'suckler_cow_farming'
+      ? ['loose_h_1_type_floor', 'loose_h_2_type_floor']
+      : []),
+    ...(selectedLivestockProduction === 'pig_fattening' || selectedLivestockProduction === 'piglet_raising'
+      ? ['1_area_pen', 'mult_area_pen']
+      : []),
+    ...(selectedLivestockProduction === 'piglet_production'
+      ? ['farrow_area_1_area_pen', 'farrow_area_mult_area_pen', 'wait_mate_area_mult_area_pen']
+      : []),
+    ...(selectedLivestockProduction === 'laying_hen_farming'
+      ? ['floor_h', 'floor_h_with_aviaries', 'mobile_h']
+      : []),
+    ...(selectedLivestockProduction === 'young_hen_farming'
+      ? ['floor_h', 'floor_h_with_aviaries']
+      : []),
+    ...(selectedLivestockProduction === 'turkey_fattening' || selectedLivestockProduction === 'turkey_raising' || selectedLivestockProduction === 'duck_fattening'
+      ? ['floor_h']
+      : []),
+  ]);
+  return enabledOptions;
+}
+
+function updateAdditionalHousingOptions() {
+  const livestockDropdown = document.getElementById('livestock_category');
+  const housingDropdowns = document.querySelectorAll('[id^="additional_housing_systems"]');
+  const selectedLivestock = livestockDropdown.value;
+  const enabledAdditionalHousingOptions = getEnabledAdditionalHousingOptions(selectedLivestock);
+  
+  housingDropdowns.forEach((dropdown) => {
+    const dropdownOptions = dropdown.getElementsByTagName('option');
+
+
+    for (let i = 0; i < dropdownOptions.length; i++) {
+      dropdownOptions[i].disabled = true;
+    }
+	dropdownOptions[0].disabled = false;
+
+    for (let i = 0; i < dropdownOptions.length; i++) {
+      if (enabledAdditionalHousingOptions.has(dropdownOptions[i].value)) {
+        dropdownOptions[i].disabled = false;
+      }
+    }
+  });
+}
+
+function getEnabledAdditionalHousingOptions(selectedLivestock) {
+  const enabledOptions = new Set();
+
+  if (['cattle', 'pig', 'chicken', 'turkey', 'duck'].includes(selectedLivestock)) {
+    enabledOptions.add('solid_manure');
+	enabledOptions.add('perforated_floor');
+	enabledOptions.add('yard');
+	enabledOptions.add('others');
+  }
+
+  if (['cattle', 'pig'].includes(selectedLivestock)) {
+    enabledOptions.add('liquid_manure');
+    enabledOptions.add('solid_floor');
+    enabledOptions.add('pastures');
+    enabledOptions.add('others');
+	
+  } 
+  return enabledOptions;
+}
+
+</script>
+
+}	
 }
