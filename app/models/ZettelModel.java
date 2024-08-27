@@ -1289,8 +1289,7 @@ public abstract class ZettelModel {
 		dict.put(collectionTwoZF.uri, (in) -> addCollectionTwo((String) in));
 		dict.put(internalReferenceZF.uri,
 				(in) -> addInternalReference((String) in));
-		dict.put(additionalNotesZF.uri,
-				(in) -> setAdditionalNotes((String) in));
+		dict.put(additionalNotesZF.uri, (in) -> setAdditionalNotes((String) in));
 		
 		// KTBL		
 		dict.put(project_titleZF.uri, (in) -> setProject_title((String) in));		
@@ -1332,10 +1331,8 @@ public abstract class ZettelModel {
 	}
 
 	/**
-	 * @param in
-	 *            input stream with rdf data
-	 * @param format
-	 *            format of the rdf serialization
+	 * @param in input stream with rdf data
+	 * @param format format of the rdf serialization
 	 * @return the rdf data loaded to a ZettelModel
 	 */
 	public ZettelModel deserializeFromRdf(InputStream in, RDFFormat format,
@@ -1343,7 +1340,7 @@ public abstract class ZettelModel {
 		this.documentId = myDocumentId;
 		this.topicId = myTopicId;
 		Map<String, Consumer<Object>> dict = getMappingForDeserialization();
-		Collection<Statement> graph = 
+		Collection<Statement> graph =
 				RdfUtils.readRdfToGraph(in, format, getDocumentId());
 		graph.forEach((st) -> {
 			if (!"".equals(st.getObject().stringValue())) {
