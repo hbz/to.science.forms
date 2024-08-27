@@ -1210,8 +1210,7 @@ public abstract class ZettelModel {
 	 * @return a map that maps a uri to a setter method
 	 */
 	protected Map<String, Consumer<Object>> getMappingForDeserialization() {
-		String regalApi = Play.application().configuration()
-				.getString("regalApi");
+		String regalApi = Play.application().configuration().getString("regalApi");
 		Map<String, Consumer<Object>> dict = new LinkedHashMap<>();
 		dict.put(titleZF.uri, (in) -> setTitle((String) in));
 		dict.put(creatorZF.uri, (in) -> addCreator((String) in));
@@ -1224,25 +1223,21 @@ public abstract class ZettelModel {
 		dict.put(professionalGroupZF.uri,
 				(in) -> addProfessionalGroup((String) in));
 		dict.put(subjectZF.uri, (in) -> addSubject((String) in));
-		dict.put(yearOfCopyrightZF.uri,
-				(in) -> setYearOfCopyright((String) in));
+		dict.put(yearOfCopyrightZF.uri, (in) -> setYearOfCopyright((String) in));
 		dict.put(ddcZF.uri, (in) -> addDdc((String) in));
 		dict.put(fundingZF.uri, (in) -> addFunding((String) in));
 		dict.put(fundingIdZF.uri, (in) -> addFundingId((String) in));
-		dict.put(recordingPeriodZF.uri,
-				(in) -> setRecordingPeriod((String) in));
+		dict.put(recordingPeriodZF.uri, (in) -> setRecordingPeriod((String) in));
 		dict.put(recordingLocationZF.uri,
 				(in) -> addRecordingLocation((String) in));
 		dict.put(recordingCoordinatesZF.uri,
 				(in) -> addRecordingCoordinates((String) in));
 		dict.put(nextVersionZF.uri, (in) -> setNextVersion((String) in));
-		dict.put(previousVersionZF.uri,
-				(in) -> setPreviousVersion((String) in));
+		dict.put(previousVersionZF.uri, (in) -> setPreviousVersion((String) in));
 		dict.put(doiZF.uri, (in) -> addDoi((String) in));
 		dict.put(urnZF.uri, (in) -> addUrn((String) in));
 		dict.put(isLikeZF.uri, (in) -> addIsLike((String) in));
-		dict.put(contributorOrderZF.uri,
-				(in) -> addContributorOrder((String) in));
+		dict.put(contributorOrderZF.uri, (in) -> addContributorOrder((String) in));
 		dict.put(alternativeTitleZF.uri, (in) -> setAlternative((String) in));
 		dict.put(titleLanguageZF.uri, (in) -> setTitleLanguage((String) in));
 		dict.put(descriptionZF.uri, (in) -> setDescription((String) in));
@@ -1255,20 +1250,17 @@ public abstract class ZettelModel {
 		dict.put(referenceZF.uri, (in) -> addReference((String) in));
 		dict.put(usageManualZF.uri, (in) -> setUsageManual((String) in));
 		dict.put(subjectNameZF.uri, (in) -> setSubjectName((String) in));
-		dict.put(creatorNameZF.uri, (in) -> addCreatorName(regalApi
-				+ "/adhoc/creator/" + MyURLEncoding.encode((String) in)));
-		dict.put(contributorNameZF.uri, (in) -> addContributorName(regalApi
-				+ "/adhoc/contributor/" + MyURLEncoding.encode((String) in)));
+		dict.put(creatorNameZF.uri, (in) -> addCreatorName(
+				regalApi + "/adhoc/creator/" + MyURLEncoding.encode((String) in)));
+		dict.put(contributorNameZF.uri, (in) -> addContributorName(
+				regalApi + "/adhoc/contributor/" + MyURLEncoding.encode((String) in)));
 		dict.put(reviewStatusZF.uri, (in) -> setReviewStatus((String) in));
 		dict.put(congressTitleZF.uri, (in) -> setCongressTitle((String) in));
-		dict.put(congressLocationZF.uri,
-				(in) -> setCongressLocation((String) in));
-		dict.put(congressDurationZF.uri,
-				(in) -> addCongressDuration((String) in));
+		dict.put(congressLocationZF.uri, (in) -> setCongressLocation((String) in));
+		dict.put(congressDurationZF.uri, (in) -> addCongressDuration((String) in));
 		dict.put(isbnZF.uri, (in) -> setIsbn((String) in));
 		dict.put(publisherZF.uri, (in) -> setPublisher((String) in));
-		dict.put(publicationPlaceZF.uri,
-				(in) -> setPublicationPlace((String) in));
+		dict.put(publicationPlaceZF.uri, (in) -> setPublicationPlace((String) in));
 		dict.put(abstractTextZF.uri, (in) -> addAbstractText((String) in));
 		dict.put(containedInZF.uri, (in) -> addContainedIn((String) in));
 		dict.put(bibliographicCitationZF.uri,
@@ -1285,20 +1277,14 @@ public abstract class ZettelModel {
 		dict.put(otherZF.uri, (in) -> addOther((String) in));
 		dict.put(institutionZF.uri, (in) -> addInstitution((String) in));
 		dict.put(issuedZF.uri, (in) -> setIssued((String) in));
-		dict.put(publicationYearZF.uri,
-				(in) -> setPublicationYear((String) in));
+		dict.put(publicationYearZF.uri, (in) -> setPublicationYear((String) in));
 		dict.put(affiliationZF.uri, (in) -> addAffiliation((String) in));
-		dict.put(affiliationIndexZF.uri,
-				(in) -> setAffiliationIndex((String) in));
+		dict.put(affiliationIndexZF.uri, (in) -> setAffiliationIndex((String) in));
 		dict.put(collectionOneZF.uri, (in) -> addCollectionOne((String) in));
-		dict.put(fulltextVersionZF.uri,
-				(in) -> addFulltextVersion((String) in));
-		dict.put(publisherVersionZF.uri,
-				(in) -> addPublisherVersion((String) in));
-		dict.put(additionalMaterialZF.uri,
-				(in) -> addAdditionalMaterial((String) in));
-		dict.put(parallelEditionZF.uri,
-				(in) -> setParallelEdition((String) in));
+		dict.put(fulltextVersionZF.uri, (in) -> addFulltextVersion((String) in));
+		dict.put(publisherVersionZF.uri, (in) -> addPublisherVersion((String) in));
+		dict.put(additionalMaterialZF.uri, (in) -> addAdditionalMaterial((String) in));
+		dict.put(parallelEditionZF.uri, (in) -> setParallelEdition((String) in));
 		dict.put(typeZF.uri, (in) -> addType((String) in));
 		dict.put(collectionTwoZF.uri, (in) -> addCollectionTwo((String) in));
 		dict.put(internalReferenceZF.uri,
@@ -1357,8 +1343,8 @@ public abstract class ZettelModel {
 		this.documentId = myDocumentId;
 		this.topicId = myTopicId;
 		Map<String, Consumer<Object>> dict = getMappingForDeserialization();
-		Collection<Statement> graph = RdfUtils.readRdfToGraph(in, format,
-				getDocumentId());
+		Collection<Statement> graph = 
+				RdfUtils.readRdfToGraph(in, format, getDocumentId());
 		graph.forEach((st) -> {
 			if (!"".equals(st.getObject().stringValue())) {
 				String rdf_P = st.getPredicate().stringValue();
@@ -1374,13 +1360,12 @@ public abstract class ZettelModel {
 	 * @return json ld map for this model
 	 */
 	public Map<String, Object> serializeToMap() {
-		Map<String, Object> jsonMap = new ObjectMapper().convertValue(this,
-				HashMap.class);
+		Map<String, Object> jsonMap =
+				new ObjectMapper().convertValue(this, HashMap.class);
 		jsonMap.put(ZettelModel.IS_PRIMARY_TOPIC_OF, getIsPrimaryTopicOf());
 		// jsonMap.put("rdftype", getType());
 		removeEmptyCollections(jsonMap);
-		jsonMap.put("@context",
-				ZettelHelper.etikett.getContext().get("@context"));
+		jsonMap.put("@context", ZettelHelper.etikett.getContext().get("@context"));
 		return jsonMap;
 	}
 
@@ -1394,8 +1379,7 @@ public abstract class ZettelModel {
 				r = removeEmptyCollections(
 						(java.util.Map<String, Object>) e.getValue());
 			else if (e.getValue() instanceof java.util.List<?>)
-				r = removeEmptyCollections(
-						(java.util.List<Object>) e.getValue());
+				r = removeEmptyCollections((java.util.List<Object>) e.getValue());
 			else if (e.getValue() instanceof String) {
 				r = removeEmptyCollections((String) e.getValue());
 			}
@@ -1438,8 +1422,7 @@ public abstract class ZettelModel {
 	}
 
 	/**
-	 * @param documentId
-	 *            provide your id as URIto get proper rdf.
+	 * @param documentId provide your id as URIto get proper rdf.
 	 */
 	public void setDocumentId(String documentId) {
 		this.documentId = documentId;
@@ -1454,8 +1437,7 @@ public abstract class ZettelModel {
 	}
 
 	/**
-	 * @param topicId
-	 *            provide an id of what is described by your resource as URI.
+	 * @param topicId provide an id of what is described by your resource as URI.
 	 */
 	public void setTopicId(String topicId) {
 		this.topicId = topicId;
@@ -1465,8 +1447,8 @@ public abstract class ZettelModel {
 			Consumer<Object> consumer) {
 		Value rdf_O = st.getObject();
 		if (rdf_O instanceof BNode) {
-			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(),
-					RdfUtils.first, consumer);
+			RdfUtils.traverseList(graph, ((BNode) rdf_O).getID(), RdfUtils.first,
+					consumer);
 		} else if (RdfUtils.nil.equals(rdf_O)) {
 			return;
 		} else {
