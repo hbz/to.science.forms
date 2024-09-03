@@ -154,7 +154,7 @@
 		</div>
 
 
-
+@if(controllers.ZettelController.callDataStreamEndpoint(ZettelHelper.getJsonMap(myForm).get("@id")+"", "ktbl")=="YES"){
 <script>
 
   var ready = (callback) => {
@@ -312,6 +312,6 @@ function getEnabledAdditionalHousingOptions(selectedLivestock) {
 }
 
 </script>
-
+}
 }	
 }
