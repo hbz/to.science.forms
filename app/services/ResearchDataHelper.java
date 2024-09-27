@@ -125,6 +125,12 @@ public class ResearchDataHelper {
 				"Interventionsstudie");
 		map.put("http://hbz-nrw.de/regal#Kohortenstudie", "Kohortenstudie");
 		map.put("http://hbz-nrw.de/regal#Simulation", "Simulation");
+		
+		map.put("http://hbz-nrw.de/regal#Ausbreitungsmodellierung", "Ausbreitungsmodellierung");
+		map.put("http://hbz-nrw.de/regal#Quelltermrückrechnung", "Quelltermrückrechnung");
+		map.put("http://hbz-nrw.de/regal#Messunginsitu", "Messung in situ");
+		map.put("http://hbz-nrw.de/regal#Messungexsitu", "Messung ex situ");
+
 		return map;
 	}
 
@@ -186,6 +192,7 @@ public class ResearchDataHelper {
 	 */
 	public static LinkedHashMap<String, String> getCopyrightYear() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put(null, "Bitte wählen Sie...");
 		List<LocalDate> years =
 				Stream.iterate(LocalDate.now(), date -> date.minusYears(1)).limit(100)
 						.collect(Collectors.toList());
