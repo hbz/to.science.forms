@@ -156,88 +156,97 @@
 
 
 @if(controllers.ZettelController.callDataStreamEndpoint(ZettelHelper.getJsonMap(myForm).get("@id")+"", "ktbl")=="YES"){
+
 <script>
 
-  var ready = (callback) => {
-  if (document.readyState != "loading") callback();
-  else document.addEventListener("DOMContentLoaded", callback);
+var ready = (callback) => {
+     if (document.readyState != "loading") callback();
+     else document.addEventListener("DOMContentLoaded", callback);
 }
  
 ready(() => {
-
-  markSelectedLivestockCategory();
-  updateHousingSystemsOptions();
-  updateAdditionalHousingOptions()
-  document.getElementById('livestock_category').addEventListener('change', function() { 
-  markSelectedLivestockCategory();
-  updateAdditionalHousingOptions()
-  
+  	markSelectedLivestockCategory();
+  	updateHousingSystemsOptions();
+  	updateAdditionalHousingOptions();
+  	document.getElementById('livestock_category').addEventListener('change', function() { 
+  	markSelectedLivestockCategory();
+  	updateAdditionalHousingOptions();});
+  	document.getElementById('livestock_production').addEventListener('change', function() { 
+  	updateHousingSystemsOptions();
+});
 });
 
-  document.getElementById('livestock_production').addEventListener('change', function() { 
-  updateHousingSystemsOptions();
-});
-
-
- 
-});
-
-function markSelectedLivestockCategory() {
-      var livestockCategory = document.getElementById('livestock_category').value;
-      console.log("wert von livestock: "+livestockCategory);
-     var livestockProductionOptions = document.getElementById('livestock_production').getElementsByTagName('option');
-
-
-for (var j = 0; j < livestockProductionOptions.length; j++) {
-        livestockProductionOptions[j].disabled = true; // Restliche Elemente deaktivieren
+function enableOptions(values) {
+    var livestockProductionOptions = document.getElementById('livestock_production').getElementsByTagName('option');
+    for (var i = 0; i < livestockProductionOptions.length; i++) {
+        livestockProductionOptions[i].disabled = !values.includes(livestockProductionOptions[i].value);
     }
-	livestockProductionOptions[0].disabled=false;
-
-    // Markierung basierend auf livestockCategory setzen
-    if (livestockCategory === 'cattle') {
-        for (var i = 0; i < 7; i++) {
-		livestockProductionOptions[i].disabled=false;
-        }
-    } else if (livestockCategory === 'pig') {
-        for (var i = 7; i < 10; i++) {
-		livestockProductionOptions[i].disabled=false;
-
-        }} else if (livestockCategory === 'chicken') {
-            for (var i = 10; i < 13; i++) {
-		livestockProductionOptions[i].disabled=false;
-
-            }
-        } else if (livestockCategory === 'turkey') {
-            for (var i = 13; i < 15; i++) {
-		livestockProductionOptions[i].disabled=false;
-
-            }
-        } else if (livestockCategory === 'duck') {
-           livestockProductionOptions[livestockProductionOptions.length - 1].disabled=false;
-        }
-
 }
 
+function markSelectedLivestockCategory() {
+    var livestockCategory = document.getElementById('livestock_category').value;
+    var livestockProductionOptions = document.getElementById('livestock_production').getElementsByTagName('option');
+    for (var j = 0; j < livestockProductionOptions.length; j++) {		
+		 livestockProductionOptions[j].disabled = true;
+    }
+	if (livestockCategory !== "") {
+		livestockProductionOptions[0].disabled = false;
+	}else{
+		livestockProductionOptions[0].disabled = true;
+	}
+   
+    if (livestockCategory === 'cattle') {
+        enableOptions(['dairy_cattle_farming', 'young_cattle_farming', 'calf_raising', 'calf_fattening', 'cattle_fattening', 'suckler_cow_farming']);
+    } else if (livestockCategory === 'pig') {
+        enableOptions(['piglet_production', 'piglet_raising', 'pig_fattening']);
+    } else if (livestockCategory === 'chicken') {
+        enableOptions(['laying_hen_farming', 'young_hen_farming', 'broiler_fattening']);
+    } else if (livestockCategory === 'turkey') {
+        enableOptions(['turkey_fattening', 'turkey_raising']);
+    } else if (livestockCategory === 'duck') {
+        enableOptions(['duck_fattening']);
+    }
+    selectFirstEnabledOption(document.getElementById('livestock_production')); 
+    updateHousingSystemsOptions();
+}
+
+function selectFirstEnabledOption(selectElement) {
+    var options = selectElement.getElementsByTagName('option');
+    if (options.length > 0) {
+        options[0].disabled = false; // Aktiviere die erste Option
+     }
+    for (var i = 1; i < options.length; i++) { 
+        if (!options[i].disabled) {
+            options[i].selected = true; 
+            break; 
+        }
+    }
+}
 function updateHousingSystemsOptions() {
   const selectedLivestockProduction = document.getElementById('livestock_production').value;
   const housingSystemsOptions = document.getElementById('housing_systems').getElementsByTagName('option');
   const enabledOptions = getEnabledHousingOptions(selectedLivestockProduction);
+  const housingSystemsSelect = document.getElementById('housing_systems');
 
-  // Deaktiviere alle Optionen zunÃ¤chst
+  if (selectedLivestockProduction === "") {
+        housingSystemsSelect.value = ""; // 
+        for (let i = 0; i < housingSystemsOptions.length; i++) {
+            housingSystemsOptions[i].disabled = true;
+        }
+        return; 
+    }
   for (let i = 0; i < housingSystemsOptions.length; i++) {
     housingSystemsOptions[i].disabled = true;
   }
-
-  housingSystemsOptions[0].disabled = false;
-
-  // Aktiviere die richtigen Optionen
+  	housingSystemsOptions[0].disabled = false;
+  
   for (let i = 0; i < housingSystemsOptions.length; i++) {
     if (enabledOptions.has(housingSystemsOptions[i].value)) {
       housingSystemsOptions[i].disabled = false;
     }
   }
+  selectFirstEnabledOption(document.getElementById('housing_systems'));
 }
-
 function getEnabledHousingOptions(selectedLivestockProduction) {
   const enabledOptions = new Set([
     'others',
@@ -268,17 +277,13 @@ function getEnabledHousingOptions(selectedLivestockProduction) {
   ]);
   return enabledOptions;
 }
-
 function updateAdditionalHousingOptions() {
   const livestockDropdown = document.getElementById('livestock_category');
   const housingDropdowns = document.querySelectorAll('[id^="additional_housing_systems"]');
   const selectedLivestock = livestockDropdown.value;
   const enabledAdditionalHousingOptions = getEnabledAdditionalHousingOptions(selectedLivestock);
-  
   housingDropdowns.forEach((dropdown) => {
     const dropdownOptions = dropdown.getElementsByTagName('option');
-
-
     for (let i = 0; i < dropdownOptions.length; i++) {
       dropdownOptions[i].disabled = true;
     }
@@ -289,9 +294,13 @@ function updateAdditionalHousingOptions() {
         dropdownOptions[i].disabled = false;
       }
     }
+	if (selectedLivestock === "") {
+            dropdown.value = ""; 
+        } else {
+            selectFirstEnabledOption(dropdown);
+        }
   });
 }
-
 function getEnabledAdditionalHousingOptions(selectedLivestock) {
   const enabledOptions = new Set();
 
@@ -301,22 +310,18 @@ function getEnabledAdditionalHousingOptions(selectedLivestock) {
 	enabledOptions.add('yard');
 	enabledOptions.add('others');
   }
-
   if (['cattle', 'pig'].includes(selectedLivestock)) {
     enabledOptions.add('liquid_manure');
     enabledOptions.add('solid_floor');
     enabledOptions.add('pastures');
-    enabledOptions.add('others');
-	
+    enabledOptions.add('others');	
   } 
    if (['chicken'].includes(selectedLivestock)) {
    enabledOptions.add('manure_belt');
     enabledOptions.add('veranda');	
   }
-  
   return enabledOptions;
 }
-
 </script>
 }
 }	
