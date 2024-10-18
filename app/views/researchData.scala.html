@@ -170,7 +170,8 @@ ready(() => {
   	updateAdditionalHousingOptions();
   	document.getElementById('livestock_category').addEventListener('change', function() { 
   	markSelectedLivestockCategory();
-  	updateAdditionalHousingOptions();});
+  	updateAdditionalHousingOptions();
+  	});
   	document.getElementById('livestock_production').addEventListener('change', function() { 
   	updateHousingSystemsOptions();
 });
@@ -193,6 +194,7 @@ function markSelectedLivestockCategory() {
 		livestockProductionOptions[0].disabled = false;
 	}else{
 		livestockProductionOptions[0].disabled = true;
+		livestockProductionOptions[0].selected = true;
 	}
    
     if (livestockCategory === 'cattle') {
