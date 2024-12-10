@@ -110,6 +110,7 @@ public class ZettelController extends Controller {
 	public CompletionStage<Result> getForms(String id, String format,
 			String documentId, String topicId) {
 		setHeaders();
+		play.Logger.debug("after setHeaders(); id="+id);
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		Result result = null;
 		if (id == null)
@@ -119,8 +120,10 @@ public class ZettelController extends Controller {
 					|| id.equals("katalog:webpage")) {
 				id = "katalog:catalog";
 			}
+			play.Logger.debug("getForms: id="+id);
 			ZettelRegister zettelRegister = new ZettelRegister();
 			ZettelRegisterEntry zettel = zettelRegister.get(id);
+			play.Logger.debug("getForms: before renderForm");
 			result = renderForm(zettel, format, documentId, topicId);
 		}
 		future.complete(result);
@@ -267,7 +270,9 @@ public class ZettelController extends Controller {
 
 	private Result renderForm(ZettelRegisterEntry zettel, String format,
 			String documentId, String topicId) {
+		play.Logger.debug("zettel.getModel().getClass():"+zettel.getModel().getClass());
 		Form<?> form = formFactory.form(zettel.getModel().getClass());
+		play.Logger.debug("format="+format+"; documentId="+documentId+"; topicId="+topicId);
 		return ok(zettel.render(form, format, documentId, topicId));
 	}
 
