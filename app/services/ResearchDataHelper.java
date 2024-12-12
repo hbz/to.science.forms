@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import play.Play;
+
 /**
  * @author Jan Schnasse
  *
@@ -31,6 +33,8 @@ import java.util.stream.Stream;
 
 @SuppressWarnings("javadoc")
 public class ResearchDataHelper {
+
+	public static String httpContext = Play.application().configuration().getString("play.http.context");
 
 	/**
 	 * @return a map that can be used in an html select
@@ -207,7 +211,7 @@ public class ResearchDataHelper {
 	public static LinkedHashMap<String, String> getPersonLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put("https://lobid.org/person", "GND");
-		map.put("/tools/zettel/orcidAutocomplete", "ORCID");
+		map.put(httpContext+"/orcidAutocomplete", "ORCID");
 		return map;
 	}
 
