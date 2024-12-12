@@ -76,7 +76,7 @@ public class ZettelController extends Controller {
 	 */
 	public CompletionStage<Result> index() {
 		CompletableFuture<Result> future = new CompletableFuture<>();
-		future.complete(ok(index.render("forms")));
+		future.complete(ok(index.render("Zettel")));
 		return future;
 	}
 
@@ -189,7 +189,7 @@ public class ZettelController extends Controller {
 			String documentId, String topicId) {
 		CompletableFuture<Result> future = new CompletableFuture<>();
 		future
-				.complete(ok(client.render("forms", format, id, documentId, topicId)));
+				.complete(ok(client.render("Zettel", format, id, documentId, topicId)));
 		return future;
 	}
 

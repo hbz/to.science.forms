@@ -57,6 +57,7 @@ public class ArticleHelper {
 	}
 
 	private static Map<String, String> readCsv(String resource) {
+		play.Logger.debug("resource="+resource);
 		String path = play.Play.application().resource(resource).getPath();
 		play.Logger.info("Read " + resource + " from " + path);
 		Map<String, String> result = new LinkedHashMap<>();
