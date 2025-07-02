@@ -245,7 +245,7 @@ public class MyEtikettMaker implements EtikettMakerInterface {
 					+ Base64.getEncoder().encodeToString(auth.getBytes());
 			
 			play.Logger.debug("uri = " + uri);
-			URL url = new URL("http://localhost:9002/tools/etikett?url=" + uri
+			URL url = new URL("http://localhost:9002/tools/labels?url=" + uri
 					+ "&column=label");
 			play.Logger.debug("url = " + url.toString());
 			

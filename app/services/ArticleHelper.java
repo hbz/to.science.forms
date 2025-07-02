@@ -202,47 +202,47 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getPersonLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
-		map.put("/tools/zettel/orcidAutocomplete", "ORCiD");
-		map.put("/tools/zettel/personAutocomplete", "GND (Personen)");
-		map.put("/tools/zettel/corporateBodyAutocomplete", "GND (Körperschaften)");
+		map.put("/tools/forms/localAutocomplete", "Lokal");
+		map.put("/tools/forms/orcidAutocomplete", "ORCiD");
+		map.put("/tools/forms/personAutocomplete", "GND (Personen)");
+		map.put("/tools/forms/corporateBodyAutocomplete", "GND (Körperschaften)");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getCollectionTwoEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/conferenceAutocomplete", "GND (Kongress)");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put("/tools/forms/conferenceAutocomplete", "GND (Kongress)");
+		map.put("/tools/forms/localAutocomplete", "Lokal");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getInstitutionLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/corporateBodyAutocomplete", "GND (Körperschaften)");
-		map.put("/tools/zettel/personAutocomplete", "GND (Personen)");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put("/tools/forms/corporateBodyAutocomplete", "GND (Körperschaften)");
+		map.put("/tools/forms/personAutocomplete", "GND (Personen)");
+		map.put("/tools/forms/localAutocomplete", "Lokal");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getSubjectLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
-		map.put("/tools/zettel/subjectAutocomplete", "GND (Schlagwörter)");
+		map.put("/tools/forms/localAutocomplete", "Lokal");
+		map.put("/tools/forms/subjectAutocomplete", "GND (Schlagwörter)");
 		map.put("/tools/skos-lookup/autocomplete", "Agrovoc");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getLobidLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/lobidAutocomplete", "Lobid 2");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put("/tools/forms/lobidAutocomplete", "Lobid 2");
+		map.put("/tools/forms/localAutocomplete", "Lokal");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getFundingLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/crossrefAutocomplete", "CrossRef Funder Registry");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put("/tools/forms/crossrefAutocomplete", "CrossRef Funder Registry");
+		map.put("/tools/forms/localAutocomplete", "Lokal");
 		return map;
 	}
 
@@ -254,15 +254,15 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getTitleLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
-		map.put("/tools/zettel/journalAutocomplete",
+		map.put("/tools/forms/journalAutocomplete",
 				"Zeitschrift (ZDB/hbz-Verbundkatalog)");
-		map.put("/tools/zettel/bookAutocomplete", "Buch (hbz-Verbundkatalog)");
-		map.put("/tools/zettel/conferenceAlephAutocomplete",
+		map.put("/tools/forms/bookAutocomplete", "Buch (hbz-Verbundkatalog)");
+		map.put("/tools/forms/conferenceAlephAutocomplete",
 				"Kongress (hbz-Verbundkatalog)");
-		map.put("/tools/zettel/seriesAutocomplete",
+		map.put("/tools/forms/seriesAutocomplete",
 				"Monogr. ÜO (hbz-Verbundkatalog)");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
-		map.put("/tools/zettel/allAutocomplete", "Aleph");
+		map.put("/tools/forms/localAutocomplete", "Lokal");
+		map.put("/tools/forms/allAutocomplete", "Aleph");
 		return map;
 	}
 
