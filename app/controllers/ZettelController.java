@@ -195,9 +195,9 @@ public class ZettelController extends Controller {
 		Result result;
 		if (form.hasErrors()) {
 			if (request().accepts("text/html")) {
-				result = badRequest(zettel.render(form, format, documentId, topicId));
+				result = ok(zettel.render(form, format, documentId, topicId));
 			} else {
-				result = badRequest(form.errorsAsJson()).as("application/json");
+				result = ok(zettel.render(form, format, documentId, topicId));
 			}
 		} else {
 			if (request().accepts("text/html")) {
