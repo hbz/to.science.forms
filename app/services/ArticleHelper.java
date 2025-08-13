@@ -33,6 +33,7 @@ import org.supercsv.io.ICsvMapReader;
 import org.supercsv.prefs.CsvPreference;
 
 import models.ZettelModel;
+import play.Play;
 
 /**
  * @author Jan Schnasse
@@ -56,7 +57,10 @@ public class ArticleHelper {
 		return processors;
 	}
 
+	public static String httpContext = Play.application().configuration().getString("play.http.context");
+
 	private static Map<String, String> readCsv(String resource) {
+		play.Logger.debug("resource="+resource);
 		String path = play.Play.application().resource(resource).getPath();
 		play.Logger.info("Read " + resource + " from " + path);
 		Map<String, String> result = new LinkedHashMap<>();
@@ -202,47 +206,47 @@ public class ArticleHelper {
 
 	public static LinkedHashMap<String, String> getPersonLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
-		map.put("/tools/zettel/orcidAutocomplete", "ORCiD");
-		map.put("/tools/zettel/personAutocomplete", "GND (Personen)");
-		map.put("/tools/zettel/corporateBodyAutocomplete", "GND (Körperschaften)");
+		map.put(httpContext+"/localAutocomplete", "Lokal");
+		map.put(httpContext+"/orcidAutocomplete", "ORCiD");
+		map.put(httpContext+"/personAutocomplete", "GND (Personen)");
+		map.put(httpContext+"/corporateBodyAutocomplete", "GND (Körperschaften)");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getCollectionTwoEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/conferenceAutocomplete", "GND (Kongress)");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put(httpContext+"/conferenceAutocomplete", "GND (Kongress)");
+		map.put(httpContext+"/localAutocomplete", "Lokal");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getInstitutionLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/corporateBodyAutocomplete", "GND (Körperschaften)");
-		map.put("/tools/zettel/personAutocomplete", "GND (Personen)");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put(httpContext+"/corporateBodyAutocomplete", "GND (Körperschaften)");
+		map.put(httpContext+"/personAutocomplete", "GND (Personen)");
+		map.put(httpContext+"/localAutocomplete", "Lokal");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getSubjectLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
-		map.put("/tools/zettel/subjectAutocomplete", "GND (Schlagwörter)");
+		map.put(httpContext+"/localAutocomplete", "Lokal");
+		map.put(httpContext+"/subjectAutocomplete", "GND (Schlagwörter)");
 		map.put("/tools/skos-lookup/autocomplete", "Agrovoc");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getLobidLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/lobidAutocomplete", "Lobid 2");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put(httpContext+"/lobidAutocomplete", "Lobid 2");
+		map.put(httpContext+"/localAutocomplete", "Lokal");
 		return map;
 	}
 
 	public static LinkedHashMap<String, String> getFundingLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
-		map.put("/tools/zettel/crossrefAutocomplete", "CrossRef Funder Registry");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
+		map.put(httpContext+"/crossrefAutocomplete", "CrossRef Funder Registry");
+		map.put(httpContext+"/localAutocomplete", "Lokal");
 		return map;
 	}
 
@@ -254,15 +258,15 @@ public class ArticleHelper {
 	public static LinkedHashMap<String, String> getTitleLookupEndpoints() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<>();
 		map.put(ZettelModel.ZETTEL_NULL, "Bitte wählen Sie...");
-		map.put("/tools/zettel/journalAutocomplete",
+		map.put(httpContext+"/journalAutocomplete",
 				"Zeitschrift (ZDB/hbz-Verbundkatalog)");
-		map.put("/tools/zettel/bookAutocomplete", "Buch (hbz-Verbundkatalog)");
-		map.put("/tools/zettel/conferenceAlephAutocomplete",
+		map.put(httpContext+"/bookAutocomplete", "Buch (hbz-Verbundkatalog)");
+		map.put(httpContext+"/conferenceAlephAutocomplete",
 				"Kongress (hbz-Verbundkatalog)");
-		map.put("/tools/zettel/seriesAutocomplete",
+		map.put(httpContext+"/seriesAutocomplete",
 				"Monogr. ÜO (hbz-Verbundkatalog)");
-		map.put("/tools/zettel/localAutocomplete", "Lokal");
-		map.put("/tools/zettel/allAutocomplete", "Aleph");
+		map.put(httpContext+"/localAutocomplete", "Lokal");
+		map.put(httpContext+"/allAutocomplete", "Aleph");
 		return map;
 	}
 

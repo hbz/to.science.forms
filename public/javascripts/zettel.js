@@ -102,7 +102,7 @@ function handleMessage(evt) {
 	if (evt.data.action == 'postDataToZettel' && evt.data.message != 0) {
 		$.ajax({
 			type : 'POST',
-			url : "/tools/zettel/forms?" + evt.data.queryParam,
+			url : "/tools/forms/forms?" + evt.data.queryParam,
 			data : decodeURI(evt.data.message),
 			crossDomain : true,
 			contentType : 'application/rdf+xml;charset=utf-8',
